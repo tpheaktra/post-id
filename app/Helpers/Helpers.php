@@ -80,6 +80,40 @@ class Helpers{
     }
 
 
+    /*
+    * function get gender
+    */
+    public static function getQuestion(){
+        $homeprepar =DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS question ,name_kh,id from question');
+        return $homeprepar;
+    }
+
+    /*
+   * function get gender
+   */
+    public static function getElectricGird(){
+        $homeprepar =DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS electricgrid ,name_kh,id from electric_grid');
+        return $homeprepar;
+    }
+
+    /*
+  * function get gender
+  */
+    public static function getLangAgricultural(){
+        $homeprepar =DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS land ,name_kh,id from land_agricultural');
+        return $homeprepar;
+    }
+
+
+    /*
+ * function get gender
+ */
+    public static function getLoan(){
+        $loan =DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS loan ,name_kh,id from loan');
+        return $loan;
+    }
+
+
 }
 	
 	

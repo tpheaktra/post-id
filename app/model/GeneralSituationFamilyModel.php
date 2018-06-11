@@ -34,6 +34,20 @@ class GeneralSituationFamilyModel extends Model
         'walls_status',
         'condition_house_id',
         'rent_fee',
-        //'household_consumer_id'
+
+        'q_electric_id',
+        'costs_in_hour',
+        'number_in_month',
+        'costs_per_month',
+        'electric_grid_id',
+        'go_hospital',
+
+        'land_agricultural_id',
+        'land_name',
+        'total_land',
+        'land_farm',
+        'total_land_farm',
+        'debt_family_id',
+
     ];
 }

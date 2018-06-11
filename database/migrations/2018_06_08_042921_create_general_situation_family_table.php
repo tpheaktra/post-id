@@ -43,7 +43,20 @@ class CreateGeneralSituationFamilyTable extends Migration
             $table->integer('condition_house_id')->nullable();
             $table->integer('rent_fee')->nullable();
 
-            //$table->integer('household_consumer_id')->nullable();
+            $table->integer('q_electric_id')->nullable();
+            $table->string('costs_in_hour')->nullable();
+            $table->string('number_in_month')->nullable();
+            $table->string('costs_per_month')->nullable();
+            $table->integer('electric_grid_id')->nullable();
+            $table->string('go_hospital')->nullable();
+
+            $table->integer('land_agricultural_id')->nullable();
+            $table->string('land_name')->nullable();
+            $table->string('total_land')->nullable();
+            $table->string('land_farm')->nullable();
+            $table->string('total_land_farm')->nullable();
+
+            $table->integer('debt_family_id')->nullable();
 
 
             $table->timestamps();

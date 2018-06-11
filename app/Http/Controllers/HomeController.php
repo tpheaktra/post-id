@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\model\DebtLoanLinkModel;
 use App\model\GeneralInformationModel;
 use App\model\GeneralSituationFamilyModel;
 use App\model\HomePreparLinkModel;
 use App\model\HouseHoldFamilyLinkModel;
+use App\model\HouseholdVehicleModel;
 use App\model\HouseoldConsumerModel;
 use App\model\MemberFamilyModel;
+use App\model\TypeIncomeModel;
 use Illuminate\Http\Request;
 use App\model\RelationshipModel;
 use App\Helpers\Helpers;
@@ -37,7 +40,14 @@ class HomeController extends Controller
         $household     = Helpers::getHouseHoldFamily();
         $homePrepar    = Helpers::getHomePrepar();
         $condition_house = Helpers::getConditionHouse();
-        return view('home',compact('relationship','provinces','gender','household','homePrepar','condition_house'));
+        $question = Helpers::getQuestion();
+        $electricgrid = Helpers::getElectricGird();
+        $landAgricultural = Helpers::getLangAgricultural();
+        $loan = Helpers::getLoan();
+        return view('home',compact('relationship',
+            'provinces','gender','household',
+            'homePrepar','condition_house','question','electricgrid',
+            'landAgricultural','loan'));
     }
 
     /*
@@ -155,8 +165,21 @@ class HomeController extends Controller
             'walls_status'         =>$request->walls_status,
 
             'condition_house_id'   =>$request->condition_house,
-            'rent_fee'             =>$request->rent_fee
-           // 'household_consumer_id'=>1,
+            'rent_fee'             =>$request->rent_fee,
+
+            'q_electric_id'=>$request->q_electric,
+            'costs_in_hour'=>$request->costs_in_hour,
+            'number_in_month'=>$request->number_in_month,
+            'costs_per_month'=>$request->costs_per_month,
+            'electric_grid_id'=>$request->electric_grid_id,
+            'go_hospital'=>$request->go_hospital,
+
+            'land_agricultural_id' =>$request->land,
+            'land_name'            =>$request->land_name,
+            'total_land'           =>$request->total_land,
+            'land_farm'            =>$request->land_farm,
+            'total_land_farm'      =>$request->total_land_farm,
+            'debt_family_id'       =>$request->debt_family_id,
         );
         $gSFamily = GeneralSituationFamilyModel::create($general_situation_family);
 
@@ -171,12 +194,44 @@ class HomeController extends Controller
             );
             HouseoldConsumerModel::create($meterial);
         }
+       //household vehicle
+        foreach ($request->type_vehicle as $key => $vi) {
+            $vehicle = array(
+                'g_situation_family_id' => $gSFamily->id,
+                'type_vehicle'         => $vi,
+                'number_vehicle'       => $request->number_vehicle[$key],
+                'market_value_vehicle' => $request->market_value_vehicle[$key],
+                'total_rail_vehicle'   => $request->total_rail_vehicle[$key],
+                'total_vehicle_costs'  => $request->total_vehicle_costs
+            );
+            HouseholdVehicleModel::create($vehicle);
+        }
+
+
+        //household vehicle
+        foreach ($request->type_animals as $key => $anim) {
+            $animals = array(
+                'g_situation_family_id' => $gSFamily->id,
+                'type_animals'          => $anim,
+                'num_animals_big'       => $request->num_animals_big[$key],
+                'num_animals_small'     => $request->num_animals_small[$key],
+                'note_animals'          => $request->note_animals[$key],
+                'total_animals_costs'   => $request->total_animals_costs
+            );
+            TypeIncomeModel::create($animals);
+        }
 
 
 
-       //MemberFamilyModel::all();
-       //echo json_encode($data);
-        return back();
+        //គ.១៤) បំណុលគ្រួសារ
+            $debt = array(
+                'g_situation_family_id' => $gSFamily->id,
+                'loan_id'               => $request->family_debt_id,
+                'question_id'           => $request->q_debt,
+                'total_debt'            => $request->total_debt,
+            );
+            DebtLoanLinkModel::create($debt);
+        return back()->with('success','Data input success.');
     }
 
 }

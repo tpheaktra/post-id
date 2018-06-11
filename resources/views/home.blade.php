@@ -5,6 +5,7 @@
 
 <!------ Include the above in your HEAD tag ---------->
 
+
 <div class="container content">
 
     <div class="stepwizard">
@@ -555,7 +556,7 @@
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="ground_floor_area" class="form-control" required="required" placeholder="ផ្ទៃ(ម៉ែត្រក្រឡា)..." type="text" name="ground_floor_area" value="0" disabled="disabled">
+                                                    <input id="ground_floor_area" class="form-control" required="required" placeholder="ផ្ទៃ(ម៉ែត្រក្រឡា)..." type="text" name="ground_floor_area" value="0" readonly="readonly">
                                                 </div>
                                             </td>                     
                                         </tr>
@@ -574,7 +575,7 @@
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="upper_floor_area" class="form-control" required="required" placeholder="ផ្ទៃ(ម៉ែត្រក្រឡា)..." type="text" name="upper_floor_area" value="0" disabled="disabled">
+                                                    <input id="upper_floor_area" class="form-control" required="required" placeholder="ផ្ទៃ(ម៉ែត្រក្រឡា)..." type="text" name="upper_floor_area" value="0" readonly="readonly">
                                                 </div>
                                             </td>                     
                                         </tr>
@@ -592,7 +593,7 @@
                                                 </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="further_floor_area" class="form-control" required="required" placeholder="ផ្ទៃ(ម៉ែត្រក្រឡា)..." type="text" value="0" name="further_floor_area" disabled="disabled">
+                                                    <input id="further_floor_area" class="form-control" required="required" placeholder="ផ្ទៃ(ម៉ែត្រក្រឡា)..." type="text" value="0" name="further_floor_area" readonly="readonly">
                                                 </div>
                                             </td>                     
                                         </tr>
@@ -603,7 +604,7 @@
                                             <td><b style="float:right;">ផ្ទៃកម្រាលសរុប (ម៉ែត្រ​ក្រឡា) :</b></td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="total_area" name="total_area" class="form-control" required="required" placeholder="ផ្ម៉ែត្រក្រឡា..." type="text" value="0" disabled="disabled">
+                                                    <input id="total_area" name="total_area" class="form-control" required="required" placeholder="ផ្ម៉ែត្រក្រឡា..." type="text" value="0" readonly="readonly">
                                                 </div>
                                             </td>                     
                                         </tr>
@@ -779,7 +780,7 @@
                                 </table>
 
                                 <h4>គ.៩) ទ្រព្យ​សម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិច​របស់​គ្រួសារ</h4>
-                                <table class="tb_grid" width="100%">
+                                <table class="tb_grid table" width="100%">
                                     <thead>
                                         <tr>
                                             <th>ល.រ</th>
@@ -824,7 +825,7 @@
                                             <td><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input name="total_meterial_costs" type="text" required="required" class="form-control" disabled="disabled"/>
+                                                    <input name="total_meterial_costs" type="text" required="required" class="form-control" readonly/>
                                                 </div>
                                             </td>
                                         </tr>
@@ -849,42 +850,42 @@
 
                             <h4>គ.១០) អគ្គិសនី</h4>
                             <p>តើបានតបណ្តាញអគ្គិសនី (រដ្ឋឬឯកជន) ដែរឬទេ?</p>
-                            <ul>
+                            <ul class="li-none">
+                                @foreach($question as $key => $q)
                                 <li>
-                                     <input type="radio" name="elect" ​​> បាន
+                                     <label><input value="{{$q->id}}" type="radio" name="q_electric" ​​> {{$q->name_kh}}</label>
                                 </li>
-                                <li>
-                                    <input type="radio" name="elect">  មិនបាន
-                                </li>
+                                @endforeach
                             </ul>
 
                             <p>ប្រសិនបានតបណ្តាញអគ្គិសនី </p>
-                            <ul>
-                                <li>
-                                     តម្លៃក្នុងមួយគីឡូវ៉ាត់/ម៉ោង <input type="text">
-                                </li>
-                                <li>
-                                    ចំនួនគីឡូវ៉ាត់ដែលប្រើជាមធ្យមក្នុងមួយខែ <input type="text"> 
-                                </li>
-                                <li>
-                                    ចំណាយ​ជា​មធ្យមក្នុងមួយខែ <input type="text">
-                                </li>
-                            </ul>
+                            <table class="table ">
+                                <tr>
+                                    <th>តម្លៃក្នុងមួយគីឡូវ៉ាត់/ម៉ោង</th>
+                                    <th>ចំនួនគីឡូវ៉ាត់ដែលប្រើជាមធ្យមក្នុងមួយខែ</th>
+                                    <th>ចំណាយ​ជា​មធ្យមក្នុងមួយខែ</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="form-control" required type="text" name="costs_in_hour">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" required type="text" name="number_in_month">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" required type="text" name="costs_per_month">
+                                    </td>
+                                </tr>
+                            </table>
+
 
                             <p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p>
-                            <ul>
+                            <ul class="li-none">
+                                @foreach($electricgrid as $key=>$e)
                                 <li>
-                                     <input type="radio" name="elect" ​​> ប្រើម៉ាស៊ីនភ្លើង
+                                     <label><input value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label>
                                 </li>
-                                <li>
-                                    <input type="radio" name="elect">  ប្រើអាគុយ 
-                                </li>
-                                <li>
-                                    <input type="radio" name="elect">  ប្រើចង្កៀងប្រេងកាត
-                                </li>
-                                <li>
-                                    <input type="radio" name="elect">  ថាមពលព្រះអាទិត្យ
-                                </li>
+                                @endforeach
                             </ul>
 
                         </div>
@@ -894,63 +895,65 @@
                         <div class="col-sm-12">
 
                             <h4>គ.១១) យានជំនិះជាទ្រព្យសម្បត្តិផ្ទាល់របស់​គ្រួសារ</h4>
-                            <h5>តើអ្នកប្រើមធ្យោបាយអ្វីមកមន្ទីរពេទ្យ? <input type="text" name=""></h5>
-                            <table class="tb_grid" width="100%">
+                            <h5>តើអ្នកប្រើមធ្យោបាយអ្វីមកមន្ទីរពេទ្យ? <input required type="text" name="go_hospital"></h5>
+                            <table class="tb_grid table" width="100%">
                                 <thead>
-                                    <tr>
-                                        <th>ល.រ</th>
-                                        <th>ប្រភេទសម្ភារប្រើបា្រស់</th>
-                                        <th>ចំនួន</th>
-                                        <th>តម្លៃទីផ្សារ ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា</th>
-                                        <th>តម្លៃ​សរុប (រៀល)</th>
-                                    </tr>
+                                <tr>
+                                    <th>ល.រ</th>
+                                    <th>ប្រភេទសម្ភារប្រើបា្រស់</th>
+                                    <th>ចំនួន</th>
+                                    <th>តម្លៃទីផ្សារ ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា</th>
+                                    <th>តម្លៃ​សរុប (រៀល)</th>
+                                    <th>Actions</th>
+                                </tr>
                                 </thead>
-                                <tbody class="new_rows_elect">
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input  maxlength="100" type="text" required="required" class="form-control"  />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input  maxlength="100" type="text" required="required" class="form-control"  />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input  maxlength="100" type="text" required="required" class="form-control"  />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input  maxlength="100" type="text" required="required" class="form-control"  />
-                                            </div>
-                                        </td>
-                                    </tr>
+                                <tbody class="new_rows_2">
+                                <tr class="myrow_2">
+                                    <td>1</td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input name="type_vehicle[0]" type="text" required="required" class="form-control"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input name="number_vehicle[0]" type="text" required="required" class="form-control"  />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input name="market_value_vehicle[0]" type="text" required="required" class="form-control"  />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input name="total_rail_vehicle[0]" type="text" required="required" class="form-control"  />
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
+
                                 <tfoot>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input  maxlength="100" type="text" required="required" class="form-control"  />
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                           <input class="btn btn-primary" id="add_rows_elect" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input name="total_vehicle_costs" type="text" required="required" class="form-control" readonly="readonly"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <input class="btn btn-primary" id="add_rows_2" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
+                                    </td>
+                                </tr>
                                 </tfoot>
                             </table>
                             
@@ -965,68 +968,67 @@
                             <h4>គ.១២) ចំណូល</h4>
                             <h5>គ.១២.១) ចំណូល​ ពីសកម្មភាពកសិកម្ម ផ្ទាល់ខ្លួន</h5>
                             <h5>គ.១២.១.១) ការចិញ្ចឹមសត្វ</h5>
-                            <table class="tb_grid" width="100%">
+                            <table class="tb_grid table" width="100%">
                                 <thead>
-                                    <tr>
-                                        <th>ល.រ</th>
-                                        <th>ប្រភេទសត្វ</th>
-                                        <th>ចំនួនសត្វធំ</th>
-                                        <th>ចំនួនកូនសត្វ</th>
-                                        <th>កំណត់សម្គាល់ (បញ្ជាក់ បើសិនជាសត្វប្រវាស់គេ)</th>
-                                        <th>Actions</th>
-                                    </tr>
+                                <tr>
+                                    <th>ល.រ</th>
+                                    <th>ប្រភេទសត្វ</th>
+                                    <th>ចំនួនសត្វធំ</th>
+                                    <th>ចំនួនកូនសត្វ</th>
+                                    <th>កំណត់សម្គាល់ (បញ្ជាក់ បើសិនជាសត្វប្រវាស់គេ)</th>
+                                    <th>Actions</th>
+                                </tr>
                                 </thead>
-                                <tbody class="new_rows_elect">
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input  maxlength="100" type="text" required="required" class="form-control"  />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input  maxlength="100" type="text" required="required" class="form-control"  />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input  maxlength="100" type="text" required="required" class="form-control"  />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input  maxlength="100" type="text" required="required" class="form-control"  />
-                                            </div>
-                                        </td>
-                                        <td>Actions</td>
-                                    </tr>
+                                <tbody class="new_rows_3">
+                                <tr class="myrow_3">
+                                    <td>1</td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input name="type_animals[0]" type="text" required="required" class="form-control"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input name="num_animals_big[0]" type="text" required="required" class="form-control"  />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input name="num_animals_small[0]" type="text" required="required" class="form-control"  />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input name="note_animals[0]" type="text" required="required" class="form-control"  />
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
+
                                 <tfoot>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input  maxlength="100" type="text" required="required" class="form-control"  />
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                           <input class="btn btn-primary" id="add_rows_elect" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input name="total_animals_costs" type="text" required="required" class="form-control" readonly="readonly"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <input class="btn btn-primary" id="add_rows_3" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
+                                    </td>
+                                </tr>
                                 </tfoot>
                             </table>
-                            
+
                     </div>
 
 
@@ -1034,18 +1036,14 @@
                     <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
 
-                            <h4>គ.១២.១.២​)មាន​ដីកសិកម្ម ឬ​ទេ ?</h4>
-                            <p>តើបានតបណ្តាញអគ្គិសនី (រដ្ឋឬឯកជន) ដែរឬទេ?</p>
+                            <h4>គ.១២.១.២​)ដីកសិកម្ម</h4>
+                            <p>មាន​ដីកសិកម្ម ឬ​ទេ ?</p>
                             <ul>
+                                @foreach($landAgricultural as $key => $land)
                                 <li>
-                                     <input type="radio" name="elect" ​​> គ្មាន 
+                                    <label><input type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
                                 </li>
-                                <li>
-                                    <input type="radio" name="elect">  ដីជួលគេ
-                                </li>
-                                <li>
-                                    <input type="radio" name="elect">  ដីផ្ទាល់ខ្លួន
-                                </li>
+                                @endforeach
                             </ul>
 
                             <p>ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា)</p>
@@ -1055,7 +1053,7 @@
                                         <td><label class="control-label"> -មាន ៖ </label></td>
                                         <td>
                                            <div class="form-group">
-                                                <input  maxlength="100" type="text" required="required" class="form-control"  />
+                                                <input name="land_name" type="text" required="required" class="form-control"  />
                                             </div>     
                                         </td>
                                     </tr>
@@ -1063,7 +1061,7 @@
                                         <td><label class="control-label"> កន្លែង. ទំហំសរុប : </label></td>
                                         <td>
                                            <div class="form-group">
-                                                <input  maxlength="100" type="text" required="required" class="form-control"  />
+                                                <input name="total_land" type="text" required="required" class="form-control"  />
                                             </div>     
                                         </td>
                                     </tr>
@@ -1075,7 +1073,7 @@
                                         <td><label class="control-label">​ -ដីចំការ៖ </label></td>
                                         <td>
                                            <div class="form-group">
-                                                <input  maxlength="100" type="text" required="required" class="form-control"  />
+                                                <input  name="land_farm" type="text" required="required" class="form-control"  />
                                             </div>     
                                         </td>
                                     </tr>
@@ -1083,7 +1081,7 @@
                                         <td><label class="control-label">​ កន្លែង. ទំហំសរុប : </label></td>
                                         <td>
                                            <div class="form-group">
-                                                <input  maxlength="100" type="text" required="required" class="form-control"  />
+                                                <input name="total_land_farm" type="text" required="required" class="form-control"  />
                                             </div>     
                                         </td>
                                     </tr>
@@ -1161,7 +1159,7 @@
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
                             <h4>គ.១៣) សុខភាព និងពិការភាព</h4>
-                                <table class="table">
+                                <table class="table table-bordered table-striped">
                                     <tbody><tr>
                                         <td colspan="2"></td>
                                         <td>ក្មេង + អ្នក  អាយុ &lt; 65ឆ្នាំ </td>
@@ -1182,22 +1180,31 @@
 
                             <h4>គ.១៤) បំណុលគ្រួសារ</h4>
                             <p>តើ​គ្រួសារ​របស់​អ្នក​នៅមាន​បំណុល/​កម្ចី​មិនទាន់​បាន​សង​ដែរ​ឬ​ទេ?</p>
-                            <ul type="1">
-                                <li>
-                                     <label><input type="radio" name="elect" ​​> មិនមាន​បំណុលទេ​ => បើអ្នកត្រូវការលុយប្រហែល៤០,០០០០រៀល តើអ្នកអាចខ្ចីគេបានទេ? </label>
-                                     <ul>
-                                         <li><label><input type="radio" name="elect" ​​>  បាន</label></li>
-                                         <li><label><input type="radio" name="elect" ​​> មិនបាន </label></li>
-                                     </ul>
-                                </li>
-                                <li>
-                                    <label><input type="radio" name="elect">  មាន​បំណុល => ចំនួនបំណុលដែលមិនទាន់សងគិតមកដល់បច្ចុប្បន្ន</label>
-                                    <label><input type="text" name="elect">រៀល</label>
-                                </li>
+                            <ul class="debt_question_group">
+                                @foreach($loan as $key => $ge)
+                                    <li>
+                                         <label><input class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id"​​>{{ $ge->name_kh }}</label>
+                                        @if($ge->id == 1)<label id="family_debt"></label>@endif
+                                        @if($ge->id == 2)<label id="family_debt1"></label>@endif
+                                    </li>
+                                @endforeach
+
                             </ul>
                         </div>
 
-                        
+                    <script>
+                        $('.family_debt').click(function () {
+                            var family_debt = $('input[name=family_debt_id]:checked').val();
+                            $('#family_debt').empty();
+                            $('#family_debt1').empty();
+                            if(family_debt == 1){
+                                $('#family_debt').append('<ol class="debt_question">@foreach($question as $key=>$gg)<li><label><input value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}</label></li>@endforeach</ol>');
+                            }else if(family_debt == 2){
+                                $('#family_debt1').append('<input type="text" placeholder="រៀល" name="total_debt">');
+                            }
+                        });
+                    </script>
+
                     <div class="col-sm-12"><hr> </div>
                     <button class="btn btn-primary pull-right mysubmit nextBtn " type="submit">រក្សាទុក​​ និង បញ្ចប់</button>
                 </div>
@@ -1205,7 +1212,59 @@
         </div>
 
     </form>
+
+
+    <h2>List Data</h2>
+    <div class="data-list">
+        <table class="table">
+            <thead>
+                <th>No</th>
+                <th>ឈ្មោះអ្នកជំងឺ</th>
+                <th>អាយុ</th>
+                <th>ភេទ</th>
+                <th>លេខទូរស័ព្ធ</th>
+                <th>ខេត្ត</th>
+                <th>action</th>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Data</td>
+                <td>12 </td>
+                <td>Male </td>
+                <td>097544443  </td>
+                <td>kep  </td>
+                <td><a  data-toggle="collapse" data-target="#accordion" class="clickable">View</a> | <a href="">Edit</a> | <a href="">Delete</a> </td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <div id="accordion" class="collapse">
+                        <div  style=" width: 100%; float: left;height: 300px;border: 1px solid #dadada;">
+                            <h4>Detail</h4>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1261,11 +1320,53 @@
         });
 
 
+        $('#add_rows_2').click(function(){ //alert($m_id);
+            var row_2 = $('.new_rows_2 tr.myrow_2').length;
+
+            var rowindex_2 = row_2+1;
+            var tab_rows_2 ='<tr class="myrow_2">'+
+                '<td>'+rowindex_2+'</td>'+
+                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="type_vehicle['+row_2+']"/></div></td>'+
+                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="number_vehicle['+row_2+']"/></div></td>'+
+                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="market_value_vehicle['+row_2+']"/></div></td>'+
+                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="total_rail_vehicle['+row_2+']"/></div></td>'+
+                '<td style="text-align:center;"><a status="0" class="remove_rows_2" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+                '</tr>';
+            $(".new_rows_2").append(tab_rows_2);
+        });
+        //remove add
+        $(".new_rows_2").on('click','.remove_rows_2',function(){
+            $(this).parent().parent().remove();
+        });
+
+
+
+        $('#add_rows_3').click(function(){ //alert($m_id);
+            var row_3 = $('.new_rows_3 tr.myrow_3').length;
+
+            var rowindex_3 = row_3+1;
+            var tab_rows_3 ='<tr class="myrow_3">'+
+                '<td>'+rowindex_3+'</td>'+
+                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="type_animals['+row_3+']"/></div></td>'+
+                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="num_animals_big['+row_3+']"/></div></td>'+
+                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="num_animals_small['+row_3+']"/></div></td>'+
+                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="note_animals['+row_3+']"/></div></td>'+
+                '<td style="text-align:center;"><a status="0" class="remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+                '</tr>';
+            $(".new_rows_3").append(tab_rows_3);
+        });
+        //remove add
+        $(".new_rows_3").on('click','.remove_rows_3',function(){
+            $(this).parent().parent().remove();
+        });
 
 
 
 
-    //next next and validate
+
+
+
+        //next next and validate
     var navListItems = $('div.setup-panel div a'),
             allWells = $('.setup-content'),
             allNextBtn = $('.nextBtn');

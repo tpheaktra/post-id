@@ -138,8 +138,10 @@
         .select2-container--default .select2-selection--single .select2-selection__rendered{  line-height: 35px !important;}
         .has-error .select2-selection--single{
             border: 1px solid #a94442 !important;}
-        .alert{
+        .alert1{
             display: none;
+        }
+        .alert{
             -webkit-border-radius: 0px !important;
             -moz-border-radius: 0px !important;
             border-radius: 0px !important;
@@ -160,13 +162,29 @@
             color: #a94442;
         }
         .li-none li{ list-style-type: none;}
-        /*.modal-content{*/
-            /*background-color: inherit !important;*/
-            /*border: none !important;*/
-            /*-webkit-box-shadow: inset hoff voff blur color !important;*/
-            /*-moz-box-shadow: inset hoff voff blur color !important;*/
-            /*box-shadow: inset hoff voff blur color !important;*/
-        /*}*/
+        .electric_type li{
+            list-style-type: none;
+            padding: 0px 0px 4px 0;
+        }
+        .debt_question_group li,
+        .debt_question li{ list-style-type: none}
+        .debt_question_group,
+        .debt_question{
+            float: left;
+        }
+        .debt_question_group label{ width: 100%;
+            float: left;}
+        .data-list{
+            float: left;
+            width: 100%;
+            border: 1px solid #dadada;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            padding: 8px;
+            margin-bottom: 20px;
+        }
+
     </style>
 
     <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
@@ -246,11 +264,19 @@
                 </div>
             </div>
             <div class="msg">
-                <div class="alert alert-danger alert-dismissable">
+                <div class="alert alert1 alert-danger alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     Please input data
                 </div>
             </div>
+            @if(session()->has('success'))
+            <div class="msg">
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{ session()->get('success') }}
+                </div>
+            </div>
+            @endif
         </nav>
 
 
