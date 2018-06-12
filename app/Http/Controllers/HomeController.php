@@ -13,6 +13,7 @@ use App\model\MemberFamilyModel;
 use App\model\TypeIncomeModel;
 use Illuminate\Http\Request;
 use App\model\RelationshipModel;
+use App\model\FamilyrelationModel;
 use App\Helpers\Helpers;
 use DB;
 class HomeController extends Controller
@@ -44,10 +45,11 @@ class HomeController extends Controller
         $electricgrid = Helpers::getElectricGird();
         $landAgricultural = Helpers::getLangAgricultural();
         $loan = Helpers::getLoan();
+        $family = Helpers::getFamilyRelation();
         return view('home',compact('relationship',
             'provinces','gender','household',
             'homePrepar','condition_house','question','electricgrid',
-            'landAgricultural','loan'));
+            'landAgricultural','loan','family'));
     }
 
     /*

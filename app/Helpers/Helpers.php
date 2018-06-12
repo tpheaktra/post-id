@@ -114,6 +114,15 @@ class Helpers{
     }
 
 
+     /*
+ * function get gender
+ */
+    public static function getFamilyRelation(){
+        $loan =DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS familyrelation ,name_kh,id from family_relation');
+        return $loan;
+    }
+
+
 }
 	
 	

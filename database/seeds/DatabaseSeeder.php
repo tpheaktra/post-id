@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ElectricGridTableSeeder::class);
         $this->call(LandAgriculturalTableSeeder::class);
         $this->call(LoanTableSeeder::class);
+        $this->call(FamilyRelationTableSeeder::class);
     }
 }
