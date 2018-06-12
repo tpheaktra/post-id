@@ -122,7 +122,7 @@ class Helpers{
         return $loan;
     }
 
-<<<<<<< .mine
+
     /*
     * function get gender
     */
@@ -135,7 +135,7 @@ class Helpers{
 
 
 
-=======
+
     /* function get getRoofmade
  */
     public static function getRoofmade(){
@@ -148,9 +148,8 @@ class Helpers{
         $wall =DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS wall_made ,name_kh,id from wall_made');
         return $wall;
     }
->>>>>>> .theirs
 
-<<<<<<< .mine
+
     /*
 * function get gender
 */
@@ -160,17 +159,6 @@ class Helpers{
     }
 
 
-=======
-
-
-
-
-
-
-
-
-
->>>>>>> .theirs
 }
 	
 	
