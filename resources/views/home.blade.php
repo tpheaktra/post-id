@@ -1483,7 +1483,7 @@
 
 
 });
-   
+
 
 </script>
 @endsection
