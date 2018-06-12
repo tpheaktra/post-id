@@ -15,6 +15,9 @@ use Illuminate\Http\Request;
 use App\model\RelationshipModel;
 use App\model\FamilyrelationModel;
 use App\Helpers\Helpers;
+use App\model\ConditionhouseModel;
+use App\model\WallMadeModel;
+use App\model\RoofMadeModel;
 use DB;
 class HomeController extends Controller
 {
@@ -42,14 +45,17 @@ class HomeController extends Controller
         $homePrepar    = Helpers::getHomePrepar();
         $condition_house = Helpers::getConditionHouse();
         $question = Helpers::getQuestion();
-        $electricgrid = Helpers::getElectricGird();
+        $electricgrid   = Helpers::getElectricGird();
         $landAgricultural = Helpers::getLangAgricultural();
-        $loan = Helpers::getLoan();
+        $loan   = Helpers::getLoan();
         $family = Helpers::getFamilyRelation();
+        $roof_made = Helpers::getRoofmade();
+        $wall_made = Helpers::getWallmade();
+        $house_status = ConditionhouseModel::all();
         return view('home',compact('relationship',
             'provinces','gender','household',
             'homePrepar','condition_house','question','electricgrid',
-            'landAgricultural','loan','family'));
+            'landAgricultural','loan','family','roof_made','wall_made','house_status'));
     }
 
     /*

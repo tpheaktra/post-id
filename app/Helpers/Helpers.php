@@ -115,11 +115,24 @@ class Helpers{
 
 
      /*
- * function get gender
+ * function get getFamilyRelation
  */
     public static function getFamilyRelation(){
         $loan =DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS familyrelation ,name_kh,id from family_relation');
         return $loan;
+    }
+
+    /* function get getRoofmade
+ */
+    public static function getRoofmade(){
+        $roof =DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS roof_made ,name_kh,id from roof_made');
+        return $roof;
+    }
+    /* function get getwallfmade
+ */
+    public static function getWallmade(){
+        $wall =DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS wall_made ,name_kh,id from wall_made');
+        return $wall;
     }
 
 
