@@ -1553,7 +1553,7 @@
 
 
 });
-   
+
 
 </script>
 @endsection
