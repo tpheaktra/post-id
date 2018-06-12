@@ -15,6 +15,9 @@ use Illuminate\Http\Request;
 use App\model\RelationshipModel;
 use App\model\FamilyrelationModel;
 use App\Helpers\Helpers;
+use App\model\ConditionhouseModel;
+use App\model\WallMadeModel;
+use App\model\RoofMadeModel;
 use DB;
 class HomeController extends Controller
 {
@@ -40,18 +43,38 @@ class HomeController extends Controller
         $gender        = Helpers::getGender();
         $household     = Helpers::getHouseHoldFamily();
         $homePrepar    = Helpers::getHomePrepar();
+<<<<<<< .mine
         $condition_house  = Helpers::getConditionHouse();
         $question         = Helpers::getQuestion();
         $electricgrid     = Helpers::getElectricGird();
+=======
+        $condition_house = Helpers::getConditionHouse();
+        $question = Helpers::getQuestion();
+        $electricgrid   = Helpers::getElectricGird();
+>>>>>>> .theirs
         $landAgricultural = Helpers::getLangAgricultural();
+<<<<<<< .mine
         $loan             = Helpers::getLoan();
         $family           = Helpers::getFamilyRelation();
         $occupation       = Helpers::getOccupation();
         $education_level  = Helpers::getEducationLevel();
+=======
+        $loan   = Helpers::getLoan();
+        $family = Helpers::getFamilyRelation();
+
+
+>>>>>>> .theirs
+        $roof_made = Helpers::getRoofmade();
+        $wall_made = Helpers::getWallmade();
+        $house_status = ConditionhouseModel::all();
         return view('home',compact('relationship',
             'provinces','gender','household',
             'homePrepar','condition_house','question','electricgrid',
+<<<<<<< .mine
             'landAgricultural','loan','family','occupation','education_level'));
+=======
+            'landAgricultural','loan','family','roof_made','wall_made','house_status'));
+>>>>>>> .theirs
     }
 
     /*

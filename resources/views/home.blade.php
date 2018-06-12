@@ -383,7 +383,7 @@
                        <div class="col-sm-12"><hr> </div>
                        <div class="col-sm-12">
                             <h4> គ.១ ផ្ទះសម្បែងរបស់ក្រុមគ្រួសារ</h4> 
-                            <p>តើពួកគាត់រស់នៅទីកន្លែងណា? (សូមគូស ធេក នៅចំលើយតែមួយ)</p>
+                            <p>តើពួកគាត់រស់នៅទីកន្លែងណា? (សូម​ជ្រើរើស នៅចំលើយតែមួយ)</p>
 
                          
                             <ol type="1">
@@ -474,7 +474,7 @@
                                             <td><b>សំណង់បន្ថែម ឧ. ផ្ទះបាយ... (បើមាន)៖ </b></td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="further_floor_length" class="form-control" required="required" laceholder="បណ្តោយ(ម៉ែត្រ)​..." type="text" value="0" name="further_floor_length">
+                                                    <input id="further_floor_length" class="form-control" required="required" placeholder="បណ្តោយ(ម៉ែត្រ)​..." type="text" value="0" name="further_floor_length">
                                                 </div>
                                             </td>
                                             <td>
@@ -533,7 +533,7 @@
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
                             <h4> គ.៤ បង្គន់</h4>
-                            <h5> តើគ្រួសាររបស់អ្នកមានបង្គន់ប្រើដែរឬទេ?</h5>
+                            <h5>- តើគ្រួសាររបស់អ្នកមានបង្គន់ប្រើដែរឬទេ?</h5>
                             <ul class="li-none">
                                 <li>
                                      <label><input type="radio" name="tolet" ​​ value="មាន"> មាន </label>
@@ -543,7 +543,7 @@
                                 </li>
                             </ul>
 
-                            <h5>  បើមាន តើជាបង្គន់ចាក់ទឹក ឬ បង្គន់ស្ងួត?</h5>
+                            <h5>- បើមាន តើជាបង្គន់ចាក់ទឹក ឬ បង្គន់ស្ងួត?</h5>
                             <ul class="li-none">
                                 <li>
                                      <label><input type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>
@@ -554,7 +554,7 @@
                             </ul>
 
 
-                            <h5>  ជាបង្គន់​របស់នរណា?</h5>
+                            <h5>- ជាបង្គន់​របស់នរណា?</h5>
                             <ul class="li-none">
                                 <li>
                                      <label><input type="radio" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>
@@ -566,9 +566,24 @@
 
                             <p class="has-noted">សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ (សម្រាប់គ្រួសារជួលផ្ទះគេ​ មិនបាច់បំពេញចំណុច គ៥ គ៦ និង គ៧ ហើយរំលងទៅ គ៨)</p>
 
-                            <h5>ផ្ទះសាងសង់នៅឆ្នាំណា? <input type="text" name="h_build_year"> </h5>
+                            <h5>- ផ្ទះសាងសង់នៅឆ្នាំណា?
+                              <select name="h_build_year" id="year_select" style="width: 80px;" name="build_in">
+                                <option></option>
+                                <?php
+                                 $currentYear = date('Y');
+                                    foreach (range(1950, $currentYear) as $value) {
+                                        echo "<option>" . $value . "</option > ";
 
-                            <h5>តើធ្លាប់ជួសជុលឬទេ?</h5>
+                                    }?>
+                              </select> </h5>
+                              <script>
+                                    $("#year_select").select2({
+                                        minimumResultsForSearch: -1,
+                                        allowClear:true,
+                                        placeholder: 'ឆ្នាំ...'
+                                    });
+                              </script>
+                            <h5>- តើធ្លាប់ជួសជុលឬទេ?</h5>
                             <ul class="li-none">
                                 @foreach($homePrepar as $key =>$p)
                                 <li>
@@ -584,66 +599,121 @@
                                 var homeyear = $('input[name=home_prepare]:checked').val();
                                 $('#homeyear').empty();
                                 if(homeyear == 2){
-                                    $('#homeyear').append('<input type="text" placeholder="ឆ្នាំ" name="home_year">');
+                                    $('#homeyear').append('<select name="home_year" style="width: 80px;" id="years"><option></option><?php $currentYear = date('Y');foreach (range(1950, $currentYear) as $value) { echo "<option>" . $value . "</option > ";}?> </select>');
+                                    //  $("#years").select2({
+                                    //     minimumResultsForSearch: -1,
+                                    //     // allowClear:true,
+                                    //     placeholder: 'ឆ្នាំ...'
+                                    // });
                                 }
                             });
+                            
                         </script>
 
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
-
                             <h4>គ.៥ ដំបូល</h4>
-                            <div class="col-sm-6">
-                                <table width="100%">
-                                    <tr>
-                                        <td><label class="control-label"> ដំបូលធ្វើអំពី : </label></td>
-                                        <td>
-                                           <div class="form-group">
-                                                <input type="text" required="required" class="form-control" name="roof_made"/>
-                                            </div>     
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-sm-6">
-                                <table width="100%">
-                                    <tr>
-                                        <td><label class="control-label">​ និង​ស្ថានភាព : </label></td>
-                                        <td>
-                                           <div class="form-group">
-                                                <input type="text" required="required" class="form-control" name="roof_status"/>
-                                            </div>     
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-
+                              <div class="col-sm-6">
+                                  <table width="100%">
+                                      <tr>
+                                          <td><label class="control-label"> ដំបូលធ្វើអំពី : </label></td>
+                                          <td>
+                                            <div class="form-group roof_relationship">
+                                                <select class="form-control" id="roof_relationship" name="roof_made">
+                                                    <option></option>
+                                                    @foreach($roof_made as $keh => $value)
+                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    @endforeach
+                                                </select>
+                                              </div>
+                                              <script>
+                                                  $("#roof_relationship").select2({
+                                                      minimumResultsForSearch: -1,
+                                                      allowClear:true,
+                                                      placeholder: 'ដំបូលធ្វើអំពី...'
+                                                  });
+                                              </script>     
+                                          </td>
+                                      </tr>
+                                  </table>
+                              </div>
+                              <div class="col-sm-6">
+                                  <table width="100%">
+                                      <tr>
+                                          <td><label class="control-label">​ និង​ស្ថានភាព : </label></td>
+                                          <td>
+                                              <div class="form-group r_status">
+                                                <select class="form-control" id="r_status" name="roof_status">
+                                                    <option></option>
+                                                    @foreach($house_status as $keh => $value)
+                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    @endforeach
+                                                </select>
+                                              </div>
+                                              <script>
+                                                  $("#r_status").select2({
+                                                      minimumResultsForSearch: -1,
+                                                      allowClear:true,
+                                                      placeholder: '​ស្ថានភាព...'
+                                                  });
+                                              </script>     
+                                          </td>     
+                                      </tr>
+                                  </table>
+                              </div>
+                          </div>
+                          <div class="col-sm-12">
                             <h4>គ.៦ ​ជញ្ជាំង</h4>
-                            <div class="col-sm-6">
-                                <table width="100%">
-                                    <tr>
-                                        <td><label class="control-label"> ​ជញ្ជាំងធ្វើអំពី : </label></td>
-                                        <td>
-                                           <div class="form-group">
-                                                <input type="text" required="required" class="form-control" name="walls_made"/>
-                                            </div>     
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-sm-6">
-                                <table width="100%">
-                                    <tr>
-                                        <td><label class="control-label">​​ និង​ស្ថានភាព : </label></td>
-                                        <td>
-                                           <div class="form-group">
-                                                <input type="text" required="required" class="form-control" name="walls_status"/>
-                                            </div>     
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-
+                              <div class="col-sm-6">
+                                  <table width="100%">
+                                      <tr>
+                                          <td><label class="control-label"> ​ជញ្ជាំងធ្វើអំពី : </label></td>
+                                          <td>
+                                              <div class="form-group wall_relationship">
+                                                <select class="form-control" id="wall_relationship" name="walls_made">
+                                                    <option></option>
+                                                    @foreach($wall_made as $keh => $value)
+                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    @endforeach
+                                                </select>
+                                              </div>
+                                              <script>
+                                                  $("#wall_relationship").select2({
+                                                      minimumResultsForSearch: -1,
+                                                      allowClear:true,
+                                                      placeholder: '​ជញ្ជាំងធ្វើអំពី...'
+                                                  });
+                                              </script>     
+                                          </td>     
+                                      </tr>
+                                  </table>
+                              </div>
+                              <div class="col-sm-6">
+                                  <table width="100%">
+                                      <tr>
+                                          <td><label class="control-label">​​ និង​ស្ថានភាព : </label></td>
+                                           <td>
+                                              <div class="form-group h_status">
+                                                <select class="form-control" id="h_status" name="walls_status">
+                                                    <option></option>
+                                                    @foreach($house_status as $keh => $value)
+                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    @endforeach
+                                                </select>
+                                              </div>
+                                              <script>
+                                                  $("#h_status").select2({
+                                                      minimumResultsForSearch: -1,
+                                                      allowClear:true,
+                                                      placeholder: '​ស្ថានភាព...'
+                                                  });
+                                              </script>     
+                                          </td>     
+                                      </tr>
+                                  </table>
+                              </div>
+                          </div>
+                          <div class="col-sm-12">
                             <h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>
                             <ul class="li-none">
                                 @foreach($condition_house as $key => $c)
