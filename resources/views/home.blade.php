@@ -106,7 +106,7 @@
                                        <script>
                                            $("#province").select2({
                                                allowClear:true,
-                                               placeholder: 'province'
+                                               placeholder: 'ខេត្ត'
                                            });
                                            /*========================================================================
                                             ===============// select province code append district //=================
@@ -144,58 +144,6 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label">ឃំុ :</label></td>
-                                <td>
-                                    <div class="form-group g_commune">
-                                        <select id="commune" style="width: 100%" class="form-control" name="g_commune">
-
-                                        </select>
-                                    </div>
-                                    <script>
-                                        $("#commune").select2({
-                                            allowClear:true,
-                                            placeholder: 'commune'
-                                        });
-                                        /*========================================================================
-                                       ===============// select district code append commune //=================
-                                       ==========================================================================*/
-                                        $("#commune").change(function () {
-                                            var commune_id = $('#commune').val();
-                                            $.ajax({
-                                                type: 'GET',
-                                                url: "{{ route('getVillage') }}",
-                                                data: {'commune_id': commune_id},
-                                                beforeSend: function(){
-                                                    $("#loading").fadeIn();
-                                                },
-                                                success: function (data) {
-                                                    console.log(data);
-                                                    var obj = JSON.parse(data);
-
-                                                    $("#village").empty();
-                                                    $("#village").append('<option selected="selected"></option>');
-                                                    $.each(obj, function (index, element) {
-                                                        $("#village").append(new Option(element.name_kh, element.code));
-                                                    });
-                                                },
-                                                complete: function(){
-                                                    $("#loading").fadeOut(1000);
-                                                },
-                                                error: function (report){
-                                                    console.log(report);
-                                                }
-                                            });
-                                        });
-                                    </script>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-
-
-                    <div class="col-sm-6">
-                        <table width="100%">
-                            <tr>
                                 <td><label class="control-label">   ស្រុក : </label></td>
                                 <td>
                                    <div class="form-group g_district">
@@ -206,7 +154,7 @@
                                     <script>
                                         $("#district").select2({
                                             allowClear:true,
-                                            placeholder: 'district'
+                                            placeholder: 'ស្រុក'
                                         });
                                         /*========================================================================
                                         ===============// select district code append commune //=================
@@ -241,6 +189,58 @@
                                     </script>
                                 </td>
                             </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="col-sm-6">
+                        <table width="100%">
+                            <tr>
+                                <td><label class="control-label">ឃំុ :</label></td>
+                                <td>
+                                    <div class="form-group g_commune">
+                                        <select id="commune" style="width: 100%" class="form-control" name="g_commune">
+
+                                        </select>
+                                    </div>
+                                    <script>
+                                        $("#commune").select2({
+                                            allowClear:true,
+                                            placeholder: 'ឃំុ'
+                                        });
+                                        /*========================================================================
+                                       ===============// select district code append commune //=================
+                                       ==========================================================================*/
+                                        $("#commune").change(function () {
+                                            var commune_id = $('#commune').val();
+                                            $.ajax({
+                                                type: 'GET',
+                                                url: "{{ route('getVillage') }}",
+                                                data: {'commune_id': commune_id},
+                                                beforeSend: function(){
+                                                    $("#loading").fadeIn();
+                                                },
+                                                success: function (data) {
+                                                    console.log(data);
+                                                    var obj = JSON.parse(data);
+
+                                                    $("#village").empty();
+                                                    $("#village").append('<option selected="selected"></option>');
+                                                    $.each(obj, function (index, element) {
+                                                        $("#village").append(new Option(element.name_kh, element.code));
+                                                    });
+                                                },
+                                                complete: function(){
+                                                    $("#loading").fadeOut(1000);
+                                                },
+                                                error: function (report){
+                                                    console.log(report);
+                                                }
+                                            });
+                                        });
+                                    </script>
+                                </td>
+                            </tr>
                             <tr>
                                 <td><label class="control-label">ភូមិ :</label></td>
                                 <td>
@@ -252,7 +252,7 @@
                                     <script>
                                         $("#village").select2({
                                             allowClear:true,
-                                            placeholder: 'village'
+                                            placeholder: 'ភូមិ'
                                         });
                                     </script>
                                 </td>
@@ -342,7 +342,7 @@
                                         $("#inter_relationship").select2({
                                             minimumResultsForSearch: -1,
                                             allowClear:true,
-                                            placeholder: 'relationship'
+                                            placeholder: 'ទំនាក់ទំនង'
                                         });
                                     </script>
                                 </td>
@@ -406,7 +406,7 @@
                                     <div class="form-group fa_relationship">
                                         <select class="form-control" id="fa_relationship" name="fa_relationship">
                                             <option></option>
-                                            @foreach($relationship as $keh => $value)
+                                            @foreach($family as $keh => $value)
                                                 <option value="{{$value->id}}">{{$value->name_kh}}</option>
                                             @endforeach
                                         </select>
@@ -415,7 +415,7 @@
                                         $("#fa_relationship").select2({
                                             minimumResultsForSearch: -1,
                                             allowClear:true,
-                                            placeholder: 'family relationship'
+                                            placeholder: 'ទំនាក់ទំនង'
                                         });
                                     </script>
                                 </td>
