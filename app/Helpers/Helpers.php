@@ -122,6 +122,22 @@ class Helpers{
         return $loan;
     }
 
+    /*
+    * function get gender
+    */
+        public static function getOccupation(){
+            $loan =DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS occupation ,name_kh,id from occupation');
+            return $loan;
+        }
+
+    /*
+* function get gender
+*/
+    public static function getEducationLevel(){
+        $loan =DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS education ,name_kh,id from education_level');
+        return $loan;
+    }
+
 
 }
 	

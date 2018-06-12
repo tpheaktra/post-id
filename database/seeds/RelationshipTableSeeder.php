@@ -41,7 +41,21 @@ class RelationshipTableSeeder extends Seeder
             ],
             [
             	'name_en' => 'Grandmonther',
-                'name_kh' => 'ជីដូន',
+                'name_kh' => 'ក្មួយ',
+                'record_status'=> 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'name_en' => 'Grandmonther',
+                'name_kh' => 'អ៊ុំ',
+                'record_status'=> 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'name_en' => 'Grandmonther',
+                'name_kh' => 'បង/ប្អូន ',
                 'record_status'=> 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

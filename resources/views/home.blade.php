@@ -25,6 +25,8 @@
         </div>
     </div>
 
+
+
     <form role="form" method="post" class="form-group-post" action="{{ route('insert.index') }}" id="check_validate">
         {{ csrf_field() }}
         <div class="row setup-content" id="step-1">
@@ -36,8 +38,8 @@
                         <h4>ក.១ ព័ត៌មានទូទៅ</h4>
                         <table class="pull-right">
                             <tr>
-                                <td><label class="control-label">លេខកូដសម្ភាសន៍:</label></td>
-                                <td>
+                                <td width="35%"><label class="control-label">លេខកូដសម្ភាសន៍:</label></td>
+                                <td width="65%">
                                     <div class="form-group">    
                                         <input  maxlength="100" name="interview_code" type="text" required="required" class="form-control" />
                                     </div>  
@@ -49,16 +51,16 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label">ឈ្មោះអ្នកជំងឺ :</label></td>
-                                <td>
+                                <td width="35%"><label class="control-label">ឈ្មោះអ្នកជំងឺ :</label></td>
+                                <td width="65%">
                                    <div class="form-group">
                                         <input  maxlength="100" name="g_patient" type="text" required="required" class="form-control" />
                                     </div>     
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label"> ភេទ : </label></td>
-                                <td>
+                                <td width="35%"><label class="control-label"> ភេទ : </label></td>
+                                <td width="65%">
                                    <div class="form-group"  id="g_sex">
                                        @foreach($gender as $key => $g)
                                         <label>{{$g->name_kh}} <input name="g_sex" value="{{$g->id}}" style="margin-right:10px;" type="radio"></label>
@@ -72,16 +74,16 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label"> អាយុ : </label></td>
-                                <td>
+                                <td width="35%"><label class="control-label"> អាយុ : </label></td>
+                                <td width="65%">
                                    <div class="form-group">
                                         <input  maxlength="100" name="g_age" type="text" required="required" class="form-control"/>
                                     </div>     
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
-                                <td>
+                                <td width="35%"><label class="control-label">លេខទូរស័ព្ធ :</label></td>
+                                <td width="65%">
                                    <div class="form-group">
                                         <input  maxlength="100" name="g_phone" type="text" required="required" class="form-control" />
                                     </div>     
@@ -93,8 +95,8 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label">ខេត្ត : </label></td>
-                                <td>
+                                <td width="35%"><label class="control-label">ខេត្ត : </label></td>
+                                <td width="65%">
                                    <div class="form-group g_province">
                                        <select id="province" style="width: 100%" class="form-control" name="g_province">
                                            <option value="">...</option>
@@ -102,91 +104,15 @@
                                                <option value="{{$p->code}}">{{$p->name_kh}}</option>
                                            @endforeach
                                        </select>
-
-                                       <script>
-                                           $("#province").select2({
-                                               allowClear:true,
-                                               placeholder: 'ខេត្ត'
-                                           });
-                                           /*========================================================================
-                                            ===============// select province code append district //=================
-                                            ==========================================================================*/
-                                           $("#province").change(function () {
-                                               var province_id = $('#province').val();
-                                               $.ajax({
-                                                   type: 'GET',
-                                                   url: "{{ route('getDistrict') }}",
-                                                   data: {'province_id': province_id},
-                                                   beforeSend: function(){
-                                                       $("#loading").fadeIn();
-                                                   },
-                                                   success: function (data) {
-                                                       // console.log(data);
-                                                       var obj = JSON.parse(data);
-
-                                                       $("#district").empty();
-                                                       $("#district").append('<option selected="selected"></option>');
-                                                       $.each(obj, function (index, element) {
-                                                           $("#district").append(new Option(element.name_kh, element.code));
-                                                       });
-                                                   },
-                                                   complete: function(){
-                                                       $("#loading").fadeOut(1000);
-                                                   },
-                                                   error: function (report){
-                                                       console.log(report);
-                                                   }
-                                               });
-                                           });
-
-                                       </script>
                                     </div>     
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label">   ស្រុក : </label></td>
-                                <td>
+                                <td width="35%"><label class="control-label">   ស្រុក : </label></td>
+                                <td width="65%">
                                    <div class="form-group g_district">
-                                       <select id="district" style="width: 100%" class="form-control" name="g_district">
-
-                                       </select>
+                                       <select id="district" style="width: 100%" class="form-control" name="g_district"></select>
                                     </div>
-                                    <script>
-                                        $("#district").select2({
-                                            allowClear:true,
-                                            placeholder: 'ស្រុក'
-                                        });
-                                        /*========================================================================
-                                        ===============// select district code append commune //=================
-                                        ==========================================================================*/
-                                        $("#district").change(function () {
-                                            var district_id = $('#district').val();
-                                            $.ajax({
-                                                type: 'GET',
-                                                url: "{{ route('getCommune') }}",
-                                                data: {'district_id': district_id},
-                                                beforeSend: function(){
-                                                    $("#loading").fadeIn();
-                                                },
-                                                success: function (data) {
-                                                    // console.log(data);
-                                                    var obj = JSON.parse(data);
-
-                                                    $("#commune").empty();
-                                                    $("#commune").append('<option selected="selected"></option>');
-                                                    $.each(obj, function (index, element) {
-                                                        $("#commune").append(new Option(element.name_kh, element.code));
-                                                    });
-                                                },
-                                                complete: function(){
-                                                    $("#loading").fadeOut(1000);
-                                                },
-                                                error: function (report){
-                                                    console.log(report);
-                                                }
-                                            });
-                                        });
-                                    </script>
                                 </td>
                             </tr>
                         </table>
@@ -196,65 +122,19 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label">ឃំុ :</label></td>
-                                <td>
+                                <td width="35%"><label class="control-label">ឃំុ :</label></td>
+                                <td width="65%">
                                     <div class="form-group g_commune">
-                                        <select id="commune" style="width: 100%" class="form-control" name="g_commune">
-
-                                        </select>
+                                        <select id="commune" style="width: 100%" class="form-control" name="g_commune"></select>
                                     </div>
-                                    <script>
-                                        $("#commune").select2({
-                                            allowClear:true,
-                                            placeholder: 'ឃំុ'
-                                        });
-                                        /*========================================================================
-                                       ===============// select district code append commune //=================
-                                       ==========================================================================*/
-                                        $("#commune").change(function () {
-                                            var commune_id = $('#commune').val();
-                                            $.ajax({
-                                                type: 'GET',
-                                                url: "{{ route('getVillage') }}",
-                                                data: {'commune_id': commune_id},
-                                                beforeSend: function(){
-                                                    $("#loading").fadeIn();
-                                                },
-                                                success: function (data) {
-                                                    console.log(data);
-                                                    var obj = JSON.parse(data);
-
-                                                    $("#village").empty();
-                                                    $("#village").append('<option selected="selected"></option>');
-                                                    $.each(obj, function (index, element) {
-                                                        $("#village").append(new Option(element.name_kh, element.code));
-                                                    });
-                                                },
-                                                complete: function(){
-                                                    $("#loading").fadeOut(1000);
-                                                },
-                                                error: function (report){
-                                                    console.log(report);
-                                                }
-                                            });
-                                        });
-                                    </script>
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label">ភូមិ :</label></td>
-                                <td>
+                                <td width="35%"><label class="control-label">ភូមិ :</label></td>
+                                <td width="65%">
                                     <div class="form-group g_village">
-                                        <select id="village" style="width: 100%" class="form-control" name="g_village">
-
-                                        </select>
+                                        <select id="village" style="width: 100%" class="form-control" name="g_village"></select>
                                     </div>
-                                    <script>
-                                        $("#village").select2({
-                                            allowClear:true,
-                                            placeholder: 'ភូមិ'
-                                        });
-                                    </script>
                                 </td>
                             </tr>
                         </table>
@@ -263,19 +143,16 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label"> ទីតាំងនៅក្នុងភូមិ : </label></td>
-                                <td>
+                                <td width="35%"><label class="control-label"> ទីតាំងនៅក្នុងភូមិ : </label></td>
+                                <td width="65%">
                                    <div class="form-group">
-                                       <textarea class="form-control" id="location" name="g_local_village" required="required">
-
-                                       </textarea>
+                                       <textarea class="form-control" id="location" name="g_local_village" required="required"></textarea>
                                     </div>
-
                                 </td>
                             </tr>
-                            
                         </table>
                     </div>
+
 
                    <div class="col-sm-12"><hr> </div>
                    <div class="col-sm-12">
@@ -310,7 +187,7 @@
                                 <td><label class="control-label"> អាយុ : </label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input  maxlength="100" type="text" required="required" class="form-control"  name="inter_age"/>
+                                        <input type="text" required="required" class="form-control"  name="inter_age"/>
                                     </div>     
                                 </td>
                             </tr>
@@ -318,7 +195,7 @@
                                 <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input  maxlength="100" type="text" required="required" class="form-control" name="inter_phone"/>
+                                        <input  type="text" required="required" class="form-control" name="inter_phone"/>
                                     </div>     
                                 </td>
                             </tr>
@@ -328,23 +205,16 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label">ត្រូវជា(ទំនាក់ទំនងជាមួយមេគ្រួសារ) : </label></td>
-                                <td>
+                                <td width="50%"><label class="control-label">ត្រូវជា(ទំនាក់ទំនងជាមួយមេគ្រួសារ) : </label></td>
+                                <td width="50%">
                                     <div class="form-group inter_relationship">
-                                        <select class="form-control" id="inter_relationship" name="inter_relationship">
+                                        <select style="width: 100%;" class="form-control" id="inter_relationship" name="inter_relationship">
                                             <option></option>
                                             @foreach($relationship as $keh => $value)
                                                 <option value="{{$value->id}}">{{$value->name_kh}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <script>
-                                        $("#inter_relationship").select2({
-                                            minimumResultsForSearch: -1,
-                                            allowClear:true,
-                                            placeholder: 'ទំនាក់ទំនង'
-                                        });
-                                    </script>
                                 </td>
                             </tr>
                         </table>
@@ -360,7 +230,7 @@
                                 <td><label class="control-label">ឈ្មោះអ្នកជំងឺ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input  maxlength="100" type="text" required="required" class="form-control" name="fa_patient"/>
+                                        <input  type="text" required="required" class="form-control" name="fa_patient"/>
                                     </div>     
                                 </td>
                             </tr>
@@ -383,7 +253,7 @@
                                 <td><label class="control-label"> អាយុ : </label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input  maxlength="100" type="text" required="required" class="form-control" name="fa_age"/>
+                                        <input type="text" required="required" class="form-control" name="fa_age"/>
                                     </div>     
                                 </td>
                             </tr>
@@ -391,7 +261,7 @@
                                 <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input  maxlength="100" type="text" required="required" class="form-control" name="fa_phone"/>
+                                        <input type="text" required="required" class="form-control" name="fa_phone"/>
                                     </div>     
                                 </td>
                             </tr>
@@ -401,23 +271,16 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label">ត្រូវជា(ទំនាក់ទំនងជាមួយមេគ្រួសារ) : </label></td>
-                                <td>
+                                <td width="50%"><label class="control-label">ត្រូវជា(ទំនាក់ទំនងជាមួយមេគ្រួសារ) : </label></td>
+                                <td width="50%">
                                     <div class="form-group fa_relationship">
-                                        <select class="form-control" id="fa_relationship" name="fa_relationship">
+                                        <select style="width: 100%;" class="form-control" id="fa_relationship" name="fa_relationship">
                                             <option></option>
                                             @foreach($family as $keh => $value)
                                                 <option value="{{$value->id}}">{{$value->name_kh}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <script>
-                                        $("#fa_relationship").select2({
-                                            minimumResultsForSearch: -1,
-                                            allowClear:true,
-                                            placeholder: 'ទំនាក់ទំនង'
-                                        });
-                                    </script>
                                 </td>
                             </tr>
                         </table>
@@ -431,6 +294,7 @@
 
 
 
+        <!-- step 2 -->
 
         <div class="row setup-content" id="step-2">
             <div class="col-xs-12">
@@ -440,32 +304,56 @@
                     <p>មនុស្ស​ដែល​គេ​ចាត់ទុកថាជាសមាជិក​គ្រួសារលុះ​ត្រាតែ​រស់​នៅជាប្រចាំ​ក្នុង​គ្រួសារ ឬ​អវត្តមាន​តិច​ជាង​ ៦ខែ​​ (ត្រូវមានឯកសារយោងដូចជា សៀវភៅគ្រួសារ សៀវភៅស្នាក់នៅ សំបុត្រកំណើត លិខិតបញ្ជាក់ពីអាជ្ញាធរ)</p>
 
 
-                        <table class="table" style="border-color: #B0B0B0;" border="1" bordercolor="#B0B0B0">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th rowspan="2">ល.រ</th>
                                     <th rowspan="2">នាមត្រកូល នាមខ្លួន ឈ្មោះហៅក្រៅ</th>
-                                    
                                     <th colspan="2"><p align="center">ឆ្នាំកំណើត ឬ អាយុ</p></th>
-                                    <th rowspan="2">ទំនាក់ទំនង​ជាមួយ​មេ​គ្រួសារ (1)</th>
-                                    <th rowspan="2">មុខងារ/​មុខរបរ  (2)</th>
-                                    <th rowspan="2">កម្រិតវប្បធម៌(3) </th>
-                                    <th rowspan="2">Actions</th>
+                                    <th width="15%" rowspan="2">ទំនាក់ទំនង​ជាមួយ​មេ​គ្រួសារ(1)</th>
+                                    <th width="15%" rowspan="2">មុខងារ/​មុខរបរ(2)</th>
+                                    <th width="15%" rowspan="2">កម្រិតវប្បធម៌(3) </th>
+                                    <th rowspan="2">សកម្មភាព</th>
                                 </tr>
                                 <tr>
-                                    <th>ឆ្នាំ​កំណើត</th>
-                                    <th>អាយុ</th>
+                                    <th width="15%">ឆ្នាំ​កំណើត</th>
+                                    <th width="8%">អាយុ</th>
                                 </tr>
                             </thead>
                             <tbody class="new_rows">
                                 <tr class="myrow">
-                                    <td>1</td>
-                                    <td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="nick_name[0]"/></div></td>
-                                    <td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="dob[0]"/></div></td>
-                                    <td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="age[0]"/></div></td>
-                                    <td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="family_relationship[0]"/></div></td>
-                                    <td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="occupation[0]"/></div></td>
-                                    <td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="education_level[0]"/></div></td>
+                                    <td><div class="form-group"><input  type="text" required="required" class="form-control" name="nick_name[0]"/></div></td>
+                                    <td><div class="form-group"><input  type="text" required="required" class="form-control" name="dob[0]"/></div></td>
+                                    <td><div class="form-group"><input  type="text" required="required" class="form-control" name="age[0]"/></div></td>
+                                    <td>
+                                        <div class="form-group">
+                                            <select class="form-control family_relationship" name="family_relationship[0]" required="required">
+                                                <option></option>
+                                                @foreach($relationship as $keh => $value)
+                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <select style="width: 100%;" class="form-control occupation" name="occupation[0]" required="required">
+                                                <option></option>
+                                                @foreach($occupation as $keh => $value)
+                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <select style="width: 100%" class="form-control education_level"  name="education_level[0]" required="required">
+                                                <option></option>
+                                                @foreach($education_level as $keh => $value)
+                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -484,6 +372,9 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- step 3 -->
 
         <div class="row setup-content" id="step-3">
             <div class="col-xs-12">
@@ -1265,39 +1156,11 @@
 
 
 
-
-
-
 <script type="text/javascript">
-
-
-
 
     $(document).ready(function () {
 
 
-
-        $('#add_rows').click(function(){ //alert($m_id);
-            var row = $('.new_rows tr.myrow').length;
-           // alert(row);
-            var rowindex = row+1;
-            var tab_rows ='<tr class="myrow">'+
-                '<td>'+rowindex+'</td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="nick_name['+row+']"/></div></td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="dob['+row+']"/></div></td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="age['+row+']"/></div></td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="family_relationship['+row+']"/></div></td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="occupation['+row+']"/></div></td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="education_level['+row+']"/></div></td>'+
-                '<td style="text-align:center;"><a status="0" class="remove_rows_kh" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
-            '</tr>';
-            $(".new_rows").append(tab_rows);
-        });
-
-        //remove add
-        $(".new_rows").on('click','.remove_rows_kh',function(){
-            $(this).parent().parent().remove();
-        });
 
 
         $('#add_rows_1').click(function(){ //alert($m_id);
@@ -1483,6 +1346,194 @@
 
 
 });
+
+    /*========================================================================
+     ===============// select province code append district //=================
+     ==========================================================================*/
+    $("#province").select2({
+        allowClear:true,
+        placeholder: 'ខេត្ត'
+    });
+    $("#province").change(function () {
+        var province_id = $('#province').val();
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('getDistrict') }}",
+            data: {'province_id': province_id},
+            beforeSend: function(){
+                $("#loading").fadeIn();
+            },
+            success: function (data) {
+                // console.log(data);
+                var obj = JSON.parse(data);
+
+                $("#district").empty();
+                $("#district").append('<option selected="selected"></option>');
+                $.each(obj, function (index, element) {
+                    $("#district").append(new Option(element.name_kh, element.code));
+                });
+            },
+            complete: function(){
+                $("#loading").fadeOut(1000);
+            },
+            error: function (report){
+                console.log(report);
+            }
+        });
+    });
+
+    /*========================================================================
+   ===============// select district code append commune //=================
+   ==========================================================================*/
+
+    $("#district").select2({
+        allowClear:true,
+        placeholder: 'ស្រុក'
+    });
+    $("#district").change(function () {
+        var district_id = $('#district').val();
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('getCommune') }}",
+            data: {'district_id': district_id},
+            beforeSend: function(){
+                $("#loading").fadeIn();
+            },
+            success: function (data) {
+                // console.log(data);
+                var obj = JSON.parse(data);
+                $("#commune").empty();
+                $("#commune").append('<option selected="selected"></option>');
+                $.each(obj, function (index, element) {
+                    $("#commune").append(new Option(element.name_kh, element.code));
+                });
+            },
+            complete: function(){
+                $("#loading").fadeOut(1000);
+            },
+            error: function (report){
+                console.log(report);
+            }
+        });
+    });
+
+    /*========================================================================
+    ===============// select commune code append village //=================
+    ==========================================================================*/
+    $("#commune").select2({
+        allowClear:true,
+        placeholder: 'ឃំុ'
+    });
+
+    $("#commune").change(function () {
+        var commune_id = $('#commune').val();
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('getVillage') }}",
+            data: {'commune_id': commune_id},
+            beforeSend: function(){
+                $("#loading").fadeIn();
+            },
+            success: function (data) {
+                var obj = JSON.parse(data);
+                $("#village").empty();
+                $("#village").append('<option selected="selected"></option>');
+                $.each(obj, function (index, element) {
+                    $("#village").append(new Option(element.name_kh, element.code));
+                });
+            },
+            complete: function(){
+                $("#loading").fadeOut(1000);
+            },
+            error: function (report){
+                console.log(report);
+            }
+        });
+    });
+
+    /*======================================================
+    ===============// select2 in village //=================
+    ========================================================*/
+    $("#village").select2({
+        allowClear:true,
+        placeholder: 'ភូមិ'
+    });
+    //interview relationship
+    $("#inter_relationship").select2({
+        minimumResultsForSearch: -1,
+        allowClear:true,
+        placeholder: 'ទំនាក់ទំនង'
+    });
+    //family relationship
+    $("#fa_relationship").select2({
+        minimumResultsForSearch: -1,
+        allowClear:true,
+        placeholder: 'ទំនាក់ទំនង'
+    });
+    //* ============= step 2 ======================*//
+    $('#add_rows').click(function(){ //alert($m_id);
+        var row = $('.new_rows tr.myrow').length;
+        var rowindex = row+1;
+
+        $(".new_rows").append('<tr class="myrow">'+
+            // '<td>'+rowindex+'</td>'+
+            '<td><div class="form-group"><input  type="text" required="required" class="form-control" name="nick_name['+row+']"/></div></td>'+
+            '<td><div class="form-group"><input  type="text" required="required" class="form-control" name="dob['+row+']"/></div></td>'+
+            '<td><div class="form-group"><input  type="text" required="required" class="form-control" name="age['+row+']"/></div></td>'+
+            '<td>'+
+                '<div class="form-group">'+
+                    '<select class="form-control family_relationship"  name="family_relationship['+row+']" required="required">'+
+                        '<option></option>'+
+                        '@foreach($relationship as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
+                    '</select>'+
+                '</div>'+
+            '</td>'+
+            '<td>'+
+                '<div class="form-group">'+
+                    '<select class="form-control occupation"  name="occupation['+row+']" required="required">'+
+                        '<option></option>'+
+                        '@foreach($occupation as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
+                    '</select>'+
+                '</div>'+
+            '</td>'+
+            '<td>'+
+                '<div class="form-group">'+
+                    '<select class="form-control education_level"  name="education_level['+row+']" required="required">'+
+                        '<option></option>'+
+                        '@foreach($education_level as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
+                    '</select>'+
+                '</div>'+
+            '</td>'+
+            '<td style="text-align:center;"><a status="0" class="remove_rows_kh" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+            '</tr>');
+        $(".family_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ទំនាក់ទំនង"});
+        $(".occupation").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "មុខរបរ"});
+        $(".education_level").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
+    });
+
+    //remove add
+    $(".new_rows").on('click','.remove_rows_kh',function(){
+        $(this).parent().parent().remove();
+    });
+
+    //family_relationship
+    $(".family_relationship").select2({
+        minimumResultsForSearch: -1,
+        allowClear:true,
+        placeholder: 'ទំនាក់ទំនង'
+    });
+    //occupation
+    $(".occupation").select2({
+        minimumResultsForSearch: -1,
+        allowClear:true,
+        placeholder: 'មុខរបរ'
+    });
+    //education
+    $(".education_level").select2({
+        minimumResultsForSearch: -1,
+        allowClear:true,
+        placeholder: 'កម្រិតវប្បធម៌'
+    });
 
 
 </script>

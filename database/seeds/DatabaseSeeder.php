@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LandAgriculturalTableSeeder::class);
         $this->call(LoanTableSeeder::class);
         $this->call(FamilyRelationTableSeeder::class);
+        $this->call(EducationLevelTableSeeder::class);
+        $this->call(OccupationTableSeeder::class);
     }
 }

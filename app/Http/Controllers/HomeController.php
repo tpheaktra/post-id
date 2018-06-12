@@ -40,16 +40,18 @@ class HomeController extends Controller
         $gender        = Helpers::getGender();
         $household     = Helpers::getHouseHoldFamily();
         $homePrepar    = Helpers::getHomePrepar();
-        $condition_house = Helpers::getConditionHouse();
-        $question = Helpers::getQuestion();
-        $electricgrid = Helpers::getElectricGird();
+        $condition_house  = Helpers::getConditionHouse();
+        $question         = Helpers::getQuestion();
+        $electricgrid     = Helpers::getElectricGird();
         $landAgricultural = Helpers::getLangAgricultural();
-        $loan = Helpers::getLoan();
-        $family = Helpers::getFamilyRelation();
+        $loan             = Helpers::getLoan();
+        $family           = Helpers::getFamilyRelation();
+        $occupation       = Helpers::getOccupation();
+        $education_level  = Helpers::getEducationLevel();
         return view('home',compact('relationship',
             'provinces','gender','household',
             'homePrepar','condition_house','question','electricgrid',
-            'landAgricultural','loan','family'));
+            'landAgricultural','loan','family','occupation','education_level'));
     }
 
     /*
