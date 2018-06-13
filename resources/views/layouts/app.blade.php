@@ -9,7 +9,13 @@
     <title>Post ID</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<<<<<<< HEAD
+    <link href="//fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+=======
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+>>>>>>> 92da3f022d5bee2de632d3e765f867a752a22b95
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -114,7 +120,6 @@
         <main class="py-4">
             @yield('content')
         </main>
-
 
         <div class="wrapper">
             <div class="footer">

@@ -87,7 +87,10 @@ class HomeController extends Controller
             'question_electric','typemeterial','typeanimals'))->with('interview_code',$interview_code);
 
     }
-
+    public function view(){
+         $gender = Helpers::getGender();
+        return view('view',compact('gender'));
+    }
     /*
      * get data with ajax
      */
