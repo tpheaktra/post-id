@@ -76,7 +76,10 @@ class HomeController extends Controller
             'landAgricultural','loan','family','roof_made','wall_made','house_status'));
 
     }
-
+    public function view(){
+         $gender = Helpers::getGender();
+        return view('view',compact('gender'));
+    }
     /*
      * get data with ajax
      */

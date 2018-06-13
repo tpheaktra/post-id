@@ -4,8 +4,6 @@
 
 
 <!------ Include the above in your HEAD tag ---------->
-
-
 <div class="container content">
 
     <div class="stepwizard">
@@ -31,7 +29,7 @@
         {{ csrf_field() }}
         <div class="row setup-content" id="step-1">
             <div class="col-xs-12">
-                <div class="col-md-12">
+                <div class="col-md-12" id="div1">
                     <h3> ក) ព័ត៌មានទូទៅ</h3>
                     <div class="col-sm-12"><hr> </div>
                     <div class="col-md-12">
@@ -286,8 +284,13 @@
                         </table>
                     </div>
 
-                     <div class="col-sm-12"><hr> </div>
-                    <button class="btn btn-primary nextBtn pull-right" type="button" >រក្សាទុកនិងជំហានបន្ទាប់</button>
+                    <div class="col-sm-12"><hr> </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-12">
+                        <a onclick="printContent('div1')" class="btn btn-default pull-left"><img src="{{asset('images/Printer.png')}}" width="30"></a>
+                        <button class="btn btn-primary nextBtn pull-right" type="button">រក្សាទុកនិងជំហានបន្ទាប់</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -298,20 +301,22 @@
 
         <div class="row setup-content" id="step-2">
             <div class="col-xs-12">
-                <div class="col-md-12">
+                <div class="col-md-12" id="div2">
                     <h3> ខ) ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់</h3>
-                    <div class="col-sm-12"><hr> </div>
+                    <hr>
                     <p>មនុស្ស​ដែល​គេ​ចាត់ទុកថាជាសមាជិក​គ្រួសារលុះ​ត្រាតែ​រស់​នៅជាប្រចាំ​ក្នុង​គ្រួសារ ឬ​អវត្តមាន​តិច​ជាង​ ៦ខែ​​ (ត្រូវមានឯកសារយោងដូចជា សៀវភៅគ្រួសារ សៀវភៅស្នាក់នៅ សំបុត្រកំណើត លិខិតបញ្ជាក់ពីអាជ្ញាធរ)</p>
 
 
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
+                                    <th rowspan="2">ល.រ</th>
                                     <th rowspan="2">នាមត្រកូល នាមខ្លួន ឈ្មោះហៅក្រៅ</th>
                                     <th colspan="2"><p align="center">ឆ្នាំកំណើត ឬ អាយុ</p></th>
-                                    <th width="15%" rowspan="2">ទំនាក់ទំនង​ជាមួយ​មេ​គ្រួសារ(1)</th>
-                                    <th width="15%" rowspan="2">មុខងារ/​មុខរបរ(2)</th>
-                                    <th width="15%" rowspan="2">កម្រិតវប្បធម៌(3) </th>
+                                    <th width="15%" rowspan="2">ទំនាក់ទំនង​ជាមួយ​មេ​គ្រួសារ(1) <a href="#" data-toggle="tooltip" title="(1)= មេ​គ្រួសារ ប្តី/​ប្រពន្ធ កូន ឪពុក​ម្តាយ ក្មួយ ផ្សេងៗ">?</a>
+                                    </th>
+                                    <th rowspan="2">មុខងារ/​មុខរបរ(2) <a href="#" data-toggle="tooltip" title="(2)= ប្រភេទមុខរបរចម្បងរបស់គាត់/នាង ដូចជា កសិករ កម្មករ មន្ត្រីរាជការ រកស៊ី សិស្ស នៅផ្ទះ">?</a></th>
+                                    <th width="15%" rowspan="2">កម្រិតវប្បធម៌(3) <a href="#" data-toggle="tooltip" title="(3)= បើនៅរៀន បញ្ជាក់ពីថ្នាក់ទីប៉ុន្មាន។ បើជាមនុស្សពេញវ័យឬជាកុមារអាយុចាប់ពី៥ឆ្នាំតែឈប់រៀន សូមបញ្ជាក់ពីកម្រិតថ្នាក់នៅពេលឈប់រៀន">?</a></th>
                                     <th rowspan="2">សកម្មភាព</th>
                                 </tr>
                                 <tr>
@@ -321,6 +326,7 @@
                             </thead>
                             <tbody class="new_rows">
                                 <tr class="myrow">
+                                    <td>1</td>
                                     <td><div class="form-group"><input  type="text" required="required" class="form-control" name="nick_name[0]"/></div></td>
                                     <td><div class="form-group"><input  type="text" required="required" class="form-control" name="dob[0]"/></div></td>
                                     <td><div class="form-group"><input  type="text" required="required" class="form-control" name="age[0]"/></div></td>
@@ -357,17 +363,15 @@
                                 </tr>
                             </tbody>
                         </table>
-
+                        <p>
                         <input type="button" class="btn btn-primary" id="add_rows" style="float:right;" value="បញ្ចូលបន្ថែម">
-                        <div class="col-sm-12"><hr> </div>
-                        <div class="col-sm-12">
-                            <p>(1)= មេ​គ្រួសារ ប្តី/​ប្រពន្ធ កូន ឪពុក​ម្តាយ ក្មួយ ផ្សេងៗ </p>
-                            <p>
-                            (2)= ប្រភេទមុខរបរចម្បងរបស់គាត់/នាង ដូចជា កសិករ កម្មករ មន្ត្រីរាជការ រកស៊ី សិស្ស នៅផ្ទះ</p>
-                            <p>(3)= បើនៅរៀន បញ្ជាក់ពីថ្នាក់ទីប៉ុន្មាន។ បើជាមនុស្សពេញវ័យឬជាកុមារអាយុចាប់ពី៥ឆ្នាំតែឈប់រៀន សូមបញ្ជាក់ពីកម្រិតថ្នាក់នៅពេលឈប់រៀន</p>
-                        </div>
-
-                    <div class="col-sm-12"><hr> </div>
+                        </p>
+                        <!-- <div class="col-sm-12"><hr> </div> -->
+                         
+                </div>
+                <div class="col-sm-12">
+                    <hr>
+                    <a onclick="printContent('div2')" class="btn btn-default pull-left"><img src="{{asset('images/Printer.png')}}" width="30" alt="printer"></a>
                     <button id="step2Next" class="btn btn-primary nextBtn pull-right" type="button" >រក្សាទុក និង ជំហានបន្ទាប់</button>
                 </div>
             </div>
@@ -378,7 +382,7 @@
 
         <div class="row setup-content" id="step-3">
             <div class="col-xs-12">
-                <div class="col-md-12">
+                <div class="col-md-12" id="div3">
                     <h3> គ) ស្ថានភាពទូទៅរបស់គ្រួសារ</h3>
                        <div class="col-sm-12"><hr> </div>
                        <div class="col-sm-12">
@@ -530,7 +534,7 @@
 
                         </div>
 
-                        <div class="col-sm-12"><hr> </div>
+                        <div class="col-sm-12"><hr></div>
                         <div class="col-sm-12">
                             <h4> គ.៤ បង្គន់</h4>
                             <h5>- តើគ្រួសាររបស់អ្នកមានបង្គន់ប្រើដែរឬទេ?</h5>
@@ -1165,8 +1169,11 @@
                             }
                         });
                     </script>
+                </div>
+                <div class="col-sm-12"><hr> </div>
 
-                    <div class="col-sm-12"><hr> </div>
+                <div class="col-sm-12">
+                    <a onclick="printContent('div3')" class="pull-left btn btn-default"><img src="{{asset('images/Printer.png')}}" width="30"></a>
                     <button class="btn btn-primary pull-right mysubmit nextBtn " type="submit">រក្សាទុក​​ និង បញ្ចប់</button>
                 </div>
             </div>
@@ -1196,7 +1203,8 @@
                 <td>Male </td>
                 <td>097544443  </td>
                 <td>kep  </td>
-                <td><a  data-toggle="collapse" data-target="#accordion" class="clickable">View</a> | <a href="">Edit</a> | <a href="">Delete</a> </td>
+                <!-- data-toggle="collapse" data-target="#accordion" class="clickable" -->
+                <td><a href="{{route('view.data')}}"><i class="fa fa-eye"></i></a> | <a href=""><i class="fa fa-edit"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
             </tr>
             <tr>
                 <td colspan="7">
@@ -1228,11 +1236,17 @@
 
 <script type="text/javascript">
 
+    // Printing page content
+    function printContent(el){
+        var restorepage = document.body.innerHTML;
+        var printcontent = document.getElementById(el).innerHTML;
+        document.body.innerHTML = printcontent;
+        window.print();
+        document.body.innerHTML = restorepage;
+        location.reload(); 
+    }
     $(document).ready(function () {
-
-
-
-
+       
         $('#add_rows_1').click(function(){ //alert($m_id);
             var row_1 = $('.new_rows_1 tr.myrow_1').length;
 
@@ -1546,7 +1560,7 @@
         var rowindex = row+1;
 
         $(".new_rows").append('<tr class="myrow">'+
-            // '<td>'+rowindex+'</td>'+
+            '<td>'+rowindex+'</td>'+
             '<td><div class="form-group"><input  type="text" required="required" class="form-control" name="nick_name['+row+']"/></div></td>'+
             '<td><div class="form-group"><input  type="text" required="required" class="form-control" name="dob['+row+']"/></div></td>'+
             '<td><div class="form-group"><input  type="text" required="required" class="form-control" name="age['+row+']"/></div></td>'+
@@ -1604,7 +1618,5 @@
         allowClear:true,
         placeholder: 'កម្រិតវប្បធម៌'
     });
-
-
 </script>
 @endsection
