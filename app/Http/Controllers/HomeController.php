@@ -42,9 +42,9 @@ class HomeController extends Controller
         $check = DB::select("SELECT count(*) as count, concat('', lpad(max(id)+1,2,'0')) AS id  FROM general_information");
 
         if($check[0]->count == 0){
-            $interview_code= auth::user()->province.date('Ymd').'01';
+            $interview_code= auth::user()->province.'-'.date('ymd').'01';
         }else{
-            $interview_code= auth::user()->province.date('Ymd').$check[0]->id;
+            $interview_code= auth::user()->province.'-'.date('ymd').$check[0]->id;
         }
 
 
@@ -120,9 +120,9 @@ class HomeController extends Controller
         $check = DB::select("SELECT count(*) as count, concat('', lpad(max(id)+1,2,'0')) AS id  FROM general_information");
 
         if($check[0]->count == 0){
-            $interview_code= auth::user()->province.date('Ymd').'01';
+            $interview_code= auth::user()->province.'-'.date('Ymd').'01';
         }else{
-            $interview_code= auth::user()->province.date('Ymd').$check[0]->id;
+            $interview_code= auth::user()->province.'-'.date('Ymd').$check[0]->id;
         }
 
 
