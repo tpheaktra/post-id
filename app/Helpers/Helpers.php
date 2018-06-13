@@ -159,6 +159,38 @@ class Helpers{
     }
 
 
+    /*
+* function get gender
+*/
+    public static function getQuestionElectric(){
+        $loan =DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS questionelectric ,name_kh,id from question_electric');
+        return $loan;
+    }
+
+
+    /*
+    * function get gender
+    */
+    public static function getTypeMeterial(){
+        $tm = DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS meterial ,name_kh,id from type_meterial');
+        return $tm;
+    }
+
+
+    /*
+    * function get gender
+    */
+    public static function getTypeAnimals(){
+        $tm = DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS animals ,name_kh,id from type_animals');
+        return $tm;
+    }
+
+
+
+
+
+
+
 }
 	
 	

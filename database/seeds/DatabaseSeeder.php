@@ -26,5 +26,8 @@ class DatabaseSeeder extends Seeder
         $this->call(OccupationTableSeeder::class);
         $this->call(RoofMadeSeeder::class);
         $this->call(WallMadeTableSeeder::class);
+        $this->call(QuestionElectricTableSeeder::class);
+        $this->call(TypeMeterialTableSeeder::class);
+        $this->call(TypeAnimalsTableSeeder::class);
     }
 }
