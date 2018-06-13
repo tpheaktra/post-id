@@ -59,21 +59,22 @@ class HomeController extends Controller
         $occupation       = Helpers::getOccupation();
         $education_level  = Helpers::getEducationLevel();
 
-        $loan   = Helpers::getLoan();
-        $family = Helpers::getFamilyRelation();
-
-
-
         $roof_made = Helpers::getRoofmade();
         $wall_made = Helpers::getWallmade();
         $house_status = ConditionhouseModel::all();
+
+        $typemeterial = Helpers::getTypeMeterial();
+        $typeanimals = Helpers::getTypeAnimals();
+
+        $question_electric = Helpers::getQuestionElectric();
         return view('home',compact('relationship',
             'provinces','gender','household',
             'homePrepar','condition_house','question','electricgrid',
 
             'landAgricultural','loan','family','occupation','education_level',
 
-            'landAgricultural','loan','family','roof_made','wall_made','house_status'));
+            'landAgricultural','loan','family','roof_made','wall_made','house_status',
+            'question_electric','typemeterial','typeanimals'));
 
     }
     public function view(){

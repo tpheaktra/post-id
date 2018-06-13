@@ -4,35 +4,27 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>Post ID</title>
-
-    <!-- Scripts -->
-    {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<<<<<<< HEAD
     <link href="//fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+=======
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+>>>>>>> 92da3f022d5bee2de632d3e765f867a752a22b95
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style type="text/css">
-        /*body{ 
-            margin-top:40px; 
-        }*/
-
         .stepwizard-step p {
             margin-top: 10px;
         }
-
         .stepwizard-row {
             display: table-row;
         }
-
         .stepwizard {
             display: table;
             width: 100%;
@@ -44,7 +36,6 @@
             opacity: 1 !important;
             filter: alpha(opacity=100) !important;
         }
-
         .stepwizard-row:before {
             top: 14px;
             bottom: 0;
@@ -188,30 +179,12 @@
     </style>
 
     <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
-
-    {{--<script type='text/javascript'--}}
-    {{--src='//cdnjs.cloudflare.com/ajax/libs/select2/3.4.6/select2.js'></script>--}}
-
     <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/jquery.validate.js'></script>
-
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    {{--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>--}}
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
-    {{--<!-- Include Select2 CSS -->--}}
-    {{--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.0/select2.min.css" />--}}
-
-    {{--<!-- CSS to make Select2 fit in with Bootstrap 3.x -->--}}
-    {{--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.0/select2-bootstrap.min.css" />--}}
-
-    {{--<!-- Include Select2 JS -->--}}
-    {{--<script src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.0/select2.min.js"></script>--}}
-
-    {{--<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>--}}
-    {{--<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/additional-methods.min.js"></script>--}}
 
 </head>
 <body>

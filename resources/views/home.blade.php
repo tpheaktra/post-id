@@ -39,7 +39,7 @@
                                 <td width="35%"><label class="control-label">លេខកូដសម្ភាសន៍:</label></td>
                                 <td width="65%">
                                     <div class="form-group">    
-                                        <input  maxlength="100" name="interview_code" type="text" required="required" class="form-control" />
+                                        <input name="interview_code" type="text" required="required" class="form-control" readonly="readonly"/>
                                     </div>  
                                 </td>
                             </tr>
@@ -75,7 +75,7 @@
                                 <td width="35%"><label class="control-label"> អាយុ : </label></td>
                                 <td width="65%">
                                    <div class="form-group">
-                                        <input  maxlength="100" name="g_age" type="text" required="required" class="form-control"/>
+                                        <input  name="g_age" type="text" required="required" class="form-control allowNumber"/>
                                     </div>     
                                 </td>
                             </tr>
@@ -83,7 +83,7 @@
                                 <td width="35%"><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td width="65%">
                                    <div class="form-group">
-                                        <input  maxlength="100" name="g_phone" type="text" required="required" class="form-control" />
+                                        <input  maxlength="100" name="g_phone" type="text" required="required" class="form-control allowNumber" />
                                     </div>     
                                 </td>
                             </tr>
@@ -162,7 +162,7 @@
                                 <td><label class="control-label">ឈ្មោះអ្នកជំងឺ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input  maxlength="100" type="text" required="required" class="form-control" name="inter_patient"/>
+                                        <input type="text" required="required" class="form-control" name="inter_patient"/>
                                     </div>     
                                 </td>
                             </tr>
@@ -185,7 +185,7 @@
                                 <td><label class="control-label"> អាយុ : </label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input type="text" required="required" class="form-control"  name="inter_age"/>
+                                        <input type="text" required="required" class="form-control allowNumber"  name="inter_age"/>
                                     </div>     
                                 </td>
                             </tr>
@@ -193,7 +193,7 @@
                                 <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input  type="text" required="required" class="form-control" name="inter_phone"/>
+                                        <input  type="text" required="required" class="form-control allowNumber" name="inter_phone"/>
                                     </div>     
                                 </td>
                             </tr>
@@ -251,7 +251,7 @@
                                 <td><label class="control-label"> អាយុ : </label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input type="text" required="required" class="form-control" name="fa_age"/>
+                                        <input type="text" required="required" class="form-control allowNumber" name="fa_age"/>
                                     </div>     
                                 </td>
                             </tr>
@@ -259,7 +259,7 @@
                                 <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input type="text" required="required" class="form-control" name="fa_phone"/>
+                                        <input type="text" required="required" class="form-control allowNumber" name="fa_phone"/>
                                     </div>     
                                 </td>
                             </tr>
@@ -423,7 +423,7 @@
                                         <td><label class="control-label">សរុប(នាក់) : </label></td>
                                         <td>
                                            <div class="form-group">
-                                               <input type="text" name="total_people" class="form-control">
+                                               <input type="text" name="total_people" class="form-control allowNumber">
                                             </div>     
                                         </td>
                                     </tr>
@@ -441,17 +441,17 @@
                                             <td><b>ផ្ទះជាន់ក្រោម៖</b></td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="ground_floor_length" class="form-control" required="required" placeholder="បណ្តោយ(ម៉ែត្រ)​..." type="text" name="ground_floor_length" value="0">
+                                                    <input id="ground_floor_length" class="form-control allowNumber" required="required" placeholder="បណ្តោយ(ម៉ែត្រ)​..." type="text" name="ground_floor_length" value="0">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="ground_floor_width" class="form-control"  required="required" placeholder="ទទឹង(ម៉ែត្រ)..." type="text" name="ground_floor_width" value="0">
+                                                    <input id="ground_floor_width" class="form-control allowNumber"  required="required" placeholder="ទទឹង(ម៉ែត្រ)..." type="text" name="ground_floor_width" value="0">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="ground_floor_area" class="form-control" required="required" placeholder="ផ្ទៃ(ម៉ែត្រក្រឡា)..." type="text" name="ground_floor_area" value="0" readonly="readonly">
+                                                    <input id="ground_floor_area" class="form-control allowNumber" required="required" placeholder="ផ្ទៃ(ម៉ែត្រក្រឡា)..." type="text" name="ground_floor_area" value="0" readonly="readonly">
                                                 </div>
                                             </td>                     
                                         </tr>
@@ -460,17 +460,17 @@
                                             <td><b>ផ្ទះជាន់លើ(បើមាន)៖</b></td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="upper_floor_length" class="form-control" required="required" placeholder="បណ្តោយ(ម៉ែត្រ)​..." type="text" name="upper_floor_length" value="0">
+                                                    <input id="upper_floor_length" class="form-control allowNumber" required="required" placeholder="បណ្តោយ(ម៉ែត្រ)​..." type="text" name="upper_floor_length" value="0">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="upper_floor_width" class="form-control" required="required" placeholder="ទទឹង(ម៉ែត្រ)..." type="text" name="upper_floor_width" value="0">
+                                                    <input id="upper_floor_width" class="form-control allowNumber" required="required" placeholder="ទទឹង(ម៉ែត្រ)..." type="text" name="upper_floor_width" value="0">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="upper_floor_area" class="form-control" required="required" placeholder="ផ្ទៃ(ម៉ែត្រក្រឡា)..." type="text" name="upper_floor_area" value="0" readonly="readonly">
+                                                    <input id="upper_floor_area" class="form-control allowNumber" required="required" placeholder="ផ្ទៃ(ម៉ែត្រក្រឡា)..." type="text" name="upper_floor_area" value="0" readonly="readonly">
                                                 </div>
                                             </td>                     
                                         </tr>
@@ -478,17 +478,17 @@
                                             <td><b>សំណង់បន្ថែម ឧ. ផ្ទះបាយ... (បើមាន)៖ </b></td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="further_floor_length" class="form-control" required="required" placeholder="បណ្តោយ(ម៉ែត្រ)​..." type="text" value="0" name="further_floor_length">
+                                                    <input id="further_floor_length" class="form-control allowNumber" required="required" placeholder="បណ្តោយ(ម៉ែត្រ)​..." type="text" value="0" name="further_floor_length">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="further_floor_width" class="form-control" required="required" placeholder="ទទឹង(ម៉ែត្រ)..." type="text" value="0" name="further_floor_width">
+                                                    <input id="further_floor_width" class="form-control allowNumber" required="required" placeholder="ទទឹង(ម៉ែត្រ)..." type="text" value="0" name="further_floor_width">
                                                 </div>
                                                 </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="further_floor_area" class="form-control" required="required" placeholder="ផ្ទៃ(ម៉ែត្រក្រឡា)..." type="text" value="0" name="further_floor_area" readonly="readonly">
+                                                    <input id="further_floor_area" class="form-control allowNumber" required="required" placeholder="ផ្ទៃ(ម៉ែត្រក្រឡា)..." type="text" value="0" name="further_floor_area" readonly="readonly">
                                                 </div>
                                             </td>                     
                                         </tr>
@@ -499,7 +499,7 @@
                                             <td><b style="float:right;">ផ្ទៃកម្រាលសរុប (ម៉ែត្រ​ក្រឡា) :</b></td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input id="total_area" name="total_area" class="form-control" required="required" placeholder="ផ្ម៉ែត្រក្រឡា..." type="text" value="0" readonly="readonly">
+                                                    <input id="total_area" name="total_area" class="form-control allowNumber" required="required" placeholder="ផ្ម៉ែត្រក្រឡា..." type="text" value="0" readonly="readonly">
                                                 </div>
                                             </td>                     
                                         </tr>
@@ -732,79 +732,91 @@
                         <div class="col-sm-12">
 
                             <h4>គ.៨) សម្រាប់គ្រួសារជួលផ្ទះគេ​ (សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ មិនបាច់បំពេញចំណុច គ៨ ហើយរំលងទៅ គ៩)</h4>
-
-                                <table width="100%">
-                                    <tr>
-                                        <td><label class="control-label"> តើថ្លៃជួលប្រចាំខែជាមធ្យមប៉ុន្មាន?: </label></td>
-                                        <td>
-                                           <div class="form-group">
-                                                <input type="text" required="required" class="form-control" name="rent_fee"/>
-                                            </div>     
-                                        </td>
-                                    </tr>
-                                </table>
-
-                                <h4>គ.៩) ទ្រព្យ​សម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិច​របស់​គ្រួសារ</h4>
-                                <table class="tb_grid table" width="100%">
-                                    <thead>
+                                <div class="col-sm-6">
+                                    <table width="100%">
                                         <tr>
-                                            <th>ល.រ</th>
-                                            <th>ប្រភេទសម្ភារប្រើបា្រស់</th>
-                                            <th>ចំនួន</th>
-                                            <th>តម្លៃទីផ្សារ ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា</th>
-                                            <th>តម្លៃ​សរុប (រៀល)</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="new_rows_1">
-                                        <tr class="myrow_1">
-                                            <td>1</td>
-                                            <td>
+                                            <td width="50%"><label class="control-label"> តើថ្លៃជួលប្រចាំខែជាមធ្យមប៉ុន្មាន?: </label></td>
+                                            <td width="50%">
                                                 <div class="form-group">
-                                                    <input name="type_meterial[0]" type="text" required="required" class="form-control"/>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <input name="number_meterial[0]" type="text" required="required" class="form-control"  />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <input name="market_value_meterial[0]" type="text" required="required" class="form-control"  />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <input name="total_rail[0]" type="text" required="required" class="form-control"  />
+                                                    <input type="text" required="required" class="form-control allowNumber" name="rent_fee"/>
                                                 </div>
                                             </td>
                                         </tr>
-                                    </tbody>
+                                    </table>
+                                </div>
 
-                                    <tfoot>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <input name="total_meterial_costs" type="text" required="required" class="form-control" readonly/>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                               <input class="btn btn-primary" id="add_rows_1" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4>គ.៩) ទ្រព្យ​សម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិច​របស់​គ្រួសារ</h4>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <table class="tb_grid table" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>ល.រ</th>
+                                                <th>ប្រភេទសម្ភារប្រើបា្រស់</th>
+                                                <th>ចំនួន</th>
+                                                <th>តម្លៃទីផ្សារ ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា</th>
+                                                <th>តម្លៃ​សរុប (រៀល)</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="new_rows_1">
+                                            <tr class="myrow_1">
+                                                <td>1</td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <select class="form-control type_meterial" id="type_meterial" name="type_meterial[0]" required="required">
+                                                            <option></option>
+                                                            @foreach($typemeterial as $keh => $value)
+                                                                <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input id="number_meterial" name="number_meterial[0]" type="text" required="required" class="form-control allowNumber meterial"  />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input id="market_value_meterial" name="market_value_meterial[0]" type="text" required="required" class="form-control allowNumber meterial"  />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input id="total_rail_meterial" name="total_rail[0]" type="text" required="required" class="form-control totalallowNumber_meterial"  />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+                                        <tfoot>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input id="total_meterial_costs" name="total_meterial_costs" type="text" required="required" class="form-control" readonly="readonly"/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                   <input class="btn btn-primary" id="add_rows_1" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
                                 
                         </div>
 
@@ -816,42 +828,40 @@
                             <h4>គ.១០) អគ្គិសនី</h4>
                             <p>តើបានតបណ្តាញអគ្គិសនី (រដ្ឋឬឯកជន) ដែរឬទេ?</p>
                             <ul class="li-none">
-                                @foreach($question as $key => $q)
+                                @foreach($question_electric as $key => $qe)
                                 <li>
-                                     <label><input value="{{$q->id}}" type="radio" name="q_electric" ​​> {{$q->name_kh}}</label>
+                                     <label><input class="electric" value="{{$qe->id}}" type="radio" name="q_electric" ​​> {{$qe->name_kh}}</label>
                                 </li>
+                                @if($qe->id == 1) <li id="electric_yes"></li> @endif
+                                @if($qe->id == 2) <li id="electric_no"></li> @endif
                                 @endforeach
                             </ul>
 
-                            <p>ប្រសិនបានតបណ្តាញអគ្គិសនី </p>
-                            <table class="table ">
-                                <tr>
-                                    <th>តម្លៃក្នុងមួយគីឡូវ៉ាត់/ម៉ោង</th>
-                                    <th>ចំនួនគីឡូវ៉ាត់ដែលប្រើជាមធ្យមក្នុងមួយខែ</th>
-                                    <th>ចំណាយ​ជា​មធ្យមក្នុងមួយខែ</th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input class="form-control" required type="text" name="costs_in_hour">
-                                    </td>
-                                    <td>
-                                        <input class="form-control" required type="text" name="number_in_month">
-                                    </td>
-                                    <td>
-                                        <input class="form-control" required type="text" name="costs_per_month">
-                                    </td>
-                                </tr>
-                            </table>
-
-
-                            <p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p>
-                            <ul class="li-none">
-                                @foreach($electricgrid as $key=>$e)
-                                <li>
-                                     <label><input value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label>
-                                </li>
-                                @endforeach
-                            </ul>
+                            <script>
+                                $('.electric').click(function () {
+                                    var electric = $('input[name=q_electric]:checked').val();
+                                    $('#electric_yes').empty();
+                                    $('#electric_no').empty();
+                                    if(electric == 1){
+                                        $('#electric_yes').append('<p>ប្រសិនបានតបណ្តាញអគ្គិសនី </p>'+
+                                            '<table class="table ">'+
+                                            '<tr>'+
+                                                '<th>តម្លៃក្នុងមួយគីឡូវ៉ាត់/ម៉ោង</th>'+
+                                                '<th>ចំនួនគីឡូវ៉ាត់ដែលប្រើជាមធ្យមក្នុងមួយខែ</th>'+
+                                                '<th>ចំណាយ​ជា​មធ្យមក្នុងមួយខែ</th>'+
+                                            '</tr>'+
+                                            '<tr>'+
+                                                '<td><input class="form-control allowNumber" required type="text" name="costs_in_hour"></td>'+
+                                                '<td><input class="form-control allowNumber" required type="text" name="number_in_month"></td>'+
+                                                '<td><input class="form-control allowNumber" required type="text" name="costs_per_month"></td>'+
+                                            '</tr>' +
+                                            '</table>');
+                                        AllowNumber();
+                                    }else if(electric == 2){
+                                        $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul>');
+                                    }
+                                });
+                            </script>
 
                         </div>
 
@@ -860,7 +870,24 @@
                         <div class="col-sm-12">
 
                             <h4>គ.១១) យានជំនិះជាទ្រព្យសម្បត្តិផ្ទាល់របស់​គ្រួសារ</h4>
-                            <h5>តើអ្នកប្រើមធ្យោបាយអ្វីមកមន្ទីរពេទ្យ? <input required type="text" name="go_hospital"></h5>
+
+                            <table>
+                                <tr>
+                                    <td width="50%"><h5>តើអ្នកប្រើមធ្យោបាយអ្វីមកមន្ទីរពេទ្យ?</h5> </td>
+                                    <td width="50%">
+                                        <div class="form-group go_hospital">
+                                            <select class="form-control" id="go_hospital" name="go_hospital">
+                                                <option></option>
+                                                @foreach($typemeterial as $keh => $value)
+                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+
                             <table class="tb_grid table" width="100%">
                                 <thead>
                                 <tr>
@@ -869,7 +896,7 @@
                                     <th>ចំនួន</th>
                                     <th>តម្លៃទីផ្សារ ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា</th>
                                     <th>តម្លៃ​សរុប (រៀល)</th>
-                                    <th>Actions</th>
+                                    <th>សកម្មភាព</th>
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_2">
@@ -877,24 +904,30 @@
                                     <td>1</td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="type_vehicle[0]" type="text" required="required" class="form-control"/>
+                                            <select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle[0]" required="required">
+                                                <option></option>
+                                                @foreach($typemeterial as $keh => $value)
+                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="number_vehicle[0]" type="text" required="required" class="form-control"  />
+                                            <input id="number_vehicle" name="number_vehicle[0]" type="text" required="required" class="form-control allowNumber vehicle"  />
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="market_value_vehicle[0]" type="text" required="required" class="form-control"  />
+                                            <input id="market_value_vehicle" name="market_value_vehicle[0]" type="text" required="required" class="form-control allowNumber vehicle"  />
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="total_rail_vehicle[0]" type="text" required="required" class="form-control"  />
+                                            <input id="total_rail_vehicle" name="total_rail_vehicle[0]" type="text" required="required" class="form-control totalallowNumber_vehicle" readonly="readonly"/>
                                         </div>
                                     </td>
+                                    <td></td>
                                 </tr>
                                 </tbody>
 
@@ -906,7 +939,7 @@
                                     <td><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="total_vehicle_costs" type="text" required="required" class="form-control" readonly="readonly"/>
+                                            <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control" readonly="readonly"/>
                                         </div>
                                     </td>
                                 </tr>
@@ -949,39 +982,33 @@
                                     <td>1</td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="type_animals[0]" type="text" required="required" class="form-control"/>
+                                            <select class="form-control type_animals" id="type_animals" name="type_animals[0]" required="required">
+                                                <option></option>
+                                                @foreach($typeanimals as $key => $value)
+                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="num_animals_big[0]" type="text" required="required" class="form-control"  />
+                                            <input name="num_animals_big[0]" type="text" required="required" class="form-control allowNumber"  />
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="num_animals_small[0]" type="text" required="required" class="form-control"  />
+                                            <input name="num_animals_small[0]" type="text" required="required" class="form-control allowNumber"  />
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="note_animals[0]" type="text" required="required" class="form-control"  />
+                                            <input name="note_animals[0]" type="text" required="required" class="form-control allowNumber"  />
                                         </div>
                                     </td>
                                 </tr>
                                 </tbody>
 
                                 <tfoot>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input name="total_animals_costs" type="text" required="required" class="form-control" readonly="readonly"/>
-                                        </div>
-                                    </td>
-                                </tr>
                                 <tr>
                                     <td></td>
                                     <td></td>
@@ -1203,8 +1230,12 @@
                 <td>Male </td>
                 <td>097544443  </td>
                 <td>kep  </td>
+<<<<<<< HEAD
                 <!-- data-toggle="collapse" data-target="#accordion" class="clickable" -->
                 <td><a href="{{route('view.data')}}"><i class="fa fa-eye"></i></a> | <a href=""><i class="fa fa-edit"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
+=======
+                <td><a data-toggle="collapse" data-target="#accordion" class="clickable">View</a> | <a href="">Edit</a> | <a href="">Delete</a> </td>
+>>>>>>> 92da3f022d5bee2de632d3e765f867a752a22b95
             </tr>
             <tr>
                 <td colspan="7">
@@ -1246,6 +1277,7 @@
         location.reload(); 
     }
     $(document).ready(function () {
+<<<<<<< HEAD
        
         $('#add_rows_1').click(function(){ //alert($m_id);
             var row_1 = $('.new_rows_1 tr.myrow_1').length;
@@ -1305,129 +1337,120 @@
         //remove add
         $(".new_rows_3").on('click','.remove_rows_3',function(){
             $(this).parent().parent().remove();
+=======
+        //next next and validate
+        var navListItems = $('div.setup-panel div a'),
+                allWells = $('.setup-content'),
+                allNextBtn = $('.nextBtn');
+
+        allWells.hide();
+
+        navListItems.click(function (e) {
+            e.preventDefault();
+            var $target = $($(this).attr('href')),
+                    $item = $(this);
+
+            if (!$item.hasClass('disabled')) {
+                navListItems.removeClass('btn-primary').addClass('btn-default');
+                $item.addClass('btn-primary');
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+>>>>>>> 92da3f022d5bee2de632d3e765f867a752a22b95
         });
 
+        allNextBtn.click(function(){
+            var curStep = $(this).closest(".setup-content"),
+                curStepBtn = curStep.attr("id"),
+                nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+                curInputs = curStep.find("input[type='text'],input[type='url'],input[type='radio']"),
+                isValid = true;
 
-
-
-
-
-
-        //next next and validate
-    var navListItems = $('div.setup-panel div a'),
-            allWells = $('.setup-content'),
-            allNextBtn = $('.nextBtn');
-
-    allWells.hide();
-
-    navListItems.click(function (e) {
-        e.preventDefault();
-        var $target = $($(this).attr('href')),
-                $item = $(this);
-
-        if (!$item.hasClass('disabled')) {
-            navListItems.removeClass('btn-primary').addClass('btn-default');
-            $item.addClass('btn-primary');
-            allWells.hide();
-            $target.show();
-            $target.find('input:eq(0)').focus();
-        }
-    });
-
-    allNextBtn.click(function(){
-        var curStep = $(this).closest(".setup-content"),
-            curStepBtn = curStep.attr("id"),
-            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-            curInputs = curStep.find("input[type='text'],input[type='url'],input[type='radio']"),
-            isValid = true;
-
-        $(".form-group").removeClass("has-error");
-        for(var i=0; i<curInputs.length; i++){
-            if (!curInputs[i].validity.valid){
-                $('.alert').show();
-                isValid = false;
-                $(curInputs[i]).closest(".form-group").addClass("has-error");
-               // $('.alert').show();
+            $(".form-group").removeClass("has-error");
+            for(var i=0; i<curInputs.length; i++){
+                if (!curInputs[i].validity.valid){
+                    $('.alert').show();
+                    isValid = false;
+                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                   // $('.alert').show();
+                }
             }
-        }
 
 
-        if($('#province').val() == ''){
-            isValid = false;
-            $('.g_province').addClass("has-error");
-            $('.alert').show();
-        }else{
-            $('.g_province').removeClass("has-error");
-        }
+            if($('#province').val() == ''){
+                isValid = false;
+                $('.g_province').addClass("has-error");
+                $('.alert').show();
+            }else{
+                $('.g_province').removeClass("has-error");
+            }
 
-        if($('#district').val() == ''){ alert($('#district').val());
-            isValid = false;
-            $('.g_district').addClass("has-error");
-            $('.alert').show();
-        }else{
-            $('.g_district').removeClass("has-error");
-        }
+            if($('#district').val() == ''){ alert($('#district').val());
+                isValid = false;
+                $('.g_district').addClass("has-error");
+                $('.alert').show();
+            }else{
+                $('.g_district').removeClass("has-error");
+            }
 
-        if($('#commune').val() == ''){
-            isValid = false;
-            $('.g_commune').addClass("has-error");
-            $('.alert').show();
-        }else{
-            $('.g_commune').removeClass("has-error");
-        }
+            if($('#commune').val() == ''){
+                isValid = false;
+                $('.g_commune').addClass("has-error");
+                $('.alert').show();
+            }else{
+                $('.g_commune').removeClass("has-error");
+            }
 
-        if($('#village').val() == ''){
-            isValid = false;
-            $('.g_village').addClass("has-error");
-            $('.alert').show();
-        }else{
-            $('.g_village').removeClass("has-error");
-        }
+            if($('#village').val() == ''){
+                isValid = false;
+                $('.g_village').addClass("has-error");
+                $('.alert').show();
+            }else{
+                $('.g_village').removeClass("has-error");
+            }
 
-        if($('#inter_relationship').val() == ''){
-            isValid = false;
-            $('.inter_relationship').addClass("has-error");
-            $('.alert').show();
-        }else{
-            $('.inter_relationship').removeClass("has-error");
-        }
+            if($('#inter_relationship').val() == ''){
+                isValid = false;
+                $('.inter_relationship').addClass("has-error");
+                $('.alert').show();
+            }else{
+                $('.inter_relationship').removeClass("has-error");
+            }
 
-        if($('#fa_relationship').val() == ''){
-            isValid = false;
-            $('.fa_relationship').addClass("has-error");
-            $('.alert').show();
-        }else{
-            $('.fa_relationship').removeClass("has-error");
-        }
-
-
-
-
-        //check radio
-        if (!$("input[name='g_sex']:checked").val()) {
-            $('#g_sex').addClass("error");
-            isValid = false;
-        }else{$('#g_sex').removeClass("error");}
-
-        if (!$("input[name='inter_sex']:checked").val()) {
-            $('#inter_sex').addClass("error");
-            isValid = false;
-        }else{$('#inter_sex').removeClass("error");}
-
-        if (!$("input[name='fa_sex']:checked").val()) {
-            $('#fa_sex').addClass("error");
-            isValid = false;
-        }else{$('#fa_sex').removeClass("error");}
-
-
-        if (isValid)
-            nextStepWizard.removeAttr('disabled').trigger('click');
-    });
-
-    $('div.setup-panel div a.btn-primary').trigger('click');
+            if($('#fa_relationship').val() == ''){
+                isValid = false;
+                $('.fa_relationship').addClass("has-error");
+                $('.alert').show();
+            }else{
+                $('.fa_relationship').removeClass("has-error");
+            }
 
 
 
+
+            //check radio
+            if (!$("input[name='g_sex']:checked").val()) {
+                $('#g_sex').addClass("error");
+                isValid = false;
+            }else{$('#g_sex').removeClass("error");}
+
+            if (!$("input[name='inter_sex']:checked").val()) {
+                $('#inter_sex').addClass("error");
+                isValid = false;
+            }else{$('#inter_sex').removeClass("error");}
+
+            if (!$("input[name='fa_sex']:checked").val()) {
+                $('#fa_sex').addClass("error");
+                isValid = false;
+            }else{$('#fa_sex').removeClass("error");}
+
+
+            if (isValid)
+                nextStepWizard.removeAttr('disabled').trigger('click');
+        });
+
+        $('div.setup-panel div a.btn-primary').trigger('click');
 
 });
 
@@ -1618,5 +1641,234 @@
         allowClear:true,
         placeholder: 'កម្រិតវប្បធម៌'
     });
+<<<<<<< HEAD
+=======
+
+
+
+
+    //* ============= step 3 ======================*//
+
+
+
+    $('#add_rows_1').click(function(){ //alert($m_id);
+        var row_1 = $('.new_rows_1 tr.myrow_1').length;
+
+        var rowindex_1 = row_1+1;
+        var tab_rows_1 ='<tr class="myrow_1">'+
+            '<td>'+rowindex_1+'</td>'+
+            '<td>' +
+                '<div class="form-group">'+
+                    '<select class="form-control type_meterial" id="type_meterial" name="type_meterial['+row_1+']" required="required"> <option></option>@foreach($typemeterial as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
+                '</div>'+
+            '</td>'+
+            '<td><div class="form-group"><input id="number_meterial_'+row_1+'" type="text" required="required" class="form-control allowNumber meterial" name="number_meterial['+row_1+']"/></div></td>'+
+            '<td><div class="form-group"><input id="market_value_meterial_'+row_1+'" type="text" required="required" class="form-control allowNumber meterial" name="market_value_meterial['+row_1+']"/></div></td>'+
+            '<td><div class="form-group"><input id="total_rail_meterial_'+row_1+'" type="text" required="required" class="form-control totalallowNumber_meterial" name="total_rail_meterial['+row_1+']" readonly="readonly"/></div></td>'+
+            '<td style="text-align:center;"><a id="meterial_'+row_1+'" class="remove_rows_1" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+            '</tr>';
+        $(".new_rows_1").append(tab_rows_1);
+        $(".type_meterial").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
+        AllowNumber();
+        var row_num = $('.new_rows_1 tr').length-1;
+        for(var i=0; i<row_num; i++) {
+            $('.meterial').keyup(function () {
+                var sum = 0;
+                var number_meterial = $('#number_meterial_'+i).val();
+                var market_value_meterial = $('#market_value_meterial_'+i).val();
+                sum = Number(number_meterial * market_value_meterial);
+                $("#meterial_"+i).attr({"onclick": "remove_1("+sum+")"});
+                $('#total_rail_meterial_'+i).val(sum);
+            });
+        }
+
+        $('.meterial').keyup(function () {
+            var arr = document.getElementsByClassName('totalallowNumber_meterial');
+            var tot=0;
+            for(var i=0;i<arr.length;i++){
+                if(parseInt(arr[i].value))
+                    tot += parseInt(arr[i].value);
+            }
+            document.getElementById('total_meterial_costs').value = tot;
+        });
+
+    });
+
+    //remove add
+    function remove_1(val) {
+        var total_costs = parseInt($('#total_meterial_costs').val()) - val;
+        document.getElementById('total_meterial_costs').value = total_costs;
+    }
+    $(".new_rows_1").on('click','.remove_rows_1',function(){
+        $(this).parent().parent().remove();
+    });
+
+    $('.meterial').keyup(function () {
+        var sum = 0;
+        var number_meterial = $('#number_meterial').val();
+        var market_value_meterial = $('#market_value_meterial').val();
+        $('.vehicle').each(function() {
+            sum = Number(number_meterial * market_value_meterial);
+        });
+        $('#total_rail_meterial').val(sum);
+    });
+
+
+    //type_vehicle
+    $(".type_meterial").select2({
+        minimumResultsForSearch: -1,
+        allowClear:true,
+        placeholder: 'សម្ភារប្រើបា្រស់'
+    });
+
+    $("#go_hospital").select2({
+        minimumResultsForSearch: -1,
+        allowClear:true,
+        placeholder: 'មធ្យោបាយធ្វើដំណើរ'
+    });
+    //type_vehicle
+    $(".type_vehicle").select2({
+        minimumResultsForSearch: -1,
+        allowClear:true,
+        placeholder: 'សម្ភារប្រើបា្រស់'
+    });
+
+    $('#add_rows_2').click(function(){ //alert($m_id);
+        var row_2 = $('.new_rows_2 tr.myrow_2').length;
+        var rowindex_2 = row_2+1;
+        var html = '<tr class="myrow_2">'+
+            '<td>'+rowindex_2+'</td>'+
+            '<td>' +
+                '<div class="form-group">'+
+                    '<select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle['+row_2+']" required="required"> <option></option>@foreach($typemeterial as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
+                '</div>'+
+            '</td>'+
+            '<td><div class="form-group"><input id="number_vehicle_'+row_2+'" type="text" required="required" class="form-control allowNumber vehicle" name="number_vehicle['+row_2+']"/></div></td>'+
+            '<td><div class="form-group"><input id="market_value_vehicle_'+row_2+'" type="text" required="required" class="form-control allowNumber vehicle" name="market_value_vehicle['+row_2+']"/></div></td>'+
+            '<td><div class="form-group"><input id="total_rail_vehicle_'+row_2+'" type="text" required="required" class="form-control totalallowNumber_vehicle" name="total_rail_vehicle['+row_2+']"/ readonly="readonly"></div></td>'+
+            '<td style="text-align:center;"><a id="vehicle_'+row_2+'" class="remove_rows_2" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+            '</tr>';
+
+        $(".new_rows_2").append(html);
+
+        $(".type_vehicle").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
+        AllowNumber();
+
+        var row_num = $('.new_rows_2 tr').length-1;
+        for(var i=0; i<row_num; i++) {
+            $('.vehicle').keyup(function () {
+                var sum = 0;
+                var number_vehicle_1 = $('#number_vehicle_'+i).val();
+                var market_value_vehicle_1 = $('#market_value_vehicle_'+i).val();
+                sum = Number(number_vehicle_1 * market_value_vehicle_1);
+                $("#vehicle_"+i).attr({"onclick": "remove_2("+sum+")"});
+
+                $('#total_rail_vehicle_'+i).val(sum);
+            });
+        }
+
+        $('.vehicle').keyup(function () {
+            var arr = document.getElementsByClassName('totalallowNumber_vehicle');
+            var tot=0;
+            for(var i=0;i<arr.length;i++){
+                if(parseInt(arr[i].value))
+                    tot += parseInt(arr[i].value);
+            }
+            document.getElementById('total_vehicle_costs').value = tot;
+        });
+
+    });
+    //remove add
+    function remove_2(val) {
+       var total_costs = parseInt($('#total_vehicle_costs').val()) - val;
+       // $(this).parent().parent().remove();
+        document.getElementById('total_vehicle_costs').value = total_costs;
+    }
+    $(".new_rows_2").on('click','.remove_rows_2',function(){
+       $(this).parent().parent().remove();
+    });
+
+    $('.vehicle').keyup(function () {
+        var sum = 0;
+        var number_vehicle = $('#number_vehicle').val();
+        var market_value_vehicle = $('#market_value_vehicle').val();
+        $('.vehicle').each(function() {
+            sum = Number(number_vehicle * market_value_vehicle);
+        });
+        $('#total_rail_vehicle').val(sum);
+    });
+
+
+
+    $('#add_rows_3').click(function(){ //alert($m_id);
+        var row_3 = $('.new_rows_3 tr.myrow_3').length;
+
+        var rowindex_3 = row_3+1;
+        var tab_rows_3 ='<tr class="myrow_3">'+
+            '<td>'+rowindex_3+'</td>'+
+            '<td>' +
+                '<div class="form-group">'+
+                    '<select class="form-control type_animals" id="type_animals" name="type_animals['+row_3+']" required="required"> <option></option>@foreach($typeanimals as $key => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
+                '</div>'+
+            '</td>'+
+            '<td><div class="form-group"><input type="text" required="required" class="form-control allowNumber" name="num_animals_big['+row_3+']"/></div></td>'+
+            '<td><div class="form-group"><input type="text" required="required" class="form-control allowNumber" name="num_animals_small['+row_3+']"/></div></td>'+
+            '<td><div class="form-group"><input type="text" required="required" class="form-control allowNumber" name="note_animals['+row_3+']"/></div></td>'+
+            '<td style="text-align:center;"><a status="0" class="remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+            '</tr>';
+        $(".new_rows_3").append(tab_rows_3);
+        AllowNumber();
+        $(".type_animals").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ប្រភេទសត្វ"});
+    });
+    //remove add
+    $(".new_rows_3").on('click','.remove_rows_3',function(){
+        $(this).parent().parent().remove();
+    });
+    //type_animals
+    $(".type_animals").select2({
+        minimumResultsForSearch: -1,
+        allowClear:true,
+        placeholder: 'ប្រភេទសត្វ'
+    });
+
+
+
+
+
+    function AllowNumber() {
+        $(".allowNumber").keydown(function (e) {
+            // Allow: backspace, delete, tab, escape, enter and .
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                // Allow: Ctrl+A, Command+A
+                (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: home, end, left, right, down, up
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                // let it happen, don't do anything
+                return;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+    }
+    //when load
+    $(".allowNumber").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+            // Allow: Ctrl+A, Command+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Allow: home, end, left, right, down, up
+            (e.keyCode >= 35 && e.keyCode <= 40)) {
+            // let it happen, don't do anything
+            return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+
+>>>>>>> 92da3f022d5bee2de632d3e765f867a752a22b95
 </script>
 @endsection
