@@ -41,7 +41,7 @@
                                 <td width="35%"><label class="control-label">លេខកូដសម្ភាសន៍:</label></td>
                                 <td width="65%">
                                     <div class="form-group">    
-                                        <input name="interview_code" type="text" required="required" class="form-control" readonly="readonly"/>
+                                        <input name="interview_code" value="{{$interview_code}}" type="text" required="required" class="form-control" readonly="readonly"/>
                                     </div>  
                                 </td>
                             </tr>
