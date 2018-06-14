@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHouseholdFamilyLinkTable extends Migration
+class CreateHouseholdRootLinkTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateHouseholdFamilyLinkTable extends Migration
      */
     public function up()
     {
-        Schema::create('household_family_link', function (Blueprint $table) {
+        Schema::create('household_root_link', function (Blueprint $table) {
             $table->increments('id');
             $table->tinyInteger('household_family_id')->nullable();
             $table->tinyInteger('g_information_id')->nullable();
-            $table->string('institutions_name')->nullable();
-            $table->integer('instatutions_phone')->nullable();
+            $table->tinyInteger('roof_made_id')->nullable();
+            $table->tinyInteger('roof_status_id')->nullable();
+            $table->tinyInteger('walls_made_id')->nullable();
+            $table->tinyInteger('walls_status_id')->nullable();
+            $table->tinyInteger('condition_house_id')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ class CreateHouseholdFamilyLinkTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('household_family_link');
+        Schema::dropIfExists('household_root_link');
     }
 }

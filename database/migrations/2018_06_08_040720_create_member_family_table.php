@@ -19,9 +19,9 @@ class CreateMemberFamilyTable extends Migration
             $table->string('nick_name')->nullable();
             $table->string('dob')->nullable();
             $table->string('age')->nullable();
-            $table->string('family_relationship')->nullable();
-            $table->string('occupation')->nullable();
-            $table->string('education_level')->nullable();
+            $table->string('family_relationship_id')->nullable();
+            $table->string('occupation_id')->nullable();
+            $table->string('education_level_id')->nullable();
             $table->timestamps();
         });
     }

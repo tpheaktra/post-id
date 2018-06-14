@@ -12,8 +12,8 @@ class MemberFamilyModel extends Model
         'nick_name',
         'dob',
         'age',
-        'family_relationship',
-        'occupation',
-        'education_level'
+        'family_relationship_id',
+        'occupation_id',
+        'education_level_id'
     ];
 }

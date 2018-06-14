@@ -13,22 +13,22 @@ class GeneralInformationModel extends Model
         'g_age',
         'g_sex',
         'g_phone',
-        'g_province',
-        'g_district',
-        'g_commune',
-        'g_village',
+        'g_province_id',
+        'g_district_id',
+        'g_commune_id',
+        'g_village_id',
         'g_local_village',
         //interview
         'inter_patient',
         'inter_age',
         'inter_sex',
         'inter_phone',
-        'inter_relationship',
+        'inter_relationship_id',
         //family
         'fa_patient',
         'fa_age',
         'fa_sex',
         'fa_phone',
-        'fa_relationship'
+        'fa_relationship_id'
     ];
 }

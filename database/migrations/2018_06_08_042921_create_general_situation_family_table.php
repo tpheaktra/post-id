@@ -17,7 +17,7 @@ class CreateGeneralSituationFamilyTable extends Migration
             $table->increments('id');
             $table->integer('g_information_id')->nullable();
             $table->integer('household_family_id')->nullable();
-            $table->string('total_people')->nullable();
+            $table->integer('total_people')->nullable();
 
             $table->integer('ground_floor_length')->nullable();
             $table->integer('ground_floor_width')->nullable();
@@ -30,33 +30,28 @@ class CreateGeneralSituationFamilyTable extends Migration
             $table->integer('further_floor_area')->nullable();
             $table->integer('total_area')->nullable();
 
-            $table->string('tolet')->nullable();
-            $table->string('tolet_1')->nullable();
-            $table->string('tolet_2')->nullable();
-
-            $table->integer('h_build_year_id')->nullable();
-            $table->integer('home_prepar_id')->nullable();
-            $table->string('roof_made')->nullable();
-            $table->string('roof_status')->nullable();
-            $table->string('walls_made')->nullable();
-            $table->string('walls_status')->nullable();
-            $table->integer('condition_house_id')->nullable();
-            $table->integer('rent_fee')->nullable();
-
-            $table->integer('q_electric_id')->nullable();
-            $table->string('costs_in_hour')->nullable();
-            $table->string('number_in_month')->nullable();
-            $table->string('costs_per_month')->nullable();
-            $table->integer('electric_grid_id')->nullable();
-            $table->string('go_hospital')->nullable();
-
-            $table->integer('land_agricultural_id')->nullable();
-            $table->string('land_name')->nullable();
-            $table->string('total_land')->nullable();
-            $table->string('land_farm')->nullable();
-            $table->string('total_land_farm')->nullable();
-
-            $table->integer('debt_family_id')->nullable();
+//            $table->string('tolet')->nullable();
+//            $table->string('tolet_1')->nullable();
+//            $table->string('tolet_2')->nullable();
+//
+//            $table->integer('h_build_year_id')->nullable();
+//            $table->integer('home_prepar_id')->nullable();
+           // $table->integer('rent_fee')->nullable();
+//
+//            $table->integer('q_electric_id')->nullable();
+//            $table->string('costs_in_hour')->nullable();
+//            $table->string('number_in_month')->nullable();
+//            $table->string('costs_per_month')->nullable();
+//            $table->integer('electric_grid_id')->nullable();
+//            $table->string('go_hospital')->nullable();
+//
+//            $table->integer('land_agricultural_id')->nullable();
+//            $table->string('land_name')->nullable();
+//            $table->string('total_land')->nullable();
+//            $table->string('land_farm')->nullable();
+//            $table->string('total_land_farm')->nullable();
+//
+//            $table->integer('debt_family_id')->nullable();
 
 
             $table->timestamps();

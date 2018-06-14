@@ -4,13 +4,12 @@ namespace App\model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HouseHoldFamilyLinkModel extends Model
+class HouseholdRentPriceModel extends Model
 {
-    protected $table='household_family_link';
+    protected $table= 'household_rent_price_link';
     protected $fillable = [
         'household_family_id',
         'g_information_id',
-        'institutions_name',
-        'instatutions_phone'
+        'house_rent_price'
     ];
 }
