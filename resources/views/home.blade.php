@@ -39,7 +39,7 @@
                                 <td width="35%"><label class="control-label">លេខកូដសម្ភាសន៍:</label></td>
                                 <td width="65%">
                                     <div class="form-group">    
-                                        <input name="interview_code" type="text" required="required" class="form-control" readonly="readonly"/>
+                                        <input name="interview_code" value="{{$interview_code}}" type="text" required="required" class="form-control" readonly="readonly"/>
                                     </div>  
                                 </td>
                             </tr>
@@ -324,16 +324,16 @@
                             </thead>
                             <tbody class="new_rows">
                                 <tr class="myrow">
-                                    <td>1</td>
-                                    <td><div class="form-group"><input  type="text" required="required" class="form-control" name="nick_name[0]"/></div></td>
-                                    <td><div class="form-group"><input  type="text" required="required" class="form-control" name="dob[0]"/></div></td>
-                                    <td><div class="form-group"><input  type="text" required="required" class="form-control" name="age[0]"/></div></td>
+                                    <td>1(មេ)</td>
+                                    <td><div class="form-group"><input type="text" required="required" class="form-control" name="nick_name[0]"/></div></td>
+                                    <td><div class="form-group"><input maxlength="4"  type="text" required="required" class="form-control allowNumber" id="dob" name="dob[0]"/></div></td>
+                                    <td><div class="form-group"><input maxlength="3" type="text" required="required" class="form-control allowNumber" id="age" name="age[0]"/></div></td>
                                     <td>
                                         <div class="form-group">
                                             <select class="form-control family_relationship" name="family_relationship[0]" required="required">
                                                 <option></option>
                                                 @foreach($relationship as $keh => $value)
-                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    <option @if($value->id == 2) checked @endif value="{{$value->id}}">{{$value->name_kh}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -391,7 +391,7 @@
                          
                             <ol type="1">
                                 @foreach($household as $key => $h)
-                                <li>
+                                    <li>
                                         <label>
                                             <input class="household_family_id" type="radio" name="household_family_id"  value="{{ $h->id }}"> {{$h->name_kh}}
                                         </label>
@@ -403,12 +403,113 @@
                                  $('.household_family_id').click(function () {
                                      var houshold = $('input[name=household_family_id]:checked').val();
                                      $('#household_family_id').empty();
+                                     $('#home-rent').empty();
+                                     $('#home-yourself').empty()
+                                     $('#general-status').empty();
+                                     $('#home-ke').empty();
                                      if(houshold == 5){
                                          $('#household_family_id').append('<input type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name">លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន : <input type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone">');
+                                     }else if(houshold == 2){
+                                         $('#home-rent').append('<h4>គ.៨) សម្រាប់គ្រួសារជួលផ្ទះគេ​ (សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ មិនបាច់បំពេញចំណុច គ៨ ហើយរំលងទៅ គ៩)</h4>' +
+                                             '<div class="col-sm-6">' +
+                                                 '<table width="100%">' +
+                                                     '<tr>'+
+                                                         '<td width="50%">' +
+                                                            '<label class="control-label"> តើថ្លៃជួលប្រចាំខែជាមធ្យមប៉ុន្មាន?: </label>' +
+                                                         '</td>' +
+                                                         '<td width="50%">' +
+                                                             '<div class="form-group">' +
+                                                                '<input type="text" required="required" class="form-control allowNumber" name="rent_fee"/>' +
+                                                             '</div>' +
+                                                         '</td>' +
+                                                     '</tr>' +
+                                                 '</table>' +
+                                             '</div>');
+                                     }else if(houshold == 1 || houshold == 3){
+                                         var homeyourselt = '<h4>គ.៥ ដំបូល</h4>' +
+                                             '<div class="col-sm-6">' +
+                                                 '<table width="100%">' +
+                                                     '<tr>' +
+                                                        '<td><label class="control-label"> ដំបូលធ្វើអំពី : </label></td>' +
+                                                         '<td>' +
+                                                             '<div class="form-group ">' +
+                                                                 '<select class="form-control roof_relationship" id="roof_relationship" name="roof_made">' +
+                                                                    '<option></option>' +
+                                                                     '@foreach($roof_made as $keh => $value)' +
+                                                                        '<option value="{{$value->id}}">{{$value->name_kh}}</option>' +
+                                                                     '@endforeach'+
+                                                                 '</select>' +
+                                                             '</div>' +
+                                                         '</td>'+
+                                                     '</tr>'+
+                                                 '</table>' +
+                                             '</div>'+
+                                             '<div class="col-sm-6">' +
+                                                 '<table width="100%">' +
+                                                     '<tr>' +
+                                                        '<td><label class="control-label">​ និង​ស្ថានភាព : </label></td>' +
+                                                         '<td>' +
+                                                             '<div class="form-group">' +
+                                                                 '<select class="form-control r_status" id="r_status" name="roof_status">' +
+                                                                    '<option></option>@foreach($house_status as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                                                                 '</select>' +
+                                                             '</div>' +
+                                                         '</td>'+
+                                                     '</tr>'+
+                                                 '</table>' +
+                                             '</div>';
+                                         $('#home-yourself').append(homeyourselt);
+                                         $(".roof_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ដំបូល"});
+                                         $(".r_status").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ស្ថានភាព"});
+
+                                         var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>' +
+                                             '<div class="col-sm-6">' +
+                                                 '<table width="100%">' +
+                                                     '<tr>' +
+                                                        '<td><label class="control-label"> ​ជញ្ជាំងធ្វើអំពី : </label></td>' +
+                                                         '<td>' +
+                                                             '<div class="form-group">' +
+                                                                 '<select class="form-control wall_relationship" id="wall_relationship" name="walls_made">' +
+                                                                    '<option></option>' +
+                                                                    '@foreach($wall_made as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                                                                 '</select>' +
+                                                             '</div>' +
+                                                         '</td>'+
+                                                     '</tr>'+
+                                                 '</table>'+
+                                             '</div>'+
+                                            '<div class="col-sm-6">'+
+                                                '<table width="100%">'+
+                                                    '<tr>'+
+                                                        '<td><label class="control-label">​​ និង​ស្ថានភាព : </label></td>'+
+                                                        '<td>'+
+                                                            '<div class="form-group">'+
+                                                                '<select class="form-control h_status" id="h_status" name="walls_status">'+
+                                                                    '<option></option>'+
+                                                                    '@foreach($house_status as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
+                                                                '</select>'+
+                                                                '</div>'+
+                                                        '</td>'+
+                                                    '</tr>'+
+                                                '</table>'+
+                                            '</div>';
+                                         $('#home-ke').append(homeke);
+                                         $(".wall_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ជញ្ជាំង"});
+                                         $(".h_status").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ស្ថានភាព"});
+
+                                         var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>' +
+                                             '<ul class="li-none">'+
+                                                 '@foreach($condition_house as $key => $c)' +
+                                                     '<li>' +
+                                                        '<label><input type="radio" name="condition_house" ​ value="{{$c->id}}"> {{$c->name_kh}}</label>' +
+                                                     '</li>' +
+                                                 '@endforeach'+
+                                             '</ul>';
+                                         $('#general-status').append(generalStatus);
                                      }
                                  });
-                             </script>
 
+                             </script>
                        </div>
 
 
@@ -567,25 +668,36 @@
                                 </li>
                             </ul>
 
-                            <p class="has-noted">សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ (សម្រាប់គ្រួសារជួលផ្ទះគេ​ មិនបាច់បំពេញចំណុច គ៥ គ៦ និង គ៧ ហើយរំលងទៅ គ៨)</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <table class="table-home">
+                                        <tr>
+                                            <td width="30%">- ផ្ទះសាងសង់នៅឆ្នាំណា?</td>
+                                            <td width="50%">
+                                                <div>
+                                                    <select name="h_build_year" id="year_select" style="width: 100%;" name="build_in">
+                                                        <option></option>
+                                                        <?php
+                                                        $currentYear = date('Y');
+                                                        foreach (range(1950, $currentYear) as $value) {
+                                                            echo "<option>" . $value . "</option > ";
+                                                        }?>
+                                                    </select>
+                                                </div>
+                                                <script>
+                                                    $("#year_select").select2({
+                                                        allowClear:true,
+                                                        placeholder: 'ឆ្នាំ...'
+                                                    });
+                                                </script>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
 
-                            <h5>- ផ្ទះសាងសង់នៅឆ្នាំណា?
-                              <select name="h_build_year" id="year_select" style="width: 80px;" name="build_in">
-                                <option></option>
-                                <?php
-                                 $currentYear = date('Y');
-                                    foreach (range(1950, $currentYear) as $value) {
-                                        echo "<option>" . $value . "</option > ";
 
-                                    }?>
-                              </select> </h5>
-                              <script>
-                                    $("#year_select").select2({
-                                        minimumResultsForSearch: -1,
-                                        allowClear:true,
-                                        placeholder: 'ឆ្នាំ...'
-                                    });
-                              </script>
+
                             <h5>- តើធ្លាប់ជួសជុលឬទេ?</h5>
                             <ul class="li-none">
                                 @foreach($homePrepar as $key =>$p)
@@ -594,7 +706,6 @@
                                      @if($p->id == 2)<label id="homeyear"></label>@endif
                                 </li>
                                 @endforeach
-
                             </ul>
                         </div>
                         <script>
@@ -602,154 +713,28 @@
                                 var homeyear = $('input[name=home_prepare]:checked').val();
                                 $('#homeyear').empty();
                                 if(homeyear == 2){
-                                    $('#homeyear').append('<select name="home_year" style="width: 80px;" id="years"><option></option><?php $currentYear = date('Y');foreach (range(1950, $currentYear) as $value) { echo "<option>" . $value . "</option > ";}?> </select>');
-                                    //  $("#years").select2({
-                                    //     minimumResultsForSearch: -1,
-                                    //     // allowClear:true,
-                                    //     placeholder: 'ឆ្នាំ...'
-                                    // });
+                                    $('#homeyear').append('<select name="home_year" style="width: 180px;" id="years"><option></option><?php $currentYear = date('Y');foreach (range(1950, $currentYear) as $value) { echo "<option>" . $value . "</option > ";}?> </select>');
+                                      $("#years").select2({
+                                         allowClear:true,
+                                         placeholder: 'ឆ្នាំ...'
+                                     });
                                 }
                             });
                             
                         </script>
 
                         <div class="col-sm-12"><hr> </div>
-                        <div class="col-sm-12">
-                            <h4>គ.៥ ដំបូល</h4>
-                              <div class="col-sm-6">
-                                  <table width="100%">
-                                      <tr>
-                                          <td><label class="control-label"> ដំបូលធ្វើអំពី : </label></td>
-                                          <td>
-                                            <div class="form-group roof_relationship">
-                                                <select class="form-control" id="roof_relationship" name="roof_made">
-                                                    <option></option>
-                                                    @foreach($roof_made as $keh => $value)
-                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                    @endforeach
-                                                </select>
-                                              </div>
-                                              <script>
-                                                  $("#roof_relationship").select2({
-                                                      minimumResultsForSearch: -1,
-                                                      allowClear:true,
-                                                      placeholder: 'ដំបូលធ្វើអំពី...'
-                                                  });
-                                              </script>     
-                                          </td>
-                                      </tr>
-                                  </table>
-                              </div>
-                              <div class="col-sm-6">
-                                  <table width="100%">
-                                      <tr>
-                                          <td><label class="control-label">​ និង​ស្ថានភាព : </label></td>
-                                          <td>
-                                              <div class="form-group r_status">
-                                                <select class="form-control" id="r_status" name="roof_status">
-                                                    <option></option>
-                                                    @foreach($house_status as $keh => $value)
-                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                    @endforeach
-                                                </select>
-                                              </div>
-                                              <script>
-                                                  $("#r_status").select2({
-                                                      minimumResultsForSearch: -1,
-                                                      allowClear:true,
-                                                      placeholder: '​ស្ថានភាព...'
-                                                  });
-                                              </script>     
-                                          </td>     
-                                      </tr>
-                                  </table>
-                              </div>
-                          </div>
-                          <div class="col-sm-12">
-                            <h4>គ.៦ ​ជញ្ជាំង</h4>
-                              <div class="col-sm-6">
-                                  <table width="100%">
-                                      <tr>
-                                          <td><label class="control-label"> ​ជញ្ជាំងធ្វើអំពី : </label></td>
-                                          <td>
-                                              <div class="form-group wall_relationship">
-                                                <select class="form-control" id="wall_relationship" name="walls_made">
-                                                    <option></option>
-                                                    @foreach($wall_made as $keh => $value)
-                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                    @endforeach
-                                                </select>
-                                              </div>
-                                              <script>
-                                                  $("#wall_relationship").select2({
-                                                      minimumResultsForSearch: -1,
-                                                      allowClear:true,
-                                                      placeholder: '​ជញ្ជាំងធ្វើអំពី...'
-                                                  });
-                                              </script>     
-                                          </td>     
-                                      </tr>
-                                  </table>
-                              </div>
-                              <div class="col-sm-6">
-                                  <table width="100%">
-                                      <tr>
-                                          <td><label class="control-label">​​ និង​ស្ថានភាព : </label></td>
-                                           <td>
-                                              <div class="form-group h_status">
-                                                <select class="form-control" id="h_status" name="walls_status">
-                                                    <option></option>
-                                                    @foreach($house_status as $keh => $value)
-                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                    @endforeach
-                                                </select>
-                                              </div>
-                                              <script>
-                                                  $("#h_status").select2({
-                                                      minimumResultsForSearch: -1,
-                                                      allowClear:true,
-                                                      placeholder: '​ស្ថានភាព...'
-                                                  });
-                                              </script>     
-                                          </td>     
-                                      </tr>
-                                  </table>
-                              </div>
-                          </div>
-                          <div class="col-sm-12">
-                            <h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>
-                            <ul class="li-none">
-                                @foreach($condition_house as $key => $c)
-                                <li>
-                                     <label><input type="radio" name="condition_house" ​ value="{{$c->id}}"> {{$c->name_kh}}</label>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
+                        <div class="col-sm-12" id="home-yourself"> </div>
+                        <div class="col-sm-12" id="home-ke"></div>
+                        <div class="col-sm-12" id="general-status"></div>
 
                         <div class="col-sm-12"><hr> </div>
-                        <div class="col-sm-12">
-
-                            <h4>គ.៨) សម្រាប់គ្រួសារជួលផ្ទះគេ​ (សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ មិនបាច់បំពេញចំណុច គ៨ ហើយរំលងទៅ គ៩)</h4>
-                                <div class="col-sm-6">
-                                    <table width="100%">
-                                        <tr>
-                                            <td width="50%"><label class="control-label"> តើថ្លៃជួលប្រចាំខែជាមធ្យមប៉ុន្មាន?: </label></td>
-                                            <td width="50%">
-                                                <div class="form-group">
-                                                    <input type="text" required="required" class="form-control allowNumber" name="rent_fee"/>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h4>គ.៩) ទ្រព្យ​សម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិច​របស់​គ្រួសារ</h4>
-                                    </div>
-                                </div>
+                            <div class="col-sm-12" id="home-rent"></div>
+                            <div>
                                 <div class="col-sm-12">
+                                   <div class="row">
+                                       <h4>គ.៩) ទ្រព្យ​សម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិច​របស់​គ្រួសារ</h4>
+                                   </div>
                                     <table class="tb_grid table" width="100%">
                                         <thead>
                                             <tr>
@@ -758,7 +743,7 @@
                                                 <th>ចំនួន</th>
                                                 <th>តម្លៃទីផ្សារ ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា</th>
                                                 <th>តម្លៃ​សរុប (រៀល)</th>
-                                                <th>Actions</th>
+                                                <th>សកម្មភាព</th>
                                             </tr>
                                         </thead>
                                         <tbody class="new_rows_1">
@@ -816,8 +801,7 @@
                                         </tfoot>
                                     </table>
                                 </div>
-                                
-                        </div>
+                            </div>
 
 
 
@@ -869,22 +853,24 @@
                         <div class="col-sm-12">
 
                             <h4>គ.១១) យានជំនិះជាទ្រព្យសម្បត្តិផ្ទាល់របស់​គ្រួសារ</h4>
+                            <div class="col-sm-6">
+                                <table class="table-home">
+                                    <tr>
+                                        <td width="50%"><h5>តើអ្នកប្រើមធ្យោបាយអ្វីមកមន្ទីរពេទ្យ?</h5> </td>
+                                        <td width="50%">
+                                            <div class="form-group go_hospital">
+                                                <select class="form-control" id="go_hospital" name="go_hospital">
+                                                    <option></option>
+                                                    @foreach($typemeterial as $keh => $value)
+                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
 
-                            <table>
-                                <tr>
-                                    <td width="50%"><h5>តើអ្នកប្រើមធ្យោបាយអ្វីមកមន្ទីរពេទ្យ?</h5> </td>
-                                    <td width="50%">
-                                        <div class="form-group go_hospital">
-                                            <select class="form-control" id="go_hospital" name="go_hospital">
-                                                <option></option>
-                                                @foreach($typemeterial as $keh => $value)
-                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
 
 
                             <table class="tb_grid table" width="100%">
@@ -1089,31 +1075,64 @@
 
                             <h4>គ.១២.២) ចំណូល ផ្សេងពី សកម្មភាពកសិកម្ម ផ្ទាល់ខ្លួន​ (បញ្ជាក់ការងារកម្មករផ្នែកកសិកម្មត្រូវបញ្ចូលក្នុងតារាងនេះ) បញ្ជាក់ ៖ ចុះ​តែ​សមាជិក​គ្រួសារ​ដែល​រក​ប្រាក់​ចំណូល​បាន។ ចំពោះសមាជិកដែលមានប្រភពចំណូលលើសពីមួយ សូមសរសេរ​នៅក្នុងជួរដោយឡែកពីគ្នា។</h4>
                             <p>ប្រសិនបើគ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្មត្រូវផ្ដល់ពិន្ទុតាមឯកសារណែនាំចំណុច 7B.2</p>
-                            <table class="tb_grid">
+
+
+
+                            <table class="tb_grid table" width="100%">
                                 <thead>
                                     <tr>
                                         <th>ល.រ</th>
                                         <th>ឈ្មោះសមាជិកគ្រូសាររកប្រាក់ចំណូល</th>
-                                        <th>អាយុ​&lt; 18 </th>
+                                        <th>អាយុ​ &lt; 18 </th>
                                         <th>មុខរបររកចំណូល</th>
-                                        <th>ឯកតា
-                                        </th><th>ចំនួនឯកតាក្នុងមួខែ
-                                        </th><th>ទឹកប្រាក់មធ្យមក្នុងមួយឯកតា
-                                        </th><th>ចំណូលមធ្យមប្រចាំខែ  (ចំនួន x តម្លៃឯកត្តា)
-                                    </th></tr>
-                                </thead>
-                                <tbody class="new_rows_income">
-                                    <tr>
-                                        <td><input class="form-control"  type="text"></td>
-                                        <td><input class="form-control"  type="text"></td>
-                                        <td><input class="form-control"  type="text"></td>
-                                        <td><input class="form-control"  type="text"></td>
-                                        <td><input class="form-control"  type="text"></td>
-                                        <td><input class="form-control"  type="text"></td>
-                                        <td><input class="form-control"  type="text"></td>
-                                        <td><input class="form-control"  type="text"></td>
-
+                                        <th>ឯកតា</th>
+                                        <th>ចំនួនឯកតាក្នុងមួខែ</th>
+                                        <th>ទឹកប្រាក់មធ្យមក្នុងមួយឯកតា</th>
+                                        <th>ចំណូលមធ្យមប្រចាំខែ  (ចំនួន x តម្លៃឯកត្តា)</th>
                                     </tr>
+                                </thead>
+                                <tbody class="new_rows_4">
+                                    <tr class="myrow_4">
+                                        <td>1</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input name="income_name[0]" type="text" required="required" class="form-control"  />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input name="income_age[0]" type="text" required="required" class="form-control allowNumber"  />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input name="income_occupation[0]" type="text" required="required" class="form-control"  />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input name="income_unit[0]" type="text" required="required" class="form-control allowNumber"  />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input name="unit_in_month[0]" type="text" required="required" class="form-control allowNumber"  />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input name="average_amount[0]" type="text" required="required" class="form-control allowNumber"  />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input name="monthly_income[0]" type="text" required="required" class="form-control allowNumber"  />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                                <tfoot>
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -1123,23 +1142,22 @@
                                         <td></td>
                                         <td></td>
                                         <td>
-                                           <input class="btn btn-primary" id="add_rows_elect" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
+                                            <input class="btn btn-primary" id="add_rows_4" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
                                         </td>
                                     </tr>
-                                </tbody>
-                                <tfoot>
                                     <tr>
                                         <td colspan="5"><span style="float: right;">សរុបចំណូល ប្រចាំខែ សម្រាប់គ្រួសារទាំងមូល (គិតជារៀល):</span></td>
-                                        <td><input class="form-control" id="pl-pro"  type="text"></td>
+                                        <td><input class="form-control" id="pl-pro"  type="text" name="total_monthly_income"></td>
                                         <td></td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td colspan="5"><span style="float: right;">ចំណូលក្រៅពីកសិកម្មជាមធ្យមប្រចាំខែសម្រាប់មនុស្សម្នាក់​​ (១) :</span></td>
-                                        <td><input class="form-control" id="pl-pro"  type="text"></td>
+                                        <td><input class="form-control" id="pl-pro"  type="text" name="total_income_person"></td>
                                         <td></td>
                                         <td></td>
                                     </tr>
+
                                 </tfoot>
                             </table>
 
@@ -1158,13 +1176,29 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2">ចំនួន​សមាជិក​គ្រួសារ ​ដែលបាត់បង់លទ្ធភាពពលកម្មស្ទើរទាំងស្រុង ដោយសារមានជម្ងឺធ្ងន់ធ្ងរ/រ៉ាំរ៉ៃ ឬពិការធ្ងន់ធ្ងរ</td>
-                                        <td>1</td>
-                                        <td>2</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input name="kids_then65" type="text" required="required" class="form-control allowNumber"  />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input name="old_bigger65" type="text" required="required" class="form-control allowNumber"  />
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">ចំនួន​សមាជិក​គ្រួសារ ​ដែលបាត់បង់លទ្ធភាពពលកម្មប្រហែល៥០ % ដោយសារមានជម្ងឺធ្ងន់ធ្ងរ/រ៉ាំរ៉ៃ ឬពិការធ្ងន់ធ្ងរ</td>
-                                        <td>2</td>
-                                        <td>1</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input name="kids_50_then65" type="text" required="required" class="form-control allowNumber"  />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input name="old_50_bigger65" type="text" required="required" class="form-control allowNumber"  />
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1553,8 +1587,8 @@
         $(".new_rows").append('<tr class="myrow">'+
             '<td>'+rowindex+'</td>'+
             '<td><div class="form-group"><input  type="text" required="required" class="form-control" name="nick_name['+row+']"/></div></td>'+
-            '<td><div class="form-group"><input  type="text" required="required" class="form-control" name="dob['+row+']"/></div></td>'+
-            '<td><div class="form-group"><input  type="text" required="required" class="form-control" name="age['+row+']"/></div></td>'+
+            '<td><div class="form-group"><input maxlength="4" id="dob_'+row+'"  type="text" required="required" class="dob form-control allowNumber" name="dob['+row+']"/></div></td>'+
+            '<td><div class="form-group"><input maxlength="3" id="age_'+row+'" type="text" required="required" class="age form-control allowNumber" name="age['+row+']"/></div></td>'+
             '<td>'+
                 '<div class="form-group">'+
                     '<select class="form-control family_relationship"  name="family_relationship['+row+']" required="required">'+
@@ -1584,6 +1618,56 @@
         $(".family_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ទំនាក់ទំនង"});
         $(".occupation").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "មុខរបរ"});
         $(".education_level").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
+        AllowNumber();
+        var row_num = $('.new_rows tr').length-1;
+        for(var i=0; i<row_num; i++) {
+            $('.age').keyup(function () {
+                var age = Number($('#age_'+i).val());
+                var currentyear = (new Date()).getFullYear();
+                var dob = currentyear-age;
+                if(age >= 150){
+                    $('#dob_'+i).val('');
+                }else{
+                    $('#dob_'+i).val(dob);
+                }
+            });
+
+            $('.dob').keyup(function () {
+                var dob = Number($('#dob_'+i).val());
+                var currentyear = (new Date()).getFullYear();
+                var age = currentyear-dob;
+                if(dob >= currentyear || age >= 150){
+                    $('#age_'+i).val('');
+                }
+                else{
+                    $('#age_'+i).val(age);
+                }
+            });
+        }
+    });
+
+
+    $('#age').on('input', function() {
+        var age = Number($('#age').val());
+        var currentyear = (new Date()).getFullYear();
+        var dob = currentyear-age;
+        if(age >= 150){
+            $('#dob').val('');
+        }else{
+            $('#dob').val(dob);
+        }
+    });
+
+    $('#dob').on('input', function() {
+        var dob = Number($('#dob').val());
+        var currentyear = (new Date()).getFullYear();
+        var age = currentyear-dob;
+        if(dob >= currentyear || age >= 150){
+            $('#age').val('');
+        }
+        else{
+            $('#age').val(age);
+        }
     });
 
     //remove add
@@ -1834,5 +1918,8 @@
             e.preventDefault();
         }
     });
+
+
+
 </script>
 @endsection
