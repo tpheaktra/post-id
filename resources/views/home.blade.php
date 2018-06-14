@@ -283,12 +283,9 @@
                             </tr>
                         </table>
                     </div>
-
                     <div class="col-sm-12"><hr> </div>
-                </div>
-                <div class="col-md-12">
                     <div class="col-sm-12">
-                        <a onclick="printContent('div1')" class="btn btn-default pull-left"><img src="{{asset('images/Printer.png')}}" width="30"></a>
+                        <a class="btn btn-default pull-left print-link1"><img src="{{asset('images/Printer.png')}}" width="30"></a>
                         <button class="btn btn-primary nextBtn pull-right" type="button">រក្សាទុកនិងជំហានបន្ទាប់</button>
                     </div>
                 </div>
@@ -302,6 +299,7 @@
         <div class="row setup-content" id="step-2">
             <div class="col-xs-12">
                 <div class="col-md-12" id="div2">
+                   <div class="col-sm-12">
                     <h3> ខ) ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់</h3>
                     <hr>
                     <p>មនុស្ស​ដែល​គេ​ចាត់ទុកថាជាសមាជិក​គ្រួសារលុះ​ត្រាតែ​រស់​នៅជាប្រចាំ​ក្នុង​គ្រួសារ ឬ​អវត្តមាន​តិច​ជាង​ ៦ខែ​​ (ត្រូវមានឯកសារយោងដូចជា សៀវភៅគ្រួសារ សៀវភៅស្នាក់នៅ សំបុត្រកំណើត លិខិតបញ្ជាក់ពីអាជ្ញាធរ)</p>
@@ -367,13 +365,14 @@
                         <input type="button" class="btn btn-primary" id="add_rows" style="float:right;" value="បញ្ចូលបន្ថែម">
                         </p>
                         <!-- <div class="col-sm-12"><hr> </div> -->
-                         
+                    </div>
+                    <div class="col-sm-12">
+                        <hr>
+                        <a class="btn btn-default pull-left print-link2"><img src="{{asset('images/Printer.png')}}" width="30" alt="printer"></a>
+                        <button id="step2Next" class="btn btn-primary nextBtn pull-right" type="button" >រក្សាទុក និង ជំហានបន្ទាប់</button>
+                    </div>  
                 </div>
-                <div class="col-sm-12">
-                    <hr>
-                    <a onclick="printContent('div2')" class="btn btn-default pull-left"><img src="{{asset('images/Printer.png')}}" width="30" alt="printer"></a>
-                    <button id="step2Next" class="btn btn-primary nextBtn pull-right" type="button" >រក្សាទុក និង ជំហានបន្ទាប់</button>
-                </div>
+                
             </div>
         </div>
 
@@ -1196,12 +1195,11 @@
                             }
                         });
                     </script>
-                </div>
-                <div class="col-sm-12"><hr> </div>
-
-                <div class="col-sm-12">
-                    <a onclick="printContent('div3')" class="pull-left btn btn-default"><img src="{{asset('images/Printer.png')}}" width="30"></a>
-                    <button class="btn btn-primary pull-right mysubmit nextBtn " type="submit">រក្សាទុក​​ និង បញ្ចប់</button>
+                    <div class="col-sm-12"><hr> </div>
+                    <div class="col-sm-12">
+                        <a  class="pull-left btn btn-default print-link3"><img src="{{asset('images/Printer.png')}}" width="30"></a>
+                        <button class="btn btn-primary pull-right mysubmit nextBtn " type="submit">រក្សាទុក​​ និង បញ្ចប់</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1232,8 +1230,6 @@
                 <td>kep  </td>
                 <!-- data-toggle="collapse" data-target="#accordion" class="clickable" -->
                 <td><a href="{{route('view.data')}}"><i class="fa fa-eye"></i></a> | <a href=""><i class="fa fa-edit"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
-                <td><a data-toggle="collapse" data-target="#accordion" class="clickable">View</a> | <a href="">Edit</a> | <a href="">Delete</a> </td>
-
             </tr>
             <tr>
                 <td colspan="7">
@@ -1264,17 +1260,52 @@
 
 
 <script type="text/javascript">
-
-    // Printing page content
-    function printContent(el){
-        var restorepage = document.body.innerHTML;
-        var printcontent = document.getElementById(el).innerHTML;
-        document.body.innerHTML = printcontent;
-        window.print();
-        document.body.innerHTML = restorepage;
-        location.reload(); 
-    }
     $(document).ready(function () {
+        // Printing page content
+        jQuery(function($) {
+            $("#div1").find('.print-link1').on('click', function() {
+                $('.print-link1').hide();
+                $('.btn-primary').hide();
+                $("#div1").print({
+                    globalStyles : true,
+                    mediaPrint : false,
+                    // stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
+                    iframe : false,
+                    // noPrintSelector : "#div1",
+                    deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
+                });
+                $('.print-link1').show();
+                $('.btn-primary').show();
+            });
+             $("#div2").find('.print-link2').on('click', function() {
+                $('.print-link2').hide();
+                $('.btn-primary').hide();
+                $("#div2").print({
+                    globalStyles : true,
+                    mediaPrint : false,
+                    // stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
+                    iframe : false,
+                    // noPrintSelector : "#div1",
+                    deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
+                });
+                $('.print-link2').show();
+                $('.btn-primary').show();
+            });
+              $("#div3").find('.print-link3').on('click', function() {
+                $('.print-link3').hide();
+                $('.btn-primary').hide();
+                $("#div3").print({
+                    globalStyles : true,
+                    mediaPrint : false,
+                    // stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
+                    iframe : false,
+                    // noPrintSelector : "#div1",
+                    deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
+                });
+                $('.print-link3').show();
+                $('.btn-primary').show();
+            });
+        });
 
         //next next and validate
         var navListItems = $('div.setup-panel div a'),

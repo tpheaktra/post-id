@@ -130,7 +130,7 @@
 	                  <div class="col-md-12">
 	                  	<h4>1.អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ</h4>
 	                  		<p style="padding: 5px;">
-			                  	<table width="30%">
+			                  	<table width="50%">
 			                  		<tr>
 			                  			<td width="20%"><label>ចំនួនពិន្ទុ :</label></td>
 			                  			<td width="30%"><input type="text" name="house_size" value="5"​ class="form-control"></td>
