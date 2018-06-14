@@ -18,7 +18,7 @@ class CreateHouseholdFamilyLinkTable extends Migration
             $table->tinyInteger('household_family_id')->nullable();
             $table->tinyInteger('g_information_id')->nullable();
             $table->string('institutions_name')->nullable();
-            $table->integer('instatutions_phone')->nullable();
+            $table->string('instatutions_phone')->nullable();
             $table->timestamps();
         });
     }
