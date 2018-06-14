@@ -144,7 +144,7 @@
                                 <td width="35%"><label class="control-label"> ទីតាំងនៅក្នុងភូមិ : </label></td>
                                 <td width="65%">
                                    <div class="form-group">
-                                       <textarea class="form-control" id="location" name="g_local_village" required="required"></textarea>
+                                       <textarea class="form-control" id="location" name="g_local_village"></textarea>
                                     </div>
                                 </td>
                             </tr>
@@ -959,7 +959,7 @@
                                     <th>ចំនួនសត្វធំ</th>
                                     <th>ចំនួនកូនសត្វ</th>
                                     <th>កំណត់សម្គាល់ (បញ្ជាក់ បើសិនជាសត្វប្រវាស់គេ)</th>
-                                    <th>Actions</th>
+                                    <th>សកម្មភាព</th>
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_3">
@@ -1015,56 +1015,67 @@
 
                             <h4>គ.១២.១.២​)ដីកសិកម្ម</h4>
                             <p>មាន​ដីកសិកម្ម ឬ​ទេ ?</p>
-                            <ul>
+                            <ul class="li-none">
                                 @foreach($landAgricultural as $key => $land)
-                                <li>
-                                    <label><input type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
-                                </li>
+                                    <li>
+                                        <label><input class="land" type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
+                                    </li>
                                 @endforeach
                             </ul>
 
-                            <p>ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា)</p>
-                            <div class="col-sm-6">
-                                <table width="100%">
-                                    <tr>
-                                        <td><label class="control-label"> -មាន ៖ </label></td>
-                                        <td>
-                                           <div class="form-group">
-                                                <input name="land_name" type="text" required="required" class="form-control"  />
-                                            </div>     
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="control-label"> កន្លែង. ទំហំសរុប : </label></td>
-                                        <td>
-                                           <div class="form-group">
-                                                <input name="total_land" type="text" required="required" class="form-control"  />
-                                            </div>     
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-sm-6">
-                                <table width="100%">
-                                    <tr>
-                                        <td><label class="control-label">​ -ដីចំការ៖ </label></td>
-                                        <td>
-                                           <div class="form-group">
-                                                <input  name="land_farm" type="text" required="required" class="form-control"  />
-                                            </div>     
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="control-label">​ កន្លែង. ទំហំសរុប : </label></td>
-                                        <td>
-                                           <div class="form-group">
-                                                <input name="total_land_farm" type="text" required="required" class="form-control"  />
-                                            </div>     
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                            <script>
+                                $('.land').click(function () {
+                                    var land = $('input[name=land]:checked').val();
+                                    $('#show-land').empty();
 
+                                    var landshow = '<div class="col-sm-6">' +
+                                            '<table width="100%">' +
+                                                '<tr>' +
+                                                    '<td><label class="control-label"> -មាន ៖ </label></td>' +
+                                                    '<td>' +
+                                                        '<div class="form-group">'+
+                                                            '<input name="land_name" type="text" required="required" class="form-control"/>' +
+                                                        '</div>' +
+                                                    '</td>' +
+                                                '</tr>' +
+                                                '<tr>' +
+                                                    '<td><label class="control-label"> កន្លែង. ទំហំសរុប : </label></td>'+
+                                                    '<td>' +
+                                                        '<div class="form-group">' +
+                                                            '<input name="total_land" type="text" required="required" class="form-control"/>'+
+                                                        '</div>' +
+                                                    '</td>' +
+                                                '</tr>' +
+                                            '</table>' +
+                                        '</div>' +
+                                        '<div class="col-sm-6">' +
+                                            '<table width="100%">' +
+                                                '<tr>'+
+                                                    '<td><label class="control-label">​ -ដីចំការ៖ </label></td>'+
+                                                    '<td>'+
+                                                        '<div class="form-group">'+
+                                                            '<input  name="land_farm" type="text" required="required" class="form-control" />'+
+                                                        '</div>'+
+                                                    '</td>'+
+                                                '</tr>'+
+                                                '<tr>'+
+                                                    '<td><label class="control-label">​ កន្លែង. ទំហំសរុប : </label></td>'+
+                                                    '<td>'+
+                                                        '<div class="form-group">'+
+                                                            '<input name="total_land_farm" type="text" required="required" class="form-control"/>'+
+                                                        '</div>'+
+                                                    '</td>'+
+                                                '</tr>'+
+                                            '</table>'+
+                                        '</div>';
+                                    if(land == 2 || land == 3) {
+                                        $('#show-land').append(landshow);
+                                    }
+                                });
+                            </script>
+
+                            {{--<p>ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា)</p>--}}
+                            <div class="col-sm-12" id="show-land"></div>
                         </div>
 
 
@@ -1089,6 +1100,7 @@
                                         <th>ចំនួនឯកតាក្នុងមួខែ</th>
                                         <th>ទឹកប្រាក់មធ្យមក្នុងមួយឯកតា</th>
                                         <th>ចំណូលមធ្យមប្រចាំខែ  (ចំនួន x តម្លៃឯកត្តា)</th>
+                                        <th>សកម្មភាព</th>
                                     </tr>
                                 </thead>
                                 <tbody class="new_rows_4">
@@ -1255,16 +1267,18 @@
             </thead>
 
             <tbody>
+            @foreach($view as $key =>$value)
             <tr>
-                <td>1</td>
-                <td>Data</td>
-                <td>12 </td>
-                <td>Male </td>
-                <td>097544443  </td>
-                <td>kep  </td>
+                <td>{{++$key}}</td>
+                <td>{{$value->g_patient}}</td>
+                <td>{{$value->g_age}} </td>
+                <td>{{$value->name_kh}} </td>
+                <td>{{$value->g_phone}}  </td>
+                <td>{{$value->interview_code}}  </td>
                 <!-- data-toggle="collapse" data-target="#accordion" class="clickable" -->
                 <td><a href="{{route('view.data')}}"><i class="fa fa-eye"></i></a> | <a href=""><i class="fa fa-edit"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
             </tr>
+            @endforeach
             <tr>
                 <td colspan="7">
                     <div id="accordion" class="collapse">
@@ -1880,6 +1894,72 @@
         allowClear:true,
         placeholder: 'ប្រភេទសត្វ'
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $('#add_rows_4').click(function(){ //alert($m_id);
+        var row_4 = $('.new_rows_4 tr.myrow_4').length;
+
+        var rowindex_4 = row_4+1;
+        var tab_rows_4 ='<tr class="myrow_4">'+
+                '<td>'+rowindex_4+'</td>'+
+                '<td>' +
+                    '<div class="form-group">' +
+                        '<input name="income_name['+row_4+']" type="text" required="required" class="form-control"  />' +
+                    '</div>' +
+                '</td>' +
+                '<td>' +
+                    '<div class="form-group">' +
+                        '<input name="income_age['+row_4+']" type="text" required="required" class="form-control allowNumber"  />' +
+                    '</div>' +
+                '</td>' +
+                '<td>' +
+                    '<div class="form-group">' +
+                        '<input name="income_occupation['+row_4+']" type="text" required="required" class="form-control"  />' +
+                    '</div>' +
+                '</td>' +
+                '<td>' +
+                    '<div class="form-group">' +
+                        '<input name="income_unit['+row_4+']" type="text" required="required" class="form-control allowNumber"  />' +
+                    '</div>' +
+                '</td>' +
+                '<td>' +
+                    '<div class="form-group">' +
+                        '<input name="unit_in_month['+row_4+']" type="text" required="required" class="form-control allowNumber"  />' +
+                    '</div>' +
+                '</td>' +
+                '<td>' +
+                    '<div class="form-group">' +
+                        '<input name="average_amount['+row_4+']" type="text" required="required" class="form-control allowNumber"  />' +
+                    '</div>' +
+                '</td>' +
+                '<td>' +
+                    '<div class="form-group">' +
+                        '<input name="monthly_income['+row_4+']" type="text" required="required" class="form-control allowNumber"  />' +
+                    '</div>' +
+                '</td>'+
+                '<td style="text-align:center;"><a status="0" class="remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+            '</tr>';
+        $(".new_rows_4").append(tab_rows_4);
+        AllowNumber();
+    });
+    //remove add
+    $(".new_rows_4").on('click','.remove_rows_4',function(){
+        $(this).parent().parent().remove();
+    });
+
+
+
 
 
 
