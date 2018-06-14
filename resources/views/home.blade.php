@@ -1230,12 +1230,10 @@
                 <td>Male </td>
                 <td>097544443  </td>
                 <td>kep  </td>
-<<<<<<< HEAD
                 <!-- data-toggle="collapse" data-target="#accordion" class="clickable" -->
                 <td><a href="{{route('view.data')}}"><i class="fa fa-eye"></i></a> | <a href=""><i class="fa fa-edit"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
-=======
                 <td><a data-toggle="collapse" data-target="#accordion" class="clickable">View</a> | <a href="">Edit</a> | <a href="">Delete</a> </td>
->>>>>>> 92da3f022d5bee2de632d3e765f867a752a22b95
+
             </tr>
             <tr>
                 <td colspan="7">
@@ -1277,8 +1275,6 @@
         location.reload(); 
     }
     $(document).ready(function () {
-<<<<<<< HEAD
-       
         $('#add_rows_1').click(function(){ //alert($m_id);
             var row_1 = $('.new_rows_1 tr.myrow_1').length;
 
@@ -1337,7 +1333,6 @@
         //remove add
         $(".new_rows_3").on('click','.remove_rows_3',function(){
             $(this).parent().parent().remove();
-=======
         //next next and validate
         var navListItems = $('div.setup-panel div a'),
                 allWells = $('.setup-content'),
@@ -1357,7 +1352,6 @@
                 $target.show();
                 $target.find('input:eq(0)').focus();
             }
->>>>>>> 92da3f022d5bee2de632d3e765f867a752a22b95
         });
 
         allNextBtn.click(function(){
@@ -1641,8 +1635,6 @@
         allowClear:true,
         placeholder: 'កម្រិតវប្បធម៌'
     });
-<<<<<<< HEAD
-=======
 
 
 
@@ -1868,7 +1860,5 @@
             e.preventDefault();
         }
     });
-
->>>>>>> 92da3f022d5bee2de632d3e765f867a752a22b95
 </script>
 @endsection
