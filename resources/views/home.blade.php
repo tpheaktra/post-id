@@ -1245,7 +1245,7 @@
     <div class="data-list">
         <table class="table">
             <thead>
-                <th>No</th>
+                <th>ល.រ</th>
                 <th>ឈ្មោះអ្នកជំងឺ</th>
                 <th>អាយុ</th>
                 <th>ភេទ</th>
@@ -1918,7 +1918,15 @@
             e.preventDefault();
         }
     });
+    //validation alert
+    $('.nextBtn').click(function(){
+         setTimeout(function() {
+            $(".add_hide").addClass("autho-hide");
+            $('.autho-hide').fadeOut();
+        },9000);
+    });
 
+   
 
 
 </script>

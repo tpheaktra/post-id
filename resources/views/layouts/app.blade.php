@@ -75,10 +75,15 @@
                     </ul>
                 </div>
             </div>
+            <style type="text/css">
+                .auto-hide{
+                    display: none !important;
+                }
+            </style>
             <div class="msg">
-                <div class="alert alert1 alert-danger alert-dismissable">
+                <div class="add_hide alert alert1 alert-danger alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    Please input data
+                   សូមបញ្ជូលព័ត៌មានចាំបាច់!
                 </div>
             </div>
             @if(session()->has('success'))
