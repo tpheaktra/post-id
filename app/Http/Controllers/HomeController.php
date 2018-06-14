@@ -19,6 +19,7 @@ use App\model\ConditionhouseModel;
 use App\model\WallMadeModel;
 use App\model\RoofMadeModel;
 use DB;
+use auth;
 class HomeController extends Controller
 {
     /**
@@ -38,6 +39,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $check = DB::select("SELECT count(*) as count, concat('', lpad(max(id)+1,2,'0')) AS id  FROM general_information");
+
+        if($check[0]->count == 0){
+            $interview_code= auth::user()->province.'-'.date('ymd').'01';
+        }else{
+            $interview_code= auth::user()->province.'-'.date('ymd').$check[0]->id;
+        }
+
+
         $provinces     = Helpers::getProvince();
         $relationship  = RelationshipModel::all();
         $gender        = Helpers::getGender();
@@ -74,7 +84,7 @@ class HomeController extends Controller
             'landAgricultural','loan','family','occupation','education_level',
 
             'landAgricultural','loan','family','roof_made','wall_made','house_status',
-            'question_electric','typemeterial','typeanimals'));
+            'question_electric','typemeterial','typeanimals'))->with('interview_code',$interview_code);
 
     }
     public function view(){
@@ -107,9 +117,17 @@ class HomeController extends Controller
 
     public function insert(request $request){
 
+        $check = DB::select("SELECT count(*) as count, concat('', lpad(max(id)+1,2,'0')) AS id  FROM general_information");
+
+        if($check[0]->count == 0){
+            $interview_code= auth::user()->province.'-'.date('Ymd').'01';
+        }else{
+            $interview_code= auth::user()->province.'-'.date('Ymd').$check[0]->id;
+        }
+
 
         $data = array(
-            'interview_code'  =>$request->interview_code,
+            'interview_code'  =>$interview_code,
             'g_patient'       =>$request->g_patient,
             'g_age'           =>$request->g_age,
             'g_sex'           =>$request->g_sex,
