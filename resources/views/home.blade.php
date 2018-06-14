@@ -1275,64 +1275,7 @@
         location.reload(); 
     }
     $(document).ready(function () {
-        $('#add_rows_1').click(function(){ //alert($m_id);
-            var row_1 = $('.new_rows_1 tr.myrow_1').length;
 
-            var rowindex_1 = row_1+1;
-            var tab_rows_1 ='<tr class="myrow_1">'+
-                '<td>'+rowindex_1+'</td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="type_meterial['+row_1+']"/></div></td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="number_meterial['+row_1+']"/></div></td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="market_value_meterial['+row_1+']"/></div></td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="total_rail['+row_1+']"/></div></td>'+
-                '<td style="text-align:center;"><a status="0" class="remove_rows_1" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
-                '</tr>';
-            $(".new_rows_1").append(tab_rows_1);
-        });
-        //remove add
-        $(".new_rows_1").on('click','.remove_rows_1',function(){
-            $(this).parent().parent().remove();
-        });
-
-
-        $('#add_rows_2').click(function(){ //alert($m_id);
-            var row_2 = $('.new_rows_2 tr.myrow_2').length;
-
-            var rowindex_2 = row_2+1;
-            var tab_rows_2 ='<tr class="myrow_2">'+
-                '<td>'+rowindex_2+'</td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="type_vehicle['+row_2+']"/></div></td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="number_vehicle['+row_2+']"/></div></td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="market_value_vehicle['+row_2+']"/></div></td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="total_rail_vehicle['+row_2+']"/></div></td>'+
-                '<td style="text-align:center;"><a status="0" class="remove_rows_2" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
-                '</tr>';
-            $(".new_rows_2").append(tab_rows_2);
-        });
-        //remove add
-        $(".new_rows_2").on('click','.remove_rows_2',function(){
-            $(this).parent().parent().remove();
-        });
-
-
-
-        $('#add_rows_3').click(function(){ //alert($m_id);
-            var row_3 = $('.new_rows_3 tr.myrow_3').length;
-
-            var rowindex_3 = row_3+1;
-            var tab_rows_3 ='<tr class="myrow_3">'+
-                '<td>'+rowindex_3+'</td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="type_animals['+row_3+']"/></div></td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="num_animals_big['+row_3+']"/></div></td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="num_animals_small['+row_3+']"/></div></td>'+
-                '<td><div class="form-group"><input  maxlength="100" type="text" required="required" class="form-control" name="note_animals['+row_3+']"/></div></td>'+
-                '<td style="text-align:center;"><a status="0" class="remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
-                '</tr>';
-            $(".new_rows_3").append(tab_rows_3);
-        });
-        //remove add
-        $(".new_rows_3").on('click','.remove_rows_3',function(){
-            $(this).parent().parent().remove();
         //next next and validate
         var navListItems = $('div.setup-panel div a'),
                 allWells = $('.setup-content'),
