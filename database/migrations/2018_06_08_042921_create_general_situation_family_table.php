@@ -30,7 +30,7 @@ class CreateGeneralSituationFamilyTable extends Migration
             $table->integer('further_floor_area')->nullable();
             $table->integer('total_area')->nullable();
 
-//            $table->string('tolet')->nullable();
+            $table->tinyInteger('toilet_id')->nullable();
 //            $table->string('tolet_1')->nullable();
 //            $table->string('tolet_2')->nullable();
 

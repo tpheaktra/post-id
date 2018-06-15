@@ -15,6 +15,7 @@ use App\model\MemberFamilyModel;
 use App\model\NoElectricLinkModel;
 use App\model\OtherIncomeModel;
 use App\model\TypeIncomeModel;
+use App\model\TypeToiletLinkModel;
 use App\model\YesElectricLinkModel;
 use Illuminate\Http\Request;
 use App\model\RelationshipModel;
@@ -81,8 +82,9 @@ class HomeController extends Controller
         $typetransport = Helpers::getTypeTransportation();
 
         $question_electric = Helpers::getQuestionElectric();
+        $question_totel = Helpers::getQuestionTolet();
         $view = DB::select("select 
-gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,
+gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,
 
    #household
 	hf.name_kh as hosehold,hfl.institutions_name,hfl.instatutions_phone,
@@ -111,13 +113,10 @@ group by gi.interview_code order by gi.id desc");
         return view('home',compact('relationship',
             'provinces','gender','household',
             'homePrepar','condition_house','question','electricgrid',
-
             'landAgricultural','loan','family','occupation','education_level',
-
             'landAgricultural','loan','family','roof_made','wall_made','house_status',
             'question_electric','typemeterial','typeanimals',
-            'typetransport','view'))->with('interview_code',$interview_code);
-
+            'typetransport','question_totel','view'))->with('interview_code',$interview_code);
     }
     public function view($id){
          $patient = DB::select("select gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,gi.g_local_village as g_local_village, 
@@ -130,7 +129,7 @@ group by gi.interview_code order by gi.id desc");
                 inner join dev_pmrs_share.communes c on gi.g_commune_id = c.code
                 inner join dev_pmrs_share.villages v on gi.g_village_id = v.code
                where gi.id ='$id' group by gi.id order by gi.id desc 
-            "); 
+            ");
         $gender = Helpers::getGender();
         return view('view',compact('gender','patient'));
     }
@@ -265,7 +264,7 @@ group by gi.interview_code order by gi.id desc");
             'further_floor_area'   =>$request->further_floor_area,
             'total_area'           =>$request->total_area,
 
-//            'tolet'                =>$request->tolet,
+             'toilet_id'            =>$request->tolet,
 //            'tolet_1'              =>$request->tolet_1,
 //            'tolet_2'              =>$request->tolet_2,
               'q_electric_id'=>$request->q_electric,
@@ -292,6 +291,19 @@ group by gi.interview_code order by gi.id desc");
             HouseoldConsumerModel::create($meterial);
         }
 
+        //toilet
+        $q_toilet= $request->tolet;
+        if($q_toilet == 1){
+            $qt = array(
+                'toilet_id'        =>$q_toilet,
+                'g_information_id' =>$gn_info->id,
+                'toilet_1'         =>$request->tolet_1,
+                'toilet_2'         =>$request->toilet_2
+            );
+            TypeToiletLinkModel::create($qt);
+        }
+
+        //electric
         $q_electric = $request->q_electric;
         if($q_electric == 1){
             $e = array(

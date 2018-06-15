@@ -194,6 +194,14 @@ class Helpers{
         return $tm;
     }
 
+    /*
+    * function get gender
+    */
+    public static function getQuestionTolet(){
+        $tm = DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS tolet ,name_kh,id from question_totel');
+        return $tm;
+    }
+
 
 
 

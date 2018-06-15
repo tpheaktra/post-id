@@ -638,35 +638,41 @@
                         <div class="col-sm-12">
                             <h4> គ.៤ បង្គន់</h4>
                             <h5>- តើគ្រួសាររបស់អ្នកមានបង្គន់ប្រើដែរឬទេ?</h5>
-                            <ul class="li-none">
-                                <li>
-                                     <label><input type="radio" name="tolet" ​​ value="មាន"> មាន </label>
-                                </li>
-                                <li>
-                                     <label><input type="radio" name="tolet" value="គ្មាន"> គ្មាន </label>
-                                </li>
-                            </ul>
 
-                            <h5>- បើមាន តើជាបង្គន់ចាក់ទឹក ឬ បង្គន់ស្ងួត?</h5>
                             <ul class="li-none">
+                                @foreach($question_totel as $key =>$val)
                                 <li>
-                                     <label><input type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>
+                                     <label><input class="tolet" type="radio" name="tolet" ​​ value="{{$val->id}}"> {{$val->name_kh}} </label>
                                 </li>
-                                <li>
-                                    <label><input type="radio" name="tolet_1" value="បង្គន់ស្ងួត">  បង្គន់ស្ងួត</label>
-                                </li>
+                                @endforeach
                             </ul>
+                            <div id="tolet"></div>
+                            <script>
+                                $('.tolet').click(function () {
+                                    var tolet = $('input[name=tolet]:checked').val();
+                                    $('#tolet').empty();
+                                    var tott = '<h5>- បើមាន តើជាបង្គន់ចាក់ទឹក ឬ បង្គន់ស្ងួត?</h5>' +
+                                            '<ul class="li-none">' +
+                                                '<li>' +
+                                                    '<label><input type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>' +
+                                                '</li>' +
+                                                '<li>' +
+                                                    '<label><input type="radio" name="tolet_1" value="បង្គន់ស្ងួត">  បង្គន់ស្ងួត</label>' +
+                                                '</li>' +
+                                            '</ul>' +
+                                        '<h5>- ជាបង្គន់​របស់នរណា?</h5>' +
+                                            '<ul class="li-none">' +
+                                                '<li>' +
+                                                    '<label><input type="radio" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>' +
+                                                '</li>' +
+                                                '<li>' +
+                                                    '<label><input type="radio" name="tolet_2" value="ជាបង្គន់រួមជាមួយគ្រួសារដទៃ"> ជាបង្គន់រួមជាមួយគ្រួសារដទៃ</label>' +
+                                                '</li>' +
+                                            '</ul>';
+                                    if(tolet == 1){$('#tolet').append(tott);}
+                                });
+                             </script>
 
-
-                            <h5>- ជាបង្គន់​របស់នរណា?</h5>
-                            <ul class="li-none">
-                                <li>
-                                     <label><input type="radio" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>
-                                </li>
-                                <li>
-                                    <label><input type="radio" name="tolet_2" value="ជាបង្គន់រួមជាមួយគ្រួសារដទៃ"> ជាបង្គន់រួមជាមួយគ្រួសារដទៃ</label>
-                                </li>
-                            </ul>
 
                             <div class="row">
                                 <div class="col-sm-6">
@@ -708,6 +714,7 @@
                                 @endforeach
                             </ul>
                         </div>
+
                         <script>
                             $('.homeyear').click(function () {
                                 var homeyear = $('input[name=home_prepare]:checked').val();

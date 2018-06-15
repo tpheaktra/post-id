@@ -22,7 +22,7 @@ class GeneralSituationFamilyModel extends Model
         'further_floor_area',
         'total_area',
 
-//        'tolet',
+        'toilet_id',
 //        'tolet_1',
 //        'tolet_2',
 //        'h_build_year_id',

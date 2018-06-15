@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeMeterialTableSeeder::class);
         $this->call(TypeAnimalsTableSeeder::class);
         $this->call(TypeTransportationTableSeeder::class);
+        $this->call(QuestionTotelTableSeeder::class);
     }
 }
