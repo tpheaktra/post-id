@@ -27,4 +27,4 @@ Route::GET('getVillage',['as'=>'getVillage','uses'=>'HomeController@getVillage']
 
 
 Route::POST('insert',['as'=>'insert.index','uses'=>'HomeController@insert']);
-Route::GET('data-view',['as'=>'view.data','uses'=>'HomeController@view']);
+Route::GET('data-view/{id}',['as'=>'view.data','uses'=>'HomeController@view']);

@@ -1277,7 +1277,7 @@
                 <td>{{$value->g_phone}}  </td>
                 <td>{{$value->interview_code}}  </td>
                 <!-- data-toggle="collapse" data-target="#accordion" class="clickable" -->
-                <td><a href="{{route('view.data')}}"><i class="fa fa-eye"></i></a> | <a href=""><i class="fa fa-edit"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
+                <td><a href="{{route('view.data',$value->id)}}"><i class="fa fa-eye"></i></a> | <a href=""><i class="fa fa-edit"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
             </tr>
             @endforeach
             <tr>
@@ -1310,6 +1310,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        
+        $(".form-control").attr("autocomplete", "off");
         // Printing page content
         jQuery(function($) {
             $("#div1").find('.print-link1').on('click', function() {

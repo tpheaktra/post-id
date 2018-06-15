@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\model\DebtLoanLinkModel;
 use App\model\GeneralInformationModel;
 use App\model\GeneralSituationFamilyModel;
@@ -120,9 +119,20 @@ group by gi.interview_code order by gi.id desc");
             'typetransport','view'))->with('interview_code',$interview_code);
 
     }
-    public function view(){
-         $gender = Helpers::getGender();
-        return view('view',compact('gender'));
+    public function view($id){
+         $patient = DB::select("select gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,gi.g_local_village as g_local_village, 
+                p.name_kh as province, d.name_kh as district,c.name_kh as commune, v.name_kh as village from general_information gi
+                inner join member_family mf on gi.id = mf.g_information_id
+                inner join general_situation_family gsf on gi.id = gsf.g_information_id 
+                inner join gender gg on gi.g_sex = gg.id
+                inner join dev_pmrs_share.provinces p on gi.g_province_id = p.code
+                inner join dev_pmrs_share.districts d on gi.g_district_id = d.code
+                inner join dev_pmrs_share.communes c on gi.g_commune_id = c.code
+                inner join dev_pmrs_share.villages v on gi.g_village_id = v.code
+               where gi.id ='$id' group by gi.id order by gi.id desc 
+            "); 
+        $gender = Helpers::getGender();
+        return view('view',compact('gender','patient'));
     }
     /*
      * get data with ajax
