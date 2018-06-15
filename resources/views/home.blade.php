@@ -159,7 +159,7 @@
                    <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label">ឈ្មោះអ្នកជំងឺ :</label></td>
+                                <td><label class="control-label">ឈ្មោះ :</label></td>
                                 <td>
                                    <div class="form-group">
                                         <input type="text" required="required" class="form-control" name="inter_patient"/>
@@ -225,7 +225,7 @@
                    <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label">ឈ្មោះអ្នកជំងឺ :</label></td>
+                                <td><label class="control-label">ឈ្មោះ :</label></td>
                                 <td>
                                    <div class="form-group">
                                         <input  type="text" required="required" class="form-control" name="fa_patient"/>
@@ -1276,7 +1276,7 @@
                 <td>{{$value->g_phone}}  </td>
                 <td>{{$value->interview_code}}  </td>
                 <!-- data-toggle="collapse" data-target="#accordion" class="clickable" -->
-                <td><a href="{{route('view.data')}}"><i class="fa fa-eye"></i></a> | <a href=""><i class="fa fa-edit"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
+                <td><a href="{{route('view.data',$value->id)}}"><i class="fa fa-eye"></i></a> | <a href=""><i class="fa fa-edit"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
             </tr>
             @endforeach
             <tr>
@@ -1309,6 +1309,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        
+        $(".form-control").attr("autocomplete", "off");
         // Printing page content
         jQuery(function($) {
             $("#div1").find('.print-link1').on('click', function() {
