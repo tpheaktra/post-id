@@ -11,8 +11,12 @@ use App\model\HouseholdRentPriceModel;
 use App\model\HouseHoldRootLinkModel;
 use App\model\HouseholdVehicleModel;
 use App\model\HouseoldConsumerModel;
+use App\model\LandAgriculturalLinkModel;
 use App\model\MemberFamilyModel;
+use App\model\NoElectricLinkModel;
+use App\model\OtherIncomeModel;
 use App\model\TypeIncomeModel;
+use App\model\YesElectricLinkModel;
 use Illuminate\Http\Request;
 use App\model\RelationshipModel;
 use App\model\FamilyrelationModel;
@@ -56,9 +60,7 @@ class HomeController extends Controller
         $household     = Helpers::getHouseHoldFamily();
         $homePrepar    = Helpers::getHomePrepar();
 
-        $condition_house  = Helpers::getConditionHouse();
-        $question         = Helpers::getQuestion();
-        $electricgrid     = Helpers::getElectricGird();
+
 
         $condition_house = Helpers::getConditionHouse();
         $question = Helpers::getQuestion();
@@ -77,14 +79,36 @@ class HomeController extends Controller
 
         $typemeterial = Helpers::getTypeMeterial();
         $typeanimals = Helpers::getTypeAnimals();
+        $typetransport = Helpers::getTypeTransportation();
 
         $question_electric = Helpers::getQuestionElectric();
-        $view = DB::select("select gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone from general_information gi
-                inner join member_family mf on gi.id = mf.g_information_id
-                inner join general_situation_family gsf on gi.id = gsf.g_information_id 
-                inner join gender gg on gi.g_sex = gg.id
-                group by gi.id order by gi.id desc
-            ");
+        $view = DB::select("select 
+gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,
+
+   #household
+	hf.name_kh as hosehold,hfl.institutions_name,hfl.instatutions_phone,
+	rm.name_kh as root_made,ch.name_kh as root_status,
+	wm.name_kh as walls_made,ch1.name_kh as walls_status,
+	hrpl.house_rent_price
+	
+ from general_information gi
+inner join member_family mf on gi.id = mf.g_information_id
+inner join general_situation_family gsf on gi.id = gsf.g_information_id 
+inner join gender gg on gi.g_sex = gg.id
+
+
+left join household_family_link hfl on gsf.g_information_id = hfl.g_information_id
+left join household_root_link hrl on gsf.g_information_id = hrl.g_information_id
+left join household_rent_price_link hrpl on gsf.g_information_id = hrpl.g_information_id
+left join household_family hf on hfl.household_family_id = hf.id or hrl.household_family_id = hf.id or hrpl.household_family_id = hf.id
+
+left join roof_made rm on hrl.roof_made_id = rm.id
+left join wall_made wm on hrl.walls_made_id = wm.id
+left join condition_house ch on hrl.roof_status_id = ch.id 
+left join condition_house ch1 on hrl.walls_status_id = ch1.id
+
+
+group by gi.interview_code order by gi.id desc");
         return view('home',compact('relationship',
             'provinces','gender','household',
             'homePrepar','condition_house','question','electricgrid',
@@ -92,7 +116,8 @@ class HomeController extends Controller
             'landAgricultural','loan','family','occupation','education_level',
 
             'landAgricultural','loan','family','roof_made','wall_made','house_status',
-            'question_electric','typemeterial','typeanimals','view'))->with('interview_code',$interview_code);
+            'question_electric','typemeterial','typeanimals',
+            'typetransport','view'))->with('interview_code',$interview_code);
 
     }
     public function view(){
@@ -233,49 +258,54 @@ class HomeController extends Controller
 //            'tolet'                =>$request->tolet,
 //            'tolet_1'              =>$request->tolet_1,
 //            'tolet_2'              =>$request->tolet_2,
-//
-//            'h_build_year_id'      =>$request->h_build_year_id,
-//            'home_prepar_id'       => $homePre,
-//            'roof_made'            =>$request->roof_made,
-//            'roof_status'          =>$request->roof_status,
-//            'walls_made'           =>$request->walls_made,
-//            'walls_status'         =>$request->walls_status,
-//
-//            'condition_house_id'   =>$request->condition_house,
-//            'rent_fee'             =>$request->rent_fee,
-//
-//            'q_electric_id'=>$request->q_electric,
-//            'costs_in_hour'=>$request->costs_in_hour,
-//            'number_in_month'=>$request->number_in_month,
-//            'costs_per_month'=>$request->costs_per_month,
-//            'electric_grid_id'=>$request->electric_grid_id,
-//            'go_hospital'=>$request->go_hospital,
-//
-//            'land_agricultural_id' =>$request->land,
-//            'land_name'            =>$request->land_name,
-//            'total_land'           =>$request->total_land,
-//            'land_farm'            =>$request->land_farm,
-//            'total_land_farm'      =>$request->total_land_farm,
-//            'debt_family_id'       =>$request->debt_family_id,
+              'q_electric_id'=>$request->q_electric,
+              'transport_id'=>$request->go_hospital,
+              'land_agricultural_id' =>$request->land,
+
+                'kids_then65'     =>$request->kids_then65,
+                'old_bigger65'    =>$request->old_bigger65,
+                'kids_50_then65'  =>$request->kids_50_then65,
+                'old_50_bigger65' =>$request->old_50_bigger65,
+                'debt_family_id'  =>$request->debt_family_id,
         );
-        $gSFamily = GeneralSituationFamilyModel::create($general_situation_family);
-return back();exit();
+        GeneralSituationFamilyModel::create($general_situation_family);
+
         foreach ($request->type_meterial as $key => $val) {
             $meterial = array(
-                'g_situation_family_id' => $gSFamily->id,
-                'type_meterial'         => $val,
+                'g_information_id'      =>$gn_info->id,
+                'type_meterial_id'      => $val,
                 'number_meterial'       => $request->number_meterial[$key],
                 'market_value_meterial' => $request->market_value_meterial[$key],
-                'total_rail'            => $request->total_rail[$key],
+                'total_rail'            => $request->total_rail_meterial[$key],
                 'total_meterial_costs'  => $request->total_meterial_costs
             );
             HouseoldConsumerModel::create($meterial);
         }
-       //household vehicle
+
+        $q_electric = $request->q_electric;
+        if($q_electric == 1){
+            $e = array(
+                'q_electric_id'        =>$q_electric,
+                'g_information_id'     =>$gn_info->id,
+                'costs_in_hour'        =>$request->costs_in_hour,
+                'number_in_month'      =>$request->number_in_month,
+                'costs_per_month'      =>$request->costs_per_month,
+            );
+            YesElectricLinkModel::create($e);
+        }elseif($q_electric == 2){
+            $e1 = array(
+                'q_electric_id'       =>$q_electric,
+                'g_information_id'    =>$gn_info->id,
+                'electric_grid_id'    =>$request->electric_grid_id
+            );
+            NoElectricLinkModel::create($e1);
+        }
+
+        //household vehicle
         foreach ($request->type_vehicle as $key => $vi) {
             $vehicle = array(
-                'g_situation_family_id' => $gSFamily->id,
-                'type_vehicle'         => $vi,
+                'g_information_id'     => $gn_info->id,
+                'type_vehicle_id'      => $vi,
                 'number_vehicle'       => $request->number_vehicle[$key],
                 'market_value_vehicle' => $request->market_value_vehicle[$key],
                 'total_rail_vehicle'   => $request->total_rail_vehicle[$key],
@@ -284,12 +314,11 @@ return back();exit();
             HouseholdVehicleModel::create($vehicle);
         }
 
-
         //household vehicle
         foreach ($request->type_animals as $key => $anim) {
             $animals = array(
-                'g_situation_family_id' => $gSFamily->id,
-                'type_animals'          => $anim,
+                'g_information_id'      =>  $gn_info->id,
+                'type_animals_id'       => $anim,
                 'num_animals_big'       => $request->num_animals_big[$key],
                 'num_animals_small'     => $request->num_animals_small[$key],
                 'note_animals'          => $request->note_animals[$key],
@@ -298,11 +327,41 @@ return back();exit();
             TypeIncomeModel::create($animals);
         }
 
+        //គ.១២.១.២​)ដីកសិកម្ម
+        $land_agricultural = array(
+            'g_information_id'     =>  $gn_info->id,
+            'land_agricultural_id' => $request->land,
+            'land_name'            => $request->land_name,
+            'total_land'           => $request->total_land,
+            'land_farm'            => $request->land_farm,
+            'total_land_farm'      => $request->total_land_farm
+        );
+        LandAgriculturalLinkModel::create($land_agricultural);
+
+        //
+        foreach ($request->income_name as $key => $in) {
+            $other_income = array(
+                'g_information_id'  => $gn_info->id,
+                'income_name'       => $in,
+                'income_age'        => $request->income_age[$key],
+                'income_occupation' => $request->income_occupation[$key],
+                'income_unit'       => $request->income_unit[$key],
+                'unit_in_month'     => $request->unit_in_month[$key],
+                'average_amount'    => $request->average_amount[$key],
+                'monthly_income'    => $request->monthly_income[$key],
+                'total_mon_income'  => $request->total_mon_income[$key],
+                'total_inc_person'  => $request->total_inc_person[$key],
+            );
+            OtherIncomeModel::create($other_income);
+        }
+
+
+
 
 
         //គ.១៤) បំណុលគ្រួសារ
             $debt = array(
-                'g_situation_family_id' => $gSFamily->id,
+                'g_information_id' => $gn_info->id,
                 'loan_id'               => $request->family_debt_id,
                 'question_id'           => $request->q_debt,
                 'total_debt'            => $request->total_debt,

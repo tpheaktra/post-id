@@ -33,25 +33,16 @@ class CreateGeneralSituationFamilyTable extends Migration
 //            $table->string('tolet')->nullable();
 //            $table->string('tolet_1')->nullable();
 //            $table->string('tolet_2')->nullable();
-//
-//            $table->integer('h_build_year_id')->nullable();
-//            $table->integer('home_prepar_id')->nullable();
-           // $table->integer('rent_fee')->nullable();
-//
-//            $table->integer('q_electric_id')->nullable();
-//            $table->string('costs_in_hour')->nullable();
-//            $table->string('number_in_month')->nullable();
-//            $table->string('costs_per_month')->nullable();
-//            $table->integer('electric_grid_id')->nullable();
-//            $table->string('go_hospital')->nullable();
-//
-//            $table->integer('land_agricultural_id')->nullable();
-//            $table->string('land_name')->nullable();
-//            $table->string('total_land')->nullable();
-//            $table->string('land_farm')->nullable();
-//            $table->string('total_land_farm')->nullable();
-//
-//            $table->integer('debt_family_id')->nullable();
+
+
+            $table->integer('q_electric_id')->nullable();
+            $table->tinyInteger('transport_id')->nullable();
+
+            $table->integer('kids_then65')->nullable();
+            $table->integer('old_bigger65')->nullable();
+            $table->integer('kids_50_then65')->nullable();
+            $table->integer('old_50_bigger65')->nullable();
+            $table->tinyInteger('debt_family_id')->nullable();
 
 
             $table->timestamps();

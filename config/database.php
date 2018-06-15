@@ -52,6 +52,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            'modes' => []
         ],
 
         'mysql2' => [
@@ -67,6 +68,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            'modes' => []
         ],
 
         'pgsql' => [

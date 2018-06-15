@@ -15,8 +15,8 @@ class CreateTypeIncomeTable extends Migration
     {
         Schema::create('type_income', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('g_situation_family_id')->nullable();
-            $table->string('type_animals')->nullable();
+            $table->tinyInteger('g_information_id')->nullable();
+            $table->tinyInteger('type_animals_id')->nullable();
             $table->integer('num_animals_big')->nullable();
             $table->integer('num_animals_small')->nullable();
             $table->integer('note_animals')->nullable();

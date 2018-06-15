@@ -15,8 +15,8 @@ class CreateHouseholdVehicleTable extends Migration
     {
         Schema::create('household_vehicle', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('g_situation_family_id')->nullable();
-            $table->string('type_vehicle')->nullable();
+            $table->tinyInteger('g_information_id')->nullable();
+            $table->tinyInteger('type_vehicle_id')->nullable();
             $table->integer('number_vehicle')->nullable();
             $table->integer('market_value_vehicle')->nullable();
             $table->integer('total_rail_vehicle')->nullable();

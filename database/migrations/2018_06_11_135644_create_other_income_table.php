@@ -15,15 +15,16 @@ class CreateOtherIncomeTable extends Migration
     {
         Schema::create('other_income', function (Blueprint $table) {
             $table->increments('id');
+            $table->tinyInteger('g_information_id')->nullable();
             $table->string('income_name')->nullable();
             $table->integer('income_age')->nullable();
             $table->string('income_occupation')->nullable();
-            $table->float('income_unit')->nullable();
-            $table->float('unit_in_month')->nullable();
-            $table->float('average_amount')->nullable();
-            $table->float('monthly_income')->nullable();
-            $table->float('total_monthly_income')->nullable();
-            $table->float('total_income_person')->nullable();
+            $table->string('income_unit')->nullable();
+            $table->string('unit_in_month')->nullable();
+            $table->string('average_amount')->nullable();
+            $table->string('monthly_income')->nullable();
+            $table->string('total_mon_income')->nullable();
+            $table->string('total_inc_person')->nullable();
             $table->timestamps();
         });
     }

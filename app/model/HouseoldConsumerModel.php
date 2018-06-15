@@ -8,8 +8,8 @@ class HouseoldConsumerModel extends Model
 {
     protected $table='household_consumer';
     protected $fillable = [
-        'g_situation_family_id',
-        'type_meterial',
+        'g_information_id',
+        'type_meterial_id',
         'number_meterial',
         'market_value_meterial',
         'total_rail',

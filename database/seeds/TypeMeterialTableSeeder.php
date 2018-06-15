@@ -13,44 +13,38 @@ class TypeMeterialTableSeeder extends Seeder
     {
         $tm = [
             [
-                'name_en' => 'Bikes',
-                'name_kh' => 'កង់',
+                'name_en' => 'Mobile phones',
+                'name_kh' => 'ទូរស័ព្ទដៃ',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'name_en' => 'Motorbike or motorbike',
-                'name_kh' => 'ម៉ូតូ ឬ ម៉ូតូ​រ៉ឺម៉ក',
+                'name_en' => 'Electric fans',
+                'name_kh' => 'កង្ហារ​អគ្គិសនី',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'name_en' => 'Small class boat',
-                'name_kh' => 'ទូកថ្នាក់តូច',
+                'name_en' => 'Radios',
+                'name_kh' => 'វិទ្យុ ម៉ាញ៉េ',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'name_en' => 'Boat machines',
-                'name_kh' => 'ទូកម៉ាស៊ីន',
+                'name_en' => 'TV',
+                'name_kh' => 'ទូរទស្សន៍',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'name_en' => 'Ox cart (wooden or tire wheel)',
-                'name_kh' => 'រទេះគោ (កង់ឈើ ឬកង់ឡាន)',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'name_en' => 'Tractor',
-                'name_kh' => 'គោយន្ត',
+                'name_en' => 'Pump or pumping pump',
+                'name_kh' => 'ម៉ាស៊ីនបូមទឹក ឬម៉ូទ័របូមទឹក',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'name_en' => 'Other',
-                'name_kh' => 'ផ្សេងៗ',
+                'name_kh' => 'ឧបករណ៍ផ្សេងៗ(ទូទឹកកក………)',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

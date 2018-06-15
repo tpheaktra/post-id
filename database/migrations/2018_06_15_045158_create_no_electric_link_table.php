@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDebtLoanLinkTable extends Migration
+class CreateNoElectricLinkTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateDebtLoanLinkTable extends Migration
      */
     public function up()
     {
-        Schema::create('debt_loan_link', function (Blueprint $table) {
+        Schema::create('no_electric_link', function (Blueprint $table) {
             $table->increments('id');
+            $table->tinyInteger('q_electric_id')->nullable();
             $table->tinyInteger('g_information_id')->nullable();
-            $table->integer('loan_id')->nullable();
-            $table->integer('question_id')->nullable();
-            $table->integer('total_debt')->nullable();
+            $table->tinyInteger('electric_grid_id')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateDebtLoanLinkTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('debt_loan_link');
+        Schema::dropIfExists('no_electric_link');
     }
 }

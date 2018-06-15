@@ -186,6 +186,15 @@ class Helpers{
     }
 
 
+    /*
+    * function get gender
+    */
+    public static function getTypeTransportation(){
+        $tm = DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS transport ,name_kh,id from type_transportation');
+        return $tm;
+    }
+
+
 
 
 
