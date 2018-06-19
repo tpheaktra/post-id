@@ -143,6 +143,7 @@ input[type=radio]{
 .debt_question{
     float: left;
 }
+.debt_question{ padding-left: 25px;}
 .debt_question_group label{ width: 100%;
     float: left;}
 .data-list{

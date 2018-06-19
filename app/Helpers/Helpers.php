@@ -203,6 +203,18 @@ class Helpers{
     }
 
 
+    /*
+   * function getDistrict
+   */
+//    public static function getOD($code,$od_name){
+//        $province = DB::connection("mysql2")
+//            ->select("select os.shortcut from dev_pmrs_share.od_shortcuts os
+//                    inner join dev_pmrs_share.operational_districts od on os.od_code = od.code
+//                    where od.province_code='$code' and od.name_en = '$od_name'");
+//        return $province;
+//    }
+
+
 
 
 
