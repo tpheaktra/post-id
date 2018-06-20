@@ -5,6 +5,9 @@
 
 <!------ Include the above in your HEAD tag ---------->
 <div class="container content">
+    <div class="col-sm-12">
+        <h2 align="center">ការធ្វើអត្តសញ្ញាណកម្មគ្រួសារក្រីក្រនៅមន្ទីពេទ្យ</h2>
+    </div>
 
     <div class="stepwizard">
         <div class="stepwizard-row setup-panel">
@@ -34,16 +37,40 @@
                     <div class="col-sm-12"><hr> </div>
                     <div class="col-md-12">
                         <h4>ក.១ ព័ត៌មានទូទៅ</h4>
-                        <table class="pull-right">
-                            <tr>
-                                <td width="35%"><label class="control-label">លេខកូដសម្ភាសន៍:</label></td>
-                                <td width="65%">
-                                    <div class="form-group">    
-                                        <input name="interview_code" value="{{$interview_code}}" type="text" required="required" class="form-control" readonly="readonly"/>
-                                    </div>  
-                                </td>
-                            </tr>
-                        </table>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <table width="100%">
+                                    <tr>
+                                        <td width="35%"><label class="control-label">មន្ទីរពេទ្យ:</label></td>
+                                        <td width="65%">
+                                            <div class="form-group">
+                                                <select id="hospital" style="width: 100%" class="form-control" name="hospital">
+                                                    <option></option>
+                                                    @foreach($hospital as $key =>$h)
+                                                        <option value="{{$h->od_code}}">
+                                                            មន្ទីរពេទ្យ - {{$h->name_kh}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-sm-6">
+                                <table class="pull-right">
+                                    <tr>
+                                        <td width="35%"><label class="control-label">លេខកូដសម្ភាសន៍:</label></td>
+                                        <td width="65%">
+                                            <div class="form-group">
+                                                <input id="interview_code" name="interview_code" type="text" required="required" class="form-control" readonly="readonly"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-sm-6">
@@ -269,7 +296,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="50%"><label class="control-label">ត្រូវជា(ទំនាក់ទំនងជាមួយមេគ្រួសារ) : </label></td>
+                                <td width="50%"><label class="control-label">ត្រូវជា(ដែលមិនមែនសមាជិកគ្រួសារ) : </label></td>
                                 <td width="50%">
                                     <div class="form-group fa_relationship">
                                         <select style="width: 100%;" class="form-control" id="fa_relationship" name="fa_relationship">
@@ -325,7 +352,7 @@
                             <tbody class="new_rows">
                                 <tr class="myrow">
                                     <td>1(មេ)</td>
-                                    <td><div class="form-group"><input type="text" required="required" class="form-control nick_name" name="nick_name[0]"/></div></td>
+                                    <td><div class="form-group"><input type="text" required="required" class="form-control nick_name_0" name="nick_name[0]"/></div></td>
                                     <td><div class="form-group"><input maxlength="4"  type="text" required="required" class="form-control allowNumber" id="dob" name="dob[0]"/></div></td>
                                     <td><div class="form-group"><input maxlength="3" type="text" required="required" class="form-control allowNumber" id="age" name="age[0]"/></div></td>
                                     <td>
@@ -358,12 +385,15 @@
                                             </select>
                                         </div>
                                     </td>
+                                    <td>
+                                        <span>
+                                            <input type="button" class="btn btn-primary" id="add_rows" style="float:right;" value="បញ្ចូលបន្ថែម">
+                                        </span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <p>
-                        <input type="button" class="btn btn-primary" id="add_rows" style="float:right;" value="បញ្ចូលបន្ថែម">
-                        </p>
+
                         <!-- <div class="col-sm-12"><hr> </div> -->
                     </div>
                     <div class="col-sm-12">
@@ -818,6 +848,9 @@
                                                         <span class="input-group-addon">រៀល</span>
                                                     </div>
                                                 </td>
+                                                <td>
+                                                    <input class="btn btn-primary" id="add_rows_1" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
+                                                </td>
                                             </tr>
                                         </tbody>
 
@@ -832,15 +865,6 @@
                                                         <input id="total_meterial_costs" name="total_meterial_costs" type="text" required="required" class="form-control" readonly="readonly"/>
                                                         <span class="input-group-addon">រៀល</span>
                                                     </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-                                                   <input class="btn btn-primary" id="add_rows_1" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
                                                 </td>
                                             </tr>
                                         </tfoot>
@@ -974,32 +998,23 @@
                                             <span class="input-group-addon">រៀល</span>
                                         </div>
                                     </td>
-                                    <td></td>
+                                    <td><input class="btn btn-primary" id="add_rows_2" style="float:right;" value="បញ្ចូលបន្ថែម" type="button"></td>
                                 </tr>
                                 </tbody>
 
                                 <tfoot>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
-                                    <td>
-                                        <div class="form-group input-group">
-                                            <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control" readonly="readonly"/>
-                                            <span class="input-group-addon">រៀល</span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <input class="btn btn-primary" id="add_rows_2" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
+                                        <td>
+                                            <div class="form-group input-group">
+                                                <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control" readonly="readonly"/>
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tfoot>
                             </table>
                             
@@ -1053,20 +1068,9 @@
                                             <input name="note_animals[0]" type="text"  class="form-control"  />
                                         </div>
                                     </td>
+                                    <td><input class="btn btn-primary" id="add_rows_3" style="float:right;" value="បញ្ចូលបន្ថែម" type="button"></td>
                                 </tr>
                                 </tbody>
-
-                                <tfoot>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <input class="btn btn-primary" id="add_rows_3" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
-                                    </td>
-                                </tr>
-                                </tfoot>
                             </table>
 
                     </div>
@@ -1094,7 +1098,7 @@
                                     var landshow = '<div class="col-sm-12">' +
                                             '<table width="100%" class="table">' +
                                                 '<tr>' +
-                                                    '<td><label class="control-label"> មានដី </label></td>' +
+                                                    '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
                                                             '<input autocomplete="off" name="land_name" type="text" required="required" class="allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
@@ -1103,13 +1107,13 @@
 
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
-                                                        '<div class="form-group">' +
-                                                            '<input autocomplete="off" name="total_land" type="text" required="required" class="form-control allowNumber"/>'+
+                                                        '<div class="form-group​​input-group input-group">' +
+                                                            '<input autocomplete="off" name="total_land" type="text" required="required" class="form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>' +
                                                     '</td>' +
                                                 '</tr>' +
                                                 '<tr>' +
-                                                    '<td><label class="control-label">​ ដីចំការ </label></td>'+
+                                                    '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
                                                     '<td>'+
                                                         '<div class="form-group input-group">'+
                                                             '<input autocomplete="off" name="land_farm" type="text" required="required" class="allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
@@ -1117,8 +1121,8 @@
                                                     '</td>'+
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
-                                                        '<div class="form-group">'+
-                                                            '<input autocomplete="off" name="total_land_farm" type="text" required="required" class="form-control allowNumber" />'+
+                                                        '<div class="form-group input-group">'+
+                                                            '<input autocomplete="off" name="total_land_farm" type="text" required="required" class="form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1167,7 +1171,8 @@
                                         <td>1</td>
                                         <td>
                                             <div class="form-group">
-                                                <input id="income_name" name="income_name[0]" type="text" required="required" class="form-control"  />
+                                                <select class="form-control income_name" id="income_name_0" name="income_name[0]" required="required"></select>
+                                                {{--<input id="income_name" name="income_name[0]" type="text" required="required" class="form-control"  />--}}
                                             </div>
                                         </td>
                                         <td>
@@ -1182,50 +1187,52 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="income_unit[0]" type="text" required="required" class="form-control"  />
+                                                <input name="income_unit[0]" type="text" required="required" class="form-control" placeholder="ថ្ងៃ" />
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="form-group">
+                                            <div class="form-group input-group">
                                                 <input id="unit_in_month" name="unit_in_month[0]" type="text" required="required" class="form-control allowNumber otherincome"  />
+                                                <span class="input-group-addon">ថ្ងៃ</span>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="form-group">
+                                            <div class="form-group input-group">
                                                 <input id="average_amount" name="average_amount[0]" type="text" required="required" class="form-control allowNumber otherincome"  />
+                                                <span class="input-group-addon">រៀល</span>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="form-group">
+                                            <div class="form-group input-group">
                                                 <input id="monthly_income" name="monthly_income[0]" type="text" required="required" class="form-control allowNumber monthly_income_total" readonly="readonly"/>
+                                                <span class="input-group-addon">រៀល</span>
                                             </div>
+                                        </td>
+                                        <td>
+                                            <input class="btn btn-primary" id="add_rows_4" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
                                         </td>
                                     </tr>
                                 </tbody>
 
                                 <tfoot>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <input class="btn btn-primary" id="add_rows_4" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
+                                        <td colspan="6"><span style="float: right;">សរុបចំណូល ប្រចាំខែ សម្រាប់គ្រួសារទាំងមូល (គិតជារៀល):</span></td>
+                                        <td colspan="2">
+                                            <div class="input-group">
+                                                <input id="total_monthly_income" class="form-control"  type="text" name="total_mon_income" readonly="readonly">
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="5"><span style="float: right;">សរុបចំណូល ប្រចាំខែ សម្រាប់គ្រួសារទាំងមូល (គិតជារៀល):</span></td>
-                                        <td><input id="total_monthly_income" class="form-control" id="pl-pro"  type="text" name="total_mon_income" readonly="readonly"></td>
-                                        <td></td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="5"><span style="float: right;">ចំណូលក្រៅពីកសិកម្មជាមធ្យមប្រចាំខែសម្រាប់មនុស្សម្នាក់​​ (១) :</span></td>
-                                        <td><input class="form-control" id="pl-pro"  type="text" name="total_inc_person" readonly="readonly"></td>
-                                        <td></td>
+                                        <td colspan="6"><span style="float: right;">ចំណូលក្រៅពីកសិកម្មជាមធ្យមប្រចាំខែសម្រាប់មនុស្សម្នាក់​​ (១) :</span></td>
+                                        <td colspan="2">
+                                            <div class="input-group">
+                                                <input class="form-control" id="total_inc_person"  type="text" name="total_inc_person" readonly="readonly">
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
+                                        </td>
                                         <td></td>
                                     </tr>
 
@@ -1548,6 +1555,8 @@
             }
             //in append
             var row_num = $('.new_rows tr').length;
+            $('#income_name_0').empty();
+
            // alert(row_num);
             for(var i=0; i<row_num; i++) {
                 if ($('#family_relationship_'+i).val() == '') {
@@ -1572,6 +1581,10 @@
                 } else {
                     $('.add_education_level_'+i).removeClass("has-error");
                 }
+
+                var nick = $('.nick_name_'+i).val();
+               // alert(nick);
+                $('#income_name_0').append('<option value="'+nick+'">'+nick+'</option>');
             }
 
 
@@ -1596,6 +1609,7 @@
             }else{
                 $('.add_education_level').removeClass("has-error");
             }
+
 
             if (isValid)
                 nextStepWizard.removeAttr('disabled').trigger('click');
@@ -1775,6 +1789,40 @@
         $('div.setup-panel div a.btn-primary').trigger('click');
 
 });
+    /*========================================================================
+     ===============// select hospital code append interview code //=================
+     ==========================================================================*/
+    $("#hospital").select2({
+        allowClear:true,
+        placeholder: 'មន្ទីរពេទ្យ'
+    });
+    $("#hospital").change(function () {
+        var od_code = $('#hospital').val();
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('getInterviewCode') }}",
+            data: {'od_code': od_code},
+            beforeSend: function(){
+                $("#loading").fadeIn();
+            },
+            success: function (data) {
+                // console.log(data);
+                var obj = JSON.parse(data);
+
+
+               // console.log(obj);
+                //$("#interview_code").val('');
+                $("#interview_code").val(obj);
+
+            },
+            complete: function(){
+                $("#loading").fadeOut(1000);
+            },
+            error: function (report){
+                console.log(report);
+            }
+        });
+    });
 
     /*========================================================================
      ===============// select province code append district //=================
@@ -1906,12 +1954,18 @@
 
 
     $('#add_rows').click(function(){ //alert($m_id);
+
         var row = $('.new_rows tr.myrow').length;
+        if(row >= 10){
+            $('#add_rows').hide();
+            alert('allow member family 10 people.');
+            return false;
+        }
         var rowindex = row+1;
 
             var htmlstep2 = '<tr class="myrow">' +
                 '<td>'+rowindex+'</td>' +
-                '<td><div class="form-group"><input  type="text" required="required" class="form-control nick_name" name="nick_name[' + row + ']"/></div></td>' +
+                '<td><div class="form-group"><input  type="text" required="required" class="form-control nick_name_'+row+'" name="nick_name[' + row + ']"/></div></td>' +
                 '<td><div class="form-group"><input maxlength="4" id="dob_' + row + '"  type="text" required="required" class="dob form-control allowNumber" name="dob[' + row + ']"/></div></td>' +
                 '<td><div class="form-group"><input maxlength="3" id="age_' + row + '" type="text" required="required" class="age form-control allowNumber" name="age[' + row + ']"/></div></td>' +
                 '<td>' +
@@ -1943,7 +1997,9 @@
 
 
             $(".new_rows").append(htmlstep2);
-            if(row == 9){ $('#add_rows').remove(); alert('allow member family 10 people.'); }
+
+
+
 
         $(".family_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ទំនាក់ទំនង"});
         $(".occupation").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "មុខរបរ"});
@@ -1975,67 +2031,12 @@
                     $('#age_'+i).val(age);
                 }
             });
-
-
-            //=====================
-            {{--$('.nick_name').on('input', function() {--}}
-
-                {{--//alert(nickname);--}}
-                {{--//$(".new_rows_4").empty();--}}
-                {{--var row_41 = $('.new_rows tr.myrow').length;--}}
-                {{--//alert(row_4);--}}
-                {{--var nickname = $(this).val();--}}
-                {{--$('#income_name_'+i).val(nickname);--}}
-                {{--var rowindex_41 = row_41;--}}
-                {{--var tab_rows_41 ='<tr class="myrow_4">'+--}}
-                    {{--'<td>'+rowindex_41+'</td>'+--}}
-                    {{--'<td>' +--}}
-                    {{--'<div class="form-group">' +--}}
-                    {{--'<input id="income_name_'+i+'" autocomplete="off" name="income_name['+row_41+']" type="text" required="required" class="form-control nick_name"  />' +--}}
-                    {{--'</div>' +--}}
-                    {{--'</td>' +--}}
-                    {{--'<td>' +--}}
-                    {{--'<div class="form-group">' +--}}
-                    {{--'<input autocomplete="off" name="income_age['+row_41+']" type="text" required="required" class="form-control allowNumber"  />' +--}}
-                    {{--'</div>' +--}}
-                    {{--'</td>' +--}}
-                    {{--'<td>' +--}}
-                    {{--'<div class="form-group">' +--}}
-                    {{--'<input autocomplete="off" name="income_occupation['+row_41+']" type="text" required="required" class="form-control"  />' +--}}
-                    {{--'</div>' +--}}
-                    {{--'</td>' +--}}
-                    {{--'<td>' +--}}
-                    {{--'<div class="form-group">' +--}}
-                    {{--'<input autocomplete="off" name="income_unit['+row_41+']" type="text" required="required" class="form-control allowNumber"  />' +--}}
-                    {{--'</div>' +--}}
-                    {{--'</td>' +--}}
-                    {{--'<td>' +--}}
-                    {{--'<div class="form-group">' +--}}
-                    {{--'<input autocomplete="off" id="unit_in_month_'+row_41+'" name="unit_in_month['+row_41+']" type="text" required="required" class="form-control allowNumber otherincome"  />' +--}}
-                    {{--'</div>' +--}}
-                    {{--'</td>' +--}}
-                    {{--'<td>' +--}}
-                    {{--'<div class="form-group">' +--}}
-                    {{--'<input autocomplete="off" id="average_amount_'+row_41+'" name="average_amount['+row_41+']" type="text" required="required" class="form-control allowNumber otherincome"  />' +--}}
-                    {{--'</div>' +--}}
-                    {{--'</td>' +--}}
-                    {{--'<td>' +--}}
-                    {{--'<div class="form-group">' +--}}
-                    {{--'<input autocomplete="off" id="monthly_income_'+row_41+'" name="monthly_income['+row_41+']" type="text" required="required" class="form-control allowNumber monthly_income_total"  readonly="readonly"/>' +--}}
-                    {{--'</div>' +--}}
-                    {{--'</td>'+--}}
-                    {{--'<td style="text-align:center;"><a id="other_income_'+row_41+'" class="remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+--}}
-                    {{--'</tr>';--}}
-                {{--$(".new_rows_4").append(tab_rows_41);--}}
-
-                {{--AllowNumber();--}}
-
-            {{--});--}}
-            //========================
-
-
         }
     });
+
+
+
+
 
 
     $('#age').on('input', function() {
@@ -2063,6 +2064,7 @@
 
     //remove add
     $(".new_rows").on('click','.remove_rows_kh',function(){
+        $('#add_rows').show();
         $(this).parent().parent().remove();
     });
 
@@ -2314,12 +2316,20 @@
     $('#add_rows_4').click(function(){ //alert($m_id);
         var row_4 = $('.new_rows_4 tr.myrow_4').length;
 
+        var row1 = $('.new_rows tr.myrow').length;
+        var row_411 = $('.new_rows_4 tr.myrow_4').length;
+        if(row_411 == row1){
+            $('#add_rows_4').hide();
+            return false;
+        }
+
+
         var rowindex_4 = row_4+1;
         var tab_rows_4 ='<tr class="myrow_4">'+
                 '<td>'+rowindex_4+'</td>'+
                 '<td>' +
                     '<div class="form-group">' +
-                        '<input autocomplete="off" name="income_name['+row_4+']" type="text" required="required" class="form-control"  />' +
+                        '<select class="form-control income_name" id="income_name_'+row_4+'" name="income_name['+row_4+']" required="required"></select>' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
@@ -2334,22 +2344,22 @@
                 '</td>' +
                 '<td>' +
                     '<div class="form-group">' +
-                        '<input autocomplete="off" name="income_unit['+row_4+']" type="text" required="required" class="form-control allowNumber"  />' +
+                        '<input autocomplete="off" name="income_unit['+row_4+']" type="text" required="required" class="form-control allowNumber" placeholder="ថ្ងៃ" />' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
-                    '<div class="form-group">' +
-                        '<input autocomplete="off" id="unit_in_month_'+row_4+'" name="unit_in_month['+row_4+']" type="text" required="required" class="form-control allowNumber otherincome"  />' +
+                    '<div class="form-group input-group">' +
+                        '<input autocomplete="off" id="unit_in_month_'+row_4+'" name="unit_in_month['+row_4+']" type="text" required="required" class="form-control allowNumber otherincome"  /><span class="input-group-addon">ថ្ងៃ</span>' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
-                    '<div class="form-group">' +
-                        '<input autocomplete="off" id="average_amount_'+row_4+'" name="average_amount['+row_4+']" type="text" required="required" class="form-control allowNumber otherincome"  />' +
+                    '<div class="form-group input-group">' +
+                        '<input autocomplete="off" id="average_amount_'+row_4+'" name="average_amount['+row_4+']" type="text" required="required" class="form-control allowNumber otherincome"  /><span class="input-group-addon">រៀល</span>' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
-                    '<div class="form-group">' +
-                        '<input autocomplete="off" id="monthly_income_'+row_4+'" name="monthly_income['+row_4+']" type="text" required="required" class="form-control allowNumber monthly_income_total"  readonly="readonly"/>' +
+                    '<div class="form-group input-group">' +
+                        '<input autocomplete="off" id="monthly_income_'+row_4+'" name="monthly_income['+row_4+']" type="text" required="required" class="form-control allowNumber monthly_income_total"  readonly="readonly"/><span class="input-group-addon">រៀល</span>' +
                     '</div>' +
                 '</td>'+
                 '<td style="text-align:center;"><a id="other_income_'+row_4+'" class="remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
@@ -2357,17 +2367,19 @@
         $(".new_rows_4").append(tab_rows_4);
         AllowNumber();
 
-        var row_num = $('.new_rows_4 tr').length-1;
-        for(var i=0; i<row_num; i++) {
+        var row_num1 = $('.new_rows_4 tr').length-1;
+        for(var ii=0; ii<row_num1; ii++) {
             $('.otherincome').keyup(function () {
                 var sum = 0;
-                var unit_in_month = $('#unit_in_month_'+i).val();
-                var average_amount = $('#average_amount_'+i).val();
-                sum = Number(unit_in_month * average_amount);
-                $("#other_income_"+i).attr({"onclick": "remove_4("+sum+")"});
+                var unit_in_month = $('#unit_in_month_'+ii).val();
+                var average_amount = $('#average_amount_'+ii).val();
 
-                $('#monthly_income_'+i).val(sum);
+                sum = Number(unit_in_month * average_amount);
+                $("#other_income_"+ii).attr({"onclick": "remove_4("+sum+")"});
+
+                $('#monthly_income_'+ii).val(sum);
             });
+
         }
 
         $('.otherincome').keyup(function () {
@@ -2378,20 +2390,53 @@
                     tot += parseInt(arr[i].value);
             }
             document.getElementById('total_monthly_income').value = tot;
-            var total_in_person = 0;
-            var totalperson = parseInt($('#total_people').val());
-            var total_in_person = parseInt(tot/totalperson).toFixed(2);
-            document.getElementById('pl-pro').value = total_in_person;
+
+            var totalperson = $('#total_people').val();
+
+            if(totalperson == null || totalperson == ''){
+                document.getElementById('total_inc_person').value = tot/1;
+            }else{
+                document.getElementById('total_inc_person').value = tot/totalperson;
+            }
         });
+        //click append nick name
+        var row_4s = $('.new_rows_4 tr.myrow_4').length-1;
+
+        for(var k=0;k<row_4s;k++){ $('#income_name_'+row_4).empty();
+            var x=document.getElementById("income_name_"+k);
+            for (var i = 0; i < x.options.length; i++) {
+                if(x.options[i].selected == false){
+                    //alert(x.options[i].value);
+                    $('#income_name_'+row_4).append('<option value="'+x.options[i].value+'">'+x.options[i].value+'</option>');
+               }
+            }
+        }
+
+        $(".income_name").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ប្រភេទសត្វ"});
+
     });
 
     //remove add
     function remove_4(val) {
         var total_costs = parseInt($('#total_monthly_income').val()) - val;
         document.getElementById('total_monthly_income').value = total_costs;
+
+        var totalperson = $('#total_people').val();
+        if(totalperson == null || totalperson == ''){
+            document.getElementById('total_inc_person').value = total_costs/1;
+        }else{
+            document.getElementById('total_inc_person').value = total_costs/totalperson;
+        }
     }
     $(".new_rows_4").on('click','.remove_rows_4',function(){
+        $('#add_rows_4').show();
         $(this).parent().parent().remove();
+    });
+
+    $("#income_name_0").select2({
+        minimumResultsForSearch: -1,
+        allowClear:true,
+        placeholder: 'ឈ្មោះសមាជិក'
     });
 
     $('.otherincome').keyup(function () {
@@ -2411,18 +2456,24 @@
                 tot += parseInt(arr[i].value);
         }
         document.getElementById('total_monthly_income').value = tot;
-        var total_in_person = 0;
-        var totalperson = parseInt($('#total_person').val());
-        var total_in_person = parseInt(tot/totalperson).toFixed(2);
-        document.getElementById('pl-pro').value = total_in_person;
+        var totalperson = $('#total_people').val();
+       // alert(totalperson);
+        if(totalperson == null || totalperson == ''){
+            document.getElementById('total_inc_person').value = tot/1;
+        }else{
+            document.getElementById('total_inc_person').value = tot/totalperson;
+        }
     });
 
     $('#total_people').keyup(function () {
-        var total_in_person = 0;
-        var tot = parseInt($('#total_monthly_income').val());
-        var totalperson = parseInt($('#total_person').val());
-        var total_in_person = parseInt(tot/totalperson).toFixed(2);
-        document.getElementById('pl-pro').value = total_in_person;
+        var tot = $('#total_monthly_income').val();
+        var totalperson = $(this).val();
+
+        if(tot == null || tot == '') {
+            document.getElementById('total_inc_person').value = '';
+        }else{
+            document.getElementById('total_inc_person').value = tot/totalperson;
+        }
     });
 
 

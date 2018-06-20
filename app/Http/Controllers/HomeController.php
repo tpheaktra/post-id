@@ -58,7 +58,7 @@ class HomeController extends Controller
             $interview_code= auth::user()->province.'-'.date('ymd').$check[0]->id;
         }
 
-
+        $hospital      = Helpers::getHospital();
         $provinces     = Helpers::getProvince();
         $relationship  = RelationshipModel::all();
         $gender        = Helpers::getGender();
@@ -118,7 +118,7 @@ group by gi.interview_code order by gi.id desc");
 
 
 
-        return view('home',compact('relationship',
+        return view('home',compact('hospital','relationship',
             'provinces','gender','household',
             'homePrepar','condition_house','question','electricgrid',
             'landAgricultural','loan','family','occupation','education_level',
@@ -141,6 +141,19 @@ group by gi.interview_code order by gi.id desc");
         $gender = Helpers::getGender();
         return view('view',compact('gender','patient'));
     }
+
+    /*
+     * get data with ajax
+     */
+    public function getInterviewCode(request $request){
+        $od_code = $request->od_code;
+        $query = Helpers::getInterviewCode($od_code);
+        $check = DB::select("SELECT count(*) as id FROM general_information gi where gi.od_code=".$od_code);
+        $interview_code= $check[0]->id + 1;
+        echo  json_encode($query[0]->shortcut.'/'.date('y m d').'/0'.$interview_code);
+
+    }
+
     /*
      * get data with ajax
      */
@@ -168,32 +181,16 @@ group by gi.interview_code order by gi.id desc");
 
 
     public function insert(request $request){
-         $code  = $request->g_province;
-         $od_id = $request->g_district;
 
-        $getOD = DB::connection("mysql2")->select("select name_en from districts where code='$od_id'");
-        $od_name=$getOD[0]->name_en;
-        $od = DB::connection("mysql2")
-            ->select("select count(*) as count,os.shortcut from dev_pmrs_share.od_shortcuts os
-                    inner join dev_pmrs_share.operational_districts od on os.od_code = od.code
-                    where od.province_code='$code' and od.name_en = '$od_name'");
-           if($getOD[0]->name_en >= 0){
-               $od_code = 'N/A';
-           }else{
-               $od_code = $od[0]->shortcut;
-           }
-       // return $province;
-
-        $check = DB::select("SELECT count(*) as count, concat('', lpad(max(id)+1,2,'0')) AS id  FROM general_information");
-
-        if($check[0]->count == 0){
-            $interview_code= $od_code.'-'.date('Ymd').'01';
-        }else{
-            $interview_code= $od_code.'-'.date('Ymd').$check[0]->id;
-        }
+        $od_code = $request->hospital;
+        $query = Helpers::getInterviewCode($od_code);
+        $check = DB::select("SELECT count(*) as id FROM general_information gi where gi.od_code=".$od_code);
+        $check_code= $check[0]->id + 1;
+        $interview_code= $query[0]->shortcut.'/'.date('ymd').'/0'.$check_code;
 
 
         $data = array(
+            'od_code'            => $od_code,
             'interview_code'     =>$interview_code,
             'g_patient'          =>$request->g_patient,
             'g_age'              =>$request->g_age,
