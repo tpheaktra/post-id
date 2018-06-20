@@ -82,14 +82,13 @@
             </style>
             <div class="msg">
                 <div class="add_hide alert alert1 alert-danger alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                    សូមបញ្ជូលព័ត៌មានចាំបាច់!
                 </div>
             </div>
+
             @if(session()->has('success'))
             <div class="msg">
-                <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <div class="add_hide alert alert1 alert-success alert-dismissable">
                     {{ session()->get('success') }}
                 </div>
             </div>

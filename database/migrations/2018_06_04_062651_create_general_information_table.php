@@ -16,6 +16,7 @@ class CreateGeneralInformationTable extends Migration
         Schema::create('general_information', function (Blueprint $table) {
             //genderal information
             $table->increments('id');
+            $table->integer('od_code')->nullable();
             $table->string('interview_code')->nullable();
             $table->string('g_patient')->nullable();
             $table->string('g_age')->nullable();

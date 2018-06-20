@@ -15,8 +15,8 @@ class CreateHouseholdConsumerTable extends Migration
     {
         Schema::create('household_consumer', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('g_situation_family_id')->nullable();
-            $table->string('type_meterial')->nullable();
+            $table->tinyInteger('g_information_id')->nullable();
+            $table->tinyInteger('type_meterial_id')->nullable();
             $table->integer('number_meterial')->nullable();
             $table->integer('market_value_meterial')->nullable();
             $table->integer('total_rail')->nullable();

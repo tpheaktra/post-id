@@ -22,7 +22,7 @@ class GeneralSituationFamilyModel extends Model
         'further_floor_area',
         'total_area',
 
-//        'tolet',
+        'toilet_id',
 //        'tolet_1',
 //        'tolet_2',
 //        'h_build_year_id',
@@ -35,19 +35,18 @@ class GeneralSituationFamilyModel extends Model
 //        'condition_house_id',
 //        'rent_fee',
 //
-//        'q_electric_id',
+          'q_electric_id',
 //        'costs_in_hour',
 //        'number_in_month',
 //        'costs_per_month',
 //        'electric_grid_id',
-//        'go_hospital',
+          'transport_id',
 //
-//        'land_agricultural_id',
-//        'land_name',
-//        'total_land',
-//        'land_farm',
-//        'total_land_farm',
-//        'debt_family_id',
+        'kids_then65',
+        'old_bigger65',
+        'kids_50_then65',
+        'old_50_bigger65',
+        'debt_family_id'
 
     ];
 }

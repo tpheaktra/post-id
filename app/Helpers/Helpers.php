@@ -11,6 +11,25 @@ class Helpers{
 	}
 
 
+    /*
+    * function getProvince
+    */
+    public static function getHospital(){
+        $hospital = DB::connection("mysql2")->select('select '.(Helpers::lang() == 'en' ? 'hf.name_en' : 'hf.name_kh').' AS hospital, hf.od_code, hf.name_kh,os.shortcut from health_facilities hf inner join od_shortcuts os on hf.od_code = os.od_code  order by hf.name_kh ASC');
+        return $hospital;
+    }
+
+
+    /*
+    * function getInterviewCode
+    */
+    public static function getInterviewCode($od_code){
+        $interview = DB::connection("mysql2")
+            ->select("select os.shortcut from health_facilities hf inner join od_shortcuts os on hf.od_code = os.od_code where hf.od_code = '$od_code' limit 1");
+        return $interview;
+    }
+
+
 	/*
 	* function getProvince
 	*/
@@ -184,6 +203,35 @@ class Helpers{
         $tm = DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS animals ,name_kh,id from type_animals');
         return $tm;
     }
+
+
+    /*
+    * function get gender
+    */
+    public static function getTypeTransportation(){
+        $tm = DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS transport ,name_kh,id from type_transportation');
+        return $tm;
+    }
+
+    /*
+    * function get gender
+    */
+    public static function getQuestionTolet(){
+        $tm = DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS tolet ,name_kh,id from question_totel');
+        return $tm;
+    }
+
+
+    /*
+   * function getDistrict
+   */
+//    public static function getOD($code,$od_name){
+//        $province = DB::connection("mysql2")
+//            ->select("select os.shortcut from dev_pmrs_share.od_shortcuts os
+//                    inner join dev_pmrs_share.operational_districts od on os.od_code = od.code
+//                    where od.province_code='$code' and od.name_en = '$od_name'");
+//        return $province;
+//    }
 
 
 

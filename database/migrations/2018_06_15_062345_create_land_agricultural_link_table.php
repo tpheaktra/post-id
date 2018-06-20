@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDebtLoanLinkTable extends Migration
+class CreateLandAgriculturalLinkTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateDebtLoanLinkTable extends Migration
      */
     public function up()
     {
-        Schema::create('debt_loan_link', function (Blueprint $table) {
+        Schema::create('land_agricultural_link', function (Blueprint $table) {
             $table->increments('id');
+            $table->tinyInteger('land_agricultural_id')->nullable();
             $table->tinyInteger('g_information_id')->nullable();
-            $table->integer('loan_id')->nullable();
-            $table->integer('question_id')->nullable();
-            $table->integer('total_debt')->nullable();
+            $table->integer('land_name')->nullable();
+            $table->integer('total_land')->nullable();
+            $table->integer('land_farm')->nullable();
+            $table->integer('total_land_farm')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateDebtLoanLinkTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('debt_loan_link');
+        Schema::dropIfExists('land_agricultural_link');
     }
 }

@@ -8,6 +8,7 @@ class GeneralInformationModel extends Model
 {
     protected $table='general_information';
     protected $fillable = [
+        'od_code',
         'interview_code',
         'g_patient',
         'g_age',

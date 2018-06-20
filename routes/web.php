@@ -20,7 +20,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-
+Route::GET('getInterviewCode',['as'=>'getInterviewCode','uses'=>'HomeController@getInterviewCode']);
 Route::GET('getDistrict',['as'=>'getDistrict','uses'=>'HomeController@getDistrict']);
 Route::GET('getCommune',['as'=>'getCommune','uses'=>'HomeController@getCommune']);
 Route::GET('getVillage',['as'=>'getVillage','uses'=>'HomeController@getVillage']);

@@ -8,8 +8,8 @@ class TypeIncomeModel extends Model
 {
     protected $table='type_income';
     protected $fillable = [
-        'g_situation_family_id',
-        'type_animals',
+        'g_information_id',
+        'type_animals_id',
         'num_animals_big',
         'num_animals_small',
         'note_animals',
