@@ -47,7 +47,7 @@ label{font-weight: 100 !important}
 
 .header .navbar-nav>li>a{ padding: 3px 0px !important }
 .header img{ max-width: 50% }
-.content{ border: 1px solid #DDDDDD; }
+.content{ /*border: 1px solid #DDDDDD;*/ }
 .form-group-post{
     border: 1px solid #DDDDDD;
     float: left;

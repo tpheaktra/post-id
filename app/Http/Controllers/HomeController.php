@@ -109,6 +109,58 @@ class HomeController extends Controller
         $gender = Helpers::getGender();
         return view('view',compact('gender','patient'));
     }
+    public function print($id){
+       $check = DB::select("SELECT count(*) as count, concat('', lpad(max(id)+1,2,'0')) AS id  FROM general_information");
+
+        if($check[0]->count == 0){
+            $interview_code= auth::user()->province.'-'.date('ymd').'01';
+        }else{
+            $interview_code= auth::user()->province.'-'.date('ymd').$check[0]->id;
+        }
+
+
+        $relationship  = RelationshipModel::all();
+        $gender        = Helpers::getGender();
+        $household     = Helpers::getHouseHoldFamily();
+        $homePrepar    = Helpers::getHomePrepar();
+
+        $condition_house  = Helpers::getConditionHouse();
+        $question         = Helpers::getQuestion();
+        $electricgrid     = Helpers::getElectricGird();
+
+        $condition_house = Helpers::getConditionHouse();
+        $question = Helpers::getQuestion();
+        $electricgrid   = Helpers::getElectricGird();
+
+        $landAgricultural = Helpers::getLangAgricultural();
+
+        $loan             = Helpers::getLoan();
+        $family           = Helpers::getFamilyRelation();
+
+
+        $roof_made = Helpers::getRoofmade();
+        $wall_made = Helpers::getWallmade();
+        $house_status = ConditionhouseModel::all();
+
+        $typemeterial = Helpers::getTypeMeterial();
+        $typeanimals = Helpers::getTypeAnimals();
+
+        $question_electric = Helpers::getQuestionElectric();
+         $patient = DB::select("select gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,gi.g_local_village as g_local_village, 
+                p.name_kh as province, d.name_kh as district,c.name_kh as commune, v.name_kh as village from general_information gi
+                inner join member_family mf on gi.id = mf.g_information_id
+                inner join general_situation_family gsf on gi.id = gsf.g_information_id 
+                inner join gender gg on gi.g_sex = gg.id
+                inner join dev_pmrs_share.provinces p on gi.g_province_id = p.code
+                inner join dev_pmrs_share.districts d on gi.g_district_id = d.code
+                inner join dev_pmrs_share.communes c on gi.g_commune_id = c.code
+                inner join dev_pmrs_share.villages v on gi.g_village_id = v.code
+               where gi.id ='$id' group by gi.id order by gi.id desc 
+            ");
+        return view('print',compact('household','homePrepar','condition_house','question','electricgrid',
+            'landAgricultural','landAgricultural','loan','family','roof_made','wall_made','house_status',
+            'question_electric','typemeterial','typeanimals','patient'))->with('interview_code',$interview_code);
+    }
     /*
      * get data with ajax
      */
