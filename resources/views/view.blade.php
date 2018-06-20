@@ -23,7 +23,7 @@
 	                                        <input maxlength="100" name="interview_code" type="text" required="required" class="form-control" value="{{$value->interview_code}}" disabled/>
 	                                    </div>  
 	                                </td>
-	                            </tr> 
+	                            </tr>
 	                        </table>
                     	</div>
 
@@ -130,15 +130,12 @@
 	                  <div class="col-md-12">
 	                  	<h4>1.អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ</h4>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
@@ -148,15 +145,12 @@
 	                  <div class="col-md-12">
 	                  	<h4>2.បង្គន់អនាម័យ (ចាក់ទឹក/ស្ងួត)</h4>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
@@ -168,60 +162,48 @@
 	                  	<p>- 3A   គ្រួសារដែលរស់នៅផ្ទះផ្ទាល់ខ្លួន ឬស្នាក់នៅជាមួយអ្នកដ៏ទៃ</p>
 	                  	<p>- 3A 1 : ស្ថានភាពដំបូលផ្ទះ (តើដំបូលផ្ទះសង់ពីអ្វី?)</p>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
 	                  	<p>- 3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ (សម្រាប់គ្រួសារដែលរស់នៅផ្ទាស់ខ្លួនតែប៉ុណ្ណោះ)</p>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
 	                  	<p>- 3A 3 : ស្ថានភាពទូទៅរបស់ផ្ទះ </p>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
 	                  	<p>- 3B   គ្រួសារដែលនៅផ្ទះជួលគេ     តម្លៃជួលផ្ទះ (ប្រើសម្រាប់តែគ្រួសារដែលជួលផ្ទះគេ)</p>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
@@ -231,15 +213,12 @@
 	                  <div class="col-md-12">
 	                  	<h4>4.ទ្រព្យសម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិចរបស់គ្រួសារ </h4>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
@@ -251,15 +230,12 @@
 	                  	<p>- 5A.  គ្រួសារដែលបានតបណ្តាញអគ្គីសនីប្រើប្រាស់ </p>
 	                  	
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
@@ -267,15 +243,12 @@
 	                  	<p>- 5B. គ្រួសារដែលមិនបានតបណ្តាញអគ្គីសនីប្រើប្រាស់</p>
 	                  	
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
@@ -286,15 +259,12 @@
 	                  	<h4>6.អំពីយានជំនិះរបស់គ្រួសារ</h4>
 	                  	
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
@@ -306,61 +276,49 @@
 	                  	<p>- 7.A.    ចំណូលសម្រាប់គ្រួសារដែលមានដី ឬ មានចំណូលពីកសិកម្ម</p>
 	                  	<p>- 7.A.1   ការចិញ្ចឹមសត្វ</p>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
 	                  	<p>- 7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</p>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
 	                  	<p>- 7.A.2 B  ផ្ទៃដីកសិកម្ម មិនមែនជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</p>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
-	                  	<P>- 7.B.1 ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមានចំណូលពីសកម្មភាពកសិកម្ម</P>
+	                  	<P>- 7.B.1   ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមានចំណូលពីសកម្មភាពកសិកម្ម</P>
 	                  	<p>(ប្រាក់ចំណូលប្រចាំខែ  ចំណូលមធ្យមប្រចាំខែរបស់សមាជិកគ្រួសារម្នាក់ៗ)</p>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
@@ -368,30 +326,24 @@
 	                  	<P>- 7.B.2  ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្ម</P>
 	                  	<p>(ប្រាក់ចំណូលប្រចាំខែ  ចំណូលមធ្យមប្រចាំខែរបស់សមាជិកគ្រួសារម្នាក់ៗ)</p>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
 	                  	<p>- 7. C កុមារ(អាយុក្រោម 1៨ឆ្នាំ )រកចំណូល</p>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
@@ -401,15 +353,12 @@
 	                  <div class="col-md-12">
 	                  	<h4>8.ជំងឺ ,របួសនិងពិការភាព</h4>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
@@ -419,15 +368,12 @@
 	                  <div class="col-md-12">
 	                  	<h4>9. បំណុលរបស់គ្រួសារ</h4>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
@@ -437,15 +383,12 @@
 	                  <div class="col-md-12">
 	                  	<h4>10.  ការអប់រំ (មើលចម្លើយនៅក្នុងតារាងផ្នែក ខ)</h4>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
@@ -455,15 +398,12 @@
 	                  <div class="col-md-12">
 	                  	<h4>11. វ័យពលកម្ម (ចន្លោះពី1៨ឆ្នាំដល់៦៥ឆ្នាំ) </h4>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc;" border="1">
+			                  	<table class="table" style="width: 25% !important; border: 1px solid #ccc;">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th>ផ្ទៃក្រឡា</th>
-	                    				<th>ពិន្ទុ</th>
+			                  			<th colspan="2">លិទ្ទផលពិន្ទុនៃការវាយតម្លៃ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><label>ចំនួនពិន្ទុ​ :</label></td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
