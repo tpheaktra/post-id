@@ -23,7 +23,7 @@
 	                                        <input maxlength="100" name="interview_code" type="text" required="required" class="form-control" value="{{$value->interview_code}}" disabled/>
 	                                    </div>  
 	                                </td>
-	                            </tr>
+	                            </tr> 
 	                        </table>
                     	</div>
 
