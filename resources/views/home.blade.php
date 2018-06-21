@@ -312,7 +312,7 @@
                     </div>
                     <div class="col-sm-12"><hr> </div>
                     <div class="col-sm-12">
-                        <a class="btn btn-default pull-left print-link1"><img src="{{asset('images/Printer.png')}}" width="30"></a>
+                        <!-- <a class="btn btn-default pull-left print-link1"><img src="" width="30"></a> -->
                         <button  class="btn btn-primary nextBtn pull-right" type="button">រក្សាទុកនិងជំហានបន្ទាប់</button>
                     </div>
                 </div>
@@ -594,7 +594,6 @@
                        <div class="col-sm-12">
                             <h4>  គ.២ តើ​មាន​មនុស្សសរុប​ចំនួន​ប៉ុន្មាន​នាក់ រស់​នៅក្នុងផ្ទះដែលអ្នកស្នាក់នៅ
                                 <a data-toggle="tooltip" title=" រាប់ទាំង​សមាជិក​គ្រួសារ និង​អ្នកផ្សេង">?</a></h4>
-
                             <div class="col-sm-6">
                                 <table width="100%">
                                     <tr>
@@ -609,7 +608,6 @@
                                 </table>
                             </div>
                         </div>
-
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
                             <h4> គ.៣ តើ​ផ្ទៃ​ក្រឡា​ទីលំនៅរបស់ក្រុម​គ្រួសារ ​មាន​ចំនួន​ប៉ុន្មាន​ម៉ែត្រ​ក្រឡា​?​</h4>
@@ -1072,14 +1070,10 @@
                                 </tr>
                                 </tbody>
                             </table>
-
                     </div>
-
-
 
                     <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
-
                             <h4>គ.១២.១.២​)ដីកសិកម្ម</h4>
                             <p>មាន​ដីកសិកម្ម ឬ​ទេ ?</p>
                             <ul class="li-none">
@@ -1089,7 +1083,6 @@
                                     </li>
                                 @endforeach
                             </ul>
-
                             <script>
                                 $('.land').click(function () {
                                     var land = $('input[name=land]:checked').val();
@@ -1138,9 +1131,6 @@
                             {{--<p>ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា)</p>--}}
                             <div class="col-sm-12" id="show-land"></div>
                         </div>
-
-
-
 
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
@@ -1342,7 +1332,7 @@
                 <td>{{$value->g_phone}}  </td>
                 <td>{{$value->interview_code}}  </td>
                 <!-- data-toggle="collapse" data-target="#accordion" class="clickable" -->
-                <td><a href="{{route('view.data',$value->id)}}"><i class="fa fa-eye"></i></a> | <a href=""><i class="fa fa-edit"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
+                <td><a href="{{route('view.data',$value->id)}}"><i class="fa fa-eye"></i></a> | <a href=""><i class="fa fa-edit"></i></a> | <a href="{{route('print.data',$value->id)}}"><i class="fa fa-print"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
             </tr>
             @endforeach
             <tr>

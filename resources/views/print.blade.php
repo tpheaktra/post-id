@@ -676,9 +676,7 @@
                             <div class="col-sm-12" id="home-rent"></div>
                             <div>
                                 <div class="col-sm-12">
-                                   <div class="row">
-                                       <h4>គ.៩) ទ្រព្យ​សម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិច​របស់​គ្រួសារ</h4>
-                                   </div>
+                                    <h4>គ.៩) ទ្រព្យ​សម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិច​របស់​គ្រួសារ</h4>
                                     <table class="tb_grid table" width="100%">
                                         <thead>
                                             <tr>
