@@ -1955,9 +1955,9 @@
 
             var htmlstep2 = '<tr class="myrow">' +
                 '<td>'+rowindex+'</td>' +
-                '<td><div class="form-group"><input  type="text" required="required" class="form-control nick_name_'+row+'" name="nick_name[' + row + ']"/></div></td>' +
-                '<td><div class="form-group"><input maxlength="4" id="dob_' + row + '"  type="text" required="required" class="dob form-control allowNumber" name="dob[' + row + ']"/></div></td>' +
-                '<td><div class="form-group"><input maxlength="3" id="age_' + row + '" type="text" required="required" class="age form-control allowNumber" name="age[' + row + ']"/></div></td>' +
+                '<td><div class="form-group"><input autocomplete="off" type="text" required="required" class="form-control nick_name_'+row+'" name="nick_name[' + row + ']"/></div></td>' +
+                '<td><div class="form-group"><input autocomplete="off" maxlength="4" id="dob_' + row + '"  type="text" required="required" class="dob form-control allowNumber" name="dob[' + row + ']"/></div></td>' +
+                '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + row + '" type="text" required="required" class="age form-control allowNumber" name="age[' + row + ']"/></div></td>' +
                 '<td>' +
                 '<div class="form-group add_relationship_' + row + '">' +
                 '<select id="family_relationship_' + row + '" class="form-control family_relationship"  name="family_relationship[' + row + ']" required="required">' +
@@ -2100,8 +2100,8 @@
                     '<select id="type_meterial_'+row_1+'" class="form-control type_meterial" id="type_meterial" name="type_meterial['+row_1+']" required="required"> <option></option>@foreach($typemeterial as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
                 '</div>'+
             '</td>'+
-            '<td><div class="form-group"><input id="number_meterial_'+row_1+'" type="text" required="required" class="form-control allowNumber meterial" name="number_meterial['+row_1+']"/></div></td>'+
-            '<td><div class="form-group"><input id="market_value_meterial_'+row_1+'" type="text" required="required" class="form-control allowNumber meterial" name="market_value_meterial['+row_1+']"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" id="number_meterial_'+row_1+'" type="text" required="required" class="form-control allowNumber meterial" name="number_meterial['+row_1+']"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" id="market_value_meterial_'+row_1+'" type="text" required="required" class="form-control allowNumber meterial" name="market_value_meterial['+row_1+']"/></div></td>'+
             '<td><div class="form-group input-group"><input id="total_rail_meterial_'+row_1+'" type="text" required="required" class="form-control totalallowNumber_meterial" name="total_rail_meterial['+row_1+']" readonly="readonly"/><span class="input-group-addon">រៀល</span></div></div></td>'+
             '<td style="text-align:center;"><a id="meterial_'+row_1+'" class="remove_rows_1" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
