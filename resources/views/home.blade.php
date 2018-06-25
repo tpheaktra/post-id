@@ -385,9 +385,9 @@
                                             </select>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td style="text-align:center;">
                                         <span>
-                                            <input type="button" class="btn btn-primary" id="add_rows" style="float:right;" value="បញ្ចូលបន្ថែម">
+                                            <a  class="btn btn-primary" id="add_rows" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
                                         </span>
                                     </td>
                                 </tr>
@@ -905,8 +905,10 @@
                                                         <span class="input-group-addon">រៀល</span>
                                                     </div>
                                                 </td>
-                                                <td>
-                                                    <input class="btn btn-primary" id="add_rows_1" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
+                                                <td style="text-align:center;">
+                                                    <span>
+                                                        <a  class="btn btn-primary" id="add_rows_1" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
+                                                    </span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -1055,7 +1057,11 @@
                                             <span class="input-group-addon">រៀល</span>
                                         </div>
                                     </td>
-                                    <td><input class="btn btn-primary" id="add_rows_2" style="float:right;" value="បញ្ចូលបន្ថែម" type="button"></td>
+                                    <td style="text-align:center;">
+                                        <span>
+                                            <a  class="btn btn-primary" id="add_rows_2" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
+                                        </span>
+                                    </td>
                                 </tr>
                                 </tbody>
 
@@ -1125,7 +1131,11 @@
                                             <input name="note_animals[0]" type="text"  class="form-control"  />
                                         </div>
                                     </td>
-                                    <td><input class="btn btn-primary" id="add_rows_3" style="float:right;" value="បញ្ចូលបន្ថែម" type="button"></td>
+                                    <td style="text-align:center;">
+                                        <span>
+                                            <a  class="btn btn-primary" id="add_rows_3" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
+                                        </span>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -1257,8 +1267,10 @@
                                                 <span class="input-group-addon">រៀល</span>
                                             </div>
                                         </td>
-                                        <td>
-                                            <input class="btn btn-primary" id="add_rows_4" style="float:right;" value="បញ្ចូលបន្ថែម" type="button">
+                                        <td style="text-align:center;">
+                                            <span>
+                                                <a  class="btn btn-primary" id="add_rows_4" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
+                                            </span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -1981,7 +1993,7 @@
                 '</select>' +
                 '</div>' +
                 '</td>' +
-                '<td style="text-align:center;"><a status="0" class="remove_rows_kh" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>' +
+                '<td style="text-align:center;"><a status="0" class="btn remove_rows_kh" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>' +
                 '</tr>';
             $(".new_rows").append(htmlstep2);
         dataRow++;
@@ -2113,7 +2125,7 @@
             '<td><div class="form-group"><input autocomplete="off" id="number_meterial_'+row_1+'" type="text" required="required" class="number_meterial form-control allowNumber meterial" name="number_meterial['+row_1+']"/></div></td>'+
             '<td><div class="form-group"><input autocomplete="off" id="market_value_meterial_'+row_1+'" type="text" required="required"class="market_value_meterial form-control allowNumber meterial" name="market_value_meterial['+row_1+']"/></div></td>'+
             '<td><div class="form-group input-group"><input id="total_rail_meterial_'+row_1+'" type="text" required="required" class="total_rail_meterial form-control totalallowNumber_meterial" name="total_rail_meterial['+row_1+']" readonly="readonly"/><span class="input-group-addon">រៀល</span></div></div></td>'+
-            '<td style="text-align:center;"><a id="meterial_'+row_1+'" class="remove_rows_1" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+            '<td style="text-align:center;"><a id="meterial_'+row_1+'" class="btn remove_rows_1" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
         $(".new_rows_1").append(tab_rows_1);
         dataRow_meterial++;
@@ -2227,7 +2239,7 @@
             '<td><div class="form-group"><input autocomplete="off" id="number_vehicle_'+row_2+'" type="text" required="required" class="number_vehicle form-control allowNumber vehicle" name="number_vehicle['+row_2+']"/></div></td>'+
             '<td><div class="form-group input-group"><input autocomplete="off" id="market_value_vehicle_'+row_2+'" type="text" required="required" class="market_value_vehicle form-control allowNumber vehicle" name="market_value_vehicle['+row_2+']"/><span class="input-group-addon">រៀល</span></div></td>'+
             '<td><div class="form-group input-group"><input autocomplete="off" id="total_rail_vehicle_'+row_2+'" type="text" required="required" class="total_rail_vehicle form-control totalallowNumber_vehicle" name="total_rail_vehicle['+row_2+']"/ readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
-            '<td style="text-align:center;"><a id="vehicle_'+row_2+'" class="remove_rows_2" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+            '<td style="text-align:center;"><a id="vehicle_'+row_2+'" class="btn remove_rows_2" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
 
         $(".new_rows_2").append(html);
@@ -2322,7 +2334,7 @@
             '<td><div class="form-group"><input autocomplete="off" type="text" required="required" class="num_animals_big form-control allowNumber" name="num_animals_big['+row_3+']"/></div></td>'+
             '<td><div class="form-group"><input autocomplete="off" type="text" class="num_animals_small form-control allowNumber" name="num_animals_small['+row_3+']"/></div></td>'+
             '<td><div class="form-group"><input autocomplete="off" type="text" class="note_animals form-control allowNumber" name="note_animals['+row_3+']"/></div></td>'+
-            '<td style="text-align:center;"><a status="0" class="remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+            '<td style="text-align:center;"><a status="0" class="btn remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
         $(".new_rows_3").append(tab_rows_3);
         dataRow_income++;
@@ -2411,7 +2423,7 @@
                         '<input autocomplete="off" id="monthly_income_'+row_4+'" name="monthly_income['+row_4+']" type="text" required="required" class="form-control allowNumber monthly_income_total"  readonly="readonly"/><span class="input-group-addon">រៀល</span>' +
                     '</div>' +
                 '</td>'+
-                '<td style="text-align:center;"><a id="other_income_'+row_4+'" class="remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+                '<td style="text-align:center;"><a id="other_income_'+row_4+'" class="btn remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
         $(".new_rows_4").append(tab_rows_4);
         dataRow_other_income++;
