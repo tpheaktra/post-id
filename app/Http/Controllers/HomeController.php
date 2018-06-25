@@ -273,6 +273,8 @@ class HomeController extends Controller
             $hlink1 = array(
                 'household_family_id' =>$household_link,
                 'g_information_id'    =>$gn_info->id,
+                'h_build_year'        =>$request->h_build_year,
+                'home_prepare_id'     =>$request->home_prepare,
                 'roof_made_id'        =>$request->roof_made,
                 'roof_status_id'      =>$request->roof_status,
                 'walls_made_id'       =>$request->walls_made,
@@ -356,7 +358,7 @@ class HomeController extends Controller
                 'toilet_id'        =>$q_toilet,
                 'g_information_id' =>$gn_info->id,
                 'toilet_1'         =>$request->tolet_1,
-                'toilet_2'         =>$request->toilet_2
+                'toilet_2'         =>$request->tolet_2
             );
             TypeToiletLinkModel::create($qt);
         }
