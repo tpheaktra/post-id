@@ -217,7 +217,10 @@ class HomeController extends Controller
 
 
     public function insert(request $request){
+        DB::connection();
+        DB::beginTransaction();
 
+        try {
         $od_code = $request->hospital;
         $query = Helpers::getInterviewCode($od_code);
         $check = DB::select("SELECT count(*) as id FROM general_information gi where gi.od_code=".$od_code);
@@ -431,7 +434,7 @@ class HomeController extends Controller
                 'unit_in_month'     => $request->unit_in_month[$key],
                 'average_amount'    => $request->average_amount[$key],
                 'monthly_income'    => $request->monthly_income[$key],
-                'total_mon_income'  => $request->total_mon_income[$key],
+                'total_mon_income'  => $request->total_mon_income,
                 'total_inc_person'  => $request->total_inc_person,
             );
             OtherIncomeModel::create($other_income);
@@ -449,7 +452,13 @@ class HomeController extends Controller
                 'total_debt'            => $request->total_debt,
             );
             DebtLoanLinkModel::create($debt);
-        return back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
+            DB::commit();
+            return back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->errorResponse($e->getMessage(), self::HTTP_STATUS_SERVER_ERROR);
+        }
+
     }
 
 }
