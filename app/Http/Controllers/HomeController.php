@@ -89,32 +89,32 @@ class HomeController extends Controller
         $question_electric = Helpers::getQuestionElectric();
         $question_totel = Helpers::getQuestionTolet();
         $view = DB::select("select 
-gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,
+        gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,
 
-   #household
-	hf.name_kh as hosehold,hfl.institutions_name,hfl.instatutions_phone,
-	rm.name_kh as root_made,ch.name_kh as root_status,
-	wm.name_kh as walls_made,ch1.name_kh as walls_status,
-	hrpl.house_rent_price
-	
- from general_information gi
-inner join member_family mf on gi.id = mf.g_information_id
-inner join general_situation_family gsf on gi.id = gsf.g_information_id 
-inner join gender gg on gi.g_sex = gg.id
-
-
-left join household_family_link hfl on gsf.g_information_id = hfl.g_information_id
-left join household_root_link hrl on gsf.g_information_id = hrl.g_information_id
-left join household_rent_price_link hrpl on gsf.g_information_id = hrpl.g_information_id
-left join household_family hf on hfl.household_family_id = hf.id or hrl.household_family_id = hf.id or hrpl.household_family_id = hf.id
-
-left join roof_made rm on hrl.roof_made_id = rm.id
-left join wall_made wm on hrl.walls_made_id = wm.id
-left join condition_house ch on hrl.roof_status_id = ch.id 
-left join condition_house ch1 on hrl.walls_status_id = ch1.id
+           #household
+        	hf.name_kh as hosehold,hfl.institutions_name,hfl.instatutions_phone,
+        	rm.name_kh as root_made,ch.name_kh as root_status,
+        	wm.name_kh as walls_made,ch1.name_kh as walls_status,
+        	hrpl.house_rent_price
+        	
+         from general_information gi
+        inner join member_family mf on gi.id = mf.g_information_id
+        inner join general_situation_family gsf on gi.id = gsf.g_information_id 
+        inner join gender gg on gi.g_sex = gg.id
 
 
-group by gi.interview_code order by gi.id desc");
+        left join household_family_link hfl on gsf.g_information_id = hfl.g_information_id
+        left join household_root_link hrl on gsf.g_information_id = hrl.g_information_id
+        left join household_rent_price_link hrpl on gsf.g_information_id = hrpl.g_information_id
+        left join household_family hf on hfl.household_family_id = hf.id or hrl.household_family_id = hf.id or hrpl.household_family_id = hf.id
+
+        left join roof_made rm on hrl.roof_made_id = rm.id
+        left join wall_made wm on hrl.walls_made_id = wm.id
+        left join condition_house ch on hrl.roof_status_id = ch.id 
+        left join condition_house ch1 on hrl.walls_status_id = ch1.id
+
+
+        group by gi.interview_code order by gi.id desc");
 
 
 
@@ -142,55 +142,40 @@ group by gi.interview_code order by gi.id desc");
         return view('view',compact('gender','patient'));
     }
     public function print($id){
-      $check = DB::select("SELECT count(*) as count, concat('', lpad(max(id)+1,2,'0')) AS id  FROM general_information");
-
-      if($check[0]->count == 0){
-            $interview_code= auth::user()->province.'-'.date('ymd').'01';
-        }else{
-            $interview_code= auth::user()->province.'-'.date('ymd').$check[0]->id;
-        }
-
-
-        $relationship  = RelationshipModel::all();
-        $gender        = Helpers::getGender();
-        $household     = Helpers::getHouseHoldFamily();
-        $homePrepar    = Helpers::getHomePrepar();
-
-        $condition_house  = Helpers::getConditionHouse();
-        $question         = Helpers::getQuestion();
-        $electricgrid     = Helpers::getElectricGird();
-
-        $condition_house = Helpers::getConditionHouse();
-        $question = Helpers::getQuestion();
-        $electricgrid   = Helpers::getElectricGird();
-
-        $landAgricultural = Helpers::getLangAgricultural();
-
-        $loan             = Helpers::getLoan();
-        $family           = Helpers::getFamilyRelation();
-
-
-        $roof_made = Helpers::getRoofmade();
-        $wall_made = Helpers::getWallmade();
-        $house_status = ConditionhouseModel::all();
- 
-        $typemeterial = Helpers::getTypeMeterial();
-        $typeanimals = Helpers::getTypeAnimals();
-        $question_electric = Helpers::getQuestionElectric();
-        $patient = DB::select("select gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,gi.g_local_village as g_local_village, 
-               p.name_kh as province, d.name_kh as district,c.name_kh as commune, v.name_kh as village from general_information gi
+            $patient = DB::select("select 
+            #step1
+            gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,
+            gi.inter_patient,gi.inter_age,inter.name_kh as inter_sex,gi.inter_phone,rp.name_kh as inter_relationship,
+            gi.fa_patient,gi.fa_age,fa.name_kh as fa_sex,gi.fa_phone,fr.name_kh as fa_relationship,
+            gi.g_local_village as g_local_village, 
+            p.name_kh as province, d.name_kh as district,c.name_kh as commune, v.name_kh as village,
+            mff.nick_name,mff.dob,mff.age,rmp.name_kh as m_relationship,oc.name_kh as m_occupation,el.name_kh as m_education
+             from general_information gi
                 inner join member_family mf on gi.id = mf.g_information_id
-               inner join general_situation_family gsf on gi.id = gsf.g_information_id 
+                inner join general_situation_family gsf on gi.id = gsf.g_information_id 
                 inner join gender gg on gi.g_sex = gg.id
                 inner join dev_pmrs_share.provinces p on gi.g_province_id = p.code
                 inner join dev_pmrs_share.districts d on gi.g_district_id = d.code
                 inner join dev_pmrs_share.communes c on gi.g_commune_id = c.code
                 inner join dev_pmrs_share.villages v on gi.g_village_id = v.code
-               where gi.id ='$id' group by gi.id order by gi.id desc 
-            ");
-        return view('print',compact('household','homePrepar','condition_house','question','electricgrid',
-            'landAgricultural','landAgricultural','loan','family','roof_made','wall_made','house_status',
-            'question_electric','typemeterial','typeanimals','patient'))->with('interview_code',$interview_code);
+              #interview
+              inner join relationship rp on gi.inter_relationship_id = rp.id
+              inner join gender inter on gi.inter_sex = inter.id
+              #family
+              inner join family_relation fr on gi.fa_relationship_id = fr.id
+              inner join gender fa on gi.fa_sex = fa.id
+              
+              #step2 member family
+              inner join member_family mff on gi.id = mff.g_information_id
+              inner join relationship rmp on mff.family_relationship_id = rmp.id
+              inner join occupation oc on mff.occupation_id = oc.id
+              inner join education_level el on mff.education_level_id = el.id
+
+              #step3
+              inner join general_situation_family gesf on gi.id = gesf.g_information_id
+              where gi.id = '$id'
+            group by mff.id ");
+        return view('print',compact('patient'));
 
     }
     /*
