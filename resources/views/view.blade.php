@@ -9,7 +9,7 @@
                     <div class="col-sm-12" style="padding: 0 !important;"><hr> </div>
                 <div class="col-md-12 form-group-post">
                     <div class="col-sm-12"><p>
-                    	<div class="col-sm-12"><h4 style="text-decoration: none;">ព័ត៌មានទូទៅ</h4><hr></div>
+                    	<div class="col-sm-12" style="padding: 0 !important;"><h4 style="text-decoration: none;">ព័ត៌មានទូទៅ</h4><hr></div>
                     </p>
                     	@foreach($patient as $key=>$value) 
                     	<div class="col-sm-6"></div>
@@ -128,7 +128,8 @@
 	                  <div class="col-sm-12"><hr></div>
 	                  <div class="col-md-12">
 	                  	<h4>1.អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ</h4>
-	                  		<p style="padding: 5px;">
+	                  	<p>ទិន្នន័យបានមកពី :​ តារា  ខ) ចំនួនសមាជិកគ្រួសារ និង គ.៣) ផ្ទៃក្រឡាទីលំនៅ</p>
+	                  		<p style="padding: 2px;">
 			                  	<table class="table" style="border: 1px solid #ccc !important;">
 			                  		<tr style="background: #f9f3f3;">
 	                    				<th>ចំពោះចំនួនមនុស្ស</th>
@@ -146,6 +147,7 @@
 	                  <div class="col-sm-12"><hr></div>
 	                  <div class="col-md-12">
 	                  	<h4>2.បង្គន់អនាម័យ (ចាក់ទឹក/ស្ងួត)</h4>
+	                  		<p>ទិន្នន័យបានមកពី :​ តារា</p>
 	                  		<p style="padding: 5px;">
 			                  	<table class="table" style="border: 1px solid #ccc !important;">
 			                  		<tr style="background: #f9f3f3;">

@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-
 <!------ Include the above in your HEAD tag ---------->
 <div class="container content" id="div1">
     <h3 style="text-align: center;"><b>កំរងសំណួរអត្តសញ្ញាណកម្មគ្រួសារក្រីក្រនៅមន្ទីរពេទ្យ</b></h3>
@@ -132,7 +130,6 @@
 	                        </table>
 	                    </div>
 	                </div>
-	                  @endforeach
                    <div class="col-sm-12"><hr> </div>
                    <div class="col-sm-12">
                         <h4> ក.២ ព័ត៌មានអំពីអ្នកដែលផ្តល់ចំលើយ(អ្នកដែលបានសំភាសន៏)</h4>
@@ -143,7 +140,7 @@
                                 <td><label class="control-label">ឈ្មោះ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input name="" value="" type="text" class="form-control" disabled>
+                                        <input name="" value="{{$value->inter_patient}}" type="text" class="form-control" disabled>
                                     </div>     
                                 </td>
                             </tr>
@@ -151,7 +148,7 @@
                                 <td><label class="control-label"> ភេទ : </label></td>
                                 <td>
                                    <div class="form-group"  id="g_sex">
-                                        <input name="" value="" type="text" class="form-control" disabled>
+                                        <input name="" value="{{$value->inter_sex}}" type="text" class="form-control" disabled>
                                     </div>     
                                 </td>
                             </tr>
@@ -164,7 +161,7 @@
                                 <td><label class="control-label"> អាយុ : </label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input name="" value="" type="text" class="form-control" disabled>
+                                        <input name="" value="{{$value->inter_age}}" type="text" class="form-control" disabled>
                                     </div>     
                                 </td>
                             </tr>
@@ -172,7 +169,7 @@
                                 <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input name="" value="" type="text" class="form-control" disabled>
+                                        <input name="" value="{{$value->inter_phone}}" type="text" class="form-control" disabled>
                                     </div>     
                                 </td>
                             </tr>
@@ -185,7 +182,7 @@
                                 <td width="50%"><label class="control-label">ត្រូវជា(ទំនាក់ទំនងជាមួយមេគ្រួសារ) : </label></td>
                                 <td width="50%">
                                     <div class="form-group inter_relationship">
-                                        <input name="" value="" type="text" class="form-control" disabled>
+                                        <input name="" value="{{$value->inter_relationship}}" type="text" class="form-control" disabled>
                                     </div>
                                 </td>
                             </tr>
@@ -202,14 +199,14 @@
                                 <td><label class="control-label">ឈ្មោះ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input name="" value="" type="text" class="form-control" disabled>
+                                        <input name="" value="{{$value->fa_patient}}" type="text" class="form-control" disabled>
                                     </div>     
                                 </td>
                             </tr>
                             <tr>
                                 <td><label class="control-label"> ភេទ : </label></td>
                                 <td>
-                                   <input name="" value="" type="text" class="form-control" disabled>    
+                                   <input name="" value="{{$value->fa_sex}}" type="text" class="form-control" disabled>    
                                 </td>
                             </tr>
                         </table>
@@ -221,7 +218,7 @@
                                 <td><label class="control-label"> អាយុ : </label></td>
                                 <td>
                                    <div class="form-group">
-                                         <input name="" value="" type="text" class="form-control" disabled>
+                                         <input name="" value="{{$value->fa_age}}" type="text" class="form-control" disabled>
                                     </div>     
                                 </td>
                             </tr>
@@ -229,7 +226,7 @@
                                 <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input name="" value="" type="text" class="form-control" disabled>
+                                        <input name="" value="{{$value->fa_phone}}" type="text" class="form-control" disabled>
                                     </div>     
                                 </td>
                             </tr>
@@ -239,10 +236,10 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="50%"><label class="control-label">ត្រូវជា(ទំនាក់ទំនងជាមួយមេគ្រួសារ) : </label></td>
+                                <td width="50%"><label class="control-label">ត្រូវជា(ទំនាក់ទំនងជា) : </label></td>
                                 <td width="50%">
                                     <div class="form-group fa_relationship">
-                                        <input name="" value="" type="text" class="form-control" disabled>
+                                        <input name="" value="{{$value->fa_relationship}}" type="text" class="form-control" disabled>
                                     </div>
                                 </td>
                             </tr>
@@ -288,22 +285,22 @@
                             <tbody class="new_rows">
                                 <tr class="myrow">
                                     <td>1(មេ)</td>
-                                    <td><div class="form-group"><input name="" value="" type="text" class="form-control" disabled></div></td>
-                                    <td><div class="form-group"><input name="" value="" type="text" class="form-control" disabled></div></td>
-                                    <td><div class="form-group"><input name="" value="" type="text" class="form-control" disabled></div></td>
+                                    <td><div class="form-group"><input name="" value="{{$value->nick_name}}" type="text" class="form-control" disabled></div></td>
+                                    <td><div class="form-group"><input name="" value="{{$value->dob}}" type="text" class="form-control" disabled></div></td>
+                                    <td><div class="form-group"><input name="" value="{{$value->age}}" type="text" class="form-control" disabled></div></td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="" value="" type="text" class="form-control" disabled>
+                                            <input name="" value="{{$value->m_relationship}}" type="text" class="form-control" disabled>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="" value="" type="text" class="form-control" disabled>
+                                            <input name="" value="{{$value->m_occupation}}" type="text" class="form-control" disabled>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="" value="" type="text" class="form-control" disabled>
+                                            <input name="" value="{{$value->m_education}}" type="text" class="form-control" disabled>
                                         </div>
                                     </td>
                                 </tr>
@@ -336,14 +333,12 @@
                             <h4> គ.១ ផ្ទះសម្បែងរបស់ក្រុមគ្រួសារ</h4> 
                             <p>តើពួកគាត់រស់នៅទីកន្លែងណា? (សូម​ជ្រើរើស នៅចំលើយតែមួយ)</p>
                             <ol type="1">
-                                @foreach($household as $key => $h)
                                     <li>
                                         <label>
-                                            <input class="household_family_id" type="radio" name="household_family_id"  value="{{ $h->id }}"> {{$h->name_kh}}
+                                            <input class="household_family_id" type="radio" name="household_family_id"  value="">
                                         </label>
-                                        @if($h->id == 5)<label id="household_family_id"></label>@endif
+                                        <label id="household_family_id"></label>
                                     </li>
-                                @endforeach
                             </ol>
                              <script>
                                  $('.household_family_id').click(function () {
@@ -379,12 +374,7 @@
                                                         '<td><label class="control-label"> ដំបូលធ្វើអំពី : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group ">' +
-                                                                 '<select class="form-control roof_relationship" id="roof_relationship" name="roof_made">' +
-                                                                    '<option></option>' +
-                                                                     '@foreach($roof_made as $keh => $value)' +
-                                                                        '<option value="{{$value->id}}">{{$value->name_kh}}</option>' +
-                                                                     '@endforeach'+
-                                                                 '</select>' +
+                                                                 '<input type="text" class="form-control">' +
                                                              '</div>' +
                                                          '</td>'+
                                                      '</tr>'+
@@ -396,9 +386,7 @@
                                                         '<td><label class="control-label">​ និង​ស្ថានភាព : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group">' +
-                                                                 '<select class="form-control r_status" id="r_status" name="roof_status">' +
-                                                                    '<option></option>@foreach($house_status as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
-                                                                 '</select>' +
+                                                                 '<input type="text" class="form-control">' +
                                                              '</div>' +
                                                          '</td>'+
                                                      '</tr>'+
@@ -415,10 +403,7 @@
                                                         '<td><label class="control-label"> ​ជញ្ជាំងធ្វើអំពី : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group">' +
-                                                                 '<select class="form-control wall_relationship" id="wall_relationship" name="walls_made">' +
-                                                                    '<option></option>' +
-                                                                    '@foreach($wall_made as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
-                                                                 '</select>' +
+                                                                  '<input type="text" class="form-control">' +
                                                              '</div>' +
                                                          '</td>'+
                                                      '</tr>'+
@@ -430,11 +415,8 @@
                                                         '<td><label class="control-label">​​ និង​ស្ថានភាព : </label></td>'+
                                                         '<td>'+
                                                             '<div class="form-group">'+
-                                                                '<select class="form-control h_status" id="h_status" name="walls_status">'+
-                                                                    '<option></option>'+
-                                                                    '@foreach($house_status as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
-                                                                '</select>'+
-                                                                '</div>'+
+                                                                 '<input type="text" class="form-control">' +
+                                                            '</div>'+
                                                         '</td>'+
                                                     '</tr>'+
                                                 '</table>'+
@@ -445,11 +427,7 @@
 
                                          var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>' +
                                              '<ul class="li-none">'+
-                                                 '@foreach($condition_house as $key => $c)' +
-                                                     '<li>' +
-                                                        '<label><input type="radio" name="condition_house" ​ value="{{$c->id}}"> {{$c->name_kh}}</label>' +
-                                                     '</li>' +
-                                                 '@endforeach'+
+                                                  '<input type="text" class="form-control">' +
                                              '</ul>';
                                          $('#general-status').append(generalStatus);
                                      }
@@ -644,12 +622,11 @@
 
                             <h5>- តើធ្លាប់ជួសជុលឬទេ?</h5>
                             <ul class="li-none">
-                                @foreach($homePrepar as $key =>$p)
+                               
                                 <li>
-                                     <label><input class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>
-                                     @if($p->id == 2)<label id="homeyear"></label>@endif
+                                     <label><input class="homeyear" type="radio" name="home_prepare" value=""></label>
+                                     <label id="homeyear"></label>
                                 </li>
-                                @endforeach
                             </ul>
                         </div>
                         <script>
@@ -693,12 +670,7 @@
                                                 <td>1</td>
                                                 <td>
                                                     <div class="form-group">
-                                                        <select class="form-control type_meterial" id="type_meterial" name="type_meterial[0]" required="required">
-                                                            <option></option>
-                                                            @foreach($typemeterial as $keh => $value)
-                                                                <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                            @endforeach
-                                                        </select>
+                                                        <input type="text" class="form-control">
                                                     </div>
                                                 </td>
                                                 <td>
@@ -753,15 +725,11 @@
                             <h4>គ.១០) អគ្គិសនី</h4>
                             <p>តើបានតបណ្តាញអគ្គិសនី (រដ្ឋឬឯកជន) ដែរឬទេ?</p>
                             <ul class="li-none">
-                                @foreach($question_electric as $key => $qe)
                                 <li>
-                                     <label><input class="electric" value="{{$qe->id}}" type="radio" name="q_electric" ​​> {{$qe->name_kh}}</label>
+                                     <label><input class="electric" value="" type="radio" name="q_electric" ​​></label>
                                 </li>
-                                @if($qe->id == 1) <li id="electric_yes"></li> @endif
-                                @if($qe->id == 2) <li id="electric_no"></li> @endif
-                                @endforeach
-                            </ul>
-
+                                 <li id="electric_yes"></li> 
+                                <li id="electric_no"></li> 
                             <script>
                                 $('.electric').click(function () {
                                     var electric = $('input[name=q_electric]:checked').val();
@@ -783,17 +751,13 @@
                                             '</table>');
                                         AllowNumber();
                                     }else if(electric == 2){
-                                        $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul>');
+                                        $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><ul class="li-none"><li><label><input value="" type="radio" name="electric_grid_id" ​​> </label></li></ul>');
                                     }
                                 });
                             </script>
-
                         </div>
-
-
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
-
                             <h4>គ.១១) យានជំនិះជាទ្រព្យសម្បត្តិផ្ទាល់របស់​គ្រួសារ</h4>
                             <div class="col-sm-6">
                                 <table class="table-home">
@@ -801,12 +765,7 @@
                                         <td width="50%"><h5>តើអ្នកប្រើមធ្យោបាយអ្វីមកមន្ទីរពេទ្យ?</h5> </td>
                                         <td width="50%">
                                             <div class="form-group go_hospital">
-                                                <select class="form-control" id="go_hospital" name="go_hospital">
-                                                    <option></option>
-                                                    @foreach($typemeterial as $keh => $value)
-                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                    @endforeach
-                                                </select>
+                                               <input type="text" class="form-control">
                                             </div>
                                         </td>
                                     </tr>
@@ -831,12 +790,7 @@
                                     <td>1</td>
                                     <td>
                                         <div class="form-group">
-                                            <select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle[0]" required="required">
-                                                <option></option>
-                                                @foreach($typemeterial as $keh => $value)
-                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                @endforeach
-                                            </select>
+                                            <input type="text" class="form-control">
                                         </div>
                                     </td>
                                     <td>
@@ -846,7 +800,7 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input id="market_value_vehicle" name="market_value_vehicle[0]" type="text" required="required" class="form-control allowNumber vehicle"  />
+                                            <input id="market_value_vehicle" name="market_value_vehicle[0]" type="text" required="required" class="form-control allowNumber vehicle" />
                                         </div>
                                     </td>
                                     <td>
@@ -909,12 +863,7 @@
                                     <td>1</td>
                                     <td>
                                         <div class="form-group">
-                                            <select class="form-control type_animals" id="type_animals" name="type_animals[0]" required="required">
-                                                <option></option>
-                                                @foreach($typeanimals as $key => $value)
-                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                @endforeach
-                                            </select>
+                                           <input type="text" class="form-control">
                                         </div>
                                     </td>
                                     <td>
@@ -958,11 +907,9 @@
                             <h4>គ.១២.១.២​)ដីកសិកម្ម</h4>
                             <p>មាន​ដីកសិកម្ម ឬ​ទេ ?</p>
                             <ul class="li-none">
-                                @foreach($landAgricultural as $key => $land)
                                     <li>
-                                        <label><input class="land" type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
-                                    </li>
-                                @endforeach
+                                        <label><input class="land" type="radio" name="land" value=""> </label>
+                                    </li>h
                             </ul>
 
                             <script>
@@ -1160,14 +1107,11 @@
                             <h4>គ.១៤) បំណុលគ្រួសារ</h4>
                             <p>តើ​គ្រួសារ​របស់​អ្នក​នៅមាន​បំណុល/​កម្ចី​មិនទាន់​បាន​សង​ដែរ​ឬ​ទេ?</p>
                             <ul class="debt_question_group">
-                                @foreach($loan as $key => $ge)
-                                    <li>
-                                         <label><input class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id"​​>{{ $ge->name_kh }}</label>
-                                        @if($ge->id == 1)<label id="family_debt"></label>@endif
-                                        @if($ge->id == 2)<label id="family_debt1"></label>@endif
-                                    </li>
-                                @endforeach
-
+                                <li>
+                                     <label><input class="family_debt" value="" type="radio" name="family_debt_id"​​></label>
+                                   <label id="family_debt"></label>
+                                    <label id="family_debt1"></label>
+                                </li>
                             </ul>
                         </div>
 
@@ -1177,44 +1121,72 @@
                             $('#family_debt').empty();
                             $('#family_debt1').empty();
                             if(family_debt == 1){
-                                $('#family_debt').append('<ol class="debt_question">@foreach($question as $key=>$gg)<li><label><input value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}</label></li>@endforeach</ol>');
+                                $('#family_debt').append('<ol class="debt_question"><li><label><input value="" type="radio" name="q_debt"></label></li></ol>');
                             }else if(family_debt == 2){
                                 $('#family_debt1').append('<input type="text" placeholder="រៀល" name="total_debt">');
                             }
                         });
                     </script>
                     <div class="col-sm-12"><hr> </div>
-                    <div class="col-sm-12">
+                    <!-- <div class="col-sm-12">
                         <button class="btn btn-primary pull-right print-link1" type="button" >រក្សាទុក​​ និង បញ្ចប់</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
-
+        @endforeach
     </form>
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        
-        $(".form-control").attr("autocomplete", "off");
-        // Printing page content
-        jQuery(function($) {
-            $("#div1").find('.print-link1').on('click', function() {
-                $('.print-link1').hide();
-                $('.btn-primary').hide();
-                $("#div1").print({
-                    globalStyles : true,
-                    mediaPrint : false,
-                    // stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
-                    iframe : false,
-                    // noPrintSelector : "#div1",
-                    deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
-                });
-                $('.print-link1').show();
-                $('.btn-primary').show();
-            });
-        });
-});
+    $(document).ready(function (){
+        window.print();
+        // window.close();
+    });
+    // Printing page content
+    // jQuery(function($) {
+    //     $("#div1").find('.print-link1').on('click', function() {
+    //         $('.print-link1').hide();
+    //         $('.btn-primary').hide();
+    //         $("#div1").print({
+    //             globalStyles : true,
+    //             mediaPrint : false,
+    //             // stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
+    //             iframe : false,
+    //             // noPrintSelector : "#div1",
+    //             deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
+    //         });
+    //         $('.print-link1').show();
+    //         $('.btn-primary').show();
+    //     });
+    //      $("#div2").find('.print-link2').on('click', function() {
+    //         $('.print-link2').hide();
+    //         $('.btn-primary').hide();
+    //         $("#div2").print({
+    //             globalStyles : true,
+    //             mediaPrint : false,
+    //             // stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
+    //             iframe : false,
+    //             // noPrintSelector : "#div1",
+    //             deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
+    //         });
+    //         $('.print-link2').show();
+    //         $('.btn-primary').show();
+    //     });
+    //       $("#div3").find('.print-link3').on('click', function() {
+    //         $('.print-link3').hide();
+    //         $('.btn-primary').hide();
+    //         $("#div3").print({
+    //             globalStyles : true,
+    //             mediaPrint : false,
+    //             // stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
+    //             iframe : false,
+    //             // noPrintSelector : "#div1",
+    //             deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
+    //         });
+    //         $('.print-link3').show();
+    //         $('.btn-primary').show();
+    //     });
+    // });
 </script>
 @endsection

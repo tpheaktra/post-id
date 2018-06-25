@@ -33,9 +33,9 @@
         <div class="row setup-content" id="step-1">
             <div class="col-xs-12">
                 <div class="col-md-12" id="div1">
-                    <h3> ក) ព័ត៌មានទូទៅ</h3>
-                    <div class="col-sm-12"><hr> </div>
                     <div class="col-md-12">
+                        <h3> ក) ព័ត៌មានទូទៅ</h3>
+                        <div class="col-sm-12" style="padding: 0;"><hr> </div>
                         <h4>ក.១ ព័ត៌មានទូទៅ</h4>
                     </div>
                     <div class="col-sm-12">
@@ -397,8 +397,6 @@
                         <!-- <div class="col-sm-12"><hr> </div> -->
                     </div>
                     <div class="col-sm-12">
-                        <hr>
-                        <a class="btn btn-default pull-left print-link2"><img src="{{asset('images/Printer.png')}}" width="30" alt="printer"></a>
                         <button id="step2Next" class="btn btn-primary  pull-right" type="button" >រក្សាទុក និង ជំហានបន្ទាប់</button>
                     </div>  
                 </div>
@@ -453,12 +451,41 @@
                                                          '</td>' +
                                                          '<td width="50%">' +
                                                              '<div class="form-group input-group">' +
-                                                                '<input autocomplete="off" type="text" required="required" class="form-control allowNumber" name="rent_fee"/><span class="input-group-addon">រៀល</span>' +
+                                                                '<input autocomplete="off" id="price" type="text" required="required" onkeyup class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">រៀល</span>' +
+                                                             '</div>' +
+                                                         '</td>' +
+                                                     '</tr>' +
+                                                      '<tr>'+
+                                                         '<td width="50%">' +
+                                                            '<label class="control-label"> 3B score </label>' +
+                                                         '</td>' +
+                                                         '<td width="50%">' +
+                                                             '<div class="form-group input-group">' +
+                                                                '<input autocomplete="off" id="r_score"  type="text" required="required" onkeyup class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">ពិន្ទុ</span>' +
                                                              '</div>' +
                                                          '</td>' +
                                                      '</tr>' +
                                                  '</table>' +
                                              '</div>');
+                                             //3B គ្រួសារដែលនៅផ្ទះជួលគេតម្លៃជួលផ្ទះ (ប្រើសម្រាប់តែគ្រួសារដែលជួលផ្ទះគេ)  
+                                                $('.cal').keyup(function(){
+                                                    var person = $('#total_people').val();
+                                                    var price = $('#price').val();
+                                                    if( ((person>=1 && person <=3) && (price>=1 && price <=20)) || ((person >=4 && person <=6) && (price>=1 && price <=30)) || ((person >=7 && person <= 10) && (price>=1 && price <=45)) || ((person>10)&&(price>=1 && price<=60)) )
+                                                    {
+                                                        $('#r_score').val(16);
+                                                    }
+                                                    else if( ((person>= 1 && person <=3) && (price>20 && price<=40)) || ((person>=4 && person<=6)&&(price>30 && price<=50)) || ((person>=7 && person<=10)&&(price>45 && price<=70)) || ((person>10)&&(price>60 && price<=85)) ){
+
+                                                        $('#r_score').val(11);
+                                                    }
+                                                    else if( ((person>= 1 && person <=3) && (price>40 && price<=50)) || ((person>=4 && person<=6)&&(price>50 && price<=60)) || ((person>=7 && person<=10)&&(price>70 && price<=85)) || ((person>10)&&(price>85 && price<=100)) ){
+                                                        $('#r_score').val(5);
+                                                    }
+                                                    else{
+                                                        $('#r_score').val(0);
+                                                    }
+                                                });
                                      }else if(houshold == 1 || houshold == 3){
                                          var homeyourselt = '<h4>គ.៥ ដំបូល</h4>' +
                                              '<div class="col-sm-6">' +
@@ -600,7 +627,7 @@
                                         <td><label class="control-label">សរុប: </label></td>
                                         <td>
                                            <div class="form-group input-group">
-                                               <input id="total_people" type="text" name="total_people" class="form-control allowNumber"​ required="required">
+                                               <input id="total_people" type="text" name="total_people" onkeyup class="calculate cal form-control allowNumber"​ required="required">
                                                <span class="input-group-addon">នាក់</span>
                                             </div>
                                         </td>
@@ -685,14 +712,14 @@
                                             <td><b style="float:right;">ផ្ទៃកម្រាលសរុប :</b></td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input id="total_area" name="total_area" class="form-control allowNumber" required="required" placeholder="ផ្ម៉ែត្រក្រឡា..." type="text" value="0" readonly="readonly">
+                                                    <input id="total_area" name="total_area" onkeyup class="calculate form-control allowNumber" required="required" placeholder="ផ្ម៉ែត្រក្រឡា..." type="text" readonly="keyup">  
                                                     <span class="input-group-addon">ម៉ែត្រ​ក្រឡា</span>
                                                 </div>
                                             </td>                     
                                         </tr>
 
                                         <script>
-
+                                            //family        
                                             $('.ground_floor').keyup(function(){
                                                 if ($(this).val() > 90000000){
                                                     alert("No numbers above 90000000");
@@ -732,9 +759,41 @@
 
                                                 $('#total_area').val((total_g + total_u + total_f ? total_g + total_u + total_f : 0).toFixed(0));
                                             });
+                                            //family        
+                                            $('.calculate').keyup(function(){
+                                                    var member = parseInt($('#total_people').val());
+                                                    var land = parseInt($('#total_area').val());
+                                                    var score = $('#a_score1').val();
+                                                    // ((member >=1 && member <= 3) && (land>=1 && land <=20)) || ((member >=4 && member <=6) && (land>=1 && land <=30)) || ((member >=7 && member <= 10) && (land>=1 && land <=40)) || ((member>10)&&(land>=1 && land<=50)) for score 8
+                                                    // ((member >= 1 && member <=3) && (land>20 && land<=30)) || ((member>=4 && member<=6)&&(land>30 && land<=40)) || ((member>=7 && member<=10)&&(land>40 && land<=55)) || ((member>10)&&(land>50 && land<=65)) for score 6
+                                                    // ((member >= 1 && member <=3) && (land>30 && land<=40)) || ((member>=4 && member<=6)&&(land>40 && land<=50)) || ((member>=7 && member<=10)&&(land>55 && land<=65)) || ((member>10)&&(land>65 && land<=75)) for score 3
+
+                                                    // 1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ
+                                                    if(((member >=1 && member <= 3) && (land>=1 && land <=20)) || ((member >=4 && member <=6) && (land>=1 && land <=30)) || ((member >=7 && member <= 10) && (land>=1 && land <=40)) || ((member>10)&&(land>=1 && land<=50))){
+                                                         $('#a_score1').val(8);
+                                                    }
+                                                    else if(((member >= 1 && member <=3) && (land>20 && land<=30)) || ((member>=4 && member<=6)&&(land>30 && land<=40)) || ((member>=7 && member<=10)&&(land>40 && land<=55)) || ((member>10)&&(land>50 && land<=65)) )
+                                                    {
+                                                         $('#a_score1').val(6);
+                                                    }
+                                                    else if( ((member >= 1 && member <=3) && (land>30 && land<=40)) || ((member>=4 && member<=6)&&(land>40 && land<=50)) || ((member>=7 && member<=10)&&(land>55 && land<=65)) || ((member>10)&&(land>65 && land<=75)) ){
+                                                         $('#a_score1').val(3);
+                                                    }
+                                                    else{
+                                                         $('#a_score1').val(0);
+                                                    }
+                                                });
                                         </script>
                                 </tbody>
                             </table>
+
+                            <p>1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ
+                                <div class="form-group input-group">
+                                <label></label>
+                                   <input type="text" id="a_score1" name="total_people" onkeyup class="form-control calculate allowNumber"​ required="required">
+                                   <span class="input-group-addon">ពិន្ទុ</span>
+                                </div>
+                            </p>
 
                         </div>
 
@@ -1299,7 +1358,7 @@
                     </script>
                     <div class="col-sm-12"><hr> </div>
                     <div class="col-sm-12">
-                        <a  class="pull-left btn btn-default print-link3"><img src="{{asset('images/Printer.png')}}" width="30"></a>
+                        <!-- <a  class="pull-left btn btn-default print-link3"><img src="" width="30"></a> -->
                         <button id="nextStep3" class="btn btn-primary pull-right mysubmit nextBtn " type="submit">រក្សាទុក​​ និង បញ្ចប់</button>
                     </div>
                 </div>
@@ -1309,7 +1368,7 @@
     </form>
 
 
-    <h2>List Data</h2>
+    <div class="col-sm-12" style="padding: 0;"><h3>ទិន្នន័យ​អ្នកជំងឺ</h3></div>
     <div class="data-list">
         <table class="table">
             <thead>
@@ -1332,7 +1391,7 @@
                 <td>{{$value->g_phone}}  </td>
                 <td>{{$value->interview_code}}  </td>
                 <!-- data-toggle="collapse" data-target="#accordion" class="clickable" -->
-                <td><a href="{{route('view.data',$value->id)}}"><i class="fa fa-eye"></i></a> | <a href=""><i class="fa fa-edit"></i></a> | <a href="{{route('print.data',$value->id)}}"><i class="fa fa-print"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
+                <td><a href="{{route('view.data',$value->id)}}"><i class="fa fa-eye"></i></a> | <a href=""><i class="fa fa-edit"></i></a> | <a href="{{route('print.data',$value->id)}}" target="blank"><i class="fa fa-print"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
             </tr>
             @endforeach
             <tr>
@@ -1348,71 +1407,10 @@
         </table>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script type="text/javascript">
     $(document).ready(function () {
-        
-        $(".form-control").attr("autocomplete", "off");
-        // Printing page content
-        jQuery(function($) {
-            $("#div1").find('.print-link1').on('click', function() {
-                $('.print-link1').hide();
-                $('.btn-primary').hide();
-                $("#div1").print({
-                    globalStyles : true,
-                    mediaPrint : false,
-                    // stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
-                    iframe : false,
-                    // noPrintSelector : "#div1",
-                    deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
-                });
-                $('.print-link1').show();
-                $('.btn-primary').show();
-            });
-             $("#div2").find('.print-link2').on('click', function() {
-                $('.print-link2').hide();
-                $('.btn-primary').hide();
-                $("#div2").print({
-                    globalStyles : true,
-                    mediaPrint : false,
-                    // stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
-                    iframe : false,
-                    // noPrintSelector : "#div1",
-                    deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
-                });
-                $('.print-link2').show();
-                $('.btn-primary').show();
-            });
-              $("#div3").find('.print-link3').on('click', function() {
-                $('.print-link3').hide();
-                $('.btn-primary').hide();
-                $("#div3").print({
-                    globalStyles : true,
-                    mediaPrint : false,
-                    // stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
-                    iframe : false,
-                    // noPrintSelector : "#div1",
-                    deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
-                });
-                $('.print-link3').show();
-                $('.btn-primary').show();
-            });
-        });
 
+        // $(".form-control").attr("autocomplete", "off");
         //next next and validate
         var navListItems = $('div.setup-panel div a'),
                 allWells = $('.setup-content'),
