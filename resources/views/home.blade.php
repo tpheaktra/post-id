@@ -817,7 +817,16 @@
                             </div>
 
                             <div id="tolet"></div>
+
+                            <p><input type="button" id="t_score" class="cal_t form-control" value="click"></p>
                             <script>
+                                $("#t_score").click(function(){
+                                    var a = $("input:radio.tolet:checked");
+
+                                    if(a = 1){alert(a);}else{alert(a);}
+
+                                });
+                                
                                 $('.tolet').click(function () {
                                     var tolet = $('input[name=tolet]:checked').val();
                                     $('#tolet').empty();
