@@ -1217,7 +1217,7 @@
                                     <tr>
                                         <th>ល.រ</th>
                                         <th>ឈ្មោះសមាជិកគ្រូសាររកប្រាក់ចំណូល</th>
-                                        <th>អាយុ​ &lt; 18 </th>
+                                        <th>អាយុ​</th>
                                         <th>មុខរបររកចំណូល</th>
                                         <th>ឯកត្តា</th>
                                         <th>ចំនួនឯកត្តាក្នុងមួយខែ</th>
@@ -1232,7 +1232,6 @@
                                         <td>
                                             <div class="form-group">
                                                 <select class="form-control income_name" id="income_name_0" name="income_name[0]" required="required"></select>
-                                                {{--<input id="income_name" name="income_name[0]" type="text" required="required" class="form-control"  />--}}
                                             </div>
                                         </td>
                                         <td>
@@ -1242,7 +1241,12 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="income_occupation[0]" type="text" required="required" class="form-control"  />
+                                                <select style="width: 100%" class="form-control income_occupation" id="income_occupation" name="income_occupation[0]" required="required">
+                                                    <option></option>
+                                                    @foreach($occupation as $keh => $value)
+                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </td>
                                         <td>
@@ -2401,7 +2405,12 @@
                 '</td>' +
                 '<td>' +
                     '<div class="form-group">' +
-                        '<input autocomplete="off" name="income_occupation['+row_4+']" type="text" required="required" class="form-control"  />' +
+                        '<select style="width: 100%" autocomplete="off" class="form-control income_occupation" id="income_occupation" name="income_occupation['+row_4+']" required="required">' +
+                            '<option></option>' +
+                            '@foreach($occupation as $keh => $value)' +
+                                '<option value="{{$value->id}}">{{$value->name_kh}}</option>' +
+                            '@endforeach' +
+                        '</select>'+
                     '</div>' +
                 '</td>' +
                 '<td>' +
@@ -2429,6 +2438,7 @@
         $(".new_rows_4").append(tab_rows_4);
         dataRow_other_income++;
         AllowNumber();
+        $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
 
         var row_num1 = $('.new_rows_4 tr').length-1;
         for(var ii=0; ii<row_num1; ii++) {
@@ -2478,7 +2488,7 @@
         $(".income_name").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ប្រភេទសត្វ"});
 
     });
-
+    $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
     function reOrder_other_income(){
         for(var n=2;n<(dataRow_other_income-1);n++){
             $('.new_rows_4  tr:eq(' + (n-1) +') td:first-child').html(n);
