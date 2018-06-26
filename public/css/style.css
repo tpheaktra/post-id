@@ -165,3 +165,10 @@ input[type=radio]{
     vertical-align: middle;
     padding-right: 10px;
 }
+#add_rows_4,
+#add_rows_3,
+#add_rows_2,
+#add_rows_1,
+#add_rows{
+    padding:2px !important;
+}
