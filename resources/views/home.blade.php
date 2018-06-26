@@ -471,15 +471,15 @@
                                                 $('.cal').keyup(function(){
                                                     var person = $('#total_people').val();
                                                     var price = $('#price').val();
-                                                    if( ((person>=1 && person <=3) && (price>=1 && price <=20)) || ((person >=4 && person <=6) && (price>=1 && price <=30)) || ((person >=7 && person <= 10) && (price>=1 && price <=45)) || ((person>10)&&(price>=1 && price<=60)) )
+                                                    if( ((person>=1 && person <=3) && (price>=1 && price <=80000)) || ((person >=4 && person <=6) && (price>=1 && price <=120000)) || ((person >=7 && person <= 10) && (price>=1 && price <=180000)) || ((person>10)&&(price>=1 && price<=240000)) )
                                                     {
                                                         $('#r_score').val(16);
                                                     }
-                                                    else if( ((person>= 1 && person <=3) && (price>20 && price<=40)) || ((person>=4 && person<=6)&&(price>30 && price<=50)) || ((person>=7 && person<=10)&&(price>45 && price<=70)) || ((person>10)&&(price>60 && price<=85)) ){
+                                                    else if( ((person>= 1 && person <=3) && (price>80000 && price<=160000)) || ((person>=4 && person<=6)&&(price>120000 && price<=200000)) || ((person>=7 && person<=10)&&(price>180000 && price<=280000)) || ((person>10)&&(price>240000 && price<=340000)) ){
 
                                                         $('#r_score').val(11);
                                                     }
-                                                    else if( ((person>= 1 && person <=3) && (price>40 && price<=50)) || ((person>=4 && person<=6)&&(price>50 && price<=60)) || ((person>=7 && person<=10)&&(price>70 && price<=85)) || ((person>10)&&(price>85 && price<=100)) ){
+                                                    else if( ((person>= 1 && person <=3) && (price>160000 && price<=200000)) || ((person>=4 && person<=6)&&(price>200000 && price<=240000)) || ((person>=7 && person<=10)&&(price>280000 && price<=340000)) || ((person>10)&&(price>340000 && price<=400000)) ){
                                                         $('#r_score').val(5);
                                                     }
                                                     else{
@@ -728,7 +728,7 @@
                                             <td colspan="3"><b style="float:right;">ផ្ទៃកម្រាលសរុប :</b></td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input id="total_area" name="total_area" onkeyup class="calculate form-control allowNumber" required="required" placeholder="ផ្ម៉ែត្រក្រឡា..." type="text" readonly="keyup">  
+                                                    <input id="total_area" name="total_area" onkeyup class="calculate form-control allowNumber" required="required" placeholder="ផ្ម៉ែត្រក្រឡា..." type="text">  
                                                     <span class="input-group-addon">ម៉ែត្រ​ក្រឡា</span>
                                                 </div>
                                             </td>                     
@@ -834,6 +834,7 @@
 
                             <div id="tolet"></div>
                             <script>
+                                
                                 $('.tolet').click(function () {
                                     var tolet = $('input[name=tolet]:checked').val();
                                     $('#tolet').empty();
