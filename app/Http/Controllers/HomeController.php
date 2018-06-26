@@ -24,6 +24,7 @@ use App\Helpers\Helpers;
 use App\model\ConditionhouseModel;
 use App\model\WallMadeModel;
 use App\model\RoofMadeModel;
+use Illuminate\Support\Facades\Redirect;
 use DB;
 use auth;
 class HomeController extends Controller
@@ -453,7 +454,7 @@ class HomeController extends Controller
             );
             DebtLoanLinkModel::create($debt);
             DB::commit();
-            return back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
+            return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
         } catch (\Exception $e) {
             DB::rollBack();
             return $this->errorResponse($e->getMessage(), self::HTTP_STATUS_SERVER_ERROR);
