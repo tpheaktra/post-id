@@ -172,3 +172,8 @@ input[type=radio]{
 #add_rows{
     padding:2px !important;
 }
+.table tr td{
+    vertical-align: middle !important;
+}
+.table .form-group{
+    margin: 5px 4px !important;}

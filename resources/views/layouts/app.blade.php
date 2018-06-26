@@ -76,6 +76,7 @@
                 </div>
             </div>
             <style type="text/css">
+                .auto-hide1,
                 .auto-hide{
                     display: none !important;
                 }
@@ -87,11 +88,11 @@
             </div>
 
             @if(session()->has('success'))
-            <div class="msg">
-                <div class="add_hide alert alert1 alert-success alert-dismissable">
-                    {{ session()->get('success') }}
+                <div class="msg">
+                    <div class="add_hide1 alert alert1 alert-success alert-dismissable">
+                        {{ session()->get('success') }}
+                    </div>
                 </div>
-            </div>
             @endif
         </nav>
 
