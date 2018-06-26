@@ -788,9 +788,9 @@
                             </table>
 
                             <p>1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ
-                                <div class="form-group input-group">
+                                <div class="form-group input-group" style="width: 500px !important;">
                                 <label></label>
-                                   <input type="text" id="a_score1" name="total_people" onkeyup class="form-control calculate allowNumber"​ required="required">
+                                   <input type="text" id="a_score1" name="total_people" onkeyup class="form-control calculate allowNumber"​ required="required" readonly="readonly">
                                    <span class="input-group-addon">ពិន្ទុ</span>
                                 </div>
                             </p>
@@ -1171,7 +1171,7 @@
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group​​input-group input-group">' +
-                                                            '<input autocomplete="off" name="total_land" type="text" required="required" class="form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land" name="total_land" type="text" required="required" onkeyup class="field_fa form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>' +
                                                     '</td>' +
                                                 '</tr>' +
@@ -1179,23 +1179,41 @@
                                                     '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
                                                     '<td>'+
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" name="land_farm" type="text" required="required" class="allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                                            '<input autocomplete="off" id="land_farm" name="land_farm" type="text" required="required" class="allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
                                                         '</div>'+
                                                     '</td>'+
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" name="total_land_farm" type="text" required="required" class="form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_farm" name="total_land_farm" type="text" required="required" onkeyup class="field_fa form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
+                                                        '</div>'+
+                                                    '</td>' +
+                                                '</tr>' +
+                                                '<tr>' +
+                                                    '<td>'+'</td>'+
+                                                    '<td>'+'</td>'+
+                                                    '<td><label class="control-label"> ទំហំដីសរុប : </label></td>'+
+                                                    '<td>' +
+                                                        '<div class="form-group input-group">'+
+                                                            '<input autocomplete="off" id="total_field_fa" name="total_field_fa" type="text" required="required" onkeyup class="field_fa form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
                                             '</table>'+
                                         '</div>';
+                                          $('.field_fa').keyup(function(){
+                                            var field = $('#total_land').val();
+                                            var farm = $('#total_land_farm').val();
+                                            alert(field);
+                                            var sum = field + farm;
+                                            $('#total_field_fa').val(sum);
+                                        });
                                     if(land == 2 || land == 3) {
                                         $('#show-land').append(landshow);
                                     }
                                     AllowNumber();
                                 });
+
                             </script>
 
                             {{--<p>ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា)</p>--}}
