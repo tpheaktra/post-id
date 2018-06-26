@@ -803,13 +803,13 @@
                                 </tbody>
                             </table>
 
-                            <p>1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ
-                                <div class="form-group input-group">
-                                <label></label>
-                                   <input type="text" id="a_score1" name="total_people" onkeyup class="form-control calculate allowNumber"​ required="required">
-                                   <span class="input-group-addon">ពិន្ទុ</span>
-                                </div>
-                            </p>
+                            {{--<p>1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ--}}
+                                {{--<div class="form-group input-group">--}}
+                                {{--<label></label>--}}
+                                   {{--<input type="text" id="a_score1" name="total_people" onkeyup class="form-control calculate allowNumber"​ required="required">--}}
+                                   {{--<span class="input-group-addon">ពិន្ទុ</span>--}}
+                                {{--</div>--}}
+                            {{--</p>--}}
 
                         </div>
 
