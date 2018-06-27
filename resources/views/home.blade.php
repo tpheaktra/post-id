@@ -1412,6 +1412,13 @@
                             }
                         });
                     </script>
+                    <div class="col-sm-12">
+                        <h4>គ.១៥) ព័ត៍មានផ្សេងៗបន្ថែម ឬមតិយោបល់របស់អ្នកសម្ភាសន៍ (បើមាន)</h4>
+                        <div class="col-sm-12">
+                            <textarea class="form-control"></textarea>
+                        </div>
+                    </div>
+
                     <div class="col-sm-12"><hr> </div>
                     <div class="col-sm-12">
                         <!-- <a  class="pull-left btn btn-default print-link3"><img src="" width="30"></a> -->
@@ -1457,7 +1464,7 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-
+        $('[data-toggle="tooltip"]').tooltip();
         $(".form-control").attr("autocomplete", "off");
         //next next and validate
         var navListItems = $('div.setup-panel div a'),
