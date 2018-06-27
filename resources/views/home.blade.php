@@ -992,10 +992,8 @@
 
                         </div>
 
-
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
-
                             <h4>គ.១១) យានជំនិះជាទ្រព្យសម្បត្តិផ្ទាល់របស់​គ្រួសារ</h4>
                             <div class="col-sm-6">
                                 <table class="table-home">
@@ -1014,8 +1012,6 @@
                                     </tr>
                                 </table>
                             </div>
-
-
 
                             <table class="tb_grid table" width="100%">
                                 <thead>
@@ -1074,14 +1070,13 @@
                                         <td><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
                                         <td>
                                             <div class="form-group input-group">
-                                                <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control" readonly="readonly"/>
+                                                <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control" readonly="readonly" />
                                                 <span class="input-group-addon">រៀល</span>
                                             </div>
                                         </td>
                                     </tr>
                                 </tfoot>
                             </table>
-                            
                     </div>
 
 
@@ -1196,24 +1191,28 @@
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
                                                             '<input autocomplete="off" id="total_field_fa" name="total_field_fa" type="text" required="required" onkeyup class="field_fa form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
-                                                        '</div>'+
+                                                        '</div>'+'<input type="button" id="field_fa" class="field_fa form-control">'+
                                                     '</td>' +
                                                 '</tr>' +
                                             '</table>'+
                                         '</div>';
-                                          $('.field_fa').keyup(function(){
-                                            var field = $('#total_land').val();
-                                            var farm = $('#total_land_farm').val();
-                                            alert(field);
-                                            var sum = field + farm;
-                                            $('#total_field_fa').val(sum);
-                                        });
+                                       
                                     if(land == 2 || land == 3) {
                                         $('#show-land').append(landshow);
                                     }
                                     AllowNumber();
                                 });
 
+                                // $('#field_fa').click(function(){
+
+                                //     var field = parseInt($('#total_land').val());
+                                //     var farm = parseInt($('#total_land_farm').val());
+                                //     var key = $('#calcal_a').val();
+                                //     var sum = field + farm;
+                                //     alert(key);
+                                //     $('#total_field_fa').val(sum);
+                                // });
+                               
                             </script>
 
                             {{--<p>ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា)</p>--}}
@@ -2251,7 +2250,7 @@
             return false;
         }
         reOrder_vehicle();
-     //   var rowindex_2 = row_2+1;
+        // var rowindex_2 = row_2+1;
         var html = '<tr class="myrow_2">'+
             '<td>'+dataRow_vehicle+'</td>'+
             '<td>' +
@@ -2278,8 +2277,6 @@
                 var market_value_vehicle_1 = $('#market_value_vehicle_'+i).val();
                 sum = Number(number_vehicle_1 * market_value_vehicle_1);
                 $("#vehicle_"+i).attr({"onclick": "remove_2("+sum+")"});
-
-                $('#total_rail_vehicle_'+i).val(sum);
             });
         }
 
@@ -2291,10 +2288,9 @@
                     tot += parseInt(arr[i].value);
             }
             document.getElementById('total_vehicle_costs').value = tot;
+            
         });
-
     });
-
     function reOrder_vehicle(){
         for(var n=2;n<(dataRow_vehicle-1);n++){
             $('.new_rows_2  tr:eq(' + (n-1) +') td:first-child').html(n);
@@ -2325,6 +2321,7 @@
             sum = Number(number_vehicle * market_value_vehicle);
         });
         $('#total_rail_vehicle').val(sum);
+
     });
     $('.vehicle').keyup(function () {
         var arr = document.getElementsByClassName('totalallowNumber_vehicle');
@@ -2335,8 +2332,6 @@
         }
         document.getElementById('total_vehicle_costs').value = tot;
     });
-
-
     dataRow_income = 2;
     $('#add_rows_3').click(function(){ //alert($m_id);
         var row_3 = $('.new_rows_3 tr.myrow_3').length;
@@ -2640,10 +2635,7 @@
             $('.autho-hide').fadeOut();
         },9000);
     });
-
-
+    //scoring__
    
-
-
 </script>
 @endsection
