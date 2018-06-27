@@ -332,7 +332,7 @@
                     <p>មនុស្ស​ដែល​គេ​ចាត់ទុកថាជាសមាជិក​គ្រួសារលុះ​ត្រាតែ​រស់​នៅជាប្រចាំ​ក្នុង​គ្រួសារ ឬ​អវត្តមាន​តិច​ជាង​ ៦ខែ​​ (ត្រូវមានឯកសារយោងដូចជា សៀវភៅគ្រួសារ សៀវភៅស្នាក់នៅ សំបុត្រកំណើត លិខិតបញ្ជាក់ពីអាជ្ញាធរ)</p>
 
 
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th rowspan="2">ល.រ</th>
@@ -396,7 +396,7 @@
 
                         <!-- <div class="col-sm-12"><hr> </div> -->
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 form-group">
                         <button id="step2Next" class="btn btn-primary  pull-right" type="button" >រក្សាទុក និង ជំហានបន្ទាប់</button>
                     </div>  
                 </div>
@@ -438,9 +438,10 @@
                                      $('#general-status').empty();
                                      $('#home-ke').empty();
                                      $('#building-year').empty();
-                                     $('#home-preparing').empty();
+                                     //$('#home-preparing').empty();
                                      if(houshold == 5){
-                                         $('#household_family_id').append('<input type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name">លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន : <input type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone">');
+                                         $('#household_family_id').append('<input type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name" autocomplete="off" required="required">លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន : <input class="allowNumber" type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone" autocomplete="off" required="required">');
+                                         AllowNumber();
                                      }else if(houshold == 2){
                                          $('#home-rent').append('<h4>គ.៨) សម្រាប់គ្រួសារជួលផ្ទះគេ​ <a data-toggle="tooltip" title="សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ មិនបាច់បំពេញចំណុច គ៨ ហើយរំលងទៅ គ៩">?</a></h4>' +
                                              '<div class="col-sm-6">' +
@@ -451,20 +452,20 @@
                                                          '</td>' +
                                                          '<td width="50%">' +
                                                              '<div class="form-group input-group">' +
-                                                                '<input autocomplete="off" id="price" type="text" required="required" onkeyup class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">រៀល</span>' +
+                                                                '<input autocomplete="off" id="price" type="text" required="required" class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">រៀល</span>' +
                                                              '</div>' +
                                                          '</td>' +
                                                      '</tr>' +
-                                                      '<tr>'+
-                                                         '<td width="50%">' +
-                                                            '<label class="control-label"> 3B score </label>' +
-                                                         '</td>' +
-                                                         '<td width="50%">' +
-                                                             '<div class="form-group input-group">' +
-                                                                '<input autocomplete="off" id="r_score"  type="text" required="required" onkeyup class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">ពិន្ទុ</span>' +
-                                                             '</div>' +
-                                                         '</td>' +
-                                                     '</tr>' +
+//                                                      '<tr>'+
+//                                                         '<td width="50%">' +
+//                                                            '<label class="control-label"> 3B score </label>' +
+//                                                         '</td>' +
+//                                                         '<td width="50%">' +
+//                                                             '<div class="form-group input-group">' +
+//                                                                '<input autocomplete="off" id="r_score"  type="text" required="required" onkeyup class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">ពិន្ទុ</span>' +
+//                                                             '</div>' +
+//                                                         '</td>' +
+//                                                     '</tr>' +
                                                  '</table>' +
                                              '</div>');
                                              //3B គ្រួសារដែលនៅផ្ទះជួលគេតម្លៃជួលផ្ទះ (ប្រើសម្រាប់តែគ្រួសារដែលជួលផ្ទះគេ)  
@@ -521,9 +522,14 @@
                                              '</div>';
 
                                             var building_year = '<div class="col-sm-6">' +
-                                                    '<table class="table-home">' +
+                                                    '<table class="table-home table table-bordered table-striped">' +
+                                                    '<thead>' +
                                                         '<tr>' +
-                                                            '<td width="30%">- ផ្ទះសាងសង់នៅឆ្នាំណា?</td>' +
+                                                            '<th>ផ្ទះសាងសង់នៅឆ្នាំណា?</th>' +
+                                                            '<th>តើធ្លាប់ជួសជុលឬទេ?</th>' +
+                                                        '</tr>' +
+                                                    '</thead>'+
+                                                        '<tr>' +
                                                             '<td width="50%">' +
                                                                 '<div class="add_huild_year">' +
                                                                     '<select name="h_build_year" id="year_select" style="width: 100%;" name="build_in">\n' +
@@ -532,27 +538,40 @@
                                                                     '</select>' +
                                                                 '</div>' +
                                                             '</td>' +
+                                                            '<td width="50%">' +
+                                                                '<div class="add_home_prepare">' +
+                                                                    '<ul class="li-none">' +
+                                                                        '@foreach($homePrepar as $key =>$p)' +
+                                                                            '<li>' +
+                                                                                '<label><input class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
+                                                                                '@if($p->id == 2)<label id="homeyear"></label>@endif' +
+                                                                            '</li>' +
+                                                                        '@endforeach'+
+                                                                    '</ul>' +
+                                                                '</div>'+
+                                                            '</td>'+
+
                                                         '</tr>' +
                                                     '</table>'+
                                                 '</div>';
 
-                                                var home_preparing = '<h5>- តើធ្លាប់ជួសជុលឬទេ?</h5>' +
-                                                    '<div class="add_home_prepare"><ul class="li-none">' +
-                                                        '@foreach($homePrepar as $key =>$p)' +
-                                                            '<li>' +
-                                                                '<label><input class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
-                                                                '@if($p->id == 2)<label id="homeyear"></label>@endif' +
-                                                            '</li>' +
-                                                        '@endforeach'+
-                                                    '</ul></div>';
+                                                {{--var home_preparing = '<h5>- តើធ្លាប់ជួសជុលឬទេ?</h5>' +--}}
+                                                    {{--'<div class="add_home_prepare"><ul class="li-none">' +--}}
+                                                        {{--'@foreach($homePrepar as $key =>$p)' +--}}
+                                                            {{--'<li>' +--}}
+                                                                {{--'<label><input class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +--}}
+                                                                {{--'@if($p->id == 2)<label id="homeyear"></label>@endif' +--}}
+                                                            {{--'</li>' +--}}
+                                                        {{--'@endforeach'+--}}
+                                                    {{--'</ul></div>';--}}
 
 
-                                         $('#home-preparing').append(home_preparing);
+                                        // $('#home-preparing').append(home_preparing);
                                          $('#building-year').append(building_year);
                                          $('#home-yourself').append(homeyourselt);
                                          $("#year_select").select2({allowClear:true, placeholder: "ឆ្នាំ"});
-                                         $(".roof_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ដំបូល"});
-                                         $(".r_status").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ស្ថានភាព"});
+                                         $(".roof_relationship").select2({allowClear:true, placeholder: "ដំបូល"});
+                                         $(".r_status").select2({allowClear:true, placeholder: "ស្ថានភាព"});
 
                                          $('.homeyear').click(function () {
                                              var homeyear = $('input[name=home_prepare]:checked').val();
@@ -596,10 +615,10 @@
                                                         '</td>'+
                                                     '</tr>'+
                                                 '</table>'+
-                                            '</div>';
+                                            '</div>';php
                                          $('#home-ke').append(homeke);
-                                         $(".wall_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ជញ្ជាំង"});
-                                         $(".h_status").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ស្ថានភាព"});
+                                         $(".wall_relationship").select2({ allowClear:true, placeholder: "ជញ្ជាំង"});
+                                         $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
 
                                          var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>' +
                                              '<div class="add_condition_house"><ul class="li-none">'+
@@ -626,8 +645,8 @@
                                     <tr>
                                         <td><label class="control-label">សរុប: </label></td>
                                         <td>
-                                           <div class="form-group input-group">
-                                               <input id="total_people" type="text" name="total_people" onkeyup class="calculate cal form-control allowNumber"​ required="required">
+                                           <div class="form-group input-group add_total_people">
+                                               <input id="total_people" type="text" name="total_people" class="calculate cal form-control allowNumber"​>
                                                <span class="input-group-addon">នាក់</span>
                                             </div>
                                         </td>
@@ -639,7 +658,7 @@
                         <div class="col-sm-12">
                             <h4> គ.៣ តើ​ផ្ទៃ​ក្រឡា​ទីលំនៅរបស់ក្រុម​គ្រួសារ ​មាន​ចំនួន​ប៉ុន្មាន​ម៉ែត្រ​ក្រឡា​?​</h4>
 
-                                <table class="tb_grid" style="width:100%;">
+                                <table class="tb_grid table table-bordered table-striped tbl-floor" style="width:100%;">
                                     <tbody>
                                         <tr>
                                             <td><b>ផ្ទះជាន់ក្រោម៖</b></td>
@@ -707,12 +726,10 @@
                                         </tr>
 
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td><b style="float:right;">ផ្ទៃកម្រាលសរុប :</b></td>
+                                            <td colspan="3"><b style="float:right;">ផ្ទៃកម្រាលសរុប :</b></td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input id="total_area" name="total_area" onkeyup class="calculate form-control allowNumber" required="required" placeholder="ផ្ម៉ែត្រក្រឡា..." type="text">  
+                                                    <input id="total_area" name="total_area" class="calculate form-control allowNumber"  placeholder="ផ្ម៉ែត្រក្រឡា..." type="text">
                                                     <span class="input-group-addon">ម៉ែត្រ​ក្រឡា</span>
                                                 </div>
                                             </td>                     
@@ -787,13 +804,13 @@
                                 </tbody>
                             </table>
 
-                            <p>1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ
-                                <div class="form-group input-group" style="width: 500px !important;">
-                                <label></label>
-                                   <input type="text" id="a_score1" name="total_people" onkeyup class="form-control calculate allowNumber"​ required="required" readonly="readonly">
-                                   <span class="input-group-addon">ពិន្ទុ</span>
-                                </div>
-                            </p>
+                            {{--<p>1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ--}}
+                                {{--<div class="form-group input-group">--}}
+                                {{--<label></label>--}}
+                                   {{--<input type="text" id="a_score1" name="total_people" onkeyup class="form-control calculate allowNumber"​ required="required">--}}
+                                   {{--<span class="input-group-addon">ពិន្ទុ</span>--}}
+                                {{--</div>--}}
+                            {{--</p>--}}
 
                         </div>
 
@@ -810,7 +827,7 @@
                                 <ul class="li-none">
                                     @foreach($question_totel as $key =>$val)
                                         <li>
-                                            <label><input class="tolet" type="radio" name="tolet" ​​ value="{{$val->id}}"> {{$val->name_kh}} </label>
+                                            <label><input class="tolet" type="radio" name="tolet" ?? value="{{$val->id}}"> {{$val->name_kh}} </label>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -846,7 +863,7 @@
 
 
                             <div class="row" id="building-year"></div>
-                            <div id="home-preparing"></div>
+                            {{--<div id="home-preparing"></div>--}}
 
                         </div>
 
@@ -866,7 +883,7 @@
                                    <div class="row">
                                        <h4>គ.៩) ទ្រព្យ​សម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិច​របស់​គ្រួសារ</h4>
                                    </div>
-                                    <table class="tb_grid table" width="100%">
+                                    <table class="tb_grid table table-bordered table-striped" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>ល.រ</th>
@@ -882,7 +899,7 @@
                                                 <td>1</td>
                                                 <td>
                                                     <div class="form-group add_type_meterial">
-                                                        <select class="form-control type_meterial" id="type_meterial" name="type_meterial[0]" required="required">
+                                                        <select class="form-control type_meterial" id="type_meterial" name="type_meterial[0]">
                                                             <option></option>
                                                             @foreach($typemeterial as $keh => $value)
                                                                 <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -892,12 +909,12 @@
                                                 </td>
                                                 <td>
                                                     <div class="form-group">
-                                                        <input id="number_meterial" name="number_meterial[0]" type="text" required="required" class="form-control allowNumber meterial"  />
+                                                        <input id="number_meterial" name="number_meterial[0]" type="text" class="form-control allowNumber meterial" required="required" />
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-group">
-                                                        <input id="market_value_meterial" name="market_value_meterial[0]" type="text" required="required" class="form-control allowNumber meterial"  />
+                                                        <input id="market_value_meterial" name="market_value_meterial[0]" type="text"  class="form-control allowNumber meterial" required="required" />
                                                     </div>
                                                 </td>
                                                 <td>
@@ -916,16 +933,14 @@
 
                                         <tfoot>
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
+                                                <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
                                                 <td>
                                                     <div class="form-group input-group">
                                                         <input id="total_meterial_costs" name="total_meterial_costs" type="text" required="required" class="form-control" readonly="readonly"/>
                                                         <span class="input-group-addon">រៀល</span>
                                                     </div>
                                                 </td>
+                                                <td></td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -943,7 +958,7 @@
                                 <ul class="li-none">
                                     @foreach($question_electric as $key => $qe)
                                         <li class="add_q_electric">
-                                            <label><input class="electric" value="{{$qe->id}}" type="radio" name="q_electric" ​​> {{$qe->name_kh}}</label>
+                                            <label><input class="electric" value="{{$qe->id}}" type="radio" name="q_electric" ??> {{$qe->name_kh}}</label>
                                         </li>
                                         @if($qe->id == 1) <li id="electric_yes"></li> @endif
                                         @if($qe->id == 2) <li id="electric_no"></li> @endif
@@ -959,16 +974,16 @@
                                     $('#electric_no').empty();
                                     if(electric == 1){
                                         $('#electric_yes').append('<p>ប្រសិនបានតបណ្តាញអគ្គិសនី </p>'+
-                                            '<table class="table ">'+
+                                            '<table class="tb_grid table table-bordered table-striped ">'+
                                             '<tr>'+
                                                 '<th>តម្លៃក្នុងមួយគីឡូវ៉ាត់/ម៉ោង</th>'+
                                                 '<th>ចំនួនគីឡូវ៉ាត់ដែលប្រើជាមធ្យមក្នុងមួយខែ</th>'+
                                                 '<th>ចំណាយ​ជា​មធ្យមក្នុងមួយខែ</th>'+
                                             '</tr>'+
                                             '<tr>'+
-                                                '<td><div class="input-group"><input autocomplete="off" class="form-control allowNumber myelectric" id="costs_in_hour" required="required" type="text" name="costs_in_hour"><span class="input-group-addon">រៀល</span></div></td>'+
-                                                '<td><div class="input-group"><input autocomplete="off" class="form-control allowNumber myelectric" id="number_in_month" required="required" type="text" name="number_in_month"><span class="input-group-addon">គីឡូវ៉ាត់</span></div></td>'+
-                                                '<td><div class="input-group"><input autocomplete="off" class="form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
+                                                '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber myelectric" id="costs_in_hour" required="required" type="text" name="costs_in_hour" required="required"><span class="input-group-addon">រៀល</span></div></td>'+
+                                                '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber myelectric" id="number_in_month" required="required" type="text" name="number_in_month" required="required"><span class="input-group-addon">គីឡូវ៉ាត់</span></div></td>'+
+                                                '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
                                             '</tr>' +
                                             '</table>');
 
@@ -992,8 +1007,10 @@
 
                         </div>
 
+
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
+
                             <h4>គ.១១) យានជំនិះជាទ្រព្យសម្បត្តិផ្ទាល់របស់​គ្រួសារ</h4>
                             <div class="col-sm-6">
                                 <table class="table-home">
@@ -1013,7 +1030,9 @@
                                 </table>
                             </div>
 
-                            <table class="tb_grid table" width="100%">
+
+
+                            <table class="tb_grid table table-bordered table-striped" width="100%">
                                 <thead>
                                 <tr>
                                     <th>ល.រ</th>
@@ -1029,7 +1048,7 @@
                                     <td>1</td>
                                     <td>
                                         <div class="form-group add_type_vehicle">
-                                            <select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle[0]" required="required">
+                                            <select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle[0]">
                                                 <option></option>
                                                 @foreach($typetransport as $keh => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -1039,12 +1058,12 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input id="number_vehicle" name="number_vehicle[0]" type="text" required="required" class="form-control allowNumber vehicle"  />
+                                            <input id="number_vehicle" name="number_vehicle[0]" type="text" class="form-control allowNumber vehicle" required="required" />
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group input-group">
-                                            <input id="market_value_vehicle" name="market_value_vehicle[0]" type="text" required="required" class="form-control allowNumber vehicle"  />
+                                            <input id="market_value_vehicle" name="market_value_vehicle[0]" type="text" class="form-control allowNumber vehicle" required="required" />
                                             <span class="input-group-addon">រៀល</span>
                                         </div>
                                     </td>
@@ -1064,19 +1083,18 @@
 
                                 <tfoot>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
+                                        <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
                                         <td>
                                             <div class="form-group input-group">
-                                                <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control" readonly="readonly" />
+                                                <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control" readonly="readonly"/>
                                                 <span class="input-group-addon">រៀល</span>
                                             </div>
                                         </td>
+                                        <td></td>
                                     </tr>
                                 </tfoot>
                             </table>
+                            
                     </div>
 
 
@@ -1088,7 +1106,7 @@
                             <h4>គ.១២) ចំណូល</h4>
                             <h5>គ.១២.១) ចំណូល​ ពីសកម្មភាពកសិកម្ម ផ្ទាល់ខ្លួន</h5>
                             <h5>គ.១២.១.១) ការចិញ្ចឹមសត្វ</h5>
-                            <table class="tb_grid table" width="100%">
+                            <table class="tb_grid table table-bordered table-striped" width="100%">
                                 <thead>
                                 <tr>
                                     <th>ល.រ</th>
@@ -1103,8 +1121,8 @@
                                 <tr class="myrow_3">
                                     <td>1</td>
                                     <td>
-                                        <div class="form-group">
-                                            <select class="form-control type_animals" id="type_animals" name="type_animals[0]" required="required">
+                                        <div class="form-group add_type_animals">
+                                            <select style="width: 100%;" class="form-control type_animals" id="type_animals" name="type_animals[0]" required="required">
                                                 <option></option>
                                                 @foreach($typeanimals as $key => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -1114,7 +1132,7 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="num_animals_big[0]" type="text" required="required" class="form-control allowNumber"  />
+                                            <input name="num_animals_big[0]" type="text" class="form-control allowNumber" required="required" />
                                         </div>
                                     </td>
                                     <td>
@@ -1141,7 +1159,7 @@
                         <div class="col-sm-12">
                             <h4>គ.១២.១.២​)ដីកសិកម្ម</h4>
                             <p>មាន​ដីកសិកម្ម ឬ​ទេ ?</p>
-                            <ul class="li-none">
+                            <ul class="li-none add_land">
                                 @foreach($landAgricultural as $key => $land)
                                     <li>
                                         <label><input class="land" type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
@@ -1154,7 +1172,7 @@
                                     $('#show-land').empty();
 
                                     var landshow = '<div class="col-sm-12">' +
-                                            '<table width="100%" class="table">' +
+                                            '<table width="100%" class="table table-bordered table-striped tbl-land">' +
                                                 '<tr>' +
                                                     '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                                     '<td>' +
@@ -1165,8 +1183,8 @@
 
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
-                                                        '<div class="form-group​​input-group input-group">' +
-                                                            '<input autocomplete="off" id="total_land" name="total_land" type="text" required="required" onkeyup class="field_fa form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
+                                                        '<div class="form-group ​​input-group input-group">' +
+                                                            '<input autocomplete="off" name="total_land" type="text" required="required" class="form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>' +
                                                     '</td>' +
                                                 '</tr>' +
@@ -1174,45 +1192,23 @@
                                                     '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
                                                     '<td>'+
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="land_farm" name="land_farm" type="text" required="required" class="allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                                            '<input autocomplete="off" name="land_farm" type="text" required="required" class="allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
                                                         '</div>'+
                                                     '</td>'+
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_farm" name="total_land_farm" type="text" required="required" onkeyup class="field_fa form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" name="total_land_farm" type="text" required="required" class="form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
-                                                    '</td>' +
-                                                '</tr>' +
-                                                '<tr>' +
-                                                    '<td>'+'</td>'+
-                                                    '<td>'+'</td>'+
-                                                    '<td><label class="control-label"> ទំហំដីសរុប : </label></td>'+
-                                                    '<td>' +
-                                                        '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_field_fa" name="total_field_fa" type="text" required="required" onkeyup class="field_fa form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
-                                                        '</div>'+'<input type="button" id="field_fa" class="field_fa form-control">'+
                                                     '</td>' +
                                                 '</tr>' +
                                             '</table>'+
                                         '</div>';
-                                       
                                     if(land == 2 || land == 3) {
                                         $('#show-land').append(landshow);
                                     }
                                     AllowNumber();
                                 });
-
-                                // $('#field_fa').click(function(){
-
-                                //     var field = parseInt($('#total_land').val());
-                                //     var farm = parseInt($('#total_land_farm').val());
-                                //     var key = $('#calcal_a').val();
-                                //     var sum = field + farm;
-                                //     alert(key);
-                                //     $('#total_field_fa').val(sum);
-                                // });
-                               
                             </script>
 
                             {{--<p>ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា)</p>--}}
@@ -1229,7 +1225,7 @@
 
 
 
-                            <table class="tb_grid table" width="100%">
+                            <table class="tb_grid table table-bordered table-striped" width="100%">
                                 <thead>
                                     <tr>
                                         <th>ល.រ</th>
@@ -1253,12 +1249,12 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="income_age[0]" type="text" required="required" class="form-control allowNumber"  />
+                                                <input name="income_age[0]" type="text" class="form-control allowNumber"  />
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <select style="width: 100%" class="form-control income_occupation" id="income_occupation" name="income_occupation[0]" required="required">
+                                                <select style="width: 100%" class="form-control income_occupation" id="income_occupation" name="income_occupation[0]">
                                                     <option></option>
                                                     @foreach($occupation as $keh => $value)
                                                         <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -1268,24 +1264,24 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="income_unit[0]" type="text" required="required" class="form-control" placeholder="ថ្ងៃ" />
+                                                <input name="income_unit[0]" type="text" class="form-control" placeholder="ថ្ងៃ" />
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group input-group">
-                                                <input id="unit_in_month" name="unit_in_month[0]" type="text" required="required" class="form-control allowNumber otherincome"  />
+                                                <input id="unit_in_month" name="unit_in_month[0]" type="text" class="form-control allowNumber otherincome"  />
                                                 <span class="input-group-addon">ថ្ងៃ</span>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group input-group">
-                                                <input id="average_amount" name="average_amount[0]" type="text" required="required" class="form-control allowNumber otherincome"  />
+                                                <input id="average_amount" name="average_amount[0]" type="text" class="form-control allowNumber otherincome"  />
                                                 <span class="input-group-addon">រៀល</span>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group input-group">
-                                                <input id="monthly_income" name="monthly_income[0]" type="text" required="required" class="form-control allowNumber monthly_income_total" readonly="readonly"/>
+                                                <input id="monthly_income" name="monthly_income[0]" type="text" class="form-control allowNumber monthly_income_total" readonly="readonly"/>
                                                 <span class="input-group-addon">រៀល</span>
                                             </div>
                                         </td>
@@ -1339,12 +1335,12 @@
                                         <td colspan="2">ចំនួន​សមាជិក​គ្រួសារ ​ដែលបាត់បង់លទ្ធភាពពលកម្មស្ទើរទាំងស្រុង ដោយសារមានជម្ងឺធ្ងន់ធ្ងរ/រ៉ាំរ៉ៃ ឬពិការធ្ងន់ធ្ងរ</td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="kids_then65" type="text" required="required" class="form-control allowNumber"  />
+                                                <input name="kids_then65" type="text" class="form-control allowNumber" required="required"/>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="old_bigger65" type="text" required="required" class="form-control allowNumber"  />
+                                                <input name="old_bigger65" type="text" class="form-control allowNumber" required="required"/>
                                             </div>
                                         </td>
                                     </tr>
@@ -1352,12 +1348,12 @@
                                         <td colspan="2">ចំនួន​សមាជិក​គ្រួសារ ​ដែលបាត់បង់លទ្ធភាពពលកម្មប្រហែល៥០ % ដោយសារមានជម្ងឺធ្ងន់ធ្ងរ/រ៉ាំរ៉ៃ ឬពិការធ្ងន់ធ្ងរ</td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="kids_50_then65" type="text" required="required" class="form-control allowNumber"  />
+                                                <input name="kids_50_then65" type="text" class="form-control allowNumber"  required="required"/>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="old_50_bigger65" type="text" required="required" class="form-control allowNumber"  />
+                                                <input name="old_50_bigger65" type="text" class="form-control allowNumber"  required="required"/>
                                             </div>
                                         </td>
                                     </tr>
@@ -1369,7 +1365,7 @@
                             <ul class="debt_question_group">
                                 @foreach($loan as $key => $ge)
                                     <li>
-                                         <label><input class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id"​​>{{ $ge->name_kh }}</label>
+                                         <label class="add_family_debt_id"><input class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id"??>{{ $ge->name_kh }}</label>
                                         @if($ge->id == 1)<label id="family_debt"></label>@endif
                                         @if($ge->id == 2)<label id="family_debt1"></label>@endif
                                     </li>
@@ -1386,14 +1382,40 @@
                             if(family_debt == 1){
                                 $('#family_debt').append('<ol class="debt_question">@foreach($question as $key=>$gg)<li><label><input value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}</label></li>@endforeach</ol>');
                             }else if(family_debt == 2){
-                                $('#family_debt1').append('<div class="col-sm-12"><div class="col-sm-4"><div class="input-group"><input autocomplete="off" class="form-control" type="text" name="total_debt"><span class="input-group-addon">រៀល</span></div></div></div>');
+                                $('#family_debt1').append('<div class="col-sm-12">' +
+                                        '<div class="col-sm-12">' +
+                                            '<table class="table table-bordered table-striped">' +
+                                                '<tbody>' +
+                                                    '<tr>' +
+                                                        '<td> ចំនួនបំណុលដែលមិនទាន់សងគិតមកដល់បច្ចុប្បន្ន</td>' +
+                                                        '<td>រយៈពេលនៃការសងបំណុល</td>' +
+                                                    '</tr>' +
+                                                    '<tr>' +
+                                                        '<td>' +
+                                                            '<div class="input-group add_total_debt">' +
+                                                                '<input autocomplete="off" class="form-control allowNumber" type="text" name="total_debt" id="total_debt">' +
+                                                                '<span class="input-group-addon">រៀល</span>' +
+                                                            '</div>' +
+                                                        '</td>' +
+                                                        '<td>' +
+                                                            '<div class="input-group add_debt_duration">' +
+                                                                '<input autocomplete="off" class="form-control allowNumber" type="text" name="debt_duration" id="debt_duration">' +
+                                                                '<span class="input-group-addon">ថ្ងៃ</span>' +
+                                                            '</div>' +
+                                                        '</td>' +
+                                                    '</tr>' +
+                                                '</tbody>' +
+                                            '</table>'+
+                                        '</div>' +
+                                    '</div>'
+                                );
                             }
                         });
                     </script>
                     <div class="col-sm-12"><hr> </div>
                     <div class="col-sm-12">
                         <!-- <a  class="pull-left btn btn-default print-link3"><img src="" width="30"></a> -->
-                        <button id="nextStep3" class="btn btn-primary pull-right mysubmit nextBtn " type="submit">រក្សាទុក​​ និង បញ្ចប់</button>
+                        <button id="nextStep3" class="btn btn-primary pull-right mysubmit nextBtn btnSave" type="button">រក្សាទុក​​ និង បញ្ចប់</button>
                     </div>
                 </div>
             </div>
@@ -1428,15 +1450,7 @@
                 <td><a href="{{route('view.data',$value->id)}}"><i class="fa fa-eye"></i></a> | <a href=""><i class="fa fa-edit"></i></a> | <a href="{{route('print.data',$value->id)}}" target="blank"><i class="fa fa-print"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
             </tr>
             @endforeach
-            <tr>
-                <td colspan="7">
-                    <div id="accordion" class="collapse">
-                        <div  style=" width: 100%; float: left;height: 300px;border: 1px solid #dadada;">
-                            <h4>Detail</h4>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+
             </tbody>
         </table>
     </div>
@@ -1444,7 +1458,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        // $(".form-control").attr("autocomplete", "off");
+        $(".form-control").attr("autocomplete", "off");
         //next next and validate
         var navListItems = $('div.setup-panel div a'),
                 allWells = $('.setup-content'),
@@ -1652,7 +1666,6 @@
                     $('.alert').show();
                     isValid = false;
                     $(curInputs[i]).closest(".form-group").addClass("has-error");
-                    // $('.alert').show();
                 }
             }
 
@@ -1661,6 +1674,70 @@
                 $('.alert').show();
                 isValid = false;
             }else{$('.add_household_family').removeClass("error");}
+
+            if ($("input[name='household_family_id']:checked").val() == 1 || $("input[name='household_family_id']:checked").val() == 3) {
+                if (!$("input[name='home_prepare']:checked").val()) {
+                    $('.add_home_prepare').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{$('.add_home_prepare').removeClass("error");}
+
+                if (!$("input[name='condition_house']:checked").val()) {
+                    $('.add_condition_house').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{$('.add_condition_house').removeClass("error");}
+
+                if($('#years').val() == ''){
+                    $('#homeyear').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('#homeyear').removeClass("has-error");
+                }
+
+                if($('#year_select').val() == ''){
+                    $('.add_huild_year').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_huild_year').removeClass("has-error");
+                }
+
+                //roof
+                if($('#roof_relationship').val() == ''){
+                    $('.add_roof_relationship').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_roof_relationship').removeClass("has-error");
+                }
+                if($('#r_status').val() == ''){
+                    $('.add_r_status').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_r_status').removeClass("has-error");
+                }
+
+                if($('#h_status').val() == ''){
+                    $('.add_h_status').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_h_status').removeClass("has-error");
+                }
+                if($('#wall_relationship').val() == ''){
+                    $('.add_wall_relationship').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_wall_relationship').removeClass("has-error");
+                }
+
+            }
+
+
             //toilet
             if (!$("input[name='tolet']:checked").val()) {
                 $('.add_toilet').addClass("error");
@@ -1668,38 +1745,19 @@
                 isValid = false;
             }else{$('.add_toilet').removeClass("error");}
 
-            if (!$("input[name='tolet_1']:checked").val()) {
-                $('.add_toilet_1').addClass("error");
-                $('.alert').show();
-                isValid = false;
-            }else{$('.add_toilet_1').removeClass("error");}
-
-            if (!$("input[name='tolet_2']:checked").val()) {
-                $('.add_toilet_2').addClass("error");
-                $('.alert').show();
-                isValid = false;
-            }else{$('.add_toilet_2').removeClass("error");}
-
-            if($('#year_select').val() == ''){
-                $('.add_huild_year').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.add_huild_year').removeClass("has-error");
-            }
-
-            if (!$("input[name='home_prepare']:checked").val()) {
-                $('.add_home_prepare').addClass("error");
-                $('.alert').show();
-                isValid = false;
-            }else{$('.add_home_prepare').removeClass("error");}
-
-            if($('#years').val() == ''){
-                $('#homeyear').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('#homeyear').removeClass("has-error");
+            if($("input[name='tolet']:checked").val() == 1) {
+                if (!$("input[name='tolet_1']:checked").val()) {
+                    $('.add_toilet_1').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                } else {
+                    $('.add_toilet_1').removeClass("error");
+                }
+                if (!$("input[name='tolet_2']:checked").val()) {
+                    $('.add_toilet_2').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{$('.add_toilet_2').removeClass("error");}
             }
 
 
@@ -1730,11 +1788,15 @@
                 isValid = false;
             }else{$('.add_q_electric').removeClass("error");}
 
-            if (!$("input[name='electric_grid_id']:checked").val()) {
-                $('.add_electric_grid').addClass("error");
-                $('.alert').show();
-                isValid = false;
-            }else{$('.add_electric_grid').removeClass("error");}
+            if ($("input[name='q_electric']:checked").val()==2) {
+                if (!$("input[name='electric_grid_id']:checked").val()) {
+                    $('.add_electric_grid').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                } else {
+                    $('.add_electric_grid').removeClass("error");
+                }
+            }
 
            // go_hospital
             if($('#go_hospital').val() == ''){
@@ -1763,49 +1825,83 @@
             }else{
                 $('.add_type_vehicle').removeClass("has-error");
             }
+
+
+
             //roof
-            if($('#roof_relationship').val() == ''){
-                $('.add_roof_relationship').addClass("has-error");
+            if($('#total_people').val() == ''){
+                $('.add_total_people').addClass("has-error");
                 $('.alert').show();
                 isValid = false;
             }else{
-                $('.add_roof_relationship').removeClass("has-error");
+                $('.add_total_people').removeClass("has-error");
             }
-            if($('#r_status').val() == ''){
-                $('.add_r_status').addClass("has-error");
+
+            //debt
+            if (!$("input[name='family_debt_id']:checked").val()) {
+                $('.add_family_debt_id').addClass("error");
+                $('.alert').show();
+                isValid = false;
+            }else{$('.add_family_debt_id').removeClass("error");}
+
+            if ($("input[name='family_debt_id']:checked").val()==1) {
+                if (!$("input[name='q_debt']:checked").val()) {
+                    $('.debt_question').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{$('.debt_question').removeClass("error");}
+            }
+
+            if ($("input[name='family_debt_id']:checked").val()==2) {
+                if($('#total_debt').val() == ''){
+                    $('.add_total_debt').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_total_debt').removeClass("has-error");
+                }
+                if($('#debt_duration').val() == ''){
+                    $('.add_debt_duration').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_debt_duration').removeClass("has-error");
+                }
+            }
+
+            //#type_animals in append
+            var row_num3 = $('.new_rows_3 tr').length;
+            for(var i=0; i<row_num3; i++) {
+                if($('#type_animals_'+i).val() == ''){
+                    $('.add_type_animals_'+i).addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_type_animals_'+i).removeClass("has-error");
+                }
+            }
+            if($('#type_animals').val() == ''){
+                $('.add_type_animals').addClass("has-error");
                 $('.alert').show();
                 isValid = false;
             }else{
-                $('.add_r_status').removeClass("has-error");
+                $('.add_type_animals').removeClass("has-error");
             }
 
-            if($('#h_status').val() == ''){
-                $('.add_h_status').addClass("has-error");
+            //land
+            if (!$("input[name='land']:checked").val()) {
+                $('.add_land').addClass("error");
                 $('.alert').show();
                 isValid = false;
-            }else{
-                $('.add_h_status').removeClass("has-error");
-            }
-            if($('#wall_relationship').val() == ''){
-                $('.add_wall_relationship').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.add_wall_relationship').removeClass("has-error");
-            }
-
-            if (!$("input[name='condition_house']:checked").val()) {
-                $('.add_condition_house').addClass("error");
-                $('.alert').show();
-                isValid = false;
-            }else{$('.add_condition_house').removeClass("error");}
+            }else{$('.add_land').removeClass("error");}
 
 
 
 
-
+            //if (isValid)
+              //  nextStepWizard.removeAttr('disabled').trigger('click');
             if (isValid)
-                nextStepWizard.removeAttr('disabled').trigger('click');
+                $(".form-group-post").submit();
         });
 
         $('div.setup-panel div a.btn-primary').trigger('click');
@@ -1962,13 +2058,11 @@
     });
     //interview relationship
     $("#inter_relationship").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'ទំនាក់ទំនង'
     });
     //family relationship
     $("#fa_relationship").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'ទំនាក់ទំនង'
     });
@@ -2022,9 +2116,9 @@
 
 
 
-        $(".family_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ទំនាក់ទំនង"});
-        $(".occupation").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "មុខរបរ"});
-        $(".education_level").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
+        $(".family_relationship").select2({allowClear:true, placeholder: "ទំនាក់ទំនង"});
+        $(".occupation").select2({allowClear:true, placeholder: "មុខរបរ"});
+        $(".education_level").select2({ allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
         AllowNumber();
 
         var row_num = $('.new_rows tr').length-1;
@@ -2101,28 +2195,19 @@
 
     //family_relationship
     $(".family_relationship").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'ទំនាក់ទំនង'
     });
     //occupation
     $(".occupation").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'មុខរបរ'
     });
     //education
     $(".education_level").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'កម្រិតវប្បធម៌'
     });
-
-
-
-
-
-
 
 
 
@@ -2141,18 +2226,18 @@
             '<td>'+dataRow_meterial+'</td>'+
             '<td>' +
                 '<div class="form-group add_type_meterial_'+row_1+'">'+
-                    '<select id="type_meterial_'+row_1+'" class="form-control type_meterial" id="type_meterial" name="type_meterial['+row_1+']" required="required"> <option></option>@foreach($typemeterial as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
+                    '<select id="type_meterial_'+row_1+'" class="form-control type_meterial" id="type_meterial" name="type_meterial['+row_1+']"> <option></option>@foreach($typemeterial as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
                 '</div>'+
             '</td>'+
-            '<td><div class="form-group"><input autocomplete="off" id="number_meterial_'+row_1+'" type="text" required="required" class="number_meterial form-control allowNumber meterial" name="number_meterial['+row_1+']"/></div></td>'+
-            '<td><div class="form-group"><input autocomplete="off" id="market_value_meterial_'+row_1+'" type="text" required="required"class="market_value_meterial form-control allowNumber meterial" name="market_value_meterial['+row_1+']"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" id="number_meterial_'+row_1+'" type="text" class="number_meterial form-control allowNumber meterial" name="number_meterial['+row_1+']" required="required"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" id="market_value_meterial_'+row_1+'" type="text" class="market_value_meterial form-control allowNumber meterial" name="market_value_meterial['+row_1+']" required="required"/></div></td>'+
             '<td><div class="form-group input-group"><input id="total_rail_meterial_'+row_1+'" type="text" required="required" class="total_rail_meterial form-control totalallowNumber_meterial" name="total_rail_meterial['+row_1+']" readonly="readonly"/><span class="input-group-addon">រៀល</span></div></div></td>'+
             '<td style="text-align:center;"><a id="meterial_'+row_1+'" class="btn remove_rows_1" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
         $(".new_rows_1").append(tab_rows_1);
         dataRow_meterial++;
 
-        $(".type_meterial").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
+        $(".type_meterial").select2({ allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
         AllowNumber();
         var row_num = $('.new_rows_1 tr').length-1;
         for(var i=0; i<row_num; i++) {
@@ -2224,19 +2309,16 @@
 
     //type_vehicle
     $(".type_meterial").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'សម្ភារប្រើបា្រស់'
     });
 
     $("#go_hospital").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'មធ្យោបាយធ្វើដំណើរ'
     });
     //type_vehicle
     $(".type_vehicle").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'សម្ភារប្រើបា្រស់'
     });
@@ -2250,23 +2332,23 @@
             return false;
         }
         reOrder_vehicle();
-        // var rowindex_2 = row_2+1;
+     //   var rowindex_2 = row_2+1;
         var html = '<tr class="myrow_2">'+
             '<td>'+dataRow_vehicle+'</td>'+
             '<td>' +
                 '<div class="form-group add_type_vehicle_'+row_2+'">'+
-                    '<select class="form-control type_vehicle" id="type_vehicle_'+row_2+'" name="type_vehicle['+row_2+']" required="required"> <option></option>@foreach($typetransport as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
+                    '<select class="form-control type_vehicle" id="type_vehicle_'+row_2+'" name="type_vehicle['+row_2+']"> <option></option>@foreach($typetransport as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
                 '</div>'+
             '</td>'+
-            '<td><div class="form-group"><input autocomplete="off" id="number_vehicle_'+row_2+'" type="text" required="required" class="number_vehicle form-control allowNumber vehicle" name="number_vehicle['+row_2+']"/></div></td>'+
-            '<td><div class="form-group input-group"><input autocomplete="off" id="market_value_vehicle_'+row_2+'" type="text" required="required" class="market_value_vehicle form-control allowNumber vehicle" name="market_value_vehicle['+row_2+']"/><span class="input-group-addon">រៀល</span></div></td>'+
-            '<td><div class="form-group input-group"><input autocomplete="off" id="total_rail_vehicle_'+row_2+'" type="text" required="required" class="total_rail_vehicle form-control totalallowNumber_vehicle" name="total_rail_vehicle['+row_2+']"/ readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" id="number_vehicle_'+row_2+'" type="text" class="number_vehicle form-control allowNumber vehicle" name="number_vehicle['+row_2+']" required="required"/></div></td>'+
+            '<td><div class="form-group input-group"><input autocomplete="off" id="market_value_vehicle_'+row_2+'" type="text"  class="market_value_vehicle form-control allowNumber vehicle" name="market_value_vehicle['+row_2+']" required="required"/><span class="input-group-addon">រៀល</span></div></td>'+
+            '<td><div class="form-group input-group"><input autocomplete="off" id="total_rail_vehicle_'+row_2+'" type="text"  class="total_rail_vehicle form-control totalallowNumber_vehicle" name="total_rail_vehicle['+row_2+']"/ readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
             '<td style="text-align:center;"><a id="vehicle_'+row_2+'" class="btn remove_rows_2" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
 
         $(".new_rows_2").append(html);
         dataRow_vehicle++;
-        $(".type_vehicle").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
+        $(".type_vehicle").select2({allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
         AllowNumber();
 
         var row_num = $('.new_rows_2 tr').length-1;
@@ -2277,6 +2359,8 @@
                 var market_value_vehicle_1 = $('#market_value_vehicle_'+i).val();
                 sum = Number(number_vehicle_1 * market_value_vehicle_1);
                 $("#vehicle_"+i).attr({"onclick": "remove_2("+sum+")"});
+
+                $('#total_rail_vehicle_'+i).val(sum);
             });
         }
 
@@ -2288,9 +2372,10 @@
                     tot += parseInt(arr[i].value);
             }
             document.getElementById('total_vehicle_costs').value = tot;
-            
         });
+
     });
+
     function reOrder_vehicle(){
         for(var n=2;n<(dataRow_vehicle-1);n++){
             $('.new_rows_2  tr:eq(' + (n-1) +') td:first-child').html(n);
@@ -2321,7 +2406,6 @@
             sum = Number(number_vehicle * market_value_vehicle);
         });
         $('#total_rail_vehicle').val(sum);
-
     });
     $('.vehicle').keyup(function () {
         var arr = document.getElementsByClassName('totalallowNumber_vehicle');
@@ -2332,6 +2416,8 @@
         }
         document.getElementById('total_vehicle_costs').value = tot;
     });
+
+
     dataRow_income = 2;
     $('#add_rows_3').click(function(){ //alert($m_id);
         var row_3 = $('.new_rows_3 tr.myrow_3').length;
@@ -2345,11 +2431,11 @@
         var tab_rows_3 ='<tr class="myrow_3">'+
             '<td>'+dataRow_income+'</td>'+
             '<td>' +
-                '<div class="form-group">'+
-                    '<select class="form-control type_animals" id="type_animals" name="type_animals['+row_3+']" required="required"> <option></option>@foreach($typeanimals as $key => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
+                '<div class="form-group add_type_animals_'+row_3+'">'+
+                    '<select required="required" style="width: 100%;" class="form-control type_animals" id="type_animals_'+row_3+'" name="type_animals['+row_3+']"> <option></option>@foreach($typeanimals as $key => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
                 '</div>'+
             '</td>'+
-            '<td><div class="form-group"><input autocomplete="off" type="text" required="required" class="num_animals_big form-control allowNumber" name="num_animals_big['+row_3+']"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" type="text" class="num_animals_big form-control allowNumber" name="num_animals_big['+row_3+']" required="required"/></div></td>'+
             '<td><div class="form-group"><input autocomplete="off" type="text" class="num_animals_small form-control allowNumber" name="num_animals_small['+row_3+']"/></div></td>'+
             '<td><div class="form-group"><input autocomplete="off" type="text" class="note_animals form-control allowNumber" name="note_animals['+row_3+']"/></div></td>'+
             '<td style="text-align:center;"><a status="0" class="btn remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
@@ -2357,7 +2443,7 @@
         $(".new_rows_3").append(tab_rows_3);
         dataRow_income++;
         AllowNumber();
-        $(".type_animals").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ប្រភេទសត្វ"});
+        $(".type_animals").select2({ allowClear:true, placeholder: "ប្រភេទសត្វ"});
     });
     //remove add
     $(".new_rows_3").on('click','.remove_rows_3',function(){
@@ -2368,7 +2454,6 @@
     });
     //type_animals
     $(".type_animals").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'ប្រភេទសត្វ'
     });
@@ -2413,7 +2498,7 @@
                 '</td>' +
                 '<td>' +
                     '<div class="form-group">' +
-                        '<input autocomplete="off" name="income_age['+row_4+']" type="text" required="required" class="form-control allowNumber"  />' +
+                        '<input autocomplete="off" name="income_age['+row_4+']" type="text"  class="form-control allowNumber"  />' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
@@ -2482,7 +2567,7 @@
             if(totalperson == null || totalperson == ''){
                 document.getElementById('total_inc_person').value = tot/1;
             }else{
-                document.getElementById('total_inc_person').value = tot/totalperson;
+                document.getElementById('total_inc_person').value = parseInt(tot/totalperson).toFixed(2);
             }
         });
         //click append nick name
@@ -2498,7 +2583,7 @@
             }
         }
 
-        $(".income_name").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ប្រភេទសត្វ"});
+        $(".income_name").select2({ allowClear:true, placeholder: "ប្រភេទសត្វ"});
 
     });
     $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
@@ -2520,7 +2605,7 @@
         if(totalperson == null || totalperson == ''){
             document.getElementById('total_inc_person').value = total_costs/1;
         }else{
-            document.getElementById('total_inc_person').value = total_costs/totalperson;
+            document.getElementById('total_inc_person').value = parseInt(total_costs/totalperson).toFixed(2);
         }
     }
     $(".new_rows_4").on('click','.remove_rows_4',function(){
@@ -2531,7 +2616,6 @@
     });
 
     $("#income_name_0").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'ឈ្មោះសមាជិក'
     });
@@ -2558,7 +2642,7 @@
         if(totalperson == null || totalperson == ''){
             document.getElementById('total_inc_person').value = tot/1;
         }else{
-            document.getElementById('total_inc_person').value = tot/totalperson;
+            document.getElementById('total_inc_person').value = parseInt(tot/totalperson).toFixed(2);
         }
     });
 
@@ -2569,7 +2653,7 @@
         if(tot == null || tot == '') {
             document.getElementById('total_inc_person').value = '';
         }else{
-            document.getElementById('total_inc_person').value = tot/totalperson;
+            document.getElementById('total_inc_person').value = parseInt(tot/totalperson).toFixed(2);
         }
     });
 
@@ -2629,13 +2713,15 @@
         },9000);
     });
 
-    $('.alert-success').click(function(){
-        setTimeout(function() {
-            $(".add_hide").addClass("autho-hide");
-            $('.autho-hide').fadeOut();
-        },9000);
-    });
-    //scoring__
-   
+    setTimeout(function() {
+        $(".add_hide1").addClass("autho-hide1");
+        $('.autho-hide1').fadeOut();
+    },9000);
+
+
+
+
+
+
 </script>
 @endsection
