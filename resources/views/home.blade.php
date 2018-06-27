@@ -570,8 +570,8 @@
                                          $('#building-year').append(building_year);
                                          $('#home-yourself').append(homeyourselt);
                                          $("#year_select").select2({allowClear:true, placeholder: "ឆ្នាំ"});
-                                         $(".roof_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ដំបូល"});
-                                         $(".r_status").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ស្ថានភាព"});
+                                         $(".roof_relationship").select2({allowClear:true, placeholder: "ដំបូល"});
+                                         $(".r_status").select2({allowClear:true, placeholder: "ស្ថានភាព"});
 
                                          $('.homeyear').click(function () {
                                              var homeyear = $('input[name=home_prepare]:checked').val();
@@ -617,8 +617,8 @@
                                                 '</table>'+
                                             '</div>';
                                          $('#home-ke').append(homeke);
-                                         $(".wall_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ជញ្ជាំង"});
-                                         $(".h_status").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ស្ថានភាព"});
+                                         $(".wall_relationship").select2({ allowClear:true, placeholder: "ជញ្ជាំង"});
+                                         $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
 
                                          var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>' +
                                              '<div class="add_condition_house"><ul class="li-none">'+
@@ -2058,13 +2058,11 @@
     });
     //interview relationship
     $("#inter_relationship").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'ទំនាក់ទំនង'
     });
     //family relationship
     $("#fa_relationship").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'ទំនាក់ទំនង'
     });
@@ -2118,9 +2116,9 @@
 
 
 
-        $(".family_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ទំនាក់ទំនង"});
-        $(".occupation").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "មុខរបរ"});
-        $(".education_level").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
+        $(".family_relationship").select2({allowClear:true, placeholder: "ទំនាក់ទំនង"});
+        $(".occupation").select2({allowClear:true, placeholder: "មុខរបរ"});
+        $(".education_level").select2({ allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
         AllowNumber();
 
         var row_num = $('.new_rows tr').length-1;
@@ -2197,28 +2195,19 @@
 
     //family_relationship
     $(".family_relationship").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'ទំនាក់ទំនង'
     });
     //occupation
     $(".occupation").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'មុខរបរ'
     });
     //education
     $(".education_level").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'កម្រិតវប្បធម៌'
     });
-
-
-
-
-
-
 
 
 
@@ -2248,7 +2237,7 @@
         $(".new_rows_1").append(tab_rows_1);
         dataRow_meterial++;
 
-        $(".type_meterial").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
+        $(".type_meterial").select2({ allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
         AllowNumber();
         var row_num = $('.new_rows_1 tr').length-1;
         for(var i=0; i<row_num; i++) {
@@ -2320,19 +2309,16 @@
 
     //type_vehicle
     $(".type_meterial").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'សម្ភារប្រើបា្រស់'
     });
 
     $("#go_hospital").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'មធ្យោបាយធ្វើដំណើរ'
     });
     //type_vehicle
     $(".type_vehicle").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'សម្ភារប្រើបា្រស់'
     });
@@ -2362,7 +2348,7 @@
 
         $(".new_rows_2").append(html);
         dataRow_vehicle++;
-        $(".type_vehicle").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
+        $(".type_vehicle").select2({allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
         AllowNumber();
 
         var row_num = $('.new_rows_2 tr').length-1;
@@ -2457,7 +2443,7 @@
         $(".new_rows_3").append(tab_rows_3);
         dataRow_income++;
         AllowNumber();
-        $(".type_animals").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ប្រភេទសត្វ"});
+        $(".type_animals").select2({ allowClear:true, placeholder: "ប្រភេទសត្វ"});
     });
     //remove add
     $(".new_rows_3").on('click','.remove_rows_3',function(){
@@ -2468,7 +2454,6 @@
     });
     //type_animals
     $(".type_animals").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'ប្រភេទសត្វ'
     });
@@ -2598,7 +2583,7 @@
             }
         }
 
-        $(".income_name").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ប្រភេទសត្វ"});
+        $(".income_name").select2({ allowClear:true, placeholder: "ប្រភេទសត្វ"});
 
     });
     $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
@@ -2631,7 +2616,6 @@
     });
 
     $("#income_name_0").select2({
-        minimumResultsForSearch: -1,
         allowClear:true,
         placeholder: 'ឈ្មោះសមាជិក'
     });
@@ -2736,7 +2720,7 @@
 
 
 
-   
+
 
 
 </script>
