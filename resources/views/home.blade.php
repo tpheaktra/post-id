@@ -6,22 +6,22 @@
 <!------ Include the above in your HEAD tag ---------->
 <div class="container content">
     <div class="col-sm-12">
-        <h2 align="center">ការធ្វើអត្តសញ្ញាណកម្មគ្រួសារក្រីក្រនៅមន្ទីពេទ្យ</h2>
+        <h2 align="center">???????????????????????????????????????????????</h2>
     </div>
 
     <div class="stepwizard">
         <div class="stepwizard-row setup-panel">
             <div class="stepwizard-step">
                 <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
-                <p>ព័ត៌មានទូទៅ</p>
+                <p>???????????</p>
             </div>
             <div class="stepwizard-step">
                 <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                <p>ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់</p>
+                <p>????????????????????????????????????????</p>
             </div>
             <div class="stepwizard-step">
                 <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-                <p>ស្ថានភាពទូទៅរបស់គ្រួសារ</p>
+                <p>???????????????????????</p>
             </div>
         </div>
     </div>
@@ -34,23 +34,23 @@
             <div class="col-xs-12">
                 <div class="col-md-12" id="div1">
                     <div class="col-md-12">
-                        <h3> ក) ព័ត៌មានទូទៅ</h3>
+                        <h3> ?) ???????????</h3>
                         <div class="col-sm-12" style="padding: 0;"><hr> </div>
-                        <h4>ក.១ ព័ត៌មានទូទៅ</h4>
+                        <h4>?.? ???????????</h4>
                     </div>
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-6">
                                 <table width="100%">
                                     <tr>
-                                        <td width="35%"><label class="control-label">មន្ទីរពេទ្យ:</label></td>
+                                        <td width="35%"><label class="control-label">???????????:</label></td>
                                         <td width="65%">
                                             <div class="form-group">
                                                 <select id="hospital" style="width: 100%" class="form-control" name="hospital">
                                                     <option></option>
                                                     @foreach($hospital as $key =>$h)
                                                         <option value="{{$h->od_code}}">
-                                                            មន្ទីរពេទ្យ - {{$h->name_kh}}</option>
+                                                            ??????????? - {{$h->name_kh}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -61,7 +61,7 @@
                             <div class="col-sm-6">
                                 <table class="pull-right">
                                     <tr>
-                                        <td width="35%"><label class="control-label">លេខកូដសម្ភាសន៍:</label></td>
+                                        <td width="35%"><label class="control-label">??????????????:</label></td>
                                         <td width="65%">
                                             <div class="form-group">
                                                 <input id="interview_code" name="interview_code" type="text" required="required" class="form-control" readonly="readonly"/>
@@ -76,7 +76,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label">ឈ្មោះអ្នកជំងឺ :</label></td>
+                                <td width="35%"><label class="control-label">????????????? :</label></td>
                                 <td width="65%">
                                    <div class="form-group">
                                         <input  maxlength="100" name="g_patient" type="text" required="required" class="form-control" />
@@ -84,7 +84,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="35%"><label class="control-label"> ភេទ : </label></td>
+                                <td width="35%"><label class="control-label"> ??? : </label></td>
                                 <td width="65%">
                                    <div class="form-group"  id="g_sex">
                                        @foreach($gender as $key => $g)
@@ -99,7 +99,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label"> អាយុ : </label></td>
+                                <td width="35%"><label class="control-label"> ???? : </label></td>
                                 <td width="65%">
                                    <div class="form-group">
                                         <input maxlength="3"  name="g_age" type="text" required="required" class="form-control allowNumber"/>
@@ -107,7 +107,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="35%"><label class="control-label">លេខទូរស័ព្ធ :</label></td>
+                                <td width="35%"><label class="control-label">??????????? :</label></td>
                                 <td width="65%">
                                    <div class="form-group">
                                         <input  maxlength="10" name="g_phone" type="text" required="required" class="form-control allowNumber" />
@@ -120,7 +120,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label">ខេត្ត : </label></td>
+                                <td width="35%"><label class="control-label">????? : </label></td>
                                 <td width="65%">
                                    <div class="form-group g_province">
                                        <select id="province" style="width: 100%" class="form-control" name="g_province">
@@ -133,7 +133,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="35%"><label class="control-label">   ស្រុក : </label></td>
+                                <td width="35%"><label class="control-label">   ????? : </label></td>
                                 <td width="65%">
                                    <div class="form-group g_district">
                                        <select id="district" style="width: 100%" class="form-control" name="g_district"></select>
@@ -147,7 +147,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label">ឃំុ :</label></td>
+                                <td width="35%"><label class="control-label">??? :</label></td>
                                 <td width="65%">
                                     <div class="form-group g_commune">
                                         <select id="commune" style="width: 100%" class="form-control" name="g_commune"></select>
@@ -155,7 +155,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="35%"><label class="control-label">ភូមិ :</label></td>
+                                <td width="35%"><label class="control-label">???? :</label></td>
                                 <td width="65%">
                                     <div class="form-group g_village">
                                         <select id="village" style="width: 100%" class="form-control" name="g_village"></select>
@@ -168,7 +168,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label"> ទីតាំងនៅក្នុងភូមិ : </label></td>
+                                <td width="35%"><label class="control-label"> ????????????????? : </label></td>
                                 <td width="65%">
                                    <div class="form-group">
                                        <textarea class="form-control" id="location" name="g_local_village"></textarea>
@@ -181,12 +181,12 @@
 
                    <div class="col-sm-12"><hr> </div>
                    <div class="col-sm-12">
-                        <h4> ក.២ ព័ត៌មានអំពីអ្នកដែលផ្តល់ចំលើយ(អ្នកដែលបានសំភាសន៏)</h4>
+                        <h4> ?.? ????????????????????????????(?????????????????)</h4>
                    </div>
                    <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label">ឈ្មោះ :</label></td>
+                                <td><label class="control-label">????? :</label></td>
                                 <td>
                                    <div class="form-group">
                                         <input type="text" required="required" class="form-control" name="inter_patient"/>
@@ -194,7 +194,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label"> ភេទ : </label></td>
+                                <td><label class="control-label"> ??? : </label></td>
                                 <td>
                                    <div class="form-group" id="inter_sex">
                                        @foreach($gender as $key => $g)
@@ -209,7 +209,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label"> អាយុ : </label></td>
+                                <td><label class="control-label"> ???? : </label></td>
                                 <td>
                                    <div class="form-group">
                                         <input maxlength="3" type="text" required="required" class="form-control allowNumber"  name="inter_age"/>
@@ -217,7 +217,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
+                                <td><label class="control-label">??????????? :</label></td>
                                 <td>
                                    <div class="form-group">
                                         <input maxlength="10"  type="text" required="required" class="form-control allowNumber" name="inter_phone"/>
@@ -230,7 +230,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="50%"><label class="control-label">ត្រូវជា(ទំនាក់ទំនងជាមួយមេគ្រួសារ) : </label></td>
+                                <td width="50%"><label class="control-label">???????(????????????????????????) : </label></td>
                                 <td width="50%">
                                     <div class="form-group inter_relationship">
                                         <select style="width: 100%;" class="form-control" id="inter_relationship" name="inter_relationship">
@@ -247,12 +247,12 @@
 
                    <div class="col-sm-12"><hr> </div>
                    <div class="col-sm-12">
-                        <h4> ក.៣ ព័ត៌មានអំពី​ អ្នកដែលអាចបញ្ជាក់ពីស្ថានភាពគ្រួសារ (ដែលមិនមែនសមាជិកគ្រួសារ)ដូចជាមេភូមិ អ្នកជិតខាង​ មិត្តភ័ក្រ្ត </h4> 
+                        <h4> ?.? ???????????? ?????????????????????????????????? (??????????????????????)??????????? ??????????? ???????????? </h4> 
                    </div>
                    <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label">ឈ្មោះ :</label></td>
+                                <td><label class="control-label">????? :</label></td>
                                 <td>
                                    <div class="form-group">
                                         <input  type="text" required="required" class="form-control" name="fa_patient"/>
@@ -260,7 +260,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label"> ភេទ : </label></td>
+                                <td><label class="control-label"> ??? : </label></td>
                                 <td>
                                    <div class="form-group" id="fa_sex">
                                        @foreach($gender as $key => $g)
@@ -275,7 +275,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label"> អាយុ : </label></td>
+                                <td><label class="control-label"> ???? : </label></td>
                                 <td>
                                    <div class="form-group">
                                         <input maxlength="3" type="text" required="required" class="form-control allowNumber" name="fa_age"/>
@@ -283,7 +283,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
+                                <td><label class="control-label">??????????? :</label></td>
                                 <td>
                                    <div class="form-group">
                                         <input maxlength="10" type="text" required="required" class="form-control allowNumber" name="fa_phone"/>
@@ -296,7 +296,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="50%"><label class="control-label">ត្រូវជា(ដែលមិនមែនសមាជិកគ្រួសារ) : </label></td>
+                                <td width="50%"><label class="control-label">???????(??????????????????????) : </label></td>
                                 <td width="50%">
                                     <div class="form-group fa_relationship">
                                         <select style="width: 100%;" class="form-control" id="fa_relationship" name="fa_relationship">
@@ -313,7 +313,7 @@
                     <div class="col-sm-12"><hr> </div>
                     <div class="col-sm-12">
                         <!-- <a class="btn btn-default pull-left print-link1"><img src="" width="30"></a> -->
-                        <button  class="btn btn-primary nextBtn pull-right" type="button">រក្សាទុកនិងជំហានបន្ទាប់</button>
+                        <button  class="btn btn-primary nextBtn pull-right" type="button">???????????????????????</button>
                     </div>
                 </div>
             </div>
@@ -327,31 +327,31 @@
             <div class="col-xs-12">
                 <div class="col-md-12" id="div2">
                    <div class="col-sm-12">
-                    <h3> ខ) ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់</h3>
+                    <h3> ?) ????????????????????????????????????????</h3>
                     <hr>
-                    <p>មនុស្ស​ដែល​គេ​ចាត់ទុកថាជាសមាជិក​គ្រួសារលុះ​ត្រាតែ​រស់​នៅជាប្រចាំ​ក្នុង​គ្រួសារ ឬ​អវត្តមាន​តិច​ជាង​ ៦ខែ​​ (ត្រូវមានឯកសារយោងដូចជា សៀវភៅគ្រួសារ សៀវភៅស្នាក់នៅ សំបុត្រកំណើត លិខិតបញ្ជាក់ពីអាជ្ញាធរ)</p>
+                    <p>?????????????????????????????????????????????????????????????????????????????? ??????????????????? ????? (????????????????????? ???????????? ????????????? ???????????? ??????????????????????)</p>
 
 
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th rowspan="2">ល.រ</th>
-                                    <th rowspan="2">នាមត្រកូល នាមខ្លួន ឈ្មោះហៅក្រៅ</th>
-                                    <th colspan="2"><p align="center">ឆ្នាំកំណើត ឬ អាយុ</p></th>
-                                    <th width="15%" rowspan="2">ទំនាក់ទំនង​ជាមួយ​មេ​គ្រួសារ(1) <a href="#" data-toggle="tooltip" title="(1)= មេ​គ្រួសារ ប្តី/​ប្រពន្ធ កូន ឪពុក​ម្តាយ ក្មួយ ផ្សេងៗ">?</a>
+                                    <th rowspan="2">?.?</th>
+                                    <th rowspan="2">????????? ???????? ???????????</th>
+                                    <th colspan="2"><p align="center">?????????? ? ????</p></th>
+                                    <th width="15%" rowspan="2">???????????????????????????(1) <a href="#" data-toggle="tooltip" title="(1)= ?????????? ????/???????? ??? ?????????? ????? ??????">?</a>
                                     </th>
-                                    <th rowspan="2">មុខងារ/​មុខរបរ(2) <a href="#" data-toggle="tooltip" title="(2)= ប្រភេទមុខរបរចម្បងរបស់គាត់/នាង ដូចជា កសិករ កម្មករ មន្ត្រីរាជការ រកស៊ី សិស្ស នៅផ្ទះ">?</a></th>
-                                    <th width="15%" rowspan="2">កម្រិតវប្បធម៌(3) <a href="#" data-toggle="tooltip" title="(3)= បើនៅរៀន បញ្ជាក់ពីថ្នាក់ទីប៉ុន្មាន។ បើជាមនុស្សពេញវ័យឬជាកុមារអាយុចាប់ពី៥ឆ្នាំតែឈប់រៀន សូមបញ្ជាក់ពីកម្រិតថ្នាក់នៅពេលឈប់រៀន">?</a></th>
-                                    <th rowspan="2">សកម្មភាព</th>
+                                    <th rowspan="2">??????/???????(2) <a href="#" data-toggle="tooltip" title="(2)= ?????????????????????????/??? ????? ????? ?????? ????????????? ????? ????? ??????">?</a></th>
+                                    <th width="15%" rowspan="2">?????????????(3) <a href="#" data-toggle="tooltip" title="(3)= ??????? ?????????????????????????? ???????????????????????????????????????????????? ???????????????????????????????????">?</a></th>
+                                    <th rowspan="2">????????</th>
                                 </tr>
                                 <tr>
-                                    <th width="15%">ឆ្នាំ​កំណើត</th>
-                                    <th width="8%">អាយុ</th>
+                                    <th width="15%">???????????</th>
+                                    <th width="8%">????</th>
                                 </tr>
                             </thead>
                             <tbody class="new_rows">
                                 <tr class="myrow">
-                                    <td>1(មេ)</td>
+                                    <td>1(??)</td>
                                     <td><div class="form-group"><input type="text" required="required" class="form-control nick_name_0" name="nick_name[0]"/></div></td>
                                     <td><div class="form-group"><input maxlength="4"  type="text" required="required" class="form-control allowNumber" id="dob" name="dob[0]"/></div></td>
                                     <td><div class="form-group"><input maxlength="3" type="text" required="required" class="form-control allowNumber" id="age" name="age[0]"/></div></td>
@@ -397,7 +397,7 @@
                         <!-- <div class="col-sm-12"><hr> </div> -->
                     </div>
                     <div class="col-sm-12 form-group">
-                        <button id="step2Next" class="btn btn-primary  pull-right" type="button" >រក្សាទុក និង ជំហានបន្ទាប់</button>
+                        <button id="step2Next" class="btn btn-primary  pull-right" type="button" >???????? ??? ????????????</button>
                     </div>  
                 </div>
                 
@@ -410,18 +410,18 @@
         <div class="row setup-content" id="step-3">
             <div class="col-xs-12">
                 <div class="col-md-12" id="div3">
-                    <h3> គ) ស្ថានភាពទូទៅរបស់គ្រួសារ</h3>
+                    <h3> ?) ???????????????????????</h3>
                        <div class="col-sm-12"><hr> </div>
                        <div class="col-sm-12">
-                            <h4> គ.១ ផ្ទះសម្បែងរបស់ក្រុមគ្រួសារ</h4> 
-                            <p>តើពួកគាត់រស់នៅទីកន្លែងណា? (សូម​ជ្រើរើស នៅចំលើយតែមួយ)</p>
+                            <h4> ?.? ??????????????????????????</h4> 
+                            <p>????????????????????????? (??????????? ????????????)</p>
 
                             <div class="add_household_family">
                                 <ul class="li-none">
                                     @foreach($household as $key => $h)
-                                        <li><span>@if($h->id == 1) ក​ @elseif($h->id == 2) ខ​ @elseif($h->id == 3) គ @elseif($h->id == 4) ឃ​ @elseif($h->id == 5) ង​​ @endif</span>
+                                        <li><span>@if($h->id == 1) ?? @elseif($h->id == 2) ?? @elseif($h->id == 3) ? @elseif($h->id == 4) ?? @elseif($h->id == 5) ??? @endif</span>
                                             <label>
-                                                 ​<input class="household_family_id" type="radio" name="household_family_id"  value="{{ $h->id }}"> {{$h->name_kh}}
+                                                 ?<input class="household_family_id" type="radio" name="household_family_id"  value="{{ $h->id }}"> {{$h->name_kh}}
                                             </label>
                                             @if($h->id == 5)<label id="household_family_id"></label>@endif
                                         </li>
@@ -440,19 +440,19 @@
                                      $('#building-year').empty();
                                      //$('#home-preparing').empty();
                                      if(houshold == 5){
-                                         $('#household_family_id').append('<input type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name" autocomplete="off" required="required">លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន : <input class="allowNumber" type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone" autocomplete="off" required="required">');
+                                         $('#household_family_id').append('<input type="text" placeholder="????????????" name="institutions_name" autocomplete="off" required="required">??????????????????????????????????? : <input class="allowNumber" type="text" placeholder="??????????" name="instatutions_phone" autocomplete="off" required="required">');
                                          AllowNumber();
                                      }else if(houshold == 2){
-                                         $('#home-rent').append('<h4>គ.៨) សម្រាប់គ្រួសារជួលផ្ទះគេ​ <a data-toggle="tooltip" title="សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ មិនបាច់បំពេញចំណុច គ៨ ហើយរំលងទៅ គ៩">?</a></h4>' +
+                                         $('#home-rent').append('<h4>?.?) ???????????????????????? <a data-toggle="tooltip" title="???????????????????????????????? ? ? ?????????????????????? ????????????????? ?? ????????? ??">?</a></h4>' +
                                              '<div class="col-sm-6">' +
                                                  '<table width="100%">' +
                                                      '<tr>'+
                                                          '<td width="50%">' +
-                                                            '<label class="control-label"> តើថ្លៃជួលប្រចាំខែជាមធ្យមប៉ុន្មាន?: </label>' +
+                                                            '<label class="control-label"> ?????????????????????????????????: </label>' +
                                                          '</td>' +
                                                          '<td width="50%">' +
                                                              '<div class="form-group input-group">' +
-                                                                '<input autocomplete="off" id="price" type="text" required="required" class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">រៀល</span>' +
+                                                                '<input autocomplete="off" id="price" type="text" required="required" class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">???</span>' +
                                                              '</div>' +
                                                          '</td>' +
                                                      '</tr>' +
@@ -462,13 +462,13 @@
 //                                                         '</td>' +
 //                                                         '<td width="50%">' +
 //                                                             '<div class="form-group input-group">' +
-//                                                                '<input autocomplete="off" id="r_score"  type="text" required="required" onkeyup class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">ពិន្ទុ</span>' +
+//                                                                '<input autocomplete="off" id="r_score"  type="text" required="required" onkeyup class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">??????</span>' +
 //                                                             '</div>' +
 //                                                         '</td>' +
 //                                                     '</tr>' +
                                                  '</table>' +
                                              '</div>');
-                                             //3B គ្រួសារដែលនៅផ្ទះជួលគេតម្លៃជួលផ្ទះ (ប្រើសម្រាប់តែគ្រួសារដែលជួលផ្ទះគេ)  
+                                             //3B ????????????????????????????????? (????????????????????????????????)  
                                                 $('.cal').keyup(function(){
                                                     var person = $('#total_people').val();
                                                     var price = $('#price').val();
@@ -488,11 +488,11 @@
                                                     }
                                                 });
                                      }else if(houshold == 1 || houshold == 3){
-                                         var homeyourselt = '<h4>គ.៥ ដំបូល</h4>' +
+                                         var homeyourselt = '<h4>?.? ?????</h4>' +
                                              '<div class="col-sm-6">' +
                                                  '<table width="100%">' +
                                                      '<tr>' +
-                                                        '<td><label class="control-label"> ដំបូលធ្វើអំពី : </label></td>' +
+                                                        '<td><label class="control-label"> ????????????? : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group add_roof_relationship">' +
                                                                  '<select class="form-control roof_relationship" id="roof_relationship" name="roof_made">' +
@@ -509,7 +509,7 @@
                                              '<div class="col-sm-6">' +
                                                  '<table width="100%">' +
                                                      '<tr>' +
-                                                        '<td><label class="control-label">​ និង​ស្ថានភាព : </label></td>' +
+                                                        '<td><label class="control-label">? ???????????? : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group add_r_status">' +
                                                                  '<select class="form-control r_status" id="r_status" name="roof_status">' +
@@ -525,8 +525,8 @@
                                                     '<table class="table-home table table-bordered table-striped">' +
                                                     '<thead>' +
                                                         '<tr>' +
-                                                            '<th>ផ្ទះសាងសង់នៅឆ្នាំណា?</th>' +
-                                                            '<th>តើធ្លាប់ជួសជុលឬទេ?</th>' +
+                                                            '<th>????????????????????</th>' +
+                                                            '<th>??????????????????</th>' +
                                                         '</tr>' +
                                                     '</thead>'+
                                                         '<tr>' +
@@ -555,7 +555,7 @@
                                                     '</table>'+
                                                 '</div>';
 
-                                                {{--var home_preparing = '<h5>- តើធ្លាប់ជួសជុលឬទេ?</h5>' +--}}
+                                                {{--var home_preparing = '<h5>- ??????????????????</h5>' +--}}
                                                     {{--'<div class="add_home_prepare"><ul class="li-none">' +--}}
                                                         {{--'@foreach($homePrepar as $key =>$p)' +--}}
                                                             {{--'<li>' +--}}
@@ -569,9 +569,9 @@
                                         // $('#home-preparing').append(home_preparing);
                                          $('#building-year').append(building_year);
                                          $('#home-yourself').append(homeyourselt);
-                                         $("#year_select").select2({allowClear:true, placeholder: "ឆ្នាំ"});
-                                         $(".roof_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ដំបូល"});
-                                         $(".r_status").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ស្ថានភាព"});
+                                         $("#year_select").select2({allowClear:true, placeholder: "?????"});
+                                         $(".roof_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "?????"});
+                                         $(".r_status").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "????????"});
 
                                          $('.homeyear').click(function () {
                                              var homeyear = $('input[name=home_prepare]:checked').val();
@@ -580,16 +580,16 @@
                                                  $('#homeyear').append('<select name="home_year" style="width: 180px;" id="years"><option></option><?php $currentYear = date('Y');foreach (range(1950, $currentYear) as $value) { echo "<option value=".$value.">" . $value . "</option > ";}?> </select>');
                                                  $("#years").select2({
                                                      allowClear:true,
-                                                     placeholder: 'ឆ្នាំ...'
+                                                     placeholder: '?????...'
                                                  });
                                              }
                                          });
 
-                                         var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>' +
+                                         var homeke = '<h4>?.? ????????</h4>' +
                                              '<div class="col-sm-6">' +
                                                  '<table width="100%">' +
                                                      '<tr>' +
-                                                        '<td><label class="control-label"> ​ជញ្ជាំងធ្វើអំពី : </label></td>' +
+                                                        '<td><label class="control-label"> ???????????????? : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group add_wall_relationship">' +
                                                                  '<select class="form-control wall_relationship" id="wall_relationship" name="walls_made">' +
@@ -604,7 +604,7 @@
                                             '<div class="col-sm-6">'+
                                                 '<table width="100%">'+
                                                     '<tr>'+
-                                                        '<td><label class="control-label">​​ និង​ស្ថានភាព : </label></td>'+
+                                                        '<td><label class="control-label">?? ???????????? : </label></td>'+
                                                         '<td>'+
                                                             '<div class="form-group add_h_status">'+
                                                                 '<select class="form-control h_status" id="h_status" name="walls_status">'+
@@ -617,14 +617,14 @@
                                                 '</table>'+
                                             '</div>';
                                          $('#home-ke').append(homeke);
-                                         $(".wall_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ជញ្ជាំង"});
-                                         $(".h_status").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ស្ថានភាព"});
+                                         $(".wall_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "???????"});
+                                         $(".h_status").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "????????"});
 
-                                         var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>' +
+                                         var generalStatus = '<h4>?.?) ??????????????????????</h4>' +
                                              '<div class="add_condition_house"><ul class="li-none">'+
                                                  '@foreach($condition_house as $key => $c)' +
                                                      '<li>' +
-                                                        '<label><input class="condition_house" type="radio" name="condition_house" ​ value="{{$c->id}}"> {{$c->name_kh}}</label>' +
+                                                        '<label><input class="condition_house" type="radio" name="condition_house" ? value="{{$c->id}}"> {{$c->name_kh}}</label>' +
                                                      '</li>' +
                                                  '@endforeach'+
                                              '</ul></div>';
@@ -638,16 +638,16 @@
 
                       <div class="col-sm-12"><hr> </div>
                        <div class="col-sm-12">
-                            <h4>  គ.២ តើ​មាន​មនុស្សសរុប​ចំនួន​ប៉ុន្មាន​នាក់ រស់​នៅក្នុងផ្ទះដែលអ្នកស្នាក់នៅ
-                                <a data-toggle="tooltip" title=" រាប់ទាំង​សមាជិក​គ្រួសារ និង​អ្នកផ្សេង">?</a></h4>
+                            <h4>  ?.? ????????????????????????????????????? ??????????????????????????????
+                                <a data-toggle="tooltip" title=" ??????????????????????? ?????????????">?</a></h4>
                             <div class="col-sm-6">
                                 <table width="100%">
                                     <tr>
-                                        <td><label class="control-label">សរុប: </label></td>
+                                        <td><label class="control-label">????: </label></td>
                                         <td>
                                            <div class="form-group input-group add_total_people">
-                                               <input id="total_people" type="text" name="total_people" class="calculate cal form-control allowNumber"​>
-                                               <span class="input-group-addon">នាក់</span>
+                                               <input id="total_people" type="text" name="total_people" class="calculate cal form-control allowNumber"?>
+                                               <span class="input-group-addon">????</span>
                                             </div>
                                         </td>
                                     </tr>
@@ -656,81 +656,81 @@
                         </div>
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
-                            <h4> គ.៣ តើ​ផ្ទៃ​ក្រឡា​ទីលំនៅរបស់ក្រុម​គ្រួសារ ​មាន​ចំនួន​ប៉ុន្មាន​ម៉ែត្រ​ក្រឡា​?​</h4>
+                            <h4> ?.? ????????????????????????????????????? ???????????????????????????????????</h4>
 
                                 <table class="tb_grid table table-bordered table-striped tbl-floor" style="width:100%;">
                                     <tbody>
                                         <tr>
-                                            <td><b>ផ្ទះជាន់ក្រោម៖</b></td>
+                                            <td><b>??????????????</b></td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input id="ground_floor_length" class="form-control allowNumber ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">
-                                                    <span class="input-group-addon">ម៉ែត្រ</span>
+                                                    <input id="ground_floor_length" class="form-control allowNumber ground_floor"  placeholder="??????" type="text" name="ground_floor_length">
+                                                    <span class="input-group-addon">??????</span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input id="ground_floor_width" class="form-control allowNumber ground_floor"  placeholder="ទទឹង" type="text" name="ground_floor_width">
-                                                    <span class="input-group-addon">ម៉ែត្រ</span>
+                                                    <input id="ground_floor_width" class="form-control allowNumber ground_floor"  placeholder="????" type="text" name="ground_floor_width">
+                                                    <span class="input-group-addon">??????</span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input id="ground_floor_area" class="form-control allowNumber"  placeholder="ផ្ទៃ" type="text" name="ground_floor_area" readonly="readonly">
-                                                    <span class="input-group-addon">ម៉ែត្រក្រឡា</span>
+                                                    <input id="ground_floor_area" class="form-control allowNumber"  placeholder="????" type="text" name="ground_floor_area" readonly="readonly">
+                                                    <span class="input-group-addon">???????????</span>
                                                 </div>
                                             </td>                     
                                         </tr>
 
                                         <tr>
-                                            <td><b>ផ្ទះជាន់លើ(បើមាន)៖</b></td>
+                                            <td><b>??????????(?????)?</b></td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input id="upper_floor_length" class="form-control allowNumber" placeholder="បណ្តោយ" type="text" name="upper_floor_length">
-                                                    <span class="input-group-addon">ម៉ែត្រ</span>
+                                                    <input id="upper_floor_length" class="form-control allowNumber" placeholder="??????" type="text" name="upper_floor_length">
+                                                    <span class="input-group-addon">??????</span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input id="upper_floor_width" class="form-control allowNumber"  placeholder="ទទឹង" type="text" name="upper_floor_width">
-                                                    <span class="input-group-addon">ម៉ែត្រ</span>
+                                                    <input id="upper_floor_width" class="form-control allowNumber"  placeholder="????" type="text" name="upper_floor_width">
+                                                    <span class="input-group-addon">??????</span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input id="upper_floor_area" class="form-control allowNumber"  placeholder="ផ្ទៃ" type="text" name="upper_floor_area" readonly="readonly">
-                                                    <span class="input-group-addon">ម៉ែត្រក្រឡា</span>
+                                                    <input id="upper_floor_area" class="form-control allowNumber"  placeholder="????" type="text" name="upper_floor_area" readonly="readonly">
+                                                    <span class="input-group-addon">???????????</span>
                                                 </div>
                                             </td>                     
                                         </tr>
                                         <tr>
-                                            <td><b>សំណង់បន្ថែម ឧ. ផ្ទះបាយ... (បើមាន)៖ </b></td>
+                                            <td><b>??????????? ?. ???????... (?????)? </b></td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input id="further_floor_length" class="form-control allowNumber" placeholder="បណ្តោយ" type="text"  name="further_floor_length">
-                                                    <span class="input-group-addon">ម៉ែត្រ</span>
+                                                    <input id="further_floor_length" class="form-control allowNumber" placeholder="??????" type="text"  name="further_floor_length">
+                                                    <span class="input-group-addon">??????</span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input id="further_floor_width" class="form-control allowNumber"  placeholder="ទទឹង" type="text" name="further_floor_width">
-                                                    <span class="input-group-addon">ម៉ែត្រ</span>
+                                                    <input id="further_floor_width" class="form-control allowNumber"  placeholder="????" type="text" name="further_floor_width">
+                                                    <span class="input-group-addon">??????</span>
                                                 </div>
                                                 </td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input id="further_floor_area" class="form-control allowNumber" required="required" placeholder="ផ្ទៃ" type="text" name="further_floor_area" readonly="readonly">
-                                                    <span class="input-group-addon">ម៉ែត្រក្រឡា</span>
+                                                    <input id="further_floor_area" class="form-control allowNumber" required="required" placeholder="????" type="text" name="further_floor_area" readonly="readonly">
+                                                    <span class="input-group-addon">???????????</span>
                                                 </div>
                                             </td>                     
                                         </tr>
 
                                         <tr>
-                                            <td colspan="3"><b style="float:right;">ផ្ទៃកម្រាលសរុប :</b></td>
+                                            <td colspan="3"><b style="float:right;">?????????????? :</b></td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input id="total_area" name="total_area" class="calculate form-control allowNumber"  placeholder="ផ្ម៉ែត្រក្រឡា..." type="text">
-                                                    <span class="input-group-addon">ម៉ែត្រ​ក្រឡា</span>
+                                                    <input id="total_area" name="total_area" class="calculate form-control allowNumber"  placeholder="?????????????..." type="text">
+                                                    <span class="input-group-addon">????????????</span>
                                                 </div>
                                             </td>                     
                                         </tr>
@@ -785,7 +785,7 @@
                                                     // ((member >= 1 && member <=3) && (land>20 && land<=30)) || ((member>=4 && member<=6)&&(land>30 && land<=40)) || ((member>=7 && member<=10)&&(land>40 && land<=55)) || ((member>10)&&(land>50 && land<=65)) for score 6
                                                     // ((member >= 1 && member <=3) && (land>30 && land<=40)) || ((member>=4 && member<=6)&&(land>40 && land<=50)) || ((member>=7 && member<=10)&&(land>55 && land<=65)) || ((member>10)&&(land>65 && land<=75)) for score 3
 
-                                                    // 1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ
+                                                    // 1. ???????????? ????????????????
                                                     if(((member >=1 && member <= 3) && (land>=1 && land <=20)) || ((member >=4 && member <=6) && (land>=1 && land <=30)) || ((member >=7 && member <= 10) && (land>=1 && land <=40)) || ((member>10)&&(land>=1 && land<=50))){
                                                          $('#a_score1').val(8);
                                                     }
@@ -804,11 +804,11 @@
                                 </tbody>
                             </table>
 
-                            {{--<p>1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ--}}
+                            {{--<p>1. ???????????? ????????????????--}}
                                 {{--<div class="form-group input-group">--}}
                                 {{--<label></label>--}}
-                                   {{--<input type="text" id="a_score1" name="total_people" onkeyup class="form-control calculate allowNumber"​ required="required">--}}
-                                   {{--<span class="input-group-addon">ពិន្ទុ</span>--}}
+                                   {{--<input type="text" id="a_score1" name="total_people" onkeyup class="form-control calculate allowNumber"? required="required">--}}
+                                   {{--<span class="input-group-addon">??????</span>--}}
                                 {{--</div>--}}
                             {{--</p>--}}
 
@@ -820,14 +820,14 @@
 
                         <div class="col-sm-12"><hr></div>
                         <div class="col-sm-12">
-                            <h4> គ.៤ បង្គន់</h4>
-                            <h5>- តើគ្រួសាររបស់អ្នកមានបង្គន់ប្រើដែរឬទេ?</h5>
+                            <h4> ?.? ??????</h4>
+                            <h5>- ?????????????????????????????????????</h5>
 
                             <div class="form-group add_toilet">
                                 <ul class="li-none">
                                     @foreach($question_totel as $key =>$val)
                                         <li>
-                                            <label><input class="tolet" type="radio" name="tolet" ​​ value="{{$val->id}}"> {{$val->name_kh}} </label>
+                                            <label><input class="tolet" type="radio" name="tolet" ?? value="{{$val->id}}"> {{$val->name_kh}} </label>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -839,22 +839,22 @@
                                 $('.tolet').click(function () {
                                     var tolet = $('input[name=tolet]:checked').val();
                                     $('#tolet').empty();
-                                    var tott = '<h5>- បើមាន តើជាបង្គន់ចាក់ទឹក ឬ បង្គន់ស្ងួត?</h5>' +
+                                    var tott = '<h5>- ????? ????????????????? ? ????????????</h5>' +
                                             '<div class="add_toilet_1"><ul class="li-none">' +
                                                 '<li>' +
-                                                    '<label><input type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>' +
+                                                    '<label><input type="radio" name="tolet_1" ?? value="?????????????"> ?????????????</label>' +
                                                 '</li>' +
                                                 '<li>' +
-                                                    '<label><input type="radio" name="tolet_1" value="បង្គន់ស្ងួត">  បង្គន់ស្ងួត</label>' +
+                                                    '<label><input type="radio" name="tolet_1" value="???????????">  ???????????</label>' +
                                                 '</li>' +
                                             '</ul></div>' +
-                                        '<h5>- ជាបង្គន់​របស់នរណា?</h5>' +
+                                        '<h5>- ??????????????????</h5>' +
                                             '<div class="add_toilet_2"><ul class="li-none">' +
                                                 '<li>' +
-                                                    '<label><input type="radio" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>' +
+                                                    '<label><input type="radio" name="tolet_2" ?? value="?????????????????????????????"> ????????????????????????????? </label>' +
                                                 '</li>' +
                                                 '<li>' +
-                                                    '<label><input type="radio" name="tolet_2" value="ជាបង្គន់រួមជាមួយគ្រួសារដទៃ"> ជាបង្គន់រួមជាមួយគ្រួសារដទៃ</label>' +
+                                                    '<label><input type="radio" name="tolet_2" value="??????????????????????????"> ??????????????????????????</label>' +
                                                 '</li>' +
                                             '</ul></div>';
                                     if(tolet == 1){$('#tolet').append(tott);}
@@ -881,17 +881,17 @@
                             <div>
                                 <div class="col-sm-12">
                                    <div class="row">
-                                       <h4>គ.៩) ទ្រព្យ​សម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិច​របស់​គ្រួសារ</h4>
+                                       <h4>?.?) ????????????????????????????????????????????????????????</h4>
                                    </div>
                                     <table class="tb_grid table table-bordered table-striped" width="100%">
                                         <thead>
                                             <tr>
-                                                <th>ល.រ</th>
-                                                <th>ប្រភេទសម្ភារប្រើបា្រស់</th>
-                                                <th>ចំនួន</th>
-                                                <th>តម្លៃទីផ្សារ <a data-toggle="tooltip" title=" ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា">?</a></th>
-                                                <th>តម្លៃ​សរុប (រៀល)</th>
-                                                <th>សកម្មភាព</th>
+                                                <th>?.?</th>
+                                                <th>??????????????????????</th>
+                                                <th>?????</th>
+                                                <th>???????????? <a data-toggle="tooltip" title=" ?????????????????????????????????">?</a></th>
+                                                <th>?????????? (???)</th>
+                                                <th>????????</th>
                                             </tr>
                                         </thead>
                                         <tbody class="new_rows_1">
@@ -920,7 +920,7 @@
                                                 <td>
                                                     <div class="form-group input-group">
                                                         <input id="total_rail_meterial" name="total_rail_meterial[0]" type="text" required="required" class="form-control totalallowNumber_meterial"  readonly="readonly"/>
-                                                        <span class="input-group-addon">រៀល</span>
+                                                        <span class="input-group-addon">???</span>
                                                     </div>
                                                 </td>
                                                 <td style="text-align:center;">
@@ -933,11 +933,11 @@
 
                                         <tfoot>
                                             <tr>
-                                                <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
+                                                <td colspan="4"><b style="float:right">?????????????????</b></td>
                                                 <td>
                                                     <div class="form-group input-group">
                                                         <input id="total_meterial_costs" name="total_meterial_costs" type="text" required="required" class="form-control" readonly="readonly"/>
-                                                        <span class="input-group-addon">រៀល</span>
+                                                        <span class="input-group-addon">???</span>
                                                     </div>
                                                 </td>
                                                 <td></td>
@@ -952,13 +952,13 @@
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
 
-                            <h4>គ.១០) អគ្គិសនី</h4>
-                            <p>តើបានតបណ្តាញអគ្គិសនី (រដ្ឋឬឯកជន) ដែរឬទេ?</p>
+                            <h4>?.??) ????????</h4>
+                            <p>???????????????????? (?????????) ???????</p>
                             <div>
                                 <ul class="li-none">
                                     @foreach($question_electric as $key => $qe)
                                         <li class="add_q_electric">
-                                            <label><input class="electric" value="{{$qe->id}}" type="radio" name="q_electric" ​​> {{$qe->name_kh}}</label>
+                                            <label><input class="electric" value="{{$qe->id}}" type="radio" name="q_electric" ??> {{$qe->name_kh}}</label>
                                         </li>
                                         @if($qe->id == 1) <li id="electric_yes"></li> @endif
                                         @if($qe->id == 2) <li id="electric_no"></li> @endif
@@ -973,17 +973,17 @@
                                     $('#electric_yes').empty();
                                     $('#electric_no').empty();
                                     if(electric == 1){
-                                        $('#electric_yes').append('<p>ប្រសិនបានតបណ្តាញអគ្គិសនី </p>'+
+                                        $('#electric_yes').append('<p>???????????????????????? </p>'+
                                             '<table class="tb_grid table table-bordered table-striped ">'+
                                             '<tr>'+
-                                                '<th>តម្លៃក្នុងមួយគីឡូវ៉ាត់/ម៉ោង</th>'+
-                                                '<th>ចំនួនគីឡូវ៉ាត់ដែលប្រើជាមធ្យមក្នុងមួយខែ</th>'+
-                                                '<th>ចំណាយ​ជា​មធ្យមក្នុងមួយខែ</th>'+
+                                                '<th>??????????????????????/????</th>'+
+                                                '<th>??????????????????????????????????????</th>'+
+                                                '<th>????????????????????????</th>'+
                                             '</tr>'+
                                             '<tr>'+
-                                                '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber myelectric" id="costs_in_hour" required="required" type="text" name="costs_in_hour" required="required"><span class="input-group-addon">រៀល</span></div></td>'+
-                                                '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber myelectric" id="number_in_month" required="required" type="text" name="number_in_month" required="required"><span class="input-group-addon">គីឡូវ៉ាត់</span></div></td>'+
-                                                '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
+                                                '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber myelectric" id="costs_in_hour" required="required" type="text" name="costs_in_hour" required="required"><span class="input-group-addon">???</span></div></td>'+
+                                                '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber myelectric" id="number_in_month" required="required" type="text" name="number_in_month" required="required"><span class="input-group-addon">?????????</span></div></td>'+
+                                                '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">???</span></div></td>'+
                                             '</tr>' +
                                             '</table>');
 
@@ -1000,7 +1000,7 @@
                                             });
                                         AllowNumber();
                                     }else if(electric == 2){
-                                        $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>');
+                                        $('#electric_no').append('<p>???????????????????????????</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ??> {{$e->name_kh}}</label></li>@endforeach</ul></div>');
                                     }
                                 });
                             </script>
@@ -1011,11 +1011,11 @@
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
 
-                            <h4>គ.១១) យានជំនិះជាទ្រព្យសម្បត្តិផ្ទាល់របស់​គ្រួសារ</h4>
+                            <h4>?.??) ??????????????????????????????????????????</h4>
                             <div class="col-sm-6">
                                 <table class="table-home">
                                     <tr>
-                                        <td width="50%"><h5>តើអ្នកប្រើមធ្យោបាយអ្វីមកមន្ទីរពេទ្យ?</h5> </td>
+                                        <td width="50%"><h5>????????????????????????????????????</h5> </td>
                                         <td width="50%">
                                             <div class="form-group go_hospital">
                                                 <select class="form-control" id="go_hospital" name="go_hospital">
@@ -1035,12 +1035,12 @@
                             <table class="tb_grid table table-bordered table-striped" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>ល.រ</th>
-                                    <th>ប្រភេទសម្ភារប្រើបា្រស់</th>
-                                    <th>ចំនួន</th>
-                                    <th>តម្លៃទីផ្សារ <a data-toggle="tooltip" title=" ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា">?</a></th>
-                                    <th>តម្លៃ​សរុប (រៀល)</th>
-                                    <th>សកម្មភាព</th>
+                                    <th>?.?</th>
+                                    <th>??????????????????????</th>
+                                    <th>?????</th>
+                                    <th>???????????? <a data-toggle="tooltip" title=" ?????????????????????????????????">?</a></th>
+                                    <th>?????????? (???)</th>
+                                    <th>????????</th>
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_2">
@@ -1064,13 +1064,13 @@
                                     <td>
                                         <div class="form-group input-group">
                                             <input id="market_value_vehicle" name="market_value_vehicle[0]" type="text" class="form-control allowNumber vehicle" required="required" />
-                                            <span class="input-group-addon">រៀល</span>
+                                            <span class="input-group-addon">???</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group input-group">
                                             <input id="total_rail_vehicle" name="total_rail_vehicle[0]" type="text" required="required" class="form-control totalallowNumber_vehicle" readonly="readonly"/>
-                                            <span class="input-group-addon">រៀល</span>
+                                            <span class="input-group-addon">???</span>
                                         </div>
                                     </td>
                                     <td style="text-align:center;">
@@ -1083,11 +1083,11 @@
 
                                 <tfoot>
                                     <tr>
-                                        <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
+                                        <td colspan="4"><b style="float:right">?????????????????</b></td>
                                         <td>
                                             <div class="form-group input-group">
                                                 <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control" readonly="readonly"/>
-                                                <span class="input-group-addon">រៀល</span>
+                                                <span class="input-group-addon">???</span>
                                             </div>
                                         </td>
                                         <td></td>
@@ -1103,18 +1103,18 @@
                     <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
 
-                            <h4>គ.១២) ចំណូល</h4>
-                            <h5>គ.១២.១) ចំណូល​ ពីសកម្មភាពកសិកម្ម ផ្ទាល់ខ្លួន</h5>
-                            <h5>គ.១២.១.១) ការចិញ្ចឹមសត្វ</h5>
+                            <h4>?.??) ?????</h4>
+                            <h5>?.??.?) ?????? ????????????????? ???????????</h5>
+                            <h5>?.??.?.?) ??????????????</h5>
                             <table class="tb_grid table table-bordered table-striped" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>ល.រ</th>
-                                    <th>ប្រភេទសត្វ</th>
-                                    <th>ចំនួនសត្វធំ</th>
-                                    <th>ចំនួនកូនសត្វ</th>
-                                    <th>កំណត់សម្គាល់ <a data-toggle="tooltip" title="បញ្ជាក់ បើសិនជាសត្វប្រវាស់គេ">?</a></th>
-                                    <th>សកម្មភាព</th>
+                                    <th>?.?</th>
+                                    <th>??????????</th>
+                                    <th>???????????</th>
+                                    <th>????????????</th>
+                                    <th>???????????? <a data-toggle="tooltip" title="??????? ????????????????????">?</a></th>
+                                    <th>????????</th>
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_3">
@@ -1157,8 +1157,8 @@
 
                     <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
-                            <h4>គ.១២.១.២​)ដីកសិកម្ម</h4>
-                            <p>មាន​ដីកសិកម្ម ឬ​ទេ ?</p>
+                            <h4>?.??.?.??)?????????</h4>
+                            <p>????????????? ???? ?</p>
                             <ul class="li-none add_land">
                                 @foreach($landAgricultural as $key => $land)
                                     <li>
@@ -1174,31 +1174,31 @@
                                     var landshow = '<div class="col-sm-12">' +
                                             '<table width="100%" class="table table-bordered table-striped tbl-land">' +
                                                 '<tr>' +
-                                                    '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
+                                                    '<td><label class="control-label"> ????????? </label></td>' +
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" name="land_name" type="text" required="required" class="allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                                            '<input autocomplete="off" name="land_name" type="text" required="required" class="allowNumber form-control"/><span class="input-group-addon">??????</span>' +
                                                         '</div>' +
                                                     '</td>' +
 
-                                                    '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
+                                                    '<td><label class="control-label"> ???????? : </label></td>'+
                                                     '<td>' +
-                                                        '<div class="form-group ​​input-group input-group">' +
-                                                            '<input autocomplete="off" name="total_land" type="text" required="required" class="form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
+                                                        '<div class="form-group ??input-group input-group">' +
+                                                            '<input autocomplete="off" name="total_land" type="text" required="required" class="form-control allowNumber"/><span class="input-group-addon">?????</span>'+
                                                         '</div>' +
                                                     '</td>' +
                                                 '</tr>' +
                                                 '<tr>' +
-                                                    '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
+                                                    '<td><label class="control-label">? ?????????? </label></td>'+
                                                     '<td>'+
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" name="land_farm" type="text" required="required" class="allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                                            '<input autocomplete="off" name="land_farm" type="text" required="required" class="allowNumber form-control" /><span class="input-group-addon">??????</span>'+
                                                         '</div>'+
                                                     '</td>'+
-                                                    '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
+                                                    '<td><label class="control-label"> ???????? : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" name="total_land_farm" type="text" required="required" class="form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" name="total_land_farm" type="text" required="required" class="form-control allowNumber" /><span class="input-group-addon">?????</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1211,32 +1211,32 @@
                                 });
                             </script>
 
-                            {{--<p>ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា)</p>--}}
+                            {{--<p>???????????????????????? ?????? ?????????? ????????????? (??????????????????????????????????? ????????????????)</p>--}}
                             <div class="col-sm-12" id="show-land"></div>
                         </div>
 
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
 
-                            <h4>គ.១២.២) ចំណូល ផ្សេងពី សកម្មភាពកសិកម្ម ផ្ទាល់ខ្លួន
-                                <a data-toggle="tooltip" title=" (បញ្ជាក់ការងារកម្មករផ្នែកកសិកម្មត្រូវបញ្ចូលក្នុងតារាងនេះ) <br> បញ្ជាក់ ៖ ចុះ​តែ​សមាជិក​គ្រួសារ​ដែល​រក​ប្រាក់​ចំណូល​បាន។ ចំពោះសមាជិកដែលមានប្រភពចំណូលលើសពីមួយ សូមសរសេរ​នៅក្នុងជួរដោយឡែកពីគ្នា">?</a>
-                                ​  </h4>
-                            {{--<p>ប្រសិនបើគ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្មត្រូវផ្ដល់ពិន្ទុតាមឯកសារណែនាំចំណុច 7B.2</p>--}}
+                            <h4>?.??.?) ????? ??????? ??????????????? ???????????
+                                <a data-toggle="tooltip" title=" (???????????????????????????????????????????????????????) <br> ??????? ? ?????????????????????????????????????????????? ??????????????????????????????????? ???????????????????????????????">?</a>
+                                ?  </h4>
+                            {{--<p>????????????????????????????????????????????????????????????????????????????? 7B.2</p>--}}
 
 
 
                             <table class="tb_grid table table-bordered table-striped" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>ល.រ</th>
-                                        <th>ឈ្មោះសមាជិកគ្រូសាររកប្រាក់ចំណូល</th>
-                                        <th>អាយុ​</th>
-                                        <th>មុខរបររកចំណូល</th>
-                                        <th>ឯកត្តា</th>
-                                        <th>ចំនួនឯកត្តាក្នុងមួយខែ</th>
-                                        <th>ទឹកប្រាក់មធ្យមក្នុងមួយឯកត្តា</th>
-                                        <th>ចំណូលមធ្យមប្រចាំខែ  (ចំនួន x តម្លៃឯកត្តា)</th>
-                                        <th>សកម្មភាព</th>
+                                        <th>?.?</th>
+                                        <th>???????????????????????????????</th>
+                                        <th>?????</th>
+                                        <th>?????????????</th>
+                                        <th>??????</th>
+                                        <th>?????????????????????</th>
+                                        <th>????????????????????????????</th>
+                                        <th>??????????????????  (????? x ???????????)</th>
+                                        <th>????????</th>
                                     </tr>
                                 </thead>
                                 <tbody class="new_rows_4">
@@ -1264,25 +1264,25 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="income_unit[0]" type="text" class="form-control" placeholder="ថ្ងៃ" />
+                                                <input name="income_unit[0]" type="text" class="form-control" placeholder="????" />
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group input-group">
                                                 <input id="unit_in_month" name="unit_in_month[0]" type="text" class="form-control allowNumber otherincome"  />
-                                                <span class="input-group-addon">ថ្ងៃ</span>
+                                                <span class="input-group-addon">????</span>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group input-group">
                                                 <input id="average_amount" name="average_amount[0]" type="text" class="form-control allowNumber otherincome"  />
-                                                <span class="input-group-addon">រៀល</span>
+                                                <span class="input-group-addon">???</span>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group input-group">
                                                 <input id="monthly_income" name="monthly_income[0]" type="text" class="form-control allowNumber monthly_income_total" readonly="readonly"/>
-                                                <span class="input-group-addon">រៀល</span>
+                                                <span class="input-group-addon">???</span>
                                             </div>
                                         </td>
                                         <td style="text-align:center;">
@@ -1295,21 +1295,21 @@
 
                                 <tfoot>
                                     <tr>
-                                        <td colspan="6"><span style="float: right;">សរុបចំណូល ប្រចាំខែ សម្រាប់គ្រួសារទាំងមូល (គិតជារៀល):</span></td>
+                                        <td colspan="6"><span style="float: right;">????????? ???????? ????????????????????? (????????):</span></td>
                                         <td colspan="2">
                                             <div class="input-group">
                                                 <input id="total_monthly_income" class="form-control"  type="text" name="total_mon_income" readonly="readonly">
-                                                <span class="input-group-addon">រៀល</span>
+                                                <span class="input-group-addon">???</span>
                                             </div>
                                         </td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6"><span style="float: right;">ចំណូលក្រៅពីកសិកម្មជាមធ្យមប្រចាំខែសម្រាប់មនុស្សម្នាក់​​ (១) :</span></td>
+                                        <td colspan="6"><span style="float: right;">?????????????????????????????????????????????????????? (?) :</span></td>
                                         <td colspan="2">
                                             <div class="input-group">
                                                 <input class="form-control" id="total_inc_person"  type="text" name="total_inc_person" readonly="readonly">
-                                                <span class="input-group-addon">រៀល</span>
+                                                <span class="input-group-addon">???</span>
                                             </div>
                                         </td>
                                         <td></td>
@@ -1324,15 +1324,15 @@
 
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
-                            <h4>គ.១៣) សុខភាព និងពិការភាព</h4>
+                            <h4>?.??) ?????? ???????????</h4>
                                 <table class="table table-bordered table-striped">
                                     <tbody><tr>
                                         <td colspan="2"></td>
-                                        <td>ក្មេង + អ្នក  អាយុ &lt; 65ឆ្នាំ </td>
-                                        <td> ចាស អាយុ≥65 ឆ្នាំ</td>
+                                        <td>????? + ????  ???? &lt; 65????? </td>
+                                        <td> ??? ????=65 ?????</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">ចំនួន​សមាជិក​គ្រួសារ ​ដែលបាត់បង់លទ្ធភាពពលកម្មស្ទើរទាំងស្រុង ដោយសារមានជម្ងឺធ្ងន់ធ្ងរ/រ៉ាំរ៉ៃ ឬពិការធ្ងន់ធ្ងរ</td>
+                                        <td colspan="2">???????????????????? ?????????????????????????????????????? ???????????????????????/??????? ???????????????</td>
                                         <td>
                                             <div class="form-group">
                                                 <input name="kids_then65" type="text" class="form-control allowNumber" required="required"/>
@@ -1345,7 +1345,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">ចំនួន​សមាជិក​គ្រួសារ ​ដែលបាត់បង់លទ្ធភាពពលកម្មប្រហែល៥០ % ដោយសារមានជម្ងឺធ្ងន់ធ្ងរ/រ៉ាំរ៉ៃ ឬពិការធ្ងន់ធ្ងរ</td>
+                                        <td colspan="2">???????????????????? ???????????????????????????????? % ???????????????????????/??????? ???????????????</td>
                                         <td>
                                             <div class="form-group">
                                                 <input name="kids_50_then65" type="text" class="form-control allowNumber"  required="required"/>
@@ -1360,12 +1360,12 @@
                                 </tbody>
                             </table>
 
-                            <h4>គ.១៤) បំណុលគ្រួសារ</h4>
-                            <p>តើ​គ្រួសារ​របស់​អ្នក​នៅមាន​បំណុល/​កម្ចី​មិនទាន់​បាន​សង​ដែរ​ឬ​ទេ?</p>
+                            <h4>?.??) ????????????</h4>
+                            <p>????????????????????????????????/???????????????????????????????</p>
                             <ul class="debt_question_group">
                                 @foreach($loan as $key => $ge)
                                     <li>
-                                         <label class="add_family_debt_id"><input class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id"​​>{{ $ge->name_kh }}</label>
+                                         <label class="add_family_debt_id"><input class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id"??>{{ $ge->name_kh }}</label>
                                         @if($ge->id == 1)<label id="family_debt"></label>@endif
                                         @if($ge->id == 2)<label id="family_debt1"></label>@endif
                                     </li>
@@ -1387,20 +1387,20 @@
                                             '<table class="table table-bordered table-striped">' +
                                                 '<tbody>' +
                                                     '<tr>' +
-                                                        '<td> ចំនួនបំណុលដែលមិនទាន់សងគិតមកដល់បច្ចុប្បន្ន</td>' +
-                                                        '<td>រយៈពេលនៃការសងបំណុល</td>' +
+                                                        '<td> ?????????????????????????????????????????</td>' +
+                                                        '<td>??????????????????</td>' +
                                                     '</tr>' +
                                                     '<tr>' +
                                                         '<td>' +
                                                             '<div class="input-group add_total_debt">' +
                                                                 '<input autocomplete="off" class="form-control allowNumber" type="text" name="total_debt" id="total_debt">' +
-                                                                '<span class="input-group-addon">រៀល</span>' +
+                                                                '<span class="input-group-addon">???</span>' +
                                                             '</div>' +
                                                         '</td>' +
                                                         '<td>' +
                                                             '<div class="input-group add_debt_duration">' +
                                                                 '<input autocomplete="off" class="form-control allowNumber" type="text" name="debt_duration" id="debt_duration">' +
-                                                                '<span class="input-group-addon">ថ្ងៃ</span>' +
+                                                                '<span class="input-group-addon">????</span>' +
                                                             '</div>' +
                                                         '</td>' +
                                                     '</tr>' +
@@ -1415,7 +1415,7 @@
                     <div class="col-sm-12"><hr> </div>
                     <div class="col-sm-12">
                         <!-- <a  class="pull-left btn btn-default print-link3"><img src="" width="30"></a> -->
-                        <button id="nextStep3" class="btn btn-primary pull-right mysubmit nextBtn btnSave" type="button">រក្សាទុក​​ និង បញ្ចប់</button>
+                        <button id="nextStep3" class="btn btn-primary pull-right mysubmit nextBtn btnSave" type="button">?????????? ??? ??????</button>
                     </div>
                 </div>
             </div>
@@ -1424,17 +1424,17 @@
     </form>
 
 
-    <div class="col-sm-12" style="padding: 0;"><h3>ទិន្នន័យ​អ្នកជំងឺ</h3></div>
+    <div class="col-sm-12" style="padding: 0;"><h3>?????????????????</h3></div>
     <div class="data-list">
         <table class="table">
             <thead>
-                <th>ល.រ</th>
-                <th>ឈ្មោះអ្នកជំងឺ</th>
-                <th>អាយុ</th>
-                <th>ភេទ</th>
-                <th>លេខទូរស័ព្ធ</th>
-                <th>លេខកូដសម្ភាសន៍</th>
-                <th>សកម្មភាព</th>
+                <th>?.?</th>
+                <th>?????????????</th>
+                <th>????</th>
+                <th>???</th>
+                <th>???????????</th>
+                <th>??????????????</th>
+                <th>????????</th>
             </thead>
 
             <tbody>
@@ -1912,7 +1912,7 @@
      ==========================================================================*/
     $("#hospital").select2({
         allowClear:true,
-        placeholder: 'មន្ទីរពេទ្យ'
+        placeholder: '???????????'
     });
     $("#hospital").change(function () {
         var od_code = $('#hospital').val();
@@ -1947,7 +1947,7 @@
      ==========================================================================*/
     $("#province").select2({
         allowClear:true,
-        placeholder: 'ខេត្ត'
+        placeholder: '?????'
     });
     $("#province").change(function () {
         var province_id = $('#province').val();
@@ -1985,7 +1985,7 @@
 
     $("#district").select2({
         allowClear:true,
-        placeholder: 'ស្រុក'
+        placeholder: '?????'
     });
     $("#district").change(function () {
         var district_id = $('#district').val();
@@ -2020,7 +2020,7 @@
     ==========================================================================*/
     $("#commune").select2({
         allowClear:true,
-        placeholder: 'ឃំុ'
+        placeholder: '???'
     });
 
     $("#commune").change(function () {
@@ -2054,19 +2054,19 @@
     ========================================================*/
     $("#village").select2({
         allowClear:true,
-        placeholder: 'ភូមិ'
+        placeholder: '????'
     });
     //interview relationship
     $("#inter_relationship").select2({
         minimumResultsForSearch: -1,
         allowClear:true,
-        placeholder: 'ទំនាក់ទំនង'
+        placeholder: '??????????'
     });
     //family relationship
     $("#fa_relationship").select2({
         minimumResultsForSearch: -1,
         allowClear:true,
-        placeholder: 'ទំនាក់ទំនង'
+        placeholder: '??????????'
     });
     //* ============= step 2 ======================*//
 
@@ -2076,7 +2076,7 @@
         var row = $('.new_rows tr.myrow').length;
         if(row >= 10){
             $('#add_rows').hide();
-            alert('ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់មិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
+            alert('????????????????????????????????????????????????????????????????????????????');
             return false;
         }
        // var rowindex = row+1;
@@ -2118,9 +2118,9 @@
 
 
 
-        $(".family_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ទំនាក់ទំនង"});
-        $(".occupation").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "មុខរបរ"});
-        $(".education_level").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
+        $(".family_relationship").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "??????????"});
+        $(".occupation").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "??????"});
+        $(".education_level").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "?????????????"});
         AllowNumber();
 
         var row_num = $('.new_rows tr').length-1;
@@ -2199,19 +2199,19 @@
     $(".family_relationship").select2({
         minimumResultsForSearch: -1,
         allowClear:true,
-        placeholder: 'ទំនាក់ទំនង'
+        placeholder: '??????????'
     });
     //occupation
     $(".occupation").select2({
         minimumResultsForSearch: -1,
         allowClear:true,
-        placeholder: 'មុខរបរ'
+        placeholder: '??????'
     });
     //education
     $(".education_level").select2({
         minimumResultsForSearch: -1,
         allowClear:true,
-        placeholder: 'កម្រិតវប្បធម៌'
+        placeholder: '?????????????'
     });
 
 
@@ -2228,7 +2228,7 @@
         var row_1 = $('.new_rows_1 tr.myrow_1').length;
         if(row_1 >= 6){
             $('#add_rows_1').hide();
-            alert('ប្រភេទសម្ភារប្រើបា្រស់​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
+            alert('???????????????????????????????????????????????????????????????????????');
             return false;
         }
         reOrder_meterial();
@@ -2242,13 +2242,13 @@
             '</td>'+
             '<td><div class="form-group"><input autocomplete="off" id="number_meterial_'+row_1+'" type="text" class="number_meterial form-control allowNumber meterial" name="number_meterial['+row_1+']" required="required"/></div></td>'+
             '<td><div class="form-group"><input autocomplete="off" id="market_value_meterial_'+row_1+'" type="text" class="market_value_meterial form-control allowNumber meterial" name="market_value_meterial['+row_1+']" required="required"/></div></td>'+
-            '<td><div class="form-group input-group"><input id="total_rail_meterial_'+row_1+'" type="text" required="required" class="total_rail_meterial form-control totalallowNumber_meterial" name="total_rail_meterial['+row_1+']" readonly="readonly"/><span class="input-group-addon">រៀល</span></div></div></td>'+
+            '<td><div class="form-group input-group"><input id="total_rail_meterial_'+row_1+'" type="text" required="required" class="total_rail_meterial form-control totalallowNumber_meterial" name="total_rail_meterial['+row_1+']" readonly="readonly"/><span class="input-group-addon">???</span></div></div></td>'+
             '<td style="text-align:center;"><a id="meterial_'+row_1+'" class="btn remove_rows_1" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
         $(".new_rows_1").append(tab_rows_1);
         dataRow_meterial++;
 
-        $(".type_meterial").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
+        $(".type_meterial").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "????????????????"});
         AllowNumber();
         var row_num = $('.new_rows_1 tr').length-1;
         for(var i=0; i<row_num; i++) {
@@ -2322,19 +2322,19 @@
     $(".type_meterial").select2({
         minimumResultsForSearch: -1,
         allowClear:true,
-        placeholder: 'សម្ភារប្រើបា្រស់'
+        placeholder: '????????????????'
     });
 
     $("#go_hospital").select2({
         minimumResultsForSearch: -1,
         allowClear:true,
-        placeholder: 'មធ្យោបាយធ្វើដំណើរ'
+        placeholder: '?????????????????'
     });
     //type_vehicle
     $(".type_vehicle").select2({
         minimumResultsForSearch: -1,
         allowClear:true,
-        placeholder: 'សម្ភារប្រើបា្រស់'
+        placeholder: '????????????????'
     });
 
     dataRow_vehicle=2;
@@ -2342,7 +2342,7 @@
         var row_2 = $('.new_rows_2 tr.myrow_2').length;
         if(row_2 >= 7){
             $('#add_rows_2').hide();
-            alert('ប្រភេទយានជំនិះ​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
+            alert('???????????????????????????????????????????????????????????????');
             return false;
         }
         reOrder_vehicle();
@@ -2355,14 +2355,14 @@
                 '</div>'+
             '</td>'+
             '<td><div class="form-group"><input autocomplete="off" id="number_vehicle_'+row_2+'" type="text" class="number_vehicle form-control allowNumber vehicle" name="number_vehicle['+row_2+']" required="required"/></div></td>'+
-            '<td><div class="form-group input-group"><input autocomplete="off" id="market_value_vehicle_'+row_2+'" type="text"  class="market_value_vehicle form-control allowNumber vehicle" name="market_value_vehicle['+row_2+']" required="required"/><span class="input-group-addon">រៀល</span></div></td>'+
-            '<td><div class="form-group input-group"><input autocomplete="off" id="total_rail_vehicle_'+row_2+'" type="text"  class="total_rail_vehicle form-control totalallowNumber_vehicle" name="total_rail_vehicle['+row_2+']"/ readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
+            '<td><div class="form-group input-group"><input autocomplete="off" id="market_value_vehicle_'+row_2+'" type="text"  class="market_value_vehicle form-control allowNumber vehicle" name="market_value_vehicle['+row_2+']" required="required"/><span class="input-group-addon">???</span></div></td>'+
+            '<td><div class="form-group input-group"><input autocomplete="off" id="total_rail_vehicle_'+row_2+'" type="text"  class="total_rail_vehicle form-control totalallowNumber_vehicle" name="total_rail_vehicle['+row_2+']"/ readonly="readonly"><span class="input-group-addon">???</span></div></td>'+
             '<td style="text-align:center;"><a id="vehicle_'+row_2+'" class="btn remove_rows_2" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
 
         $(".new_rows_2").append(html);
         dataRow_vehicle++;
-        $(".type_vehicle").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
+        $(".type_vehicle").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "????????????????"});
         AllowNumber();
 
         var row_num = $('.new_rows_2 tr').length-1;
@@ -2437,7 +2437,7 @@
         var row_3 = $('.new_rows_3 tr.myrow_3').length;
         if(row_3 >= 4){
             $('#add_rows_3').hide();
-            alert('ប្រភេទចំណូលមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
+            alert('???????????????????????????????????????????????');
             return false;
         }
         reOrder_income();
@@ -2457,7 +2457,7 @@
         $(".new_rows_3").append(tab_rows_3);
         dataRow_income++;
         AllowNumber();
-        $(".type_animals").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ប្រភេទសត្វ"});
+        $(".type_animals").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "??????????"});
     });
     //remove add
     $(".new_rows_3").on('click','.remove_rows_3',function(){
@@ -2470,7 +2470,7 @@
     $(".type_animals").select2({
         minimumResultsForSearch: -1,
         allowClear:true,
-        placeholder: 'ប្រភេទសត្វ'
+        placeholder: '??????????'
     });
 
     function reOrder_income(){
@@ -2528,22 +2528,22 @@
                 '</td>' +
                 '<td>' +
                     '<div class="form-group">' +
-                        '<input autocomplete="off" name="income_unit['+row_4+']" type="text" required="required" class="form-control allowNumber" placeholder="ថ្ងៃ" />' +
+                        '<input autocomplete="off" name="income_unit['+row_4+']" type="text" required="required" class="form-control allowNumber" placeholder="????" />' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
                     '<div class="form-group input-group">' +
-                        '<input autocomplete="off" id="unit_in_month_'+row_4+'" name="unit_in_month['+row_4+']" type="text" required="required" class="form-control allowNumber otherincome"  /><span class="input-group-addon">ថ្ងៃ</span>' +
+                        '<input autocomplete="off" id="unit_in_month_'+row_4+'" name="unit_in_month['+row_4+']" type="text" required="required" class="form-control allowNumber otherincome"  /><span class="input-group-addon">????</span>' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
                     '<div class="form-group input-group">' +
-                        '<input autocomplete="off" id="average_amount_'+row_4+'" name="average_amount['+row_4+']" type="text" required="required" class="form-control allowNumber otherincome"  /><span class="input-group-addon">រៀល</span>' +
+                        '<input autocomplete="off" id="average_amount_'+row_4+'" name="average_amount['+row_4+']" type="text" required="required" class="form-control allowNumber otherincome"  /><span class="input-group-addon">???</span>' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
                     '<div class="form-group input-group">' +
-                        '<input autocomplete="off" id="monthly_income_'+row_4+'" name="monthly_income['+row_4+']" type="text" required="required" class="form-control allowNumber monthly_income_total"  readonly="readonly"/><span class="input-group-addon">រៀល</span>' +
+                        '<input autocomplete="off" id="monthly_income_'+row_4+'" name="monthly_income['+row_4+']" type="text" required="required" class="form-control allowNumber monthly_income_total"  readonly="readonly"/><span class="input-group-addon">???</span>' +
                     '</div>' +
                 '</td>'+
                 '<td style="text-align:center;"><a id="other_income_'+row_4+'" class="btn remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
@@ -2551,7 +2551,7 @@
         $(".new_rows_4").append(tab_rows_4);
         dataRow_other_income++;
         AllowNumber();
-        $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
+        $(".income_occupation").select2({ allowClear:true, placeholder: "?????????????"});
 
         var row_num1 = $('.new_rows_4 tr').length-1;
         for(var ii=0; ii<row_num1; ii++) {
@@ -2598,10 +2598,10 @@
             }
         }
 
-        $(".income_name").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "ប្រភេទសត្វ"});
+        $(".income_name").select2({minimumResultsForSearch: -1, allowClear:true, placeholder: "??????????"});
 
     });
-    $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
+    $(".income_occupation").select2({ allowClear:true, placeholder: "?????????????"});
     function reOrder_other_income(){
         for(var n=2;n<(dataRow_other_income-1);n++){
             $('.new_rows_4  tr:eq(' + (n-1) +') td:first-child').html(n);
@@ -2633,7 +2633,7 @@
     $("#income_name_0").select2({
         minimumResultsForSearch: -1,
         allowClear:true,
-        placeholder: 'ឈ្មោះសមាជិក'
+        placeholder: '???????????'
     });
 
     $('.otherincome').keyup(function () {
