@@ -615,7 +615,7 @@
                                                         '</td>'+
                                                     '</tr>'+
                                                 '</table>'+
-                                            '</div>';
+                                            '</div>';php
                                          $('#home-ke').append(homeke);
                                          $(".wall_relationship").select2({ allowClear:true, placeholder: "ជញ្ជាំង"});
                                          $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
