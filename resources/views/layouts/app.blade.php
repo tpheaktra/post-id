@@ -89,12 +89,13 @@
 
             @if(session()->has('success'))
                 <div class="msg">
-                    <div class="add_hide1 alert alert1 alert-success alert-dismissable">
+                    <div class="add_hide1  alert-success alert-dismissable">
                         {{ session()->get('success') }}
                     </div>
                 </div>
             @endif
         </nav>
+
 
 
 

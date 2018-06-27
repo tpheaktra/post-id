@@ -177,3 +177,10 @@ input[type=radio]{
 }
 .table .form-group{
     margin: 5px 4px !important;}
+.add_hide1{
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 0px !important;
+    padding: 10px 30px !important;
+    position: relative;
+}
