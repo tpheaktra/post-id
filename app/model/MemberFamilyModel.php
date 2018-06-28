@@ -16,4 +16,11 @@ class MemberFamilyModel extends Model
         'occupation_id',
         'education_level_id'
     ];
+    /*
+   * General Information
+   */
+    public function generalInfo(){
+        return $this->hasMany(MemberFamilyModel::class, 'g_information_id', 'id');
+    }
+
 }

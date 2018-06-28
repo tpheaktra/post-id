@@ -32,4 +32,16 @@ class GeneralInformationModel extends Model
         'fa_phone',
         'fa_relationship_id'
     ];
+    /*
+   * district
+   */
+    public function district(){
+        return $this->hasMany(DistrictModel::class, 'code', 'g_district_id');
+    }
+    public function commune(){
+        return $this->hasMany(CommuneModel::class, 'code', 'g_commune_id');
+    }
+    public function village(){
+        return $this->hasMany(VillageModel::class, 'code', 'g_village_id');
+    }
 }

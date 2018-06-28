@@ -285,7 +285,15 @@ class HomeController extends Controller
                 'walls_status_id'     =>$request->walls_status,
                 'condition_house_id'  =>$request->condition_house
             );
-            HouseHoldRootLinkModel::create($hlink1);
+            $house=HouseHoldRootLinkModel::create($hlink1);
+            $homepre = $request->home_prepare;
+            if($homepre == 2){
+                $hlink1_1 = array(
+                    'home_prepar_id' =>$house->id,
+                    'home_year'      =>$request->home_year
+                );
+               DB::table('home_prepar_link')->insert($hlink1_1);
+            }
         }elseif($household_link == 2){
             $hlink2 = array(
                 'household_family_id' =>$household_link,
@@ -460,6 +468,59 @@ class HomeController extends Controller
             return $this->errorResponse($e->getMessage(), self::HTTP_STATUS_SERVER_ERROR);
         }
 
+    }
+
+
+    public function edit($id){
+        $hospital      = Helpers::getHospital();
+        $provinces     = Helpers::getProvince();
+        $relationship  = RelationshipModel::all();
+        $gender        = Helpers::getGender();
+        $household     = Helpers::getHouseHoldFamily();
+        $homePrepar    = Helpers::getHomePrepar();
+
+
+
+        $condition_house = Helpers::getConditionHouse();
+        $question = Helpers::getQuestion();
+        $electricgrid   = Helpers::getElectricGird();
+
+        $landAgricultural = Helpers::getLangAgricultural();
+
+        $loan             = Helpers::getLoan();
+        $family           = Helpers::getFamilyRelation();
+        $occupation       = Helpers::getOccupation();
+        $education_level  = Helpers::getEducationLevel();
+
+        $roof_made = Helpers::getRoofmade();
+        $wall_made = Helpers::getWallmade();
+        $house_status = ConditionhouseModel::all();
+
+        $typemeterial = Helpers::getTypeMeterial();
+        $typeanimals = Helpers::getTypeAnimals();
+        $typetransport = Helpers::getTypeTransportation();
+
+        $question_electric = Helpers::getQuestionElectric();
+        $question_totel = Helpers::getQuestionTolet();
+
+        $ginfo = GeneralInformationModel::with('district','commune','village')->findOrFail($id);
+        $memberFamily = MemberFamilyModel::with('generalInfo')->where('g_information_id',$id)->get();
+        $gFamily = GeneralSituationFamilyModel::where('g_information_id',$id)->first();
+
+        //material
+        $material = HouseoldConsumerModel::with('typemeterial')->where('g_information_id',$id)->get();
+        $vehicle = HouseholdVehicleModel::where('g_information_id',$id)->get();
+        $income = TypeIncomeModel::where('g_information_id',$id)->get();
+
+        //echo json_encode($income);exit();
+
+        return view('edit',compact('hospital','relationship',
+            'provinces','gender','household',
+            'homePrepar','condition_house','question','electricgrid',
+            'landAgricultural','loan','family','occupation','education_level',
+            'landAgricultural','loan','family','roof_made','wall_made','house_status',
+            'question_electric','typemeterial','typeanimals',
+            'typetransport','question_totel','ginfo','memberFamily','gFamily','material','vehicle','income'));
     }
 
 }

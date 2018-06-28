@@ -15,4 +15,11 @@ class HouseoldConsumerModel extends Model
         'total_rail',
         'total_meterial_costs'
     ];
+
+    /*
+  * General Information
+  */
+    public function typemeterial(){
+        return $this->hasMany(TypeMeterialModel::class, 'id', 'g_information_id');
+    }
 }
