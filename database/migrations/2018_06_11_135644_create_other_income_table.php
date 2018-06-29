@@ -18,13 +18,13 @@ class CreateOtherIncomeTable extends Migration
             $table->tinyInteger('g_information_id')->nullable();
             $table->string('income_name')->nullable();
             $table->integer('income_age')->nullable();
-            $table->string('income_occupation')->nullable();
+            $table->integer('income_occupation')->nullable();
             $table->string('income_unit')->nullable();
-            $table->string('unit_in_month')->nullable();
-            $table->string('average_amount')->nullable();
-            $table->string('monthly_income')->nullable();
-            $table->string('total_mon_income')->nullable();
-            $table->string('total_inc_person')->nullable();
+            $table->integer('unit_in_month')->nullable();
+            $table->integer('average_amount')->nullable();
+            $table->integer('monthly_income')->nullable();
+            $table->integer('total_mon_income')->nullable();
+            $table->integer('total_inc_person')->nullable();
             $table->timestamps();
         });
     }

@@ -2536,7 +2536,7 @@
                 '</td>' +
                 '<td>' +
                     '<div class="form-group">' +
-                        '<input autocomplete="off" name="income_unit['+row_4+']" type="text" required="required" class="form-control allowNumber" placeholder="ថ្ងៃ" />' +
+                        '<input autocomplete="off" name="income_unit['+row_4+']" type="text" required="required" class="form-control" placeholder="ថ្ងៃ" />' +
                     '</div>' +
                 '</td>' +
                 '<td>' +

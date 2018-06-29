@@ -360,7 +360,7 @@
                                 @foreach($memberFamily as $key => $val)
                                 <tr class="myrow">
                                     <td>{{++$key}}@if(--$key == 0)(មេ)@endif</td>
-                                    <td><div class="form-group"><input value="{{$val->nick_name}}" type="text" required="required" class="form-control nick_name_0" name="nick_name[0]"/></div></td>
+                                    <td><div class="form-group"><input value="{{$val->nick_name}}" type="text" required="required" class="form-control nick_name_{{$key}}" name="nick_name[0]"/></div></td>
                                     <td><div class="form-group"><input value="{{$val->dob}}" maxlength="4"  type="text" required="required" class="form-control allowNumber" id="dob" name="dob[0]"/></div></td>
                                     <td><div class="form-group"><input value="{{$val->age}}" maxlength="3" type="text" required="required" class="form-control allowNumber" id="age" name="age[0]"/></div></td>
                                     <td>
@@ -1264,57 +1264,61 @@
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_4">
-                                <tr class="myrow_4">
-                                    <td>1</td>
-                                    <td>
-                                        <div class="form-group">
-                                            <select class="form-control income_name" id="income_name_0" name="income_name[0]" required="required"></select>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input name="income_age[0]" type="text" class="form-control allowNumber"  required="required"/>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group add_income_occupation">
-                                            <select style="width: 100%" class="form-control income_occupation" id="income_occupation" name="income_occupation[0]" required="required">
-                                                <option></option>
-                                                @foreach($occupation as $keh => $value)
-                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input name="income_unit[0]" type="text" class="form-control" placeholder="ថ្ងៃ" required="required"/>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group input-group">
-                                            <input id="unit_in_month" name="unit_in_month[0]" type="text" class="form-control allowNumber otherincome" required="required" />
-                                            <span class="input-group-addon">ថ្ងៃ</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group input-group">
-                                            <input id="average_amount" name="average_amount[0]" type="text" class="form-control allowNumber otherincome"  required="required"/>
-                                            <span class="input-group-addon">រៀល</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group input-group">
-                                            <input id="monthly_income" name="monthly_income[0]" type="text" class="form-control allowNumber monthly_income_total" readonly="readonly"/>
-                                            <span class="input-group-addon">រៀល</span>
-                                        </div>
-                                    </td>
-                                    <td style="text-align:center;">
-                                            <span>
+                                @foreach($otherIncome as $keys =>$v)
+                                    <tr class="myrow_4">
+                                        <td>{{$keys+1}}</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select class="form-control income_name" id="income_name_{{$keys}}" name="income_name[0]" required="required"></select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input value="{{$v->income_age}}" name="income_age[0]" type="text" class="form-control allowNumber"  required="required"/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group add_income_occupation">
+                                                <select style="width: 100%" class="form-control income_occupation" id="income_occupation" name="income_occupation[0]" required="required">
+                                                    <option></option>
+                                                    @foreach($occupation as $keh => $value)
+                                                        <option @if($v->income_occupation == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input value="{{$v->income_unit}}" name="income_unit[0]" type="text" class="form-control" placeholder="ថ្ងៃ" required="required"/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group input-group">
+                                                <input value="{{$v->unit_in_month}}" id="unit_in_month" name="unit_in_month[0]" type="text" class="form-control allowNumber otherincome" required="required" />
+                                                <span class="input-group-addon">ថ្ងៃ</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group input-group">
+                                                <input value="{{$v->average_amount}}" id="average_amount" name="average_amount[0]" type="text" class="form-control allowNumber otherincome"  required="required"/>
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group input-group">
+                                                <input value="{{$v->monthly_income}}" id="monthly_income" name="monthly_income[0]" type="text" class="form-control allowNumber monthly_income_total" readonly="readonly"/>
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
+                                        </td>
+                                        <td style="text-align:center;">
+                                            @if($keys == 0)
                                                 <a  class="btn btn-primary" id="add_rows_4" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
-                                            </span>
-                                    </td>
-                                </tr>
+                                            @else
+                                                <a id="other_income_{{$keys}}" class="btn remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
 
                                 <tfoot>
@@ -1322,7 +1326,7 @@
                                     <td colspan="6"><span style="float: right;">សរុបចំណូល ប្រចាំខែ សម្រាប់គ្រួសារទាំងមូល (គិតជារៀល):</span></td>
                                     <td colspan="2">
                                         <div class="input-group">
-                                            <input id="total_monthly_income" class="form-control"  type="text" name="total_mon_income" readonly="readonly">
+                                            <input value="{{$otherIncome[0]->total_mon_income}}" id="total_monthly_income" class="form-control"  type="text" name="total_mon_income" readonly="readonly">
                                             <span class="input-group-addon">រៀល</span>
                                         </div>
                                     </td>
@@ -1332,7 +1336,7 @@
                                     <td colspan="6"><span style="float: right;">ចំណូលក្រៅពីកសិកម្មជាមធ្យមប្រចាំខែសម្រាប់មនុស្សម្នាក់​​ (១) :</span></td>
                                     <td colspan="2">
                                         <div class="input-group">
-                                            <input class="form-control" id="total_inc_person"  type="text" name="total_inc_person" readonly="readonly">
+                                            <input value="{{$otherIncome[0]->total_inc_person}}" class="form-control" id="total_inc_person"  type="text" name="total_inc_person" readonly="readonly">
                                             <span class="input-group-addon">រៀល</span>
                                         </div>
                                     </td>

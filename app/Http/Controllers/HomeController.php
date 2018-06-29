@@ -501,9 +501,10 @@ class HomeController extends Controller
         $gFamily = GeneralSituationFamilyModel::where('g_information_id',$id)->first();
 
         //material
-        $material = HouseoldConsumerModel::with('typemeterial')->where('g_information_id',$id)->get();
-        $vehicle = HouseholdVehicleModel::where('g_information_id',$id)->get();
-        $income = TypeIncomeModel::where('g_information_id',$id)->get();
+        $material    = HouseoldConsumerModel::with('typemeterial')->where('g_information_id',$id)->get();
+        $vehicle     = HouseholdVehicleModel::where('g_information_id',$id)->get();
+        $income      = TypeIncomeModel::where('g_information_id',$id)->get();
+        $otherIncome = OtherIncomeModel::where('g_information_id',$id)->get();
 
         //echo json_encode($income);exit();
 
@@ -513,7 +514,7 @@ class HomeController extends Controller
             'landAgricultural','loan','family','occupation','education_level',
             'landAgricultural','loan','family','roof_made','wall_made','house_status',
             'question_electric','typemeterial','typeanimals',
-            'typetransport','question_totel','ginfo','memberFamily','gFamily','material','vehicle','income'));
+            'typetransport','question_totel','ginfo','memberFamily','gFamily','material','vehicle','income','otherIncome'));
     }
 
 }
