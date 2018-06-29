@@ -1138,9 +1138,9 @@
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_3">
-                                @foreach($income as $key => $val)
+                                @foreach($income as $key1 => $val)
                                 <tr class="myrow_3">
-                                    <td>{{++$key}}</td>
+                                    <td>{{$key1+1}}</td>
                                     <td>
                                         <div class="form-group add_type_animals">
                                             <select style="width: 100%;" class="form-control type_animals" id="type_animals" name="type_animals[0]" required="required">
@@ -1167,9 +1167,11 @@
                                         </div>
                                     </td>
                                     <td style="text-align:center;">
-                                        <span>
+                                        @if($key1 == 0)
                                             <a  class="btn btn-primary" id="add_rows_3" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
-                                        </span>
+                                        @else
+                                            <a status="0" class="btn remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
@@ -1184,7 +1186,7 @@
                             <ul class="li-none add_land">
                                 @foreach($landAgricultural as $key => $land)
                                     <li>
-                                        <label><input class="land" type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
+                                        <label><input @if($gFamily->land_agricultural_id == $land->id) checked @endif class="land" type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
                                     </li>
                                 @endforeach
                             </ul>
@@ -1251,7 +1253,7 @@
                                 <thead>
                                 <tr>
                                     <th>ល.រ</th>
-                                    <th>ឈ្មោះសមាជិក</th>
+                                    <th width="12%">ឈ្មោះសមាជិក</th>
                                     <th>អាយុ​</th>
                                     <th width="12%">មុខរបររកចំណូល</th>
                                     <th>ឯកត្តា</th>
@@ -1357,12 +1359,12 @@
                                     <td colspan="2">ចំនួន​សមាជិក​គ្រួសារ ​ដែលបាត់បង់លទ្ធភាពពលកម្មស្ទើរទាំងស្រុង ដោយសារមានជម្ងឺធ្ងន់ធ្ងរ/រ៉ាំរ៉ៃ ឬពិការធ្ងន់ធ្ងរ</td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="kids_then65" type="text" class="form-control allowNumber" required="required"/>
+                                            <input value="{{$gFamily->kids_then65}}" name="kids_then65" type="text" class="form-control allowNumber" required="required"/>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="old_bigger65" type="text" class="form-control allowNumber" required="required"/>
+                                            <input value="{{$gFamily->old_bigger65}}" name="old_bigger65" type="text" class="form-control allowNumber" required="required"/>
                                         </div>
                                     </td>
                                 </tr>
@@ -1370,12 +1372,12 @@
                                     <td colspan="2">ចំនួន​សមាជិក​គ្រួសារ ​ដែលបាត់បង់លទ្ធភាពពលកម្មប្រហែល៥០ % ដោយសារមានជម្ងឺធ្ងន់ធ្ងរ/រ៉ាំរ៉ៃ ឬពិការធ្ងន់ធ្ងរ</td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="kids_50_then65" type="text" class="form-control allowNumber"  required="required"/>
+                                            <input value="{{$gFamily->kids_50_then65}}" name="kids_50_then65" type="text" class="form-control allowNumber"  required="required"/>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="old_50_bigger65" type="text" class="form-control allowNumber"  required="required"/>
+                                            <input value="{{$gFamily->old_50_bigger65}}" name="old_50_bigger65" type="text" class="form-control allowNumber"  required="required"/>
                                         </div>
                                     </td>
                                 </tr>
@@ -1387,7 +1389,8 @@
                             <ul class="debt_question_group">
                                 @foreach($loan as $key => $ge)
                                     <li>
-                                        <label class="add_family_debt_id"><input class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id"??>{{ $ge->name_kh }}</label>
+                                        <label class="add_family_debt_id">
+                                            <input @if($gFamily->debt_family_id == $ge->id) checked @endif class="family_debt" value="{{$ge->id}}" type="radio" name="debt_familys">{{ $ge->name_kh }}</label>
                                         @if($ge->id == 1)<label id="family_debt"></label>@endif
                                         @if($ge->id == 2)<label id="family_debt1"></label>@endif
                                     </li>
@@ -1398,7 +1401,7 @@
 
                         <script>
                             $('.family_debt').click(function () {
-                                var family_debt = $('input[name=family_debt_id]:checked').val();
+                                var family_debt = $('input[name=debt_familys]:checked').val();
                                 $('#family_debt').empty();
                                 $('#family_debt1').empty();
                                 if(family_debt == 1){
@@ -1437,7 +1440,7 @@
                         <div class="col-sm-12">
                             <h4>គ.១៥) ព័ត៍មានផ្សេងៗបន្ថែម ឬមតិយោបល់របស់អ្នកសម្ភាសន៍ (បើមាន)</h4>
                             <div class="col-sm-12">
-                                <textarea class="form-control"></textarea>
+                                <textarea class="form-control" name="command">{{$gFamily->command}}</textarea>
                             </div>
                         </div>
 
@@ -1836,13 +1839,13 @@
                 }
 
                 //debt
-                if (!$("input[name='family_debt_id']:checked").val()) {
+                if (!$("input[name='debt_familys']:checked").val()) {
                     $('.add_family_debt_id').addClass("error");
                     $('.alert').show();
                     isValid = false;
                 }else{$('.add_family_debt_id').removeClass("error");}
 
-                if ($("input[name='family_debt_id']:checked").val()==1) {
+                if ($("input[name='debt_familys']:checked").val()==1) {
                     if (!$("input[name='q_debt']:checked").val()) {
                         $('.debt_question').addClass("error");
                         $('.alert').show();
@@ -1850,7 +1853,7 @@
                     }else{$('.debt_question').removeClass("error");}
                 }
 
-                if ($("input[name='family_debt_id']:checked").val()==2) {
+                if ($("input[name='debt_familys']:checked").val()==2) {
                     if($('#total_debt').val() == ''){
                         $('.add_total_debt').addClass("has-error");
                         $('.alert').show();

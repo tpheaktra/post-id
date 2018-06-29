@@ -31,18 +31,17 @@ class CreateGeneralSituationFamilyTable extends Migration
             $table->integer('total_area')->nullable();
 
             $table->tinyInteger('toilet_id')->nullable();
-//            $table->string('tolet_1')->nullable();
-//            $table->string('tolet_2')->nullable();
-
 
             $table->integer('q_electric_id')->nullable();
             $table->tinyInteger('transport_id')->nullable();
+            $table->tinyInteger('land_agricultural_id')->nullable();
 
             $table->integer('kids_then65')->nullable();
             $table->integer('old_bigger65')->nullable();
             $table->integer('kids_50_then65')->nullable();
             $table->integer('old_50_bigger65')->nullable();
             $table->tinyInteger('debt_family_id')->nullable();
+            $table->text('command')->nullable();
 
 
             $table->timestamps();

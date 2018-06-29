@@ -1225,7 +1225,7 @@
                                 <thead>
                                     <tr>
                                         <th>ល.រ</th>
-                                        <th>ឈ្មោះសមាជិក</th>
+                                        <th width="12%">ឈ្មោះសមាជិក</th>
                                         <th>អាយុ​</th>
                                         <th width="12%">មុខរបររកចំណូល</th>
                                         <th>ឯកត្តា</th>
@@ -1361,7 +1361,10 @@
                             <ul class="debt_question_group">
                                 @foreach($loan as $key => $ge)
                                     <li>
-                                         <label class="add_family_debt_id"><input class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id"??>{{ $ge->name_kh }}</label>
+                                         <label class="add_family_debt_id">
+                                             <input class="family_debt" value="{{$ge->id}}" type="radio" name="debt_familys">
+                                             {{ $ge->name_kh }}
+                                         </label>
                                         @if($ge->id == 1)<label id="family_debt"></label>@endif
                                         @if($ge->id == 2)<label id="family_debt1"></label>@endif
                                     </li>
@@ -1372,7 +1375,7 @@
 
                     <script>
                         $('.family_debt').click(function () {
-                            var family_debt = $('input[name=family_debt_id]:checked').val();
+                            var family_debt = $('input[name=debt_familys]:checked').val();
                             $('#family_debt').empty();
                             $('#family_debt1').empty();
                             if(family_debt == 1){
@@ -1411,7 +1414,7 @@
                     <div class="col-sm-12">
                         <h4>គ.១៥) ព័ត៍មានផ្សេងៗបន្ថែម ឬមតិយោបល់របស់អ្នកសម្ភាសន៍ (បើមាន)</h4>
                         <div class="col-sm-12">
-                            <textarea class="form-control"></textarea>
+                            <textarea class="form-control" name="command"></textarea>
                         </div>
                     </div>
 
@@ -1841,13 +1844,13 @@
             }
 
             //debt
-            if (!$("input[name='family_debt_id']:checked").val()) {
+            if (!$("input[name='debt_familys']:checked").val()) {
                 $('.add_family_debt_id').addClass("error");
                 $('.alert').show();
                 isValid = false;
             }else{$('.add_family_debt_id').removeClass("error");}
 
-            if ($("input[name='family_debt_id']:checked").val()==1) {
+            if ($("input[name='debt_familys']:checked").val()==1) {
                 if (!$("input[name='q_debt']:checked").val()) {
                     $('.debt_question').addClass("error");
                     $('.alert').show();
@@ -1855,7 +1858,7 @@
                 }else{$('.debt_question').removeClass("error");}
             }
 
-            if ($("input[name='family_debt_id']:checked").val()==2) {
+            if ($("input[name='debt_familys']:checked").val()==2) {
                 if($('#total_debt').val() == ''){
                     $('.add_total_debt').addClass("has-error");
                     $('.alert').show();

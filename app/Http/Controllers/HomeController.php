@@ -336,18 +336,17 @@ class HomeController extends Controller
             'further_floor_area'   =>$request->further_floor_area,
             'total_area'           =>$request->total_area,
 
-             'toilet_id'            =>$request->tolet,
-//            'tolet_1'              =>$request->tolet_1,
-//            'tolet_2'              =>$request->tolet_2,
-              'q_electric_id'=>$request->q_electric,
-              'transport_id'=>$request->go_hospital,
-              'land_agricultural_id' =>$request->land,
+            'toilet_id'            =>$request->tolet,
+            'q_electric_id'        =>$request->q_electric,
+            'transport_id'         =>$request->go_hospital,
+            'land_agricultural_id' =>$request->land,
 
-                'kids_then65'     =>$request->kids_then65,
-                'old_bigger65'    =>$request->old_bigger65,
-                'kids_50_then65'  =>$request->kids_50_then65,
-                'old_50_bigger65' =>$request->old_50_bigger65,
-                'debt_family_id'  =>$request->debt_family_id,
+            'kids_then65'     =>$request->kids_then65,
+            'old_bigger65'    =>$request->old_bigger65,
+            'kids_50_then65'  =>$request->kids_50_then65,
+            'old_50_bigger65' =>$request->old_50_bigger65,
+            'debt_family_id'  =>$request->debt_familys,
+            'command'         =>$request->command
         );
         GeneralSituationFamilyModel::create($general_situation_family);
 
@@ -449,10 +448,6 @@ class HomeController extends Controller
             OtherIncomeModel::create($other_income);
         }
 
-
-
-
-
         //គ.១៤) បំណុលគ្រួសារ
             $debt = array(
                 'g_information_id' => $gn_info->id,
@@ -478,8 +473,6 @@ class HomeController extends Controller
         $gender        = Helpers::getGender();
         $household     = Helpers::getHouseHoldFamily();
         $homePrepar    = Helpers::getHomePrepar();
-
-
 
         $condition_house = Helpers::getConditionHouse();
         $question = Helpers::getQuestion();

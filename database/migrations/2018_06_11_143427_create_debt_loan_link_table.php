@@ -19,6 +19,7 @@ class CreateDebtLoanLinkTable extends Migration
             $table->integer('loan_id')->nullable();
             $table->integer('question_id')->nullable();
             $table->integer('total_debt')->nullable();
+            $table->integer('debt_duration')->nullable();
             $table->timestamps();
         });
     }
