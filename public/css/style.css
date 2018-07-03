@@ -119,7 +119,7 @@ select.form-control:not([size]):not([multiple]){ height: auto !important; }
 }
 .msg{
     position: fixed;
-    margin: 0 auto;
+    margin: 10px auto;
     right: 0;
     left: 0;
     z-index: 1;
@@ -183,4 +183,48 @@ input[type=radio]{
     border-radius: 0px !important;
     padding: 10px 30px !important;
     position: relative;
+}
+
+
+/*====================
+   - user-mangement
+ */
+.user-mangement{
+    margin-top: 20px;
+    float: left;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #dddddd;
+}
+.user-mangement .table{
+    margin-bottom: 10px !important;
+}
+.pagination{
+    margin: 0px !important;
+    float: right;
+}
+fieldset.scheduler-border {
+    border: 1px solid #dddddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+    box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.scheduler-border {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    width:auto;
+    padding:0 10px;
+    border-bottom:none;
+}
+.user-table{
+    float: left;
+    width: 100%;
+}
+.user-table tr td{
+    text-align: right;
+    padding: 10px;
 }

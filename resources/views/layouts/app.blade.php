@@ -32,9 +32,7 @@
 
         <nav class="header navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a href="{{ url('/') }}">
-                   <img src="{{ asset('images/health_center.png') }}">
-                </a>
+
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -43,7 +41,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li>ឈ្នោះអ្នកប្រើប្រាស់-{{auth::user()->name}}</li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -75,17 +73,22 @@
                     </ul>
                 </div>
             </div>
-            <style type="text/css">
-                .auto-hide1,
-                .auto-hide{
-                    display: none !important;
-                }
-            </style>
+
             <div class="msg">
                 <div class="add_hide alert alert1 alert-danger alert-dismissable">
-                   សូមបញ្ជូលព័ត៌មានចាំបាច់!
+                   សូមបញ្ជូលព័ត៌មានចាំបាច់.
                 </div>
             </div>
+
+
+
+            @if(!empty($errors->first()))
+                <div class="msg">
+                    <div class="add_hide1 alert-danger alert-dismissable">
+                        <span>{{ $errors->first() }}</span>
+                    </div>
+                </div>
+            @endif
 
             @if(session()->has('success'))
                 <div class="msg">
@@ -95,10 +98,58 @@
                 </div>
             @endif
         </nav>
+        <style type="text/css">
+            .auto-hide1,
+            .auto-hide{
+                display: none !important;
+            }
+
+            .home-menu{
+                float: left;
+                margin-top: 70px;
+                margin-bottom: 0px;
+                padding: 0px 0px;
+            }
+            .home-menu li{
+                padding: 15px;
+                float: left;
+                list-style-type: none;
+            }
+            .home-menu li.active{
+                background: #428bca;
+            }
+            .home-menu li.active a{ color: #ffffff;}
+            .home-logo{
+                float: left;
+                width: 140px;
+            }
+            .home-group{
+                border-bottom: 1px solid #DDDDDD;
+            }
+            .navbar{ margin-bottom: 0px !important;}
+
+        </style>
+        <div class="container">
+            <div class="wrap-home">
+            <div class="col-sm-12 home-group">
+                <div class="home-logo">
+                    <a href="{{ url('/') }}">
+                        <img src="{{ asset('images/health_center.png') }}">
+                    </a>
+                </div>
+                <ul class="home-menu">
+
+                    <li class="@if(Route::currentRouteName() == 'home.index' || Route::currentRouteName() == 'homehome') active @endif"><a href="{{route('home.index')}}">ការធ្វើអត្តសញ្ញាណកម្ម</a></li>
+                    <li class="@if(Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'user.create') active @endif"><a href="{{route('user.index')}}">គ្រប់គ្រងអ្នកប្រើប្រាស់</a></li>
+                    <li class="@if(Route::currentRouteName() == 'role.index' || Route::currentRouteName() == 'role.create') active @endif"><a href="{{route('role.index')}}">គ្រប់គ្រងតួនាទី</a></li>
+                </ul>
+            </div>
+            </div>
+        </div>
 
 
 
-
+    <!-- loding image -->
         <div>
             <div class="modal modal-primary" id="loading">
                 <div class="modal-dialog" style="top:30%">
@@ -113,12 +164,6 @@
             </div>
             <!-- /.modal -->
         </div>
-
-
-
-
-
-
 
         <main class="py-4">
             @yield('content')
@@ -137,5 +182,13 @@
             </div>
         </div>
     </div>
+<script>
+    setTimeout(function() {
+        $(".add_hide1").addClass("autho-hide1");
+        $('.autho-hide1').fadeOut();
+    },9000);
+
+
+</script>
 </body>
 </html>

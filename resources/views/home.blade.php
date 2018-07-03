@@ -2757,15 +2757,6 @@
         },9000);
     });
 
-    setTimeout(function() {
-        $(".add_hide1").addClass("autho-hide1");
-        $('.autho-hide1').fadeOut();
-    },9000);
-
-
-
-
-
 
 </script>
 @endsection
