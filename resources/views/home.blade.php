@@ -553,7 +553,7 @@
                                                 '</div>';
                                                 var home_preparing = '<h5>- តើធ្លាប់ជួសជុលឬទេ?</h5>' +
                                                    '<div class="add_home_prepare"><ul class="li-none">' +
-                                                       '@foreach($homePrepar as $key =>$p)' +--}}
+                                                       '@foreach($homePrepar as $key =>$p)'+
                                                             '<li>' +
                                                                 '<label><input class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
                                                                 '@if($p->id == 2)<label id="homeyear"></label>@endif' +
@@ -607,7 +607,7 @@
                                                         '</td>'+
                                                     '</tr>'+
                                                 '</table>'+
-                                            '</div>';php
+                                            '</div>';
                                          $('#home-ke').append(homeke);
                                          $(".wall_relationship").select2({ allowClear:true, placeholder: "ជញ្ជាំង"});
                                          $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
