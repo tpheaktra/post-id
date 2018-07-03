@@ -354,7 +354,7 @@
                                     <td>1(មេ)</td>
                                     <td><div class="form-group"><input type="text" required="required" class="form-control nick_name_0" name="nick_name[0]"/></div></td>
                                     <td><div class="form-group"><input maxlength="4"  type="text" required="required" class="form-control allowNumber" id="dob" name="dob[0]"/></div></td>
-                                    <td><div class="form-group"><input maxlength="3" type="text" required="required" class="form-control allowNumber" id="age" name="age[0]"/></div></td>
+                                    <td><div class="form-group"><input maxlength="3" type="text" required="required" class="form-control allowNumber age_0" id="age" name="age[0]"/></div></td>
                                     <td>
                                         <div class="form-group add_relationship">
                                             <select class="form-control family_relationship" name="family_relationship[0]" required="required">
@@ -1226,7 +1226,7 @@
                                     <tr>
                                         <th>ល.រ</th>
                                         <th width="12%">ឈ្មោះសមាជិក</th>
-                                        <th>អាយុ​</th>
+                                        <th width="8%">អាយុ​</th>
                                         <th width="12%">មុខរបររកចំណូល</th>
                                         <th>ឯកត្តា</th>
                                         <th>ចំនួនឯកត្តាក្នុងមួយខែ</th>
@@ -1245,7 +1245,8 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="income_age[0]" type="text" class="form-control allowNumber"  required="required"/>
+                                                <select class="form-control income_age" id="income_age_0" name="income_age[0]" required="required"></select>
+                                                {{--<input name="income_age[0]" type="text" class="form-control allowNumber"  required="required"/>--}}
                                             </div>
                                         </td>
                                         <td>
@@ -1331,12 +1332,12 @@
                                         <td colspan="2">ចំនួន​សមាជិក​គ្រួសារ ​ដែលបាត់បង់លទ្ធភាពពលកម្មស្ទើរទាំងស្រុង ដោយសារមានជម្ងឺធ្ងន់ធ្ងរ/រ៉ាំរ៉ៃ ឬពិការធ្ងន់ធ្ងរ</td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="kids_then65" type="text" class="form-control allowNumber" required="required"/>
+                                                <input name="kids_then65" type="text" class="form-control allowNumber"/>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="old_bigger65" type="text" class="form-control allowNumber" required="required"/>
+                                                <input name="old_bigger65" type="text" class="form-control allowNumber"/>
                                             </div>
                                         </td>
                                     </tr>
@@ -1344,12 +1345,12 @@
                                         <td colspan="2">ចំនួន​សមាជិក​គ្រួសារ ​ដែលបាត់បង់លទ្ធភាពពលកម្មប្រហែល៥០ % ដោយសារមានជម្ងឺធ្ងន់ធ្ងរ/រ៉ាំរ៉ៃ ឬពិការធ្ងន់ធ្ងរ</td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="kids_50_then65" type="text" class="form-control allowNumber"  required="required"/>
+                                                <input name="kids_50_then65" type="text" class="form-control allowNumber"/>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="old_50_bigger65" type="text" class="form-control allowNumber"  required="required"/>
+                                                <input name="old_50_bigger65" type="text" class="form-control allowNumber"/>
                                             </div>
                                         </td>
                                     </tr>
@@ -1598,6 +1599,7 @@
             //in append
             var row_num = $('.new_rows tr').length;
             $('#income_name_0').empty();
+            $('#income_age_0').empty();
 
            // alert(row_num);
             for(var i=0; i<row_num; i++) {
@@ -1625,8 +1627,10 @@
                 }
 
                 var nick = $('.nick_name_'+i).val();
+                var ages = $('.age_'+i).val();
                // alert(nick);
                 $('#income_name_0').append('<option value="'+nick+'">'+nick+'</option>');
+                $('#income_age_0').append('<option value="'+ages+'">'+ages+'</option>');
             }
 
 
@@ -2107,7 +2111,7 @@
                 '<td>'+dataRow+'</td>' +
                 '<td><div class="form-group"><input autocomplete="off" type="text" required="required" class="hh-member form-control nick_name_'+row+' nickname" name="nick_name[' + row + ']"/></div></td>' +
                 '<td><div class="form-group"><input autocomplete="off" maxlength="4" id="dob_' + row + '"  type="text" required="required" class="hh-member dob form-control allowNumber" name="dob[' + row + ']"/></div></td>' +
-                '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + row + '" type="text" required="required" class="hh-member age form-control allowNumber" name="age[' + row + ']"/></div></td>' +
+                '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + row + '" type="text" required="required" class="hh-member age age_'+row+' form-control allowNumber" name="age[' + row + ']"/></div></td>' +
                 '<td>' +
                 '<div class="form-group add_relationship_' + row + '">' +
                 '<select id="family_relationship_' + row + '" class="hh-member form-control family_relationship"  name="family_relationship[' + row + ']" required="required">' +
@@ -2516,17 +2520,17 @@
                 '<td>'+dataRow_other_income+'</td>'+
                 '<td>' +
                     '<div class="form-group">' +
-                        '<select class="form-control income_name" id="income_name_'+row_4+'" name="income_name['+row_4+']" required="required"></select>' +
+                        '<select class="form-control income_name" id="income_name_'+dataRow_other_income+'" name="income_name['+dataRow_other_income+']" required="required"></select>' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
                     '<div class="form-group">' +
-                        '<input autocomplete="off" name="income_age['+row_4+']" type="text"  class="form-control allowNumber" required="required" />' +
+                        '<select class="form-control income_age" id="income_age_'+dataRow_other_income+'" name="income_age['+dataRow_other_income+']" required="required"></select>' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
-                    '<div class="form-group add_income_occupation_'+row_4+'">' +
-                        '<select style="width: 100%" autocomplete="off" class="form-control income_occupation" id="income_occupation_'+row_4+'" name="income_occupation['+row_4+']" required="required">' +
+                    '<div class="form-group add_income_occupation_'+dataRow_other_income+'">' +
+                        '<select style="width: 100%" autocomplete="off" class="form-control income_occupation" id="income_occupation_'+dataRow_other_income+'" name="income_occupation['+dataRow_other_income+']" required="required">' +
                             '<option></option>' +
                             '@foreach($occupation as $keh => $value)' +
                                 '<option value="{{$value->id}}">{{$value->name_kh}}</option>' +
@@ -2536,28 +2540,28 @@
                 '</td>' +
                 '<td>' +
                     '<div class="form-group">' +
-                        '<input autocomplete="off" name="income_unit['+row_4+']" type="text" required="required" class="form-control" placeholder="ថ្ងៃ" />' +
+                        '<input autocomplete="off" id="income_unit_'+dataRow_other_income+'" name="income_unit['+dataRow_other_income+']" type="text" required="required" class="form-control income_unit" placeholder="ថ្ងៃ" />' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
                     '<div class="form-group input-group">' +
-                        '<input autocomplete="off" id="unit_in_month_'+row_4+'" name="unit_in_month['+row_4+']" type="text" required="required" class="form-control allowNumber otherincome"  /><span class="input-group-addon">ថ្ងៃ</span>' +
+                        '<input autocomplete="off" id="unit_in_month_'+dataRow_other_income+'" name="unit_in_month['+dataRow_other_income+']" type="text" required="required" class="form-control allowNumber otherincome"  /><span class="input-group-addon">ថ្ងៃ</span>' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
                     '<div class="form-group input-group">' +
-                        '<input autocomplete="off" id="average_amount_'+row_4+'" name="average_amount['+row_4+']" type="text" required="required" class="form-control allowNumber otherincome"  /><span class="input-group-addon">រៀល</span>' +
+                        '<input autocomplete="off" id="average_amount_'+dataRow_other_income+'" name="average_amount['+dataRow_other_income+']" type="text" required="required" class="form-control allowNumber otherincome"  /><span class="input-group-addon">រៀល</span>' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
                     '<div class="form-group input-group">' +
-                        '<input autocomplete="off" id="monthly_income_'+row_4+'" name="monthly_income['+row_4+']" type="text" required="required" class="form-control allowNumber monthly_income_total"  readonly="readonly"/><span class="input-group-addon">រៀល</span>' +
+                        '<input autocomplete="off" id="monthly_income_'+dataRow_other_income+'" name="monthly_income['+dataRow_other_income+']" type="text" required="required" class="form-control allowNumber monthly_income_total"  readonly="readonly"/><span class="input-group-addon">រៀល</span>' +
                     '</div>' +
                 '</td>'+
-                '<td style="text-align:center;"><a id="other_income_'+row_4+'" class="btn remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+                '<td style="text-align:center;"><a id="other_income_'+dataRow_other_income+'" class="btn remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
         $(".new_rows_4").append(tab_rows_4);
-        dataRow_other_income++;
+
         AllowNumber();
         $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
 
@@ -2596,27 +2600,46 @@
         //click append nick name
         var row_4s = $('.new_rows_4 tr.myrow_4').length-1;
 
-        for(var k=0;k<row_4s;k++){ $('#income_name_'+row_4).empty();
-            var x=document.getElementById("income_name_"+k);
+        for(var k=0;k<row_4s;k++){
+            $('#income_name_'+dataRow_other_income).empty();
+            var x=document.getElementById("income_name_0");
+            $('#income_age_'+dataRow_other_income).empty();
+            var ag=document.getElementById("income_age_0");
+            //name
             for (var i = 0; i < x.options.length; i++) {
                 if(x.options[i].selected == false){
                     //alert(x.options[i].value);
-                    $('#income_name_'+row_4).append('<option value="'+x.options[i].value+'">'+x.options[i].value+'</option>');
+                    $('#income_name_'+dataRow_other_income).append('<option value="'+x.options[i].value+'">'+x.options[i].value+'</option>');
                }
+            }
+            //age
+            for (var i = 0; i < ag.options.length; i++) {
+                if(ag.options[i].selected == false){
+                    //alert(x.options[i].value);
+                    $('#income_age_'+dataRow_other_income).append('<option value="'+ag.options[i].value+'">'+ag.options[i].value+'</option>');
+                }
             }
         }
 
         $(".income_name").select2({ allowClear:true, placeholder: "ប្រភេទសត្វ"});
-
+        $(".income_age").select2({ allowClear:true, placeholder: "អាយុ​"});
+        dataRow_other_income++;
     });
     $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
     function reOrder_other_income(){
         for(var n=2;n<(dataRow_other_income-1);n++){
             $('.new_rows_4  tr:eq(' + (n-1) +') td:first-child').html(n);
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .income_name').attr('id','income_name_'+(n-1));
             $('.new_rows_4  tr:eq(' + (n-1) +') td .income_name').attr('name', 'income_name['+(n-1)+']');
-           // $('.new_rows_4  tr:eq(' + (n-1) +') td .num_animals_big').attr('name', 'num_animals_big['+(n-1)+']');
-           // $('.new_rows_4  tr:eq(' + (n-1) +') td .num_animals_small').attr('name', 'num_animals_small['+(n-1)+']');
-            //$('.new_rows_4  tr:eq(' + (n-1) +') td .note_animals').attr('name', 'note_animals['+(n-1)+']');
+
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .income_age').attr('id','income_age_'+(n-1));
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .income_age').attr('name', 'income_age['+(n-1)+']');
+
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .income_occupation').attr('id','income_occupation_'+(n-1));
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .income_occupation').attr('name', 'income_occupation['+(n-1)+']');
+
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .income_unit').attr('id','income_unit_'+(n-1));
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .income_unit').attr('name', 'income_unit['+(n-1)+']');
         }
     }
     //remove add
@@ -2635,13 +2658,11 @@
         $('#add_rows_4').show();
         $(this).parent().parent().remove();
         reOrder_other_income();
-        dataRow_other_income--;
+        //dataRow_other_income--;
     });
 
-    $("#income_name_0").select2({
-        allowClear:true,
-        placeholder: 'ឈ្មោះសមាជិក'
-    });
+    $("#income_name_0").select2({allowClear:true, placeholder: 'ឈ្មោះសមាជិក'});
+    $("#income_age").select2({ allowClear:true, placeholder: "អាយុ​"});
 
     $('.otherincome').keyup(function () {
         var sum = 0;
