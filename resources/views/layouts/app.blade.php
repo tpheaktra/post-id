@@ -40,9 +40,9 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li>ឈ្នោះអ្នកប្រើប្រាស់-{{auth::user()->name}}</li>
-                    </ul>
+                    {{--<ul class="navbar-nav mr-auto">--}}
+                        {{--<li>ឈ្នោះអ្នកប្រើប្រាស់-{{auth::user()->name}}</li>--}}
+                    {{--</ul>--}}
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto pull-right">
@@ -50,8 +50,8 @@
                         @guest
 
                         @else
-                           <!--  <li><a class="nav-link">{{ Auth::user()->name }} </a></li>
-                            <li><a class="nav-link">|</a></li> -->
+                            <li><a class="nav-link">{{ Auth::user()->name }}  </a> </li>
+                            <li><a class="nav-link"> | </a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     ចាកចេញ
