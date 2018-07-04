@@ -9,43 +9,51 @@ class PermissionTableSeeder extends Seeder
         $permission = [
             [
                 'name' => 'role-list',
+                'parent_id'    => 1,
                 'display_name' => 'Display Role Listing',
                 'description' => 'See only Listing Of Role'
             ],
             [
                 'name' => 'role-create',
+                'parent_id'    => 1,
                 'display_name' => 'Create Role',
                 'description' => 'Create New Role'
             ],
             [
                 'name' => 'role-edit',
+                'parent_id'    => 1,
                 'display_name' => 'Edit Role',
                 'description' => 'Edit Role'
             ],
             [
                 'name' => 'role-delete',
+                'parent_id'    => 1,
                 'display_name' => 'Delete Role',
                 'description' => 'Delete Role'
             ],
             [
-                'name' => 'post-list',
-                'display_name' => 'Display post',
-                'description' => 'See only Listing Of post'
+                'name' => 'user-list',
+                'parent_id'    => 2,
+                'display_name' => 'Display Users',
+                'description' => 'See only Listing Of Users'
             ],
             [
-                'name' => 'post-create',
-                'display_name' => 'Create post',
-                'description' => 'Create New post'
+                'name' => 'user-create',
+                'parent_id'    => 2,
+                'display_name' => 'Create Users',
+                'description' => 'Create New Usrs'
             ],
             [
-                'name' => 'post-edit',
-                'display_name' => 'Edit post',
-                'description' => 'Edit post'
+                'name'         => 'user-edit',
+                'parent_id'    => 2,
+                'display_name' => 'Edit Users',
+                'description'  => 'Edit Users'
             ],
             [
-                'name' => 'post-delete',
-                'display_name' => 'Delete post',
-                'description' => 'Delete Post'
+                'name'         => 'user-delete',
+                'parent_id'    => 2,
+                'display_name' => 'Deleted Users',
+                'description'  => 'Deleted Users'
             ]
         ];
         foreach ($permission as $key => $value) {

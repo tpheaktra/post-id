@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\model\DebtLoanLinkModel;
 use App\model\GeneralInformationModel;
 use App\model\GeneralSituationFamilyModel;
+use App\model\HealthDisabilityModle;
 use App\model\HomePreparLinkModel;
 use App\model\HouseHoldFamilyLinkModel;
 use App\model\HouseholdRentPriceModel;
@@ -59,36 +60,31 @@ class HomeController extends Controller
             $interview_code= auth::user()->province.'-'.date('ymd').$check[0]->id;
         }
 
-        $hospital      = Helpers::getHospital();
-        $provinces     = Helpers::getProvince();
-        $relationship  = RelationshipModel::all();
-        $gender        = Helpers::getGender();
-        $household     = Helpers::getHouseHoldFamily();
-        $homePrepar    = Helpers::getHomePrepar();
-
-
-
-        $condition_house = Helpers::getConditionHouse();
-        $question = Helpers::getQuestion();
-        $electricgrid   = Helpers::getElectricGird();
-
-        $landAgricultural = Helpers::getLangAgricultural();
-
-        $loan             = Helpers::getLoan();
-        $family           = Helpers::getFamilyRelation();
-        $occupation       = Helpers::getOccupation();
-        $education_level  = Helpers::getEducationLevel();
-
-        $roof_made = Helpers::getRoofmade();
-        $wall_made = Helpers::getWallmade();
-        $house_status = ConditionhouseModel::all();
-
-        $typemeterial = Helpers::getTypeMeterial();
-        $typeanimals = Helpers::getTypeAnimals();
-        $typetransport = Helpers::getTypeTransportation();
-
+        $hospital          = Helpers::getHospital();
+        $provinces         = Helpers::getProvince();
+        $relationship      = RelationshipModel::all();
+        $gender            = Helpers::getGender();
+        $household         = Helpers::getHouseHoldFamily();
+        $homePrepar        = Helpers::getHomePrepar();
+        $condition_house   = Helpers::getConditionHouse();
+        $question          = Helpers::getQuestion();
+        $electricgrid      = Helpers::getElectricGird();
+        $landAgricultural  = Helpers::getLangAgricultural();
+        $loan              = Helpers::getLoan();
+        $family            = Helpers::getFamilyRelation();
+        $occupation        = Helpers::getOccupation();
+        $education_level   = Helpers::getEducationLevel();
+        $roof_made         = Helpers::getRoofmade();
+        $wall_made         = Helpers::getWallmade();
+        $house_status      = ConditionhouseModel::all();
+        $typemeterial      = Helpers::getTypeMeterial();
+        $typeanimals       = Helpers::getTypeAnimals();
+        $typetransport     = Helpers::getTypeTransportation();
         $question_electric = Helpers::getQuestionElectric();
-        $question_totel = Helpers::getQuestionTolet();
+        $question_totel    = Helpers::getQuestionTolet();
+        $health            = Helpers::getHealth();
+
+
         $view = DB::select("select 
         gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,
 
@@ -125,8 +121,11 @@ class HomeController extends Controller
             'landAgricultural','loan','family','occupation','education_level',
             'landAgricultural','loan','family','roof_made','wall_made','house_status',
             'question_electric','typemeterial','typeanimals',
-            'typetransport','question_totel','view'))->with('interview_code',$interview_code);
+            'typetransport','question_totel','health','view'))->with('interview_code',$interview_code);
     }
+
+
+
     public function view($id){
          $patient = DB::select("select gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,gi.g_local_village as g_local_village, 
                 p.name_kh as province, d.name_kh as district,c.name_kh as commune, v.name_kh as village from general_information gi
@@ -142,6 +141,9 @@ class HomeController extends Controller
         $gender = Helpers::getGender();
         return view('view',compact('gender','patient'));
     }
+
+
+
     public function print($id){
 
         $patient = DB::select("select
@@ -208,6 +210,9 @@ class HomeController extends Controller
         return view('print',compact('patient','khor','kur_step1'));
 
     }
+
+
+
     /*
      * get data with ajax
      */
@@ -245,246 +250,305 @@ class HomeController extends Controller
 
 
 
-
+    /*
+     * by pheaktra
+     * function save data to db
+     */
     public function insert(request $request){
+        //check db insert all table
         DB::connection();
         DB::beginTransaction();
+        //check validation
+        $this->validate($request, [
+            'hospital'       => 'required',
+            'interview_code' => 'required',
+            'g_patient'      => 'required',
+            'g_age'          => 'required',
+            'g_sex'          => 'required',
+            'g_phone'        => 'required',
+            'g_province'         => 'required',
+            'g_local_village'    => 'required',
+            'inter_patient'      => 'required',
+            'inter_age'          => 'required',
+            'inter_sex'          => 'required',
+            'inter_phone'        => 'required',
+            'inter_relationship' => 'required',
+            'fa_patient'           => 'required',
+            'fa_age'               => 'required',
+            'fa_sex'               => 'required',
+            'fa_phone'             => 'required',
+            'fa_relationship'      => 'required',
+            //step2
+            'nick_name'              => 'required',
+            'nick_name.*'            => 'required',
+            'dob'                    => 'required',
+            'dob.*'                  => 'required',
+            'age'                    => 'required',
+            'age.*'                  => 'required',
+            'family_relationship'    => 'required',
+            'family_relationship.*'  => 'required',
+            'occupation'             => 'required',
+            'occupation.*'           => 'required',
+            'education_level'        => 'required',
+            'education_level.*'      => 'required',
+
+        ],//customer message
+        [
+            'nick_name.*.required'           => 'The member name is required.',
+            'dob.*.required'                 => 'The date of birth is required.',
+            'age.*.required'                 => 'The age is required.',
+            'family_relationship.*.required' => 'The relationship is required.',
+            'occupation.*.required'          => 'The occupation is required.',
+            'education_level.*.required'     => 'The education is required.'
+        ]);
 
         try {
-        $od_code = $request->hospital;
-        $query = Helpers::getInterviewCode($od_code);
-        $check = DB::select("SELECT count(*) as id FROM general_information gi where gi.od_code=".$od_code);
-        $check_code= $check[0]->id + 1;
-        $interview_code= $query[0]->shortcut.'/'.date('ymd').'/0'.$check_code;
 
-
-        $data = array(
-            'od_code'            => $od_code,
-            'interview_code'     =>$interview_code,
-            'g_patient'          =>$request->g_patient,
-            'g_age'              =>$request->g_age,
-            'g_sex'              =>$request->g_sex,
-            'g_phone'            =>$request->g_phone,
-            'g_province_id'      =>$request->g_province,
-            'g_district_id'      =>$request->g_district,
-            'g_commune_id'       =>$request->g_commune,
-            'g_village_id'       =>$request->g_village,
-            'g_local_village'    =>$request->g_local_village,
-            //interview
-            'inter_patient'      =>$request->inter_patient,
-            'inter_age'          =>$request->inter_age,
-            'inter_sex'          =>$request->inter_sex,
-            'inter_phone'        =>$request->inter_phone,
-            'inter_relationship_id' =>$request->inter_relationship,
-            //family
-            'fa_patient'          =>$request->fa_patient,
-            'fa_age'              =>$request->fa_age,
-            'fa_sex'              =>$request->fa_sex,
-            'fa_phone'            =>$request->fa_phone,
-            'fa_relationship_id'  =>$request->fa_relationship,
-        );
-        $gn_info = GeneralInformationModel::create($data);
-        //step2
-       //echo $gn_info->id;
-       foreach ($request->nick_name as $key => $val){
-           $member_family = array(
-               'g_information_id'        => $gn_info->id,
-               'nick_name'               => $val,
-               'dob'                     => $request->dob[$key],
-               'age'                     => $request->age[$key],
-               'family_relationship_id'  => $request->family_relationship[$key],
-               'occupation_id'           => $request->occupation[$key],
-               'education_level_id'      => $request->education_level[$key],
-           );
-          // echo json_encode($member_family);
-           MemberFamilyModel::create($member_family);
-       }
-
-        //step 3
-        $household_link = $request->household_family_id;
-        if($household_link == 1 || $household_link == 3){
-            $hlink1 = array(
-                'household_family_id' =>$household_link,
-                'g_information_id'    =>$gn_info->id,
-                'h_build_year'        =>$request->h_build_year,
-                'home_prepare_id'     =>$request->home_prepare,
-                'roof_made_id'        =>$request->roof_made,
-                'roof_status_id'      =>$request->roof_status,
-                'walls_made_id'       =>$request->walls_made,
-                'walls_status_id'     =>$request->walls_status,
-                'condition_house_id'  =>$request->condition_house
+            //check od
+            $od_code = $request->hospital;
+            $query = Helpers::getInterviewCode($od_code);
+            $check = DB::select("SELECT count(*) as id FROM general_information gi where gi.od_code=".$od_code);
+            $check_code= $check[0]->id + 1;
+            $interview_code= $query[0]->shortcut.'/'.date('ymd').'/0'.$check_code;
+            //step 1
+            // table general_information
+            $data = array(
+                'od_code'            => $od_code,
+                'interview_code'     =>$interview_code,
+                'g_patient'          =>$request->g_patient,
+                'g_age'              =>$request->g_age,
+                'g_sex'              =>$request->g_sex,
+                'g_phone'            =>$request->g_phone,
+                'g_province_id'      =>$request->g_province,
+                'g_district_id'      =>$request->g_district,
+                'g_commune_id'       =>$request->g_commune,
+                'g_village_id'       =>$request->g_village,
+                'g_local_village'    =>$request->g_local_village,
+                //interview
+                'inter_patient'      =>$request->inter_patient,
+                'inter_age'          =>$request->inter_age,
+                'inter_sex'          =>$request->inter_sex,
+                'inter_phone'        =>$request->inter_phone,
+                'inter_relationship_id' =>$request->inter_relationship,
+                //family
+                'fa_patient'          =>$request->fa_patient,
+                'fa_age'              =>$request->fa_age,
+                'fa_sex'              =>$request->fa_sex,
+                'fa_phone'            =>$request->fa_phone,
+                'fa_relationship_id'  =>$request->fa_relationship,
             );
-            $house=HouseHoldRootLinkModel::create($hlink1);
-            $homepre = $request->home_prepare;
-            if($homepre == 2){
-                $hlink1_1 = array(
-                    'home_prepar_id' =>$house->id,
-                    'home_year'      =>$request->home_year
+            $gn_info = GeneralInformationModel::create($data);
+
+            //step2
+            //table member_family
+           foreach ($request->nick_name as $key => $val){
+               $member_family = array(
+                   'g_information_id'        => $gn_info->id,
+                   'nick_name'               => $val,
+                   'gender_id'               => $request->m_sex[$key],
+                   'dob'                     => $request->dob[$key],
+                   'age'                     => $request->age[$key],
+                   'family_relationship_id'  => $request->family_relationship[$key],
+                   'occupation_id'           => $request->occupation[$key],
+                   'education_level_id'      => $request->education_level[$key],
+               );
+               MemberFamilyModel::create($member_family);
+           }
+
+            //step 3
+            //table household_root_link
+            $household_link = $request->household_family_id;
+            if($household_link == 1 || $household_link == 3){
+                $hlink1 = array(
+                    'household_family_id' =>$household_link,
+                    'g_information_id'    =>$gn_info->id,
+                    'ground_floor_length' =>$request->ground_floor_length,
+                    'ground_floor_width'  =>$request->ground_floor_width,
+                    'ground_floor_area'   =>$request->ground_floor_area,
+                    'upper_floor_length'  =>$request->upper_floor_length,
+                    'upper_floor_width'   =>$request->upper_floor_width,
+                    'upper_floor_area'    =>$request->upper_floor_area,
+                    'further_floor_length' =>$request->further_floor_length,
+                    'further_floor_width'  =>$request->further_floor_width,
+                    'further_floor_area'   =>$request->further_floor_area,
+                    'total_area'           =>$request->total_area,
+                    'h_build_year'        =>$request->h_build_year,
+                    'home_prepare_id'     =>$request->home_prepare,
+                    'roof_made_id'        =>$request->roof_made,
+                    'roof_status_id'      =>$request->roof_status,
+                    'walls_made_id'       =>$request->walls_made,
+                    'walls_status_id'     =>$request->walls_status,
+                    'condition_house_id'  =>$request->condition_house
                 );
-               DB::table('home_prepar_link')->insert($hlink1_1);
+                $house=HouseHoldRootLinkModel::create($hlink1);
+
+                //home_prepar_link
+                $homepre = $request->home_prepare;
+                if($homepre == 2){
+                    $hlink1_1 = array(
+                        'home_prepar_id' =>$house->id,
+                        'home_year'      =>$request->home_year
+                    );
+                   DB::table('home_prepar_link')->insert($hlink1_1);
+                }
+
+            }elseif($household_link == 2){
+                //household_rent_price_link
+                $hlink2 = array(
+                    'household_family_id' =>$household_link,
+                    'g_information_id'    =>$gn_info->id,
+                    'house_rent_price'    =>$request->rent_fee
+                );
+                HouseholdRentPriceModel::create($hlink2);
+            } elseif($household_link == 5){
+                //household_family_link
+                $hlink = array(
+                    'household_family_id' =>$household_link,
+                    'g_information_id'    =>$gn_info->id,
+                    'institutions_name'   =>$request->institutions_name,
+                    'instatutions_phone'  =>$request->instatutions_phone
+                    );
+                HouseHoldFamilyLinkModel::create($hlink);
             }
-        }elseif($household_link == 2){
-            $hlink2 = array(
-                'household_family_id' =>$household_link,
-                'g_information_id'    =>$gn_info->id,
-                'house_rent_price'    =>$request->rent_fee
-            );
-            HouseholdRentPriceModel::create($hlink2);
-        } elseif($household_link == 5){
-            $hlink = array(
-                'household_family_id' =>$household_link,
-                'g_information_id'    =>$gn_info->id,
-                'institutions_name'   =>$request->institutions_name,
-                'instatutions_phone'  =>$request->instatutions_phone
-                );
-            HouseHoldFamilyLinkModel::create($hlink);
-        }
 
-//        $homePre = $request->home_prepar;
-//        if($homePre == 2){
-//            $hPre = array(
-//                'home_prepar_id'=>$homePre,
-//                'home_year'=>$request->home_year,
-//            );
-//            HomePreparLinkModel::create($hPre);
-//        }
-
-        $general_situation_family = array(
-            'g_information_id'    =>$gn_info->id,
-            'household_family_id' =>$household_link,
-            'total_people'        =>$request->total_people,
-
-            'ground_floor_length' =>$request->ground_floor_length,
-            'ground_floor_width'  =>$request->ground_floor_width,
-            'ground_floor_area'   =>$request->ground_floor_area,
-            'upper_floor_length'  =>$request->upper_floor_length,
-            'upper_floor_width'   =>$request->upper_floor_width,
-            'upper_floor_area'    =>$request->upper_floor_area,
-            'further_floor_length' =>$request->further_floor_length,
-            'further_floor_width'  =>$request->further_floor_width,
-            'further_floor_area'   =>$request->further_floor_area,
-            'total_area'           =>$request->total_area,
-
-            'toilet_id'            =>$request->tolet,
-            'q_electric_id'        =>$request->q_electric,
-            'transport_id'         =>$request->go_hospital,
-            'land_agricultural_id' =>$request->land,
-
-            'kids_then65'     =>$request->kids_then65,
-            'old_bigger65'    =>$request->old_bigger65,
-            'kids_50_then65'  =>$request->kids_50_then65,
-            'old_50_bigger65' =>$request->old_50_bigger65,
-            'debt_family_id'  =>$request->debt_familys,
-            'command'         =>$request->command
-        );
-        GeneralSituationFamilyModel::create($general_situation_family);
-
-        foreach ($request->type_meterial as $key => $val) {
-            $meterial = array(
-                'g_information_id'      =>$gn_info->id,
-                'type_meterial_id'      => $val,
-                'number_meterial'       => $request->number_meterial[$key],
-                'market_value_meterial' => $request->market_value_meterial[$key],
-                'total_rail'            => $request->total_rail_meterial[$key],
-                'total_meterial_costs'  => $request->total_meterial_costs
-            );
-            HouseoldConsumerModel::create($meterial);
-        }
-
-        //toilet
-        $q_toilet= $request->tolet;
-        if($q_toilet == 1){
-            $qt = array(
-                'toilet_id'        =>$q_toilet,
-                'g_information_id' =>$gn_info->id,
-                'toilet_1'         =>$request->tolet_1,
-                'toilet_2'         =>$request->tolet_2
-            );
-            TypeToiletLinkModel::create($qt);
-        }
-
-        //electric
-        $q_electric = $request->q_electric;
-        if($q_electric == 1){
-            $e = array(
-                'q_electric_id'        =>$q_electric,
+            // table general_situation_family
+            $general_situation_family = array(
                 'g_information_id'     =>$gn_info->id,
-                'costs_in_hour'        =>$request->costs_in_hour,
-                'number_in_month'      =>$request->number_in_month,
-                'costs_per_month'      =>$request->costs_per_month,
+                'household_family_id'  =>$household_link,
+                'total_people'         => $request->total_people,
+                'toilet_id'            =>$request->tolet,
+                'q_electric_id'        =>$request->q_electric,
+                'transport_id'         =>$request->go_hospital,
+                'land_agricultural_id' =>$request->land,
+                'command'              =>$request->command
             );
-            YesElectricLinkModel::create($e);
-        }elseif($q_electric == 2){
-            $e1 = array(
-                'q_electric_id'       =>$q_electric,
-                'g_information_id'    =>$gn_info->id,
-                'electric_grid_id'    =>$request->electric_grid_id
+            GeneralSituationFamilyModel::create($general_situation_family);
+
+            //table household_consumer
+            foreach ($request->type_meterial as $key => $val) {
+                $meterial = array(
+                    'g_information_id'      =>$gn_info->id,
+                    'type_meterial_id'      => $val,
+                    'number_meterial'       => $request->number_meterial[$key],
+                    'market_value_meterial' => $request->market_value_meterial[$key],
+                    'total_rail'            => $request->total_rail_meterial[$key],
+                    'total_meterial_costs'  => $request->total_meterial_costs
+                );
+                HouseoldConsumerModel::create($meterial);
+            }
+
+            //toilet
+            $q_toilet= $request->tolet;
+            if($q_toilet == 1){
+                //table type_toilet_link
+                $qt = array(
+                    'toilet_id'        =>$q_toilet,
+                    'g_information_id' =>$gn_info->id,
+                    'toilet_1'         =>$request->tolet_1,
+                    'toilet_2'         =>$request->tolet_2
+                );
+                TypeToiletLinkModel::create($qt);
+            }
+
+            //electric
+            $q_electric = $request->q_electric;
+            if($q_electric == 1){
+                //table yes_electric_link
+                $e = array(
+                    'q_electric_id'        =>$q_electric,
+                    'g_information_id'     =>$gn_info->id,
+                    'costs_in_hour'        =>$request->costs_in_hour,
+                    'number_in_month'      =>$request->number_in_month,
+                    'costs_per_month'      =>$request->costs_per_month,
+                );
+                YesElectricLinkModel::create($e);
+            }elseif($q_electric == 2){
+                //table no_electric_link
+                $e1 = array(
+                    'q_electric_id'       =>$q_electric,
+                    'g_information_id'    =>$gn_info->id,
+                    'electric_grid_id'    =>$request->electric_grid_id
+                );
+                NoElectricLinkModel::create($e1);
+            }
+
+            //table household_vehicle
+            foreach ($request->type_vehicle as $key => $vi) {
+                $vehicle = array(
+                    'g_information_id'     => $gn_info->id,
+                    'type_vehicle_id'      => $vi,
+                    'number_vehicle'       => $request->number_vehicle[$key],
+                    'market_value_vehicle' => $request->market_value_vehicle[$key],
+                    'total_rail_vehicle'   => $request->total_rail_vehicle[$key],
+                    'total_vehicle_costs'  => $request->total_vehicle_costs
+                );
+                HouseholdVehicleModel::create($vehicle);
+            }
+
+            //table type_income
+            foreach ($request->type_animals as $key => $anim) {
+                $animals = array(
+                    'g_information_id'      =>  $gn_info->id,
+                    'type_animals_id'       => $anim,
+                    'num_animals_big'       => $request->num_animals_big[$key],
+                    'num_animals_small'     => $request->num_animals_small[$key],
+                    'note_animals'          => $request->note_animals[$key],
+                    'total_animals_costs'   => $request->total_animals_costs
+                );
+                TypeIncomeModel::create($animals);
+            }
+
+            //table land_agricultural_link
+            $land_agricultural = array(
+                'g_information_id'     =>  $gn_info->id,
+                'land_agricultural_id' => $request->land,
+                'land_name'            => $request->land_name,
+                'total_land'           => $request->total_land,
+                'land_farm'            => $request->land_farm,
+                'total_land_farm'      => $request->total_land_farm
             );
-            NoElectricLinkModel::create($e1);
-        }
+            LandAgriculturalLinkModel::create($land_agricultural);
 
-        //household vehicle
-        foreach ($request->type_vehicle as $key => $vi) {
-            $vehicle = array(
-                'g_information_id'     => $gn_info->id,
-                'type_vehicle_id'      => $vi,
-                'number_vehicle'       => $request->number_vehicle[$key],
-                'market_value_vehicle' => $request->market_value_vehicle[$key],
-                'total_rail_vehicle'   => $request->total_rail_vehicle[$key],
-                'total_vehicle_costs'  => $request->total_vehicle_costs
-            );
-            HouseholdVehicleModel::create($vehicle);
-        }
+            //table other_income
+            foreach ($request->income_name as $key => $in) {
+                $other_income = array(
+                    'g_information_id'  => $gn_info->id,
+                    'income_name'       => $in,
+                    'income_age'        => $request->income_age[$key],
+                    'income_occupation' => $request->income_occupation[$key],
+                    'income_unit'       => $request->income_unit[$key],
+                    'unit_in_month'     => $request->unit_in_month[$key],
+                    'average_amount'    => $request->average_amount[$key],
+                    'monthly_income'    => $request->monthly_income[$key],
+                    'total_mon_income'  => $request->total_mon_income,
+                    'total_inc_person'  => $request->total_inc_person,
+                );
+                OtherIncomeModel::create($other_income);
+            }
 
-        //household vehicle
-        foreach ($request->type_animals as $key => $anim) {
-            $animals = array(
-                'g_information_id'      =>  $gn_info->id,
-                'type_animals_id'       => $anim,
-                'num_animals_big'       => $request->num_animals_big[$key],
-                'num_animals_small'     => $request->num_animals_small[$key],
-                'note_animals'          => $request->note_animals[$key],
-                'total_animals_costs'   => $request->total_animals_costs
-            );
-            TypeIncomeModel::create($animals);
-        }
+            //table health_and_disability
+            foreach ($request->health_id as $key1 => $he1) {
+                $health = array(
+                    'g_information_id' => $gn_info->id,
+                    'health_id'        =>$he1,
+                    'kids_then65'      => $request->kids_then65,
+                    'old_bigger65'     => $request->old_bigger65,
+                    'kids_50_then65'   => $request->kids_50_then65,
+                    'old_50_bigger65'  => $request->old_50_bigger65,
+                );
+               HealthDisabilityModle::create($health);
+            }
 
-        //គ.១២.១.២​)ដីកសិកម្ម
-        $land_agricultural = array(
-            'g_information_id'     =>  $gn_info->id,
-            'land_agricultural_id' => $request->land,
-            'land_name'            => $request->land_name,
-            'total_land'           => $request->total_land,
-            'land_farm'            => $request->land_farm,
-            'total_land_farm'      => $request->total_land_farm
-        );
-        LandAgriculturalLinkModel::create($land_agricultural);
-
-        //
-        foreach ($request->income_name as $key => $in) {
-            $other_income = array(
-                'g_information_id'  => $gn_info->id,
-                'income_name'       => $in,
-                'income_age'        => $request->income_age[$key],
-                'income_occupation' => $request->income_occupation[$key],
-                'income_unit'       => $request->income_unit[$key],
-                'unit_in_month'     => $request->unit_in_month[$key],
-                'average_amount'    => $request->average_amount[$key],
-                'monthly_income'    => $request->monthly_income[$key],
-                'total_mon_income'  => $request->total_mon_income,
-                'total_inc_person'  => $request->total_inc_person,
-            );
-            OtherIncomeModel::create($other_income);
-        }
-
-        //គ.១៤) បំណុលគ្រួសារ
+            //table debt_loan_link
             $debt = array(
                 'g_information_id' => $gn_info->id,
                 'loan_id'               => $request->family_debt_id,
                 'question_id'           => $request->q_debt,
                 'total_debt'            => $request->total_debt,
+                'debt_duration'         => $request->debt_duration,
             );
             DebtLoanLinkModel::create($debt);
+
             DB::commit();
             return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
         } catch (\Exception $e) {

@@ -32,5 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeTransportationTableSeeder::class);
         $this->call(QuestionTotelTableSeeder::class);
         $this->call(PermissionTableSeeder::class);
+        $this->call(HealthTableSeeder::class);
     }
 }

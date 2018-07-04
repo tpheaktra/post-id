@@ -19,16 +19,7 @@ class CreateGeneralSituationFamilyTable extends Migration
             $table->integer('household_family_id')->nullable();
             $table->integer('total_people')->nullable();
 
-            $table->integer('ground_floor_length')->nullable();
-            $table->integer('ground_floor_width')->nullable();
-            $table->integer('ground_floor_area')->nullable();
-            $table->integer('upper_floor_length')->nullable();
-            $table->integer('upper_floor_width')->nullable();
-            $table->integer('upper_floor_area')->nullable();
-            $table->integer('further_floor_length')->nullable();
-            $table->integer('further_floor_width')->nullable();
-            $table->integer('further_floor_area')->nullable();
-            $table->integer('total_area')->nullable();
+
 
             $table->tinyInteger('toilet_id')->nullable();
 
@@ -36,10 +27,7 @@ class CreateGeneralSituationFamilyTable extends Migration
             $table->tinyInteger('transport_id')->nullable();
             $table->tinyInteger('land_agricultural_id')->nullable();
 
-            $table->integer('kids_then65')->nullable();
-            $table->integer('old_bigger65')->nullable();
-            $table->integer('kids_50_then65')->nullable();
-            $table->integer('old_50_bigger65')->nullable();
+
             $table->tinyInteger('debt_family_id')->nullable();
             $table->text('command')->nullable();
 

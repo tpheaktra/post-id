@@ -13,13 +13,6 @@ class RelationshipTableSeeder extends Seeder
     {
         $relate = [
             [
-            	'name_en' => 'Children',
-                'name_kh' => 'កូន',
-                'record_status'=> 1,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
             	'name_en' => 'Husband',
                 'name_kh' => 'ប្តី',
                 'record_status'=> 1,
@@ -32,9 +25,10 @@ class RelationshipTableSeeder extends Seeder
                 'record_status'=> 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
-            ],[
-            	'name_en' => 'Grandfather',
-                'name_kh' => 'ជីតា',
+            ],
+            [
+                'name_en' => 'Children',
+                'name_kh' => 'កូន',
                 'record_status'=> 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -56,6 +50,13 @@ class RelationshipTableSeeder extends Seeder
             [
                 'name_en' => 'Grandmonther',
                 'name_kh' => 'បង/ប្អូន ',
+                'record_status'=> 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'name_en' => 'Grandmother / Grandfather',
+                'name_kh' => 'ជីដូន/ជីតា',
                 'record_status'=> 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
