@@ -407,7 +407,7 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            {{ Form::text('age[0]',null,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'3','id'=>'age']) }}
+                                            {{ Form::text('age[0]',null,['class'=>'form-control allowNumber age_0','required'=>'required','maxlength'=>'3','id'=>'age']) }}
                                         </div>
                                     </td>
                                     <td>
@@ -1345,7 +1345,7 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="income_age[0]" type="text" class="form-control allowNumber" />
+                                                <select class="form-control income_age" id="income_age_0" name="income_age[0]" required="required"></select>
                                             </div>
                                         </td>
                                         <td>
@@ -1787,9 +1787,12 @@
                     $('.add_education_level_'+i).removeClass("has-error");
                 }
                 var nick = $('.nick_name_'+i).val();
+                var m_age = $('.age_'+i).val();
                // alert(nick);
                 $('#income_name_0').append('<option value="'+nick+'">'+nick+'</option>');
+                $('#income_age_0').append('<option value="'+m_age+'">'+m_age+'</option>');
             }
+
             if($('.family_relationship').val() == ''){
                 $('.alert').show();
                 $('.add_relationship').addClass("has-error");
@@ -2219,7 +2222,7 @@
                 '</div>' +
                 '</td>' +
                 '<td><div class="form-group"><input autocomplete="off" maxlength="4" id="dob_' + row + '"  type="text" required="required" class="hh-member dob form-control allowNumber" name="dob[' + row + ']"/></div></td>' +
-                '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + row + '" type="text" required="required" class="hh-member age form-control allowNumber" name="age[' + row + ']"/></div></td>' +
+                '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + row + '" type="text" required="required" class="hh-member age age_'+row+' form-control allowNumber" name="age[' + row + ']"/></div></td>' +
                 '<td>' +
                 '<div class="form-group add_relationship_' + row + '">' +
                 '<select id="family_relationship_' + row + '" class="hh-member form-control family_relationship"  name="family_relationship[' + row + ']" required="required">' +
@@ -2602,7 +2605,8 @@
                 '</td>' +
                 '<td>' +
                     '<div class="form-group">' +
-                        '<input autocomplete="off" name="income_age['+row_4+']" type="text"  class="form-control allowNumber"  />' +
+                        '<select class="form-control income_age" id="income_age_'+row_4+'" name="income_age['+row_4+']" required="required"></select>' +
+                        //'<input autocomplete="off" name="income_age['+row_4+']" id="income_age_'+row+'" type="text"  class="form-control allowNumber"  />' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
@@ -2669,24 +2673,29 @@
         });
         //click append nick name
         var row_4s = $('.new_rows_4 tr.myrow_4').length-1;
-        for(var k=0;k<row_4s;k++){ $('#income_name_'+row_4).empty();
+        for(var k=0;k<row_4s;k++){
+            $('#income_name_'+row_4).empty();
+            $('#income_age_'+row_4).empty();
             var x=document.getElementById("income_name_"+k);
+            var a=document.getElementById("income_age_"+k);
             for (var i = 0; i < x.options.length; i++) {
                 if(x.options[i].selected == false){
                     //alert(x.options[i].value);
                     $('#income_name_'+row_4).append('<option value="'+x.options[i].value+'">'+x.options[i].value+'</option>');
+                    $('#income_age_'+row_4).append('<option value="'+a.options[i].value+'">'+a.options[i].value+'</option>');
                }
             }
         }
-        $(".income_name").select2({ allowClear:true, placeholder: "ប្រភេទសត្វ"});
+        $(".income_name").select2({ allowClear:true, placeholder: "ឈ្មោះសមាជិក"});
+        $(".income_age").select2({ allowClear:true, placeholder: "អាយុ"});
     });
     $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
     function reOrder_other_income(){
         for(var n=2;n<(dataRow_other_income-1);n++){
             $('.new_rows_4  tr:eq(' + (n-1) +') td:first-child').html(n);
             $('.new_rows_4  tr:eq(' + (n-1) +') td .income_name').attr('name', 'income_name['+(n-1)+']');
-           // $('.new_rows_4  tr:eq(' + (n-1) +') td .num_animals_big').attr('name', 'num_animals_big['+(n-1)+']');
-           // $('.new_rows_4  tr:eq(' + (n-1) +') td .num_animals_small').attr('name', 'num_animals_small['+(n-1)+']');
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .income_age').attr('name', 'income_age['+(n-1)+']');
+
             //$('.new_rows_4  tr:eq(' + (n-1) +') td .note_animals').attr('name', 'note_animals['+(n-1)+']');
         }
     }
@@ -2710,6 +2719,10 @@
     $("#income_name_0").select2({
         allowClear:true,
         placeholder: 'ឈ្មោះសមាជិក'
+    });
+    $("#income_age_0").select2({
+        allowClear:true,
+        placeholder: 'អាយុ'
     });
     $('.otherincome').keyup(function () {
         var sum = 0;
