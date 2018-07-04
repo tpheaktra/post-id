@@ -143,40 +143,69 @@ class HomeController extends Controller
         return view('view',compact('gender','patient'));
     }
     public function print($id){
-            $patient = DB::select("select 
-            #step1
+
+        $patient = DB::select("select
             gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,
             gi.inter_patient,gi.inter_age,inter.name_kh as inter_sex,gi.inter_phone,rp.name_kh as inter_relationship,
             gi.fa_patient,gi.fa_age,fa.name_kh as fa_sex,gi.fa_phone,fr.name_kh as fa_relationship,
             gi.g_local_village as g_local_village, 
-            p.name_kh as province, d.name_kh as district,c.name_kh as commune, v.name_kh as village,
-            mff.nick_name,mff.dob,mff.age,rmp.name_kh as m_relationship,oc.name_kh as m_occupation,el.name_kh as m_education
-             from general_information gi
-                inner join member_family mf on gi.id = mf.g_information_id
-                inner join general_situation_family gsf on gi.id = gsf.g_information_id 
-                inner join gender gg on gi.g_sex = gg.id
-                inner join dev_pmrs_share.provinces p on gi.g_province_id = p.code
-                inner join dev_pmrs_share.districts d on gi.g_district_id = d.code
-                inner join dev_pmrs_share.communes c on gi.g_commune_id = c.code
-                inner join dev_pmrs_share.villages v on gi.g_village_id = v.code
-              #interview
-              inner join relationship rp on gi.inter_relationship_id = rp.id
-              inner join gender inter on gi.inter_sex = inter.id
-              #family
-              inner join family_relation fr on gi.fa_relationship_id = fr.id
-              inner join gender fa on gi.fa_sex = fa.id
-              
-              #step2 member family
-              inner join member_family mff on gi.id = mff.g_information_id
-              inner join relationship rmp on mff.family_relationship_id = rmp.id
-              inner join occupation oc on mff.occupation_id = oc.id
-              inner join education_level el on mff.education_level_id = el.id
-
-              #step3
-              inner join general_situation_family gesf on gi.id = gesf.g_information_id
-              where gi.id = '$id'
-            group by mff.id ");
-        return view('print',compact('patient'));
+            p.name_kh as province, d.name_kh as district,c.name_kh as commune, v.name_kh as village
+            from general_information gi
+            inner join member_family mf on gi.id = mf.g_information_id
+            inner join general_situation_family gsf on gi.id = gsf.g_information_id 
+            inner join gender gg on gi.g_sex = gg.id
+            inner join dev_pmrs_share.provinces p on gi.g_province_id = p.code
+            inner join dev_pmrs_share.districts d on gi.g_district_id = d.code
+            inner join dev_pmrs_share.communes c on gi.g_commune_id = c.code
+            inner join dev_pmrs_share.villages v on gi.g_village_id = v.code
+            #interview
+            inner join relationship rp on gi.inter_relationship_id = rp.id
+            inner join gender inter on gi.inter_sex = inter.id
+            #family
+            inner join family_relation fr on gi.fa_relationship_id = fr.id
+            inner join gender fa on gi.fa_sex = fa.id
+            where gi.id = '$id'
+            group by gi.id");
+        $khor = DB::select("select gi.id,
+            mff.nick_name,
+            mff.dob,
+            mff.age,
+            mff.dob,
+            rmp.name_kh as m_relationship,
+            oc.name_kh as m_occupation,
+            el.name_kh as m_education
+            from general_information gi
+            inner join member_family mff on gi.id = mff.g_information_id
+            inner join relationship rmp on mff.family_relationship_id = rmp.id
+            inner join occupation oc on mff.occupation_id = oc.id
+            inner join education_level el on mff.education_level_id = el.id
+            where gi.id = '$id'");
+        $kur_step1 = DB::select("select hf.name_kh as house,gsf.total_people,
+            gsf.ground_floor_length, gsf.ground_floor_width,gsf.ground_floor_area,
+            gsf.upper_floor_length,gsf.upper_floor_width,gsf.upper_floor_area,
+            gsf.further_floor_length,gsf.further_floor_width,gsf.further_floor_area,
+            gsf.total_area,
+            t.name_kh as toilet,
+            ty.toilet_1,
+            ty.toilet_2,
+            qe.name_kh as electric,
+            tran.name_kh as transport,
+            land.name_kh as land_status,
+            gsf.kids_then65,
+            gsf.old_bigger65,
+            gsf.old_50_bigger65,
+            gsf.kids_50_then65,
+            command
+            from general_information gi
+            inner join general_situation_family gsf on gi.id = gsf.g_information_id
+            inner join household_family hf on gsf.household_family_id = hf.id
+            inner join question_totel t on gsf.toilet_id = t.id
+            inner join question_electric qe on gsf.q_electric_id = qe.id
+            inner join type_toilet_link ty on t.id = ty.toilet_id
+            inner join type_transportation tran on gsf.transport_id = tran.id
+            inner join land_agricultural land on gsf.land_agricultural_id = land.id
+            where gi.id = 1");
+        return view('print',compact('patient','khor','kur_step1'));
 
     }
     /*

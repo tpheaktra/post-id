@@ -999,7 +999,7 @@
                             <div class="col-sm-6">
                                 <table class="table-home">
                                     <tr>
-                                        <td width="50%"><h5>តើអ្នកប្រើមធ្យោបាយអ្វីមកមន្ទីរពេទ្យ?</h5> </td>
+                                        <td width="50%"><h5>តើអ្នកប្រើមធ្យោបាយអ្វីមកមន្ទីរពេទ្យ?</h5></td>
                                         <td width="50%">
                                             <div class="form-group go_hospital">
                                                 <select class="form-control" id="go_hospital" name="go_hospital">

@@ -252,7 +252,7 @@
                 </div>
             </div>
         </div>
-
+        @endforeach
 
 
         <!-- step 2 -->
@@ -283,6 +283,7 @@
                                 </tr>
                             </thead>
                             <tbody class="new_rows">
+                                @foreach($khor as $key=>$value)
                                 <tr class="myrow">
                                     <td>1(មេ)</td>
                                     <td><div class="form-group"><input name="" value="{{$value->nick_name}}" type="text" class="form-control" disabled></div></td>
@@ -304,8 +305,10 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
+                        
                         <p>
                        <!--  <input type="button" class="btn btn-primary" id="add_rows" style="float:right;" value="បញ្ចូលបន្ថែម"> -->
                         </p>
@@ -329,17 +332,12 @@
                 <div class="col-md-12" id="div3">
                        <div class="col-sm-12">
                        	<h3> គ) ស្ថានភាពទូទៅរបស់គ្រួសារ</h3>
+                        @foreach($kur_step1 as $key=>$value)
                        		<hr>
                             <h4> គ.១ ផ្ទះសម្បែងរបស់ក្រុមគ្រួសារ</h4> 
-                            <p>តើពួកគាត់រស់នៅទីកន្លែងណា? (សូម​ជ្រើរើស នៅចំលើយតែមួយ)</p>
-                            <ol type="1">
-                                    <li>
-                                        <label>
-                                            <input class="household_family_id" type="radio" name="household_family_id"  value="">
-                                        </label>
-                                        <label id="household_family_id"></label>
-                                    </li>
-                            </ol>
+                            <p>តើពួកគាត់រស់នៅទីកន្លែងណា?</p>
+                             <!-- (សូម​ជ្រើរើស នៅចំលើយតែមួយ) -->
+                            <p> <input type="radio" checked="checked"> <label>{{$value->house}}</label></p>
                              <script>
                                  $('.household_family_id').click(function () {
                                      var houshold = $('input[name=household_family_id]:checked').val();
@@ -447,14 +445,14 @@
                                         <td><label class="control-label">សរុប(នាក់) : </label></td>
                                         <td>
                                            <div class="form-group">
-                                               <input name="" value="" type="text" class="form-control" disabled>
+                                               <input name="" value="{{$value->total_people}}" type="text" class="form-control" disabled>
                                             </div>     
                                         </td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
-
+                        @endforeach
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
                             <h4> គ.៣ តើ​ផ្ទៃ​ក្រឡា​ទីលំនៅរបស់ក្រុម​គ្រួសារ ​មាន​ចំនួន​ប៉ុន្មាន​ម៉ែត្រ​ក្រឡា​?​</h4>
@@ -464,18 +462,21 @@
                                         <tr>
                                             <td><b>ផ្ទះជាន់ក្រោម៖</b></td>
                                             <td>
-                                                <div class="form-group">
-                                                    <input name="" value="" type="text" class="form-control" disabled>
+                                                <div class="form-group input-group">
+                                                    <input class="form-control"  placeholder="បណ្តោយ" type="text" value="{{$value->ground_floor_width}}" disabled>
+                                                    <span class="input-group-addon">ម៉ែត្រ</span>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="form-group">
-                                                   <input name="" value="" type="text" class="form-control" disabled>
+                                                <div class="form-group input-group">
+                                                    <input class="form-control"  placeholder="បណ្តោយ" type="text" value="{{$value->ground_floor_length}}" disabled>
+                                                    <span class="input-group-addon">ម៉ែត្រ</span>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="form-group">
-                                                    <input name="" value="" type="text" class="form-control" disabled>
+                                                <div class="form-group input-group">
+                                                    <input class="form-control" type="text" value="" disabled>
+                                                    <span class="input-group-addon">ម៉ែត្រក្រឡ្ា</span>
                                                 </div>
                                             </td>                     
                                         </tr>
@@ -483,36 +484,42 @@
                                         <tr>
                                             <td><b>ផ្ទះជាន់លើ(បើមាន)៖</b></td>
                                             <td>
-                                                <div class="form-group">
-                                                   <input name="" value="" type="text" class="form-control" disabled>
+                                                <div class="form-group input-group">
+                                                    <input class="form-control"  placeholder="បណ្តោយ" type="text" value="{{$value->upper_floor_width}}" disabled>
+                                                    <span class="input-group-addon">ម៉ែត្រ</span>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="form-group">
-                                                    <input name="" value="" type="text" class="form-control" disabled>
+                                                <div class="form-group input-group">
+                                                    <input class="form-control" placeholder="បណ្តោយ" type="text" value="{{$value->upper_floor_length}}" disabled>
+                                                    <span class="input-group-addon">ម៉ែត្រ</span>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="form-group">
-                                                   <input name="" value="" type="text" class="form-control" disabled>
+                                                <div class="form-group input-group">
+                                                    <input class="form-control" type="text" value="" disabled>
+                                                    <span class="input-group-addon">ម៉ែត្រក្រឡ្ា</span>
                                                 </div>
                                             </td>                     
                                         </tr>
                                         <tr>
                                             <td><b>សំណង់បន្ថែម ឧ. ផ្ទះបាយ... (បើមាន)៖ </b></td>
                                             <td>
-                                                <div class="form-group">
-                                                    <input name="" value="" type="text" class="form-control" disabled>
+                                                <div class="form-group input-group">
+                                                    <input class="form-control"  placeholder="បណ្តោយ" type="text" value="{{$value->further_floor_width}}" disabled>
+                                                    <span class="input-group-addon">ម៉ែត្រ</span>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="form-group">
-                                                    <input name="" value="" type="text" class="form-control" disabled>
+                                                <div class="form-group input-group">
+                                                    <input class="form-control"  placeholder="បណ្តោយ" type="text" value="{{$value->further_floor_length}}" disabled>
+                                                    <span class="input-group-addon">ម៉ែត្រ</span>
                                                 </div>
-                                                </td>
+                                            </td>
                                             <td>
-                                                <div class="form-group">
-                                                    <input name="" value="" type="text" class="form-control" disabled>
+                                                <div class="form-group input-group">
+                                                    <input class="form-control" type="text" value="" disabled>
+                                                    <span class="input-group-addon">ម៉ែត្រក្រឡ្ា</span>
                                                 </div>
                                             </td>                     
                                         </tr>
@@ -522,8 +529,9 @@
                                             <td></td>
                                             <td><b style="float:right;">ផ្ទៃកម្រាលសរុប (ម៉ែត្រ​ក្រឡា) :</b></td>
                                             <td>
-                                                <div class="form-group">
-                                                    <input id="total_area" name="total_area" class="form-control allowNumber" required="required" placeholder="ផ្ម៉ែត្រក្រឡា..." type="text" value="0" readonly="readonly">
+                                                 <div class="form-group input-group">
+                                                    <input class="form-control" type="text" value="{{$value->total_area}}" disabled>
+                                                    <span class="input-group-addon">ម៉ែត្រក្រឡ្ា</span>
                                                 </div>
                                             </td>                     
                                         </tr>
@@ -555,9 +563,7 @@
                                         </script>
                                 </tbody>
                             </table>
-
                         </div>
-
                         <div class="col-sm-12"><hr></div>
                         <div class="col-sm-12">
                             <h4> គ.៤ បង្គន់</h4>
@@ -643,7 +649,6 @@
                             });
                             
                         </script>
-
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12" id="home-yourself"> </div>
                         <div class="col-sm-12" id="home-ke"></div>
@@ -1134,14 +1139,13 @@
                 </div>
             </div>
         </div>
-        @endforeach
     </form>
 </div>
 
 <script type="text/javascript">
     $(document).ready(function (){
         window.print();
-        window.close();
+        // window.close();
     });
     // Printing page content
     // jQuery(function($) {
