@@ -89,6 +89,12 @@ class EducationLevelTableSeeder extends Seeder
                 'name_kh' => 'បរិញ្ញាប័ត្រ',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            [
+                'name_en' => 'Did not learn',
+                'name_kh' => 'មិនបានរៀនសោះ',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
 
         ];

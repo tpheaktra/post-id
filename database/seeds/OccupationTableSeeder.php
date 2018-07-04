@@ -47,6 +47,12 @@ class OccupationTableSeeder extends Seeder
                 'name_kh' => 'នៅផ្ទះ',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            [
+                'name_en' => 'Other',
+                'name_kh' => 'ផ្សេង​ៗ',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
 
         ];

@@ -227,6 +227,15 @@ class Helpers{
 
 
     /*
+    * function get getHealth
+    */
+    public static function getHealth(){
+        $tm = DB::select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS health ,name_kh,id from health');
+        return $tm;
+    }
+
+
+    /*
    * function getDistrict
    */
 //    public static function getOD($code,$od_name){

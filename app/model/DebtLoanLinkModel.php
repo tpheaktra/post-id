@@ -11,6 +11,7 @@ class DebtLoanLinkModel extends Model
         'g_information_id',
         'loan_id',
         'question_id',
-        'total_debt'
+        'total_debt',
+        'debt_duration'
     ];
 }

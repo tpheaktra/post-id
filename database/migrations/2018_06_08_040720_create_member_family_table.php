@@ -17,6 +17,7 @@ class CreateMemberFamilyTable extends Migration
             $table->increments('id');
             $table->integer('g_information_id')->nullable();
             $table->string('nick_name')->nullable();
+            $table->tinyInteger('gender_id')->nullable();
             $table->string('dob')->nullable();
             $table->string('age')->nullable();
             $table->string('family_relationship_id')->nullable();

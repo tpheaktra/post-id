@@ -10,6 +10,7 @@ class MemberFamilyModel extends Model
     protected $fillable = [
         'g_information_id',
         'nick_name',
+        'gender_id',
         'dob',
         'age',
         'family_relationship_id',
