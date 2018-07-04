@@ -60,6 +60,7 @@ class HomeController extends Controller
         }
 
         $hospital      = Helpers::getHospital();
+       // echo json_encode($hospital);exit();
         $provinces     = Helpers::getProvince();
         $relationship  = RelationshipModel::all();
         $gender        = Helpers::getGender();
@@ -220,8 +221,49 @@ class HomeController extends Controller
     public function insert(request $request){
         DB::connection();
         DB::beginTransaction();
+        $this->validate($request, [
+            'hospital'       => 'required',
+            'interview_code' => 'required',
+            'g_patient'      => 'required',
+            'g_age'          => 'required',
+            'g_sex'          => 'required',
+            'g_phone'        => 'required',
+            'g_province'         => 'required',
+            'g_local_village'    => 'required',
+            'inter_patient'      => 'required',
+            'inter_age'          => 'required',
+            'inter_sex'          => 'required',
+            'inter_phone'        => 'required',
+            'inter_relationship' => 'required',
+            'fa_patient'           => 'required',
+            'fa_age'               => 'required',
+            'fa_sex'               => 'required',
+            'fa_phone'             => 'required',
+            'fa_relationship'      => 'required',
+            //step2
+            'nick_name'              => 'required',
+            'nick_name.*'            => 'required',
+            'age'                    => 'required',
+            'age.*'                  => 'required',
+            'family_relationship'    => 'required',
+            'family_relationship.*'  => 'required',
+            'occupation'             => 'required',
+            'occupation.*'           => 'required',
+            'education_level'        => 'required',
+            'education_level.*'      => 'required',
+
+        ],
+        [
+            'nick_name.*.required'           => 'The member name is required.',
+            'age.*.required'                 => 'The age is required.',
+            'family_relationship.*.required' => 'The relationship is required.',
+            'occupation.*.required'          => 'The occupation is required.',
+            'education_level.*.required'     => 'The education is required.'
+        ]);
 
         try {
+
+
         $od_code = $request->hospital;
         $query = Helpers::getInterviewCode($od_code);
         $check = DB::select("SELECT count(*) as id FROM general_information gi where gi.od_code=".$od_code);

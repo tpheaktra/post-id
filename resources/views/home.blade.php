@@ -49,8 +49,11 @@
                                                 <select id="hospital" style="width: 100%" class="form-control" name="hospital">
                                                     <option></option>
                                                     @foreach($hospital as $key =>$h)
-                                                        <option value="{{$h->od_code}}">
-                                                            មន្ទីរពេទ្យ - {{$h->name_kh}}</option>
+                                                        @if (old('hospital') == $h->od_code)
+                                                            <option selected value="{{$h->od_code}}">មន្ទីរពេទ្យ - {{$h->name_kh}}</option>
+                                                        @else
+                                                            <option value="{{$h->od_code}}">មន្ទីរពេទ្យ - {{$h->name_kh}}</option>
+                                                        @endif
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -64,7 +67,7 @@
                                         <td width="35%"><label class="control-label">លេខកូដសម្ភាសន៍:</label></td>
                                         <td width="65%">
                                             <div class="form-group">
-                                                <input id="interview_code" name="interview_code" type="text" required="required" class="form-control" readonly="readonly"/>
+                                                {{ Form::text('interview_code',null,['class'=>'form-control','required'=>'required','readonly'=>'readonly','id'=>'interview_code']) }}
                                             </div>
                                         </td>
                                     </tr>
@@ -79,7 +82,7 @@
                                 <td width="35%"><label class="control-label">ឈ្មោះអ្នកជំងឺ :</label></td>
                                 <td width="65%">
                                    <div class="form-group">
-                                        <input  maxlength="100" name="g_patient" type="text" required="required" class="form-control" />
+                                       {{ Form::text('g_patient',null,['class'=>'form-control','required'=>'required']) }}
                                     </div>     
                                 </td>
                             </tr>
@@ -88,7 +91,9 @@
                                 <td width="65%">
                                    <div class="form-group"  id="g_sex">
                                        @foreach($gender as $key => $g)
-                                        <label>{{$g->name_kh}} <input name="g_sex" value="{{$g->id}}" style="margin-right:10px;" type="radio"></label>
+                                        <label>
+                                            {{ Form::radio('g_sex',$g->id,false,['style'=>'margin-right:10px;']) }}  {{$g->name_kh}}
+                                        </label>
                                        @endforeach
                                     </div>     
                                 </td>
@@ -102,16 +107,16 @@
                                 <td width="35%"><label class="control-label"> អាយុ : </label></td>
                                 <td width="65%">
                                    <div class="form-group">
-                                        <input maxlength="3"  name="g_age" type="text" required="required" class="form-control allowNumber"/>
-                                    </div>     
+                                       {{ Form::text('g_age',null,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'3']) }}
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="35%"><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td width="65%">
                                    <div class="form-group">
-                                        <input  maxlength="10" name="g_phone" type="text" required="required" class="form-control allowNumber" />
-                                    </div>     
+                                       {{ Form::text('g_phone',null,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'10']) }}
+                                    </div>
                                 </td>
                             </tr>
                         </table>
@@ -126,7 +131,11 @@
                                        <select id="province" style="width: 100%" class="form-control" name="g_province">
                                            <option value="">...</option>
                                            @foreach($provinces as $key =>$p)
-                                               <option value="{{$p->code}}">{{$p->name_kh}}</option>
+                                               @if (old('g_province') == $p->code)
+                                                   <option selected value="{{$p->code}}">{{$p->name_kh}}</option>
+                                               @else
+                                                   <option value="{{$p->code}}">{{$p->name_kh}}</option>
+                                               @endif
                                            @endforeach
                                        </select>
                                     </div>     
@@ -136,7 +145,11 @@
                                 <td width="35%"><label class="control-label">   ស្រុក : </label></td>
                                 <td width="65%">
                                    <div class="form-group g_district">
-                                       <select id="district" style="width: 100%" class="form-control" name="g_district"></select>
+                                       <select id="district" style="width: 100%" class="form-control" name="g_district">
+                                           @if (!empty(old('g_district')))
+                                               <option selected value="{{old('g_district')}}"></option>
+                                           @endif
+                                       </select>
                                     </div>
                                 </td>
                             </tr>
@@ -150,7 +163,11 @@
                                 <td width="35%"><label class="control-label">ឃំុ :</label></td>
                                 <td width="65%">
                                     <div class="form-group g_commune">
-                                        <select id="commune" style="width: 100%" class="form-control" name="g_commune"></select>
+                                        <select id="commune" style="width: 100%" class="form-control" name="g_commune">
+                                            @if (!empty(old('g_commune')))
+                                                <option selected value="{{old('g_commune')}}"></option>
+                                            @endif
+                                        </select>
                                     </div>
                                 </td>
                             </tr>
@@ -158,7 +175,11 @@
                                 <td width="35%"><label class="control-label">ភូមិ :</label></td>
                                 <td width="65%">
                                     <div class="form-group g_village">
-                                        <select id="village" style="width: 100%" class="form-control" name="g_village"></select>
+                                        <select id="village" style="width: 100%" class="form-control" name="g_village">
+                                            @if (!empty(old('g_village')))
+                                                <option selected value="{{old('g_village')}}"></option>
+                                            @endif
+                                        </select>
                                     </div>
                                 </td>
                             </tr>
@@ -170,8 +191,8 @@
                             <tr>
                                 <td width="35%"><label class="control-label"> ទីតាំងនៅក្នុងភូមិ : </label></td>
                                 <td width="65%">
-                                   <div class="form-group">
-                                       <textarea class="form-control" id="location" name="g_local_village"></textarea>
+                                   <div class="form-group location">
+                                       {{ Form::textarea('g_local_village',null,['class'=>'form-control','id'=>'location','maxlength'=>'300','style'=>'height: 60px;']) }}
                                     </div>
                                 </td>
                             </tr>
@@ -189,7 +210,7 @@
                                 <td><label class="control-label">ឈ្មោះ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input type="text" required="required" class="form-control" name="inter_patient"/>
+                                       {{ Form::text('inter_patient',null,['class'=>'form-control','required'=>'required']) }}
                                     </div>     
                                 </td>
                             </tr>
@@ -198,7 +219,7 @@
                                 <td>
                                    <div class="form-group" id="inter_sex">
                                        @foreach($gender as $key => $g)
-                                           <label>{{$g->name_kh}} <input name="inter_sex" value="{{$g->id}}" style="margin-right:10px;" type="radio"></label>
+                                          <label>{{ Form::radio('inter_sex',$g->id,false,['style'=>'margin-right:10px;']) }}  {{$g->name_kh}}</label>
                                        @endforeach
                                     </div>     
                                 </td>
@@ -212,16 +233,16 @@
                                 <td><label class="control-label"> អាយុ : </label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input maxlength="3" type="text" required="required" class="form-control allowNumber"  name="inter_age"/>
-                                    </div>     
+                                       {{ Form::text('inter_age',null,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'3']) }}
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input maxlength="10"  type="text" required="required" class="form-control allowNumber" name="inter_phone"/>
-                                    </div>     
+                                       {{ Form::text('inter_phone',null,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'10']) }}
+                                    </div>
                                 </td>
                             </tr>
                         </table>
@@ -236,7 +257,11 @@
                                         <select style="width: 100%;" class="form-control" id="inter_relationship" name="inter_relationship">
                                             <option></option>
                                             @foreach($relationship as $keh => $value)
-                                                <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                @if (old('inter_relationship') == $value->id)
+                                                    <option selected value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                @else
+                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
@@ -255,7 +280,7 @@
                                 <td><label class="control-label">ឈ្មោះ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input  type="text" required="required" class="form-control" name="fa_patient"/>
+                                       {{ Form::text('fa_patient',null,['class'=>'form-control','required'=>'required']) }}
                                     </div>     
                                 </td>
                             </tr>
@@ -264,7 +289,7 @@
                                 <td>
                                    <div class="form-group" id="fa_sex">
                                        @foreach($gender as $key => $g)
-                                           <label>{{$g->name_kh}} <input name="fa_sex" value="{{$g->id}}" style="margin-right:10px;" type="radio"></label>
+                                           <label>{{ Form::radio('fa_sex',$g->id,false,['style'=>'margin-right:10px;']) }}  {{$g->name_kh}}</label>
                                        @endforeach
                                     </div>     
                                 </td>
@@ -278,7 +303,7 @@
                                 <td><label class="control-label"> អាយុ : </label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input maxlength="3" type="text" required="required" class="form-control allowNumber" name="fa_age"/>
+                                       {{ Form::text('fa_age',null,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'3']) }}
                                     </div>     
                                 </td>
                             </tr>
@@ -286,8 +311,8 @@
                                 <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                        <input maxlength="10" type="text" required="required" class="form-control allowNumber" name="fa_phone"/>
-                                    </div>     
+                                       {{ Form::text('fa_phone',null,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'10']) }}
+                                    </div>
                                 </td>
                             </tr>
                         </table>
@@ -302,7 +327,11 @@
                                         <select style="width: 100%;" class="form-control" id="fa_relationship" name="fa_relationship">
                                             <option></option>
                                             @foreach($family as $keh => $value)
-                                                <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                @if (old('fa_relationship') == $value->id)
+                                                    <option selected value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                @else
+                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
@@ -320,8 +349,11 @@
         </div>
 
 
-
-        <!-- step 2 -->
+       <?php /* ===========================================
+            ===========================================
+            --------------- step2 ---------------------
+            ===========================================
+            =========================================== */ ?>
 
         <div class="row setup-content" id="step-2">
             <div class="col-xs-12">
@@ -336,7 +368,8 @@
                             <thead>
                                 <tr>
                                     <th rowspan="2">ល.រ</th>
-                                    <th rowspan="2">នាមត្រកូល នាមខ្លួន ឈ្មោះហៅក្រៅ</th>
+                                    <th rowspan="2">ឈ្មោះ</th>
+                                    <th width="10%" rowspan="2">ភេទ</th>
                                     <th colspan="2"><p align="center">ឆ្នាំកំណើត ឬ អាយុ</p></th>
                                     <th width="15%" rowspan="2">ទំនាក់ទំនង​ជាមួយ​មេ​គ្រួសារ(1) <a href="#" data-toggle="tooltip" title="(1)= មេ​គ្រួសារ ប្តី/​ប្រពន្ធ កូន ឪពុក​ម្តាយ ក្មួយ ផ្សេងៗ">?</a>
                                     </th>
@@ -353,6 +386,16 @@
                                 <tr class="myrow">
                                     <td>1(មេ)</td>
                                     <td><div class="form-group"><input type="text" required="required" class="form-control nick_name_0" name="nick_name[0]"/></div></td>
+                                    <td>
+                                        <div class="form-group add_m_sex">
+                                            <select class="form-control m_sex" name="m_sex[0]" required="required">
+                                                <option></option>
+                                                @foreach($gender as $keh => $value)
+                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </td>
                                     <td><div class="form-group"><input maxlength="4"  type="text" required="required" class="form-control allowNumber" id="dob" name="dob[0]"/></div></td>
                                     <td><div class="form-group"><input maxlength="3" type="text" required="required" class="form-control allowNumber" id="age" name="age[0]"/></div></td>
                                     <td>
@@ -405,7 +448,11 @@
         </div>
 
 
-        <!-- step 3 -->
+        <?php /* ===========================================
+            ===========================================
+            --------------- step3 ---------------------
+            ===========================================
+            =========================================== */ ?>
 
         <div class="row setup-content" id="step-3">
             <div class="col-xs-12">
@@ -1569,6 +1616,14 @@
             }else{
                 $('.g_village').removeClass("has-error");
             }
+
+            if($('#location').val() == ''){
+                $('.location').addClass("has-error");
+                $('.alert').show();
+                isValid = false;
+            }else{
+                $('.location').removeClass("has-error");
+            }
             if($('#inter_relationship').val() == ''){
                 $('.inter_relationship').addClass("has-error");
                 $('.alert').show();
@@ -1599,6 +1654,7 @@
                 $('.alert').show();
                 isValid = false;
             }else{$('#fa_sex').removeClass("error");}
+
             if (isValid)
                 nextStepWizard.removeAttr('disabled').trigger('click');
         });
@@ -1631,6 +1687,15 @@
                 } else {
                     $('.add_relationship_'+i).removeClass("has-error");
                 }
+
+                if($('#m_sex_'+i).val() == ''){
+                    $('.alert').show();
+                    $('.add_m_sex_'+i).addClass("has-error");
+                    isValid = false;
+                }else{
+                    $('.add_m_sex_'+i).removeClass("has-error");
+                }
+
                 if ($('#occupation_'+i).val() == '') {
                     $('.alert').show();
                     $('.add_occupation_'+i).addClass("has-error");
@@ -1655,6 +1720,13 @@
                 isValid = false;
             }else{
                 $('.add_relationship').removeClass("has-error");
+            }
+            if($('.m_sex').val() == ''){
+                $('.alert').show();
+                $('.add_m_sex').addClass("has-error");
+                isValid = false;
+            }else{
+                $('.add_m_sex').removeClass("has-error");
             }
             if($('.occupation').val() == ''){
                 $('.alert').show();
@@ -2059,6 +2131,14 @@
             var htmlstep2 = '<tr class="myrow">' +
                 '<td>'+dataRow+'</td>' +
                 '<td><div class="form-group"><input autocomplete="off" type="text" required="required" class="hh-member form-control nick_name_'+row+' nickname" name="nick_name[' + row + ']"/></div></td>' +
+                '<td>' +
+                '<div class="form-group add_m_sex_' + row + '">' +
+                '<select id="m_sex_' + row + '" class="form-control m_sex"  name="m_sex[' + row + ']" required="required">' +
+                '<option></option>' +
+                '@foreach($gender as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                '</select>' +
+                '</div>' +
+                '</td>' +
                 '<td><div class="form-group"><input autocomplete="off" maxlength="4" id="dob_' + row + '"  type="text" required="required" class="hh-member dob form-control allowNumber" name="dob[' + row + ']"/></div></td>' +
                 '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + row + '" type="text" required="required" class="hh-member age form-control allowNumber" name="age[' + row + ']"/></div></td>' +
                 '<td>' +
@@ -2090,6 +2170,7 @@
             $(".new_rows").append(htmlstep2);
         dataRow++;
         $(".family_relationship").select2({allowClear:true, placeholder: "ទំនាក់ទំនង"});
+        $(".m_sex").select2({allowClear:true, placeholder: 'ភេទ'});
         $(".occupation").select2({allowClear:true, placeholder: "មុខរបរ"});
         $(".education_level").select2({ allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
         AllowNumber();
@@ -2146,6 +2227,7 @@
             $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('name', 'dob['+(n-1)+']');
             $('.new_rows  tr:eq(' + (n-1) +') td .age').attr('name', 'age['+(n-1)+']');
             $('.new_rows  tr:eq(' + (n-1) +') td .family_relationship').attr('name', 'family_relationship['+(n-1)+']');
+            $('.new_rows  tr:eq(' + (n-1) +') td .m_sex').attr('name', 'm_sex['+(n-1)+']');
             $('.new_rows  tr:eq(' + (n-1) +') td .occupation ').attr('name', 'occupation['+(n-1)+']');
             $('.new_rows  tr:eq(' + (n-1) +') td .education_level').attr('name', 'education_level['+(n-1)+']');
         }
@@ -2162,6 +2244,11 @@
     $(".family_relationship").select2({
         allowClear:true,
         placeholder: 'ទំនាក់ទំនង'
+    });
+    //occupation
+    $(".m_sex").select2({
+        allowClear:true,
+        placeholder: 'ភេទ'
     });
     //occupation
     $(".occupation").select2({
