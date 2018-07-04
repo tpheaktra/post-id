@@ -131,7 +131,11 @@
                 border-bottom: 1px solid #DDDDDD;
             }
             .navbar{ margin-bottom: 0px !important;}
-
+            #datatable_wrapper .row{
+            width:100% !important;
+            float: left;}
+            #datatable_wrapper #datatable_filter{  float: right;  }
+            #datatable_wrapper #datatable_length{  float: left;}
         </style>
         <div class="container">
             <div class="wrap-home">
@@ -186,12 +190,16 @@
             </div>
         </div>
     </div>
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 <script>
+    $('#datatable').DataTable();
     setTimeout(function() {
         $(".add_hide1").addClass("autho-hide1");
         $('.autho-hide1').fadeOut();
     },9000);
-
 
 </script>
 </body>

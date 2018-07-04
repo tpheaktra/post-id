@@ -640,10 +640,10 @@
                                         AllowNumber();
                                          //family
                                          $('.ground_floor').keyup(function(){
-                                             if ($(this).val() > 90000000){
-                                                 alert("No numbers above 90000000");
-                                                 $(this).val('90000000');
-                                             }
+//                                             if ($(this).val() > 90000000){
+//                                                 alert("No numbers above 90000000");
+//                                                 $(this).val('90000000');
+//                                             }
                                              var g_length = 0;
                                              var g_width = 0;
                                              g_length = parseInt($('#ground_floor_length').val() ? $('#ground_floor_length').val() : 0);
@@ -651,28 +651,34 @@
                                              $('#ground_floor_area').val((g_length * g_width ? g_length * g_width : 0).toFixed(0));
                                          });
                                          $('#upper_floor_length, #upper_floor_width').on('input',function() {
-                                             if ($(this).val() > 90000000){
-                                                 alert("No numbers above 90000000");
-                                                 $(this).val('90000000');
-                                             }
+//                                             if ($(this).val() > 90000000){
+//                                                 alert("No numbers above 90000000");
+//                                                 $(this).val('90000000');
+//                                             }
                                              var u_length = parseInt($('#upper_floor_length').val());
                                              var u_width = parseFloat($('#upper_floor_width').val());
                                              $('#upper_floor_area').val((u_length * u_width ? u_length * u_width : 0).toFixed(0));
                                          });
                                          $('#further_floor_length, #further_floor_width').on('input',function() {
-                                             if ($(this).val() > 90000000){
-                                                 alert("No numbers above 90000000");
-                                                 $(this).val('90000000');
-                                             }
+//                                             if ($(this).val() > 90000000){
+//                                                 alert("No numbers above 90000000");
+//                                                 $(this).val('90000000');
+//                                             }
                                              var f_length = parseInt($('#further_floor_length').val());
                                              var f_width = parseFloat($('#further_floor_width').val());
                                              $('#further_floor_area').val((f_length * f_width ? f_length * f_width : 0).toFixed(0));
                                          });
                                          $('#ground_floor_length, #ground_floor_width, #upper_floor_length, #upper_floor_width,#further_floor_length, #further_floor_width').on('change',function() {
-                                             var total_g = parseInt($('#ground_floor_area').val());
-                                             var total_u = parseInt($('#upper_floor_area').val());
-                                             var total_f = parseInt($('#further_floor_area').val());
-                                             $('#total_area').val((total_g + total_u + total_f ? total_g + total_u + total_f : 0).toFixed(0));
+                                             var total_g = 0;
+                                             var total_u = 0;
+                                             var total_f = 0;
+                                             var sum = 0;
+
+                                              total_g = Number($('#ground_floor_area').val());
+                                              total_u = Number($('#upper_floor_area').val());
+                                              total_f = Number($('#further_floor_area').val());
+                                              sum = Number(total_g + total_u + total_f);
+                                             $('#total_area').val(sum);
                                          });
                                          //family
                                          $('.calculate').keyup(function(){
@@ -1326,9 +1332,9 @@
                                     <tr>
                                         <th>ល.រ</th>
                                         <th width="12%">ឈ្មោះសមាជិក</th>
-                                        <th width="12%">អាយុ​</th>
+                                        <th width="9%">អាយុ​</th>
                                         <th width="15%">មុខរបររកចំណូល</th>
-                                        <th>ឯកត្តា</th>
+                                        <th width="9%">ឯកត្តា</th>
                                         <th>ចំនួនឯកត្តាក្នុងមួយខែ</th>
                                         <th>ទឹកប្រាក់មធ្យមក្នុងមួយឯកត្តា</th>
                                         <th>ចំណូលមធ្យមប្រចាំខែ</th>
@@ -1589,7 +1595,7 @@
 
     <div class="col-sm-12" style="padding: 0;"><h3>ទិន្នន័យ​អ្នកជំងឺ</h3></div>
     <div class="data-list">
-        <table class="table">
+        <table id="datatable" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <th>ល.រ</th>
                 <th>ឈ្មោះអ្នកជំងឺ</th>
@@ -1618,8 +1624,11 @@
         </table>
     </div>
 </div>
+
+
 <script type="text/javascript">
     $(document).ready(function () {
+
         $(".form-control").attr("autocomplete", "off");
         //next next and validate
         var navListItems = $('div.setup-panel div a'),
@@ -2805,9 +2814,5 @@
             $('.autho-hide').fadeOut();
         },9000);
     });
-    setTimeout(function() {
-        $(".add_hide1").addClass("autho-hide1");
-        $('.autho-hide1').fadeOut();
-    },9000);
 </script>
 @endsection
