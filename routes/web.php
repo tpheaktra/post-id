@@ -33,9 +33,9 @@ Route::GET('getVillage',['as'=>'getVillage','uses'=>'HomeController@getVillage']
 Route::POST('insertpatient',['as'=>'insert.index','uses'=>'HomeController@insert']);
 Route::GET('data-view/{id}',['as'=>'view.data','uses'=>'HomeController@view']);
 Route::GET('data-printing/{id}',['as'=>'print.data','uses'=>'HomeController@print']);
-Route::GET('editpatient/{parameter}',['as'=>'editpatient.edit','uses'=>'HomeController@edit']);
-Route::POST('updatepatient/{parameter}',['as'=>'updatepatient.update','uses'=>'HomeController@update']);
-
+Route::GET('editpatient/{id}',['as'=>'editpatient.edit','uses'=>'HomeController@edit']);
+Route::POST('updatepatient/{id}',['as'=>'updatepatient.update','uses'=>'HomeController@update']);
+Route::get('deletepatient/{id}',['as'=>'deletepatient.delete','uses'=>'HomeController@delete']);
 
 Route::group(['prefix' => 'home','middleware' => ['auth']], function() {
     /* role and set permission*/

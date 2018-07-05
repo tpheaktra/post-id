@@ -723,4 +723,26 @@ class HomeController extends Controller
         }
     }
 
+
+    /*
+     * by pheaktra
+     * function updated
+     */
+    public function delete($id){
+        //check db insert all table
+        DB::connection();
+        DB::beginTransaction();
+        $id = Crypt::decrypt($id);
+        try {
+            $ginfo = GeneralInformationModel::findOrFail($id);
+            $ginfo->record_status = 0;
+            $ginfo->save();
+            DB::commit();
+            return Redirect::back()->with('success','លុបទិន្នន័យជោគជ័យ');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->with('danger','លុបទិន្នន័យមិនបានជោគជ័យ');
+        }
+    }
+
 }

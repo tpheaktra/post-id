@@ -2724,38 +2724,17 @@
                 document.getElementById('total_inc_person').value = tot/totalperson;
             }
         });
+
         function AllowNumber() {
-            $(".allowNumber").keydown(function (e) {
-                // Allow: backspace, delete, tab, escape, enter and .
-                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
-                    // Allow: Ctrl+A, Command+A
-                    (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-                    // Allow: home, end, left, right, down, up
-                    (e.keyCode >= 35 && e.keyCode <= 40)) {
-                    // let it happen, don't do anything
-                    return;
-                }
-                // Ensure that it is a number and stop the keypress
-                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                    e.preventDefault();
-                }
-            });
+            $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
+            keys = ['0','1','2','3','4','5','6','7','8','9']
+            return keys.indexOf(event.key) > -1
         }
         //when load
         $(".allowNumber").keydown(function (e) {
-            // Allow: backspace, delete, tab, escape, enter and .
-            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
-                // Allow: Ctrl+A, Command+A
-                (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-                // Allow: home, end, left, right, down, up
-                (e.keyCode >= 35 && e.keyCode <= 40)) {
-                // let it happen, don't do anything
-                return;
-            }
-            // Ensure that it is a number and stop the keypress
-            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                e.preventDefault();
-            }
+            $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
+            keys = ['0','1','2','3','4','5','6','7','8','9']
+            return keys.indexOf(event.key) > -1
         });
         //validation alert
         $('.nextBtn').click(function(){

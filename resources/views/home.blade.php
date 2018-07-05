@@ -1613,8 +1613,20 @@
                 <td>{{$value->g_phone}}  </td>
                 <td>{{$value->interview_code}}  </td>
 
-                <!-- data-toggle="collapse" data-target="#accordion" class="clickable" -->
-                <td><a href="{{route('view.data',$value->id)}}"><i class="fa fa-eye"></i></a> | <a href="{{route('editpatient.edit',Crypt::encrypt($value->id))}}"><i class="fa fa-edit"></i></a> | <a href="{{route('print.data',$value->id)}}" target="blank"><i class="fa fa-print"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
+                <td>
+                    <a href="{{route('view.data',$value->id)}}">
+                        <i class="fa fa-eye"></i>
+                    </a> /
+                    <a href="{{route('editpatient.edit',Crypt::encrypt($value->id))}}">
+                        <i class="fa fa-edit"></i>
+                    </a> /
+                    <a href="{{route('print.data',$value->id)}}" target="blank">
+                        <i class="fa fa-print"></i>
+                    </a> /
+                    <a href="{{route('deletepatient.delete',Crypt::encrypt($value->id))}}" id="delete">
+                        <i class="fa fa-trash-o"></i>
+                    </a>
+                </td>
             </tr>
             @endforeach
 
@@ -1626,6 +1638,12 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $("#delete").click(function(){
+            if (!confirm("តើអ្នកចង់លុបអ្នកជំងឺដែរឫទេ?")){
+                return false;
+            }
+        });
 
         $(".form-control").attr("autocomplete", "off");
         //next next and validate
@@ -2767,37 +2785,15 @@
         }
     });
     function AllowNumber() {
-        $(".allowNumber").keydown(function (e) {
-            // Allow: backspace, delete, tab, escape, enter and .
-            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
-                // Allow: Ctrl+A, Command+A
-                (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-                // Allow: home, end, left, right, down, up
-                (e.keyCode >= 35 && e.keyCode <= 40)) {
-                // let it happen, don't do anything
-                return;
-            }
-            // Ensure that it is a number and stop the keypress
-            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                e.preventDefault();
-            }
-        });
+        $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
+        keys = ['0','1','2','3','4','5','6','7','8','9']
+        return keys.indexOf(event.key) > -1
     }
     //when load
     $(".allowNumber").keydown(function (e) {
-        // Allow: backspace, delete, tab, escape, enter and .
-        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
-            // Allow: Ctrl+A, Command+A
-            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-            // Allow: home, end, left, right, down, up
-            (e.keyCode >= 35 && e.keyCode <= 40)) {
-            // let it happen, don't do anything
-            return;
-        }
-        // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-            e.preventDefault();
-        }
+        $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
+        keys = ['0','1','2','3','4','5','6','7','8','9']
+        return keys.indexOf(event.key) > -1
     });
     //validation alert
     $('.nextBtn').click(function(){
