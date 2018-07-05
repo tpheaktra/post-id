@@ -550,7 +550,7 @@ class HomeController extends Controller
             return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
         } catch (\Exception $e) {
             DB::rollBack();
-            return Redirect::back()->with('danger','data don save.');//$this->errorResponse($e->getMessage(), self::HTTP_STATUS_SERVER_ERROR);
+            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
         }
 
     }
@@ -717,7 +717,7 @@ class HomeController extends Controller
             return Redirect::back()->with('success','ការសម្ភាសទិន្នន័យត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ');
         } catch (\Exception $e) {
             DB::rollBack();
-            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');//
+            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
         }
     }
 
