@@ -539,6 +539,7 @@ class HomeController extends Controller
                HealthDisabilityModle::create($health);
             }
 
+
             //table debt_loan_link
             $debt = array(
                 'g_information_id' => $gn_info->id,
@@ -553,7 +554,7 @@ class HomeController extends Controller
             return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
         } catch (\Exception $e) {
             DB::rollBack();
-            return $this->errorResponse($e->getMessage(), self::HTTP_STATUS_SERVER_ERROR);
+            return Redirect::back()->with('danger','data don save.');//$this->errorResponse($e->getMessage(), self::HTTP_STATUS_SERVER_ERROR);
         }
 
     }

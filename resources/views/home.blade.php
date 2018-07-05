@@ -1346,12 +1346,12 @@
                                         <td>1</td>
                                         <td>
                                             <div class="form-group">
-                                                <select class="form-control income_name" id="income_name_0" name="income_name[0]" required="required"></select>
+                                                <select class="form-control income_name" id="income_name_0" name="income_name[0]" required="required" readonly="readonly"></select>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <select class="form-control income_age" id="income_age_0" name="income_age[0]" required="required"></select>
+                                                <select class="form-control income_age" id="income_age_0" name="income_age[0]" required="required" readonly="readonly"></select>
                                             </div>
                                         </td>
                                         <td>
@@ -2698,7 +2698,11 @@
         }
         $(".income_name").select2({ allowClear:true, placeholder: "ឈ្មោះសមាជិក"});
         $(".income_age").select2({ allowClear:true, placeholder: "អាយុ"});
+       // $(".income_name").attr("disabled",true);
+       // $(".income_age").attr("disabled",true);
     });
+    //$(".income_name").attr("disabled",true);
+   // $(".income_age").attr("disabled",true);
     $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
     function reOrder_other_income(){
         for(var n=2;n<(dataRow_other_income-1);n++){
