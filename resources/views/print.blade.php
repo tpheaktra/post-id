@@ -337,7 +337,7 @@
                             <h4> គ.១ ផ្ទះសម្បែងរបស់ក្រុមគ្រួសារ</h4> 
                             <p>តើពួកគាត់រស់នៅទីកន្លែងណា?</p>
                              <!-- (សូម​ជ្រើរើស នៅចំលើយតែមួយ) -->
-                            <p> <input type="radio" checked="checked"> <label>{{$value->house}}</label></p>
+                            <p> <input type="radio" checked="checked"> <label></label></p>
                              <script>
                                  $('.household_family_id').click(function () {
                                      var houshold = $('input[name=household_family_id]:checked').val();
@@ -456,7 +456,7 @@
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
                             <h4> គ.៣ តើ​ផ្ទៃ​ក្រឡា​ទីលំនៅរបស់ក្រុម​គ្រួសារ ​មាន​ចំនួន​ប៉ុន្មាន​ម៉ែត្រ​ក្រឡា​?​</h4>
-
+                                @foreach($kur_step1 as $key => $value)
                                 <table class="tb_grid" style="width:100%;">
                                     <tbody>
                                         <tr>
@@ -530,12 +530,12 @@
                                             <td><b style="float:right;">ផ្ទៃកម្រាលសរុប (ម៉ែត្រ​ក្រឡា) :</b></td>
                                             <td>
                                                  <div class="form-group input-group">
-                                                    <input class="form-control" type="text" value="{{$value->total_area}}" disabled>
+                                                    <input class="form-control" type="text" value="" disabled>
                                                     <span class="input-group-addon">ម៉ែត្រក្រឡ្ា</span>
                                                 </div>
                                             </td>                     
                                         </tr>
-
+                                        @endforeach
                                         <script>
                                             $('#ground_floor_length, #ground_floor_width').on('input',function() {
                                                 var g_length = parseInt($('#ground_floor_length').val());
@@ -1145,7 +1145,7 @@
 <script type="text/javascript">
     $(document).ready(function (){
         window.print();
-        // window.close();
+        window.close();
     });
     // Printing page content
     // jQuery(function($) {

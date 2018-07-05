@@ -183,31 +183,26 @@ class HomeController extends Controller
             inner join occupation oc on mff.occupation_id = oc.id
             inner join education_level el on mff.education_level_id = el.id
             where gi.id = '$id'");
-        $kur_step1 = DB::select("select hf.name_kh as house,gsf.total_people,
-            gsf.ground_floor_length, gsf.ground_floor_width,gsf.ground_floor_area,
-            gsf.upper_floor_length,gsf.upper_floor_width,gsf.upper_floor_area,
-            gsf.further_floor_length,gsf.further_floor_width,gsf.further_floor_area,
-            gsf.total_area,
-            t.name_kh as toilet,
-            ty.toilet_1,
-            ty.toilet_2,
+        $kur_step1 = DB::select("select gi.id,
+            gf.total_people,
+            qt.name_kh as toilet,
             qe.name_kh as electric,
-            tran.name_kh as transport,
-            land.name_kh as land_status,
-            gsf.kids_then65,
-            gsf.old_bigger65,
-            gsf.old_50_bigger65,
-            gsf.kids_50_then65,
-            command
-            from general_information gi
-            inner join general_situation_family gsf on gi.id = gsf.g_information_id
-            inner join household_family hf on gsf.household_family_id = hf.id
-            inner join question_totel t on gsf.toilet_id = t.id
-            inner join question_electric qe on gsf.q_electric_id = qe.id
-            inner join type_toilet_link ty on t.id = ty.toilet_id
-            inner join type_transportation tran on gsf.transport_id = tran.id
-            inner join land_agricultural land on gsf.land_agricultural_id = land.id
-            where gi.id = 1");
+            tt.name_kh as transport,
+            af.ground_floor_length,
+            af.ground_floor_width,
+            af.ground_floor_area,
+            af.upper_floor_length,
+            af.upper_floor_width,
+            af.upper_floor_area,
+            af.further_floor_length,
+            af.further_floor_width,
+            af.further_floor_area
+            from general_situation_family gf inner join general_information gi on gi.id = gf.g_information_id
+            inner join area_family_house af on gf.g_information_id = af.id
+            inner join question_totel qt on gf.toilet_id = qt.id
+            inner join question_electric qe on gf.q_electric_id = qe.id
+            inner join type_transportation tt on gf.transport_id = tt.id
+            where gi.id = '$id' ");
         return view('print',compact('patient','khor','kur_step1'));
 
     }
