@@ -6,7 +6,7 @@
 <!------ Include the above in your HEAD tag ---------->
 <div class="container content">
     <div class="col-sm-12">
-        <h2 align="center">ការធ្វើអត្តសញ្ញាណកម្មគ្រួសារក្រីក្រនៅមន្ទីពេទ្យ</h2>
+        <h3 class="hospital_title" align="center">ការធ្វើអត្តសញ្ញាណកម្មគ្រួសារក្រីក្រនៅមន្ទីពេទ្យ</h3>
     </div>
 
     <div class="stepwizard">
@@ -1428,7 +1428,7 @@
                                     @foreach($health as $key =>$vv)
                                        <li>
                                            <label>
-                                               <input class="health_id_{{$key}}" style="margin-right: 10px" type="checkbox" value="{{$vv->id}}" name="health_id[{{$key}}]" multiple/>
+                                               <input class="health_id_{{$key}}" style="margin-right: 10px" type="checkbox" value="{{$vv->id}}" name="health_id[{{$key}}]"/>
                                                {{$vv->name_kh}}
                                            </label>
                                            @if($vv->id == 1)<label id="health_1"></label>@endif
@@ -1440,7 +1440,7 @@
 
                                 $('.health_id_0').click(function () {
                                     var health_check = $('input[type=checkbox]:checked').val();//$("input[name=health_id]:checked").val();
-                                    //alert(health_check);
+                                   // alert(health_check);
                                     $('#health_1').empty();
                                         if(health_check == 1){
                                             var health1 = '<div class="col-sm-12">' +
@@ -1473,7 +1473,7 @@
                                 });
 
                                 $('.health_id_1').click(function () {
-                                    var health_check = $('input[type=checkbox]:checked').val();
+                                    var health_check = $('input[type=checkbox]:checked.health_id_1').val();
                                    // alert(health_check);
                                     $('#health_2').empty();
                                     if (health_check == 2) {
@@ -1762,6 +1762,7 @@
             var row_num = $('.new_rows tr').length;
             document.getElementById('total_people').value =row_num;
             $('#income_name_0').empty();
+            $('#income_age_0').empty();
            // alert(row_num);
             for(var i=0; i<row_num; i++) {
                 if ($('#family_relationship_'+i).val() == '') {
