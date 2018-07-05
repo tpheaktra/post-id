@@ -1615,8 +1615,9 @@
                 <td>{{$value->name_kh}} </td>
                 <td>{{$value->g_phone}}  </td>
                 <td>{{$value->interview_code}}  </td>
+
                 <!-- data-toggle="collapse" data-target="#accordion" class="clickable" -->
-                <td><a href="{{route('view.data',$value->id)}}"><i class="fa fa-eye"></i></a> | <a href="{{route('editpatient.edit',$value->id)}}"><i class="fa fa-edit"></i></a> | <a href="{{route('print.data',$value->id)}}" target="blank"><i class="fa fa-print"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
+                <td><a href="{{route('view.data',$value->id)}}"><i class="fa fa-eye"></i></a> | <a href="{{route('editpatient.edit',Crypt::encrypt($value->id))}}"><i class="fa fa-edit"></i></a> | <a href="{{route('print.data',$value->id)}}" target="blank"><i class="fa fa-print"></i></a> | <a href=""><i class="fa fa-trash-o"></i></a> </td>
             </tr>
             @endforeach
 

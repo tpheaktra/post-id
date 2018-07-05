@@ -203,6 +203,9 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 <script>
     $('#datatable').DataTable();
+    $("a").tooltip({
+        placement:"top"
+    });
     setTimeout(function() {
         $(".add_hide1").addClass("autho-hide1");
         $('.autho-hide1').fadeOut();

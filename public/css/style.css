@@ -229,3 +229,4 @@ legend.scheduler-border {
     padding: 10px;
 }
 .hospital_title{ margin-bottom: 25px;}
+.tooltip > .tooltip-inner {background-color: #428bca;}
