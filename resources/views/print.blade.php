@@ -337,7 +337,7 @@
                             <h4> គ.១ ផ្ទះសម្បែងរបស់ក្រុមគ្រួសារ</h4> 
                             <p>តើពួកគាត់រស់នៅទីកន្លែងណា?</p>
                              <!-- (សូម​ជ្រើរើស នៅចំលើយតែមួយ) -->
-                            <p> <input type="radio" checked="checked"> <label>{{$value->house}}</label></p>
+                            <p> <input type="radio" checked="checked"> <label></label></p>
                              <script>
                                  $('.household_family_id').click(function () {
                                      var houshold = $('input[name=household_family_id]:checked').val();
@@ -530,7 +530,7 @@
                                             <td><b style="float:right;">ផ្ទៃកម្រាលសរុប (ម៉ែត្រ​ក្រឡា) :</b></td>
                                             <td>
                                                  <div class="form-group input-group">
-                                                    <input class="form-control" type="text" value="{{$value->total_area}}" disabled>
+                                                    <input class="form-control" type="text" value="" disabled>
                                                     <span class="input-group-addon">ម៉ែត្រក្រឡ្ា</span>
                                                 </div>
                                             </td>                     
