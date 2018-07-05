@@ -2,7 +2,7 @@
    header
  */
 body{
-    font-family: 'Battambang', cursive;
+    font-family: 'Battambang', Helvetica,Arial,sans-serif !important;
 }
 .auto-hide1,
 .auto-hide{
