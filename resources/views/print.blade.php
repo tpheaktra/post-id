@@ -1145,7 +1145,7 @@
 <script type="text/javascript">
     $(document).ready(function (){
         window.print();
-        // window.close();
+        window.close();
     });
     // Printing page content
     // jQuery(function($) {
