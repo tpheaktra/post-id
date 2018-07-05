@@ -16,6 +16,7 @@ class CreateGeneralInformationTable extends Migration
         Schema::create('general_information', function (Blueprint $table) {
             //genderal information
             $table->increments('id');
+            $table->integer('user_id')->nullable();
             $table->integer('od_code')->nullable();
             $table->string('interview_code')->nullable();
             $table->string('g_patient')->nullable();
@@ -39,7 +40,7 @@ class CreateGeneralInformationTable extends Migration
             $table->string('fa_sex')->nullable();
             $table->string('fa_phone')->nullable();
             $table->integer('fa_relationship_id')->nullable();
-
+            $table->integer('record_status')->default(1);
             $table->timestamps();
         });
     }

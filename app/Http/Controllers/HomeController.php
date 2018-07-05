@@ -111,7 +111,7 @@ class HomeController extends Controller
         left join condition_house ch on hrl.roof_status_id = ch.id 
         left join condition_house ch1 on hrl.walls_status_id = ch1.id
 
-
+        where gi.record_status = 1
         group by gi.interview_code order by gi.id desc");
 
 
@@ -309,6 +309,7 @@ class HomeController extends Controller
             //step 1
             // table general_information
             $data = array(
+                'user_id'            => auth::user()->id,
                 'od_code'            => $od_code,
                 'interview_code'     =>$interview_code,
                 'g_patient'          =>$request->g_patient,
@@ -671,6 +672,7 @@ class HomeController extends Controller
             //step 1
             // table general_information
             $data = array(
+                'user_id'            => auth::user()->id,
                 //'od_code'            =>$od_code,
                 //'interview_code'     =>$interview_code,
                 'g_patient'          =>$request->g_patient,
