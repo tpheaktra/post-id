@@ -517,11 +517,11 @@
                                                      '</tr>' +
                                                      '<tr>'+
                                                         '<td width="50%">' +
-                                                           '<label class="control-label"> 3B score </label>' +
+                                                           '<label class="control-label"> គ្រួសារដែលនៅផ្ទះជួលគេ 3B</label>' +
                                                         '</td>' +
                                                         '<td width="50%">' +
                                                             '<div class="form-group input-group">' +
-                                                               '<input autocomplete="off" id="r_score"  type="text" required="required" onkeyup class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">ពិន្ទុ</span>' +
+                                                               '<input autocomplete="off" id="r_score"  type="text" required="required" onkeyup class="cal form-control allowNumber" name="rent_fee"​​ readonly/><span class="input-group-addon">ពិន្ទុ</span>' +
                                                             '</div>' +
                                                         '</td>' +
                                                     '</tr>' +
@@ -829,11 +829,23 @@
                                              '<div class="add_condition_house"><ul class="li-none">'+
                                                  '@foreach($condition_house as $key => $c)' +
                                                      '<li>' +
-                                                        '<label><input style="margin-right:10px;" class="condition_house" type="radio" name="condition_house" ​ value="{{$c->id}}"> {{$c->name_kh}}</label>' +
+                                                        '<label><input style="margin-right:10px;" class="condition_house" type="radio" name="condition_house" ​ value="{{$c->id}}" > {{$c->name_kh}}</label>' +
                                                      '</li>' +
                                                  '@endforeach'+
-                                             '</ul></div>';
+                                             '</ul></div>'+
+                                             '<div class="form-group input-group" style="width: 300px;">'+
+                                               '<input id="house_score" type="text" name="house_score" class="house_score form-control allowNumber"​ readonly>'+
+                                               '<span class="input-group-addon">ពិន្ទុ</span>'+
+                                            '</div>';
                                          $('#general-status').append(generalStatus);
+                                         $('.condition_house').click(function(){
+                                             var house = $('input[name=condition_house]:checked').val();
+                                             if(house ==1){
+                                                $('#house_score').val(4);
+                                             }else if(house == 2){
+                                                 $('#house_score').val(2.5);
+                                             }else{ $('#house_score').val(0);}
+                                         });                                        
                                      }
                                  });
                              </script>
@@ -875,8 +887,12 @@
                                     @endforeach
                                 </ul>
                             </div>
-
                             <div id="tolet"></div>
+                            <label>បង្គន់អនាម័យ </label>
+                            <div class="form-group input-group add_total_people" style="width: 300px;">
+                               <input readonly="readonly" id="toilet_score" type="text" name="toilet_score" class="form-control allowNumber"​>
+                               <span class="input-group-addon">ពិន្ទុ</span>
+                            </div>
                             <script>
                                 
                                 $('.tolet').click(function () {
@@ -894,13 +910,25 @@
                                         '<h5>- ជាបង្គន់​របស់នរណា?</h5>' +
                                             '<div class="add_toilet_2"><ul class="li-none">' +
                                                 '<li>' +
-                                                    '<label><input type="radio" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>' +
+                                                    '<label><input type="radio" class="toilet_my" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>' +
                                                 '</li>' +
                                                 '<li>' +
-                                                    '<label><input type="radio" name="tolet_2" value="ជាបង្គន់រួមជាមួយគ្រួសារដទៃ"> ជាបង្គន់រួមជាមួយគ្រួសារដទៃ</label>' +
+                                                    '<label><input type="radio" class="toilet_status" name="tolet_2" value="ជាបង្គន់រួមជាមួយគ្រួសារដទៃ"> ជាបង្គន់រួមជាមួយគ្រួសារដទៃ</label>' +
                                                 '</li>' +
                                             '</ul></div>';
+                            
                                     if(tolet == 1){$('#tolet').append(tott);}
+                                    if(tolet == 2){
+                                        $('#toilet_score').val(4);
+                                    }else{
+                                        $('#toilet_score').val('');
+                                    }
+                                    $('.toilet_status').click(function(){
+                                        $('#toilet_score').val(2.5);
+                                    });
+                                    $('.toilet_my').click(function(){
+                                        $('#toilet_score').val(0);
+                                    });
                                 });
                              </script>
 
