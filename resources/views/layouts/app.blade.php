@@ -32,48 +32,40 @@
     <div id="app">
 
         <nav class="header navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ml-auto pull-right">
+                            @guest
 
+                                @else
+                                    <li><a class="nav-link">{{ Auth::user()->name }}  </a> </li>
+                                    <li class="nav-item dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            ចាកចេញ
+                                        </a>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    {{--<ul class="navbar-nav mr-auto">--}}
-                        {{--<li>ឈ្នោះអ្នកប្រើប្រាស់-{{auth::user()->name}}</li>--}}
-                    {{--</ul>--}}
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto pull-right">
-                        <!-- Authentication Links -->
-                        @guest
-
-                        @else
-                            <li><a class="nav-link">{{ Auth::user()->name }}  </a> </li>
-                            <li><a class="nav-link"> | </a></li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    ចាកចេញ
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </li>
+                               @endguest
+                        </ul>
+                    </div>
                 </div>
-            </div>
+
+
 
             <div class="msg">
                 <div class="add_hide alert alert1 alert-danger alert-dismissable">
@@ -98,6 +90,7 @@
                     </div>
                 </div>
             @endif
+
             @if(session()->has('danger'))
                 <div class="msg">
                     <div class="add_hide1  alert-danger alert-dismissable">
@@ -105,66 +98,50 @@
                     </div>
                 </div>
             @endif
-        </nav>
-        <style type="text/css">
-            body{
-                font-family: 'Battambang', cursive;
-            }
-            .auto-hide1,
-            .auto-hide{
-                display: none !important;
-            }
 
-            .home-menu{
-                float: left;
-                margin-top: 70px;
-                margin-bottom: 0px;
-                padding: 0px 0px;
-            }
-            .home-menu li{
-                padding: 15px;
-                float: left;
-                list-style-type: none;
-            }
-            .home-menu li.active{
-                background: #428bca;
-            }
-            .home-menu li.active a{ color: #ffffff;}
-            .home-logo{
-                float: left;
-                width: 140px;
-            }
-            .home-group{
-                border-bottom: 1px solid #DDDDDD;
-            }
-            .navbar{ margin-bottom: 0px !important;}
-            #datatable_wrapper .row{
-            width:100% !important;
-            float: left;}
-            #datatable_wrapper #datatable_filter{  float: right;  }
-            #datatable_wrapper #datatable_length{  float: left;}
-        </style>
+        </nav>
+
+        <!-- end menu top -->
+
         <div class="container">
             <div class="wrap-home">
-            <div class="col-sm-12 home-group">
-                <div class="home-logo">
-                    <a href="{{ url('/') }}">
-                        <img src="{{ asset('images/health_center.png') }}">
-                    </a>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="logo-home">
+                            <table style="margin:auto;">
+                                <tbody>
+                                    <tr>
+                                        <td style="padding-right:30px;">
+                                            <div><img src="{{asset('images/moh_logo.jpg')}}"></div>
+                                            <h4 style="margin:0 auto 0px;font-size:14px;">ក្រសួង&#8203;សុខាភិបាល</h4>
+                                        </td>
+                                        <td>
+                                            <h3 style="font-family:'Khmer OS Muol', 'Khmer Moul', 'Kh Muol';font-weight:normal; text-shadow: 0 0 5px #bbb; -webkit-text-shadow: 0 0 5px #bbb; -moz-text-shadow: 0 0 5px #bbb; color:#153899; margin:45px 0 10px 0;">ការធ្វើអត្តសញ្ញាណកម្មគ្រួសារក្រីក្រនៅមន្ទីពេទ្យ</h3>
+                                            <div><img src="{{asset('images/head-swirl.jpg')}}" style="height:20px;"></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <ul class="home-menu">
 
-                    <li class="@if(Route::currentRouteName() == 'home.index' || Route::currentRouteName() == 'homehome') active @endif"><a href="{{route('home.index')}}">ការធ្វើអត្តសញ្ញាណកម្ម</a></li>
-                    <li class="@if(Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'user.create') active @endif"><a href="{{route('user.index')}}">គ្រប់គ្រងអ្នកប្រើប្រាស់</a></li>
-                    <li class="@if(Route::currentRouteName() == 'role.index' || Route::currentRouteName() == 'role.create') active @endif"><a href="{{route('role.index')}}">គ្រប់គ្រងតួនាទី</a></li>
-                </ul>
-            </div>
+
+                <div class="row ">
+                    <div class="col-sm-12">
+                        <ul class="home-menu">
+                            <li class="@if(Route::currentRouteName() == 'home.index' || Route::currentRouteName() == 'homehome' || Route::currentRouteName() == 'editpatient.edit') active @endif"><a href="{{route('home.index')}}">ការធ្វើអត្តសញ្ញាណកម្ម</a></li>
+                            <li class="@if(Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'user.create') active @endif"><a href="{{route('user.index')}}">គ្រប់គ្រងអ្នកប្រើប្រាស់</a></li>
+                            <li class="@if(Route::currentRouteName() == 'role.index' || Route::currentRouteName() == 'role.create') active @endif"><a href="{{route('role.index')}}">គ្រប់គ្រងតួនាទី</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
 
 
-    <!-- loding image -->
+       <!-- loding image -->
         <div>
             <div class="modal modal-primary" id="loading">
                 <div class="modal-dialog" style="top:30%">
@@ -180,6 +157,7 @@
             <!-- /.modal -->
         </div>
 
+        <!-- content -->
         <main class="py-4">
             @yield('content')
         </main>
@@ -197,17 +175,21 @@
             </div>
         </div>
     </div>
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet">
 
+
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-<script>
-    $('#datatable').DataTable();
-    setTimeout(function() {
-        $(".add_hide1").addClass("autho-hide1");
-        $('.autho-hide1').fadeOut();
-    },9000);
 
-</script>
+    <script type="text/javascript">
+        $('#datatable').DataTable();
+        $("a").tooltip({
+            placement:"top"
+        });
+        setTimeout(function() {
+            $(".add_hide1").addClass("autho-hide1");
+            $('.autho-hide1').fadeOut();
+        },9000);
+    </script>
 </body>
 </html>

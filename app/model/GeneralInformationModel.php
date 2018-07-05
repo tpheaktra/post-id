@@ -8,6 +8,7 @@ class GeneralInformationModel extends Model
 {
     protected $table='general_information';
     protected $fillable = [
+        'user_id',
         'od_code',
         'interview_code',
         'g_patient',
@@ -30,7 +31,8 @@ class GeneralInformationModel extends Model
         'fa_age',
         'fa_sex',
         'fa_phone',
-        'fa_relationship_id'
+        'fa_relationship_id',
+        'record_status'
     ];
     /*
    * district

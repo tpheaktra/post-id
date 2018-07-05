@@ -28,6 +28,7 @@ use App\model\RoofMadeModel;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 use auth;
+use Illuminate\Support\Facades\Crypt;
 class HomeController extends Controller
 {
     /**
@@ -110,7 +111,7 @@ class HomeController extends Controller
         left join condition_house ch on hrl.roof_status_id = ch.id 
         left join condition_house ch1 on hrl.walls_status_id = ch1.id
 
-
+        where gi.record_status = 1
         group by gi.interview_code order by gi.id desc");
 
 
@@ -308,6 +309,7 @@ class HomeController extends Controller
             //step 1
             // table general_information
             $data = array(
+                'user_id'            => auth::user()->id,
                 'od_code'            => $od_code,
                 'interview_code'     =>$interview_code,
                 'g_patient'          =>$request->g_patient,
@@ -549,53 +551,51 @@ class HomeController extends Controller
             return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
         } catch (\Exception $e) {
             DB::rollBack();
-            return Redirect::back()->with('danger','data don save.');//$this->errorResponse($e->getMessage(), self::HTTP_STATUS_SERVER_ERROR);
+            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
         }
 
     }
 
-
+    /*
+     * by pheaktra
+     * function edit
+     */
     public function edit($id){
-        $hospital      = Helpers::getHospital();
-        $provinces     = Helpers::getProvince();
-        $relationship  = RelationshipModel::all();
-        $gender        = Helpers::getGender();
-        $household     = Helpers::getHouseHoldFamily();
-        $homePrepar    = Helpers::getHomePrepar();
-
-        $condition_house = Helpers::getConditionHouse();
-        $question = Helpers::getQuestion();
-        $electricgrid   = Helpers::getElectricGird();
-
+        $id = Crypt::decrypt($id);
+        $hospital         = Helpers::getHospital();
+        $provinces        = Helpers::getProvince();
+        $relationship     = RelationshipModel::all();
+        $gender           = Helpers::getGender();
+        $household        = Helpers::getHouseHoldFamily();
+        $homePrepar       = Helpers::getHomePrepar();
+        $condition_house  = Helpers::getConditionHouse();
+        $question         = Helpers::getQuestion();
+        $electricgrid     = Helpers::getElectricGird();
         $landAgricultural = Helpers::getLangAgricultural();
-
         $loan             = Helpers::getLoan();
         $family           = Helpers::getFamilyRelation();
         $occupation       = Helpers::getOccupation();
         $education_level  = Helpers::getEducationLevel();
-
-        $roof_made = Helpers::getRoofmade();
-        $wall_made = Helpers::getWallmade();
-        $house_status = ConditionhouseModel::all();
-
-        $typemeterial = Helpers::getTypeMeterial();
-        $typeanimals = Helpers::getTypeAnimals();
-        $typetransport = Helpers::getTypeTransportation();
-
+        $roof_made        = Helpers::getRoofmade();
+        $wall_made        = Helpers::getWallmade();
+        $house_status     = ConditionhouseModel::all();
+        $typemeterial      = Helpers::getTypeMeterial();
+        $typeanimals       = Helpers::getTypeAnimals();
+        $typetransport     = Helpers::getTypeTransportation();
         $question_electric = Helpers::getQuestionElectric();
-        $question_totel = Helpers::getQuestionTolet();
+        $question_totel    = Helpers::getQuestionTolet();
+        $health            = Helpers::getHealth();
 
-        $ginfo = GeneralInformationModel::with('district','commune','village')->findOrFail($id);
-        $memberFamily = MemberFamilyModel::with('generalInfo')->where('g_information_id',$id)->get();
-        $gFamily = GeneralSituationFamilyModel::where('g_information_id',$id)->first();
+        $ginfo             = GeneralInformationModel::with('district','commune','village')->findOrFail($id);
+        $memberFamily      = MemberFamilyModel::with('generalInfo')->where('g_information_id',$id)->get();
+        $gFamily           = GeneralSituationFamilyModel::where('g_information_id',$id)->first();
+        $material          = HouseoldConsumerModel::with('typemeterial')->where('g_information_id',$id)->get();
+        $vehicle           = HouseholdVehicleModel::where('g_information_id',$id)->get();
+        $income            = TypeIncomeModel::where('g_information_id',$id)->get();
+        $otherIncome       = OtherIncomeModel::where('g_information_id',$id)->get();
 
-        //material
-        $material    = HouseoldConsumerModel::with('typemeterial')->where('g_information_id',$id)->get();
-        $vehicle     = HouseholdVehicleModel::where('g_information_id',$id)->get();
-        $income      = TypeIncomeModel::where('g_information_id',$id)->get();
-        $otherIncome = OtherIncomeModel::where('g_information_id',$id)->get();
 
-        //echo json_encode($income);exit();
+       // echo json_encode($ginfo);exit();
 
         return view('edit',compact('hospital','relationship',
             'provinces','gender','household',
@@ -603,7 +603,124 @@ class HomeController extends Controller
             'landAgricultural','loan','family','occupation','education_level',
             'landAgricultural','loan','family','roof_made','wall_made','house_status',
             'question_electric','typemeterial','typeanimals',
-            'typetransport','question_totel','ginfo','memberFamily','gFamily','material','vehicle','income','otherIncome'));
+            'typetransport','question_totel','health','ginfo','memberFamily',
+            'gFamily','material','vehicle','income','otherIncome'));
+    }
+
+    /*
+     * by pheaktra
+     * function updated
+     */
+    public function update($id,request $request){
+        //check db insert all table
+        DB::connection();
+        DB::beginTransaction();
+        $id = Crypt::decrypt($id);
+        //check validation
+        $this->validate($request, [
+            'hospital'       => 'required',
+            'interview_code' => 'required',
+            'g_patient'      => 'required',
+            'g_age'          => 'required',
+            'g_sex'          => 'required',
+            'g_phone'        => 'required',
+            'g_province'         => 'required',
+            'g_local_village'    => 'required',
+            'inter_patient'      => 'required',
+            'inter_age'          => 'required',
+            'inter_sex'          => 'required',
+            'inter_phone'        => 'required',
+            'inter_relationship' => 'required',
+            'fa_patient'           => 'required',
+            'fa_age'               => 'required',
+            'fa_sex'               => 'required',
+            'fa_phone'             => 'required',
+            'fa_relationship'      => 'required',
+            //step2
+            'nick_name'              => 'required',
+            'nick_name.*'            => 'required',
+            'dob'                    => 'required',
+            'dob.*'                  => 'required',
+            'age'                    => 'required',
+            'age.*'                  => 'required',
+            'family_relationship'    => 'required',
+            'family_relationship.*'  => 'required',
+            'occupation'             => 'required',
+            'occupation.*'           => 'required',
+            'education_level'        => 'required',
+            'education_level.*'      => 'required',
+
+        ],//customer message
+            [
+                'nick_name.*.required'           => 'The member name is required.',
+                'dob.*.required'                 => 'The date of birth is required.',
+                'age.*.required'                 => 'The age is required.',
+                'family_relationship.*.required' => 'The relationship is required.',
+                'occupation.*.required'          => 'The occupation is required.',
+                'education_level.*.required'     => 'The education is required.'
+            ]);
+
+        try {
+
+            //check od
+            $od_code = $request->hospital;
+            $query = Helpers::getInterviewCode($od_code);
+            $check = DB::select("SELECT count(*) as id FROM general_information gi where gi.od_code=".$od_code);
+            $check_code= $check[0]->id + 1;
+            $interview_code= $query[0]->shortcut.'/'.date('ymd').'/0'.$check_code;
+
+            //step 1
+            // table general_information
+            $data = array(
+                'user_id'            => auth::user()->id,
+                //'od_code'            =>$od_code,
+                //'interview_code'     =>$interview_code,
+                'g_patient'          =>$request->g_patient,
+                'g_age'              =>$request->g_age,
+                'g_sex'              =>$request->g_sex,
+                'g_phone'            =>$request->g_phone,
+                'g_province_id'      =>$request->g_province,
+                'g_district_id'      =>$request->g_district,
+                'g_commune_id'       =>$request->g_commune,
+                'g_village_id'       =>$request->g_village,
+                'g_local_village'    =>$request->g_local_village,
+                //interview
+                'inter_patient'      =>$request->inter_patient,
+                'inter_age'          =>$request->inter_age,
+                'inter_sex'          =>$request->inter_sex,
+                'inter_phone'        =>$request->inter_phone,
+                'inter_relationship_id' =>$request->inter_relationship,
+                //family
+                'fa_patient'          =>$request->fa_patient,
+                'fa_age'              =>$request->fa_age,
+                'fa_sex'              =>$request->fa_sex,
+                'fa_phone'            =>$request->fa_phone,
+                'fa_relationship_id'  =>$request->fa_relationship,
+            );
+            $gn_info = GeneralInformationModel::where('id',$id)->update($data);
+            //step2
+            //table member_family
+            $member_family=[];
+            foreach ($request->nick_name as $key => $val){
+                $member_family[] = [
+                    'g_information_id'        => $id,
+                    'nick_name'               => $val,
+                    'gender_id'               => $request->m_sex[$key],
+                    'dob'                     => $request->dob[$key],
+                    'age'                     => $request->age[$key],
+                    'family_relationship_id'  => $request->family_relationship[$key],
+                    'occupation_id'           => $request->occupation[$key],
+                    'education_level_id'      => $request->education_level[$key],
+                ];
+            }
+            MemberFamilyModel::where('g_information_id',$id)->delete();
+            MemberFamilyModel::insert($member_family);
+            DB::commit();
+            return Redirect::back()->with('success','ការសម្ភាសទិន្នន័យត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
+        }
     }
 
 }
