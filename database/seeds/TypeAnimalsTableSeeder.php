@@ -18,15 +18,10 @@ class TypeAnimalsTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+
             [
-                'name_en' => 'Pigs',
-                'name_kh' => 'ជ្រូក',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'name_en' => 'Goats - sheep',
-                'name_kh' => 'ពពែ-ចៀម',
+                'name_en' => 'Pigs - Goats - sheep',
+                'name_kh' => 'ជ្រូក-ពពែ-ចៀម',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],

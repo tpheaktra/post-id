@@ -98,6 +98,13 @@
                     </div>
                 </div>
             @endif
+            @if(session()->has('danger'))
+                <div class="msg">
+                    <div class="add_hide1  alert-danger alert-dismissable">
+                        {{ session()->get('danger') }}
+                    </div>
+                </div>
+            @endif
         </nav>
         <style type="text/css">
             body{
