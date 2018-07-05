@@ -456,7 +456,7 @@
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
                             <h4> គ.៣ តើ​ផ្ទៃ​ក្រឡា​ទីលំនៅរបស់ក្រុម​គ្រួសារ ​មាន​ចំនួន​ប៉ុន្មាន​ម៉ែត្រ​ក្រឡា​?​</h4>
-
+                                @foreach($kur_step1 as $key => $value)
                                 <table class="tb_grid" style="width:100%;">
                                     <tbody>
                                         <tr>
@@ -535,7 +535,7 @@
                                                 </div>
                                             </td>                     
                                         </tr>
-
+                                        @endforeach
                                         <script>
                                             $('#ground_floor_length, #ground_floor_width').on('input',function() {
                                                 var g_length = parseInt($('#ground_floor_length').val());
