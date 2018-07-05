@@ -555,19 +555,19 @@
                                                             '<td><b>ផ្ទះជាន់ក្រោម៖</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                    '<input autocomplete="off" id="ground_floor_length" class="form-control allowNumber ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">' +
+                                                                    '<input autocomplete="off" id="ground_floor_length" class="calculate form-control allowNumber ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">' +
                                                                     '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                    '<input autocomplete="off" id="ground_floor_width" class="form-control allowNumber ground_floor"  placeholder="ទទឹង" type="text" name="ground_floor_width">' +
+                                                                    '<input autocomplete="off" id="ground_floor_width" class="calculate form-control allowNumber ground_floor"  placeholder="ទទឹង" type="text" name="ground_floor_width">' +
                                                                     '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="ground_floor_area" class="form-control allowNumber"  placeholder="ផ្ទៃ" type="text" name="ground_floor_area" readonly="readonly">' +
+                                                                     '<input autocomplete="off" id="ground_floor_area" class="calculate form-control allowNumber"  placeholder="ផ្ទៃ" type="text" name="ground_floor_area" readonly="readonly">' +
                                                                     '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -576,19 +576,19 @@
                                                             '<td><b>ផ្ទះជាន់លើ(បើមាន)៖</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="upper_floor_length" class="form-control allowNumber" placeholder="បណ្តោយ" type="text" name="upper_floor_length">' +
+                                                                     '<input autocomplete="off" id="upper_floor_length" class="calculate form-control allowNumber" placeholder="បណ្តោយ" type="text" name="upper_floor_length">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="upper_floor_width" class="form-control allowNumber"  placeholder="ទទឹង" type="text" name="upper_floor_width">' +
+                                                                     '<input autocomplete="off" id="upper_floor_width" class="calculate form-control allowNumber"  placeholder="ទទឹង" type="text" name="upper_floor_width">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="upper_floor_area" class="form-control allowNumber"  placeholder="ផ្ទៃ" type="text" name="upper_floor_area" readonly="readonly">' +
+                                                                     '<input autocomplete="off" id="upper_floor_area" class="calculate form-control allowNumber"  placeholder="ផ្ទៃ" type="text" name="upper_floor_area" readonly="readonly">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -597,19 +597,19 @@
                                                             '<td><b>សំណង់បន្ថែម ឧ. ផ្ទះបាយ... (បើមាន)៖ </b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="further_floor_length" class="form-control allowNumber" placeholder="បណ្តោយ" type="text"  name="further_floor_length">' +
+                                                                     '<input autocomplete="off" id="further_floor_length" class="calculate form-control allowNumber" placeholder="បណ្តោយ" type="text"  name="further_floor_length">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                 '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="further_floor_width" class="form-control allowNumber"  placeholder="ទទឹង" type="text" name="further_floor_width">' +
+                                                                     '<input autocomplete="off" id="further_floor_width" class="calculate form-control allowNumber"  placeholder="ទទឹង" type="text" name="further_floor_width">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="further_floor_area" class="form-control allowNumber" required="required" placeholder="ផ្ទៃ" type="text" name="further_floor_area" readonly="readonly">' +
+                                                                     '<input autocomplete="off" id="further_floor_area" class="calculate form-control allowNumber" required="required" placeholder="ផ្ទៃ" type="text" name="further_floor_area" readonly="readonly">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -627,7 +627,7 @@
                                                             '<td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" type="text" id="a_score1" name="total_people" onkeyup class="form-control calculate allowNumber"​ required="required" readonly="readonly">' +
+                                                                     '<input autocomplete="off" type="text" id="a_score1" name="total_people" onkeyup class="calculate form-control  allowNumber"​ required="required" readonly="readonly">' +
                                                                      '<span class="input-group-addon">ពិន្ទុ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -681,13 +681,10 @@
                                              $('#total_area').val(sum);
                                          });
                                          //family
-                                         $('.calculate').keyup(function(){
+                                         $('.calculate').change(function(){ 
                                              var member = parseInt($('#total_people').val());
                                              var land = parseInt($('#total_area').val());
                                              var score = $('#a_score1').val();
-                                             // ((member >=1 && member <= 3) && (land>=1 && land <=20)) || ((member >=4 && member <=6) && (land>=1 && land <=30)) || ((member >=7 && member <= 10) && (land>=1 && land <=40)) || ((member>10)&&(land>=1 && land<=50)) for score 8
-                                             // ((member >= 1 && member <=3) && (land>20 && land<=30)) || ((member>=4 && member<=6)&&(land>30 && land<=40)) || ((member>=7 && member<=10)&&(land>40 && land<=55)) || ((member>10)&&(land>50 && land<=65)) for score 6
-                                             // ((member >= 1 && member <=3) && (land>30 && land<=40)) || ((member>=4 && member<=6)&&(land>40 && land<=50)) || ((member>=7 && member<=10)&&(land>55 && land<=65)) || ((member>10)&&(land>65 && land<=75)) for score 3
                                              // 1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ
                                              if(((member >=1 && member <= 3) && (land>=1 && land <=20)) || ((member >=4 && member <=6) && (land>=1 && land <=30)) || ((member >=7 && member <= 10) && (land>=1 && land <=40)) || ((member>10)&&(land>=1 && land<=50))){
                                                  $('#a_score1').val(8);
