@@ -6,7 +6,7 @@
 <!------ Include the above in your HEAD tag ---------->
 <div class="container content">
     <div class="col-sm-12">
-        <h2 align="center">ការធ្វើអត្តសញ្ញាណកម្មគ្រួសារក្រីក្រនៅមន្ទីពេទ្យ</h2>
+        <h3 class="hospital_title" align="center">ការធ្វើអត្តសញ្ញាណកម្មគ្រួសារក្រីក្រនៅមន្ទីពេទ្យ</h3>
     </div>
 
     <div class="stepwizard">
