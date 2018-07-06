@@ -1,3 +1,4 @@
+@section('title','ការធ្វើអត្តសញ្ញាណកម្ម')
 @extends('layouts.app')
 
 @section('content')
@@ -146,6 +147,7 @@
                                 <td width="65%">
                                    <div class="form-group g_district">
                                        <select id="district" style="width: 100%" class="form-control" name="g_district">
+                                           <option value=""></option>
                                            @if (!empty(old('g_district')))
                                                <option selected value="{{old('g_district')}}"></option>
                                            @endif
@@ -164,6 +166,7 @@
                                 <td width="65%">
                                     <div class="form-group g_commune">
                                         <select id="commune" style="width: 100%" class="form-control" name="g_commune">
+                                            <option value=""></option>
                                             @if (!empty(old('g_commune')))
                                                 <option selected value="{{old('g_commune')}}"></option>
                                             @endif
@@ -176,6 +179,7 @@
                                 <td width="65%">
                                     <div class="form-group g_village">
                                         <select id="village" style="width: 100%" class="form-control" name="g_village">
+                                            <option value=""></option>
                                             @if (!empty(old('g_village')))
                                                 <option selected value="{{old('g_village')}}"></option>
                                             @endif
@@ -2813,9 +2817,11 @@
         }
     });
     function AllowNumber() {
-        $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
-        keys = ['0','1','2','3','4','5','6','7','8','9']
-        return keys.indexOf(event.key) > -1
+        $(".allowNumber").keydown(function (e) {
+            $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
+            keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+            return keys.indexOf(event.key) > -1;
+        });
     }
     //when load
     $(".allowNumber").keydown(function (e) {

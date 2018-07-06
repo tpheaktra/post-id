@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Post ID</title>
+    <title>POSTID - @yield('title')</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="//fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -14,28 +14,22 @@
     <!-- font khmer battambang -->
     <link href="https://fonts.googleapis.com/css?family=Battambang" rel="stylesheet"> 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
-
+    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
     <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/jquery.validate.js'></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="{{asset('js/jQuery.print.js')}}" type="text/javascript"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
+    <link href="{{asset('js/select2/select2.min.css')}}" rel="stylesheet" />
+    <script src="{{asset('js/select2/select2.min.js')}}"></script>
 
 </head>
 <body>
-    <div id="app">
-
+    <div class="wrapper" id="header">
         <nav class="header navbar navbar-expand-md navbar-light navbar-laravel">
                 <div class="container">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto pull-right">
@@ -74,7 +68,6 @@
             </div>
 
 
-
             @if(!empty($errors->first()))
                 <div class="msg">
                     <div class="add_hide1 alert-danger alert-dismissable">
@@ -102,7 +95,6 @@
         </nav>
 
         <!-- end menu top -->
-
         <div class="container">
             <div class="wrap-home">
                 <div class="row">
@@ -136,13 +128,13 @@
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div>
 
 
 
-       <!-- loding image -->
-        <div>
+            <!-- loding image -->
             <div class="modal modal-primary" id="loading">
                 <div class="modal-dialog" style="top:30%">
                     <div class="">
@@ -155,21 +147,24 @@
                 <!-- /.modal-dialog -->
             </div>
             <!-- /.modal -->
-        </div>
 
-        <!-- content -->
-        <main class="py-4">
-            @yield('content')
-        </main>
+    </div>
 
-        <div class="wrapper">
-            <div class="footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <img src="{{ asset('images/usaid.png') }}">
-                            <span class="footer-develop">រក្សាសិទ្ធិគ្រប់បែបយ៉ាងដោយនាយកដ្ឋានផែនការនិង ព័ត៌មានសុខាភិបាលនៃក្រសួងសុខាភិបាល DPHI/MoH. 2013</span>
-                        </div>
+
+
+    <main class="wrapper" id="content">
+        @yield('content')
+    </main>
+
+
+
+    <div class="wrapper" id="footer">
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <img src="{{ asset('images/usaid.png') }}">
+                        <span class="footer-develop">រក្សាសិទ្ធិគ្រប់បែបយ៉ាងដោយនាយកដ្ឋានផែនការនិង ព័ត៌មានសុខាភិបាលនៃក្រសួងសុខាភិបាល DPHI/MoH. 2013</span>
                     </div>
                 </div>
             </div>
@@ -177,9 +172,11 @@
     </div>
 
 
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+
+    <script src="{{asset('js/jQuery.print.js')}}" type="text/javascript"></script>
+    <link href="{{asset('js/datatables/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+    <script src="{{asset('js/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('js/datatables/dataTables.bootstrap.min.js')}}"></script>
 
     <script type="text/javascript">
         $('#datatable').DataTable();
