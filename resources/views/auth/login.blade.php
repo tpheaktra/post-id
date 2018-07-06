@@ -15,7 +15,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
+    <!-- font khmer battambang -->
+    <link href="https://fonts.googleapis.com/css?family=Battambang" rel="stylesheet">
 
     <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
     <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/jquery.validate.js'></script>
@@ -34,6 +35,7 @@
             height:40px !important;}
         .card-body{ margin-top: 40px !important;}
         .justify-content-center{ margin-top: 200px;}
+        body{font-family: 'Battambang', Helvetica,Arial,sans-serif !important;}
     </style>
     <div class="container">
         <div class="row justify-content-center">
