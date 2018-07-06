@@ -2,16 +2,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <style>
-        .user-mangement{
-            margin-top: 20px;
-        }
-    </style>
     <section class="content">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <a href="{{route('user.create')}}" class="btn btn-primary"> <i class="glyphicon glyphicon-plus"></i> អ្នក​ប្រើប្រាស់​ថ្មី</a>
+                    <div class="head-title-add">
+                        <a href="{{route('user.create')}}" class="btn btn-primary"> <i class="glyphicon glyphicon-plus"></i> អ្នក​ប្រើប្រាស់​ថ្មី</a>
+                    </div>
+
                     <div class="user-mangement">
                         <table id="datatable" class="table table-bordered table-striped">
                             <thead>

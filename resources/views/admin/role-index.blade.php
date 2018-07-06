@@ -6,9 +6,11 @@
     <section class="container content">
         <div class="row">
             <div class="col-xs-12">
-                <a href="{{ route('role.create') }}" class="btn btn-primary">
-                    <i class="glyphicon glyphicon-plus"></i> តួនាទីថ្មី
-                </a>
+                <div class="head-title-add">
+                    <a href="{{ route('role.create') }}" class="btn btn-primary">
+                        <i class="glyphicon glyphicon-plus"></i> តួនាទីថ្មី
+                    </a>
+                </div>
 
                 <div class="user-mangement">
 

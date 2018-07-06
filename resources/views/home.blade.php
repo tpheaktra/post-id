@@ -905,19 +905,19 @@
                                     var tott = '<h5>- បើមាន តើជាបង្គន់ចាក់ទឹក ឬ បង្គន់ស្ងួត?</h5>' +
                                             '<div class="add_toilet_1"><ul class="li-none">' +
                                                 '<li>' +
-                                                    '<label><input type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>' +
+                                                    '<label><input style="margin-right:10px;" type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>' +
                                                 '</li>' +
                                                 '<li>' +
-                                                    '<label><input type="radio" name="tolet_1" value="បង្គន់ស្ងួត">  បង្គន់ស្ងួត</label>' +
+                                                    '<label><input style="margin-right:10px;" type="radio" name="tolet_1" value="បង្គន់ស្ងួត">  បង្គន់ស្ងួត</label>' +
                                                 '</li>' +
                                             '</ul></div>' +
                                         '<h5>- ជាបង្គន់​របស់នរណា?</h5>' +
                                             '<div class="add_toilet_2"><ul class="li-none">' +
                                                 '<li>' +
-                                                    '<label><input type="radio" class="toilet_my" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>' +
+                                                    '<label><input style="margin-right:10px;" type="radio" class="toilet_my" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>' +
                                                 '</li>' +
                                                 '<li>' +
-                                                    '<label><input type="radio" class="toilet_status" name="tolet_2" value="ជាបង្គន់រួមជាមួយគ្រួសារដទៃ"> ជាបង្គន់រួមជាមួយគ្រួសារដទៃ</label>' +
+                                                    '<label><input style="margin-right:10px;" type="radio" class="toilet_status" name="tolet_2" value="ជាបង្គន់រួមជាមួយគ្រួសារដទៃ"> ជាបង្គន់រួមជាមួយគ្រួសារដទៃ</label>' +
                                                 '</li>' +
                                             '</ul></div>';
                             
@@ -1071,7 +1071,7 @@
                                             });
                                         AllowNumber();
                                     }else if(electric == 2){
-                                        $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>');
+                                        $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>');
                                     }
                                 });
                             </script>
@@ -1545,7 +1545,7 @@
                             <ul class="debt_question_group">
                                 @foreach($loan as $key => $ge)
                                     <li>
-                                         <label class="add_family_debt_id"><input class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id"??>{{ $ge->name_kh }}</label>
+                                         <label class="add_family_debt_id"><input style="margin-right: 10px" class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id"??>{{ $ge->name_kh }}</label>
                                         @if($ge->id == 1)<label id="family_debt"></label>@endif
                                         @if($ge->id == 2)<label id="family_debt1"></label>@endif
                                     </li>
@@ -1558,7 +1558,7 @@
                             $('#family_debt').empty();
                             $('#family_debt1').empty();
                             if(family_debt == 1){
-                                $('#family_debt').append('<ol class="debt_question">@foreach($question as $key=>$gg)<li><label><input value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}</label></li>@endforeach</ol>');
+                                $('#family_debt').append('<ol class="debt_question">@foreach($question as $key=>$gg)<li><label><input style="margin-right: 10px" value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}</label></li>@endforeach</ol>');
                             }else if(family_debt == 2){
                                 $('#family_debt1').append('<div class="col-sm-12">' +
                                         '<div class="col-sm-12">' +
@@ -1646,7 +1646,7 @@
                 <td>{{$value->interview_code}}  </td>
 
                 <td>
-                    <a href="{{route('view.data',$value->id)}}">
+                    <a href="{{route('view.data',Crypt::encrypt($value->id))}}">
                         <i class="fa fa-eye"></i>
                     </a> /
                     <a href="{{route('editpatient.edit',Crypt::encrypt($value->id))}}">
@@ -2826,8 +2826,13 @@
     //when load
     $(".allowNumber").keydown(function (e) {
         $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
-        keys = ['0','1','2','3','4','5','6','7','8','9']
-        return keys.indexOf(event.key) > -1
+        keys = ['0','1','2','3','4','5','6','7','8','9'];
+
+        var regex = /[0-9]|\./;
+        if( !regex.test($(e.target).val()) ) {
+            $(e.target).empty(); return keys.indexOf(event.key) > -1;
+        }
+        return keys.indexOf(event.key) > -1;
     });
     //validation alert
     $('.nextBtn').click(function(){

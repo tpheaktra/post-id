@@ -1,3 +1,4 @@
+@section('title','ការធ្វើអត្តសញ្ញាណកម្ម')
 @extends('layouts.app')
 
 @section('content')

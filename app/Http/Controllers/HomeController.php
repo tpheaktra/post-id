@@ -128,6 +128,7 @@ class HomeController extends Controller
 
 
     public function view($id){
+        $id = Crypt::decrypt($id);
          $patient = DB::select("select gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,gi.g_local_village as g_local_village, 
                 p.name_kh as province, d.name_kh as district,c.name_kh as commune, v.name_kh as village from general_information gi
                 inner join member_family mf on gi.id = mf.g_information_id
@@ -589,6 +590,10 @@ class HomeController extends Controller
         $ginfo             = GeneralInformationModel::with('district','commune','village')->findOrFail($id);
         $memberFamily      = MemberFamilyModel::with('generalInfo')->where('g_information_id',$id)->get();
         $gFamily           = GeneralSituationFamilyModel::where('g_information_id',$id)->first();
+
+        $household_root = HouseHoldRootLinkModel::where('household_family_id',$gFamily->household_family_id)->where('g_information_id',$id)->first();
+        $toilet = TypeToiletLinkModel::where('toilet_id',$gFamily->toilet_id)->where('g_information_id',$id)->first();
+       // echo json_encode($household_root);exit();
         $material          = HouseoldConsumerModel::with('typemeterial')->where('g_information_id',$id)->get();
         $vehicle           = HouseholdVehicleModel::where('g_information_id',$id)->get();
         $income            = TypeIncomeModel::where('g_information_id',$id)->get();
@@ -604,7 +609,7 @@ class HomeController extends Controller
             'landAgricultural','loan','family','roof_made','wall_made','house_status',
             'question_electric','typemeterial','typeanimals',
             'typetransport','question_totel','health','ginfo','memberFamily',
-            'gFamily','material','vehicle','income','otherIncome'));
+            'gFamily','household_root','toilet','material','vehicle','income','otherIncome'));
     }
 
     /*

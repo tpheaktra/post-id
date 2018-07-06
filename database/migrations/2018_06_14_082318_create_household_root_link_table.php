@@ -27,7 +27,7 @@ class CreateHouseholdRootLinkTable extends Migration
             $table->integer('further_floor_width')->nullable();
             $table->integer('further_floor_area')->nullable();
             $table->integer('total_area')->nullable();
-            $table->tinyInteger('h_build_year')->nullable();
+            $table->integer('h_build_year')->nullable();
             $table->tinyInteger('home_prepare_id')->references('home_prepare_id')->index()->nullable();
             $table->tinyInteger('roof_made_id')->references('roof_made_id')->index()->nullable();
             $table->tinyInteger('roof_status_id')->references('roof_status_id')->index()->nullable();
