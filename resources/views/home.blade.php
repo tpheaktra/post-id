@@ -1469,41 +1469,41 @@
 
                                 $('.health_id_0').click(function () {
                                     var health_check = $('input[type=checkbox]:checked').val();//$("input[name=health_id]:checked").val();
-                                    //alert(health_check);
+                                    // alert(health_check);
                                     $('#health_1').empty();
-                                        if(health_check == 1){
-                                            var health1 = '<div class="col-sm-12">' +
-                                                            '<table class="table table-bordered table-striped">' +
-                                                                '<tbody>' +
-                                                                    '<tr>' +
-                                                                        '<td>ក្មេង + អ្នក  អាយុ &lt; 65ឆ្នាំ </td>' +
-                                                                        '<td> ចាស អាយុ≥65 ឆ្នាំ</td>' +
-                                                                    '</tr>'+
-                                                                    '<tr>'+
-                                                                        '<td>'+
-                                                                            '<div class="form-group">' +
-                                                                                '<input name="kids_then65" type="text" class="form-control allowNumber"/>' +
-                                                                            '</div>'+
-                                                                        '</td>'+
-                                                                        '<td>'+
-                                                                            '<div class="form-group">' +
-                                                                                '<input name="old_bigger65" type="text" class="form-control allowNumber"/>' +
-                                                                            '</div>'+
-                                                                        '</td>'+
-                                                                    '</tr>'+
-                                                                '</tbody>'+
-                                                            '</table>'+
-                                                        '</div>';
-                                            $('#health_1').append(health1);
-                                            AllowNumber();
-                                        }else{
-                                            $('#health_1').empty();
-                                        }
+                                    if(health_check == 1){
+                                        var health1 = '<div class="col-sm-12">' +
+                                            '<table class="table table-bordered table-striped">' +
+                                            '<tbody>' +
+                                            '<tr>' +
+                                            '<td>ក្មេង + អ្នក  អាយុ &lt; 65ឆ្នាំ </td>' +
+                                            '<td> ចាស អាយុ≥65 ឆ្នាំ</td>' +
+                                            '</tr>'+
+                                            '<tr>'+
+                                            '<td>'+
+                                            '<div class="form-group">' +
+                                            '<input name="kids_then65" type="text" class="form-control allowNumber"/>' +
+                                            '</div>'+
+                                            '</td>'+
+                                            '<td>'+
+                                            '<div class="form-group">' +
+                                            '<input name="old_bigger65" type="text" class="form-control allowNumber"/>' +
+                                            '</div>'+
+                                            '</td>'+
+                                            '</tr>'+
+                                            '</tbody>'+
+                                            '</table>'+
+                                            '</div>';
+                                        $('#health_1').append(health1);
+                                        AllowNumber();
+                                    }else{
+                                        $('#health_1').empty();
+                                    }
                                 });
 
                                 $('.health_id_1').click(function () {
-                                    var health_check = $('input[type=checkbox]:checked').val();
-                                   // alert(health_check);
+                                    var health_check = $('input[type=checkbox]:checked.health_id_1').val();
+                                    // alert(health_check);
                                     $('#health_2').empty();
                                     if (health_check == 2) {
                                         $('#health_2').empty();
@@ -1537,6 +1537,8 @@
                                 });
 
                             </script>
+
+
 
 
 

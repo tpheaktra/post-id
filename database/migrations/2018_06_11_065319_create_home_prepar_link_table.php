@@ -15,8 +15,9 @@ class CreateHomePreparLinkTable extends Migration
     {
         Schema::create('home_prepar_link', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('g_information_id');
             $table->integer('home_prepar_id')->nullable();
-            $table->string('home_year')->nullable();
+            $table->integer('home_year')->nullable();
             $table->timestamps();
         });
     }

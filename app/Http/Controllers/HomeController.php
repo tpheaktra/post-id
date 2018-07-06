@@ -592,8 +592,15 @@ class HomeController extends Controller
         $gFamily           = GeneralSituationFamilyModel::where('g_information_id',$id)->first();
 
         $household_root = HouseHoldRootLinkModel::where('household_family_id',$gFamily->household_family_id)->where('g_information_id',$id)->first();
+        if($household_root==null){
+            $homePreparLink='';
+        }else{
+            $homePreparLink = HomePreparLinkModel::where('home_prepar_id',$household_root->home_prepare_id)->where('g_information_id',$id)->first();
+        }
+
         $toilet = TypeToiletLinkModel::where('toilet_id',$gFamily->toilet_id)->where('g_information_id',$id)->first();
-       // echo json_encode($household_root);exit();
+
+
         $material          = HouseoldConsumerModel::with('typemeterial')->where('g_information_id',$id)->get();
         $vehicle           = HouseholdVehicleModel::where('g_information_id',$id)->get();
         $income            = TypeIncomeModel::where('g_information_id',$id)->get();
@@ -609,7 +616,7 @@ class HomeController extends Controller
             'landAgricultural','loan','family','roof_made','wall_made','house_status',
             'question_electric','typemeterial','typeanimals',
             'typetransport','question_totel','health','ginfo','memberFamily',
-            'gFamily','household_root','toilet','material','vehicle','income','otherIncome'));
+            'gFamily','household_root','homePreparLink','toilet','material','vehicle','income','otherIncome'));
     }
 
     /*
