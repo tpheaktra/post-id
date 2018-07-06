@@ -775,8 +775,7 @@
                                                 $('#homeyear').append('<select name="home_year" style="width: 180px;" id="years">' +
                                                     '<option></option>'+
                                                     <?php $currentYear = date('Y');?>
-                                                         '@foreach (range(1950, $currentYear) as $value)<option  @if($homePreparLink->home_year ?? 'No' == $p->id) selected @endif value="{{$value}}">{{$value}}</option >@endforeach'+
-                                                    '</select>';
+                                                         '@foreach (range(1950, $currentYear) as $value)<option  @if($homePreparLink->home_year ?? 'No' == $p->id) selected @endif value="{{$value}}">{{$value}}</option >@endforeach'</select>';
                                                 );
                                                 $("#years").select2({allowClear:true, placeholder: 'ឆ្នាំ...'});
                                             }
