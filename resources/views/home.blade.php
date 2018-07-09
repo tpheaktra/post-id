@@ -712,7 +712,7 @@
                                                         '<td><label class="control-label"> ដំបូលធ្វើអំពី : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group add_roof_relationship">' +
-                                                                 '<select class="form-control roof_relationship" id="roof_relationship" name="roof_made">' +
+                                                                 '<select class="form-control roof_relationship cal_roof" id="roof_relationship" name="roof_made">' +
                                                                     '<option></option>' +
                                                                      '@foreach($roof_made as $keh => $value)' +
                                                                         '<option value="{{$value->id}}">{{$value->name_kh}}</option>' +
@@ -729,7 +729,7 @@
                                                         '<td><label class="control-label">​ និង​ស្ថានភាព : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group add_r_status">' +
-                                                                 '<select class="form-control r_status cal_roof" id="r_status" name="roof_status">' +
+                                                                 '<select class="cal_roof form-control r_status" id="r_status" name="roof_status">' +
                                                                     '<option></option>@foreach($house_status as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
                                                                  '</select>' +
                                                              '</div>' +
@@ -742,9 +742,8 @@
                                                '<input id="roof_score" type="text" name="roof_score" class="cal_roof form-control allowNumber"​ readonly>'+
                                                '<span class="input-group-addon">ពិន្ទុ</span>'+
                                             '</div>';
-                                            $('.cal_roof').change(function(){
-                                               alert('aa');
-                                            });
+                                            
+                                           
                                             var building_year = '<div class="col-sm-6">' +
                                                     '<table class="table-home table table-bordered table-striped">' +
                                                     '<thead>' +
@@ -786,9 +785,21 @@
                                                             '</li>' +
                                                         '@endforeach'+
                                                     '</ul></div>';
+
                                         // $('#home-preparing').append(home_preparing);
                                          $('#building-year').append(building_year);
                                          $('#home-yourself').append(homeyourselt);
+                                         $('.cal_roof').change(function(){
+                                            var chose = $('#roof_relationship').val();
+                                            var status = $('#r_status').val();
+                                            if(chose == 1 || chose ==2 || chose ==5 || chose ==8){
+                                                $('#roof_score').val(6);
+                                            }else if( (chose == 3 && status == 2) ||(chose == 3 && status == 1) ){
+                                                 $('#roof_score').val(4);
+                                            }else{
+                                                $('#roof_score').val(0);
+                                            }
+                                         });
                                          $("#year_select").select2({allowClear:true, placeholder: "ឆ្នាំ"});
                                          $(".roof_relationship").select2({allowClear:true, placeholder: "ដំបូល"});
                                          $(".r_status").select2({allowClear:true, placeholder: "ស្ថានភាព"});
@@ -810,7 +821,7 @@
                                                         '<td><label class="control-label"> ​ជញ្ជាំងធ្វើអំពី : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group add_wall_relationship">' +
-                                                                 '<select class="form-control wall_relationship" id="wall_relationship" name="walls_made">' +
+                                                                 '<select class="cal_wall form-control wall_relationship" id="wall_relationship" name="walls_made">' +
                                                                     '<option></option>' +
                                                                     '@foreach($wall_made as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
                                                                  '</select>' +
@@ -825,7 +836,7 @@
                                                         '<td><label class="control-label">​​ និង​ស្ថានភាព : </label></td>'+
                                                         '<td>'+
                                                             '<div class="form-group add_h_status">'+
-                                                                '<select class="form-control h_status" id="h_status" name="walls_status">'+
+                                                                '<select class="cal_wall form-control h_status" id="h_status" name="walls_status">'+
                                                                     '<option></option>'+
                                                                     '@foreach($house_status as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
                                                                 '</select>'+
@@ -836,11 +847,20 @@
                                             '</div>'+
                                             '<p>'+'3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ  '+'<p>'+
                                              '<div class="form-group input-group" style="width: 300px;">'+
-                                               '<input id="" type="text" name="" class=" form-control allowNumber"​ readonly>'+
+                                               '<input id="wall_score" type="text" name="wall_score" class="cal_wall form-control allowNumber"​ readonly>'+
                                                '<span class="input-group-addon">ពិន្ទុ</span>'+
                                             '</div>';
                                          
                                          $('#home-ke').append(homeke);
+                                         $('.cal_wall').change(function(){
+                                            var chose = $('#wall_relationship').val();
+                                            var status = $('#h_status').val();
+                                            if( (chose >=1 && chose<=3) || chose ==7 ){
+                                               $('#wall_score').val(6); 
+                                            }else if(chose == 5){
+                                                $('#wall_score').val(4); 
+                                            }else{ $('#wall_score').val(0);}
+                                         });
                                          $(".wall_relationship").select2({ allowClear:true, placeholder: "ជញ្ជាំង"});
                                          $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
                                          var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>' +
@@ -869,8 +889,9 @@
                                  });
                              </script>
                        </div>
-
-
+                        <script type="text/javascript">
+                         
+                        </script>
                       <div class="col-sm-12"><hr> </div>
                        <div class="col-sm-12">
                             <h4>  គ.២ តើ​មាន​មនុស្សសរុប​ចំនួន​ប៉ុន្មាន​នាក់ រស់​នៅក្នុងផ្ទះដែលអ្នកស្នាក់នៅ
