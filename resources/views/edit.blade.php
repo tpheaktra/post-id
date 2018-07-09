@@ -12,15 +12,15 @@
         <div class="stepwizard">
             <div class="stepwizard-row setup-panel">
                 <div class="stepwizard-step">
-                    <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                    <a id="st1" href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
                     <p>ព័ត៌មានទូទៅ</p>
                 </div>
                 <div class="stepwizard-step">
-                    <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                    <a id="st2" href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
                     <p>ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់</p>
                 </div>
                 <div class="stepwizard-step">
-                    <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                    <a id="st3" href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
                     <p>ស្ថានភាពទូទៅរបស់គ្រួសារ</p>
                 </div>
             </div>
@@ -2122,8 +2122,9 @@
                 }else{
                     $('.add_education_level').removeClass("has-error");
                 }
-                if (isValid)
+                if (isValid) {
                     nextStepWizard.removeAttr('disabled').trigger('click');
+                }
             });
             //step3
             step3Next.click(function(){
@@ -2132,220 +2133,228 @@
                     nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
                     curInputs = curStep.find("input[type='text']"),
                     isValid = true;
-//                $(".form-group").removeClass("has-error");
-//                for(var i=0; i<curInputs.length; i++){
-//                    if (!curInputs[i].validity.valid){
-//                        $('.alert').show();
-//                        isValid = false;
-//                        $(curInputs[i]).closest(".form-group").addClass("has-error");
-//                    }
-//                }
-//                if (!$("input[name='household_family_id']:checked").val()) {
-//                    $('.add_household_family').addClass("error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{$('.add_household_family').removeClass("error");}
-//                if ($("input[name='household_family_id']:checked").val() == 1 || $("input[name='household_family_id']:checked").val() == 3) {
-//                    if (!$("input[name='home_prepare']:checked").val()) {
-//                        $('.add_home_prepare').addClass("error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{$('.add_home_prepare').removeClass("error");}
-//                    if (!$("input[name='condition_house']:checked").val()) {
-//                        $('.add_condition_house').addClass("error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{$('.add_condition_house').removeClass("error");}
-//                    if($('#years').val() == ''){
-//                        $('#homeyear').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('#homeyear').removeClass("has-error");
-//                    }
-//                    if($('#year_select').val() == ''){
-//                        $('.add_huild_year').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_huild_year').removeClass("has-error");
-//                    }
-//                    //roof
-//                    if($('#roof_relationship').val() == ''){
-//                        $('.add_roof_relationship').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_roof_relationship').removeClass("has-error");
-//                    }
-//                    if($('#r_status').val() == ''){
-//                        $('.add_r_status').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_r_status').removeClass("has-error");
-//                    }
-//                    if($('#h_status').val() == ''){
-//                        $('.add_h_status').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_h_status').removeClass("has-error");
-//                    }
-//                    if($('#wall_relationship').val() == ''){
-//                        $('.add_wall_relationship').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_wall_relationship').removeClass("has-error");
-//                    }
-//                }
-//                //toilet
-//                if (!$("input[name='tolet']:checked").val()) {
-//                    $('.add_toilet').addClass("error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{$('.add_toilet').removeClass("error");}
-//                if($("input[name='tolet']:checked").val() == 1) {
-//                    if (!$("input[name='tolet_1']:checked").val()) {
-//                        $('.add_toilet_1').addClass("error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    } else {
-//                        $('.add_toilet_1').removeClass("error");
-//                    }
-//                    if (!$("input[name='tolet_2']:checked").val()) {
-//                        $('.add_toilet_2').addClass("error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{$('.add_toilet_2').removeClass("error");}
-//                }
-//                //type_meterial[0]
-//                if($('.type_meterial').val() == ''){
-//                    $('.add_type_meterial').addClass("has-error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{
-//                    $('.add_type_meterial').removeClass("has-error");
-//                }
-//                //in append
-//                var row_num = $('.new_rows_1 tr').length;
-//                for(var i=0; i<row_num; i++) {
-//                    if($('#type_meterial_'+i).val() == ''){
-//                        $('.add_type_meterial_'+i).addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_type_meterial_'+i).removeClass("has-error");
-//                    }
-//                }
-//                if (!$("input[name='q_electric']:checked").val()) {
-//                    $('.add_q_electric').addClass("error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{$('.add_q_electric').removeClass("error");}
-//                if ($("input[name='q_electric']:checked").val()==2) {
-//                    if (!$("input[name='electric_grid_id']:checked").val()) {
-//                        $('.add_electric_grid').addClass("error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    } else {
-//                        $('.add_electric_grid').removeClass("error");
-//                    }
-//                }
-//                // go_hospital
-////            if($('#go_hospital').val() == ''){
-////                $('.go_hospital').addClass("has-error");
-////                $('.alert').show();
-////                isValid = false;
-////            }else{
-////                $('.go_hospital').removeClass("has-error");
-////            }
-//                //#type_vehicle in append
-//                var row_num2 = $('.new_rows_2 tr').length;
-//                for(var i=0; i<row_num2; i++) {
-//                    if($('#type_vehicle_'+i).val() == ''){
-//                        $('.add_type_vehicle_'+i).addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_type_vehicle_'+i).removeClass("has-error");
-//                    }
-//                }
-//                if($('#type_vehicle').val() == ''){
-//                    $('.add_type_vehicle').addClass("has-error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{
-//                    $('.add_type_vehicle').removeClass("has-error");
-//                }
-//                //roof
-//                if($('#total_people').val() == ''){
-//                    $('.add_total_people').addClass("has-error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{
-//                    $('.add_total_people').removeClass("has-error");
-//                }
-//                //debt
-//                if (!$("input[name='family_debt_id']:checked").val()) {
-//                    $('.add_family_debt_id').addClass("error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{$('.add_family_debt_id').removeClass("error");}
-//                if ($("input[name='family_debt_id']:checked").val()==1) {
-//                    if (!$("input[name='q_debt']:checked").val()) {
-//                        $('.debt_question').addClass("error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{$('.debt_question').removeClass("error");}
-//                }
-//                if ($("input[name='family_debt_id']:checked").val()==2) {
-//                    if($('#total_debt').val() == ''){
-//                        $('.add_total_debt').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_total_debt').removeClass("has-error");
-//                    }
-//                    if($('#debt_duration').val() == ''){
-//                        $('.add_debt_duration').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_debt_duration').removeClass("has-error");
-//                    }
-//                }
-//                //#type_animals in append
-//                var row_num3 = $('.new_rows_3 tr').length;
-//                for(var i=0; i<row_num3; i++) {
-//                    if($('#type_animals_'+i).val() == ''){
-//                        $('.add_type_animals_'+i).addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_type_animals_'+i).removeClass("has-error");
-//                    }
-//                }
-//                if($('#type_animals').val() == ''){
-//                    $('.add_type_animals').addClass("has-error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{
-//                    $('.add_type_animals').removeClass("has-error");
-//                }
-//                //land
-//                if (!$("input[name='land']:checked").val()) {
-//                    $('.add_land').addClass("error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{$('.add_land').removeClass("error");}
-                //if (isValid)
-                //  nextStepWizard.removeAttr('disabled').trigger('click');
-                if (isValid)
+                $(".form-group").removeClass("has-error");
+                for(var i=0; i<curInputs.length; i++){
+                    if (!curInputs[i].validity.valid){
+                        $('.alert').show();
+                        isValid = false;
+                        $(curInputs[i]).closest(".form-group").addClass("has-error");
+                    }
+                }
+                if (!$("input[name='household_family_id']:checked").val()) {
+                    $('.add_household_family').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{$('.add_household_family').removeClass("error");}
+                if ($("input[name='household_family_id']:checked").val() == 1 || $("input[name='household_family_id']:checked").val() == 3) {
+                    if (!$("input[name='home_prepare']:checked").val()) {
+                        $('.add_home_prepare').addClass("error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{$('.add_home_prepare').removeClass("error");}
+                    if (!$("input[name='condition_house']:checked").val()) {
+                        $('.add_condition_house').addClass("error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{$('.add_condition_house').removeClass("error");}
+                    if($('#years').val() == ''){
+                        $('#homeyear').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('#homeyear').removeClass("has-error");
+                    }
+                    if($('#year_select').val() == ''){
+                        $('.add_huild_year').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_huild_year').removeClass("has-error");
+                    }
+                    //roof
+                    if($('#roof_relationship').val() == ''){
+                        $('.add_roof_relationship').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_roof_relationship').removeClass("has-error");
+                    }
+                    if($('#r_status').val() == ''){
+                        $('.add_r_status').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_r_status').removeClass("has-error");
+                    }
+                    if($('#h_status').val() == ''){
+                        $('.add_h_status').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_h_status').removeClass("has-error");
+                    }
+                    if($('#wall_relationship').val() == ''){
+                        $('.add_wall_relationship').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_wall_relationship').removeClass("has-error");
+                    }
+                }
+                //toilet
+                if (!$("input[name='tolet']:checked").val()) {
+                    $('.add_toilet').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{$('.add_toilet').removeClass("error");}
+                if($("input[name='tolet']:checked").val() == 1) {
+                    if (!$("input[name='tolet_1']:checked").val()) {
+                        $('.add_toilet_1').addClass("error");
+                        $('.alert').show();
+                        isValid = false;
+                    } else {
+                        $('.add_toilet_1').removeClass("error");
+                    }
+                    if (!$("input[name='tolet_2']:checked").val()) {
+                        $('.add_toilet_2').addClass("error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{$('.add_toilet_2').removeClass("error");}
+                }
+                //type_meterial[0]
+                if($('.type_meterial').val() == ''){
+                    $('.add_type_meterial').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_type_meterial').removeClass("has-error");
+                }
+                //in append
+                var row_num = $('.new_rows_1 tr').length;
+                for(var i=0; i<row_num; i++) {
+                    if($('#type_meterial_'+i).val() == ''){
+                        $('.add_type_meterial_'+i).addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_type_meterial_'+i).removeClass("has-error");
+                    }
+                }
+                if (!$("input[name='q_electric']:checked").val()) {
+                    $('.add_q_electric').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{$('.add_q_electric').removeClass("error");}
+                if ($("input[name='q_electric']:checked").val()==2) {
+                    if (!$("input[name='electric_grid_id']:checked").val()) {
+                        $('.add_electric_grid').addClass("error");
+                        $('.alert').show();
+                        isValid = false;
+                    } else {
+                        $('.add_electric_grid').removeClass("error");
+                    }
+                }
+                // go_hospital
+//            if($('#go_hospital').val() == ''){
+//                $('.go_hospital').addClass("has-error");
+//                $('.alert').show();
+//                isValid = false;
+//            }else{
+//                $('.go_hospital').removeClass("has-error");
+//            }
+                //#type_vehicle in append
+                var row_num2 = $('.new_rows_2 tr').length;
+                for(var i=0; i<row_num2; i++) {
+                    if($('#type_vehicle_'+i).val() == ''){
+                        $('.add_type_vehicle_'+i).addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_type_vehicle_'+i).removeClass("has-error");
+                    }
+                }
+                if($('#type_vehicle').val() == ''){
+                    $('.add_type_vehicle').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_type_vehicle').removeClass("has-error");
+                }
+                //roof
+                if($('#total_people').val() == ''){
+                    $('.add_total_people').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_total_people').removeClass("has-error");
+                }
+                //debt
+                if (!$("input[name='family_debt_id']:checked").val()) {
+                    $('.add_family_debt_id').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{$('.add_family_debt_id').removeClass("error");}
+                if ($("input[name='family_debt_id']:checked").val()==1) {
+                    if (!$("input[name='q_debt']:checked").val()) {
+                        $('.debt_question').addClass("error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{$('.debt_question').removeClass("error");}
+                }
+                if ($("input[name='family_debt_id']:checked").val()==2) {
+                    if($('#total_debt').val() == ''){
+                        $('.add_total_debt').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_total_debt').removeClass("has-error");
+                    }
+                    if($('#debt_duration').val() == ''){
+                        $('.add_debt_duration').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_debt_duration').removeClass("has-error");
+                    }
+                }
+                //#type_animals in append
+                var row_num3 = $('.new_rows_3 tr').length;
+                for(var i=0; i<row_num3; i++) {
+                    if($('#type_animals_'+i).val() == ''){
+                        $('.add_type_animals_'+i).addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_type_animals_'+i).removeClass("has-error");
+                    }
+                }
+                if($('#type_animals').val() == ''){
+                    $('.add_type_animals').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_type_animals').removeClass("has-error");
+                }
+                //land
+                if (!$("input[name='land']:checked").val()) {
+                    $('.add_land').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{$('.add_land').removeClass("error");}
+//                if (isValid)
+//                  nextStepWizard.removeAttr('disabled').trigger('click');
+                if (isValid) {
+                     //nextStepWizard.removeAttr('disabled').trigger('click');
                     $(".form-group-post").submit();
+                }
             });
             $('div.setup-panel div a.btn-primary').trigger('click');
+        });
+        $('#st1').click(function() {
+            $('#st2').attr('disabled', 'disabled').trigger('click');
+        });
+        $('#st2').click(function() {
+            $('#st3').attr('disabled', 'disabled').trigger('click');
         });
         /*========================================================================
          ===============// select hospital code append interview code //=================

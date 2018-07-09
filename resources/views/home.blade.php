@@ -13,15 +13,15 @@
     <div class="stepwizard">
         <div class="stepwizard-row setup-panel">
             <div class="stepwizard-step">
-                <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                <a id="st1" href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
                 <p>ព័ត៌មានទូទៅ</p>
             </div>
             <div class="stepwizard-step">
-                <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                <a id="st2" href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
                 <p>ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់</p>
             </div>
             <div class="stepwizard-step">
-                <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                <a id="st3" href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
                 <p>ស្ថានភាពទូទៅរបស់គ្រួសារ</p>
             </div>
         </div>
@@ -2120,6 +2120,12 @@
         });
         $('div.setup-panel div a.btn-primary').trigger('click');
 });
+    $('#st1').click(function() {
+        $('#st2').attr('disabled', 'disabled').trigger('click');
+    });
+    $('#st2').click(function() {
+        $('#st3').attr('disabled', 'disabled').trigger('click');
+    });
     /*========================================================================
      ===============// select hospital code append interview code //=================
      ==========================================================================*/
