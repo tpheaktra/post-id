@@ -12,15 +12,15 @@
         <div class="stepwizard">
             <div class="stepwizard-row setup-panel">
                 <div class="stepwizard-step">
-                    <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                    <a id="st1" href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
                     <p>ព័ត៌មានទូទៅ</p>
                 </div>
                 <div class="stepwizard-step">
-                    <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                    <a id="st2" href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
                     <p>ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់</p>
                 </div>
                 <div class="stepwizard-step">
-                    <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                    <a id="st3" href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
                     <p>ស្ថានភាពទូទៅរបស់គ្រួសារ</p>
                 </div>
             </div>
@@ -772,11 +772,10 @@
                                             var homeyear = $('input[name=home_prepare]:checked').val();
                                             $('#homeyear').empty();
                                             if(homeyear == 2){
-                                                $('#homeyear').append('<select name="home_year" style="width: 180px;" id="years">' +
-                                                    '<option></option>'+
-                                                    <?php $currentYear = date('Y');?>
-                                                         '@foreach (range(1950, $currentYear) as $value)<option  @if($homePreparLink->home_year ?? 'No' == $p->id) selected @endif value="{{$value}}">{{$value}}</option >@endforeach'</select>';
-                                                );
+                                                $('#homeyear').append(' <?php $currentYear = date('Y');?> <select name="home_year" style="width: 180px;" id="years">' +
+                                                    '<option></option> @foreach (range(1950, $currentYear) as $value)
+                                                        <option  @if($homePreparLink->home_year ?? 'No' == $p->id) selected @endif value="{{$value}}">{{$value}}</option>'+
+                                                    '@endforeach </select>');
                                                 $("#years").select2({allowClear:true, placeholder: 'ឆ្នាំ...'});
                                             }
                                         });
@@ -1550,7 +1549,7 @@
                                         '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" name="land_name" type="text" required="required" class="allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                        '<input autocomplete="off" name="land_name" type="text" required="required" class="t_land allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
                                         '</div>' +
                                         '</td>' +
                                         '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
@@ -1564,7 +1563,7 @@
                                         '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
                                         '<td>'+
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" name="land_farm" type="text" required="required" class="allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                        '<input autocomplete="off" name="land_farm" type="text" required="required" class="t_land allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
                                         '</div>'+
                                         '</td>'+
                                         '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
@@ -1603,8 +1602,10 @@
                                     }
                                     AllowNumber();
                                     $('.t_land').keyup(function(){
-                                        var field = $('#total_land').val();
-                                        var farm  = $('#total_land_farm').val();
+                                        var field = 0;
+                                        var farm = 0;
+                                        field = Number($('#total_land').val());
+                                        farm  = Number($('#total_land_farm').val());
                                         var people = parseInt($('#total_people').val());
                                         // alert(people);
                                         var sum = field + farm;
@@ -2121,8 +2122,9 @@
                 }else{
                     $('.add_education_level').removeClass("has-error");
                 }
-                if (isValid)
+                if (isValid) {
                     nextStepWizard.removeAttr('disabled').trigger('click');
+                }
             });
             //step3
             step3Next.click(function(){
@@ -2131,220 +2133,228 @@
                     nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
                     curInputs = curStep.find("input[type='text']"),
                     isValid = true;
-//                $(".form-group").removeClass("has-error");
-//                for(var i=0; i<curInputs.length; i++){
-//                    if (!curInputs[i].validity.valid){
-//                        $('.alert').show();
-//                        isValid = false;
-//                        $(curInputs[i]).closest(".form-group").addClass("has-error");
-//                    }
-//                }
-//                if (!$("input[name='household_family_id']:checked").val()) {
-//                    $('.add_household_family').addClass("error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{$('.add_household_family').removeClass("error");}
-//                if ($("input[name='household_family_id']:checked").val() == 1 || $("input[name='household_family_id']:checked").val() == 3) {
-//                    if (!$("input[name='home_prepare']:checked").val()) {
-//                        $('.add_home_prepare').addClass("error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{$('.add_home_prepare').removeClass("error");}
-//                    if (!$("input[name='condition_house']:checked").val()) {
-//                        $('.add_condition_house').addClass("error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{$('.add_condition_house').removeClass("error");}
-//                    if($('#years').val() == ''){
-//                        $('#homeyear').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('#homeyear').removeClass("has-error");
-//                    }
-//                    if($('#year_select').val() == ''){
-//                        $('.add_huild_year').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_huild_year').removeClass("has-error");
-//                    }
-//                    //roof
-//                    if($('#roof_relationship').val() == ''){
-//                        $('.add_roof_relationship').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_roof_relationship').removeClass("has-error");
-//                    }
-//                    if($('#r_status').val() == ''){
-//                        $('.add_r_status').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_r_status').removeClass("has-error");
-//                    }
-//                    if($('#h_status').val() == ''){
-//                        $('.add_h_status').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_h_status').removeClass("has-error");
-//                    }
-//                    if($('#wall_relationship').val() == ''){
-//                        $('.add_wall_relationship').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_wall_relationship').removeClass("has-error");
-//                    }
-//                }
-//                //toilet
-//                if (!$("input[name='tolet']:checked").val()) {
-//                    $('.add_toilet').addClass("error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{$('.add_toilet').removeClass("error");}
-//                if($("input[name='tolet']:checked").val() == 1) {
-//                    if (!$("input[name='tolet_1']:checked").val()) {
-//                        $('.add_toilet_1').addClass("error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    } else {
-//                        $('.add_toilet_1').removeClass("error");
-//                    }
-//                    if (!$("input[name='tolet_2']:checked").val()) {
-//                        $('.add_toilet_2').addClass("error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{$('.add_toilet_2').removeClass("error");}
-//                }
-//                //type_meterial[0]
-//                if($('.type_meterial').val() == ''){
-//                    $('.add_type_meterial').addClass("has-error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{
-//                    $('.add_type_meterial').removeClass("has-error");
-//                }
-//                //in append
-//                var row_num = $('.new_rows_1 tr').length;
-//                for(var i=0; i<row_num; i++) {
-//                    if($('#type_meterial_'+i).val() == ''){
-//                        $('.add_type_meterial_'+i).addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_type_meterial_'+i).removeClass("has-error");
-//                    }
-//                }
-//                if (!$("input[name='q_electric']:checked").val()) {
-//                    $('.add_q_electric').addClass("error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{$('.add_q_electric').removeClass("error");}
-//                if ($("input[name='q_electric']:checked").val()==2) {
-//                    if (!$("input[name='electric_grid_id']:checked").val()) {
-//                        $('.add_electric_grid').addClass("error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    } else {
-//                        $('.add_electric_grid').removeClass("error");
-//                    }
-//                }
-//                // go_hospital
-////            if($('#go_hospital').val() == ''){
-////                $('.go_hospital').addClass("has-error");
-////                $('.alert').show();
-////                isValid = false;
-////            }else{
-////                $('.go_hospital').removeClass("has-error");
-////            }
-//                //#type_vehicle in append
-//                var row_num2 = $('.new_rows_2 tr').length;
-//                for(var i=0; i<row_num2; i++) {
-//                    if($('#type_vehicle_'+i).val() == ''){
-//                        $('.add_type_vehicle_'+i).addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_type_vehicle_'+i).removeClass("has-error");
-//                    }
-//                }
-//                if($('#type_vehicle').val() == ''){
-//                    $('.add_type_vehicle').addClass("has-error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{
-//                    $('.add_type_vehicle').removeClass("has-error");
-//                }
-//                //roof
-//                if($('#total_people').val() == ''){
-//                    $('.add_total_people').addClass("has-error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{
-//                    $('.add_total_people').removeClass("has-error");
-//                }
-//                //debt
-//                if (!$("input[name='family_debt_id']:checked").val()) {
-//                    $('.add_family_debt_id').addClass("error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{$('.add_family_debt_id').removeClass("error");}
-//                if ($("input[name='family_debt_id']:checked").val()==1) {
-//                    if (!$("input[name='q_debt']:checked").val()) {
-//                        $('.debt_question').addClass("error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{$('.debt_question').removeClass("error");}
-//                }
-//                if ($("input[name='family_debt_id']:checked").val()==2) {
-//                    if($('#total_debt').val() == ''){
-//                        $('.add_total_debt').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_total_debt').removeClass("has-error");
-//                    }
-//                    if($('#debt_duration').val() == ''){
-//                        $('.add_debt_duration').addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_debt_duration').removeClass("has-error");
-//                    }
-//                }
-//                //#type_animals in append
-//                var row_num3 = $('.new_rows_3 tr').length;
-//                for(var i=0; i<row_num3; i++) {
-//                    if($('#type_animals_'+i).val() == ''){
-//                        $('.add_type_animals_'+i).addClass("has-error");
-//                        $('.alert').show();
-//                        isValid = false;
-//                    }else{
-//                        $('.add_type_animals_'+i).removeClass("has-error");
-//                    }
-//                }
-//                if($('#type_animals').val() == ''){
-//                    $('.add_type_animals').addClass("has-error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{
-//                    $('.add_type_animals').removeClass("has-error");
-//                }
-//                //land
-//                if (!$("input[name='land']:checked").val()) {
-//                    $('.add_land').addClass("error");
-//                    $('.alert').show();
-//                    isValid = false;
-//                }else{$('.add_land').removeClass("error");}
-                //if (isValid)
-                //  nextStepWizard.removeAttr('disabled').trigger('click');
-                if (isValid)
+                $(".form-group").removeClass("has-error");
+                for(var i=0; i<curInputs.length; i++){
+                    if (!curInputs[i].validity.valid){
+                        $('.alert').show();
+                        isValid = false;
+                        $(curInputs[i]).closest(".form-group").addClass("has-error");
+                    }
+                }
+                if (!$("input[name='household_family_id']:checked").val()) {
+                    $('.add_household_family').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{$('.add_household_family').removeClass("error");}
+                if ($("input[name='household_family_id']:checked").val() == 1 || $("input[name='household_family_id']:checked").val() == 3) {
+                    if (!$("input[name='home_prepare']:checked").val()) {
+                        $('.add_home_prepare').addClass("error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{$('.add_home_prepare').removeClass("error");}
+                    if (!$("input[name='condition_house']:checked").val()) {
+                        $('.add_condition_house').addClass("error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{$('.add_condition_house').removeClass("error");}
+                    if($('#years').val() == ''){
+                        $('#homeyear').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('#homeyear').removeClass("has-error");
+                    }
+                    if($('#year_select').val() == ''){
+                        $('.add_huild_year').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_huild_year').removeClass("has-error");
+                    }
+                    //roof
+                    if($('#roof_relationship').val() == ''){
+                        $('.add_roof_relationship').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_roof_relationship').removeClass("has-error");
+                    }
+                    if($('#r_status').val() == ''){
+                        $('.add_r_status').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_r_status').removeClass("has-error");
+                    }
+                    if($('#h_status').val() == ''){
+                        $('.add_h_status').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_h_status').removeClass("has-error");
+                    }
+                    if($('#wall_relationship').val() == ''){
+                        $('.add_wall_relationship').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_wall_relationship').removeClass("has-error");
+                    }
+                }
+                //toilet
+                if (!$("input[name='tolet']:checked").val()) {
+                    $('.add_toilet').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{$('.add_toilet').removeClass("error");}
+                if($("input[name='tolet']:checked").val() == 1) {
+                    if (!$("input[name='tolet_1']:checked").val()) {
+                        $('.add_toilet_1').addClass("error");
+                        $('.alert').show();
+                        isValid = false;
+                    } else {
+                        $('.add_toilet_1').removeClass("error");
+                    }
+                    if (!$("input[name='tolet_2']:checked").val()) {
+                        $('.add_toilet_2').addClass("error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{$('.add_toilet_2').removeClass("error");}
+                }
+                //type_meterial[0]
+                if($('.type_meterial').val() == ''){
+                    $('.add_type_meterial').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_type_meterial').removeClass("has-error");
+                }
+                //in append
+                var row_num = $('.new_rows_1 tr').length;
+                for(var i=0; i<row_num; i++) {
+                    if($('#type_meterial_'+i).val() == ''){
+                        $('.add_type_meterial_'+i).addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_type_meterial_'+i).removeClass("has-error");
+                    }
+                }
+                if (!$("input[name='q_electric']:checked").val()) {
+                    $('.add_q_electric').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{$('.add_q_electric').removeClass("error");}
+                if ($("input[name='q_electric']:checked").val()==2) {
+                    if (!$("input[name='electric_grid_id']:checked").val()) {
+                        $('.add_electric_grid').addClass("error");
+                        $('.alert').show();
+                        isValid = false;
+                    } else {
+                        $('.add_electric_grid').removeClass("error");
+                    }
+                }
+                // go_hospital
+//            if($('#go_hospital').val() == ''){
+//                $('.go_hospital').addClass("has-error");
+//                $('.alert').show();
+//                isValid = false;
+//            }else{
+//                $('.go_hospital').removeClass("has-error");
+//            }
+                //#type_vehicle in append
+                var row_num2 = $('.new_rows_2 tr').length;
+                for(var i=0; i<row_num2; i++) {
+                    if($('#type_vehicle_'+i).val() == ''){
+                        $('.add_type_vehicle_'+i).addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_type_vehicle_'+i).removeClass("has-error");
+                    }
+                }
+                if($('#type_vehicle').val() == ''){
+                    $('.add_type_vehicle').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_type_vehicle').removeClass("has-error");
+                }
+                //roof
+                if($('#total_people').val() == ''){
+                    $('.add_total_people').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_total_people').removeClass("has-error");
+                }
+                //debt
+                if (!$("input[name='family_debt_id']:checked").val()) {
+                    $('.add_family_debt_id').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{$('.add_family_debt_id').removeClass("error");}
+                if ($("input[name='family_debt_id']:checked").val()==1) {
+                    if (!$("input[name='q_debt']:checked").val()) {
+                        $('.debt_question').addClass("error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{$('.debt_question').removeClass("error");}
+                }
+                if ($("input[name='family_debt_id']:checked").val()==2) {
+                    if($('#total_debt').val() == ''){
+                        $('.add_total_debt').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_total_debt').removeClass("has-error");
+                    }
+                    if($('#debt_duration').val() == ''){
+                        $('.add_debt_duration').addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_debt_duration').removeClass("has-error");
+                    }
+                }
+                //#type_animals in append
+                var row_num3 = $('.new_rows_3 tr').length;
+                for(var i=0; i<row_num3; i++) {
+                    if($('#type_animals_'+i).val() == ''){
+                        $('.add_type_animals_'+i).addClass("has-error");
+                        $('.alert').show();
+                        isValid = false;
+                    }else{
+                        $('.add_type_animals_'+i).removeClass("has-error");
+                    }
+                }
+                if($('#type_animals').val() == ''){
+                    $('.add_type_animals').addClass("has-error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('.add_type_animals').removeClass("has-error");
+                }
+                //land
+                if (!$("input[name='land']:checked").val()) {
+                    $('.add_land').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{$('.add_land').removeClass("error");}
+//                if (isValid)
+//                  nextStepWizard.removeAttr('disabled').trigger('click');
+                if (isValid) {
+                     //nextStepWizard.removeAttr('disabled').trigger('click');
                     $(".form-group-post").submit();
+                }
             });
             $('div.setup-panel div a.btn-primary').trigger('click');
+        });
+        $('#st1').click(function() {
+            $('#st2').attr('disabled', 'disabled').trigger('click');
+        });
+        $('#st2').click(function() {
+            $('#st3').attr('disabled', 'disabled').trigger('click');
         });
         /*========================================================================
          ===============// select hospital code append interview code //=================
@@ -2504,7 +2514,7 @@
             document.getElementById('total_people').value =totalPople;
 
             if(row >= 10){
-                $('#add_rows').hide();
+                //$('#add_rows').hide();
                 alert('ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់មិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
                 return false;
             }
@@ -2557,30 +2567,32 @@
             $(".occupation").select2({allowClear:true, placeholder: "មុខរបរ"});
             $(".education_level").select2({ allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
             AllowNumber();
-            var row_num = $('.new_rows tr').length-1;
-            for(var i=0; i<row_num; i++) {
-                $('.age').keyup(function () {
-                    var age = Number($('#age_'+i).val());
+            var row_num = $('.new_rows tr').length;
+            $('.age').keyup(function () {
+                for(var ii=1; ii<row_num; ii++) {
+                    var age = Number($('#age_'+ii).val());
                     var currentyear = (new Date()).getFullYear();
                     var dob = currentyear-age;
                     if(age >= 150){
-                        $('#dob_'+i).val('');
+                        $('#dob_'+ii).val('');
                     }else{
-                        $('#dob_'+i).val(dob);
+                        $('#dob_'+ii).val(dob);
                     }
-                });
-                $('.dob').keyup(function () {
-                    var dob = Number($('#dob_'+i).val());
+                }
+            });
+            $('.dob').keyup(function () {
+                for(var ii=1; ii<row_num; ii++) {
+                    var dob = Number($('#dob_' + ii).val());
                     var currentyear = (new Date()).getFullYear();
-                    var age = currentyear-dob;
-                    if(dob >= currentyear || age >= 150){
-                        $('#age_'+i).val('');
+                    var age = currentyear - dob;
+                    if (dob >= currentyear || age >= 150) {
+                        $('#age_' + ii).val('');
                     }
-                    else{
-                        $('#age_'+i).val(age);
+                    else {
+                        $('#age_' + ii).val(age);
                     }
-                });
-            }
+                }
+            });
         });
         $('#age').on('input', function() {
             var age = Number($('#age').val());
@@ -2608,7 +2620,9 @@
                 $('.new_rows  tr:eq(' + (n-1) +') td:first-child').html(n);
                 $('.new_rows  tr:eq(' + (n-1) +') td .nickname').attr('name', 'nick_name['+(n-1)+']');
                 $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('name', 'dob['+(n-1)+']');
+                $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('id', 'dob_'+(n-1));
                 $('.new_rows  tr:eq(' + (n-1) +') td .age').attr('name', 'age['+(n-1)+']');
+                $('.new_rows  tr:eq(' + (n-1) +') td .age').attr('id', 'age_'+(n-1));
                 $('.new_rows  tr:eq(' + (n-1) +') td .family_relationship').attr('name', 'family_relationship['+(n-1)+']');
                 $('.new_rows  tr:eq(' + (n-1) +') td .m_sex').attr('name', 'm_sex['+(n-1)+']');
                 $('.new_rows  tr:eq(' + (n-1) +') td .occupation ').attr('name', 'occupation['+(n-1)+']');
@@ -2648,7 +2662,7 @@
         $('#add_rows_1').click(function(){ //alert($m_id);
             var row_1 = $('.new_rows_1 tr.myrow_1').length;
             if(row_1 >= 6){
-                $('#add_rows_1').hide();
+                //$('#add_rows_1').hide();
                 alert('ប្រភេទសម្ភារប្រើបា្រស់​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
                 return false;
             }
@@ -2670,17 +2684,19 @@
             dataRow_meterial++;
             $(".type_meterial").select2({ allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
             AllowNumber();
-            var row_num = $('.new_rows_1 tr').length-1;
-            for(var i=0; i<row_num; i++) {
+            var row_num = $('.new_rows_1 tr').length;
+
                 $('.meterial').keyup(function () {
-                    var sum = 0;
-                    var number_meterial = $('#number_meterial_'+i).val();
-                    var market_value_meterial = $('#market_value_meterial_'+i).val();
-                    sum = Number(number_meterial * market_value_meterial);
-                    $("#meterial_"+i).attr({"onclick": "remove_1("+sum+")"});
-                    $('#total_rail_meterial_'+i).val(sum);
+                    for(var i=0; i<row_num; i++) {
+                        var sum = 0;
+                        var number_meterial = $('#number_meterial_'+i).val();
+                        var market_value_meterial = $('#market_value_meterial_'+i).val();
+                        sum = Number(number_meterial * market_value_meterial);
+                        $("#meterial_"+i).attr({"onclick": "remove_1("+sum+")"});
+                        $('#total_rail_meterial_'+i).val(sum);
+                    }
                 });
-            }
+
             $('.meterial').keyup(function () {
                 var arr = document.getElementsByClassName('totalallowNumber_meterial');
                 var tot=0;
@@ -2696,8 +2712,12 @@
                 $('.new_rows_1  tr:eq(' + (n-1) +') td:first-child').html(n);
                 $('.new_rows_1  tr:eq(' + (n-1) +') td .type_meterial').attr('name', 'type_meterial['+(n-1)+']');
                 $('.new_rows_1  tr:eq(' + (n-1) +') td .number_meterial').attr('name', 'number_meterial['+(n-1)+']');
+                $('.new_rows_1  tr:eq(' + (n-1) +') td .number_meterial').attr('id', 'number_meterial_'+(n-1));
                 $('.new_rows_1  tr:eq(' + (n-1) +') td .market_value_meterial').attr('name', 'market_value_meterial['+(n-1)+']');
+                $('.new_rows_1  tr:eq(' + (n-1) +') td .market_value_meterial').attr('id', 'market_value_meterial_'+(n-1));
                 $('.new_rows_1  tr:eq(' + (n-1) +') td .total_rail_meterial').attr('name', 'total_rail_meterial['+(n-1)+']');
+                $('.new_rows_1  tr:eq(' + (n-1) +') td .total_rail_meterial').attr('id', 'total_rail_meterial_'+(n-1));
+                $('.new_rows_1  tr:eq(' + (n-1) +') td .remove_rows_1').attr('id', 'meterial_'+(n-1));
             }
         }
         //remove add
@@ -2747,7 +2767,7 @@
         $('#add_rows_2').click(function(){ //alert($m_id);
             var row_2 = $('.new_rows_2 tr.myrow_2').length;
             if(row_2 >= 7){
-                $('#add_rows_2').hide();
+                //$('#add_rows_2').hide();
                 alert('ប្រភេទយានជំនិះ​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
                 return false;
             }
@@ -2769,17 +2789,19 @@
             dataRow_vehicle++;
             $(".type_vehicle").select2({allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
             AllowNumber();
-            var row_num = $('.new_rows_2 tr').length-1;
-            for(var i=0; i<row_num; i++) {
-                $('.vehicle').keyup(function () {
+            var row_num = $('.new_rows_2 tr').length;
+
+            $('.vehicle').keyup(function () {
+                for(var i=0; i<row_num; i++) {
                     var sum = 0;
                     var number_vehicle_1 = $('#number_vehicle_'+i).val();
                     var market_value_vehicle_1 = $('#market_value_vehicle_'+i).val();
                     sum = Number(number_vehicle_1 * market_value_vehicle_1);
                     $("#vehicle_"+i).attr({"onclick": "remove_2("+sum+")"});
                     $('#total_rail_vehicle_'+i).val(sum);
-                });
-            }
+                }
+            });
+
             $('.vehicle').keyup(function () {
                 var arr = document.getElementsByClassName('totalallowNumber_vehicle');
                 var tot=0;
@@ -2795,8 +2817,12 @@
                 $('.new_rows_2  tr:eq(' + (n-1) +') td:first-child').html(n);
                 $('.new_rows_2  tr:eq(' + (n-1) +') td .type_vehicle').attr('name', 'type_vehicle['+(n-1)+']');
                 $('.new_rows_2  tr:eq(' + (n-1) +') td .number_vehicle').attr('name', 'number_vehicle['+(n-1)+']');
+                $('.new_rows_2  tr:eq(' + (n-1) +') td .number_vehicle').attr('id', 'number_vehicle_'+(n-1));
                 $('.new_rows_2  tr:eq(' + (n-1) +') td .market_value_vehicle').attr('name', 'market_value_vehicle['+(n-1)+']');
+                $('.new_rows_2  tr:eq(' + (n-1) +') td .market_value_vehicle').attr('id', 'market_value_vehicle_'+(n-1));
                 $('.new_rows_2  tr:eq(' + (n-1) +') td .total_rail_vehicle').attr('name', 'total_rail_vehicle['+(n-1)+']');
+                $('.new_rows_2  tr:eq(' + (n-1) +') td .total_rail_vehicle').attr('id', 'total_rail_vehicle_'+(n-1));
+                $('.new_rows_2  tr:eq(' + (n-1) +') td .remove_rows_2').attr('id', 'vehicle_'+(n-1));
             }
         }
         //remove add
@@ -2842,7 +2868,7 @@
         $('#add_rows_3').click(function(){ //alert($m_id);
             var row_3 = $('.new_rows_3 tr.myrow_3').length;
             if(row_3 >= 4){
-                $('#add_rows_3').hide();
+               // $('#add_rows_3').hide();
                 alert('ប្រភេទចំណូលមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
                 return false;
             }
@@ -2892,7 +2918,8 @@
             var row1 = $('.new_rows tr.myrow').length;
             var row_411 = $('.new_rows_4 tr.myrow_4').length;
             if(row_411 == row1){
-                $('#add_rows_4').hide();
+                alert('if you want add more member, please go back to add.');
+                //$('#add_rows_4').hide();
                 return false;
             }
             reOrder_other_income();
