@@ -1129,12 +1129,12 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input id="number_vehicle" name="number_vehicle[0]" type="text" class="form-control allowNumber vehicle" required="required" />
+                                            <input id="number_vehicle" name="number_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group input-group">
-                                            <input id="market_value_vehicle" name="market_value_vehicle[0]" type="text" class="form-control allowNumber vehicle" required="required" />
+                                            <input id="market_value_vehicle" name="market_value_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
                                             <span class="input-group-addon">រៀល</span>
                                         </div>
                                     </td>
@@ -1157,7 +1157,7 @@
                                         <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
                                         <td>
                                             <div class="form-group input-group">
-                                                <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control" readonly="readonly"/>
+                                                <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
                                                 <span class="input-group-addon">រៀល</span>
                                             </div>
                                         </td>
@@ -1167,7 +1167,7 @@
                                         <td colspan="4"><b style="float:right">6. អំពីយានជំនិះរបស់គ្រួសារ</b></td>
                                         <td>
                                             <div class="form-group input-group">
-                                                <input id="score_v" name="" type="text" required="required" class="form-control" readonly="readonly"/>
+                                                <input id="score_v" name="" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
                                                 <span class="input-group-addon">ពិន្ទុ</span>
                                             </div>
                                         </td>
@@ -2518,9 +2518,9 @@
                     '<select class="form-control type_vehicle" id="type_vehicle_'+row_2+'" name="type_vehicle['+row_2+']"> <option></option>@foreach($typetransport as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
                 '</div>'+
             '</td>'+
-            '<td><div class="form-group"><input autocomplete="off" id="number_vehicle_'+row_2+'" type="text" class="number_vehicle form-control allowNumber vehicle" name="number_vehicle['+row_2+']" required="required"/></div></td>'+
-            '<td><div class="form-group input-group"><input autocomplete="off" id="market_value_vehicle_'+row_2+'" type="text"  class="market_value_vehicle form-control allowNumber vehicle" name="market_value_vehicle['+row_2+']" required="required"/><span class="input-group-addon">រៀល</span></div></td>'+
-            '<td><div class="form-group input-group"><input autocomplete="off" id="total_rail_vehicle_'+row_2+'" type="text"  class="total_rail_vehicle form-control totalallowNumber_vehicle" name="total_rail_vehicle['+row_2+']"/ readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" id="number_vehicle_'+row_2+'" type="text" class="number_vehicle form-control allowNumber vehicle cal_v" name="number_vehicle['+row_2+']" required="required"/></div></td>'+
+            '<td><div class="form-group input-group"><input autocomplete="off" id="market_value_vehicle_'+row_2+'" type="text"  class="market_value_vehicle form-control allowNumber vehicle cal_v" name="market_value_vehicle['+row_2+']" required="required"/><span class="input-group-addon">រៀល</span></div></td>'+
+            '<td><div class="form-group input-group"><input autocomplete="off" id="total_rail_vehicle_'+row_2+'" type="text"  class="total_rail_vehicle form-control totalallowNumber_vehicle cal_v" name="total_rail_vehicle['+row_2+']"/ readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
             '<td style="text-align:center;"><a id="vehicle_'+row_2+'" class="btn remove_rows_2" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
         $(".new_rows_2").append(html);
@@ -2577,6 +2577,19 @@
             sum = Number(number_vehicle * market_value_vehicle);
         });
         $('#total_rail_vehicle').val(sum);
+
+        $('.cal_v').change(function(){
+            var tot = $('#total_vehicle_costs').val();
+            if(tot>=0 && tot<=600000) {
+                 $('#score_v').val(6);
+            }else if(tot>=604000 && tot<=1200000){
+                $('#score_v').val(4);
+            }else if(tot>=1204000 && tot<=2000000){
+               $('#score_v').val(2);
+            }else{
+                $('#score_v').val(0);
+            }
+        });
     });
     $('.vehicle').keyup(function () {
         var arr = document.getElementsByClassName('totalallowNumber_vehicle');
@@ -2586,16 +2599,8 @@
                 tot += parseInt(arr[i].value);
         }
         document.getElementById('total_vehicle_costs').value = tot;
-        if(tot>=0 && tot<=600000) {
-             $('#score_v').val(6);
-        }else if(tot>600000 && tot<=1200000){
-            $('#score_v').val(4);
-        }else if(tot>1200000 && tot<=2000000){
-           $('#score_v').val(2);
-        }else{
-            $('#score_v').val(0);
-        }
     });
+    
     dataRow_income = 2;
     $('#add_rows_3').click(function(){ //alert($m_id);
         var row_3 = $('.new_rows_3 tr.myrow_3').length;
