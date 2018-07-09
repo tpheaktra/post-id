@@ -729,14 +729,22 @@
                                                         '<td><label class="control-label">​ និង​ស្ថានភាព : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group add_r_status">' +
-                                                                 '<select class="form-control r_status" id="r_status" name="roof_status">' +
+                                                                 '<select class="form-control r_status cal_roof" id="r_status" name="roof_status">' +
                                                                     '<option></option>@foreach($house_status as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
                                                                  '</select>' +
                                                              '</div>' +
                                                          '</td>'+
                                                      '</tr>'+
                                                  '</table>' +
-                                             '</div>';
+                                             '</div>'+
+                                             '<p>'+'3A 1 : ស្ថានភាពដំបូលផ្ទះ '+'<p>'+
+                                             '<div class="form-group input-group" style="width: 300px;">'+
+                                               '<input id="roof_score" type="text" name="roof_score" class="cal_roof form-control allowNumber"​ readonly>'+
+                                               '<span class="input-group-addon">ពិន្ទុ</span>'+
+                                            '</div>';
+                                            $('.cal_roof').change(function(){
+                                               alert('aa');
+                                            });
                                             var building_year = '<div class="col-sm-6">' +
                                                     '<table class="table-home table table-bordered table-striped">' +
                                                     '<thead>' +
@@ -748,7 +756,7 @@
                                                         '<tr>' +
                                                             '<td width="50%">' +
                                                                 '<div class="add_huild_year">' +
-                                                                    '<select name="h_build_year" id="year_select" style="width: 100%;" name="build_in">\n' +
+                                                                    '<select name="h_build_year" id="year_select" style="width: 100%;" name="build_in">\n'+
                                                                         '<option></option>' +
                                                                         '@php $currentYear = date('Y'); @endphp  @foreach (range(1950, $currentYear) as $value) <option value="{{$value}}">{{$value}}</option> @endforeach' +
                                                                     '</select>' +
@@ -825,7 +833,13 @@
                                                         '</td>'+
                                                     '</tr>'+
                                                 '</table>'+
+                                            '</div>'+
+                                            '<p>'+'3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ  '+'<p>'+
+                                             '<div class="form-group input-group" style="width: 300px;">'+
+                                               '<input id="" type="text" name="" class=" form-control allowNumber"​ readonly>'+
+                                               '<span class="input-group-addon">ពិន្ទុ</span>'+
                                             '</div>';
+                                         
                                          $('#home-ke').append(homeke);
                                          $(".wall_relationship").select2({ allowClear:true, placeholder: "ជញ្ជាំង"});
                                          $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
@@ -842,6 +856,7 @@
                                                '<span class="input-group-addon">ពិន្ទុ</span>'+
                                             '</div>';
                                          $('#general-status').append(generalStatus);
+
                                          $('.condition_house').click(function(){
                                              var house = $('input[name=condition_house]:checked').val();
                                              if(house ==1){
