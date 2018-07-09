@@ -759,7 +759,7 @@
                                                                     '<ul class="li-none">' +
                                                                         '@foreach($homePrepar as $key =>$p)' +
                                                                             '<li>' +
-                                                                                '<label><input class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
+                                                                                '<label><input style="margin-right: 10px;" class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
                                                                                 '@if($p->id == 2)<label id="homeyear"></label>@endif' +
                                                                             '</li>' +
                                                                         '@endforeach'+
@@ -1855,7 +1855,8 @@
                 $('#income_age_0').append('<option value="'+m_age+'">'+m_age+'</option>');
             }
 
-            $('.empapp').empty();
+
+            $('.empapp').closest('tr').remove();
 
             if($('.family_relationship').val() == ''){
                 $('.alert').show();
@@ -2764,18 +2765,18 @@
             }
         });
         //click append nick name
-        var row_4s = $('.new_rows_4 tr.myrow_4').length;
-        alert(row_num1);
-        for(var k=0;k<row_4s;k++){ alert(k);
-            $('#income_name_'+row_4).empty();
-            $('#income_age_'+row_4).empty();
+        var row_4s = $('.new_rows_4 tr.myrow_4').length-1;
+        for(var k=0;k<row_4s;k++){
+            $('#income_name_'+row_4s).empty();
+            $('#income_age_'+row_4s).empty();
             var x=document.getElementById("income_name_"+k);
             var a=document.getElementById("income_age_"+k);
+
             for (var i = 0; i < x.options.length; i++) {
                 if(x.options[i].selected == false){
                     //alert(x.options[i].value);
-                    $('#income_name_'+row_4).append('<option value="'+x.options[i].value+'">'+x.options[i].value+'</option>');
-                    $('#income_age_'+row_4).append('<option value="'+a.options[i].value+'">'+a.options[i].value+'</option>');
+                    $('#income_name_'+row_4s).append('<option value="'+x.options[i].value+'">'+x.options[i].value+'</option>');
+                    $('#income_age_'+row_4s).append('<option value="'+a.options[i].value+'">'+a.options[i].value+'</option>');
                }
             }
         }

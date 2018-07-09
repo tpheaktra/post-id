@@ -772,11 +772,10 @@
                                             var homeyear = $('input[name=home_prepare]:checked').val();
                                             $('#homeyear').empty();
                                             if(homeyear == 2){
-                                                $('#homeyear').append('<select name="home_year" style="width: 180px;" id="years">' +
-                                                    '<option></option>'+
-                                                    <?php $currentYear = date('Y');?>
-                                                         '@foreach (range(1950, $currentYear) as $value)<option  @if($homePreparLink->home_year ?? 'No' == $p->id) selected @endif value="{{$value}}">{{$value}}</option >@endforeach'</select>';
-                                                );
+                                                $('#homeyear').append(' <?php $currentYear = date('Y');?> <select name="home_year" style="width: 180px;" id="years">' +
+                                                    '<option></option> @foreach (range(1950, $currentYear) as $value)
+                                                        <option  @if($homePreparLink->home_year ?? 'No' == $p->id) selected @endif value="{{$value}}">{{$value}}</option>'+
+                                                    '@endforeach </select>');
                                                 $("#years").select2({allowClear:true, placeholder: 'ឆ្នាំ...'});
                                             }
                                         });

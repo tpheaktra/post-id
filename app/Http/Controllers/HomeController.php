@@ -384,8 +384,9 @@ class HomeController extends Controller
                 $homepre = $request->home_prepare;
                 if($homepre == 2){
                     $hlink1_1 = array(
-                        'home_prepar_id' =>$house->id,
-                        'home_year'      =>$request->home_year
+                        'g_information_id'  => $gn_info->id,
+                        'home_prepar_id'    => $house->id,
+                        'home_year'         => $request->home_year
                     );
                    DB::table('home_prepar_link')->insert($hlink1_1);
                 }
