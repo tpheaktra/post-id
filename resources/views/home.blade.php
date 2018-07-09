@@ -1271,7 +1271,7 @@
                                                     '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
                                                     '<td>'+
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" name="land_farm" type="text" required="required" class="allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                                            '<input id="land_farm" autocomplete="off" name="land_farm" type="text" required="required" class="allowNumber t_land form-control" /><span class="input-group-addon">កន្លែង</span>'+
                                                         '</div>'+
                                                     '</td>'+
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
@@ -1310,8 +1310,10 @@
                                     }
                                     AllowNumber();
                                     $('.t_land').keyup(function(){
-                                        var field = $('#total_land').val();
-                                        var farm  = $('#total_land_farm').val();
+                                        var field = 0;
+                                        var farm = 0;
+                                         field = Number($('#total_land').val());
+                                         farm  = Number($('#total_land_farm').val());
                                         var people = parseInt($('#total_people').val());
                                         // alert(people);
                                         var sum = field + farm;
@@ -1375,12 +1377,12 @@
                                         <td>1</td>
                                         <td>
                                             <div class="form-group">
-                                                <select class="form-control income_name" id="income_name_0" name="income_name[0]" required="required"></select>
+                                                <select readonly="readonly" class="form-control income_name" id="income_name_0" name="income_name[0]" required="required"></select>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <select class="form-control income_age" id="income_age_0" name="income_age[0]" required="required"></select>
+                                                <select readonly="readonly" class="form-control income_age" id="income_age_0" name="income_age[0]" required="required"></select>
                                             </div>
                                         </td>
                                         <td>
@@ -1482,12 +1484,12 @@
                                             '<tr>'+
                                             '<td>'+
                                             '<div class="form-group">' +
-                                            '<input name="kids_then65" type="text" class="form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="kids_then65" type="text" class="form-control allowNumber"/>' +
                                             '</div>'+
                                             '</td>'+
                                             '<td>'+
                                             '<div class="form-group">' +
-                                            '<input name="old_bigger65" type="text" class="form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="old_bigger65" type="text" class="form-control allowNumber"/>' +
                                             '</div>'+
                                             '</td>'+
                                             '</tr>'+
@@ -1517,12 +1519,12 @@
                                             '<tr>' +
                                             '<td>' +
                                             '<div class="form-group">' +
-                                            '<input name="kids_50_then65" type="text" class="form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="kids_50_then65" type="text" class="form-control allowNumber"/>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group">' +
-                                            '<input name="old_50_bigger65" type="text" class="form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="old_50_bigger65" type="text" class="form-control allowNumber"/>' +
                                             '</div>' +
                                             '</td>' +
                                             '</tr>' +
@@ -1812,6 +1814,7 @@
             var row_num = $('.new_rows tr').length;
             document.getElementById('total_people').value =row_num;
             $('#income_name_0').empty();
+            $('#income_age_0').empty();
            // alert(row_num);
             for(var i=0; i<row_num; i++) {
                 if ($('#family_relationship_'+i).val() == '') {
@@ -1851,6 +1854,8 @@
                 $('#income_name_0').append('<option value="'+nick+'">'+nick+'</option>');
                 $('#income_age_0').append('<option value="'+m_age+'">'+m_age+'</option>');
             }
+
+            $('.empapp').empty();
 
             if($('.family_relationship').val() == ''){
                 $('.alert').show();
@@ -2108,6 +2113,7 @@
     /*========================================================================
      ===============// select hospital code append interview code //=================
      ==========================================================================*/
+
     $("#hospital").select2({
         allowClear:true,
         placeholder: 'មន្ទីរពេទ្យ'
@@ -2315,30 +2321,34 @@
         $(".occupation").select2({allowClear:true, placeholder: "មុខរបរ"});
         $(".education_level").select2({ allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
         AllowNumber();
-        var row_num = $('.new_rows tr').length-1;
-        for(var i=0; i<row_num; i++) {
+        var row_num = $('.new_rows tr').length;
+
             $('.age').keyup(function () {
-                var age = Number($('#age_'+i).val());
-                var currentyear = (new Date()).getFullYear();
-                var dob = currentyear-age;
-                if(age >= 150){
-                    $('#dob_'+i).val('');
-                }else{
-                    $('#dob_'+i).val(dob);
+                for(var ii=1; ii<row_num; ii++) {
+                    var age = Number($('#age_'+ii).val());
+                    var currentyear = (new Date()).getFullYear();
+                    var dob = currentyear-age;
+                    if(age >= 150){
+                        $('#dob_'+ii).val('');
+                    }else{
+                        $('#dob_'+ii).val(dob);
+                    }
                 }
             });
             $('.dob').keyup(function () {
-                var dob = Number($('#dob_'+i).val());
-                var currentyear = (new Date()).getFullYear();
-                var age = currentyear-dob;
-                if(dob >= currentyear || age >= 150){
-                    $('#age_'+i).val('');
-                }
-                else{
-                    $('#age_'+i).val(age);
+                for(var ii=1; ii<row_num; ii++) {
+                    var dob = Number($('#dob_' + ii).val());
+                    var currentyear = (new Date()).getFullYear();
+                    var age = currentyear - dob;
+                    if (dob >= currentyear || age >= 150) {
+                        $('#age_' + ii).val('');
+                    }
+                    else {
+                        $('#age_' + ii).val(age);
+                    }
                 }
             });
-        }
+
     });
     $('#age').on('input', function() {
         var age = Number($('#age').val());
@@ -2366,7 +2376,9 @@
             $('.new_rows  tr:eq(' + (n-1) +') td:first-child').html(n);
             $('.new_rows  tr:eq(' + (n-1) +') td .nickname').attr('name', 'nick_name['+(n-1)+']');
             $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('name', 'dob['+(n-1)+']');
+            $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('id', 'dob_'+(n-1));
             $('.new_rows  tr:eq(' + (n-1) +') td .age').attr('name', 'age['+(n-1)+']');
+            $('.new_rows  tr:eq(' + (n-1) +') td .age').attr('id', 'age_'+(n-1));
             $('.new_rows  tr:eq(' + (n-1) +') td .family_relationship').attr('name', 'family_relationship['+(n-1)+']');
             $('.new_rows  tr:eq(' + (n-1) +') td .m_sex').attr('name', 'm_sex['+(n-1)+']');
             $('.new_rows  tr:eq(' + (n-1) +') td .occupation ').attr('name', 'occupation['+(n-1)+']');
@@ -2428,17 +2440,19 @@
         dataRow_meterial++;
         $(".type_meterial").select2({ allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
         AllowNumber();
-        var row_num = $('.new_rows_1 tr').length-1;
-        for(var i=0; i<row_num; i++) {
-            $('.meterial').keyup(function () {
+        var row_num = $('.new_rows_1 tr').length;
+
+        $('.meterial').keyup(function () {
+            for(var i=1; i<row_num; i++) {
                 var sum = 0;
                 var number_meterial = $('#number_meterial_'+i).val();
                 var market_value_meterial = $('#market_value_meterial_'+i).val();
                 sum = Number(number_meterial * market_value_meterial);
                 $("#meterial_"+i).attr({"onclick": "remove_1("+sum+")"});
                 $('#total_rail_meterial_'+i).val(sum);
-            });
-        }
+            }
+        });
+
         $('.meterial').keyup(function () {
             var arr = document.getElementsByClassName('totalallowNumber_meterial');
             var tot=0;
@@ -2454,8 +2468,13 @@
             $('.new_rows_1  tr:eq(' + (n-1) +') td:first-child').html(n);
             $('.new_rows_1  tr:eq(' + (n-1) +') td .type_meterial').attr('name', 'type_meterial['+(n-1)+']');
             $('.new_rows_1  tr:eq(' + (n-1) +') td .number_meterial').attr('name', 'number_meterial['+(n-1)+']');
+            $('.new_rows_1  tr:eq(' + (n-1) +') td .number_meterial').attr('id', 'number_meterial_'+(n-1));
             $('.new_rows_1  tr:eq(' + (n-1) +') td .market_value_meterial').attr('name', 'market_value_meterial['+(n-1)+']');
+            $('.new_rows_1  tr:eq(' + (n-1) +') td .market_value_meterial').attr('id', 'market_value_meterial_'+(n-1));
             $('.new_rows_1  tr:eq(' + (n-1) +') td .total_rail_meterial').attr('name', 'total_rail_meterial['+(n-1)+']');
+            $('.new_rows_1  tr:eq(' + (n-1) +') td .total_rail_meterial').attr('id', 'total_rail_meterial_'+(n-1));
+            $('.new_rows_1  tr:eq(' + (n-1) +') td .remove_rows_1').attr('id', 'meterial_'+(n-1));
+
         }
     }
     //remove add
@@ -2527,17 +2546,19 @@
         dataRow_vehicle++;
         $(".type_vehicle").select2({allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
         AllowNumber();
-        var row_num = $('.new_rows_2 tr').length-1;
-        for(var i=0; i<row_num; i++) {
+        var row_num = $('.new_rows_2 tr').length;
+
             $('.vehicle').keyup(function () {
-                var sum = 0;
-                var number_vehicle_1 = $('#number_vehicle_'+i).val();
-                var market_value_vehicle_1 = $('#market_value_vehicle_'+i).val();
-                sum = Number(number_vehicle_1 * market_value_vehicle_1);
-                $("#vehicle_"+i).attr({"onclick": "remove_2("+sum+")"});
-                $('#total_rail_vehicle_'+i).val(sum);
+                for(var i=1; i<row_num; i++) {
+                    var sum = 0;
+                    var number_vehicle_1 = $('#number_vehicle_'+i).val();
+                    var market_value_vehicle_1 = $('#market_value_vehicle_'+i).val();
+                    sum = Number(number_vehicle_1 * market_value_vehicle_1);
+                    $("#vehicle_"+i).attr({"onclick": "remove_2("+sum+")"});
+                    $('#total_rail_vehicle_'+i).val(sum);
+                }
             });
-        }
+
         $('.vehicle').keyup(function () {
             var arr = document.getElementsByClassName('totalallowNumber_vehicle');
             var tot=0;
@@ -2553,8 +2574,13 @@
             $('.new_rows_2  tr:eq(' + (n-1) +') td:first-child').html(n);
             $('.new_rows_2  tr:eq(' + (n-1) +') td .type_vehicle').attr('name', 'type_vehicle['+(n-1)+']');
             $('.new_rows_2  tr:eq(' + (n-1) +') td .number_vehicle').attr('name', 'number_vehicle['+(n-1)+']');
+            $('.new_rows_2  tr:eq(' + (n-1) +') td .number_vehicle').attr('id', 'number_vehicle_'+(n-1));
             $('.new_rows_2  tr:eq(' + (n-1) +') td .market_value_vehicle').attr('name', 'market_value_vehicle['+(n-1)+']');
+            $('.new_rows_2  tr:eq(' + (n-1) +') td .market_value_vehicle').attr('id', 'market_value_vehicle_'+(n-1));
             $('.new_rows_2  tr:eq(' + (n-1) +') td .total_rail_vehicle').attr('name', 'total_rail_vehicle['+(n-1)+']');
+            $('.new_rows_2  tr:eq(' + (n-1) +') td .total_rail_vehicle').attr('id', 'total_rail_vehicle_'+(n-1));
+            $('.new_rows_2  tr:eq(' + (n-1) +') td .remove_rows_2').attr('id', 'vehicle_'+(n-1));
+
         }
     }
     //remove add
@@ -2650,22 +2676,22 @@
         var row1 = $('.new_rows tr.myrow').length;
         var row_411 = $('.new_rows_4 tr.myrow_4').length;
         if(row_411 == row1){
-            $('#add_rows_4').hide();
+            //$('#add_rows_4').hide();
+            alert('if u want add more member, please go back to add.');
             return false;
         }
         reOrder_other_income();
        // var rowindex_4 = row_4+1;
-        var tab_rows_4 ='<tr class="myrow_4">'+
+        var tab_rows_4 ='<tr class="myrow_4 empapp">'+
                 '<td>'+dataRow_other_income+'</td>'+
                 '<td>' +
                     '<div class="form-group">' +
-                        '<select class="form-control income_name" id="income_name_'+row_4+'" name="income_name['+row_4+']" required="required"></select>' +
+                        '<select readonly="readonly" class="form-control income_name" id="income_name_'+row_4+'" name="income_name['+row_4+']" required="required"></select>' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
                     '<div class="form-group">' +
-                        '<select class="form-control income_age" id="income_age_'+row_4+'" name="income_age['+row_4+']" required="required"></select>' +
-                        //'<input autocomplete="off" name="income_age['+row_4+']" id="income_age_'+row+'" type="text"  class="form-control allowNumber"  />' +
+                        '<select readonly="readonly" class="form-control income_age" id="income_age_'+row_4+'" name="income_age['+row_4+']" required="required"></select>' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
@@ -2680,22 +2706,22 @@
                 '</td>' +
                 '<td>' +
                     '<div class="form-group">' +
-                        '<input autocomplete="off" value="day" name="income_unit['+row_4+']" type="text" required="required" class="form-control" placeholder="ថ្ងៃ" />' +
+                        '<input autocomplete="off" value="day" name="income_unit['+row_4+']" type="text" required="required" class="form-control income_unit" placeholder="ថ្ងៃ" />' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
                     '<div class="form-group input-group">' +
-                        '<input autocomplete="off" id="unit_in_month_'+row_4+'" name="unit_in_month['+row_4+']" type="text" required="required" class="form-control allowNumber otherincome"  /><span class="input-group-addon">ថ្ងៃ</span>' +
+                        '<input autocomplete="off" id="unit_in_month_'+row_4+'" name="unit_in_month['+row_4+']" type="text" required="required" class="form-control allowNumber otherincome unit_in_month"  /><span class="input-group-addon">ថ្ងៃ</span>' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
                     '<div class="form-group input-group">' +
-                        '<input autocomplete="off" id="average_amount_'+row_4+'" name="average_amount['+row_4+']" type="text" required="required" class="form-control allowNumber otherincome"  /><span class="input-group-addon">រៀល</span>' +
+                        '<input autocomplete="off" id="average_amount_'+row_4+'" name="average_amount['+row_4+']" type="text" required="required" class="average_amount form-control allowNumber otherincome"  /><span class="input-group-addon">រៀល</span>' +
                     '</div>' +
                 '</td>' +
                 '<td>' +
                     '<div class="form-group input-group">' +
-                        '<input autocomplete="off" id="monthly_income_'+row_4+'" name="monthly_income['+row_4+']" type="text" required="required" class="form-control allowNumber monthly_income_total"  readonly="readonly"/><span class="input-group-addon">រៀល</span>' +
+                        '<input autocomplete="off" id="monthly_income_'+row_4+'" name="monthly_income['+row_4+']" type="text" required="required" class="form-control allowNumber monthly_income_total monthly_income"  readonly="readonly"/><span class="input-group-addon">រៀល</span>' +
                     '</div>' +
                 '</td>'+
                 '<td style="text-align:center;"><a id="other_income_'+row_4+'" class="btn remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
@@ -2704,17 +2730,19 @@
         dataRow_other_income++;
         AllowNumber();
         $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
-        var row_num1 = $('.new_rows_4 tr').length-1;
-        for(var ii=0; ii<row_num1; ii++) {
-            $('.otherincome').keyup(function () {
+        var row_num1 = $('.new_rows_4 tr').length;
+
+        $('.otherincome').keyup(function () {
+            for(var ii=1; ii<row_num1; ii++) {
                 var sum = 0;
                 var unit_in_month = $('#unit_in_month_'+ii).val();
                 var average_amount = $('#average_amount_'+ii).val();
                 sum = Number(unit_in_month * average_amount);
                 $("#other_income_"+ii).attr({"onclick": "remove_4("+sum+")"});
                 $('#monthly_income_'+ii).val(sum);
-            });
-        }
+            }
+        });
+
         $('.otherincome').keyup(function () {
             var arr = document.getElementsByClassName('monthly_income_total');
             var tot=0;
@@ -2731,8 +2759,9 @@
             }
         });
         //click append nick name
-        var row_4s = $('.new_rows_4 tr.myrow_4').length-1;
-        for(var k=0;k<row_4s;k++){
+        var row_4s = $('.new_rows_4 tr.myrow_4').length;
+        alert(row_num1);
+        for(var k=0;k<row_4s;k++){ alert(k);
             $('#income_name_'+row_4).empty();
             $('#income_age_'+row_4).empty();
             var x=document.getElementById("income_name_"+k);
@@ -2748,14 +2777,27 @@
         $(".income_name").select2({ allowClear:true, placeholder: "ឈ្មោះសមាជិក"});
         $(".income_age").select2({ allowClear:true, placeholder: "អាយុ"});
     });
+
     $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
     function reOrder_other_income(){
         for(var n=2;n<(dataRow_other_income-1);n++){
             $('.new_rows_4  tr:eq(' + (n-1) +') td:first-child').html(n);
             $('.new_rows_4  tr:eq(' + (n-1) +') td .income_name').attr('name', 'income_name['+(n-1)+']');
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .income_name').attr('id', 'income_name_'+(n-1));
             $('.new_rows_4  tr:eq(' + (n-1) +') td .income_age').attr('name', 'income_age['+(n-1)+']');
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .income_age').attr('id', 'income_age_'+(n-1));
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .income_occupation ').attr('name', 'income_occupation ['+(n-1)+']');
+            //$('.new_rows_4  tr:eq(' + (n-1) +') td .income_occupation ').attr('id', 'income_age_'+(n-1));
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .income_unit').attr('name', 'income_unit['+(n-1)+']');
+           // $('.new_rows_4  tr:eq(' + (n-1) +') td .income_age').attr('id', 'income_age_'+(n-1));
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .unit_in_month').attr('name', 'unit_in_month['+(n-1)+']');
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .unit_in_month').attr('id', 'unit_in_month_'+(n-1));
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .average_amount').attr('name', 'average_amount['+(n-1)+']');
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .average_amount').attr('id', 'average_amount_'+(n-1));
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .monthly_income').attr('name', 'monthly_income['+(n-1)+']');
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .monthly_income').attr('id', 'monthly_income_'+(n-1));
+            $('.new_rows_4  tr:eq(' + (n-1) +') td .remove_rows_4').attr('id', 'other_income_'+(n-1));
 
-            //$('.new_rows_4  tr:eq(' + (n-1) +') td .note_animals').attr('name', 'note_animals['+(n-1)+']');
         }
     }
     //remove add
