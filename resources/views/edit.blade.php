@@ -1549,7 +1549,7 @@
                                         '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" name="land_name" type="text" required="required" class="allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                        '<input autocomplete="off" name="land_name" type="text" required="required" class="t_land allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
                                         '</div>' +
                                         '</td>' +
                                         '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
@@ -1563,7 +1563,7 @@
                                         '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
                                         '<td>'+
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" name="land_farm" type="text" required="required" class="allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                        '<input autocomplete="off" name="land_farm" type="text" required="required" class="t_land allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
                                         '</div>'+
                                         '</td>'+
                                         '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
@@ -1602,8 +1602,10 @@
                                     }
                                     AllowNumber();
                                     $('.t_land').keyup(function(){
-                                        var field = $('#total_land').val();
-                                        var farm  = $('#total_land_farm').val();
+                                        var field = 0;
+                                        var farm = 0;
+                                        field = Number($('#total_land').val());
+                                        farm  = Number($('#total_land_farm').val());
                                         var people = parseInt($('#total_people').val());
                                         // alert(people);
                                         var sum = field + farm;
@@ -2503,7 +2505,7 @@
             document.getElementById('total_people').value =totalPople;
 
             if(row >= 10){
-                $('#add_rows').hide();
+                //$('#add_rows').hide();
                 alert('ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់មិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
                 return false;
             }
@@ -2556,30 +2558,32 @@
             $(".occupation").select2({allowClear:true, placeholder: "មុខរបរ"});
             $(".education_level").select2({ allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
             AllowNumber();
-            var row_num = $('.new_rows tr').length-1;
-            for(var i=0; i<row_num; i++) {
-                $('.age').keyup(function () {
-                    var age = Number($('#age_'+i).val());
+            var row_num = $('.new_rows tr').length;
+            $('.age').keyup(function () {
+                for(var ii=1; ii<row_num; ii++) {
+                    var age = Number($('#age_'+ii).val());
                     var currentyear = (new Date()).getFullYear();
                     var dob = currentyear-age;
                     if(age >= 150){
-                        $('#dob_'+i).val('');
+                        $('#dob_'+ii).val('');
                     }else{
-                        $('#dob_'+i).val(dob);
+                        $('#dob_'+ii).val(dob);
                     }
-                });
-                $('.dob').keyup(function () {
-                    var dob = Number($('#dob_'+i).val());
+                }
+            });
+            $('.dob').keyup(function () {
+                for(var ii=1; ii<row_num; ii++) {
+                    var dob = Number($('#dob_' + ii).val());
                     var currentyear = (new Date()).getFullYear();
-                    var age = currentyear-dob;
-                    if(dob >= currentyear || age >= 150){
-                        $('#age_'+i).val('');
+                    var age = currentyear - dob;
+                    if (dob >= currentyear || age >= 150) {
+                        $('#age_' + ii).val('');
                     }
-                    else{
-                        $('#age_'+i).val(age);
+                    else {
+                        $('#age_' + ii).val(age);
                     }
-                });
-            }
+                }
+            });
         });
         $('#age').on('input', function() {
             var age = Number($('#age').val());
@@ -2607,7 +2611,9 @@
                 $('.new_rows  tr:eq(' + (n-1) +') td:first-child').html(n);
                 $('.new_rows  tr:eq(' + (n-1) +') td .nickname').attr('name', 'nick_name['+(n-1)+']');
                 $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('name', 'dob['+(n-1)+']');
+                $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('id', 'dob_'+(n-1));
                 $('.new_rows  tr:eq(' + (n-1) +') td .age').attr('name', 'age['+(n-1)+']');
+                $('.new_rows  tr:eq(' + (n-1) +') td .age').attr('id', 'age_'+(n-1));
                 $('.new_rows  tr:eq(' + (n-1) +') td .family_relationship').attr('name', 'family_relationship['+(n-1)+']');
                 $('.new_rows  tr:eq(' + (n-1) +') td .m_sex').attr('name', 'm_sex['+(n-1)+']');
                 $('.new_rows  tr:eq(' + (n-1) +') td .occupation ').attr('name', 'occupation['+(n-1)+']');
@@ -2647,7 +2653,7 @@
         $('#add_rows_1').click(function(){ //alert($m_id);
             var row_1 = $('.new_rows_1 tr.myrow_1').length;
             if(row_1 >= 6){
-                $('#add_rows_1').hide();
+                //$('#add_rows_1').hide();
                 alert('ប្រភេទសម្ភារប្រើបា្រស់​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
                 return false;
             }
@@ -2669,17 +2675,19 @@
             dataRow_meterial++;
             $(".type_meterial").select2({ allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
             AllowNumber();
-            var row_num = $('.new_rows_1 tr').length-1;
-            for(var i=0; i<row_num; i++) {
+            var row_num = $('.new_rows_1 tr').length;
+
                 $('.meterial').keyup(function () {
-                    var sum = 0;
-                    var number_meterial = $('#number_meterial_'+i).val();
-                    var market_value_meterial = $('#market_value_meterial_'+i).val();
-                    sum = Number(number_meterial * market_value_meterial);
-                    $("#meterial_"+i).attr({"onclick": "remove_1("+sum+")"});
-                    $('#total_rail_meterial_'+i).val(sum);
+                    for(var i=0; i<row_num; i++) {
+                        var sum = 0;
+                        var number_meterial = $('#number_meterial_'+i).val();
+                        var market_value_meterial = $('#market_value_meterial_'+i).val();
+                        sum = Number(number_meterial * market_value_meterial);
+                        $("#meterial_"+i).attr({"onclick": "remove_1("+sum+")"});
+                        $('#total_rail_meterial_'+i).val(sum);
+                    }
                 });
-            }
+
             $('.meterial').keyup(function () {
                 var arr = document.getElementsByClassName('totalallowNumber_meterial');
                 var tot=0;
@@ -2695,8 +2703,12 @@
                 $('.new_rows_1  tr:eq(' + (n-1) +') td:first-child').html(n);
                 $('.new_rows_1  tr:eq(' + (n-1) +') td .type_meterial').attr('name', 'type_meterial['+(n-1)+']');
                 $('.new_rows_1  tr:eq(' + (n-1) +') td .number_meterial').attr('name', 'number_meterial['+(n-1)+']');
+                $('.new_rows_1  tr:eq(' + (n-1) +') td .number_meterial').attr('id', 'number_meterial_'+(n-1));
                 $('.new_rows_1  tr:eq(' + (n-1) +') td .market_value_meterial').attr('name', 'market_value_meterial['+(n-1)+']');
+                $('.new_rows_1  tr:eq(' + (n-1) +') td .market_value_meterial').attr('id', 'market_value_meterial_'+(n-1));
                 $('.new_rows_1  tr:eq(' + (n-1) +') td .total_rail_meterial').attr('name', 'total_rail_meterial['+(n-1)+']');
+                $('.new_rows_1  tr:eq(' + (n-1) +') td .total_rail_meterial').attr('id', 'total_rail_meterial_'+(n-1));
+                $('.new_rows_1  tr:eq(' + (n-1) +') td .remove_rows_1').attr('id', 'meterial_'+(n-1));
             }
         }
         //remove add
@@ -2746,7 +2758,7 @@
         $('#add_rows_2').click(function(){ //alert($m_id);
             var row_2 = $('.new_rows_2 tr.myrow_2').length;
             if(row_2 >= 7){
-                $('#add_rows_2').hide();
+                //$('#add_rows_2').hide();
                 alert('ប្រភេទយានជំនិះ​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
                 return false;
             }
@@ -2768,17 +2780,19 @@
             dataRow_vehicle++;
             $(".type_vehicle").select2({allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
             AllowNumber();
-            var row_num = $('.new_rows_2 tr').length-1;
-            for(var i=0; i<row_num; i++) {
-                $('.vehicle').keyup(function () {
+            var row_num = $('.new_rows_2 tr').length;
+
+            $('.vehicle').keyup(function () {
+                for(var i=0; i<row_num; i++) {
                     var sum = 0;
                     var number_vehicle_1 = $('#number_vehicle_'+i).val();
                     var market_value_vehicle_1 = $('#market_value_vehicle_'+i).val();
                     sum = Number(number_vehicle_1 * market_value_vehicle_1);
                     $("#vehicle_"+i).attr({"onclick": "remove_2("+sum+")"});
                     $('#total_rail_vehicle_'+i).val(sum);
-                });
-            }
+                }
+            });
+
             $('.vehicle').keyup(function () {
                 var arr = document.getElementsByClassName('totalallowNumber_vehicle');
                 var tot=0;
@@ -2794,8 +2808,12 @@
                 $('.new_rows_2  tr:eq(' + (n-1) +') td:first-child').html(n);
                 $('.new_rows_2  tr:eq(' + (n-1) +') td .type_vehicle').attr('name', 'type_vehicle['+(n-1)+']');
                 $('.new_rows_2  tr:eq(' + (n-1) +') td .number_vehicle').attr('name', 'number_vehicle['+(n-1)+']');
+                $('.new_rows_2  tr:eq(' + (n-1) +') td .number_vehicle').attr('id', 'number_vehicle_'+(n-1));
                 $('.new_rows_2  tr:eq(' + (n-1) +') td .market_value_vehicle').attr('name', 'market_value_vehicle['+(n-1)+']');
+                $('.new_rows_2  tr:eq(' + (n-1) +') td .market_value_vehicle').attr('id', 'market_value_vehicle_'+(n-1));
                 $('.new_rows_2  tr:eq(' + (n-1) +') td .total_rail_vehicle').attr('name', 'total_rail_vehicle['+(n-1)+']');
+                $('.new_rows_2  tr:eq(' + (n-1) +') td .total_rail_vehicle').attr('id', 'total_rail_vehicle_'+(n-1));
+                $('.new_rows_2  tr:eq(' + (n-1) +') td .remove_rows_2').attr('id', 'vehicle_'+(n-1));
             }
         }
         //remove add
@@ -2841,7 +2859,7 @@
         $('#add_rows_3').click(function(){ //alert($m_id);
             var row_3 = $('.new_rows_3 tr.myrow_3').length;
             if(row_3 >= 4){
-                $('#add_rows_3').hide();
+               // $('#add_rows_3').hide();
                 alert('ប្រភេទចំណូលមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
                 return false;
             }
@@ -2891,7 +2909,8 @@
             var row1 = $('.new_rows tr.myrow').length;
             var row_411 = $('.new_rows_4 tr.myrow_4').length;
             if(row_411 == row1){
-                $('#add_rows_4').hide();
+                alert('if you want add more member, please go back to add.');
+                //$('#add_rows_4').hide();
                 return false;
             }
             reOrder_other_income();

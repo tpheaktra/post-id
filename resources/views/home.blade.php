@@ -1257,7 +1257,7 @@
                                                     '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" name="land_name" type="text" required="required" class="allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                                            '<input autocomplete="off" name="land_name" type="text" required="required" class="t_land allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
                                                         '</div>' +
                                                     '</td>' +
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
@@ -1386,8 +1386,8 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="form-group">
-                                                <select style="width: 100%" class="form-control income_occupation" id="income_occupation" name="income_occupation[0]">
+                                            <div class="form-group add_income_occupation">
+                                                <select style="width: 100%" class="form-control income_occupation" id="income_occupation" name="income_occupation[0]" required="required">
                                                     <option></option>
                                                     @foreach($occupation as $keh => $value)
                                                         <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -2098,6 +2098,15 @@
             }else{
                 $('.add_type_animals').removeClass("has-error");
             }
+
+            if($('#income_occupation').val() == ''){
+                $('.add_income_occupation').addClass("has-error");
+                $('.alert').show();
+                isValid = false;
+            }else{
+                $('.add_income_occupation').removeClass("has-error");
+            }
+
             //land
             if (!$("input[name='land']:checked").val()) {
                 $('.add_land').addClass("error");
@@ -2269,7 +2278,7 @@
         document.getElementById('total_people').value =totalPople;
 
         if(row >= 10){
-            $('#add_rows').hide();
+           // $('#add_rows').hide();
             alert('ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់មិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
             return false;
         }
@@ -2419,7 +2428,7 @@
     $('#add_rows_1').click(function(){ //alert($m_id);
         var row_1 = $('.new_rows_1 tr.myrow_1').length;
         if(row_1 >= 6){
-            $('#add_rows_1').hide();
+           // $('#add_rows_1').hide();
             alert('ប្រភេទសម្ភារប្រើបា្រស់​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
             return false;
         }
@@ -2525,7 +2534,7 @@
     $('#add_rows_2').click(function(){ //alert($m_id);
         var row_2 = $('.new_rows_2 tr.myrow_2').length;
         if(row_2 >= 7){
-            $('#add_rows_2').hide();
+            //$('#add_rows_2').hide();
             alert('ប្រភេទយានជំនិះ​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
             return false;
         }
@@ -2632,7 +2641,7 @@
     $('#add_rows_3').click(function(){ //alert($m_id);
         var row_3 = $('.new_rows_3 tr.myrow_3').length;
         if(row_3 >= 4){
-            $('#add_rows_3').hide();
+           // $('#add_rows_3').hide();
             alert('ប្រភេទចំណូលមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
             return false;
         }
@@ -2683,7 +2692,7 @@
         var row_411 = $('.new_rows_4 tr.myrow_4').length;
         if(row_411 == row1){
             //$('#add_rows_4').hide();
-            alert('if u want add more member, please go back to add.');
+            alert('if you want add more member, please go back to add.');
             return false;
         }
         reOrder_other_income();
@@ -2701,7 +2710,7 @@
                     '</div>' +
                 '</td>' +
                 '<td>' +
-                    '<div class="form-group">' +
+                    '<div class="form-group add_income_occupation">' +
                         '<select style="width: 100%" autocomplete="off" class="form-control income_occupation" id="income_occupation" name="income_occupation['+row_4+']" required="required">' +
                             '<option></option>' +
                             '@foreach($occupation as $keh => $value)' +
