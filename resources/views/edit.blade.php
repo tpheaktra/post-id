@@ -493,7 +493,7 @@
                                             '</td>' +
                                             '<td width="50%">' +
                                             '<div class="form-group input-group">' +
-                                            '<input value="{{$rendPrice->house_rent_price}}" autocomplete="off" id="price" type="text" required="required" class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">រៀល</span>' +
+                                            '<input value="{{$rendPrice->house_rent_price ?? ''}}" autocomplete="off" id="price" type="text" required="required" class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">រៀល</span>' +
                                             '</div>' +
                                             '</td>' +
                                             '</tr>' +
