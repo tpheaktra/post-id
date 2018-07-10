@@ -597,8 +597,9 @@ class HomeController extends Controller
             $homePreparLink='';
         }else{
             $homePreparLink = HomePreparLinkModel::where('home_prepar_id',$household_root->home_prepare_id)->where('g_information_id',$id)->first();
-        }
 
+        }
+        $rendPrice=HouseholdRentPriceModel::where('g_information_id',$id)->where('household_family_id',$gFamily->household_family_id)->first();
         $toilet = TypeToiletLinkModel::where('toilet_id',$gFamily->toilet_id)->where('g_information_id',$id)->first();
 
 
@@ -617,7 +618,7 @@ class HomeController extends Controller
             'landAgricultural','loan','family','roof_made','wall_made','house_status',
             'question_electric','typemeterial','typeanimals',
             'typetransport','question_totel','health','ginfo','memberFamily',
-            'gFamily','household_root','homePreparLink','toilet','material','vehicle','income','otherIncome'));
+            'gFamily','household_root','homePreparLink','rendPrice','toilet','material','vehicle','income','otherIncome'));
     }
 
     /*

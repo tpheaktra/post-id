@@ -493,7 +493,7 @@
                                             '</td>' +
                                             '<td width="50%">' +
                                             '<div class="form-group input-group">' +
-                                            '<input autocomplete="off" id="price" type="text" required="required" class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">រៀល</span>' +
+                                            '<input value="{{$rendPrice->house_rent_price}}" autocomplete="off" id="price" type="text" required="required" class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">រៀល</span>' +
                                             '</div>' +
                                             '</td>' +
                                             '</tr>' +
@@ -537,19 +537,19 @@
                                             '<td><b>ផ្ទះជាន់ក្រោម៖</b></td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input autocomplete="off" id="ground_floor_length" class="form-control allowNumber ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length" value="{{$household_root->ground_floor_length ?? 'No'}}">' +
+                                            '<input autocomplete="off" id="ground_floor_length" class="form-control allowNumber ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length" value="{{$household_root->ground_floor_length ?? ''}}">' +
                                             '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input autocomplete="off" id="ground_floor_width" class="form-control allowNumber ground_floor"  placeholder="ទទឹង" type="text" name="ground_floor_width" value="{{$household_root->ground_floor_width ?? 'No'}}">' +
+                                            '<input autocomplete="off" id="ground_floor_width" class="form-control allowNumber ground_floor"  placeholder="ទទឹង" type="text" name="ground_floor_width" value="{{$household_root->ground_floor_width ?? ''}}">' +
                                             '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input autocomplete="off" id="ground_floor_area" class="form-control allowNumber"  placeholder="ផ្ទៃ" type="text" name="ground_floor_area" readonly="readonly" value="{{$household_root->ground_floor_area ?? 'No'}}">' +
+                                            '<input autocomplete="off" id="ground_floor_area" class="form-control allowNumber"  placeholder="ផ្ទៃ" type="text" name="ground_floor_area" readonly="readonly" value="{{$household_root->ground_floor_area ?? ''}}">' +
                                             '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                             '</div>' +
                                             '</td>' +
@@ -558,19 +558,19 @@
                                             '<td><b>ផ្ទះជាន់លើ(បើមាន)៖</b></td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input autocomplete="off" id="upper_floor_length" class="form-control allowNumber" placeholder="បណ្តោយ" type="text" name="upper_floor_length" value="{{$household_root->upper_floor_length ?? 'No'}}">' +
+                                            '<input autocomplete="off" id="upper_floor_length" class="form-control allowNumber" placeholder="បណ្តោយ" type="text" name="upper_floor_length" value="{{$household_root->upper_floor_length ?? ''}}">' +
                                             '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input autocomplete="off" id="upper_floor_width" class="form-control allowNumber"  placeholder="ទទឹង" type="text" name="upper_floor_width" value="{{$household_root->upper_floor_width ?? 'No'}} ">' +
+                                            '<input autocomplete="off" id="upper_floor_width" class="form-control allowNumber"  placeholder="ទទឹង" type="text" name="upper_floor_width" value="{{$household_root->upper_floor_width ?? ''}} ">' +
                                             '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input autocomplete="off" id="upper_floor_area" class="form-control allowNumber"  placeholder="ផ្ទៃ" type="text" name="upper_floor_area" readonly="readonly" value="{{$household_root->upper_floor_area ?? 'No'}}">' +
+                                            '<input autocomplete="off" id="upper_floor_area" class="form-control allowNumber"  placeholder="ផ្ទៃ" type="text" name="upper_floor_area" readonly="readonly" value="{{$household_root->upper_floor_area ?? ''}}">' +
                                             '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                             '</div>' +
                                             '</td>' +
@@ -579,19 +579,19 @@
                                             '<td><b>សំណង់បន្ថែម ឧ. ផ្ទះបាយ... (បើមាន)៖ </b></td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input autocomplete="off" id="further_floor_length" class="form-control allowNumber" placeholder="បណ្តោយ" type="text"  name="further_floor_length" value="{{$household_root->further_floor_length ?? 'No'}}">' +
+                                            '<input autocomplete="off" id="further_floor_length" class="form-control allowNumber" placeholder="បណ្តោយ" type="text"  name="further_floor_length" value="{{$household_root->further_floor_length ?? ''}}">' +
                                             '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input autocomplete="off" id="further_floor_width" class="form-control allowNumber"  placeholder="ទទឹង" type="text" name="further_floor_width" value="{{$household_root->further_floor_width ?? 'No'}}">' +
+                                            '<input autocomplete="off" id="further_floor_width" class="form-control allowNumber"  placeholder="ទទឹង" type="text" name="further_floor_width" value="{{$household_root->further_floor_width ?? ''}}">' +
                                             '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input autocomplete="off" id="further_floor_area" class="form-control allowNumber" required="required" placeholder="ផ្ទៃ" type="text" name="further_floor_area" readonly="readonly" value="{{$household_root->further_floor_area ?? 'No'}}">' +
+                                            '<input autocomplete="off" id="further_floor_area" class="form-control allowNumber" required="required" placeholder="ផ្ទៃ" type="text" name="further_floor_area" readonly="readonly" value="{{$household_root->further_floor_area ?? ''}}">' +
                                             '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                             '</div>' +
                                             '</td>' +
@@ -600,7 +600,7 @@
                                             '<td colspan="3"><b style="float:right;">ផ្ទៃកម្រាលសរុប :</b></td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input readonly="readonly" autocomplete="off" id="total_area" name="total_area" class="calculate form-control allowNumber"  placeholder="ផ្ម៉ែត្រក្រឡា..." type="text" value="{{$household_root->total_area ?? 'No'}}">' +
+                                            '<input readonly="readonly" autocomplete="off" id="total_area" name="total_area" class="calculate form-control allowNumber"  placeholder="ផ្ម៉ែត្រក្រឡា..." type="text" value="{{$household_root->total_area ?? ''}}">' +
                                             '<span class="input-group-addon">ម៉ែត្រ​ក្រឡា</span>' +
                                             '</div>' +
                                             '</td>' +
@@ -609,7 +609,7 @@
                                             '<td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input autocomplete="off" type="text" id="a_score1" name="total_people" onkeyup class="form-control calculate allowNumber"​ required="required" readonly="readonly" value="{{$household_root->total_people ?? 'No'}}">' +
+                                            '<input autocomplete="off" type="text" id="a_score1" name="total_people" onkeyup class="form-control calculate allowNumber"​ required="required" readonly="readonly" value="{{$household_root->total_people ?? ''}}">' +
                                             '<span class="input-group-addon">ពិន្ទុ</span>' +
                                             '</div>' +
                                             '</td>' +
@@ -696,7 +696,7 @@
                                             '<select class="form-control roof_relationship" id="roof_relationship" name="roof_made">' +
                                             '<option></option>' +
                                             '@foreach($roof_made as $keh => $value)' +
-                                            '<option @if($household_root->roof_made_id ?? 'No' == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>' +
+                                            '<option @if($household_root->roof_made_id ?? '' == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>' +
                                             '@endforeach'+
                                             '</select>' +
                                             '</div>' +
@@ -711,7 +711,7 @@
                                             '<td>' +
                                             '<div class="form-group add_r_status">' +
                                             '<select class="form-control r_status" id="r_status" name="roof_status">' +
-                                            '<option></option>@foreach($house_status as $keh => $value)<option @if($household_root->roof_status_id ?? 'No' == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                                            '<option></option>@foreach($house_status as $keh => $value)<option @if($household_root->roof_status_id ?? '' == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
                                             '</select>' +
                                             '</div>' +
                                             '</td>'+
@@ -740,15 +740,15 @@
                                             '<ul class="li-none">' +
                                             '@foreach($homePrepar as $key =>$p)' +
                                                 '<li>' +
-                                                    '<label><input style="margin-right:10px;" @if($household_root->home_prepare_id ?? 'No' == $p->id) checked @endif class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
+                                                    '<label><input style="margin-right:10px;" @if($household_root->home_prepare_id ?? '' == $p->id) checked @endif class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
                                                 '</li>' +
                                             '@endforeach'+
                                                 '<li>'+
-                                                    '<label id="homeyear">@if($household_root->home_prepare_id ?? 'No' ==2)' +
+                                                    '<label id="homeyear">@if($household_root->home_prepare_id ?? '' ==2)' +
                                                         '<select name="home_year" style="width: 180px" id="years"><option></option>'+
                                                          <?php $currentYear = date('Y');
                                                             foreach (range(1950, $currentYear) as $value) { ?>
-                                                                '<option  @if($homePreparLink->home_year ?? 'No' == $value) selected @endif value="{{$value}}">{{$value}}</option >'+
+                                                                '<option  @if($homePreparLink->home_year ?? '' == $value) selected @endif value="{{$value}}">{{$value}}</option >'+
                                                             <?php }?>
                                                         '</select>@endif'+
                                                     '</label>'+
@@ -774,7 +774,7 @@
                                             if(homeyear == 2){
                                                 $('#homeyear').append(' <?php $currentYear = date('Y');?> <select name="home_year" style="width: 180px;" id="years">' +
                                                     '<option></option> @foreach (range(1950, $currentYear) as $value)
-                                                        <option  @if($homePreparLink->home_year ?? 'No' == $p->id) selected @endif value="{{$value}}">{{$value}}</option>'+
+                                                        <option  @if($homePreparLink->home_year ?? '' == $p->id) selected @endif value="{{$value}}">{{$value}}</option>'+
                                                     '@endforeach </select>');
                                                 $("#years").select2({allowClear:true, placeholder: 'ឆ្នាំ...'});
                                             }
@@ -788,7 +788,7 @@
                                             '<div class="form-group add_wall_relationship">' +
                                             '<select class="form-control wall_relationship" id="wall_relationship" name="walls_made">' +
                                             '<option></option>' +
-                                            '@foreach($wall_made as $keh => $value)<option @if($household_root->walls_made_id ?? 'No' == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                                            '@foreach($wall_made as $keh => $value)<option @if($household_root->walls_made_id ?? '' == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
                                             '</select>' +
                                             '</div>' +
                                             '</td>'+
@@ -803,10 +803,10 @@
                                             '<div class="form-group add_h_status">'+
                                             '<select class="form-control h_status" id="h_status" name="walls_status">'+
                                             '<option></option>'+
-                                            '@foreach($house_status as $keh => $value)<option @if($household_root->walls_status_id ?? 'No' == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
+                                            '@foreach($house_status as $keh => $value)<option @if($household_root->walls_status_id ?? '' == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
                                             '</select>'+
                                             '</div>'+
-                                            '</td>'+s
+                                            '</td>'+
                                             '</tr>'+
                                             '</table>'+
                                             '</div>';
@@ -817,7 +817,7 @@
                                             '<div class="add_condition_house"><ul class="li-none">'+
                                             '@foreach($condition_house as $key => $c)' +
                                             '<li>' +
-                                            '<label><input @if($household_root->condition_house_id ?? 'No' == $c->id) checked @endif  style="margin-right:10px;" class="condition_house" type="radio" name="condition_house" ​ value="{{$c->id}}"> {{$c->name_kh}}</label>' +
+                                            '<label><input @if($household_root->condition_house_id ?? '' == $c->id) checked @endif  style="margin-right:10px;" class="condition_house" type="radio" name="condition_house" ​ value="{{$c->id}}"> {{$c->name_kh}}</label>' +
                                             '</li>' +
                                             '@endforeach'+
                                             '</ul></div>';
@@ -1020,10 +1020,10 @@
                                     <div class="add_toilet_1">
                                         <ul class="li-none">
                                             <li>
-                                                <label><input @if($toilet->toilet_1 ?? 'No' == 'បង្គន់ចាក់ទឹក') checked @endif style="margin-right:10px;" type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>
+                                                <label><input @if($toilet->toilet_1 ?? '' == 'បង្គន់ចាក់ទឹក') checked @endif style="margin-right:10px;" type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>
                                                 </li>
                                             <li>
-                                                <label><input @if($toilet->toilet_1 ?? 'No' == 'បង្គន់ស្ងួត') checked @endif style="margin-right:10px;" type="radio" name="tolet_1" value="បង្គន់ស្ងួត">  បង្គន់ស្ងួត</label>
+                                                <label><input @if($toilet->toilet_1 ?? '' == 'បង្គន់ស្ងួត') checked @endif style="margin-right:10px;" type="radio" name="tolet_1" value="បង្គន់ស្ងួត">  បង្គន់ស្ងួត</label>
                                             </li>
                                         </ul>
                                     </div>
@@ -1031,10 +1031,10 @@
                                     <div class="add_toilet_2">
                                         <ul class="li-none">
                                             <li>
-                                                <label><input @if($toilet->toilet_2 ?? 'No' == 'ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់') checked @endif style="margin-right:10px;" type="radio" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>
+                                                <label><input @if($toilet->toilet_2 ?? '' == 'ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់') checked @endif style="margin-right:10px;" type="radio" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>
                                                 </li>
                                             <li>
-                                                <label><input @if($toilet->toilet_2 ?? 'No' == 'ជាបង្គន់រួមជាមួយគ្រួសារដទៃ') checked @endif style="margin-right:10px;" type="radio" name="tolet_2" value="ជាបង្គន់រួមជាមួយគ្រួសារដទៃ"> ជាបង្គន់រួមជាមួយគ្រួសារដទៃ</label>
+                                                <label><input @if($toilet->toilet_2 ?? '' == 'ជាបង្គន់រួមជាមួយគ្រួសារដទៃ') checked @endif style="margin-right:10px;" type="radio" name="tolet_2" value="ជាបង្គន់រួមជាមួយគ្រួសារដទៃ"> ជាបង្គន់រួមជាមួយគ្រួសារដទៃ</label>
                                             </li>
                                         </ul>
                                     </div>
@@ -1048,19 +1048,19 @@
                                     var tott = '<h5>- បើមាន តើជាបង្គន់ចាក់ទឹក ឬ បង្គន់ស្ងួត?</h5>' +
                                         '<div class="add_toilet_1"><ul class="li-none">' +
                                         '<li>' +
-                                        '<label><input @if($toilet->toilet_1 ?? 'No' == 'បង្គន់ចាក់ទឹក') checked @endif style="margin-right:10px;" type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>' +
+                                        '<label><input @if($toilet->toilet_1 ?? '' == 'បង្គន់ចាក់ទឹក') checked @endif style="margin-right:10px;" type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>' +
                                         '</li>' +
                                         '<li>' +
-                                        '<label><input @if($toilet->toilet_1 ?? 'No' == 'បង្គន់ស្ងួត') checked @endif style="margin-right:10px;" type="radio" name="tolet_1" value="បង្គន់ស្ងួត">  បង្គន់ស្ងួត</label>' +
+                                        '<label><input @if($toilet->toilet_1 ?? '' == 'បង្គន់ស្ងួត') checked @endif style="margin-right:10px;" type="radio" name="tolet_1" value="បង្គន់ស្ងួត">  បង្គន់ស្ងួត</label>' +
                                         '</li>' +
                                         '</ul></div>' +
                                         '<h5>- ជាបង្គន់​របស់នរណា?</h5>' +
                                         '<div class="add_toilet_2"><ul class="li-none">' +
                                         '<li>' +
-                                        '<label><input @if($toilet->toilet_2 ?? 'No' == 'ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់') checked @endif style="margin-right:10px;" type="radio" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>' +
+                                        '<label><input @if($toilet->toilet_2 ?? '' == 'ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់') checked @endif style="margin-right:10px;" type="radio" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>' +
                                         '</li>' +
                                         '<li>' +
-                                        '<label><input @if($toilet->toilet_2 ?? 'No' == 'ជាបង្គន់រួមជាមួយគ្រួសារដទៃ') checked @endif style="margin-right:10px;" type="radio" name="tolet_2" value="ជាបង្គន់រួមជាមួយគ្រួសារដទៃ"> ជាបង្គន់រួមជាមួយគ្រួសារដទៃ</label>' +
+                                        '<label><input @if($toilet->toilet_2 ?? '' == 'ជាបង្គន់រួមជាមួយគ្រួសារដទៃ') checked @endif style="margin-right:10px;" type="radio" name="tolet_2" value="ជាបង្គន់រួមជាមួយគ្រួសារដទៃ"> ជាបង្គន់រួមជាមួយគ្រួសារដទៃ</label>' +
                                         '</li>' +
                                         '</ul></div>';
                                     if(tolet == 1){$('#tolet').append(tott);}
@@ -1101,7 +1101,7 @@
                                                                         <select name="home_year" style="width: 180px;" id="years"><option></option>
                                                                             <?php $currentYear = date('Y'); ?>
                                                                             @foreach (range(1950, $currentYear) as $value)
-                                                                                <option @if($homePreparLink->home_year ?? 'No' == $value) selected @endif value="{{$value}}">{{$value}}</option>
+                                                                                <option @if($homePreparLink->home_year ?? '' == $value) selected @endif value="{{$value}}">{{$value}}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         <script type="text/javascript">$("#years").select2({allowClear:true, placeholder: 'ឆ្នាំ...'});</script>
@@ -1122,7 +1122,7 @@
                                                 $('#homeyear').append('<select name="home_year" style="width: 180px;" id="years">' +
                                                     '<option></option>'+
                                                     <?php $currentYear = date('Y'); ?>
-                                                    '@foreach (range(1950, $currentYear) as $value)<option @if($homePreparLink->home_year ?? 'No' == $value) selected @endif value="{{$value}}">{{$value}}</option >@endforeach'+
+                                                    '@foreach (range(1950, $currentYear) as $value)<option @if($homePreparLink->home_year ?? '' == $value) selected @endif value="{{$value}}">{{$value}}</option >@endforeach'+
                                                     '</select>');
                                                 $("#years").select2({allowClear:true, placeholder: 'ឆ្នាំ...'
                                                 });
@@ -1240,7 +1240,38 @@
                         </div>
 
                         <div class="col-sm-12"><hr> </div>
-                        <div class="col-sm-12" id="home-rent"></div>
+                        <div class="col-sm-12" id="home-rent">
+                            @if($gFamily->household_family_id == 2)
+                                <h4>គ.៨) សម្រាប់គ្រួសារជួលផ្ទះគេ​ <a data-toggle="tooltip" title="សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ មិនបាច់បំពេញចំណុច គ៨ ហើយរំលងទៅ គ៩">?</a></h4>
+                                <div class="col-sm-6">
+                                    <table width="100%">
+                                        <tr>
+                                            <td width="50%">
+                                                <label class="control-label"> តើថ្លៃជួលប្រចាំខែជាមធ្យមប៉ុន្មាន?: </label>
+                                                </td>
+                                            <td width="50%">
+                                                <div class="form-group input-group">
+                                                    <input value="{{$rendPrice->house_rent_price}}" autocomplete="off" id="price" type="text" required="required" class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">រៀល</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <tr>
+                                            <td width="50%">
+                                                <label class="control-label"> 3B score </label>
+                                                </td>
+                                            <td width="50%">
+                                                <div class="form-group input-group">
+                                                    <input autocomplete="off" id="r_score"  type="text" required="required" onkeyup class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">ពិន្ទុ</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                @endif
+                        </div>
+
+
+
 
                         <div>
                             <div class="col-sm-12">
