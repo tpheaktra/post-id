@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Battambang" rel="stylesheet"> 
     <!-- Styles -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
     <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/jquery.validate.js'></script>
     <link href="{{asset('js/bootstrap/css/bootstrap.css')}}" rel="stylesheet">

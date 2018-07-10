@@ -1017,17 +1017,17 @@
                                                 </td>
                                                 <td>
                                                     <div class="form-group">
-                                                        <input id="number_meterial" name="number_meterial[0]" type="text" class="form-control allowNumber meterial" required="required" />
+                                                        <input id="number_meterial" name="number_meterial[0]" type="text" class="cal_el form-control allowNumber meterial" required="required" />
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-group">
-                                                        <input id="market_value_meterial" name="market_value_meterial[0]" type="text"  class="form-control allowNumber meterial" required="required" />
+                                                        <input id="market_value_meterial" name="market_value_meterial[0]" type="text"  class="cal_el form-control allowNumber meterial" required="required" />
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-group input-group">
-                                                        <input id="total_rail_meterial" name="total_rail_meterial[0]" type="text" required="required" class="form-control totalallowNumber_meterial"  readonly="readonly"/>
+                                                        <input id="total_rail_meterial" name="total_rail_meterial[0]" type="text" required="required" class="cal_el form-control totalallowNumber_meterial"  readonly="readonly"/>
                                                         <span class="input-group-addon">រៀល</span>
                                                     </div>
                                                 </td>
@@ -1044,8 +1044,18 @@
                                                 <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
                                                 <td>
                                                     <div class="form-group input-group">
-                                                        <input id="total_meterial_costs" name="total_meterial_costs" type="text" required="required" class="form-control" readonly="readonly"/>
+                                                        <input id="total_meterial_costs" name="total_meterial_costs" type="text" required="required" class="cal_el form-control" readonly="readonly"/>
                                                         <span class="input-group-addon">រៀល</span>
+                                                    </div>
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                             <tr>
+                                                <td colspan="4"><b style="float:right">4. ទ្រព្យសម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិចរបស់គ្រួសារ</b></td>
+                                                <td>
+                                                    <div class="form-group input-group">
+                                                        <input id="el_score" name="el_score" type="text" required="required" class="cal_el form-control" readonly="readonly"/>
+                                                        <span class="input-group-addon">ពិន្ទុ</span>
                                                     </div>
                                                 </td>
                                                 <td></td>
@@ -2483,9 +2493,9 @@
                     '<select id="type_meterial_'+row_1+'" class="form-control type_meterial" id="type_meterial" name="type_meterial['+row_1+']"> <option></option>@foreach($typemeterial as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
                 '</div>'+
             '</td>'+
-            '<td><div class="form-group"><input autocomplete="off" id="number_meterial_'+row_1+'" type="text" class="number_meterial form-control allowNumber meterial" name="number_meterial['+row_1+']" required="required"/></div></td>'+
-            '<td><div class="form-group"><input autocomplete="off" id="market_value_meterial_'+row_1+'" type="text" class="market_value_meterial form-control allowNumber meterial" name="market_value_meterial['+row_1+']" required="required"/></div></td>'+
-            '<td><div class="form-group input-group"><input id="total_rail_meterial_'+row_1+'" type="text" required="required" class="total_rail_meterial form-control totalallowNumber_meterial" name="total_rail_meterial['+row_1+']" readonly="readonly"/><span class="input-group-addon">រៀល</span></div></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" id="number_meterial_'+row_1+'" type="text" class="cal_el number_meterial form-control allowNumber meterial" name="number_meterial['+row_1+']" required="required"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" id="market_value_meterial_'+row_1+'" type="text" class="cal_el market_value_meterial form-control allowNumber meterial" name="market_value_meterial['+row_1+']" required="required"/></div></td>'+
+            '<td><div class="form-group input-group"><input id="total_rail_meterial_'+row_1+'" type="text" required="required" class="cal_el total_rail_meterial form-control totalallowNumber_meterial" name="total_rail_meterial['+row_1+']" readonly="readonly"/><span class="input-group-addon">រៀល</span></div></div></td>'+
             '<td style="text-align:center;"><a id="meterial_'+row_1+'" class="btn remove_rows_1" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
         $(".new_rows_1").append(tab_rows_1);
@@ -2494,6 +2504,10 @@
         AllowNumber();
         var row_num = $('.new_rows_1 tr').length;
 
+        $('.cal_el').change(function(){
+            var total = $('#total_meterial_costs').val();
+            alert(total);
+        });
         $('.meterial').keyup(function () {
             for(var i=1; i<row_num; i++) {
                 var sum = 0;

@@ -1,6 +1,23 @@
-@extends('layouts.app')
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="//fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- font khmer battambang -->
+    <link href="https://fonts.googleapis.com/css?family=Battambang" rel="stylesheet"> 
+    <!-- Styles -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/jquery.validate.js'></script>
+    <link href="{{asset('js/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
+    <script src="{{asset('js/bootstrap/js/bootstrap.min.js')}}"></script>
 
-@section('content')
+    <link href="{{asset('js/select2/select2.min.css')}}" rel="stylesheet" />
+    <script src="{{asset('js/select2/select2.min.js')}}"></script>
+
+    <script src="{{asset('js/jQuery.print.js')}}" type="text/javascript"></script>
+    <link href="{{asset('js/datatables/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+    <script src="{{asset('js/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('js/datatables/dataTables.bootstrap.min.js')}}"></script>
 <!------ Include the above in your HEAD tag ---------->
 <div class="container content" id="div1">
     <h3 style="text-align: center;"><b>កំរងសំណួរអត្តសញ្ញាណកម្មគ្រួសារក្រីក្រនៅមន្ទីរពេទ្យ</b></h3>
@@ -1193,4 +1210,3 @@
     //     });
     // });
 </script>
-@endsection
