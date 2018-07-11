@@ -1684,37 +1684,6 @@
                 <th>លេខកូដសម្ភាសន៍</th>
                 <th>សកម្មភាព</th>
             </thead>
-
-
-<?php /*
-            <tbody>
-            @foreach($view as $key =>$value)
-            <tr>
-                <td>{{++$key}}</td>
-                <td>{{$value->g_patient}}</td>
-                <td>{{$value->g_age}} </td>
-                <td>{{$value->name_kh}} </td>
-                <td>{{$value->g_phone}}  </td>
-                <td>{{$value->interview_code}}  </td>
-
-                <td>
-                    <a href="{{route('view.data',Crypt::encrypt($value->id))}}">
-                        <i class="fa fa-eye"></i>
-                    </a> /
-                    <a href="{{route('editpatient.edit',Crypt::encrypt($value->id))}}">
-                        <i class="fa fa-edit"></i>
-                    </a> /
-                    <a href="{{route('print.data',$value->id)}}" target="blank">
-                        <i class="fa fa-print"></i>
-                    </a> /
-                    <a href="{{route('deletepatient.delete',Crypt::encrypt($value->id))}}" id="delete">
-                        <i class="fa fa-trash-o"></i>
-                    </a>
-                </td>
-            </tr>
-            @endforeach
-
-            </tbody> */?>
         </table>
 
         <script type="text/javascript">
@@ -1725,7 +1694,7 @@
                     "retrieve": true,
                     "ajax": "{{ route('view.getPatientView') }}",
                     "columns": [
-                        {data: 'id'},
+                        {data: 'key'},
                         {data: 'g_patient'},
                         {data: 'g_age'},
                         {data: 'g_sex'},
@@ -1736,7 +1705,7 @@
                                 {
                                     return '<a href="'+full.view+'"><i class="fa fa-eye"></i></a> / '+
                                            '<a href="'+full.edit+'"><i class="fa fa-edit"></i></a> / '+
-                                           '<a href="'+full.print+'"><i class="fa fa-print"></i></a> / '+
+                                           '<a href="'+full.print+'"  target="blank"><i class="fa fa-print"></i></a> / '+
                                            '<a href="'+full.delete+'"><i class="fa fa-trash-o"></i></a>';
                                 }
                         },
