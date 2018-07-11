@@ -1099,16 +1099,27 @@
                                                 '<th>ចំណាយ​ជា​មធ្យមក្នុងមួយខែ</th>'+
                                             '</tr>'+
                                             '<tr>'+
-                                                '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber myelectric" id="costs_in_hour" required="required" type="text" name="costs_in_hour" required="required"><span class="input-group-addon">រៀល</span></div></td>'+
-                                                '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber myelectric" id="number_in_month" required="required" type="text" name="number_in_month" required="required"><span class="input-group-addon">គីឡូវ៉ាត់</span></div></td>'+
-                                                '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
+                                                '<td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber myelectric" id="costs_in_hour" required="required" type="text" name="costs_in_hour" required="required"><span class="input-group-addon">រៀល</span></div></td>'+
+                                                '<td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber myelectric" id="number_in_month" required="required" type="text" name="number_in_month" required="required"><span class="input-group-addon">គីឡូវ៉ាត់</span></div></td>'+
+                                                '<td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
                                             '</tr>'+
                                             '<tr>'+
                                                 '<td></td>'+
                                                 '<td></td>'+
-                                                '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
+                                                '<td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber" id="cost_score" required="required" type="text" name="cost_score" readonly="readonly"><span class="input-group-addon">ពិន្ទុ</span></div></td>'+
                                             '</tr>'+
                                             '</table>');
+                                        $('.cal_t').keyup(function(){
+                                            var cost    = $('#costs_per_month').val();
+                                            var number  = $('#number_in_month').val();
+                                            if( (cost < 15000) || (number < 20) ){
+                                                $('#cost_score').val(8);
+                                            }else if( (cost>=15100 && cost<=30000) || (number>=21 && number<=49) ){
+                                                $('#cost_score').val(5);
+                                            }else{
+                                                $('#cost_score').val(0);
+                                            }
+                                        });
                                         $('.myelectric').keyup(function(){
                                             if ($(this).val() > 90000000){
                                                 alert("No numbers above 90000000");
@@ -1122,7 +1133,19 @@
                                             });
                                         AllowNumber();
                                     }else if(electric == 2){
-                                        $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>');
+                                        $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>'+'<div class="form-group input-group" style="width: 300px;">'+
+                                               '<input id="score_power" type="text" name="score_power" class="score_power form-control allowNumber"​ readonly>'+
+                                               '<span class="input-group-addon">ពិន្ទុ</span>'+
+                                            '</div>');
+                                        
+                                         $('.electric_grid_id').click(function(){
+                                            var power = $('input[name=electric_grid_id]:checked').val();
+                                            if(power == 3){
+                                                $('#score_power').val(8);
+                                            }else if( power == 2 || power == 4){
+                                                $('#score_power').val(5);
+                                            }else{$('#score_power').val(0);}
+                                        });
                                     }
                                 });
                             </script>
