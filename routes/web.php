@@ -15,6 +15,7 @@ Auth::routes();
 Route::get('/',['as'=>'home','uses'=>'HomeController@index'])->name('home');
 Route::get('/home',['as'=>'home.index','uses'=>'HomeController@index']);
 
+Route::get('datatable/getposts', ['as'=>'datatable.getposts','uses'=>'HomeController@getPosts']);
 /*
  * ajax
  */
@@ -28,6 +29,7 @@ Route::GET('getVillage',['as'=>'getVillage','uses'=>'HomeController@getVillage']
  */
 Route::POST('insertpatient',['as'=>'insert.index','uses'=>'HomeController@insert']);
 Route::GET('viewpatient/{id}',['as'=>'view.data','uses'=>'HomeController@view']);
+Route::GET('getPatientView',['as'=>'view.getPatientView','uses'=>'HomeController@getPatientView']);
 Route::GET('data-printing/{id}',['as'=>'print.data','uses'=>'HomeController@print']);
 Route::GET('editpatient/{id}',['as'=>'editpatient.edit','uses'=>'HomeController@edit']);
 Route::POST('updatepatient/{id}',['as'=>'updatepatient.update','uses'=>'HomeController@update']);

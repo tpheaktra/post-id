@@ -1679,7 +1679,7 @@
 
     <div class="col-sm-12" style="padding: 0;"><h3>ទិន្នន័យ​អ្នកជំងឺ</h3></div>
     <div class="data-list">
-        <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+        <table id="datatable1" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <th>ល.រ</th>
                 <th>ឈ្មោះអ្នកជំងឺ</th>
@@ -1689,38 +1689,38 @@
                 <th>លេខកូដសម្ភាសន៍</th>
                 <th>សកម្មភាព</th>
             </thead>
-
-            <tbody>
-            @foreach($view as $key =>$value)
-            <tr>
-                <td>{{++$key}}</td>
-                <td>{{$value->g_patient}}</td>
-                <td>{{$value->g_age}} </td>
-                <td>{{$value->name_kh}} </td>
-                <td>{{$value->g_phone}}  </td>
-                <td>{{$value->interview_code}}  </td>
-
-                <td>
-                    <a href="{{route('view.data',Crypt::encrypt($value->id))}}">
-                        <i class="fa fa-eye"></i>
-                    </a> /
-                    <a href="{{route('editpatient.edit',Crypt::encrypt($value->id))}}">
-                        <i class="fa fa-edit"></i>
-                    </a> /
-                    <a href="{{route('print.data',$value->id)}}" target="blank">
-                        <i class="fa fa-print"></i>
-                    </a> /
-                    <a href="{{route('deletepatient.delete',Crypt::encrypt($value->id))}}" id="delete">
-                        <i class="fa fa-trash-o"></i>
-                    </a>
-                </td>
-            </tr>
-            @endforeach
-
-            </tbody>
         </table>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+               $('#datatable1').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "retrieve": true,
+                    "ajax": "{{ route('view.getPatientView') }}",
+                    "columns": [
+                        {data: 'key'},
+                        {data: 'g_patient'},
+                        {data: 'g_age'},
+                        {data: 'g_sex'},
+                        {data: 'g_phone'},
+                        {data: 'interview_code'},
+                        {
+                            "render": function (data, type, full, meta)
+                                {
+                                    return '<a href="'+full.view+'"><i class="fa fa-eye"></i></a> / '+
+                                           '<a href="'+full.edit+'"><i class="fa fa-edit"></i></a> / '+
+                                           '<a href="'+full.print+'"  target="blank"><i class="fa fa-print"></i></a> / '+
+                                           '<a href="'+full.delete+'"><i class="fa fa-trash-o"></i></a>';
+                                }
+                        },
+                    ]
+                });
+            });
+        </script>
     </div>
 </div>
+
 
 
 <script type="text/javascript">
