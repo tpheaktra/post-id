@@ -140,6 +140,9 @@ class HomeController extends Controller
                 inner join dev_pmrs_share.villages v on gi.g_village_id = v.code
                where gi.id ='$id' group by gi.id order by gi.id desc 
             ");
+         $score= DB::select('select *from general_information gi left join store_score sc on sc.patient = gi.id
+
+where gi.id = 1');
         $gender = Helpers::getGender();
         return view('view',compact('gender','patient'));
     }
@@ -399,7 +402,7 @@ class HomeController extends Controller
                     'house_rent_price'    =>$request->rent_fee
                 );
                 HouseholdRentPriceModel::create($hlink2);
-            } elseif($household_link == 5){
+            }elseif($household_link == 5){
                 //household_family_link
                 $hlink = array(
                     'household_family_id' =>$household_link,

@@ -1102,7 +1102,12 @@
                                                 '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber myelectric" id="costs_in_hour" required="required" type="text" name="costs_in_hour" required="required"><span class="input-group-addon">រៀល</span></div></td>'+
                                                 '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber myelectric" id="number_in_month" required="required" type="text" name="number_in_month" required="required"><span class="input-group-addon">គីឡូវ៉ាត់</span></div></td>'+
                                                 '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
-                                            '</tr>' +
+                                            '</tr>'+
+                                            '<tr>'+
+                                                '<td></td>'+
+                                                '<td></td>'+
+                                                '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
+                                            '</tr>'+
                                             '</table>');
                                         $('.myelectric').keyup(function(){
                                             if ($(this).val() > 90000000){
@@ -2504,10 +2509,7 @@
         AllowNumber();
         var row_num = $('.new_rows_1 tr').length;
 
-        $('.cal_el').change(function(){
-            var total = $('#total_meterial_costs').val();
-            alert(total);
-        });
+
         $('.meterial').keyup(function () {
             for(var i=1; i<row_num; i++) {
                 var sum = 0;
@@ -2516,6 +2518,7 @@
                 sum = Number(number_meterial * market_value_meterial);
                 $("#meterial_"+i).attr({"onclick": "remove_1("+sum+")"});
                 $('#total_rail_meterial_'+i).val(sum);
+                
             }
         });
 
@@ -2529,6 +2532,7 @@
             document.getElementById('total_meterial_costs').value = tot;
         });
     });
+
     function reOrder_meterial(){
         for(var n=2;n<(dataRow_meterial-1);n++){
             $('.new_rows_1  tr:eq(' + (n-1) +') td:first-child').html(n);
@@ -2558,11 +2562,18 @@
         var sum = 0;
         var number_meterial = $('#number_meterial').val();
         var market_value_meterial = $('#market_value_meterial').val();
-        $('.meterial').each(function() {
-            sum = Number(number_meterial * market_value_meterial);
-        });
+        $('.meterial').each(function() {sum = Number(number_meterial * market_value_meterial);});
         $('#total_rail_meterial').val(sum);
+
+        $('.cal_el').change(function(){
+            var total = $('#total_meterial_costs').val();
+            if( total>=0 && total <=400000) { $('#el_score').val(6); }
+            else if( total>=404000 && total<=800000 ){ $('#el_score').val(4);}
+            else if( total>=804000 && total<= 1200000){ $('#el_score').val(2);}
+            else{ $('#el_score').val(0); }
+        });
     });
+     
     $('.meterial').keyup(function () {
         var arr = document.getElementsByClassName('totalallowNumber_meterial');
         var tot=0;
@@ -2572,6 +2583,7 @@
         }
         document.getElementById('total_meterial_costs').value = tot;
     });
+    
     //type_vehicle
     $(".type_meterial").select2({
         allowClear:true,
@@ -2962,5 +2974,9 @@
             $('.autho-hide').fadeOut();
         },9000);
     });
+    // $('.cal_el').change(function(){
+    //     var total = $('#total_meterial_costs').val();
+    //     alert(total);
+    //     });
 </script>
 @endsection
