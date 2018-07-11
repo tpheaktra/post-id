@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Redirect;
 use DB;
 use auth;
 use Illuminate\Support\Facades\Crypt;
+use Yajra\DataTables\DataTables;
 class HomeController extends Controller
 {
     /**
@@ -245,7 +246,55 @@ class HomeController extends Controller
         echo json_encode($query);
     }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getPosts()
+    {
+        $users = DB::table('users')->select('*');
+        return Datatables::of($users)
+            ->make(true);
+    }
 
+    public function getPatientView(){
+        $view = DB::select("select 
+        gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh as g_sex,gi.g_phone,
+
+           #household
+        	hf.name_kh as hosehold,hfl.institutions_name,hfl.instatutions_phone,
+        	rm.name_kh as root_made,ch.name_kh as root_status,
+        	wm.name_kh as walls_made,ch1.name_kh as walls_status,
+        	hrpl.house_rent_price
+        	
+         from general_information gi
+        inner join member_family mf on gi.id = mf.g_information_id
+        inner join general_situation_family gsf on gi.id = gsf.g_information_id 
+        inner join gender gg on gi.g_sex = gg.id
+
+
+        left join household_family_link hfl on gsf.g_information_id = hfl.g_information_id
+        left join household_root_link hrl on gsf.g_information_id = hrl.g_information_id
+        left join household_rent_price_link hrpl on gsf.g_information_id = hrpl.g_information_id
+        left join household_family hf on hfl.household_family_id = hf.id or hrl.household_family_id = hf.id or hrpl.household_family_id = hf.id
+
+        left join roof_made rm on hrl.roof_made_id = rm.id
+        left join wall_made wm on hrl.walls_made_id = wm.id
+        left join condition_house ch on hrl.roof_status_id = ch.id 
+        left join condition_house ch1 on hrl.walls_status_id = ch1.id
+
+        where gi.record_status = 1
+        group by gi.interview_code order by gi.id desc");
+
+        foreach ($view as $i =>$v){
+            $view[$i]->view = route('view.data', Crypt::encrypt($v->id));
+            $view[$i]->edit = route('editpatient.edit', Crypt::encrypt($v->id));
+            $view[$i]->print = route('print.data', Crypt::encrypt($v->id));
+            $view[$i]->delete = route('deletepatient.delete', Crypt::encrypt($v->id));
+        }
+        return Datatables::of($view)->make(true);
+    }
 
     /*
      * by pheaktra
@@ -564,6 +613,7 @@ class HomeController extends Controller
      */
     public function edit($id){
         $id = Crypt::decrypt($id);
+
         $hospital         = Helpers::getHospital();
         $provinces        = Helpers::getProvince();
         $relationship     = RelationshipModel::all();
@@ -589,6 +639,7 @@ class HomeController extends Controller
         $health            = Helpers::getHealth();
 
         $ginfo             = GeneralInformationModel::with('district','commune','village')->findOrFail($id);
+
         $memberFamily      = MemberFamilyModel::with('generalInfo')->where('g_information_id',$id)->get();
         $gFamily           = GeneralSituationFamilyModel::where('g_information_id',$id)->first();
 
