@@ -503,7 +503,7 @@
                                      $('#building-year').empty();
                                      $('#household_area').empty();
                                      if(houshold == 5){
-                                         $('#household_family_id').append('<input type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name" autocomplete="off" required="required">លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន : <input class="allowNumber" type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone" autocomplete="off" required="required">');
+                                         $('#household_family_id').append('<input class="form-control-custome" type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name" autocomplete="off" required="required">លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន : <input maxlength="10" class="allowNumber form-control-custome" type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone" autocomplete="off" required="required">');
                                          AllowNumber();
                                      }else if(houshold == 2){
                                          $('#home-rent').append('<h4>គ.៨) សម្រាប់គ្រួសារជួលផ្ទះគេ​ <a data-toggle="tooltip" title="សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ មិនបាច់បំពេញចំណុច គ៨ ហើយរំលងទៅ គ៩">?</a></h4>' +
@@ -1611,12 +1611,12 @@
                                 $('#family_debt').append('<ol class="debt_question">@foreach($question as $key=>$gg)<li><label><input style="margin-right: 10px" value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}</label></li>@endforeach</ol>');
                             }else if(family_debt == 2){
                                 $('#family_debt1').append('<div class="col-sm-12">' +
-                                        '<div class="col-sm-12">' +
+                                        '<div class="col-sm-6">' +
                                             '<table class="table table-bordered table-striped">' +
                                                 '<tbody>' +
                                                     '<tr>' +
                                                         '<td> ចំនួនបំណុលដែលមិនទាន់សងគិតមកដល់បច្ចុប្បន្ន</td>' +
-                                                        '<td>រយៈពេលនៃការសងបំណុល</td>' +
+//                                                        '<td>រយៈពេលនៃការសងបំណុល</td>' +
                                                     '</tr>' +
                                                     '<tr>' +
                                                         '<td>' +
@@ -1625,16 +1625,16 @@
                                                                 '<span class="input-group-addon">រៀល</span>' +
                                                             '</div>' +
                                                         '</td>' +
-                                                        '<td>' +
-                                                            '<div class="input-group add_debt_duration">' +
-                                                                '<input autocomplete="off" class="form-control allowNumber" type="text" name="debt_duration" id="debt_duration">' +
-                                                                '<span class="input-group-addon">ថ្ងៃ</span>' +
-                                                            '</div>' +
-                                                        '</td>' +
+//                                                        '<td>' +
+//                                                            '<div class="input-group add_debt_duration">' +
+//                                                                '<input autocomplete="off" class="form-control allowNumber" type="text" name="debt_duration" id="debt_duration">' +
+//                                                                '<span class="input-group-addon">ថ្ងៃ</span>' +
+//                                                            '</div>' +
+//                                                        '</td>' +
                                                     '</tr>' +
                                                     '<tr>' +
-                                                        '<td>' +
-                                                        '</td>' +
+//                                                        '<td>' +
+//                                                        '</td>' +
                                                         '<td>' +
                                                             '<div class="input-group add_debt_duration">' +
                                                                 '<input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="" id="score_money">' +
@@ -2506,7 +2506,7 @@
 
         $('.cal_el').change(function(){
             var total = $('#total_meterial_costs').val();
-            alert(total);
+          //  alert(total);
         });
         $('.meterial').keyup(function () {
             for(var i=1; i<row_num; i++) {

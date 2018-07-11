@@ -25,8 +25,8 @@ class ConditionHouseTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'name_en' => 'Good',
-                'name_kh' => 'ល្អ',
+                'name_en' => 'New',
+                'name_kh' => 'ថ្មី',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]
