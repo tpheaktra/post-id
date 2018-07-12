@@ -209,40 +209,18 @@ where gi.id = 1');
         echo json_encode($query);
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
+    /*
+     * by pheaktra
+     * function get view with datatable
      */
 
     public function getPatientView(){
         $view = DB::select("select 
-        gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh as g_sex,gi.g_phone,
-
-           #household
-        	hf.name_kh as hosehold,hfl.institutions_name,hfl.instatutions_phone,
-        	rm.name_kh as root_made,ch.name_kh as root_status,
-        	wm.name_kh as walls_made,ch1.name_kh as walls_status,
-        	hrpl.house_rent_price
-        	
-         from general_information gi
-        inner join member_family mf on gi.id = mf.g_information_id
-        inner join general_situation_family gsf on gi.id = gsf.g_information_id 
-        inner join gender gg on gi.g_sex = gg.id
-
-
-        left join household_family_link hfl on gsf.g_information_id = hfl.g_information_id
-        left join household_root_link hrl on gsf.g_information_id = hrl.g_information_id
-        left join household_rent_price_link hrpl on gsf.g_information_id = hrpl.g_information_id
-        left join household_family hf on hfl.household_family_id = hf.id or hrl.household_family_id = hf.id or hrpl.household_family_id = hf.id
-
-        left join roof_made rm on hrl.roof_made_id = rm.id
-        left join wall_made wm on hrl.walls_made_id = wm.id
-        left join condition_house ch on hrl.roof_status_id = ch.id 
-        left join condition_house ch1 on hrl.walls_status_id = ch1.id
-
-        where gi.record_status = 1
-        group by gi.interview_code order by gi.id desc");
+            gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh as g_sex,gi.g_phone
+            from general_information gi
+            inner join gender gg on gi.g_sex = gg.id
+            where gi.record_status = 1
+            group by gi.interview_code order by gi.id desc");
 
         foreach ($view as $i =>$v){
             $view[$i]->key = $i+1;
@@ -533,16 +511,18 @@ where gi.id = 1');
             }
 
             //table health_and_disability
-            foreach ($request->health_id as $key1 => $he1) {
-                $health = array(
-                    'g_information_id' => $gn_info->id,
-                    'health_id'        =>$he1,
-                    'kids_then65'      => $request->kids_then65,
-                    'old_bigger65'     => $request->old_bigger65,
-                    'kids_50_then65'   => $request->kids_50_then65,
-                    'old_50_bigger65'  => $request->old_50_bigger65,
-                );
-               HealthDisabilityModle::create($health);
+            if(!empty($request->health_id)) {
+                foreach ($request->health_id as $key1 => $he1) {
+                    $health = array(
+                        'g_information_id' => $gn_info->id,
+                        'health_id' => $he1,
+                        'kids_then65' => $request->kids_then65,
+                        'old_bigger65' => $request->old_bigger65,
+                        'kids_50_then65' => $request->kids_50_then65,
+                        'old_50_bigger65' => $request->old_50_bigger65,
+                    );
+                        HealthDisabilityModle::create($health);
+                }
             }
 
 
@@ -560,6 +540,7 @@ where gi.id = 1');
             return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
         } catch (\Exception $e) {
             DB::rollBack();
+           // return $this->errorResponse($e->getMessage(), 203);
             return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
         }
 
@@ -597,22 +578,21 @@ where gi.id = 1');
         $health            = Helpers::getHealth();
 
         $ginfo             = GeneralInformationModel::with('district','commune','village')->findOrFail($id);
-
         $memberFamily      = MemberFamilyModel::with('generalInfo')->where('g_information_id',$id)->get();
         $gFamily           = GeneralSituationFamilyModel::where('g_information_id',$id)->first();
-
-        $household_root = HouseHoldRootLinkModel::where('household_family_id',$gFamily->household_family_id)->where('g_information_id',$id)->first();
-        if($household_root==null){
-            $homePreparLink='';
+        $household_root    = HouseHoldRootLinkModel::where('household_family_id',$gFamily->household_family_id)->where('g_information_id',$id)->first();
+        if($household_root == null){
+            $homePreparLink = '';
         }else{
             $homePreparLink = HomePreparLinkModel::where('home_prepar_id',$household_root->home_prepare_id)->where('g_information_id',$id)->first();
-
         }
-        $rendPrice=HouseholdRentPriceModel::where('g_information_id',$id)->where('household_family_id',$gFamily->household_family_id)->first();
-        $toilet = TypeToiletLinkModel::where('toilet_id',$gFamily->toilet_id)->where('g_information_id',$id)->first();
-
+        $rendPrice = HouseholdRentPriceModel::where('g_information_id',$id)->where('household_family_id',$gFamily->household_family_id)->first();
+        $institutions = HouseHoldFamilyLinkModel::where('g_information_id',$id)->where('household_family_id',$gFamily->household_family_id)->first();
+        $toilet    = TypeToiletLinkModel::where('toilet_id',$gFamily->toilet_id)->where('g_information_id',$id)->first();
+       // $material  = HouseoldConsumerModel::where('g_information_id',$id)->first();
 
         $material          = HouseoldConsumerModel::with('typemeterial')->where('g_information_id',$id)->get();
+
         $vehicle           = HouseholdVehicleModel::where('g_information_id',$id)->get();
         $income            = TypeIncomeModel::where('g_information_id',$id)->get();
         $otherIncome       = OtherIncomeModel::where('g_information_id',$id)->get();
@@ -627,7 +607,8 @@ where gi.id = 1');
             'landAgricultural','loan','family','roof_made','wall_made','house_status',
             'question_electric','typemeterial','typeanimals',
             'typetransport','question_totel','health','ginfo','memberFamily',
-            'gFamily','household_root','homePreparLink','rendPrice','toilet','material','vehicle','income','otherIncome'));
+            'gFamily','household_root','homePreparLink','rendPrice','institutions','toilet',
+            'material','vehicle','income','otherIncome'));
     }
 
     /*

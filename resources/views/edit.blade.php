@@ -464,8 +464,17 @@
                                             <label>
                                                 ​<input @if($gFamily->household_family_id == $h->id) checked @endif class="household_family_id" type="radio" name="household_family_id"  value="{{ $h->id }}"> {{$h->name_kh}}
                                             </label>
-                                            @if($h->id == 5)<label id="household_family_id"></label>@endif
+                                            @if($h->id == 5)
+                                                <label id="household_family_id">
+                                                    @if($gFamily->household_family_id == 5)
+                                                        <input class="form-control-custome" value="{{$institutions->institutions_name ?? ''}}" type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name" autocomplete="off" required="required">
+                                                        លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន :
+                                                        <input maxlength="10" value="{{$institutions->instatutions_phone ?? ''}}" class="form-control-custome allowNumber" type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone" autocomplete="off" required="required">
+                                                    @endif
+                                                </label>
+                                            @endif
                                         </li>
+
                                     @endforeach
                                 </ul>
                             </div>
@@ -481,7 +490,7 @@
                                     $('#building-year').empty();
                                     $('#household_area').empty();
                                     if(houshold == 5){
-                                        $('#household_family_id').append('<input type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name" autocomplete="off" required="required">លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន : <input class="allowNumber" type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone" autocomplete="off" required="required">');
+                                        $('#household_family_id').append('<input class="form-control-custome" value="{{$institutions->institutions_name ?? ''}}" type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name" autocomplete="off" required="required">លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន : <input maxlength="10" value="{{$institutions->instatutions_phone ?? ''}}" class="form-control-custome allowNumber" type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone" autocomplete="off" required="required">');
                                         AllowNumber();
                                     }else if(houshold == 2){
                                         $('#home-rent').append('<h4>គ.៨) សម្រាប់គ្រួសារជួលផ្ទះគេ​ <a data-toggle="tooltip" title="សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ មិនបាច់បំពេញចំណុច គ៨ ហើយរំលងទៅ គ៩">?</a></h4>' +
@@ -1290,40 +1299,46 @@
                                     </tr>
                                     </thead>
                                     <tbody class="new_rows_1">
-                                    <tr class="myrow_1">
-                                        <td>1</td>
-                                        <td>
-                                            <div class="form-group add_type_meterial">
-                                                <select class="form-control type_meterial" id="type_meterial" name="type_meterial[0]">
-                                                    <option></option>
-                                                    @foreach($typemeterial as $keh => $value)
-                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input id="number_meterial" name="number_meterial[0]" type="text" class="form-control allowNumber meterial" required="required" />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input id="market_value_meterial" name="market_value_meterial[0]" type="text"  class="form-control allowNumber meterial" required="required" />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group input-group">
-                                                <input id="total_rail_meterial" name="total_rail_meterial[0]" type="text" required="required" class="form-control totalallowNumber_meterial"  readonly="readonly"/>
-                                                <span class="input-group-addon">រៀល</span>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:center;">
-                                                    <span>
+                                        @foreach($material as $key =>$v)
+                                            <tr class="myrow_1">
+                                                <td>1</td>
+                                                <td>
+                                                    <div class="form-group add_type_meterial">
+                                                        <select class="form-control type_meterial" id="type_meterial" name="type_meterial[{{$key}}]">
+                                                            <option></option>
+                                                            @foreach($typemeterial as $keh => $value)
+                                                                <option @if($v->type_meterial_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input value="{{$v->number_meterial}}" id="number_meterial" name="number_meterial[{{$key}}]" type="text" class="form-control allowNumber meterial" required="required" />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input value="{{$v->market_value_meterial}}" id="market_value_meterial" name="market_value_meterial[{{$key}}]" type="text"  class="form-control allowNumber meterial" required="required" />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group input-group">
+                                                        <input value="{{$v->total_rail}}" id="total_rail_meterial" name="total_rail_meterial[{{$key}}]" type="text" required="required" class="form-control totalallowNumber_meterial"  readonly="readonly"/>
+                                                        <span class="input-group-addon">រៀល</span>
+                                                    </div>
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    @if($key == 0)
                                                         <a  class="btn btn-primary" id="add_rows_1" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
-                                                    </span>
-                                        </td>
-                                    </tr>
+                                                    @else
+                                                        <a id="meterial_{{$key}}" class="btn remove_rows_1" style="color:red; cursor: pointer;">
+                                                            <img src="{{asset('images/remove.png')}}"  style="width: 30px;">
+                                                        </a>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
 
                                     <tfoot>
@@ -1331,7 +1346,7 @@
                                         <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
                                         <td>
                                             <div class="form-group input-group">
-                                                <input id="total_meterial_costs" name="total_meterial_costs" type="text" required="required" class="form-control" readonly="readonly"/>
+                                                <input value="{{$material[0]->total_meterial_costs}}" id="total_meterial_costs" name="total_meterial_costs" type="text" required="required" class="form-control" readonly="readonly"/>
                                                 <span class="input-group-addon">រៀល</span>
                                             </div>
                                         </td>
@@ -1886,37 +1901,35 @@
                                     $('#family_debt').append('<ol class="debt_question">@foreach($question as $key=>$gg)<li><label><input style="margin-right: 10px;" value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}</label></li>@endforeach</ol>');
                                 }else if(family_debt == 2){
                                     $('#family_debt1').append('<div class="col-sm-12">' +
-                                        '<div class="col-sm-12">' +
+                                        '<div class="col-sm-6">' +
                                         '<table class="table table-bordered table-striped">' +
                                         '<tbody>' +
-                                        '<tr>' +
-                                        '<td> ចំនួនបំណុលដែលមិនទាន់សងគិតមកដល់បច្ចុប្បន្ន</td>' +
-                                        '<td>រយៈពេលនៃការសងបំណុល</td>' +
-                                        '</tr>' +
-                                        '<tr>' +
-                                        '<td>' +
-                                        '<div class="input-group add_total_debt">' +
-                                        '<input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="total_debt" id="total_debt">' +
-                                        '<span class="input-group-addon">រៀល</span>' +
-                                        '</div>' +
-                                        '</td>' +
-                                        '<td>' +
-                                        '<div class="input-group add_debt_duration">' +
-                                        '<input autocomplete="off" class="form-control allowNumber" type="text" name="debt_duration" id="debt_duration">' +
-                                        '<span class="input-group-addon">ថ្ងៃ</span>' +
-                                        '</div>' +
-                                        '</td>' +
-                                        '</tr>' +
-                                        '<tr>' +
-                                        '<td>' +
-                                        '</td>' +
-                                        '<td>' +
-                                        '<div class="input-group add_debt_duration">' +
-                                        '<input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="" id="score_money">' +
-                                        '<span class="input-group-addon">ពិន្ទុ</span>' +
-                                        '</div>'+
-                                        '</td>'+
-                                        '</tr>'+
+                                            '<tr>' +
+                                                '<td> ចំនួនបំណុលដែលមិនទាន់សងគិតមកដល់បច្ចុប្បន្ន</td>' +
+        //                                        '<td>រយៈពេលនៃការសងបំណុល</td>' +
+                                            '</tr>' +
+                                            '<tr>' +
+                                                '<td>' +
+                                                    '<div class="input-group add_total_debt">' +
+                                                        '<input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="total_debt" id="total_debt">' +
+                                                        '<span class="input-group-addon">រៀល</span>' +
+                                                    '</div>' +
+                                                '</td>' +
+    //                                        '<td>' +
+    //                                        '<div class="input-group add_debt_duration">' +
+    //                                        '<input autocomplete="off" class="form-control allowNumber" type="text" name="debt_duration" id="debt_duration">' +
+    //                                        '<span class="input-group-addon">ថ្ងៃ</span>' +
+    //                                        '</div>' +
+    //                                        '</td>' +
+                                            '</tr>' +
+                                            '<tr>' +
+                                                '<td>' +
+                                                    '<div class="input-group add_debt_duration">' +
+                                                        '<input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="" id="score_money">' +
+                                                        '<span class="input-group-addon">ពិន្ទុ</span>' +
+                                                    '</div>'+
+                                                '</td>'+
+                                            '</tr>'+
                                         '</tbody>'+
                                         '</table>'+
                                         '</div>' +

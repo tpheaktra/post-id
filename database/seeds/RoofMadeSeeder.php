@@ -13,12 +13,19 @@ class RoofMadeSeeder extends Seeder
     {
          $relate = [
             [
-            	'name_en' => 'parm_spring',
-                'name_kh' => 'ស្លឹកត្នោត',
+            	'name_en' => 'Wood',
+                'name_kh' => 'ឈើ',
                 'record_status'=> 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
-            ],[
+            ],
+             [
+                 'name_en' => 'parm_spring',
+                 'name_kh' => 'ស្លឹកត្នោត',
+                 'record_status'=> 1,
+                 'created_at' => Carbon::now(),
+                 'updated_at' => Carbon::now()
+             ],[
             	'name_en' => 'grass',
                 'name_kh' => 'ស្បូវ',
                 'record_status'=> 1,

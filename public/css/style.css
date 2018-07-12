@@ -247,6 +247,11 @@ input[type=radio]{
     padding: 10px 30px !important;
     position: relative;
 }
+.form-control-custome{
+    border:1px solid #dadada;
+    border-radius:2px;
+    padding:4px;
+}
 
 
 /*====================
