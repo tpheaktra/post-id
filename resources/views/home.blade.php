@@ -1533,7 +1533,7 @@
                                     @foreach($health as $key =>$vv)
                                        <li>
                                            <label>
-                                               <input class="health_id_{{$key}}" style="margin-right: 10px" type="checkbox" value="{{$vv->id}}" name="health_id[{{$key}}]" multiple/>
+                                               <input class="health_id_{{$key}} cal_health" style="margin-right: 10px;" type="checkbox" value="{{$vv->id}}" name="health_id[{{$key}}]" multiple/>
                                                {{$vv->name_kh}}
                                            </label>
                                            @if($vv->id == 1)<label id="health_1"></label>@endif
@@ -1541,6 +1541,11 @@
                                        </li>
                                     @endforeach
                                 </ul>
+                                <P>8. ជំងឺ,របួសនិងពិការភាព</P>
+                                <div class="form-group input-group" style="width: 300px;">
+                                    <input id="score_health" name="" type="text" required="required" class="cal_health form-control" readonly="readonly"/>
+                                    <span class="input-group-addon">ពិន្ទុ</span>
+                                </div>
                             <script>
 
                                 $('.health_id_0').click(function () {
@@ -1558,12 +1563,12 @@
                                             '<tr>'+
                                             '<td>'+
                                             '<div class="form-group">' +
-                                            '<input autocomplete="off" name="kids_then65" type="text" class="form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="kids_then65" id="kids_then65" type="text" class="cal_health form-control allowNumber"/>' +
                                             '</div>'+
                                             '</td>'+
                                             '<td>'+
                                             '<div class="form-group">' +
-                                            '<input autocomplete="off" name="old_bigger65" type="text" class="form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="old_bigger65" id="old_bigger65" type="text" class="cal_health form-control allowNumber"/>' +
                                             '</div>'+
                                             '</td>'+
                                             '</tr>'+
@@ -1572,9 +1577,25 @@
                                             '</div>';
                                         $('#health_1').append(health1);
                                         AllowNumber();
+
+                                        $('.cal_health').keyup(function(){
+                                            var kids_then65 = $('#kids_then65').val();
+                                            var old_bigger65 = $('#old_bigger65').val();
+                                            if(kids_then65>=2){
+                                                $('#score_health').val(10);
+                                            }else if(kids_then65==1){
+                                                $('#score_health').val(7);
+                                            }else if(old_bigger65>=1){
+                                                $('#score_health').val(4);
+                                            }else{
+                                                $('#score_health').val(0);
+                                            }
+                                        });
+
                                     }else{
                                         $('#health_1').empty();
                                     }
+
                                 });
 
                                 $('.health_id_1').click(function () {
@@ -1593,12 +1614,12 @@
                                             '<tr>' +
                                             '<td>' +
                                             '<div class="form-group">' +
-                                            '<input autocomplete="off" name="kids_50_then65" type="text" class="form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="kids_50_then65" id="kids_50_then65" type="text" class="cal_health form-control allowNumber"/>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group">' +
-                                            '<input autocomplete="off" name="old_50_bigger65" type="text" class="form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="old_50_bigger65" id="old_50_bigger65" type="text" class="cal_health form-control allowNumber"/>' +
                                             '</div>' +
                                             '</td>' +
                                             '</tr>' +
@@ -1607,11 +1628,22 @@
                                             '</div>';
                                         $('#health_2').append(health2);
                                         AllowNumber();
-                                    } else {
+                                        $('.cal_health').keyup(function(){
+                                            var kids_50_then65 = $('#kids_50_then65').val();
+                                            var old_50_bigger65 = $('#old_50_bigger65').val();
+                                            if(kids_50_then65>=2){
+                                                $('#score_health').val(7);
+                                            }else if(kids_50_then65>0 && kids_50_then65<=1){
+                                                $('#score_health').val(4);
+                                            }else{
+                                                $('#score_health').val(0);
+                                            }
+                                        });
+                                    }else {
                                         $('#health_2').empty();
+                                        $('#score_health').val(0);
                                     }
                                 });
-
                             </script>
 
 
