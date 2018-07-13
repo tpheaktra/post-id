@@ -15,10 +15,6 @@ class GeneralSituationFamilyModel extends Model
         'q_electric_id',
         'transport_id',
         'land_agricultural_id',
-        'kids_then65',
-        'old_bigger65',
-        'kids_50_then65',
-        'old_50_bigger65',
         'debt_family_id',
         'command'
     ];
