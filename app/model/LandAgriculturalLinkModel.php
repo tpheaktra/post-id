@@ -13,6 +13,7 @@ class LandAgriculturalLinkModel extends Model
         'land_name',
         'total_land',
         'land_farm',
-        'total_land_farm'
+        'total_land_farm',
+        'sum_land_farm'
     ];
 }

@@ -404,6 +404,7 @@ where gi.id = 1');
                 'q_electric_id'        =>$request->q_electric,
                 'transport_id'         =>$request->go_hospital,
                 'land_agricultural_id' =>$request->land,
+                'debt_family_id'       =>$request->family_debt_id,
                 'command'              =>$request->command
             );
             GeneralSituationFamilyModel::create($general_situation_family);
@@ -489,7 +490,8 @@ where gi.id = 1');
                 'land_name'            => $request->land_name,
                 'total_land'           => $request->total_land,
                 'land_farm'            => $request->land_farm,
-                'total_land_farm'      => $request->total_land_farm
+                'total_land_farm'      => $request->total_land_farm,
+                'sum_land_farm'        => $request->total_land_farm
             );
             LandAgriculturalLinkModel::create($land_agricultural);
 
@@ -592,12 +594,21 @@ where gi.id = 1');
        // $material  = HouseoldConsumerModel::where('g_information_id',$id)->first();
 
         $material          = HouseoldConsumerModel::with('typemeterial')->where('g_information_id',$id)->get();
-
+        $yesElectrict      = YesElectricLinkModel::where('g_information_id',$id)->where('q_electric_id',$gFamily->q_electric_id)->first();
+        $noElectrict       = NoElectricLinkModel::where('g_information_id',$id)->where('q_electric_id',$gFamily->q_electric_id)->first();
         $vehicle           = HouseholdVehicleModel::where('g_information_id',$id)->get();
         $income            = TypeIncomeModel::where('g_information_id',$id)->get();
+        $landAg            = LandAgriculturalLinkModel::where('g_information_id',$id)->where('land_agricultural_id',$gFamily->land_agricultural_id)->first();
         $otherIncome       = OtherIncomeModel::where('g_information_id',$id)->get();
+        $healthLink        = DB::select("select * from health ht
+                            left join (
+                                select hl.g_information_id, hl.health_id, hl.kids_then65, hl.old_bigger65, hl.kids_50_then65, hl.old_50_bigger65
+                                from health_link hl 
+                                where hl.g_information_id='$id'
+                            ) t on t.health_id = ht.id order by ht.id asc");//HealthDisabilityModle::leftJoin('health','id','health_id')->where('g_information_id',$id)->get();
 
-
+       // dd($healthLink);
+        $debt_link = DebtLoanLinkModel::where('g_information_id',$id)->first();
        // echo json_encode($ginfo);exit();
 
         return view('edit',compact('hospital','relationship',
@@ -608,7 +619,8 @@ where gi.id = 1');
             'question_electric','typemeterial','typeanimals',
             'typetransport','question_totel','health','ginfo','memberFamily',
             'gFamily','household_root','homePreparLink','rendPrice','institutions','toilet',
-            'material','vehicle','income','otherIncome'));
+            'material','yesElectrict','noElectrict','vehicle','income','landAg',
+            'otherIncome','healthLink','debt_link'));
     }
 
     /*

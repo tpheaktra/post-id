@@ -1301,7 +1301,7 @@
                                     <tbody class="new_rows_1">
                                         @foreach($material as $key =>$v)
                                             <tr class="myrow_1">
-                                                <td>1</td>
+                                                <td>{{$key+1}}</td>
                                                 <td>
                                                     <div class="form-group add_type_meterial">
                                                         <select class="form-control type_meterial" id="type_meterial" name="type_meterial[{{$key}}]">
@@ -1368,11 +1368,45 @@
                                 <ul class="li-none">
                                     @foreach($question_electric as $key => $qe)
                                         <li class="add_q_electric">
-                                            <label><input style="margin-right:10px;"  class="electric" value="{{$qe->id}}" type="radio" name="q_electric" ??> {{$qe->name_kh}}</label>
+                                            <label><input @if($gFamily->q_electric_id == $qe->id) checked @endif style="margin-right:10px;"  class="electric" value="{{$qe->id}}" type="radio" name="q_electric"> {{$qe->name_kh}}</label>
                                         </li>
-                                        @if($qe->id == 1) <li id="electric_yes"></li> @endif
-                                        @if($qe->id == 2) <li id="electric_no"></li> @endif
                                     @endforeach
+
+                                    <li id="electric_yes">
+                                        @if($gFamily->q_electric_id ==1)
+                                        <p>ប្រសិនបានតបណ្តាញអគ្គិសនី </p>
+                                        <table class="tb_grid table table-bordered table-striped ">
+                                            <tr>
+                                                <th>តម្លៃក្នុងមួយគីឡូវ៉ាត់/ម៉ោង</th>
+                                                <th>ចំនួនគីឡូវ៉ាត់ដែលប្រើជាមធ្យមក្នុងមួយខែ</th>
+                                                <th>ចំណាយ​ជា​មធ្យមក្នុងមួយខែ</th>
+                                            </tr>
+                                            <tr>
+                                                <td><div class="input-group form-group"><input value="{{$yesElectrict->costs_in_hour ?? ''}}" autocomplete="off" class="form-control allowNumber myelectric" id="costs_in_hour" required="required" type="text" name="costs_in_hour" required="required"><span class="input-group-addon">រៀល</span></div></td>
+                                                <td><div class="input-group form-group"><input value="{{$yesElectrict->number_in_month ?? ''}}" autocomplete="off" class="form-control allowNumber myelectric" id="number_in_month" required="required" type="text" name="number_in_month" required="required"><span class="input-group-addon">គីឡូវ៉ាត់</span></div></td>
+                                                <td><div class="input-group form-group"><input value="{{$yesElectrict->costs_per_month ?? ''}}" autocomplete="off" class="form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>
+                                            </tr>
+                                        </table>
+                                        @endif
+                                    </li>
+
+                                    <li id="electric_no">
+                                        @if($gFamily->q_electric_id ==2)
+                                        <p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p>
+                                        <div class="add_electric_grid">
+                                            <ul class="li-none">
+                                                @foreach($electricgrid as $key=>$e)
+                                                    <li>
+                                                        <label>
+                                                            <input @if($noElectrict->electric_grid_id ?? '' == $e->id) checked @endif style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}
+                                                        </label>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
+                                    </li>
+
                                 </ul>
                             </div>
 
@@ -1391,16 +1425,16 @@
                                             '<th>ចំណាយ​ជា​មធ្យមក្នុងមួយខែ</th>'+
                                             '</tr>'+
                                             '<tr>'+
-                                            '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber myelectric" id="costs_in_hour" required="required" type="text" name="costs_in_hour" required="required"><span class="input-group-addon">រៀល</span></div></td>'+
-                                            '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber myelectric" id="number_in_month" required="required" type="text" name="number_in_month" required="required"><span class="input-group-addon">គីឡូវ៉ាត់</span></div></td>'+
-                                            '<td><div class="input-group form-group"><input autocomplete="off" class="form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
+                                            '<td><div class="input-group form-group"><input value="{{$yesElectrict->costs_in_hour ?? ''}}" autocomplete="off" class="form-control allowNumber myelectric" id="costs_in_hour" required="required" type="text" name="costs_in_hour" required="required"><span class="input-group-addon">រៀល</span></div></td>'+
+                                            '<td><div class="input-group form-group"><input value="{{$yesElectrict->number_in_month ?? ''}}" autocomplete="off" class="form-control allowNumber myelectric" id="number_in_month" required="required" type="text" name="number_in_month" required="required"><span class="input-group-addon">គីឡូវ៉ាត់</span></div></td>'+
+                                            '<td><div class="input-group form-group"><input value="{{$yesElectrict->costs_per_month ?? ''}}" autocomplete="off" class="form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
                                             '</tr>' +
                                             '</table>');
                                         $('.myelectric').keyup(function(){
-                                            if ($(this).val() > 90000000){
-                                                alert("No numbers above 90000000");
-                                                $(this).val('90000000');
-                                            }
+//                                            if ($(this).val() > 90000000){
+//                                                alert("No numbers above 90000000");
+//                                                $(this).val('90000000');
+//                                            }
                                             var costs_in_hour = 0;
                                             var number_in_month = 0;
                                             costs_in_hour = parseInt($('#costs_in_hour').val());
@@ -1409,7 +1443,7 @@
                                         });
                                         AllowNumber();
                                     }else if(electric == 2){
-                                        $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>');
+                                        $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input @if($noElectrict->electric_grid_id ?? '' == $e->id) checked @endif style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>');
                                     }
                                 });
                             </script>
@@ -1430,7 +1464,7 @@
                                                 <select class="form-control" id="go_hospital" name="go_hospital">
                                                     <option></option>
                                                     @foreach($typetransport as $keh => $value)
-                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                        <option @if($gFamily->transport_id ?? '' == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -1453,41 +1487,45 @@
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_2">
-                                <tr class="myrow_2">
-                                    <td>1</td>
-                                    <td>
-                                        <div class="form-group add_type_vehicle">
-                                            <select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle[0]">
-                                                <option></option>
-                                                @foreach($typetransport as $keh => $value)
-                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input id="number_vehicle" name="number_vehicle[0]" type="text" class="form-control allowNumber vehicle" required="required" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group input-group">
-                                            <input id="market_value_vehicle" name="market_value_vehicle[0]" type="text" class="form-control allowNumber vehicle" required="required" />
-                                            <span class="input-group-addon">រៀល</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group input-group">
-                                            <input id="total_rail_vehicle" name="total_rail_vehicle[0]" type="text" required="required" class="form-control totalallowNumber_vehicle" readonly="readonly"/>
-                                            <span class="input-group-addon">រៀល</span>
-                                        </div>
-                                    </td>
-                                    <td style="text-align:center;">
-                                        <span>
-                                            <a  class="btn btn-primary" id="add_rows_2" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
-                                        </span>
-                                    </td>
-                                </tr>
+                                @foreach($vehicle as $key => $gg)
+                                    <tr class="myrow_2">
+                                        <td>{{$key+1}}</td>
+                                        <td>
+                                            <div class="form-group add_type_vehicle">
+                                                <select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle[0]">
+                                                    <option></option>
+                                                    @foreach($typetransport as $keh => $value)
+                                                        <option @if($gg->type_vehicle_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input value="{{$gg->number_vehicle}}" id="number_vehicle" name="number_vehicle[0]" type="text" class="form-control allowNumber vehicle" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group input-group">
+                                                <input value="{{$gg->market_value_vehicle}}" id="market_value_vehicle" name="market_value_vehicle[0]" type="text" class="form-control allowNumber vehicle" required="required" />
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group input-group">
+                                                <input value="{{$gg->total_rail_vehicle}}" id="total_rail_vehicle" name="total_rail_vehicle[0]" type="text" required="required" class="form-control totalallowNumber_vehicle" readonly="readonly"/>
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
+                                        </td>
+                                        <td style="text-align:center;">
+                                            @if($key==0)
+                                                <a  class="btn btn-primary" id="add_rows_2" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
+                                            @else
+                                                <a id="vehicle_{{$key}}" class="btn remove_rows_2" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
 
                                 <tfoot>
@@ -1495,7 +1533,7 @@
                                     <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                            <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control" readonly="readonly"/>
+                                            <input value="{{$vehicle[0]->total_vehicle_costs}}" id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control" readonly="readonly"/>
                                             <span class="input-group-addon">រៀល</span>
                                         </div>
                                     </td>
@@ -1537,39 +1575,43 @@
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_3">
-                                <tr class="myrow_3">
-                                    <td>1</td>
-                                    <td>
-                                        <div class="form-group add_type_animals">
-                                            <select style="width: 100%;" class="form-control type_animals" id="type_animals" name="type_animals[0]" required="required">
-                                                <option></option>
-                                                @foreach($typeanimals as $key => $value)
-                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input name="num_animals_big[0]" type="text" class="form-control allowNumber" required="required" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input name="num_animals_small[0]" type="text" class="form-control allowNumber"  />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input name="note_animals[0]" type="text"  class="form-control"  />
-                                        </div>
-                                    </td>
-                                    <td style="text-align:center;">
-                                        <span>
-                                            <a  class="btn btn-primary" id="add_rows_3" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
-                                        </span>
-                                    </td>
-                                </tr>
+                                @foreach($income as $key3 =>$v)
+                                    <tr class="myrow_3">
+                                        <td>{{$key3+1}}</td>
+                                        <td>
+                                            <div class="form-group add_type_animals">
+                                                <select style="width: 100%;" class="form-control type_animals" id="type_animals" name="type_animals[0]" required="required">
+                                                    <option></option>
+                                                    @foreach($typeanimals as $key => $value)
+                                                        <option @if($v->type_animals_id ?? '' == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input value="{{$v->num_animals_big}}" name="num_animals_big[0]" type="text" class="form-control allowNumber" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input value="{{$v->num_animals_small}}" name="num_animals_small[0]" type="text" class="form-control allowNumber"  />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input value="{{$v->note_animals}}" name="note_animals[0]" type="text"  class="form-control"  />
+                                            </div>
+                                        </td>
+                                        <td style="text-align:center;">
+                                            @if($key3==0)
+                                                <a  class="btn btn-primary" id="add_rows_3" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
+                                            @else
+                                                <a status="0" class="btn remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -1581,7 +1623,7 @@
                             <ul class="li-none add_land">
                                 @foreach($landAgricultural as $key => $land)
                                     <li>
-                                        <label><input style="margin-right:10px;"  class="land" type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
+                                        <label><input @if($gFamily->land_agricultural_id == $land->id) checked @endif style="margin-right:10px;"  class="land" type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
                                     </li>
                                 @endforeach
                             </ul>
@@ -1589,19 +1631,19 @@
                                 $('.land').click(function () {
                                     var land = $('input[name=land]:checked').val();
                                     $('#show-land').empty();
-                                    var landshow = '<div class="col-sm-12">' +
+                                    var landshow = '<p>ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា)</p><div class="col-sm-12">' +
                                         '<table width="100%" class="table table-bordered table-striped tbl-land">' +
                                         '<tr>' +
                                         '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" name="land_name" type="text" required="required" class="t_land allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                        '<input value="{{$landAg->land_name}}" autocomplete="off" name="land_name" type="text" required="required" class="t_land allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
                                         '</div>' +
                                         '</td>' +
                                         '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                         '<td>' +
                                         '<div class="form-group ​​input-group input-group">' +
-                                        '<input autocomplete="off" id="total_land" name="total_land" type="text" required="required" onkeyup class="t_land form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
+                                        '<input value="{{$landAg->total_land}}" autocomplete="off" id="total_land" name="total_land" type="text" required="required" onkeyup class="t_land form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
                                         '</div>' +
                                         '</td>' +
                                         '</tr>' +
@@ -1609,13 +1651,13 @@
                                         '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
                                         '<td>'+
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" name="land_farm" type="text" required="required" class="t_land allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                        '<input value="{{$landAg->land_farm}}" autocomplete="off" name="land_farm" type="text" required="required" class="t_land allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
                                         '</div>'+
                                         '</td>'+
                                         '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" id="total_land_farm" name="total_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
+                                        '<input value="{{$landAg->total_land_farm}}" autocomplete="off" id="total_land_farm" name="total_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
                                         '</div>'+
                                         '</td>' +
                                         '</tr>' +
@@ -1626,7 +1668,7 @@
                                         '<td><label class="control-label">ដីសរុប:</label></td>'+
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" id="total_land_and_land_farm" name="total_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber"  /><span class="input-group-addon">ហិចតា</span>'+
+                                        '<input readonly="readonly" value="{{$landAg->sum_land_farm}}" autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber"  /><span class="input-group-addon">ហិចតា</span>'+
                                         '</div>'+
                                         '</td>' +
                                         '</tr>' +
@@ -1682,8 +1724,65 @@
                                 });
                             </script>
 
-                            <p>ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា)</p>
-                            <div class="col-sm-12" id="show-land"></div>
+
+                            <div class="col-sm-12" id="show-land">
+                                @if($gFamily->land_agricultural_id == 2 || $gFamily->land_agricultural_id==3)
+                                <p>ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា)</p>
+                                    <div class="col-sm-12">
+                                    <table width="100%" class="table table-bordered table-striped tbl-land">
+                                        <tr>
+                                            <td><label class="control-label"> ដីស្រែមាន </label></td>
+                                            <td>
+                                                <div class="form-group input-group">
+                                                    <input value="{{$landAg->land_name}}" autocomplete="off" name="land_name" type="text" required="required" class="t_land allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>
+                                                    </div>
+                                                </td>
+                                            <td><label class="control-label"> ទំហំសរុប : </label></td>
+                                            <td>
+                                                <div class="form-group ​​input-group input-group">
+                                                    <input value="{{$landAg->total_land}}" autocomplete="off" id="total_land" name="total_land" type="text" required="required" onkeyup class="t_land form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <tr>
+                                            <td><label class="control-label">​ ដីចំការមាន </label></td>
+                                            <td>
+                                                <div class="form-group input-group">
+                                                    <input value="{{$landAg->land_farm}}" autocomplete="off" name="land_farm" type="text" required="required" class="t_land allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>
+                                                    </div>
+                                                </td>
+                                            <td><label class="control-label"> ទំហំសរុប : </label></td>
+                                            <td>
+                                                <div class="form-group input-group">
+                                                    <input value="{{$landAg->total_land_farm}}" autocomplete="off" id="total_land_farm" name="total_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                </td>
+                                            <td><label class="control-label">ដីសរុប:</label></td>
+                                            <td>
+                                                <div class="form-group input-group">
+                                                    <input readonly="readonly" value="{{$landAg->sum_land_farm}}" autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber"  /><span class="input-group-addon">ហិចតា</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td><label class="control-label">7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>
+                                            <td>
+                                                <div class="form-group input-group">
+                                                    <input autocomplete="off" id="l_score" name="total_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber"  /><span class="input-group-addon">ពិន្ទុ</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    @endif
+                            </div>
                         </div>
 
                         <div class="col-sm-12"><hr> </div>
@@ -1711,57 +1810,61 @@
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_4">
-                                <tr class="myrow_4">
-                                    <td>1</td>
-                                    <td>
-                                        <div class="form-group">
-                                            <select class="form-control income_name" id="income_name_0" name="income_name[0]" required="required" readonly="readonly"></select>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <select class="form-control income_age" id="income_age_0" name="income_age[0]" required="required" readonly="readonly"></select>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <select style="width: 100%" class="form-control income_occupation" id="income_occupation" name="income_occupation[0]">
-                                                <option></option>
-                                                @foreach($occupation as $keh => $value)
-                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input name="income_unit[0]" type="text" class="form-control" placeholder="ថ្ងៃ" value="day"/>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group input-group">
-                                            <input id="unit_in_month" name="unit_in_month[0]" type="text" class="form-control allowNumber otherincome" required="required" />
-                                            <span class="input-group-addon">ថ្ងៃ</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group input-group">
-                                            <input id="average_amount" name="average_amount[0]" type="text" class="form-control allowNumber otherincome" required="required"/>
-                                            <span class="input-group-addon">រៀល</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group input-group">
-                                            <input id="monthly_income" name="monthly_income[0]" type="text" class="form-control allowNumber monthly_income_total" readonly="readonly"/>
-                                            <span class="input-group-addon">រៀល</span>
-                                        </div>
-                                    </td>
-                                    <td style="text-align:center;">
-                                            <span>
-                                                <a  class="btn btn-primary" id="add_rows_4" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
-                                            </span>
-                                    </td>
-                                </tr>
+                                @foreach($otherIncome as $ky => $ot)
+                                    <tr class="myrow_4">
+                                        <td>{{$ky+1}}</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select style="background-color: #eee !important;" class="form-control income_name" id="income_name_0" name="income_name[0]" required="required" readonly="readonly">
+
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select class="form-control income_age" id="income_age_0" name="income_age[0]" required="required" readonly="readonly"></select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select style="width: 100%" class="form-control income_occupation" id="income_occupation" name="income_occupation[0]">
+                                                    <option></option>
+                                                    @foreach($occupation as $keh => $value)
+                                                        <option @if($ot->income_occupation == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input name="income_unit[0]" type="text" class="form-control" placeholder="ថ្ងៃ" value="{{$ot->income_unit}}"/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group input-group">
+                                                <input value="{{$ot->unit_in_month}}" id="unit_in_month" name="unit_in_month[0]" type="text" class="form-control allowNumber otherincome" required="required" />
+                                                <span class="input-group-addon">ថ្ងៃ</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group input-group">
+                                                <input value="{{$ot->average_amount}}" id="average_amount" name="average_amount[0]" type="text" class="form-control allowNumber otherincome" required="required"/>
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group input-group">
+                                                <input value="{{$ot->monthly_income}}" id="monthly_income" name="monthly_income[0]" type="text" class="form-control allowNumber monthly_income_total" readonly="readonly"/>
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
+                                        </td>
+                                        <td style="text-align:center;">
+                                                {{--<span>--}}
+                                                    {{--<a  class="btn btn-primary" id="add_rows_4" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>--}}
+                                                {{--</span>--}}
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
 
                                 <tfoot>
@@ -1769,7 +1872,7 @@
                                     <td colspan="6"><span style="float: right;">សរុបចំណូល ប្រចាំខែ សម្រាប់គ្រួសារទាំងមូល (គិតជារៀល):</span></td>
                                     <td colspan="2">
                                         <div class="input-group">
-                                            <input id="total_monthly_income" class="form-control"  type="text" name="total_mon_income" readonly="readonly">
+                                            <input value="{{$otherIncome[0]->total_mon_income}}" id="total_monthly_income" class="form-control"  type="text" name="total_mon_income" readonly="readonly">
                                             <span class="input-group-addon">រៀល</span>
                                         </div>
                                     </td>
@@ -1779,7 +1882,7 @@
                                     <td colspan="6"><span style="float: right;">ចំណូលក្រៅពីកសិកម្មជាមធ្យមប្រចាំខែសម្រាប់មនុស្សម្នាក់​​ (១) :</span></td>
                                     <td colspan="2">
                                         <div class="input-group">
-                                            <input class="form-control" id="total_inc_person"  type="text" name="total_inc_person" readonly="readonly">
+                                            <input value="{{$otherIncome[0]->total_inc_person}}" class="form-control" id="total_inc_person"  type="text" name="total_inc_person" readonly="readonly">
                                             <span class="input-group-addon">រៀល</span>
                                         </div>
                                     </td>
@@ -1794,14 +1897,68 @@
                         <div class="col-sm-12">
                             <h4>គ.១៣) សុខភាព និងពិការភាព</h4>
                             <ul class="li-none">
-                                @foreach($health as $key =>$vv)
+                                @foreach($healthLink as $key =>$vv)
                                     <li>
                                         <label>
-                                            <input class="health_id_{{$key}}" style="margin-right: 10px" type="checkbox" value="{{$vv->id}}" name="health_id[{{$key}}]"/>
+                                            <input @if($vv->health_id == $vv->id) checked @else no @endif class="health_id_{{$key}}" style="margin-right: 10px" type="checkbox" value="{{$vv->id}}" name="health_id[{{$key}}]" multiple/>
                                             {{$vv->name_kh}}
                                         </label>
-                                        @if($vv->id == 1)<label id="health_1"></label>@endif
-                                        @if($vv->id == 2)<label id="health_2"></label>@endif
+                                        @if($vv->id == 1)
+                                            <label id="health_1">
+                                                @if($vv->health_id == 1)
+                                                    <div class="col-sm-12">
+                                                        <table class="table table-bordered table-striped">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>ក្មេង + អ្នក  អាយុ &lt; 65ឆ្នាំ </td>
+                                                                <td> ចាស អាយុ≥65 ឆ្នាំ</td>
+                                                                </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input value="{{$vv->kids_then65}}" name="kids_then65" type="text" class="form-control allowNumber"/>
+                                                                        </div>
+                                                                    </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input value="{{$vv->old_bigger65}}" name="old_bigger65" type="text" class="form-control allowNumber"/>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                            </table>
+                                                        </div>
+                                                @endif
+                                            </label>
+                                        @endif
+                                        @if($vv->id == 2)
+                                            <label id="health_2">
+                                                @if($vv->health_id == 2)
+                                                    <div class="col-sm-12">
+                                                        <table class="table table-bordered table-striped">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>ក្មេង + អ្នក  អាយុ &lt; 65ឆ្នាំ </td>
+                                                                <td> ចាស អាយុ≥65 ឆ្នាំ</td>
+                                                                </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input value="{{$vv->kids_50_then65}}" name="kids_50_then65" type="text" class="form-control allowNumber"/>
+                                                                        </div>
+                                                                    </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input value="{{$vv->old_50_bigger65}}" name="old_50_bigger65" type="text" class="form-control allowNumber"/>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                            </table>
+                                                        </div>
+                                                @endif
+                                            </label>
+                                        @endif
                                     </li>
                                 @endforeach
                             </ul>
@@ -1819,18 +1976,18 @@
                                             '<td>ក្មេង + អ្នក  អាយុ &lt; 65ឆ្នាំ </td>' +
                                             '<td> ចាស អាយុ≥65 ឆ្នាំ</td>' +
                                             '</tr>'+
-                                            '<tr>'+
-                                            '<td>'+
-                                            '<div class="form-group">' +
-                                            '<input name="kids_then65" type="text" class="form-control allowNumber"/>' +
-                                            '</div>'+
-                                            '</td>'+
-                                            '<td>'+
-                                            '<div class="form-group">' +
-                                            '<input name="old_bigger65" type="text" class="form-control allowNumber"/>' +
-                                            '</div>'+
-                                            '</td>'+
-                                            '</tr>'+
+                                            ' @foreach($healthLink as $key =>$vv) @if($vv->id == 1)<tr>'+
+                                                '<td>'+
+                                                    '<div class="form-group">' +
+                                                        '<input value="{{$vv->kids_then65}}" name="kids_then65" type="text" class="form-control allowNumber"/>' +
+                                                    '</div>'+
+                                                '</td>'+
+                                                '<td>'+
+                                                    '<div class="form-group">' +
+                                                        '<input value="{{$vv->old_bigger65}}" name="old_bigger65" type="text" class="form-control allowNumber"/>' +
+                                                    '</div>'+
+                                                '</td>'+
+                                            '</tr>@endif @endforeach'+
                                             '</tbody>'+
                                             '</table>'+
                                             '</div>';
@@ -1854,18 +2011,18 @@
                                             '<td>ក្មេង + អ្នក  អាយុ &lt; 65ឆ្នាំ </td>' +
                                             '<td> ចាស អាយុ≥65 ឆ្នាំ</td>' +
                                             '</tr>' +
-                                            '<tr>' +
-                                            '<td>' +
-                                            '<div class="form-group">' +
-                                            '<input name="kids_50_then65" type="text" class="form-control allowNumber"/>' +
-                                            '</div>' +
-                                            '</td>' +
-                                            '<td>' +
-                                            '<div class="form-group">' +
-                                            '<input name="old_50_bigger65" type="text" class="form-control allowNumber"/>' +
-                                            '</div>' +
-                                            '</td>' +
-                                            '</tr>' +
+                                            '@foreach($healthLink as $key =>$vv) @if($vv->id == 2)<tr>' +
+                                                '<td>' +
+                                                    '<div class="form-group">' +
+                                                        '<input value="{{$vv->kids_50_then65}}" name="kids_50_then65" type="text" class="form-control allowNumber"/>' +
+                                                    '</div>' +
+                                                '</td>' +
+                                                '<td>' +
+                                                    '<div class="form-group">' +
+                                                        '<input value="{{$vv->old_50_bigger65}}" name="old_50_bigger65" type="text" class="form-control allowNumber"/>' +
+                                                    '</div>' +
+                                                '</td>' +
+                                            '</tr>@endif @endforeach' +
                                             '</tbody>' +
                                             '</table>' +
                                             '</div>';
@@ -1885,9 +2042,55 @@
                             <ul class="debt_question_group">
                                 @foreach($loan as $key => $ge)
                                     <li>
-                                        <label class="add_family_debt_id"><input style="margin-right: 10px;" class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id"??>{{ $ge->name_kh }}</label>
-                                        @if($ge->id == 1)<label id="family_debt"></label>@endif
-                                        @if($ge->id == 2)<label id="family_debt1"></label>@endif
+                                        <label class="add_family_debt_id"><input @if($gFamily->debt_family_id == $ge->id) checked @endif style="margin-right: 10px;" class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id">{{ $ge->name_kh }}</label>
+                                        @if($ge->id == 1)
+                                            <label id="family_debt">
+                                                @if($gFamily->debt_family_id == 1)
+                                                    <ol class="debt_question">
+                                                        @foreach($question as $key=>$gg)
+                                                            <li>
+                                                                <label>
+                                                                    <input @if($debt_link->question_id ?? '' == $gg->id) checked @endif style="margin-right: 10px;" value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}
+                                                                </label>
+                                                            </li>
+                                                        @endforeach
+                                                    </ol>
+                                                @endif
+                                            </label>
+                                        @endif
+                                        @if($ge->id == 2)
+                                            <label id="family_debt1">
+                                                @if($gFamily->debt_family_id == 2)
+                                                    <div class="col-sm-12">
+                                                        <div class="col-sm-6">
+                                                            <table class="table table-bordered table-striped">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td> ចំនួនបំណុលដែលមិនទាន់សងគិតមកដល់បច្ចុប្បន្ន</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="input-group add_total_debt">
+                                                                                <input value="{{$debt_link->total_debt ?? ''}}" autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="total_debt" id="total_debt">
+                                                                                <span class="input-group-addon">រៀល</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="input-group add_debt_duration">
+                                                                                <input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="" id="score_money">
+                                                                                <span class="input-group-addon">ពិន្ទុ</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                @endif
+                                            </label>
+                                        @endif
                                     </li>
                                 @endforeach
                             </ul>
@@ -1898,7 +2101,7 @@
                                 $('#family_debt').empty();
                                 $('#family_debt1').empty();
                                 if(family_debt == 1){
-                                    $('#family_debt').append('<ol class="debt_question">@foreach($question as $key=>$gg)<li><label><input style="margin-right: 10px;" value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}</label></li>@endforeach</ol>');
+                                    $('#family_debt').append('<ol class="debt_question">@foreach($question as $key=>$gg)<li><label><input @if($debt_link->question_id ?? '' == $gg->id) checked @endif style="margin-right: 10px;" value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}</label></li>@endforeach</ol>');
                                 }else if(family_debt == 2){
                                     $('#family_debt1').append('<div class="col-sm-12">' +
                                         '<div class="col-sm-6">' +
@@ -1911,7 +2114,7 @@
                                             '<tr>' +
                                                 '<td>' +
                                                     '<div class="input-group add_total_debt">' +
-                                                        '<input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="total_debt" id="total_debt">' +
+                                                        '<input value="{{$debt_link->total_debt ?? ''}}" autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="total_debt" id="total_debt">' +
                                                         '<span class="input-group-addon">រៀល</span>' +
                                                     '</div>' +
                                                 '</td>' +
@@ -1933,8 +2136,7 @@
                                         '</tbody>'+
                                         '</table>'+
                                         '</div>' +
-                                        '</div>'
-                                    );
+                                        '</div>');
                                     $('.dept_money').keyup(function(){
                                         var total_debt = $('#total_debt').val();
                                         if( total_debt>1200100){

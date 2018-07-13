@@ -1362,7 +1362,7 @@
                                                     '<td><label class="control-label">ដីសរុប:</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_and_land_farm" name="total_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber"  /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber"  /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -2751,7 +2751,7 @@
             '</td>'+
             '<td><div class="form-group"><input autocomplete="off" type="text" class="num_animals_big form-control allowNumber" name="num_animals_big['+row_3+']" required="required"/></div></td>'+
             '<td><div class="form-group"><input autocomplete="off" type="text" class="num_animals_small form-control allowNumber" name="num_animals_small['+row_3+']"/></div></td>'+
-            '<td><div class="form-group"><input autocomplete="off" type="text" class="note_animals form-control allowNumber" name="note_animals['+row_3+']"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" type="text" class="note_animals form-control" name="note_animals['+row_3+']"/></div></td>'+
             '<td style="text-align:center;"><a status="0" class="btn remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
         $(".new_rows_3").append(tab_rows_3);
