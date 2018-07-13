@@ -1804,7 +1804,7 @@
                                     <th width="15%">មុខរបររកចំណូល</th>
                                     <th width="9%">ឯកត្តា</th>
                                     <th>ចំនួនឯកត្តាក្នុងមួយខែ</th>
-                                    <th>ទឹកប្រាក់មធ្យមក្នុងមួយឯកត្តា</th>
+                                    <th width="18%">ទឹកប្រាក់មធ្យមក្នុងមួយឯកត្តា</th>
                                     <th>ចំណូលមធ្យមប្រចាំខែ</th>
                                     <th>សកម្មភាព</th>
                                 </tr>
@@ -3225,6 +3225,7 @@
                     var sum = 0;
                     var unit_in_month = $('#unit_in_month_'+ii).val();
                     var average_amount = $('#average_amount_'+ii).val();
+                    if(unit_in_month > 31){$('#unit_in_month_'+ii).val('');}
                     sum = Number(unit_in_month * average_amount);
                     $("#other_income_"+ii).attr({"onclick": "remove_4("+sum+")"});
                     $('#monthly_income_'+ii).val(sum);
@@ -3306,6 +3307,9 @@
             var sum = 0;
             var unit_in_month = $('#unit_in_month').val();
             var average_amount = $('#average_amount').val();
+            if (unit_in_month > 31) {
+                $('#unit_in_month').val('');
+            }
             $('.otherincome').each(function() {
                 sum = Number(unit_in_month * average_amount);
             });
@@ -3341,15 +3345,15 @@
         function AllowNumber() {
             $(".allowNumber").keydown(function (e) {
                 $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
-                keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-                return keys.indexOf(event.key) > -1;
+               // keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+                return e.indexOf(e)> -1;
             });
         }
         //when load
         $(".allowNumber").keydown(function (e) {
-            $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
-            keys = ['0','1','2','3','4','5','6','7','8','9']
-            return keys.indexOf(event.key) > -1
+            $(e.target).val($(e.target).val().replace(/[^\d]/g,''));
+           // keys = ['0','1','2','3','4','5','6','7','8','9', '31','47','57']
+            return e.indexOf(e)> -1;
         });
         //validation alert
         $('.nextBtn').click(function(){

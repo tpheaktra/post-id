@@ -1426,7 +1426,7 @@
                         <div class="col-sm-12">
 
                             <h5><b>គ.១២.២) ចំណូល ផ្សេងពី សកម្មភាពកសិកម្ម ផ្ទាល់ខ្លួន
-                                <a data-toggle="tooltip" title=" (បញ្ជាក់ការងារកម្មករផ្នែកកសិកម្មត្រូវបញ្ចូលក្នុងតារាងនេះ) <br> បញ្ជាក់ ៖ ចុះ​តែ​សមាជិក​គ្រួសារ​ដែល​រក​ប្រាក់​ចំណូល​បាន។ ចំពោះសមាជិកដែលមានប្រភពចំណូលលើសពីមួយ សូមសរសេរ​នៅក្នុងជួរដោយឡែកពីគ្នា">?</a>
+                                <a data-toggle="tooltip" title=" (បញ្ជាក់ការងារកម្មករផ្នែកកសិកម្មត្រូវបញ្ចូលក្នុងតារាងនេះ) បញ្ជាក់ ៖ ចុះ​តែ​សមាជិក​គ្រួសារ​ដែល​រក​ប្រាក់​ចំណូល​បាន។ ចំពោះសមាជិកដែលមានប្រភពចំណូលលើសពីមួយ សូមសរសេរ​នៅក្នុងជួរដោយឡែកពីគ្នា">?</a>
                                 ​  </b></h5>
                             <p>ប្រសិនបើគ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្មត្រូវផ្ដល់ពិន្ទុតាមឯកសារណែនាំចំណុច 7B.2</p>
 
@@ -1441,7 +1441,7 @@
                                         <th width="15%">មុខរបររកចំណូល</th>
                                         <th width="9%">ឯកត្តា</th>
                                         <th>ចំនួនឯកត្តាក្នុងមួយខែ</th>
-                                        <th>ទឹកប្រាក់មធ្យមក្នុងមួយឯកត្តា</th>
+                                        <th width="18%"​​>ទឹកប្រាក់មធ្យមក្នុងមួយឯកត្តា</th>
                                         <th>ចំណូលមធ្យមប្រចាំខែ</th>
                                         <th>សកម្មភាព</th>
                                     </tr>
@@ -1971,11 +1971,13 @@
                 curInputs = curStep.find("input[type='text']"),
                 isValid = true;
             $(".form-group").removeClass("has-error");
+            $(".form-control-custome").removeClass("has-error");
             for(var i=0; i<curInputs.length; i++){
                 if (!curInputs[i].validity.valid){
                     $('.alert').show();
                     isValid = false;
                     $(curInputs[i]).closest(".form-group").addClass("has-error");
+                    $(curInputs[i]).closest(".form-control-custome").addClass("has-error");
                 }
             }
             if (!$("input[name='household_family_id']:checked").val()) {
@@ -2847,6 +2849,7 @@
                 var sum = 0;
                 var unit_in_month = $('#unit_in_month_'+ii).val();
                 var average_amount = $('#average_amount_'+ii).val();
+                if(unit_in_month > 31){$('#unit_in_month_'+ii).val('');}
                 sum = Number(unit_in_month * average_amount);
                 $("#other_income_"+ii).attr({"onclick": "remove_4("+sum+")"});
                 $('#monthly_income_'+ii).val(sum);
@@ -2910,6 +2913,7 @@
 
         }
     }
+
     //remove add
     function remove_4(val) {
         var total_costs = parseInt($('#total_monthly_income').val()) - val;
@@ -2939,11 +2943,17 @@
         var sum = 0;
         var unit_in_month = $('#unit_in_month').val();
         var average_amount = $('#average_amount').val();
+        if (unit_in_month > 31) {
+            $('#unit_in_month').val('');
+        }
         $('.otherincome').each(function() {
             sum = Number(unit_in_month * average_amount);
         });
         $('#monthly_income').val(sum);
     });
+
+
+
     $('.otherincome').keyup(function () {
         var arr = document.getElementsByClassName('monthly_income_total');
         var tot=0;
@@ -2973,20 +2983,21 @@
     function AllowNumber() {
         $(".allowNumber").keydown(function (e) {
             $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
-            keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-            return keys.indexOf(event.key) > -1;
+            //keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+            return e.indexOf(e)> -1;
         });
     }
     //when load
     $(".allowNumber").keydown(function (e) {
         $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
-        keys = ['0','1','2','3','4','5','6','7','8','9'];
-
-        var regex = /[0-9]|\./;
-        if( !regex.test($(e.target).val()) ) {
-            $(e.target).empty(); return keys.indexOf(event.key) > -1;
-        }
-        return keys.indexOf(event.key) > -1;
+        return e.indexOf(e)> -1;
+//        keys = ['0','1','2','3','4','5','6','7','8','9'];
+//
+//        var regex = /[0-9]|\./;
+//        if( !regex.test($(e.target).val()) ) {
+//            $(e.target).empty(); return keys.indexOf(event.key) > -1;
+//        }
+//        return keys.indexOf(event.key) > -1;
     });
     //validation alert
     $('.nextBtn').click(function(){
