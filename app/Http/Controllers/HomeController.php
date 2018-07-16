@@ -112,63 +112,73 @@ where gi.id = 1');
 
     public function print($id){
         $id = Crypt::decrypt($id);
-        $patient = DB::select("select
-            gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,
-            gi.inter_patient,gi.inter_age,inter.name_kh as inter_sex,gi.inter_phone,rp.name_kh as inter_relationship,
-            gi.fa_patient,gi.fa_age,fa.name_kh as fa_sex,gi.fa_phone,fr.name_kh as fa_relationship,
-            gi.g_local_village as g_local_village, 
-            p.name_kh as province, d.name_kh as district,c.name_kh as commune, v.name_kh as village
-            from general_information gi
-            inner join member_family mf on gi.id = mf.g_information_id
-            inner join general_situation_family gsf on gi.id = gsf.g_information_id 
-            inner join gender gg on gi.g_sex = gg.id
-            inner join dev_pmrs_share.provinces p on gi.g_province_id = p.code
-            inner join dev_pmrs_share.districts d on gi.g_district_id = d.code
-            inner join dev_pmrs_share.communes c on gi.g_commune_id = c.code
-            inner join dev_pmrs_share.villages v on gi.g_village_id = v.code
-            #interview
-            inner join relationship rp on gi.inter_relationship_id = rp.id
-            inner join gender inter on gi.inter_sex = inter.id
-            #family
-            inner join family_relation fr on gi.fa_relationship_id = fr.id
-            inner join gender fa on gi.fa_sex = fa.id
-            where gi.id = '$id'
-            group by gi.id");
-        $khor = DB::select("select gi.id,
-            mff.nick_name,
-            mff.dob,
-            mff.age,
-            mff.dob,
-            rmp.name_kh as m_relationship,
-            oc.name_kh as m_occupation,
-            el.name_kh as m_education
-            from general_information gi
-            inner join member_family mff on gi.id = mff.g_information_id
-            inner join relationship rmp on mff.family_relationship_id = rmp.id
-            inner join occupation oc on mff.occupation_id = oc.id
-            inner join education_level el on mff.education_level_id = el.id
-            where gi.id = '$id'");
-        $kur_step1 = DB::select("select gi.id,
-            gf.total_people,
-            qt.name_kh as toilet,
-            qe.name_kh as electric,
-            tt.name_kh as transport,
-            af.ground_floor_length,
-            af.ground_floor_width,
-            af.ground_floor_area,
-            af.upper_floor_length,
-            af.upper_floor_width,
-            af.upper_floor_area,
-            af.further_floor_length,
-            af.further_floor_width,
-            af.further_floor_area
-            from general_situation_family gf inner join general_information gi on gi.id = gf.g_information_id
-            inner join area_family_house af on gf.g_information_id = af.id
-            inner join question_totel qt on gf.toilet_id = qt.id
-            inner join question_electric qe on gf.q_electric_id = qe.id
-            inner join type_transportation tt on gf.transport_id = tt.id
-            where gi.id = '$id' ");
-        return view('print',compact('patient','khor','kur_step1'));
+
+        $hospital         = Helpers::getHospital();
+        $provinces        = Helpers::getProvince();
+        $relationship     = RelationshipModel::all();
+        $gender           = Helpers::getGender();
+        $household        = Helpers::getHouseHoldFamily();
+        $homePrepar       = Helpers::getHomePrepar();
+        $condition_house  = Helpers::getConditionHouse();
+        $question         = Helpers::getQuestion();
+        $electricgrid     = Helpers::getElectricGird();
+        $landAgricultural = Helpers::getLangAgricultural();
+        $loan             = Helpers::getLoan();
+        $family           = Helpers::getFamilyRelation();
+        $occupation       = Helpers::getOccupation();
+        $education_level  = Helpers::getEducationLevel();
+        $roof_made        = Helpers::getRoofmade();
+        $wall_made        = Helpers::getWallmade();
+        $house_status     = ConditionhouseModel::all();
+        $typemeterial      = Helpers::getTypeMeterial();
+        $typeanimals       = Helpers::getTypeAnimals();
+        $typetransport     = Helpers::getTypeTransportation();
+        $question_electric = Helpers::getQuestionElectric();
+        $question_totel    = Helpers::getQuestionTolet();
+        $health            = Helpers::getHealth();
+
+        $ginfo             = GeneralInformationModel::with('district','commune','village')->findOrFail($id);
+        $memberFamily      = MemberFamilyModel::with('generalInfo')->where('g_information_id',$id)->get();
+        $gFamily           = GeneralSituationFamilyModel::where('g_information_id',$id)->first();
+        $household_root    = HouseHoldRootLinkModel::where('household_family_id',$gFamily->household_family_id)->where('g_information_id',$id)->first();
+        if($household_root == null){
+            $homePreparLink = '';
+        }else{
+            $homePreparLink = HomePreparLinkModel::where('home_prepar_id',$household_root->home_prepare_id)->where('g_information_id',$id)->first();
+        }
+        $rendPrice = HouseholdRentPriceModel::where('g_information_id',$id)->where('household_family_id',$gFamily->household_family_id)->first();
+        $institutions = HouseHoldFamilyLinkModel::where('g_information_id',$id)->where('household_family_id',$gFamily->household_family_id)->first();
+        $toilet    = TypeToiletLinkModel::where('toilet_id',$gFamily->toilet_id)->where('g_information_id',$id)->first();
+       // $material  = HouseoldConsumerModel::where('g_information_id',$id)->first();
+
+        $material          = HouseoldConsumerModel::with('typemeterial')->where('g_information_id',$id)->get();
+        $yesElectrict      = YesElectricLinkModel::where('g_information_id',$id)->where('q_electric_id',$gFamily->q_electric_id)->first();
+        $noElectrict       = NoElectricLinkModel::where('g_information_id',$id)->where('q_electric_id',$gFamily->q_electric_id)->first();
+        $vehicle           = HouseholdVehicleModel::where('g_information_id',$id)->get();
+        $income            = TypeIncomeModel::where('g_information_id',$id)->get();
+        $landAg            = LandAgriculturalLinkModel::where('g_information_id',$id)->where('land_agricultural_id',$gFamily->land_agricultural_id)->first();
+        $otherIncome       = OtherIncomeModel::where('g_information_id',$id)->get();
+        $healthLink        = DB::select("select * from health ht
+                            left join (
+                                select hl.g_information_id, hl.health_id, hl.kids_then65, hl.old_bigger65, hl.kids_50_then65, hl.old_50_bigger65
+                                from health_link hl 
+                                where hl.g_information_id='$id'
+                            ) t on t.health_id = ht.id order by ht.id asc");//HealthDisabilityModle::leftJoin('health','id','health_id')->where('g_information_id',$id)->get();
+
+       // dd($healthLink);
+        $debt_link = DebtLoanLinkModel::where('g_information_id',$id)->first();
+       // echo json_encode($ginfo);exit();
+
+        return view('print',compact('hospital','relationship',
+            'provinces','gender','household',
+            'homePrepar','condition_house','question','electricgrid',
+            'landAgricultural','loan','family','occupation','education_level',
+            'landAgricultural','loan','family','roof_made','wall_made','house_status',
+            'question_electric','typemeterial','typeanimals',
+            'typetransport','question_totel','health','ginfo','memberFamily',
+            'gFamily','household_root','homePreparLink','rendPrice','institutions','toilet',
+            'material','yesElectrict','noElectrict','vehicle','income','landAg',
+            'otherIncome','healthLink','debt_link'));
 
     }
 

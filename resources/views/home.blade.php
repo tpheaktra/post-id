@@ -1316,27 +1316,34 @@
                                             var num_animals_small   = $('#num_animals_small').val();
                                             var note_animals        = $('#note_animals').val();
                                             if(animal == 1){
-
-                                                if(num_animals_small == 0 || num_animals_big == 0){
+                                                $('#score_animal').empty();
+                                                if((num_animals_big == 0 && num_animals_small == 0 && note_animals == 0)){
                                                     $('#score_animal').val(6);
-                                                }else if(num_animals_big == 1 || num_animals_small == 2 || note_animals == 2){
+                                                }else if( num_animals_big == 1 || num_animals_small <= 2 || note_animals == 2){
                                                    $('#score_animal').val(4); 
-                                                }else{
-
-                                                }
+                                                }else if(num_animals_big>1 || num_animals_small>3 || note_animals>2){
+                                                    $('#score_animal').val(0); 
+                                                }else{$('#score_animal').val(0);}
 
                                             }else if(animal == 2){
-
-                                                if(num_animals_big == 0 || num_animals_small == 0){
+                                                $('#score_animal').empty();
+                                                if( (num_animals_big == 0 && num_animals_small == 0) ){
                                                     $('#score_animal').val(6);
-                                                }
-                                            }else{
+                                                }else if(num_animals_big<3 || num_animals_small < 3){
+                                                    $('#score_animal').val(4);
+                                                }else if(num_animals_big==3 || num_animals_small==3 ){
+                                                     $('#score_animal').val(0);
+                                                }else{$('#score_animal').val(0);}
 
+                                            }else{
+                                                $('#score_animal').empty();
                                                 if(num_animals_small < 30 || num_animals_big < 30){
                                                     $('#score_animal').val(6);
-                                                }else if(num_animals_big<50 || num_animals_big<50){
+                                                }else if( (num_animals_big>30 && num_animals_big<50) || (num_animals_big>30 && num_animals_big<50) ){
                                                     $('#score_animal').val(4); 
-                                                }
+                                                }else if(num_animals_big == 50 || num_animals_small == 50){
+                                                    $('#score_animal').val(0);
+                                                }else{$('#score_animal').val(0);}
 
                                             }
                                         });
@@ -2819,18 +2826,56 @@
             '<td>'+dataRow_income+'</td>'+
             '<td>' +
                 '<div class="form-group add_type_animals_'+row_3+'">'+
-                    '<select required="required" style="width: 100%;" class="form-control type_animals" id="type_animals_'+row_3+'" name="type_animals['+row_3+']"> <option></option>@foreach($typeanimals as $key => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
+                    '<select required="required" style="width: 100%;" class="cal_animal form-control type_animals" id="type_animals_'+row_3+'" name="type_animals['+row_3+']"> <option></option>@foreach($typeanimals as $key => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
                 '</div>'+
             '</td>'+
-            '<td><div class="form-group"><input autocomplete="off" type="text" class="num_animals_big form-control allowNumber" name="num_animals_big['+row_3+']" required="required"/></div></td>'+
-            '<td><div class="form-group"><input autocomplete="off" type="text" class="num_animals_small form-control allowNumber" name="num_animals_small['+row_3+']"/></div></td>'+
-            '<td><div class="form-group"><input autocomplete="off" type="text" class="note_animals form-control" name="note_animals['+row_3+']"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal num_animals_big form-control allowNumber" name="num_animals_big['+row_3+']" required="required"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal num_animals_small form-control allowNumber" name="num_animals_small['+row_3+']"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal note_animals form-control" name="note_animals['+row_3+']"/></div></td>'+
             '<td style="text-align:center;"><a status="0" class="btn remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
         $(".new_rows_3").append(tab_rows_3);
         dataRow_income++;
         AllowNumber();
         $(".type_animals").select2({ allowClear:true, placeholder: "ប្រភេទសត្វ"});
+        $('.cal_animal').keyup(function(){
+            $('#score_animal').empty();
+            var animal = $('.type_animals').val();
+            var num_animals_big     = $('.num_animals_big').val();
+            var num_animals_small   = $('.num_animals_small').val();
+            var note_animals        = $('.note_animals').val();
+            if(animal == 1){
+                $('#score_animal').empty();
+                if((num_animals_big == 0 && num_animals_small == 0 && note_animals == 0)){
+                    $('#score_animal').val(6);
+                }else if( (num_animals_big == 1 || num_animals_small <= 2) || (note_animals == 2) ){
+                   $('#score_animal').val(4); 
+                }else if(num_animals_big>1 || num_animals_small>3 || note_animals>2){
+                    $('#score_animal').val(0); 
+                }else{$('#score_animal').val(0);}
+
+            }else if(animal == 2){
+                $('#score_animal').empty();
+                if( (num_animals_big == 0 && num_animals_small == 0 && note_animals == 0) ){
+                    $('#score_animal').val(6);
+                }else if(num_animals_big<3 || num_animals_small < 3){
+                    $('#score_animal').val(4);
+                }else if(num_animals_big==3 || num_animals_small==3 ){
+                     $('#score_animal').val(0);
+                }else{$('#score_animal').val(0);}
+
+            }else{
+                $('#score_animal').empty();
+                if(num_animals_small < 30 || num_animals_big < 30){
+                    $('#score_animal').val(6);
+                }else if( (num_animals_big>30 && num_animals_big<50) || (num_animals_big>30 && num_animals_big<50) ){
+                    $('#score_animal').val(4); 
+                }else if(num_animals_big == 50 || num_animals_small == 50){
+                    $('#score_animal').val(0);
+                }else{$('#score_animal').val(0);}
+
+            }
+        });
     });
     //remove add
     $(".new_rows_3").on('click','.remove_rows_3',function(){
