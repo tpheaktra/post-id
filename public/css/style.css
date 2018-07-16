@@ -252,8 +252,8 @@ input[type=radio]{
     border-radius:2px;
     padding:4px;
 }
-
-
+.input-group-addon{font-size:12px !important;}
+.form-control-custome.has-error{ border-color: #a94442 !important;}
 /*====================
    - user-mangement
  */
