@@ -16,10 +16,9 @@ class Helpers{
     */
     public static function getHospital(){
         $hospital = DB::connection("mysql2")
-            ->select('select '.(Helpers::lang() == 'en' ? 'hf.name_en' : 'hf.name_kh').'
-             AS hospital, hf.od_code, hf.name_kh,os.shortcut from health_facilities hf 
-             inner join od_shortcuts os on hf.od_code = os.od_code  
-             order by hf.name_kh ASC');
+            ->select('select os.od_code,os.shortcut,hf.name_kh from operational_districts od 
+                    inner join od_shortcuts os on od.code = os.od_code
+                    inner join health_facilities hf on os.od_code = hf.od_code');
         return $hospital;
     }
 
