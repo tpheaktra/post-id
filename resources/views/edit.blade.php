@@ -1815,57 +1815,52 @@
                                         <td>{{$ky+1}}</td>
                                         <td>
                                             <div class="form-group">
-                                                <select style="background-color: #eee !important;" class="form-control income_name" id="income_name_0" name="income_name[0]" required="required" readonly="readonly">
-                                                    <option value="{{$ot->income_name}}">{{$ot->income_name}}</option>
-                                                </select>
-                                            </div>
-                                        </td>
+                                                <input id="income_name_{{$key}}" name="income_name[{{$key}}]" autocomplete="off" class="form-control income_name" type="text" value="{{$ot->income_name}}" readonly="readonly" required="required"></div>
+                                            </td>
                                         <td>
                                             <div class="form-group">
-                                                <select class="form-control income_age" id="income_age_0" name="income_age[0]" required="required" readonly="readonly">
-                                                    <option value="{{$ot->income_age}}">{{$ot->income_age}}</option>
-                                                </select>
-                                            </div>
-                                        </td>
+                                                <input id="income_age_{{$key}}" name="income_age[{{$key}}]" autocomplete="off" class="form-control income_age" type="text" value="{{$ot->income_age}}" readonly="readonly" required="required"></div>
+                                            </td>
                                         <td>
-                                            <div class="form-group">
-                                                <select style="width: 100%" class="form-control income_occupation" id="income_occupation" name="income_occupation[0]">
+                                            <div class="form-group add_income_occupation">
+                                                <select style="width: 100%" autocomplete="off" class="form-control income_occupation" id="income_occupation" name="income_occupation[{{$key}}]" required="required">
                                                     <option></option>
                                                     @foreach($occupation as $keh => $value)
-                                                        <option @if($ot->income_occupation == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    <option @if($ot->income_occupation == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
                                                     @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
+                                                    </select>
+                                                </div>
+                                            </td>
                                         <td>
                                             <div class="form-group">
-                                                <input name="income_unit[0]" type="text" class="form-control" placeholder="ថ្ងៃ" value="{{$ot->income_unit}}"/>
+                                                <input value="{{$ot->income_unit}}" name="income_unit[{{$key}}]" type="text" class="form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">
                                             </div>
                                         </td>
+
                                         <td>
                                             <div class="form-group input-group">
-                                                <input value="{{$ot->unit_in_month}}" id="unit_in_month" name="unit_in_month[0]" type="text" class="form-control allowNumber otherincome" required="required" />
+                                                <input value="{{$ot->unit_in_month}}" id="unit_in_month_{{$key}}" name="unit_in_month[{{$key}}]" type="text" class="unit_in_month form-control allowNumber otherincome" required="required" autocomplete="off">
                                                 <span class="input-group-addon">ថ្ងៃ</span>
-                                            </div>
-                                        </td>
+                                                </div>
+                                            </td>
                                         <td>
                                             <div class="form-group input-group">
-                                                <input value="{{$ot->average_amount}}" id="average_amount" name="average_amount[0]" type="text" class="form-control allowNumber otherincome" required="required"/>
+                                                <input value="{{$ot->average_amount}}" id="average_amount_{{$key}}" name="average_amount[{{$key}}]" type="text" class="average_amount form-control allowNumber otherincome" required="required" autocomplete="off">
                                                 <span class="input-group-addon">រៀល</span>
-                                            </div>
-                                        </td>
+                                                </div>
+                                            </td>
                                         <td>
                                             <div class="form-group input-group">
-                                                <input value="{{$ot->monthly_income}}" id="monthly_income" name="monthly_income[0]" type="text" class="form-control allowNumber monthly_income_total" readonly="readonly"/>
+                                                <input value="{{$ot->monthly_income}}" id="monthly_income_{{$key}}" name="monthly_income[{{$key}}]" type="text" class="monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">
                                                 <span class="input-group-addon">រៀល</span>
-                                            </div>
-                                        </td>
+                                                </div>
+                                            </td>
                                         <td style="text-align:center;">
-                                                {{--<span>--}}
-                                                    {{--<a  class="btn btn-primary" id="add_rows_4" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>--}}
-                                                {{--</span>--}}
+
                                         </td>
                                     </tr>
+
+
                                     @endforeach
                                 </tbody>
 

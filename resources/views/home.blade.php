@@ -1742,6 +1742,7 @@
         </table>
 
         <script type="text/javascript">
+
             $(document).ready(function() {
                $('#datatable1').DataTable({
                     "processing": true,
@@ -1774,6 +1775,7 @@
 
 
 <script type="text/javascript">
+    var step2Row = 1;
     $(document).ready(function () {
 
         $("#delete").click(function(){
@@ -1895,6 +1897,7 @@
             if (isValid)
                 nextStepWizard.removeAttr('disabled').trigger('click');
         });
+
         // step2
         step2Next.click(function(){
             var curStep = $(this).closest(".setup-content"),
@@ -1914,8 +1917,15 @@
             //in append
             var row_num = $('.new_rows tr').length;
             var plus = '';
-            document.getElementById('total_people').value =row_num;
+            step2Row = row_num;
+            console.log('1. step2='+ step2Row);
+            console.log('1. dataRow='+ dataRow);
+
+            ///document.getElementById('total_people').value =row_num;
+            $('#total_people').val(row_num);
             $('.new_rows_4').empty();
+            $('#total_inc_person').empty();
+            $('#total_inc_person').empty();
            // alert(row_num);
             for(var i=0; i<row_num; i++) {
                 if ($('#family_relationship_'+i).val() == '') {
@@ -1961,10 +1971,10 @@
                 var otherIncome = '<tr class="myrow_4">' +
                         '<td>'+(i+1)+'</td>'+
                         '<td>' +
-                            '<div class="form-group"><input id="income_name_'+i+'" name="income_name['+i+']" autocomplete="off" class="form-control" type="text" value="'+nick+'" readonly="readonly" required="required"></div>' +
+                            '<div class="form-group"><input id="income_name_'+i+'" name="income_name['+i+']" autocomplete="off" class="form-control income_name" type="text" value="'+nick+'" readonly="readonly" required="required"></div>' +
                         '</td>' +
                         '<td>' +
-                            '<div class="form-group"><input id="income_name_'+i+'" name="income_name['+i+']" autocomplete="off" class="form-control" type="text" value="'+m_age+'" readonly="readonly" required="required"></div>' +
+                            '<div class="form-group"><input id="income_age_'+i+'" name="income_age['+i+']" autocomplete="off" class="form-control income_age" type="text" value="'+m_age+'" readonly="readonly" required="required"></div>' +
                         '</td>' +
                         '<td>' +
                             '<div class="form-group add_income_occupation">' +
@@ -1978,31 +1988,32 @@
                         '</td>' +
                         '<td>' +
                             '<div class="form-group">' +
-                                '<input name="income_unit['+i+']" type="text" class="form-control" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">' +
+                                '<input name="income_unit['+i+']" type="text" class="form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">' +
                             '</div>' +
                         '</td>'+
 
                         '<td>' +
                             '<div class="form-group input-group">' +
-                                '<input id="unit_in_month_'+i+'" name="unit_in_month['+i+']" type="text" class="form-control allowNumber otherincome" required="required" autocomplete="off">'+
+                                '<input id="unit_in_month_'+i+'" name="unit_in_month['+i+']" type="text" class="unit_in_month form-control allowNumber otherincome" required="required" autocomplete="off">'+
                                 '<span class="input-group-addon">ថ្ងៃ</span>' +
                             '</div>' +
                         '</td>'+
                         '<td>'+
                             '<div class="form-group input-group">'+
-                                '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="form-control allowNumber otherincome" required="required" autocomplete="off">'+
+                                '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="average_amount form-control allowNumber otherincome" required="required" autocomplete="off">'+
                                 '<span class="input-group-addon">រៀល</span>'+
                             '</div>'+
                         '</td>'+
                         '<td>' +
                             '<div class="form-group input-group">' +
-                                '<input id="monthly_income_'+i+'" name="monthly_income['+i+']" type="text" class="form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
+                                '<input id="monthly_income_'+i+'" name="monthly_income['+i+']" type="text" class="monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
                                 '<span class="input-group-addon">រៀល</span>' +
                             '</div>' +
                         '</td>'+
                         '<td style="text-align:center;">'+plus+'</td>' +
                     '</tr>';
                 $('.new_rows_4').append(otherIncome);
+
                 var row_num11 = $('.new_rows_4 tr').length;
                 $('.otherincome').keyup(function () {
                     for(var ii=0; ii<row_num11; ii++) {
@@ -2034,8 +2045,9 @@
                 });
 
             }
-
-
+            step2Row++;
+            console.log('1. step2='+ step2Row);
+            console.log('1. dataRow='+ dataRow);
             $('.empapp').closest('tr').remove();
 
             if($('.family_relationship').val() == ''){
@@ -2926,12 +2938,12 @@
             $('.new_rows_3  tr:eq(' + (n-1) +') td .note_animals').attr('name', 'note_animals['+(n-1)+']');
         }
     }
-
-    dataRow_other_income=3;
+    dataRow_other_income=step2Row;//dataRow;
     $(".new_rows_4").on('click','#add_rows_4',function(){
-        var num_4 = $('.new_rows_4 tr').length;
+        dataRow_other_income=step2Row;
+        var num_4 = step2Row-1;//$('.new_rows_4 tr').length;
         var otherIncome1 = '<tr class="myrow_4">' +
-            '<td>'+dataRow_other_income+'</td>'+
+            '<td>'+step2Row+'</td>'+
                 '<td>' +
                     '<div class="form-group"><input id="income_name_'+num_4+'" name="income_name['+num_4+']" autocomplete="off" class="form-control income_name" type="text"  required="required"></div>' +
                 '</td>' +
@@ -2950,7 +2962,7 @@
                 '</td>' +
                 '<td>' +
                     '<div class="form-group">' +
-                        '<input name="income_unit['+num_4+']" type="text" class="form-control" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">' +
+                        '<input name="income_unit['+num_4+']" type="text" class="income_unit form-control" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">' +
                     '</div>' +
                 '</td>'+
 
@@ -2962,23 +2974,23 @@
                 '</td>'+
                 '<td>'+
                     '<div class="form-group input-group">'+
-                        '<input id="average_amount_'+num_4+'" name="average_amount['+num_4+']" type="text" class="form-control allowNumber otherincome" required="required" autocomplete="off">'+
+                        '<input id="average_amount_'+num_4+'" name="average_amount['+num_4+']" type="text" class="average_amount form-control allowNumber otherincome" required="required" autocomplete="off">'+
                         '<span class="input-group-addon">រៀល</span>'+
                     '</div>'+
                 '</td>'+
                 '<td>' +
                     '<div class="form-group input-group">' +
-                        '<input id="monthly_income_'+num_4+'" name="monthly_income['+num_4+']" type="text" class="form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
+                        '<input id="monthly_income_'+num_4+'" name="monthly_income['+num_4+']" type="text" class="monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
                         '<span class="input-group-addon">រៀល</span>' +
                     '</div>' +
                 '</td>'+
             '<td style="text-align:center;"><a id="other_income_'+num_4+'" class="btn remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>' +
             '</tr>';
         $('.new_rows_4').append(otherIncome1);
-        dataRow_other_income++;
+        step2Row++;
         var num_4_1 = $('.new_rows_4 tr').length+1;
         $('.otherincome').keyup(function () {
-            for(var ii=0; ii<num_4_1; ii++) { alert(ii);
+            for(var ii=0; ii<num_4_1; ii++) {
                 var sum = 0;
                 var unit_in_month = $('#unit_in_month_'+ii).val();
                 var average_amount = $('#average_amount_'+ii).val();
@@ -3008,7 +3020,7 @@
     });
 
     function reOrder_other_income(){
-        for(var n=3;n<(dataRow_other_income-1);n++){
+        for(var n=0;n<(step2Row-1);n++){
             $('.new_rows_4  tr:eq(' + (n-1) +') td:first-child').html(n);
             $('.new_rows_4  tr:eq(' + (n-1) +') td .income_name').attr('name', 'income_name['+(n-1)+']');
             $('.new_rows_4  tr:eq(' + (n-1) +') td .income_name').attr('id', 'income_name_'+(n-1));
@@ -3045,7 +3057,7 @@
         $('#add_rows_4').show();
         $(this).parent().parent().remove();
         reOrder_other_income();
-        dataRow_other_income--;
+        step2Row--;
     });
 
     function AllowNumber() {
@@ -3079,6 +3091,7 @@
             $(".add_hide").addClass("autho-hide");
             $('.autho-hide').fadeOut();
         },9000);
+        //step2Row = 5;
     });
     // $('.cal_el').change(function(){
     //     var total = $('#total_meterial_costs').val();
