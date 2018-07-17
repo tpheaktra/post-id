@@ -1277,7 +1277,7 @@
                                     <td>1</td>
                                     <td>
                                         <div class="form-group add_type_animals">
-                                            <select style="width: 100%;" class="form-control type_animals" id="type_animals" name="type_animals[0]" required="required">
+                                            <select style="width: 100%;" class="cal_animal form-control type_animals" id="type_animals" name="type_animals[0]" required="required">
                                                 <option></option>
                                                 @foreach($typeanimals as $key => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -1285,19 +1285,20 @@
                                             </select>
                                         </div>
                                     </td>
+                                  
                                     <td>
                                         <div class="form-group">
-                                            <input name="num_animals_big[0]" type="text" class="form-control allowNumber" required="required" />
+                                            <input name="num_animals_big[0]" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="num_animals_small[0]" type="text" class="form-control allowNumber"  />
+                                            <input name="num_animals_small[0]" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input name="note_animals[0]" type="text"  class="form-control"  />
+                                            <input name="note_animals[0]" id="note_animals"  type="text"  class="cal_animal form-control" />
                                         </div>
                                     </td>
                                     <td style="text-align:center;">
@@ -1306,11 +1307,62 @@
                                         </span>
                                     </td>
                                 </tr>
-                                </tbody>
+                                  <script type="text/javascript">
+                                        $('.cal_animal').keyup(function(){
+
+                                            $('#score_animal').empty();
+                                            var animal = $('#type_animals').val();
+                                            var num_animals_big     = $('#num_animals_big').val();
+                                            var num_animals_small   = $('#num_animals_small').val();
+                                            var note_animals        = $('#note_animals').val();
+                                            if(animal == 1){
+                                                $('#score_animal').empty();
+                                                if((num_animals_big == 0 && num_animals_small == 0 && note_animals == 0)){
+                                                    $('#score_animal').val(6);
+                                                }else if( num_animals_big == 1 || num_animals_small <= 2 || note_animals == 2){
+                                                   $('#score_animal').val(4); 
+                                                }else if(num_animals_big>1 || num_animals_small>3 || note_animals>2){
+                                                    $('#score_animal').val(0); 
+                                                }else{$('#score_animal').val(0);}
+
+                                            }else if(animal == 2){
+                                                $('#score_animal').empty();
+                                                if( (num_animals_big == 0 && num_animals_small == 0) ){
+                                                    $('#score_animal').val(6);
+                                                }else if(num_animals_big<3 || num_animals_small < 3){
+                                                    $('#score_animal').val(4);
+                                                }else if(num_animals_big==3 || num_animals_small==3 ){
+                                                     $('#score_animal').val(0);
+                                                }else{$('#score_animal').val(0);}
+
+                                            }else{
+                                                $('#score_animal').empty();
+                                                if(num_animals_small < 30 || num_animals_big < 30){
+                                                    $('#score_animal').val(6);
+                                                }else if( (num_animals_big>30 && num_animals_big<50) || (num_animals_big>30 && num_animals_big<50) ){
+                                                    $('#score_animal').val(4); 
+                                                }else if(num_animals_big == 50 || num_animals_small == 50){
+                                                    $('#score_animal').val(0);
+                                                }else{$('#score_animal').val(0);}
+
+                                            }
+                                        });
+                                    </script>
+                            </tbody>
+                                <tr>
+                                    <td colspan="4"><b style="float:right">7.A.1 ការចិញ្ចឹមសត្វ</b></td>
+                                    <td>
+                                        <div class="form-group input-group">
+                                            <input id="score_animal" name="score_animal" type="text" required="required" class="form-control cal_animal" readonly="readonly"/>
+                                            <span class="input-group-addon">ពិន្ទុ</span>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
                             </table>
                     </div>
 
-                    <div class="col-sm-12"><hr> </div>
+                    <div class="col-sm-12"><hr></div>
                         <div class="col-sm-12">
                             <h5><b>គ.១២.១.២​)ដីកសិកម្ម</b></h5>
                             <p>មាន​ដីកសិកម្ម ឬ​ទេ ?</p>
@@ -1480,7 +1532,7 @@
                                     @foreach($health as $key =>$vv)
                                        <li>
                                            <label>
-                                               <input class="health_id_{{$key}}" style="margin-right: 10px" type="checkbox" value="{{$vv->id}}" name="health_id[{{$key}}]" multiple/>
+                                               <input class="health_id_{{$key}} cal_health" style="margin-right: 10px;" type="checkbox" value="{{$vv->id}}" name="health_id[{{$key}}]" multiple/>
                                                {{$vv->name_kh}}
                                            </label>
                                            @if($vv->id == 1)<label id="health_1"></label>@endif
@@ -1488,6 +1540,11 @@
                                        </li>
                                     @endforeach
                                 </ul>
+                                <P>8. ជំងឺ,របួសនិងពិការភាព</P>
+                                <div class="form-group input-group" style="width: 300px;">
+                                    <input id="score_health" name="" type="text" required="required" class="cal_health form-control" readonly="readonly"/>
+                                    <span class="input-group-addon">ពិន្ទុ</span>
+                                </div>
                             <script>
 
                                 $('.health_id_0').click(function () {
@@ -1505,12 +1562,12 @@
                                             '<tr>'+
                                             '<td>'+
                                             '<div class="form-group">' +
-                                            '<input autocomplete="off" name="kids_then65" type="text" class="form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="kids_then65" id="kids_then65" type="text" class="cal_health form-control allowNumber"/>' +
                                             '</div>'+
                                             '</td>'+
                                             '<td>'+
                                             '<div class="form-group">' +
-                                            '<input autocomplete="off" name="old_bigger65" type="text" class="form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="old_bigger65" id="old_bigger65" type="text" class="cal_health form-control allowNumber"/>' +
                                             '</div>'+
                                             '</td>'+
                                             '</tr>'+
@@ -1519,9 +1576,25 @@
                                             '</div>';
                                         $('#health_1').append(health1);
                                         AllowNumber();
+
+                                        $('.cal_health').keyup(function(){
+                                            var kids_then65 = $('#kids_then65').val();
+                                            var old_bigger65 = $('#old_bigger65').val();
+                                            if(kids_then65>=2){
+                                                $('#score_health').val(10);
+                                            }else if(kids_then65==1){
+                                                $('#score_health').val(7);
+                                            }else if(old_bigger65>=1){
+                                                $('#score_health').val(4);
+                                            }else{
+                                                $('#score_health').val(0);
+                                            }
+                                        });
+
                                     }else{
                                         $('#health_1').empty();
                                     }
+
                                 });
 
                                 $('.health_id_1').click(function () {
@@ -1540,12 +1613,12 @@
                                             '<tr>' +
                                             '<td>' +
                                             '<div class="form-group">' +
-                                            '<input autocomplete="off" name="kids_50_then65" type="text" class="form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="kids_50_then65" id="kids_50_then65" type="text" class="cal_health form-control allowNumber"/>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group">' +
-                                            '<input autocomplete="off" name="old_50_bigger65" type="text" class="form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="old_50_bigger65" id="old_50_bigger65" type="text" class="cal_health form-control allowNumber"/>' +
                                             '</div>' +
                                             '</td>' +
                                             '</tr>' +
@@ -1554,16 +1627,23 @@
                                             '</div>';
                                         $('#health_2').append(health2);
                                         AllowNumber();
-                                    } else {
+                                        $('.cal_health').keyup(function(){
+                                            var kids_50_then65 = $('#kids_50_then65').val();
+                                            var old_50_bigger65 = $('#old_50_bigger65').val();
+                                            if(kids_50_then65>=2){
+                                                $('#score_health').val(7);
+                                            }else if(kids_50_then65>0 && kids_50_then65<=1){
+                                                $('#score_health').val(4);
+                                            }else{
+                                                $('#score_health').val(0);
+                                            }
+                                        });
+                                    }else {
                                         $('#health_2').empty();
+                                        $('#score_health').val(0);
                                     }
                                 });
-
                             </script>
-
-
-
-
 
                             <h4>គ.១៤) បំណុលគ្រួសារ</h4>
                             <p>តើ​គ្រួសារ​របស់​អ្នក​នៅមាន​បំណុល/​កម្ចី​មិនទាន់​បាន​សង​ដែរ​ឬ​ទេ?</p>
@@ -2774,18 +2854,56 @@
             '<td>'+dataRow_income+'</td>'+
             '<td>' +
                 '<div class="form-group add_type_animals_'+row_3+'">'+
-                    '<select required="required" style="width: 100%;" class="form-control type_animals" id="type_animals_'+row_3+'" name="type_animals['+row_3+']"> <option></option>@foreach($typeanimals as $key => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
+                    '<select required="required" style="width: 100%;" class="cal_animal form-control type_animals" id="type_animals_'+row_3+'" name="type_animals['+row_3+']"> <option></option>@foreach($typeanimals as $key => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
                 '</div>'+
             '</td>'+
-            '<td><div class="form-group"><input autocomplete="off" type="text" class="num_animals_big form-control allowNumber" name="num_animals_big['+row_3+']" required="required"/></div></td>'+
-            '<td><div class="form-group"><input autocomplete="off" type="text" class="num_animals_small form-control allowNumber" name="num_animals_small['+row_3+']"/></div></td>'+
-            '<td><div class="form-group"><input autocomplete="off" type="text" class="note_animals form-control" name="note_animals['+row_3+']"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal num_animals_big form-control allowNumber" name="num_animals_big['+row_3+']" required="required"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal num_animals_small form-control allowNumber" name="num_animals_small['+row_3+']"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal note_animals form-control" name="note_animals['+row_3+']"/></div></td>'+
             '<td style="text-align:center;"><a status="0" class="btn remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
         $(".new_rows_3").append(tab_rows_3);
         dataRow_income++;
         AllowNumber();
         $(".type_animals").select2({ allowClear:true, placeholder: "ប្រភេទសត្វ"});
+        $('.cal_animal').keyup(function(){
+            $('#score_animal').empty();
+            var animal = $('.type_animals').val();
+            var num_animals_big     = $('.num_animals_big').val();
+            var num_animals_small   = $('.num_animals_small').val();
+            var note_animals        = $('.note_animals').val();
+            if(animal == 1){
+                $('#score_animal').empty();
+                if((num_animals_big == 0 && num_animals_small == 0 && note_animals == 0)){
+                    $('#score_animal').val(6);
+                }else if( (num_animals_big == 1 || num_animals_small <= 2) || (note_animals == 2) ){
+                   $('#score_animal').val(4); 
+                }else if(num_animals_big>1 || num_animals_small>3 || note_animals>2){
+                    $('#score_animal').val(0); 
+                }else{$('#score_animal').val(0);}
+
+            }else if(animal == 2){
+                $('#score_animal').empty();
+                if( (num_animals_big == 0 && num_animals_small == 0 && note_animals == 0) ){
+                    $('#score_animal').val(6);
+                }else if(num_animals_big<3 || num_animals_small < 3){
+                    $('#score_animal').val(4);
+                }else if(num_animals_big==3 || num_animals_small==3 ){
+                     $('#score_animal').val(0);
+                }else{$('#score_animal').val(0);}
+
+            }else{
+                $('#score_animal').empty();
+                if(num_animals_small < 30 || num_animals_big < 30){
+                    $('#score_animal').val(6);
+                }else if( (num_animals_big>30 && num_animals_big<50) || (num_animals_big>30 && num_animals_big<50) ){
+                    $('#score_animal').val(4); 
+                }else if(num_animals_big == 50 || num_animals_small == 50){
+                    $('#score_animal').val(0);
+                }else{$('#score_animal').val(0);}
+
+            }
+        });
     });
     //remove add
     $(".new_rows_3").on('click','.remove_rows_3',function(){
