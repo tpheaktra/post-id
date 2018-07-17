@@ -45,7 +45,7 @@ class RoofMadeSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],[
                 'name_en' => 'plastic',
-                'name_kh' => 'តង់កៅស៊ូពណ៌/ប្លាស្ទិក',
+                'name_kh' => 'កៅស៊ូពណ៌/ប្លាស្ទិក',
                 'record_status'=> 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -58,12 +58,6 @@ class RoofMadeSeeder extends Seeder
             ],[
                 'name_en' => 'concrete',
                 'name_kh' => 'បេតុង',
-                'record_status'=> 1,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],[
-                'name_en' => 'other_materail',
-                'name_kh' => 'សម្ភារស្រាលៗ',
                 'record_status'=> 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

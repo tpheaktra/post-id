@@ -1816,13 +1816,15 @@
                                         <td>
                                             <div class="form-group">
                                                 <select style="background-color: #eee !important;" class="form-control income_name" id="income_name_0" name="income_name[0]" required="required" readonly="readonly">
-
+                                                    <option value="{{$ot->income_name}}">{{$ot->income_name}}</option>
                                                 </select>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <select class="form-control income_age" id="income_age_0" name="income_age[0]" required="required" readonly="readonly"></select>
+                                                <select class="form-control income_age" id="income_age_0" name="income_age[0]" required="required" readonly="readonly">
+                                                    <option value="{{$ot->income_age}}">{{$ot->income_age}}</option>
+                                                </select>
                                             </div>
                                         </td>
                                         <td>
@@ -2050,7 +2052,7 @@
                                                         @foreach($question as $key=>$gg)
                                                             <li>
                                                                 <label>
-                                                                    <input @if($debt_link->question_id ?? '' == $gg->id) checked @endif style="margin-right: 10px;" value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}
+                                                                    <input @if($debt_link->question_id == $gg->id) checked @endif style="margin-right: 10px;" value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}
                                                                 </label>
                                                             </li>
                                                         @endforeach
