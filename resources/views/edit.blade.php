@@ -1815,15 +1815,15 @@
                                         <td>{{$ky+1}}</td>
                                         <td>
                                             <div class="form-group">
-                                                <input id="income_name_{{$key}}" name="income_name[{{$key}}]" autocomplete="off" class="form-control income_name" type="text" value="{{$ot->income_name}}" readonly="readonly" required="required"></div>
+                                                <input id="income_name_{{$ky}}" name="income_name[{{$ky}}]" autocomplete="off" class="form-control income_name" type="text" value="{{$ot->income_name}}" readonly="readonly" required="required"></div>
                                             </td>
                                         <td>
                                             <div class="form-group">
-                                                <input id="income_age_{{$key}}" name="income_age[{{$key}}]" autocomplete="off" class="form-control income_age" type="text" value="{{$ot->income_age}}" readonly="readonly" required="required"></div>
+                                                <input id="income_age_{{$ky}}" name="income_age[{{$ky}}]" autocomplete="off" class="form-control income_age" type="text" value="{{$ot->income_age}}" readonly="readonly" required="required"></div>
                                             </td>
                                         <td>
                                             <div class="form-group add_income_occupation">
-                                                <select style="width: 100%" autocomplete="off" class="form-control income_occupation" id="income_occupation" name="income_occupation[{{$key}}]" required="required">
+                                                <select style="width: 100%" autocomplete="off" class="form-control income_occupation" id="income_occupation" name="income_occupation[{{$ky}}]" required="required">
                                                     <option></option>
                                                     @foreach($occupation as $keh => $value)
                                                     <option @if($ot->income_occupation == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -1833,30 +1833,32 @@
                                             </td>
                                         <td>
                                             <div class="form-group">
-                                                <input value="{{$ot->income_unit}}" name="income_unit[{{$key}}]" type="text" class="form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">
+                                                <input value="{{$ot->income_unit}}" name="income_unit[{{$ky}}]" type="text" class="form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">
                                             </div>
                                         </td>
 
                                         <td>
                                             <div class="form-group input-group">
-                                                <input value="{{$ot->unit_in_month}}" id="unit_in_month_{{$key}}" name="unit_in_month[{{$key}}]" type="text" class="unit_in_month form-control allowNumber otherincome" required="required" autocomplete="off">
+                                                <input value="{{$ot->unit_in_month}}" id="unit_in_month_{{$ky}}" name="unit_in_month[{{$ky}}]" type="text" class="unit_in_month form-control allowNumber otherincome" required="required" autocomplete="off">
                                                 <span class="input-group-addon">ថ្ងៃ</span>
                                                 </div>
                                             </td>
                                         <td>
                                             <div class="form-group input-group">
-                                                <input value="{{$ot->average_amount}}" id="average_amount_{{$key}}" name="average_amount[{{$key}}]" type="text" class="average_amount form-control allowNumber otherincome" required="required" autocomplete="off">
+                                                <input value="{{$ot->average_amount}}" id="average_amount_{{$ky}}" name="average_amount[{{$ky}}]" type="text" class="average_amount form-control allowNumber otherincome" required="required" autocomplete="off">
                                                 <span class="input-group-addon">រៀល</span>
                                                 </div>
                                             </td>
                                         <td>
                                             <div class="form-group input-group">
-                                                <input value="{{$ot->monthly_income}}" id="monthly_income_{{$key}}" name="monthly_income[{{$key}}]" type="text" class="monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">
+                                                <input value="{{$ot->monthly_income}}" id="monthly_income_{{$ky}}" name="monthly_income[{{$ky}}]" type="text" class="monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">
                                                 <span class="input-group-addon">រៀល</span>
                                                 </div>
                                             </td>
                                         <td style="text-align:center;">
-
+                                            @if($ky == 0)
+                                                <a class="btn btn-primary" id="add_rows_4" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
+                                            @endif
                                         </td>
                                     </tr>
 
@@ -2161,6 +2163,7 @@
 
 
     <script type="text/javascript">
+        var step2Row = 1;
         $(document).ready(function () {
 
             $(".form-control").attr("autocomplete", "off");
@@ -2294,9 +2297,12 @@
                 }
                 //in append
                 var row_num = $('.new_rows tr').length;
-                document.getElementById('total_people').value =row_num;
-                $('#income_name_0').empty();
-                $('#income_age_0').empty();
+                var plus = '';
+                step2Row = row_num;
+                $('#total_people').val(row_num);
+               // $('.new_rows_4').empty();
+                $('#total_monthly_income').empty();
+                $('#total_inc_person').empty();
                 // alert(row_num);
                 for(var i=0; i<row_num; i++) {
                     if ($('#family_relationship_'+i).val() == '') {
@@ -2333,9 +2339,89 @@
                     var nick = $('.nick_name_'+i).val();
                     var m_age = $('.age_'+i).val();
                     // alert(nick);
-                    $('#income_name_0').append('<option value="'+nick+'">'+nick+'</option>');
-                    $('#income_age_0').append('<option value="'+m_age+'">'+m_age+'</option>');
+
+                    if(i==0) {
+                        plus = '<a class="btn btn-primary" id="add_rows_4" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>';
+                    } else{
+                        plus = '<a id="other_income_'+i+'" class="btn remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a>';
+                    }
+                    var otherIncome = '<tr class="myrow_4">' +
+                        '<td>'+(i+1)+'</td>'+
+                        '<td>' +
+                        '<div class="form-group"><input id="income_name_'+i+'" name="income_name['+i+']" autocomplete="off" class="form-control income_name" type="text" value="'+nick+'" readonly="readonly" required="required"></div>' +
+                        '</td>' +
+                        '<td>' +
+                        '<div class="form-group"><input id="income_age_'+i+'" name="income_age['+i+']" autocomplete="off" class="form-control income_age" type="text" value="'+m_age+'" readonly="readonly" required="required"></div>' +
+                        '</td>' +
+                        '<td>' +
+                        '<div class="form-group add_income_occupation">' +
+                        '<select style="width: 100%" autocomplete="off" class="form-control income_occupation" id="income_occupation" name="income_occupation['+i+']" required="required">' +
+                        '<option></option>' +
+                        '@foreach($occupation as $keh => $value)' +
+                        '<option value="{{$value->id}}">{{$value->name_kh}}</option>' +
+                        '@endforeach' +
+                        '</select>'+
+                        '</div>' +
+                        '</td>' +
+                        '<td>' +
+                        '<div class="form-group">' +
+                        '<input name="income_unit['+i+']" type="text" class="form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">' +
+                        '</div>' +
+                        '</td>'+
+
+                        '<td>' +
+                        '<div class="form-group input-group">' +
+                        '<input id="unit_in_month_'+i+'" name="unit_in_month['+i+']" type="text" class="unit_in_month form-control allowNumber otherincome" required="required" autocomplete="off">'+
+                        '<span class="input-group-addon">ថ្ងៃ</span>' +
+                        '</div>' +
+                        '</td>'+
+                        '<td>'+
+                        '<div class="form-group input-group">'+
+                        '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="average_amount form-control allowNumber otherincome" required="required" autocomplete="off">'+
+                        '<span class="input-group-addon">រៀល</span>'+
+                        '</div>'+
+                        '</td>'+
+                        '<td>' +
+                        '<div class="form-group input-group">' +
+                        '<input id="monthly_income_'+i+'" name="monthly_income['+i+']" type="text" class="monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
+                        '<span class="input-group-addon">រៀល</span>' +
+                        '</div>' +
+                        '</td>'+
+                        '<td style="text-align:center;">'+plus+'</td>' +
+                        '</tr>';
+                  //  $('.new_rows_4').append(otherIncome);
+
+                    var row_num11 = $('.new_rows_4 tr').length;
+                    $('.otherincome').keyup(function () {
+                        for(var ii=0; ii<row_num11; ii++) {
+                            var sum = 0;
+                            var unit_in_month = $('#unit_in_month_'+ii).val();
+                            var average_amount = $('#average_amount_'+ii).val();
+                            if(unit_in_month > 31){$('#unit_in_month_'+ii).val('');}
+                            sum = Number(unit_in_month * average_amount);
+                            $("#other_income_"+ii).attr({"onclick": "remove_4("+sum+")"});
+                            $('#monthly_income_'+ii).val(sum);
+                        }
+                    });
+                    $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
+
+                    $('.otherincome').keyup(function () {
+                        var arr = document.getElementsByClassName('monthly_income_total');
+                        var tot=0;
+                        for(var i=0;i<arr.length;i++){
+                            if(parseInt(arr[i].value))
+                                tot += parseInt(arr[i].value);
+                        }
+                        document.getElementById('total_monthly_income').value = tot;
+                        var totalperson = $('#total_people').val();
+                        if(totalperson == null || totalperson == ''){
+                            document.getElementById('total_inc_person').value = tot/1;
+                        }else{
+                            document.getElementById('total_inc_person').value = tot/totalperson;
+                        }
+                    });
                 }
+                step2Row++;
 
                 if($('.family_relationship').val() == ''){
                     $('.alert').show();
@@ -2365,6 +2451,7 @@
                 }else{
                     $('.add_education_level').removeClass("has-error");
                 }
+
                 if (isValid) {
                     nextStepWizard.removeAttr('disabled').trigger('click');
                 }

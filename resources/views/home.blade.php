@@ -1918,13 +1918,13 @@
             var row_num = $('.new_rows tr').length;
             var plus = '';
             step2Row = row_num;
-            console.log('1. step2='+ step2Row);
-            console.log('1. dataRow='+ dataRow);
+            //console.log('1. step2='+ step2Row);
+            //console.log('1. dataRow='+ dataRow);
 
             ///document.getElementById('total_people').value =row_num;
             $('#total_people').val(row_num);
             $('.new_rows_4').empty();
-            $('#total_inc_person').empty();
+            $('#total_monthly_income').empty();
             $('#total_inc_person').empty();
            // alert(row_num);
             for(var i=0; i<row_num; i++) {
@@ -2046,9 +2046,9 @@
 
             }
             step2Row++;
-            console.log('1. step2='+ step2Row);
-            console.log('1. dataRow='+ dataRow);
-            $('.empapp').closest('tr').remove();
+            //console.log('1. step2='+ step2Row);
+           // console.log('1. dataRow='+ dataRow);
+           // $('.empapp').closest('tr').remove();
 
             if($('.family_relationship').val() == ''){
                 $('.alert').show();
