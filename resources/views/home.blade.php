@@ -1297,7 +1297,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="form-group">
+                                        <div class="form-group check_noted">
                                             <input name="note_animals[0]" id="note_animals"  type="text"  class="cal_animal form-control" />
                                         </div>
                                     </td>
@@ -1308,6 +1308,15 @@
                                     </td>
                                 </tr>
                                   <script type="text/javascript">
+
+                                      $('.type_animals').on('change', function() {
+                                          if(this.value == 1){
+                                              $('#note_animals').val('ប្រវាស់');
+                                          }else{
+                                              $('#note_animals').val('');
+                                          }
+                                      });
+
                                         $('.cal_animal').keyup(function(){
 
                                             $('#score_animal').empty();
@@ -2871,7 +2880,7 @@
             '</td>'+
             '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal num_animals_big form-control allowNumber" name="num_animals_big['+row_3+']" required="required"/></div></td>'+
             '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal num_animals_small form-control allowNumber" name="num_animals_small['+row_3+']"/></div></td>'+
-            '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal note_animals form-control" name="note_animals['+row_3+']"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal note_animals form-control" name="note_animals['+row_3+']" id="note_animals_'+row_3+'"/></div></td>'+
             '<td style="text-align:center;"><a status="0" class="btn remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
             '</tr>';
         $(".new_rows_3").append(tab_rows_3);
@@ -2916,6 +2925,18 @@
 
             }
         });
+        var num_3 = $('.new_rows_3 tr').length; alert(num_3);
+
+            $('.type_animals').on('change', function() {
+                for(var m=1; m<num_3; m++) {
+                    if (this.value == 1) {
+                        $('#note_animals_'+m).val('ប្រវាស់');
+                    } else {
+                        $('#note_animals_'+m).val('');
+                    }
+                }
+            });
+
     });
     //remove add
     $(".new_rows_3").on('click','.remove_rows_3',function(){
