@@ -456,7 +456,7 @@
                                     <td colspan="7"><b style="float: right;">10.  ការអប់រំ (មើលចម្លើយនៅក្នុងតារាងផ្នែក ខ)</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                           <input autocomplete="off" id="edu_score"  type="text" required="required" onkeyup class="cal_edu form-control allowNumber" name="edu_score"​​ /><span class="input-group-addon">ពិន្ទុ</span>
+                                           <input autocomplete="off" id="edu_score"  type="text" required="required" class="cal_edu form-control allowNumber" name="edu_score"​​ /><span class="input-group-addon">ពិន្ទុ</span>
                                         </div>
                                     </td>
                                     <td></td>
@@ -536,7 +536,7 @@
                                                         '</td>' +
                                                         '<td width="50%">' +
                                                             '<div class="form-group input-group">' +
-                                                               '<input autocomplete="off" id="r_score"  type="text" required="required" onkeyup class="cal form-control allowNumber" name="price_rent_house_score"​​ readonly/><span class="input-group-addon">ពិន្ទុ</span>' +
+                                                               '<input autocomplete="off" id="r_score"  type="text" required="required" class="cal form-control allowNumber" name="price_rent_house_score"​​ readonly/><span class="input-group-addon">ពិន្ទុ</span>' +
                                                             '</div>' +
                                                         '</td>' +
                                                     '</tr>' +
@@ -642,7 +642,7 @@
                                                             '<td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" type="text" id="a_score1" name="size_member_score" onkeyup class="calculate form-control  allowNumber"​ required="required" readonly="readonly">' +
+                                                                     '<input autocomplete="off" type="text" id="a_score1" name="size_member_score" class="calculate form-control  allowNumber"​ required="required" readonly="readonly">' +
                                                                      '<span class="input-group-addon">ពិន្ទុ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -1401,7 +1401,7 @@
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group ​​input-group input-group">' +
-                                                            '<input autocomplete="off" id="total_land" name="total_land" type="text" required="required" onkeyup class="t_land form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land" name="total_land" type="text" required="required" class="t_land form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>' +
                                                     '</td>' +
                                                 '</tr>' +
@@ -1415,7 +1415,7 @@
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_farm" name="total_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_farm" name="total_land_farm" type="text" required="required" class="t_land form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1426,7 +1426,7 @@
                                                     '<td><label class="control-label">ដីសរុប:</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber"  /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm" type="text" required="required" class="t_land form-control allowNumber"  /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1437,7 +1437,7 @@
                                                     '<td><label class="control-label">7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" onkeyup class="t_land form-control allowNumber" /><span class="input-group-addon">ពិន្ទុ</span>'+
+                                                            '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowNumber" /><span class="input-group-addon">ពិន្ទុ</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1455,7 +1455,7 @@
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group ​​input-group input-group">' +
-                                                            '<input autocomplete="off" id="total_land" name="total_land_other" type="text" required="required" onkeyup class="t_land form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land" name="total_land_other" type="text" required="required" class="t_land form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>' +
                                                     '</td>' +
                                                 '</tr>' +
@@ -1469,7 +1469,7 @@
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_farm" name="total_land_farm_other" type="text" required="required" onkeyup class="t_land form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_farm" name="total_land_farm_other" type="text" required="required" class="t_land form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1480,7 +1480,7 @@
                                                     '<td><label class="control-label">ដីសរុប:</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm_other" type="text" required="required" onkeyup class="t_land form-control allowNumber"  /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm_other" type="text" required="required" class="t_land form-control allowNumber"  /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1491,7 +1491,7 @@
                                                     '<td><label class="control-label">7.A.2 B  ផ្ទៃដីកសិកម្ម មិនមែនជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="l_score" name="other_farm_score" type="text" required="required" onkeyup class="t_land form-control allowNumber"  /><span class="input-group-addon">ពិន្ទុ</span>'+
+                                                            '<input autocomplete="off" id="l_score" name="other_farm_score" type="text" required="required" class="t_land form-control allowNumber"  /><span class="input-group-addon">ពិន្ទុ</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1867,7 +1867,7 @@
                                                     '<tr>' +
                                                         '<td>' +
                                                             '<div class="input-group add_total_debt">' +
-                                                                '<input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="total_debt" id="total_debt">' +
+                                                                '<input autocomplete="off" class="dept_money form-control allowNumber" type="text" name="total_debt" id="total_debt">' +
                                                                 '<span class="input-group-addon">រៀល</span>' +
                                                             '</div>' +
                                                         '</td>' +
@@ -1878,6 +1878,18 @@
 //                                                            '</div>' +
 //                                                        '</td>' +
                                                     '</tr>' +
+<<<<<<< HEAD
+//                                                     '<tr>' +
+// //                                                        '<td>' +
+// //                                                        '</td>' +
+//                                                         '<td>' +
+//                                                             '<div class="input-group add_debt_duration">' +
+//                                                                 '<input autocomplete="off" class="dept_money form-control allowNumber" type="text" name="" id="score_money">' +
+//                                                                 '<span class="input-group-addon">ពិន្ទុ</span>' +
+//                                                             '</div>'+
+//                                                         '</td>'+
+//                                                     '</tr>'+
+=======
                                                     '<tr>' +
 //                                                        '<td>' +
 //                                                        '</td>' +
@@ -1888,6 +1900,7 @@
                                                             '</div>'+
                                                         '</td>'+
                                                     '</tr>'+
+>>>>>>> e8f858d23bb2366b189a9612c1dadfc6fc2f839d
                                                 '</tbody>'+
                                             '</table>'+
                                         '</div>' +
@@ -1906,11 +1919,21 @@
                             }
                         });
                     </script>
+<<<<<<< HEAD
+                    <div class="col-sm-12">
+                        <p>9. បំណុលរបស់គ្រួសារ</p>
+                        <div class="input-group add_debt_duration" style="width: 300px;">
+                            <input autocomplete="off" class="dept_money form-control allowNumber" type="text" name="debt_score" id="score_money" readonly="">
+                            <span class="input-group-addon">ពិន្ទុ</span>
+                        </div>
+                    </div>
+=======
+>>>>>>> e8f858d23bb2366b189a9612c1dadfc6fc2f839d
                     <hr>
                     <div class="col-sm-12">
                         <p>11. វ័យពលកម្ម (ចន្លោះពី១៨ឆ្នាំដល់៦៥ឆ្នាំ) </p>
                         <div class="input-group add_debt_duration" style="width: 300px;">
-                            <input autocomplete="off" onkeyup class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score">
+                            <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score">
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </div>

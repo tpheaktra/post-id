@@ -561,24 +561,25 @@ where gi.id = 1');
                 'debt_duration'         => $request->debt_duration,
             );
             DebtLoanLinkModel::create($debt);
+            
             //tabel score
 
             $score = array(
                 'patient' => $gn_info->id,
-                'size_member' =>$request->$size_member_score,
-                'toilet' => $request->$toilet_score,
-                'roof' => $request->$roof_score,
-                'wall' => $request->$wall_score,
-                'house_status' => $request->$house_score,
+                'size_member'   =>$request->$size_member_score,
+                'toilet'        => $request->$toilet_score,
+                'roof'          => $request->$roof_score,
+                'wall'          => $request->$wall_score,
+                'house_status'  => $request->$house_score,
                 'price_rent_house' => $request->$price_rent_house_score,
                 'price_electronic' => $request->$price_electronic_score,
                 'use_energy_elect' => $request->$use_energy_elect_score,
                 'no_energy_elect'  => $request->$no_energy_elect_score,
                 'vehicle'          => $request->$vehicle_score,
-                'animal'  =>$request->$animal_score,
+                'animal'        =>$request->$animal_score,
                 'personal_farm' => $request->$personal_farm_score,
                 'other_farm'    => $request->$other_farm_score,
-                'income_out_farmer' => $request->$income_out_farmer_score,
+                'income_out_farmer'     => $request->$income_out_farmer_score,
                 'income_out_not_farmer' => $request->$income_out_not_farmer_score,
                 'income_child'  => $request->$income_child_score,
                 'disease'       => $request->$disease_score,
