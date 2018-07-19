@@ -451,6 +451,17 @@
                                     </td>
                                 </tr>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="7"><b style="float: right;">10.  ការអប់រំ (មើលចម្លើយនៅក្នុងតារាងផ្នែក ខ)</b></td>
+                                    <td>
+                                        <div class="form-group input-group">
+                                           <input autocomplete="off" id="edu_score"  type="text" required="required" onkeyup class="cal_edu form-control allowNumber" name="edu_score"​​ /><span class="input-group-addon">ពិន្ទុ</span>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
                         </table>
 
                         <!-- <div class="col-sm-12"><hr> </div> -->
@@ -525,7 +536,7 @@
                                                         '</td>' +
                                                         '<td width="50%">' +
                                                             '<div class="form-group input-group">' +
-                                                               '<input autocomplete="off" id="r_score"  type="text" required="required" onkeyup class="cal form-control allowNumber" name="rent_fee"​​ readonly/><span class="input-group-addon">ពិន្ទុ</span>' +
+                                                               '<input autocomplete="off" id="r_score"  type="text" required="required" onkeyup class="cal form-control allowNumber" name="price_rent_house_score"​​ readonly/><span class="input-group-addon">ពិន្ទុ</span>' +
                                                             '</div>' +
                                                         '</td>' +
                                                     '</tr>' +
@@ -631,7 +642,7 @@
                                                             '<td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" type="text" id="a_score1" name="total_people" onkeyup class="calculate form-control  allowNumber"​ required="required" readonly="readonly">' +
+                                                                     '<input autocomplete="off" type="text" id="a_score1" name="size_member_score" onkeyup class="calculate form-control  allowNumber"​ required="required" readonly="readonly">' +
                                                                      '<span class="input-group-addon">ពិន្ទុ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -792,9 +803,9 @@
                                          $('.cal_roof').change(function(){
                                             var chose = $('#roof_relationship').val();
                                             var status = $('#r_status').val();
-                                            if(chose == 1 || chose ==2 || chose ==5 || chose ==8){
+                                            if(chose == 3 || chose ==2 || chose == 6 || (chose == 4 && status == 1) || (chose ==1 && status == 1) || chose== 9){
                                                 $('#roof_score').val(6);
-                                            }else if( (chose == 3 && status == 2) ||(chose == 3 && status == 1) ){
+                                            }else if( (chose == 4 && status == 2)){
                                                  $('#roof_score').val(4);
                                             }else{
                                                 $('#roof_score').val(0);
@@ -1051,10 +1062,11 @@
                                                 <td></td>
                                             </tr>
                                              <tr>
-                                                <td colspan="4"><b style="float:right">4. ទ្រព្យសម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិចរបស់គ្រួសារ</b></td>
+                                                <td colspan="4"><b style="float:right">4. ទ្រព្យសម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិចរបស់គ្រួសារ</b>
+                                                </td>
                                                 <td>
                                                     <div class="form-group input-group">
-                                                        <input id="el_score" name="el_score" type="text" required="required" class="cal_el form-control" readonly="readonly"/>
+                                                        <input id="el_score" name="price_electronic_score" type="text" required="required" class="cal_el form-control" readonly="readonly"/>
                                                         <span class="input-group-addon">ពិន្ទុ</span>
                                                     </div>
                                                 </td>
@@ -1106,7 +1118,7 @@
                                             '<tr>'+
                                                 '<td></td>'+
                                                 '<td></td>'+
-                                                '<td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber" id="cost_score" required="required" type="text" name="cost_score" readonly="readonly"><span class="input-group-addon">ពិន្ទុ</span></div></td>'+
+                                                '<td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber" id="cost_score" required="required" type="text" name="use_energy_elect_score" readonly="readonly"><span class="input-group-addon">ពិន្ទុ</span></div></td>'+
                                             '</tr>'+
                                             '</table>');
                                         $('.cal_t').keyup(function(){
@@ -1134,7 +1146,7 @@
                                         AllowNumber();
                                     }else if(electric == 2){
                                         $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>'+'<div class="form-group input-group" style="width: 300px;">'+
-                                               '<input id="score_power" type="text" name="score_power" class="score_power form-control allowNumber"​ readonly>'+
+                                               '<input id="score_power" type="text" name="no_energy_elect_score" class="score_power form-control allowNumber"​ readonly>'+
                                                '<span class="input-group-addon">ពិន្ទុ</span>'+
                                             '</div>');
                                         
@@ -1241,7 +1253,7 @@
                                         <td colspan="4"><b style="float:right">6. អំពីយានជំនិះរបស់គ្រួសារ</b></td>
                                         <td>
                                             <div class="form-group input-group">
-                                                <input id="score_v" name="" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
+                                                <input id="score_v" name="vehicle_score" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
                                                 <span class="input-group-addon">ពិន្ទុ</span>
                                             </div>
                                         </td>
@@ -1353,7 +1365,7 @@
                                     <td colspan="4"><b style="float:right">7.A.1 ការចិញ្ចឹមសត្វ</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                            <input id="score_animal" name="score_animal" type="text" required="required" class="form-control cal_animal" readonly="readonly"/>
+                                            <input id="score_animal" name="animal_score" type="text" required="required" class="form-control cal_animal" readonly="readonly"/>
                                             <span class="input-group-addon">ពិន្ទុ</span>
                                         </div>
                                     </td>
@@ -1425,14 +1437,71 @@
                                                     '<td><label class="control-label">7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="l_score" name="total_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber"  /><span class="input-group-addon">ពិន្ទុ</span>'+
+                                                            '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" onkeyup class="t_land form-control allowNumber" /><span class="input-group-addon">ពិន្ទុ</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
                                             '</table>'+
                                         '</div>';
-                                    if(land == 2 || land == 3) {
+                                        var otherland = '<div class="col-sm-12">' +
+                                            '<table width="100%" class="table table-bordered table-striped tbl-land">' +
+                                                '<tr>' +
+                                                    '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
+                                                    '<td>' +
+                                                        '<div class="form-group input-group">'+
+                                                            '<input autocomplete="off" name="land_name_other" type="text" required="required" class="t_land allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                                        '</div>' +
+                                                    '</td>' +
+                                                    '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
+                                                    '<td>' +
+                                                        '<div class="form-group ​​input-group input-group">' +
+                                                            '<input autocomplete="off" id="total_land" name="total_land_other" type="text" required="required" onkeyup class="t_land form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
+                                                        '</div>' +
+                                                    '</td>' +
+                                                '</tr>' +
+                                                '<tr>' +
+                                                    '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
+                                                    '<td>'+
+                                                        '<div class="form-group input-group">'+
+                                                            '<input id="land_farm" autocomplete="off" name="land_farm_other" type="text" required="required" class="allowNumber t_land form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                                        '</div>'+
+                                                    '</td>'+
+                                                    '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
+                                                    '<td>' +
+                                                        '<div class="form-group input-group">'+
+                                                            '<input autocomplete="off" id="total_land_farm" name="total_land_farm_other" type="text" required="required" onkeyup class="t_land form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
+                                                        '</div>'+
+                                                    '</td>' +
+                                                '</tr>' +
+                                                '<tr>' +
+                                                    '<td></td>'+
+                                                    '<td>'+
+                                                    '</td>'+
+                                                    '<td><label class="control-label">ដីសរុប:</label></td>'+
+                                                    '<td>' +
+                                                        '<div class="form-group input-group">'+
+                                                            '<input autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm_other" type="text" required="required" onkeyup class="t_land form-control allowNumber"  /><span class="input-group-addon">ហិចតា</span>'+
+                                                        '</div>'+
+                                                    '</td>' +
+                                                '</tr>' +
+                                                 '<tr>' +
+                                                    '<td></td>'+
+                                                    '<td>'+
+                                                    '</td>'+
+                                                    '<td><label class="control-label">7.A.2 B  ផ្ទៃដីកសិកម្ម មិនមែនជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
+                                                    '<td>' +
+                                                        '<div class="form-group input-group">'+
+                                                            '<input autocomplete="off" id="l_score" name="other_farm_score" type="text" required="required" onkeyup class="t_land form-control allowNumber"  /><span class="input-group-addon">ពិន្ទុ</span>'+
+                                                        '</div>'+
+                                                    '</td>' +
+                                                '</tr>' +
+                                            '</table>'+
+                                        '</div>';
+                                    if(land == 3) {
                                         $('#show-land').append(landshow);
+                                    }
+                                    if (land == 2) {
+                                        $('#show-land').append(otherland);
                                     }
                                     AllowNumber();
                                     $('.t_land').keyup(function(){
@@ -1520,8 +1589,128 @@
                                         </td>
                                         <td></td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="6"><span style="float: right;">7.B.1   ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមានចំណូលពីសកម្មភាពកសិកម្ម</span></td>
+                                        <td colspan="2">
+                                            <div class="input-group">
+                                                <input class="form-control" id="income_out_farmer_score"  type="text" name="income_out_farmer_score">
+                                                <span class="input-group-addon">ពិន្ទុ</span>
+                                            </div>
+                                        </td>
+                                    </tr>
 
                                 </tfoot>
+                            </table>
+                            <table class="tb_grid table table-bordered table-striped" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>ល.រ</th>
+                                        <th width="12%">ឈ្មោះសមាជិក</th>
+                                        <th width="9%">អាយុ​</th>
+                                        <th width="15%">មុខរបររកចំណូល</th>
+                                        <th width="9%">ឯកត្តា</th>
+                                        <th>ចំនួនឯកត្តាក្នុងមួយខែ</th>
+                                        <th>ទឹកប្រាក់មធ្យមក្នុងមួយឯកត្តា</th>
+                                        <th>ចំណូលមធ្យមប្រចាំខែ</th>
+                                        <th>សកម្មភាព</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="new_rows_4">
+                                    <tr class="myrow_4">
+                                        <td>1</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select readonly="readonly" class="form-control income_name" id="income_name_0" name="income_name[0]" required="required"></select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select readonly="readonly" class="form-control income_age" id="income_age_0" name="income_age[0]" required="required"></select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group add_income_occupation">
+                                                <select style="width: 100%" class="form-control income_occupation" id="income_occupation" name="income_occupation[0]" required="required">
+                                                    <option></option>
+                                                    @foreach($occupation as $keh => $value)
+                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input name="income_unit[0]" type="text" class="form-control" placeholder="ថ្ងៃ" value="day"/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group input-group">
+                                                <input id="unit_in_month" name="unit_in_month[0]" type="text" class="form-control allowNumber otherincome" required="required" />
+                                                <span class="input-group-addon">ថ្ងៃ</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group input-group">
+                                                <input id="average_amount" name="average_amount[0]" type="text" class="form-control allowNumber otherincome" required="required"/>
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group input-group">
+                                                <input id="monthly_income" name="monthly_income[0]" type="text" class="form-control allowNumber monthly_income_total" readonly="readonly"/>
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
+                                        </td>
+                                        <td style="text-align:center;">
+                                            <span>
+                                                <a  class="btn btn-primary" id="add_rows_4" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="6"><span style="float: right;">សរុបចំណូល ប្រចាំខែ សម្រាប់គ្រួសារទាំងមូល (គិតជារៀល):</span></td>
+                                        <td colspan="2">
+                                            <div class="input-group">
+                                                <input id="total_monthly_income" class="form-control"  type="text" name="total_mon_income" readonly="readonly">
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6"><span style="float: right;">ចំណូលក្រៅពីកសិកម្មជាមធ្យមប្រចាំខែសម្រាប់មនុស្សម្នាក់​​ (១) :</span></td>
+                                        <td colspan="2">
+                                            <div class="input-group">
+                                                <input class="form-control" id="total_inc_person"  type="text" name="total_inc_person" readonly="readonly">
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6"><span style="float: right;">7.B.2  ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្ម</span></td>
+                                        <td colspan="2">
+                                            <div class="input-group">
+                                                <input class="form-control" id="income_out_not_farmer_score"  type="text" name="income_out_not_farmer_score">
+                                                <span class="input-group-addon">ពិន្ទុ</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td><b style="float: right;"> 7. C កុមារ(អាយុក្រោម ១៨ឆ្នាំ )រកចំណូល</b> </td>
+                                    <td>
+                                        <div class="input-group">
+                                            <input class="form-control" id="income_child_score"  type="text" name="income_child_score">
+                                            <span class="input-group-addon">ពិន្ទុ</span>
+                                        </div>
+                                    </td>
+                                </tr>
                             </table>
                         </div>
 
@@ -1542,7 +1731,7 @@
                                 </ul>
                                 <P>8. ជំងឺ,របួសនិងពិការភាព</P>
                                 <div class="form-group input-group" style="width: 300px;">
-                                    <input id="score_health" name="" type="text" required="required" class="cal_health form-control" readonly="readonly"/>
+                                    <input id="score_health" name="disease_score" type="text" required="required" class="cal_health form-control" readonly="readonly"/>
                                     <span class="input-group-addon">ពិន្ទុ</span>
                                 </div>
                             <script>
@@ -1715,6 +1904,14 @@
                             }
                         });
                     </script>
+                    <hr>
+                    <div class="col-sm-12">
+                        <p>11. វ័យពលកម្ម (ចន្លោះពី១៨ឆ្នាំដល់៦៥ឆ្នាំ) </p>
+                        <div class="input-group add_debt_duration" style="width: 300px;">
+                            <input autocomplete="off" onkeyup class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score">
+                            <span class="input-group-addon">ពិន្ទុ</span>
+                        </div>
+                    </div>
                     <div class="col-sm-12"><hr> </div>
                     <div class="col-sm-12">
                         <!-- <a  class="pull-left btn btn-default print-link3"><img src="" width="30"></a> -->

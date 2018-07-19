@@ -23,6 +23,7 @@ class StoreScoreModel extends Model
         'personal_farm',
         'other_farm',
         'income_out_farmer',
+        'income_out_not_farmer',
         'income_child',
         'disease',
         'debt',

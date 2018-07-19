@@ -12,12 +12,14 @@ use App\model\HouseHoldRootLinkModel;
 use App\model\HouseholdVehicleModel;
 use App\model\HouseoldConsumerModel;
 use App\model\LandAgriculturalLinkModel;
+use App\model\LandOtherAgriculturalLinkModel;
 use App\model\MemberFamilyModel;
 use App\model\NoElectricLinkModel;
 use App\model\OtherIncomeModel;
 use App\model\TypeIncomeModel;
 use App\model\TypeToiletLinkModel;
 use App\model\YesElectricLinkModel;
+use App\model\StoreScoreModel;
 use Illuminate\Http\Request;
 use App\model\RelationshipModel;
 use App\model\FamilyrelationModel;
@@ -501,9 +503,21 @@ where gi.id = 1');
                 'total_land'           => $request->total_land,
                 'land_farm'            => $request->land_farm,
                 'total_land_farm'      => $request->total_land_farm,
-                'sum_land_farm'        => $request->total_land_farm
+                'sum_land_farm'        => $request->sum_land_farm
             );
             LandAgriculturalLinkModel::create($land_agricultural);
+
+            //table land_agricultural_link
+            $land_agricultural_other = array(
+                'g_information_id'     =>  $gn_info->id,
+                'land_agricultural_id' => $request->land,
+                'land_name'            => $request->land_name_other,
+                'total_land'           => $request->total_land_other,
+                'land_farm'            => $request->land_farm_other,
+                'total_land_farm'      => $request->total_land_farm_other,
+                'sum_land_farm'        => $request->sum_land_farm_other
+            );
+            LandOtherAgriculturalLinkModel::create($land_agricultural_other);
 
             //table other_income
             foreach ($request->income_name as $key => $in) {
@@ -547,6 +561,33 @@ where gi.id = 1');
                 'debt_duration'         => $request->debt_duration,
             );
             DebtLoanLinkModel::create($debt);
+            //tabel score
+
+            $score = array(
+                'patient' => $gn_info->id,
+                'size_member' =>$request->$size_member_score,
+                'toilet' => $request->$toilet_score,
+                'roof' => $request->$roof_score,
+                'wall' => $request->$wall_score,
+                'house_status' => $request->$house_score,
+                'price_rent_house' => $request->$price_rent_house_score,
+                'price_electronic' => $request->$price_electronic_score,
+                'use_energy_elect' => $request->$use_energy_elect_score,
+                'no_energy_elect'  => $request->$no_energy_elect_score,
+                'vehicle'          => $request->$vehicle_score,
+                'animal'  =>$request->$animal_score,
+                'personal_farm' => $request->$personal_farm_score,
+                'other_farm'    => $request->$other_farm_score,
+                'income_out_farmer' => $request->$income_out_farmer_score,
+                'income_out_not_farmer' => $request->$income_out_not_farmer_score,
+                'income_child'  => $request->$income_child_score,
+                'disease'       => $request->$disease_score,
+                'debt'  => $request->$debt_score,
+                'edu'   => $request->$edu_score,
+                'age_action'    => $request->$age_action_score,
+                'record_status' => "1"
+            );
+            StoreScoreModel::create($score);
 
             DB::commit();
             return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
