@@ -116,7 +116,7 @@
                                 <td width="35%"><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td width="65%">
                                    <div class="form-group">
-                                       {{ Form::text('g_phone',null,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'10']) }}
+                                       {{ Form::text('g_phone',null,['class'=>'form-control telephone','required'=>'required','maxlength'=>'10']) }}
                                     </div>
                                 </td>
                             </tr>
@@ -1395,13 +1395,13 @@
                                                     '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" name="land_name" type="text" required="required" class="t_land allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                                            '<input autocomplete="off" name="land_name" type="text" required="required" class="t_land allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
                                                         '</div>' +
                                                     '</td>' +
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group ​​input-group input-group">' +
-                                                            '<input autocomplete="off" id="total_land" name="total_land" type="text" required="required" class="t_land form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land" name="total_land" type="text" required="required" class="t_land form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>' +
                                                     '</td>' +
                                                 '</tr>' +
@@ -1409,13 +1409,13 @@
                                                     '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
                                                     '<td>'+
                                                         '<div class="form-group input-group">'+
-                                                            '<input id="land_farm" autocomplete="off" name="land_farm" type="text" required="required" class="allowNumber t_land form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                                            '<input id="land_farm" autocomplete="off" name="land_farm" type="text" required="required" class="allowFlot t_land form-control" /><span class="input-group-addon">កន្លែង</span>'+
                                                         '</div>'+
                                                     '</td>'+
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_farm" name="total_land_farm" type="text" required="required" class="t_land form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_farm" name="total_land_farm" type="text" required="required" class="t_land form-control allowFlot" /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1426,7 +1426,7 @@
                                                     '<td><label class="control-label">ដីសរុប:</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm" type="text" required="required" class="t_land form-control allowNumber"  /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input readonly="readonly" autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm" type="text" required="required" class="t_land form-control allowFlot"  /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1437,7 +1437,7 @@
                                                     '<td><label class="control-label">7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowNumber" /><span class="input-group-addon">ពិន្ទុ</span>'+
+                                                            '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowFlot" /><span class="input-group-addon">ពិន្ទុ</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1449,13 +1449,13 @@
                                                     '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" name="land_name_other" type="text" required="required" class="t_land allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                                            '<input autocomplete="off" name="land_name_other" type="text" required="required" class="t_land allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
                                                         '</div>' +
                                                     '</td>' +
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group ​​input-group input-group">' +
-                                                            '<input autocomplete="off" id="total_land" name="total_land_other" type="text" required="required" class="t_land form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land" name="total_land_other" type="text" required="required" class="t_land form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>' +
                                                     '</td>' +
                                                 '</tr>' +
@@ -1463,13 +1463,13 @@
                                                     '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
                                                     '<td>'+
                                                         '<div class="form-group input-group">'+
-                                                            '<input id="land_farm" autocomplete="off" name="land_farm_other" type="text" required="required" class="allowNumber t_land form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                                            '<input id="land_farm" autocomplete="off" name="land_farm_other" type="text" required="required" class="allowFlot t_land form-control" /><span class="input-group-addon">កន្លែង</span>'+
                                                         '</div>'+
                                                     '</td>'+
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_farm" name="total_land_farm_other" type="text" required="required" class="t_land form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_farm" name="total_land_farm_other" type="text" required="required" class="t_land form-control allowFlot" /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1480,7 +1480,7 @@
                                                     '<td><label class="control-label">ដីសរុប:</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm_other" type="text" required="required" class="t_land form-control allowNumber"  /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm_other" type="text" required="required" class="t_land form-control allowFlot"  /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1504,6 +1504,7 @@
                                         $('#show-land').append(otherland);
                                     }
                                     AllowNumber();
+                                    AllowFlot();
                                     $('.t_land').keyup(function(){
                                         var field = 0;
                                         var farm = 0;
@@ -1878,7 +1879,7 @@
 //                                                            '</div>' +
 //                                                        '</td>' +
                                                     '</tr>' +
-<<<<<<< HEAD
+
 //                                                     '<tr>' +
 // //                                                        '<td>' +
 // //                                                        '</td>' +
@@ -1889,7 +1890,7 @@
 //                                                             '</div>'+
 //                                                         '</td>'+
 //                                                     '</tr>'+
-=======
+
                                                     '<tr>' +
 //                                                        '<td>' +
 //                                                        '</td>' +
@@ -1900,7 +1901,7 @@
                                                             '</div>'+
                                                         '</td>'+
                                                     '</tr>'+
->>>>>>> e8f858d23bb2366b189a9612c1dadfc6fc2f839d
+
                                                 '</tbody>'+
                                             '</table>'+
                                         '</div>' +
@@ -1919,7 +1920,7 @@
                             }
                         });
                     </script>
-<<<<<<< HEAD
+
                     <div class="col-sm-12">
                         <p>9. បំណុលរបស់គ្រួសារ</p>
                         <div class="input-group add_debt_duration" style="width: 300px;">
@@ -1927,8 +1928,7 @@
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </div>
-=======
->>>>>>> e8f858d23bb2366b189a9612c1dadfc6fc2f839d
+
                     <hr>
                     <div class="col-sm-12">
                         <p>11. វ័យពលកម្ម (ចន្លោះពី១៨ឆ្នាំដល់៦៥ឆ្នាំ) </p>
@@ -3282,25 +3282,52 @@
         step2Row--;
     });
 
+
+    var phoneRegExp = new RegExp(/^(?=.*[0-9])[+0-9]+$/);
+    $('.telephone').change(function() {
+        var val = $(this).val();
+        if ( !phoneRegExp.test( val ) ) {
+            // Replace anything that isn't a number or a plus sign
+            $(this).val( val.replace(/([^+0-9]+)/gi, '') );
+        }
+    });
+
     function AllowNumber() {
         $(".allowNumber").keydown(function (e) {
-            $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
-            //keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-            return '';// e.indexOf(e)> -1;
+            $(".allowNumber").on("keypress keyup blur",function (event) {
+                $(this).val($(this).val().replace(/[^\d].+/, ""));
+                if ((event.which < 48 || event.which > 57)) {
+                    event.preventDefault();
+                }
+            });
         });
     }
-    //when load
-    $(".allowNumber").keydown(function (e) {
-        $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
-        return '';// e.indexOf(e)> -1;
-//        keys = ['0','1','2','3','4','5','6','7','8','9'];
-//
-//        var regex = /[0-9]|\./;
-//        if( !regex.test($(e.target).val()) ) {
-//            $(e.target).empty(); return keys.indexOf(event.key) > -1;
-//        }
-//        return keys.indexOf(event.key) > -1;
+
+    $(".allowNumber").on("keypress keyup blur",function (event) {
+        $(this).val($(this).val().replace(/[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
     });
+
+    function AllowFlot() {
+        $(".allowFlot").on("keypress keyup blur",function (event) {
+            //this.value = this.value.replace(/[^0-9\.]/g,'');
+            $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+    }
+
+    $(".allowFlot").on("keypress keyup blur",function (event) {
+        //this.value = this.value.replace(/[^0-9\.]/g,'');
+        $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+
     //validation alert
     $('.nextBtn').click(function(){
          setTimeout(function() {
