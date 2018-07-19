@@ -306,3 +306,9 @@ legend.scheduler-border {
 
 #datatable_wrapper #datatable_filter{  float: right;  }
 #datatable_wrapper #datatable_length{  float: left;}
+#div2 table tr th{
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+}
