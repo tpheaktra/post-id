@@ -1601,6 +1601,8 @@
 
                                 </tfoot>
                             </table>
+
+
                             <table class="tb_grid table table-bordered table-striped" width="100%">
                                 <thead>
                                     <tr>
@@ -1615,8 +1617,8 @@
                                         <th>សកម្មភាព</th>
                                     </tr>
                                 </thead>
-                                <tbody class="new_rows_4">
-                                    <tr class="myrow_4">
+                                <tbody class="new_rows_4_1">
+                                    <tr class="myrow_4_1">
                                         <td>1</td>
                                         <td>
                                             <div class="form-group">
