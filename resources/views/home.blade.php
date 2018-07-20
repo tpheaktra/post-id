@@ -1601,6 +1601,7 @@
 
                                 </tfoot>
                             </table>
+
                             <table class="tb_grid table table-bordered table-striped" width="100%">
                                 <thead>
                                     <tr>
@@ -1925,6 +1926,7 @@
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </div>
+
                     <hr>
                     <div class="col-sm-12">
                         <p>11. វ័យពលកម្ម (ចន្លោះពី១៨ឆ្នាំដល់៦៥ឆ្នាំ) </p>
@@ -1989,6 +1991,8 @@
         </script>
     </div>
 </div>
+
+
 
 <script type="text/javascript">
     var step2Row = 1;
@@ -2490,7 +2494,6 @@
                     $('.add_debt_duration').removeClass("has-error");
                 }
             }
-            
             //#type_animals in append
             var row_num3 = $('.new_rows_3 tr').length;
             for(var i=0; i<row_num3; i++) {
@@ -3277,25 +3280,51 @@
         step2Row--;
     });
 
+
+    var phoneRegExp = new RegExp(/^(?=.*[0-9])[+0-9]+$/);
+    $('.telephone').change(function() {
+        var val = $(this).val();
+        if ( !phoneRegExp.test( val ) ) {
+            // Replace anything that isn't a number or a plus sign
+            $(this).val( val.replace(/([^+0-9]+)/gi, '') );
+        }
+    });
     function AllowNumber() {
         $(".allowNumber").keydown(function (e) {
-            $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
-            //keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-            return '';// e.indexOf(e)> -1;
+            $(".allowNumber").on("keypress keyup blur",function (event) {
+                $(this).val($(this).val().replace(/[^\d].+/, ""));
+                if ((event.which < 48 || event.which > 57)) {
+                    event.preventDefault();
+                }
+            });
         });
     }
-    //when load
-    $(".allowNumber").keydown(function (e) {
-        $(e.target).val($(e.target).val().replace(/[^\d]/g, ''));
-        return '';// e.indexOf(e)> -1;
-//        keys = ['0','1','2','3','4','5','6','7','8','9'];
-//
-//        var regex = /[0-9]|\./;
-//        if( !regex.test($(e.target).val()) ) {
-//            $(e.target).empty(); return keys.indexOf(event.key) > -1;
-//        }
-//        return keys.indexOf(event.key) > -1;
+
+    $(".allowNumber").on("keypress keyup blur",function (event) {
+        $(this).val($(this).val().replace(/[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
     });
+
+    function AllowFlot() {
+        $(".allowFlot").on("keypress keyup blur",function (event) {
+            //this.value = this.value.replace(/[^0-9\.]/g,'');
+            $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+    }
+
+    $(".allowFlot").on("keypress keyup blur",function (event) {
+        //this.value = this.value.replace(/[^0-9\.]/g,'');
+        $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+
     //validation alert
     $('.nextBtn').click(function(){
          setTimeout(function() {
