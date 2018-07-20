@@ -1876,7 +1876,7 @@
 //                                                            '</div>' +
 //                                                        '</td>' +
                                                     '</tr>' +
-<<<<<<< HEAD
+
 //                                                     '<tr>' +
 // //                                                        '<td>' +
 // //                                                        '</td>' +
@@ -1887,7 +1887,7 @@
 //                                                             '</div>'+
 //                                                         '</td>'+
 //                                                     '</tr>'+
-=======
+
                                                     '<tr>' +
 //                                                        '<td>' +
 //                                                        '</td>' +
@@ -1898,7 +1898,7 @@
                                                             '</div>'+
                                                         '</td>'+
                                                     '</tr>'+
->>>>>>> e8f858d23bb2366b189a9612c1dadfc6fc2f839d
+
                                                 '</tbody>'+
                                             '</table>'+
                                         '</div>' +
@@ -1917,7 +1917,7 @@
                             }
                         });
                     </script>
-<<<<<<< HEAD
+
                     <div class="col-sm-12">
                         <p>9. បំណុលរបស់គ្រួសារ</p>
                         <div class="input-group add_debt_duration" style="width: 300px;">
@@ -1925,8 +1925,6 @@
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </div>
-=======
->>>>>>> e8f858d23bb2366b189a9612c1dadfc6fc2f839d
                     <hr>
                     <div class="col-sm-12">
                         <p>11. វ័យពលកម្ម (ចន្លោះពី១៨ឆ្នាំដល់៦៥ឆ្នាំ) </p>
@@ -1991,8 +1989,6 @@
         </script>
     </div>
 </div>
-
-
 
 <script type="text/javascript">
     var step2Row = 1;
@@ -2494,6 +2490,7 @@
                     $('.add_debt_duration').removeClass("has-error");
                 }
             }
+            
             //#type_animals in append
             var row_num3 = $('.new_rows_3 tr').length;
             for(var i=0; i<row_num3; i++) {
