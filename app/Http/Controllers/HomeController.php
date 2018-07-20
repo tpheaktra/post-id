@@ -503,7 +503,12 @@ where gi.id = 1');
                 'total_land'           => $request->total_land,
                 'land_farm'            => $request->land_farm,
                 'total_land_farm'      => $request->total_land_farm,
-                'sum_land_farm'        => $request->sum_land_farm
+                'sum_land_farm'        => $request->sum_land_farm,
+                'p_land_name'       => $request->p_land_name,
+                'p_total_land'      => $request->p_total_land,
+                'p_land_farm'       => $request->p_land_farm,
+                'p_total_land_farm' => $request->p_total_land_farm,
+                'p_sum_land_farm'   => $request->p_sum_land_farm,
             );
             LandAgriculturalLinkModel::create($land_agricultural);
 
