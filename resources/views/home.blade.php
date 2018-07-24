@@ -1273,11 +1273,10 @@
                                 <thead>
                                 <tr>
                                     <th>ល.រ</th>
-                                    <th>ប្រភេទសត្វ</th>
-                                    <th>ចំនួនសត្វធំ</th>
-                                    <th>ចំនួនកូនសត្វ</th>
+                                    <th width="20%">ប្រភេទសត្វ</th>
+                                    <th></th>
                                     <th>កំណត់សម្គាល់ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="បញ្ជាក់ បើសិនជាសត្វប្រវាស់គេ"></a></th>
-                                    <th>សកម្មភាព</th>
+                                    <th width="10%">សកម្មភាព</th>
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_3">
@@ -1285,7 +1284,7 @@
                                     <td>1</td>
                                     <td>
                                         <div class="form-group add_type_animals">
-                                            <select style="width: 100%;" class="cal_animal form-control type_animals" id="type_animals" name="type_animals[0]" required="required">
+                                            <select style="width: 100%;" class="cal_animal form-control type_animals" id="type_animals" name="type_animals[0]" required="required" index="0">
                                                 <option></option>
                                                 @foreach($typeanimals as $key => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -1294,26 +1293,79 @@
                                         </div>
                                     </td>
                                   
-                                    <td>
-                                        <div class="form-group">
-                                            <input name="num_animals_big[0]" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />
-                                        </div>
+                                    <td id="num_animals_0">
+                                        <table class="table table-bordered" align="center">
+                                            <tr>
+                                                <th>ចំនួនសត្វធំ</th>
+                                                <th>ចំនួនកូនសត្វ</th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input name="num_animals_big[0]" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input name="num_animals_small[0]" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input name="num_animals_small[0]" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />
-                                        </div>
-                                    </td>
+
                                     <td>
                                         <div class="form-group">
                                             <input name="note_animals[0]" id="note_animals"  type="text"  class="cal_animal form-control" />
                                         </div>
                                     </td>
-                                    <td style="text-align:center;">
+                                    <td>
                                         <a  class="btn btn-sm btn-primary" id="add_rows_3"><span class="glyphicon glyphicon-plus"></span></a>
                                     </td>
                                 </tr>
                                   <script type="text/javascript">
+
+                                      $('#type_animals').on("change", function(e) {
+                                          var type = this.value;
+                                          var index= $(this).attr('index');
+                                          //$('#num_animals').empty();
+                                            if(index == 0 && (type == 2 || type == 3)){
+                                                var duk = '<table class="table table-bordered">' +
+                                                        '<tr>' +
+                                                            '<th>ចំនួនសត្វ</th>' +
+                                                        '</tr>' +
+                                                        '<tr>' +
+                                                            '<td>' +
+                                                                '<div class="form-group">' +
+                                                                    '<input name="num_animals_small[0]" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />' +
+                                                                '</div>' +
+                                                            '</td>' +
+                                                        '</tr>' +
+                                                    '</table>';
+                                                $('#num_animals_0').html(duk);
+                                            }else if(index == 0 && type == 1){
+                                                var cow = '<table class="table table-bordered" align="center">' +
+                                                        '<tr>' +
+                                                            '<th>ចំនួនសត្វធំ</th>' +
+                                                            '<th>ចំនួនកូនសត្វ</th>' +
+                                                        '</tr>' +
+                                                        '<tr>' +
+                                                            '<td>' +
+                                                                '<div class="form-group">' +
+                                                                    '<input autocomplete="off" name="num_animals_big[0]" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />' +
+                                                                '</div>' +
+                                                            '</td>' +
+                                                            '<td>' +
+                                                                '<div class="form-group">' +
+                                                                    '<input autocomplete="off" name="num_animals_small[0]" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />' +
+                                                                '</div>' +
+                                                            '</td>' +
+                                                        '</tr>' +
+                                                    '</table>';
+                                                $('#num_animals_0').html(cow);
+                                            }
+                                      });
+
                                         $('.cal_animal').keyup(function(){
 
                                             $('#score_animal').empty();
@@ -1356,7 +1408,7 @@
                                     </script>
                             </tbody>
                                 <tr>
-                                    <td colspan="4"><b style="float:right">7.A.1 ការចិញ្ចឹមសត្វ</b></td>
+                                    <td colspan="3"><b style="float:right">7.A.1 ការចិញ្ចឹមសត្វ</b></td>
                                     <td>
                                         <div class="form-group input-group">
                                             <input id="score_animal" name="animal_score" type="text" required="required" class="form-control cal_animal" readonly="readonly"/>
@@ -3044,9 +3096,11 @@
     });
     
     dataRow_income = 2;
+    var animal_ind = 0;
     $('#add_rows_3').click(function(){ //alert($m_id);
         var row_3 = $('.new_rows_3 tr.myrow_3').length;
-        if(row_3 >= 4){
+        animal_ind= row_3;
+        if(row_3 >= 3){
            // $('#add_rows_3').hide();
             alert('ប្រភេទចំណូលមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
             return false;
@@ -3057,18 +3111,86 @@
             '<td>'+dataRow_income+'</td>'+
             '<td>' +
                 '<div class="form-group add_type_animals_'+row_3+'">'+
-                    '<select required="required" style="width: 100%;" class="cal_animal form-control type_animals" id="type_animals_'+row_3+'" name="type_animals['+row_3+']"> <option></option>@foreach($typeanimals as $key => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
+                    '<select required="required" style="width: 100%;" class="cal_animal form-control type_animals" id="type_animals_'+row_3+'" name="type_animals['+row_3+']" index="'+(row_3)+'">' +
+                    '<option></option>@foreach($typeanimals as $key => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
                 '</div>'+
             '</td>'+
-            '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal num_animals_big form-control allowNumber" name="num_animals_big['+row_3+']" required="required"/></div></td>'+
-            '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal num_animals_small form-control allowNumber" name="num_animals_small['+row_3+']"/></div></td>'+
+                '<td id="num_animals_'+row_3+'">'+
+                   // '<span id="num_animals_'+row_3+'">' +
+                        '<table class="table table-bordered" align="center">' +
+                        '<tr>' +
+                            '<th>ចំនួនសត្វធំ</th>' +
+                            '<th>ចំនួនកូនសត្វ</th>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td>' +
+                                '<div class="form-group">' +
+                                    '<input autocomplete="off" name="num_animals_big['+row_3+']" type="text" class="cal_animal num_animals_big form-control allowNumber" required="required" />' +
+                                '</div>' +
+                            '</td>' +
+                            '<td>' +
+                                '<div class="form-group">' +
+                                    '<input autocomplete="off" name="num_animals_small['+row_3+']" type="text" class="cal_animal num_animals_small form-control allowNumber"/>' +
+                                '</div>' +
+                            '</td>' +
+                        '</tr>' +
+                    '</table>' +
+            //'</spand>'+
+                '</td>'+
             '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal note_animals form-control" name="note_animals['+row_3+']"/></div></td>'+
-            '<td><a status="0" class="btn btn-danger btn-sm remove_rows_3"> <span class="glyphicon glyphicon-minus"></span></a></td>'+
+            '<td><a class="btn btn-danger btn-sm remove_rows_3"> <span class="glyphicon glyphicon-minus"></span></a></td>'+
             '</tr>';
         $(".new_rows_3").append(tab_rows_3);
         dataRow_income++;
         AllowNumber();
         $(".type_animals").select2({ allowClear:true, placeholder: "ប្រភេទសត្វ"});
+        $('.type_animals').on('change', function (e) {
+            var type = this.value;
+            var index= $(this).attr('index');
+
+            //for(var ty = 0;ty <= animal_ind; ty++) {
+
+                if (index == (row_3) && (type == 2 || type == 3)) {//$('#num_animals_'+ty).empty();
+
+                    var duk = '<table class="table table-bordered">' +
+                        '<tr>' +
+                        '<th>ចំនួនសត្វ</th>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>' +
+                        '<div class="form-group">' +
+                        '<input name="num_animals_small[0]" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />' +
+                        '</div>' +
+                        '</td>' +
+                        '</tr>' +
+                        '</table>';
+                    $('#num_animals_'+(row_3)).html(duk);
+                } else if ((index == (row_3)) && type == 1) {//$('#num_animals_'+ty).empty();
+                    var cow = '<table class="table table-bordered" align="center">' +
+                        '<tr>' +
+                        '<th>ចំនួនសត្វធំ</th>' +
+                        '<th>ចំនួនកូនសត្វ</th>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>' +
+                        '<div class="form-group">' +
+                        '<input autocomplete="off" name="num_animals_big[0]" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />' +
+                        '</div>' +
+                        '</td>' +
+                        '<td>' +
+                        '<div class="form-group">' +
+                        '<input autocomplete="off" name="num_animals_small[0]" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />' +
+                        '</div>' +
+                        '</td>' +
+                        '</tr>' +
+                        '</table>';
+                    $('#num_animals_'+(row_3)).html(cow);
+                }
+            //}
+        });
+        //
+
+        //score
         $('.cal_animal').keyup(function(){
             $('#score_animal').empty();
             var animal = $('.type_animals').val();
@@ -3108,6 +3230,8 @@
             }
         });
     });
+
+
     //remove add
     $(".new_rows_3").on('click','.remove_rows_3',function(){
         $('#add_rows_3').show();

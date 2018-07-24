@@ -148,7 +148,8 @@ label{font-weight: 100 !important; cursor: pointer;}
     border-radius: 2px !important;
 }
 select.form-control:not([size]):not([multiple]){ height: auto !important; }
-.table>thead>tr>th{ border-bottom: 1px solid #dadada !important; }
+.table>thead>tr>th{ border-bottom: 1px solid #dadada !important;
+    text-align: center; }
 .has-noted{ color: #dc3545; }
 /*selct2*/
 .select2-container--default .select2-selection--single{
@@ -228,6 +229,10 @@ input[type=radio]{
     vertical-align: middle;
     padding-right: 10px;
 }
+.new_rows_1 tr td,
+.new_rows_2 tr td,
+.new_rows_3 tr td,
+.new_rows_4 tr td,
 .new_rows tr td{text-align: center;}
 .table tr td{  vertical-align: middle !important;  }
 .table .form-group{
