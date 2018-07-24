@@ -416,17 +416,18 @@
                                     </td>
                                     <td>
                                         <div class="form-group add_relationship">
-                                            <select style="width: 100%" class="form-control family_relationship" name="family_relationship[0]" required="required">
+                                            <select style="width: 100%" class="cal_edu form-control family_relationship" name="family_relationship[0]" required="required">
                                                 <option></option>
                                                 @foreach($relationship as $keh => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
+                                     
                                     </td>
                                     <td>
                                         <div class="form-group add_occupation">
-                                            <select style="width: 100%;" class="form-control occupation" name="occupation[0]" required="required">
+                                            <select style="width: 100%;" class="cal_edu form-control occupation" name="occupation[0]" required="required">
                                                 <option></option>
                                                 @foreach($occupation as $keh => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -436,7 +437,7 @@
                                     </td>
                                     <td>
                                         <div class="form-group add_education_level">
-                                            <select style="width: 100%" class="form-control education_level"  name="education_level[0]" required="required">
+                                            <select style="width: 100%" id="education_level" class="cal_edu form-control education_level"  name="education_level[0]" required="required">
                                                 <option></option>
                                                 @foreach($education_level as $keh => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -449,6 +450,14 @@
                                             <a  class="btn btn-primary" id="add_rows" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
                                         </span>
                                     </td>
+                                       <script type="text/javascript">
+                                           $('.education_level').change(function(){
+                                                var edu_level = $('#education_level').val();
+                                                if( (edu_level>=1 && edu_level<=3) || (edu_level == 14) ){
+                                                   $('#edu_score').val(4);
+                                                }else{$('#edu_score').val(0);}
+                                           });
+                                        </script>
                                 </tr>
                             </tbody>
                             <tfoot>
