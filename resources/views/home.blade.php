@@ -10,24 +10,7 @@
         <h3 class="hospital_title" align="center">ការធ្វើអត្តសញ្ញាណកម្មគ្រួសារក្រីក្រនៅមន្ទីពេទ្យ</h3>
     </div>
 
-    <div class="stepwizard">
-        <div class="stepwizard-row setup-panel">
-            <div class="stepwizard-step">
-                <a id="st1" href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
-                <p>ព័ត៌មានទូទៅ</p>
-            </div>
-            <div class="stepwizard-step">
-                <a id="st2" href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                <p>ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់</p>
-            </div>
-            <div class="stepwizard-step">
-                <a id="st3" href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-                <p>ស្ថានភាពទូទៅរបស់គ្រួសារ</p>
-            </div>
-        </div>
-    </div>
-
-
+    @include('include.step-patient')
 
     <form role="form" method="post" class="form-group-post" action="{{ route('insert.index') }}" id="check_validate">
         {{ csrf_field() }}
@@ -245,7 +228,7 @@
                                 <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                       {{ Form::text('inter_phone',null,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'10']) }}
+                                       {{ Form::text('inter_phone',null,['class'=>'form-control telephone','required'=>'required','maxlength'=>'10']) }}
                                     </div>
                                 </td>
                             </tr>
@@ -315,7 +298,7 @@
                                 <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                       {{ Form::text('fa_phone',null,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'10']) }}
+                                       {{ Form::text('fa_phone',null,['class'=>'form-control telephone','required'=>'required','maxlength'=>'10']) }}
                                     </div>
                                 </td>
                             </tr>
@@ -375,10 +358,10 @@
                                     <th width="15%" rowspan="2">ឈ្មោះ</th>
                                     <th width="10%" rowspan="2">ភេទ</th>
                                     <th colspan="2"><p align="center">ឆ្នាំកំណើត ឬ អាយុ</p></th>
-                                    <th width="15%" rowspan="2">ទំនាក់ទំនង​ជាមួយ​មេ​គ្រួសារ(1) <a href="#" data-toggle="tooltip" title="(1)= មេ​គ្រួសារ ប្តី/​ប្រពន្ធ កូន ឪពុក​ម្តាយ ក្មួយ ផ្សេងៗ">?</a>
+                                    <th width="15%" rowspan="2">ទំនាក់ទំនង​ជាមួយ​មេ​គ្រួសារ(1) <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="(1)= មេ​គ្រួសារ ប្តី/​ប្រពន្ធ កូន ឪពុក​ម្តាយ ក្មួយ ផ្សេងៗ"></a>
                                     </th>
-                                    <th width="15%" rowspan="2">មុខងារ/​មុខរបរ(2) <a href="#" data-toggle="tooltip" title="(2)= ប្រភេទមុខរបរចម្បងរបស់គាត់/នាង ដូចជា កសិករ កម្មករ មន្ត្រីរាជការ រកស៊ី សិស្ស នៅផ្ទះ">?</a></th>
-                                    <th width="15%" rowspan="2">កម្រិតវប្បធម៌(3) <a href="#" data-toggle="tooltip" title="(3)= បើនៅរៀន បញ្ជាក់ពីថ្នាក់ទីប៉ុន្មាន។ បើជាមនុស្សពេញវ័យឬជាកុមារអាយុចាប់ពី៥ឆ្នាំតែឈប់រៀន សូមបញ្ជាក់ពីកម្រិតថ្នាក់នៅពេលឈប់រៀន">?</a></th>
+                                    <th width="15%" rowspan="2">មុខងារ/​មុខរបរ(2) <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="(2)= ប្រភេទមុខរបរចម្បងរបស់គាត់/នាង ដូចជា កសិករ កម្មករ មន្ត្រីរាជការ រកស៊ី សិស្ស នៅផ្ទះ"></a></th>
+                                    <th width="15%" rowspan="2">កម្រិតវប្បធម៌(3) <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="(3)= បើនៅរៀន បញ្ជាក់ពីថ្នាក់ទីប៉ុន្មាន។ បើជាមនុស្សពេញវ័យឬជាកុមារអាយុចាប់ពី៥ឆ្នាំតែឈប់រៀន សូមបញ្ជាក់ពីកម្រិតថ្នាក់នៅពេលឈប់រៀន"></a></th>
                                     <th width="15%" rowspan="2">សកម្មភាព</th>
                                 </tr>
                                 <tr>
@@ -445,10 +428,10 @@
                                             </select>
                                         </div>
                                     </td>
-                                    <td style="text-align:center;">
-                                        <span>
-                                            <a  class="btn btn-primary" id="add_rows" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
-                                        </span>
+                                    <td>
+                                        <a  class="btn btn-primary btn-sm" id="add_rows">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </a>
                                     </td>
                                        <script type="text/javascript">
                                            $('.education_level').change(function(){
@@ -526,7 +509,7 @@
                                          $('#household_family_id').append('<input class="form-control-custome" type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name" autocomplete="off" required="required">លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន : <input maxlength="10" class="allowNumber form-control-custome" type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone" autocomplete="off" required="required">');
                                          AllowNumber();
                                      }else if(houshold == 2){
-                                         $('#home-rent').append('<h4>គ.៨) សម្រាប់គ្រួសារជួលផ្ទះគេ​ <a data-toggle="tooltip" title="សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ មិនបាច់បំពេញចំណុច គ៨ ហើយរំលងទៅ គ៩">?</a></h4>' +
+                                         $('#home-rent').append('<h4>គ.៨) សម្រាប់គ្រួសារជួលផ្ទះគេ​ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ មិនបាច់បំពេញចំណុច គ៨ ហើយរំលងទៅ គ៩"></a></h4>' +
                                              '<div class="col-sm-6">' +
                                                  '<table width="100%">' +
                                                      '<tr>'+
@@ -915,7 +898,7 @@
                       <div class="col-sm-12"><hr> </div>
                        <div class="col-sm-12">
                             <h4>  គ.២ តើ​មាន​មនុស្សសរុប​ចំនួន​ប៉ុន្មាន​នាក់ រស់​នៅក្នុងផ្ទះដែលអ្នកស្នាក់នៅ
-                                <a data-toggle="tooltip" title=" រាប់ទាំង​សមាជិក​គ្រួសារ និង​អ្នកផ្សេង">?</a></h4>
+                                <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title=" រាប់ទាំង​សមាជិក​គ្រួសារ និង​អ្នកផ្សេង"></a></h4>
                             <div class="col-sm-6">
                                 <table width="100%">
                                     <tr>
@@ -1017,7 +1000,7 @@
                                                 <th>ល.រ</th>
                                                 <th>ប្រភេទសម្ភារប្រើបា្រស់</th>
                                                 <th>ចំនួន</th>
-                                                <th>តម្លៃទីផ្សារ <a data-toggle="tooltip" title=" ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា">?</a></th>
+                                                <th>តម្លៃទីផ្សារ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title=" ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា"></a></th>
                                                 <th>តម្លៃ​សរុប (រៀល)</th>
                                                 <th>សកម្មភាព</th>
                                             </tr>
@@ -1051,10 +1034,10 @@
                                                         <span class="input-group-addon">រៀល</span>
                                                     </div>
                                                 </td>
-                                                <td style="text-align:center;">
-                                                    <span>
-                                                        <a  class="btn btn-primary" id="add_rows_1" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
-                                                    </span>
+                                                <td>
+                                                    <a  class="btn btn-primary btn-sm" id="add_rows_1">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -1204,7 +1187,7 @@
                                     <th>ល.រ</th>
                                     <th>ប្រភេទសម្ភារប្រើបា្រស់</th>
                                     <th>ចំនួន</th>
-                                    <th>តម្លៃទីផ្សារ <a data-toggle="tooltip" title=" ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា">?</a></th>
+                                    <th>តម្លៃទីផ្សារ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title=" ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា"></a></th>
                                     <th>តម្លៃ​សរុប (រៀល)</th>
                                     <th>សកម្មភាព</th>
                                 </tr>
@@ -1239,10 +1222,8 @@
                                             <span class="input-group-addon">រៀល</span>
                                         </div>
                                     </td>
-                                    <td style="text-align:center;">
-                                        <span>
-                                            <a  class="btn btn-primary" id="add_rows_2" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
-                                        </span>
+                                    <td>
+                                        <a  class="btn btn-sm btn-primary" id="add_rows_2"><span class="glyphicon glyphicon-plus"></span></a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -1289,7 +1270,7 @@
                                     <th>ប្រភេទសត្វ</th>
                                     <th>ចំនួនសត្វធំ</th>
                                     <th>ចំនួនកូនសត្វ</th>
-                                    <th>កំណត់សម្គាល់ <a data-toggle="tooltip" title="បញ្ជាក់ បើសិនជាសត្វប្រវាស់គេ">?</a></th>
+                                    <th>កំណត់សម្គាល់ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="បញ្ជាក់ បើសិនជាសត្វប្រវាស់គេ"></a></th>
                                     <th>សកម្មភាព</th>
                                 </tr>
                                 </thead>
@@ -1323,9 +1304,7 @@
                                         </div>
                                     </td>
                                     <td style="text-align:center;">
-                                        <span>
-                                            <a  class="btn btn-primary" id="add_rows_3" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
-                                        </span>
+                                        <a  class="btn btn-sm btn-primary" id="add_rows_3"><span class="glyphicon glyphicon-plus"></span></a>
                                     </td>
                                 </tr>
                                   <script type="text/javascript">
@@ -1557,7 +1536,7 @@
                         <div class="col-sm-12">
 
                             <h5><b>គ.១២.២) ចំណូល ផ្សេងពី សកម្មភាពកសិកម្ម ផ្ទាល់ខ្លួន
-                                <a data-toggle="tooltip" title=" (បញ្ជាក់ការងារកម្មករផ្នែកកសិកម្មត្រូវបញ្ចូលក្នុងតារាងនេះ) បញ្ជាក់ ៖ ចុះ​តែ​សមាជិក​គ្រួសារ​ដែល​រក​ប្រាក់​ចំណូល​បាន។ ចំពោះសមាជិកដែលមានប្រភពចំណូលលើសពីមួយ សូមសរសេរ​នៅក្នុងជួរដោយឡែកពីគ្នា">?</a>
+                                <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title=" (បញ្ជាក់ការងារកម្មករផ្នែកកសិកម្មត្រូវបញ្ចូលក្នុងតារាងនេះ) បញ្ជាក់ ៖ ចុះ​តែ​សមាជិក​គ្រួសារ​ដែល​រក​ប្រាក់​ចំណូល​បាន។ ចំពោះសមាជិកដែលមានប្រភពចំណូលលើសពីមួយ សូមសរសេរ​នៅក្នុងជួរដោយឡែកពីគ្នា"></a>
                                 ​  </b></h5>
                             <p>ប្រសិនបើគ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្មត្រូវផ្ដល់ពិន្ទុតាមឯកសារណែនាំចំណុច 7B.2</p>
 
@@ -1970,38 +1949,13 @@
                 <th>លេខកូដសម្ភាសន៍</th>
                 <th>សកម្មភាព</th>
             </thead>
+            <script type="text/javascript">
+                var url = "{{ route('view.getPatientView') }}";
+            </script>
         </table>
-
-        <script type="text/javascript">
-
-            $(document).ready(function() {
-               $('#datatable1').DataTable({
-                    "processing": true,
-                    "serverSide": true,
-                    "retrieve": true,
-                    "ajax": "{{ route('view.getPatientView') }}",
-                    "columns": [
-                        {data: 'key'},
-                        {data: 'g_patient'},
-                        {data: 'g_age'},
-                        {data: 'g_sex'},
-                        {data: 'g_phone'},
-                        {data: 'interview_code'},
-                        {
-                            "render": function (data, type, full, meta)
-                                {
-                                    return '<a href="'+full.view+'"><i class="fa fa-eye"></i></a> / '+
-                                           '<a href="'+full.edit+'"><i class="fa fa-edit"></i></a> / '+
-                                           '<a href="'+full.print+'"  target="blank"><i class="fa fa-print"></i></a> / '+
-                                           '<a href="'+full.delete+'"><i class="fa fa-trash-o"></i></a>';
-                                }
-                        },
-                    ]
-                });
-            });
-        </script>
     </div>
 </div>
+
 
 
 
@@ -2195,9 +2149,9 @@
                // alert(nick);
 
                 if(i==0) {
-                    plus = '<a class="btn btn-primary" id="add_rows_4" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>';
+                    plus = '<a class="btn btn-sm btn-primary" id="add_rows_4"><span class="glyphicon glyphicon-plus"></span></a>';
                 } else{
-                    plus = '<a id="other_income_'+i+'" class="btn remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a>';
+                    plus = '<a id="other_income_'+i+'" class="btn btn-sm btn-danger remove_rows_4"><span class="glyphicon glyphicon-minus"></span></a>';
                 }
                 var otherIncome = '<tr class="myrow_4">' +
                         '<td>'+(i+1)+'</td>'+
@@ -2753,7 +2707,7 @@
                 '</select>' +
                 '</div>' +
                 '</td>' +
-                '<td style="text-align:center;"><a status="0" class="btn remove_rows_kh" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>' +
+                '<td><a class="btn btn-danger btn-sm remove_rows_kh"><span class="glyphicon glyphicon-minus"></span></a></td>' +
                 '</tr>';
             $(".new_rows").append(htmlstep2);
         dataRow++;
@@ -2875,7 +2829,7 @@
             '<td><div class="form-group"><input autocomplete="off" id="number_meterial_'+row_1+'" type="text" class="cal_el number_meterial form-control allowNumber meterial" name="number_meterial['+row_1+']" required="required"/></div></td>'+
             '<td><div class="form-group"><input autocomplete="off" id="market_value_meterial_'+row_1+'" type="text" class="cal_el market_value_meterial form-control allowNumber meterial" name="market_value_meterial['+row_1+']" required="required"/></div></td>'+
             '<td><div class="form-group input-group"><input id="total_rail_meterial_'+row_1+'" type="text" required="required" class="cal_el total_rail_meterial form-control totalallowNumber_meterial" name="total_rail_meterial['+row_1+']" readonly="readonly"/><span class="input-group-addon">រៀល</span></div></div></td>'+
-            '<td style="text-align:center;"><a id="meterial_'+row_1+'" class="btn remove_rows_1" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+            '<td><a id="meterial_'+row_1+'" class="btn btn-danger btn-sm remove_rows_1"><span class="glyphicon glyphicon-minus"></span></a></td>'+
             '</tr>';
         $(".new_rows_1").append(tab_rows_1);
         dataRow_meterial++;
@@ -2996,7 +2950,7 @@
             '<td><div class="form-group"><input autocomplete="off" id="number_vehicle_'+row_2+'" type="text" class="number_vehicle form-control allowNumber vehicle cal_v" name="number_vehicle['+row_2+']" required="required"/></div></td>'+
             '<td><div class="form-group input-group"><input autocomplete="off" id="market_value_vehicle_'+row_2+'" type="text"  class="market_value_vehicle form-control allowNumber vehicle cal_v" name="market_value_vehicle['+row_2+']" required="required"/><span class="input-group-addon">រៀល</span></div></td>'+
             '<td><div class="form-group input-group"><input autocomplete="off" id="total_rail_vehicle_'+row_2+'" type="text"  class="total_rail_vehicle form-control totalallowNumber_vehicle cal_v" name="total_rail_vehicle['+row_2+']"/ readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
-            '<td style="text-align:center;"><a id="vehicle_'+row_2+'" class="btn remove_rows_2" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+            '<td><a id="vehicle_'+row_2+'" class="btn btn-danger btn-sm remove_rows_2"><span class="glyphicon glyphicon-minus"></span></a></td>'+
             '</tr>';
         $(".new_rows_2").append(html);
         dataRow_vehicle++;
@@ -3103,7 +3057,7 @@
             '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal num_animals_big form-control allowNumber" name="num_animals_big['+row_3+']" required="required"/></div></td>'+
             '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal num_animals_small form-control allowNumber" name="num_animals_small['+row_3+']"/></div></td>'+
             '<td><div class="form-group"><input autocomplete="off" type="text" class="cal_animal note_animals form-control" name="note_animals['+row_3+']"/></div></td>'+
-            '<td style="text-align:center;"><a status="0" class="btn remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+            '<td><a status="0" class="btn btn-danger btn-sm remove_rows_3"> <span class="glyphicon glyphicon-minus"></span></a></td>'+
             '</tr>';
         $(".new_rows_3").append(tab_rows_3);
         dataRow_income++;
@@ -3215,7 +3169,7 @@
                         '<span class="input-group-addon">រៀល</span>' +
                     '</div>' +
                 '</td>'+
-            '<td style="text-align:center;"><a id="other_income_'+num_4+'" class="btn remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>' +
+            '<td><a id="other_income_'+num_4+'" class="btn btn-sm btn-danger remove_rows_4"><span class="glyphicon glyphicon-minus"></span></a></td>' +
             '</tr>';
         $('.new_rows_4').append(otherIncome1);
         step2Row++;

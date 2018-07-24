@@ -235,13 +235,12 @@ where gi.id = 1');
             group by gi.interview_code order by gi.id desc");
 
         foreach ($view as $i =>$v){
-            $view[$i]->key = $i+1;
             $view[$i]->view = route('view.data', Crypt::encrypt($v->id));
             $view[$i]->edit = route('editpatient.edit', Crypt::encrypt($v->id));
             $view[$i]->print = route('print.data', Crypt::encrypt($v->id));
             $view[$i]->delete = route('deletepatient.delete', Crypt::encrypt($v->id));
         }
-        return Datatables::of($view)->make(true);
+        return Datatables::of($view)->addIndexColumn()->make(true);
     }
 
     /*

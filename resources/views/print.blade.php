@@ -3337,7 +3337,7 @@
 
 <script type="text/javascript">
     
-    // Printing page content
+    // Printing include content
     // jQuery(function($) {
     //     $("#div1").find('.print-link1').on('click', function() {
     //         $('.print-link1').hide();

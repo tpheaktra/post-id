@@ -38,7 +38,7 @@
                 // Fix for IE : Allow it to render the iframe
                 frameWindow.focus();
                 try {
-                    // Fix for IE11 - printng the whole page instead of the iframe content
+                    // Fix for IE11 - printng the whole include instead of the iframe content
                     if (!frameWindow.document.execCommand('print', false, null)) {
                         // document.execCommand returns false if it failed -http://stackoverflow.com/a/21336448/937891
                         frameWindow.print();
@@ -170,7 +170,7 @@
         options = $.extend({}, defaults, (options || {}));
         var $styles = $("");
         if (options.globalStyles) {
-            // Apply the stlyes from the current sheet to the printed page
+            // Apply the stlyes from the current sheet to the printed include
             $styles = $("style, link, meta, base, title");
         } else if (options.mediaPrint) {
             // Apply the media-print stylesheet

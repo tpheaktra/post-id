@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com/css?family=Battambang" rel="stylesheet"> 
     <!-- Styles -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
     <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/jquery.validate.js'></script>
     <link href="{{asset('js/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
@@ -28,6 +27,8 @@
     <link href="{{asset('js/datatables/dataTables.bootstrap.min.css')}}" rel="stylesheet">
     <script src="{{asset('js/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('js/datatables/dataTables.bootstrap.min.js')}}"></script>
+
+
 
 </head>
 <body>
@@ -190,5 +191,7 @@
             $('.autho-hide1').fadeOut();
         },9000);
     </script>
+
+    <script src="{{ asset('js/page/'.Route::currentRouteName().'.js') }}"></script>
 </body>
 </html>

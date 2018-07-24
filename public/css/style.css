@@ -228,16 +228,8 @@ input[type=radio]{
     vertical-align: middle;
     padding-right: 10px;
 }
-#add_rows_4,
-#add_rows_3,
-#add_rows_2,
-#add_rows_1,
-#add_rows{
-    padding:2px !important;
-}
-.table tr td{
-    vertical-align: middle !important;
-}
+.new_rows tr td{text-align: center;}
+.table tr td{  vertical-align: middle !important;  }
 .table .form-group{
     margin: 5px 4px !important;}
 .add_hide1{
@@ -254,6 +246,10 @@ input[type=radio]{
 }
 .input-group-addon{font-size:12px !important;}
 .form-control-custome.has-error{ border-color: #a94442 !important;}
+.btn{
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;}
 /*====================
    - user-mangement
  */

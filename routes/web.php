@@ -12,7 +12,7 @@
 */
 
 Auth::routes();
-Route::get('/',['as'=>'home','uses'=>'HomeController@index'])->name('home');
+Route::get('/',['as'=>'home.index','uses'=>'HomeController@index']);
 Route::get('/home',['as'=>'home.index','uses'=>'HomeController@index']);
 
 Route::get('datatable/getposts', ['as'=>'datatable.getposts','uses'=>'HomeController@getPosts']);
