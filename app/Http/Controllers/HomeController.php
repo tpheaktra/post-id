@@ -350,6 +350,20 @@ where gi.id = 1');
            }
 
             //step 3
+            // table general_situation_family
+            $general_situation_family = array(
+                'g_information_id'     =>$gn_info->id,
+                'household_family_id'  =>$request->household_family_id,
+                'total_people'         =>$request->total_people,
+                'toilet_id'            =>$request->tolet,
+                'q_electric_id'        =>$request->q_electric,
+                'transport_id'         =>$request->go_hospital,
+                'land_agricultural_id' =>$request->land,
+                'debt_family_id'       =>$request->family_debt_id,
+                'command'              =>$request->command
+            );
+            GeneralSituationFamilyModel::create($general_situation_family);
+
             //table household_root_link
             $household_link = $request->household_family_id;
             if($household_link == 1 || $household_link == 3){
@@ -374,7 +388,7 @@ where gi.id = 1');
                     'walls_status_id'     =>$request->walls_status,
                     'condition_house_id'  =>$request->condition_house
                 );
-                $house=HouseHoldRootLinkModel::create($hlink1);
+                HouseHoldRootLinkModel::create($hlink1);
 
                 //home_prepar_link
                 $homepre = $request->home_prepare;
@@ -406,24 +420,12 @@ where gi.id = 1');
                 HouseHoldFamilyLinkModel::create($hlink);
             }
 
-            // table general_situation_family
-            $general_situation_family = array(
-                'g_information_id'     =>$gn_info->id,
-                'household_family_id'  =>$household_link,
-                'total_people'         => $request->total_people,
-                'toilet_id'            =>$request->tolet,
-                'q_electric_id'        =>$request->q_electric,
-                'transport_id'         =>$request->go_hospital,
-                'land_agricultural_id' =>$request->land,
-                'debt_family_id'       =>$request->family_debt_id,
-                'command'              =>$request->command
-            );
-            GeneralSituationFamilyModel::create($general_situation_family);
+
 
             //table household_consumer
             foreach ($request->type_meterial as $key => $val) {
                 $meterial = array(
-                    'g_information_id'      =>$gn_info->id,
+                    'g_information_id'      => $gn_info->id,
                     'type_meterial_id'      => $val,
                     'number_meterial'       => $request->number_meterial[$key],
                     'market_value_meterial' => $request->market_value_meterial[$key],
@@ -570,26 +572,26 @@ where gi.id = 1');
 
             $score = array(
                 'patient' => $gn_info->id,
-                'size_member'   =>$request->$size_member_score,
-                'toilet'        => $request->$toilet_score,
-                'roof'          => $request->$roof_score,
-                'wall'          => $request->$wall_score,
-                'house_status'  => $request->$house_score,
-                'price_rent_house' => $request->$price_rent_house_score,
-                'price_electronic' => $request->$price_electronic_score,
-                'use_energy_elect' => $request->$use_energy_elect_score,
-                'no_energy_elect'  => $request->$no_energy_elect_score,
-                'vehicle'          => $request->$vehicle_score,
-                'animal'        =>$request->$animal_score,
-                'personal_farm' => $request->$personal_farm_score,
-                'other_farm'    => $request->$other_farm_score,
-                'income_out_farmer'     => $request->$income_out_farmer_score,
-                'income_out_not_farmer' => $request->$income_out_not_farmer_score,
-                'income_child'  => $request->$income_child_score,
-                'disease'       => $request->$disease_score,
-                'debt'  => $request->$debt_score,
-                'edu'   => $request->$edu_score,
-                'age_action'    => $request->$age_action_score,
+                'size_member'   =>$request->size_member_score,
+                'toilet'        => $request->toilet_score,
+                'roof'          => $request->roof_score,
+                'wall'          => $request->wall_score,
+                'house_status'  => $request->house_score,
+                'price_rent_house' => $request->price_rent_house_score,
+                'price_electronic' => $request->price_electronic_score,
+                'use_energy_elect' => $request->use_energy_elect_score,
+                'no_energy_elect'  => $request->no_energy_elect_score,
+                'vehicle'          => $request->vehicle_score,
+                'animal'        =>$request->animal_score,
+                'personal_farm' => $request->personal_farm_score,
+                'other_farm'    => $request->other_farm_score,
+                'income_out_farmer'     => $request->income_out_farmer_score,
+                'income_out_not_farmer' => $request->income_out_not_farmer_score,
+                'income_child'  => $request->income_child_score,
+                'disease'       => $request->disease_score,
+                'debt'  => $request->debt_score,
+                'edu'   => $request->edu_score,
+                'age_action'    => $request->age_action_score,
                 'record_status' => "1"
             );
             StoreScoreModel::create($score);
