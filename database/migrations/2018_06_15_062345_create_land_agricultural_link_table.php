@@ -22,6 +22,11 @@ class CreateLandAgriculturalLinkTable extends Migration
             $table->integer('land_farm')->nullable();
             $table->integer('total_land_farm')->nullable();
             $table->double('sum_land_farm')->nullable();
+            $table->integer('p_land_name')->nullable();
+            $table->integer('p_total_land')->nullable();
+            $table->integer('p_land_farm')->nullable();
+            $table->integer('p_total_land_farm')->nullable();
+            $table->double('p_sum_land_farm')->nullable();
             $table->timestamps();
         });
     }
