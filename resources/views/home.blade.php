@@ -410,7 +410,7 @@
                                     </td>
                                     <td>
                                         <div class="form-group add_occupation">
-                                            <select style="width: 100%;" class="cal_edu form-control occupation" name="occupation[0]" required="required">
+                                            <select style="width: 100%;" class="cal_edu form-control occupation" name="occupation[0]" required="required" id="occupation">
                                                 <option></option>
                                                 @foreach($occupation as $keh => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -437,6 +437,12 @@
                                            $('.education_level').change(function(){
                                                 var edu_level = $('#education_level').val();
                                                 if( (edu_level>=1 && edu_level<=3) || (edu_level == 14) ){
+                                                   $('#edu_score').val(4);
+                                                }else{$('#edu_score').val(0);}
+                                           });
+                                            $('.cal_edu').change(function(){
+                                                var level = $('#occupation').val();
+                                                if( (level>=1 && level<=3) || (level == 14) ){
                                                    $('#edu_score').val(4);
                                                 }else{$('#edu_score').val(0);}
                                            });
