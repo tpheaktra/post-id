@@ -2256,7 +2256,6 @@
                         '<td style="text-align:center;">'+plus+'</td>' +
                     '</tr>';
                 $('.new_rows_4').append(otherIncome);
-
                 var row_num11 = $('.new_rows_4 tr').length;
                 $('.otherincome').keyup(function () {
                     for(var ii=0; ii<row_num11; ii++) {
