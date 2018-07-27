@@ -421,9 +421,13 @@
                                             </td>
                                             <td style="text-align:center;">
                                                 @if($key==0)
-                                                    <a  class="btn btn-primary" id="add_rows" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
+                                                    <a  class="btn btn-primary btn-sm" id="add_rows">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </a>
                                                 @else
-                                                    <a status="0" class="btn remove_rows_kh" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a>
+                                                    <a status="0" class="btn remove_rows_kh btn-danger btn-sm">
+                                                        <span class="glyphicon glyphicon-minus"></span>
+                                                    </a>
                                                 @endif
                                             </td>
                                         </tr>
@@ -1330,10 +1334,12 @@
                                                 </td>
                                                 <td style="text-align:center;">
                                                     @if($key == 0)
-                                                        <a  class="btn btn-primary" id="add_rows_1" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
+                                                        <a  class="btn btn-primary btn-sm" id="add_rows_1" style="text-align: center">
+                                                            <span class="glyphicon glyphicon-plus"></span>
+                                                        </a>
                                                     @else
-                                                        <a id="meterial_{{$key}}" class="btn remove_rows_1" style="color:red; cursor: pointer;">
-                                                            <img src="{{asset('images/remove.png')}}"  style="width: 30px;">
+                                                        <a id="meterial_{{$key}}" class="btn remove_rows_1 btn-danger btn-sm" style="color:red; cursor: pointer;">
+                                                            <span class="glyphicon glyphicon-minus"></span>
                                                         </a>
                                                     @endif
                                                 </td>
@@ -1519,9 +1525,13 @@
                                         </td>
                                         <td style="text-align:center;">
                                             @if($key==0)
-                                                <a  class="btn btn-primary" id="add_rows_2" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
+                                                <a  class="btn btn-primary btn-sm" id="add_rows_2">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </a>
                                             @else
-                                                <a id="vehicle_{{$key}}" class="btn remove_rows_2" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a>
+                                                <a id="vehicle_{{$key}}" class="btn remove_rows_2 btn-danger btn-sm">
+                                                    <span class="glyphicon glyphicon-minus"></span>
+                                                </a>
                                             @endif
                                         </td>
                                     </tr>
@@ -1605,9 +1615,13 @@
                                         </td>
                                         <td style="text-align:center;">
                                             @if($key3==0)
-                                                <a  class="btn btn-primary" id="add_rows_3" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
+                                                <a  class="btn btn-primary btn-sm" id="add_rows_3">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </a>
                                             @else
-                                                <a status="0" class="btn remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a>
+                                                <a status="0" class="btn remove_rows_3 btn-sm btn-danger">
+                                                    <span class="glyphicon glyphicon-minus"></span>
+                                                </a>
                                             @endif
                                         </td>
                                     </tr>
@@ -1857,7 +1871,9 @@
                                             </td>
                                         <td style="text-align:center;">
                                             @if($ky == 0)
-                                                <a class="btn btn-primary" id="add_rows_4" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>
+                                                <a class="btn btn-primary btn-sm" id="add_rows_4">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </a>
                                             @endif
                                         </td>
                                     </tr>
@@ -2341,9 +2357,9 @@
                     // alert(nick);
 
                     if(i==0) {
-                        plus = '<a class="btn btn-primary" id="add_rows_4" style="text-align: center"><img src="{{asset('images/add_green.png')}}"></a>';
+                        plus = '<a class="btn btn-primary btn-sm" id="add_rows_4"><span class="glyphicon glyphicon-plus"></span></a>';
                     } else{
-                        plus = '<a id="other_income_'+i+'" class="btn remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a>';
+                        plus = '<a id="other_income_'+i+'" class="btn remove_rows_4 btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a>';
                     }
                     var otherIncome = '<tr class="myrow_4">' +
                         '<td>'+(i+1)+'</td>'+
@@ -2888,7 +2904,7 @@
                 '</select>' +
                 '</div>' +
                 '</td>' +
-                '<td style="text-align:center;"><a status="0" class="btn remove_rows_kh" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>' +
+                '<td style="text-align:center;"><a status="0" class="btn remove_rows_kh btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a></td>' +
                 '</tr>';
             $(".new_rows").append(htmlstep2);
             dataRow++;
@@ -3008,7 +3024,7 @@
                 '<td><div class="form-group"><input autocomplete="off" id="number_meterial_'+row_1+'" type="text" class="number_meterial form-control allowNumber meterial" name="number_meterial['+row_1+']" required="required"/></div></td>'+
                 '<td><div class="form-group"><input autocomplete="off" id="market_value_meterial_'+row_1+'" type="text" class="market_value_meterial form-control allowNumber meterial" name="market_value_meterial['+row_1+']" required="required"/></div></td>'+
                 '<td><div class="form-group input-group"><input id="total_rail_meterial_'+row_1+'" type="text" required="required" class="total_rail_meterial form-control totalallowNumber_meterial" name="total_rail_meterial['+row_1+']" readonly="readonly"/><span class="input-group-addon">រៀល</span></div></div></td>'+
-                '<td style="text-align:center;"><a id="meterial_'+row_1+'" class="btn remove_rows_1" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+                '<td style="text-align:center;"><a id="meterial_'+row_1+'" class="btn remove_rows_1 btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a></td>'+
                 '</tr>';
             $(".new_rows_1").append(tab_rows_1);
             dataRow_meterial++;
@@ -3113,7 +3129,7 @@
                 '<td><div class="form-group"><input autocomplete="off" id="number_vehicle_'+row_2+'" type="text" class="number_vehicle form-control allowNumber vehicle" name="number_vehicle['+row_2+']" required="required"/></div></td>'+
                 '<td><div class="form-group input-group"><input autocomplete="off" id="market_value_vehicle_'+row_2+'" type="text"  class="market_value_vehicle form-control allowNumber vehicle" name="market_value_vehicle['+row_2+']" required="required"/><span class="input-group-addon">រៀល</span></div></td>'+
                 '<td><div class="form-group input-group"><input autocomplete="off" id="total_rail_vehicle_'+row_2+'" type="text"  class="total_rail_vehicle form-control totalallowNumber_vehicle" name="total_rail_vehicle['+row_2+']"/ readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
-                '<td style="text-align:center;"><a id="vehicle_'+row_2+'" class="btn remove_rows_2" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+                '<td style="text-align:center;"><a id="vehicle_'+row_2+'" class="btn remove_rows_2 btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a></td>'+
                 '</tr>';
             $(".new_rows_2").append(html);
             dataRow_vehicle++;
@@ -3214,7 +3230,7 @@
                 '<td><div class="form-group"><input autocomplete="off" type="text" class="num_animals_big form-control allowNumber" name="num_animals_big['+row_3+']" required="required"/></div></td>'+
                 '<td><div class="form-group"><input autocomplete="off" type="text" class="num_animals_small form-control allowNumber" name="num_animals_small['+row_3+']"/></div></td>'+
                 '<td><div class="form-group"><input autocomplete="off" type="text" class="note_animals form-control allowNumber" name="note_animals['+row_3+']"/></div></td>'+
-                '<td style="text-align:center;"><a status="0" class="btn remove_rows_3" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+                '<td style="text-align:center;"><a status="0" class="btn remove_rows_3 btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a></td>'+
                 '</tr>';
             $(".new_rows_3").append(tab_rows_3);
             dataRow_income++;
@@ -3297,7 +3313,7 @@
                 '<input autocomplete="off" id="monthly_income_'+row_4+'" name="monthly_income['+row_4+']" type="text" required="required" class="form-control allowNumber monthly_income_total"  readonly="readonly"/><span class="input-group-addon">រៀល</span>' +
                 '</div>' +
                 '</td>'+
-                '<td style="text-align:center;"><a id="other_income_'+row_4+'" class="btn remove_rows_4" style="color:red; cursor: pointer;"><img src="{{asset('images/remove.png')}}"  style="width: 30px;"></a></td>'+
+                '<td style="text-align:center;"><a id="other_income_'+row_4+'" class="btn remove_rows_4 btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a></td>'+
                 '</tr>';
             $(".new_rows_4").append(tab_rows_4);
             dataRow_other_income++;

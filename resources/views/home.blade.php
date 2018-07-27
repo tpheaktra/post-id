@@ -1309,7 +1309,7 @@
                                     </td>
 
                                     <td>
-                                        <div class="form-group" id="noted">
+                                        <div class="form-group ng" id="noted_0">
                                             <select style="width: 100%;" class="form-control note_animals" id="note_animals" name="note_animals[0]" required="required" index="0">
                                                 <option></option>
                                                 <option value="ប្រវាស់">ប្រវាស់</option>
@@ -1342,7 +1342,7 @@
                                                     '</table>';
                                                 var noted = '<input autocomplete="off" name="note_animals[0]" type="text" class="cal_animal form-control"  />';
                                                 $('#num_animals_0').html(duk);
-                                                $('#noted').html(noted);
+                                                $('#noted_0').html(noted);
                                             }else if(index == 0 && type == 1){
                                                 var cow = '<table class="table table-bordered" align="center">' +
                                                         '<tr>' +
@@ -1368,7 +1368,8 @@
                                                     '<option value="មិនប្រវាស់">មិនប្រវាស់</option>' +
                                                     '</select>';
                                                 $('#num_animals_0').html(cow);
-                                                $('#noted').html(noted);
+                                                $('#noted_0').html(noted);
+                                                $(".note_animals").select2({ allowClear:true, placeholder: "កំណត់សម្គាល់"});
                                             }
                                       });
 
@@ -3141,7 +3142,7 @@
                     '</table>' +
                 '</td>'+
             '<td>' +
-            '<div class="form-group">' +
+            '<div class="form-group ng" id="noted_'+row_3+'">' +
                 '<select style="width: 100%;" class="form-control note_animals" id="note_animals" name="note_animals['+row_3+']" required="required" index="0">' +
                     '<option></option>' +
                     '<option value="ប្រវាស់">ប្រវាស់</option>' +
@@ -3174,6 +3175,8 @@
                         '</td>' +
                         '</tr>' +
                         '</table>';
+                    var noted = '<input autocomplete="off" name="note_animals['+row_3+']" type="text" class="cal_animal form-control"  />';
+                    $('#noted_'+row_3).html(noted);
                     $('#num_animals_'+(row_3)).html(duk);
                 } else if ((index == (row_3)) && type == 1) {//$('#num_animals_'+ty).empty();
                     var cow = '<table class="table table-bordered" align="center">' +
@@ -3194,7 +3197,15 @@
                         '</td>' +
                         '</tr>' +
                         '</table>';
+                    var noted = '<select style="width: 100%;" class="form-control note_animals" id="note_animals" name="note_animals[0]" required="required">' +
+                        '<option></option>' +
+                        '<option value="ប្រវាស់">ប្រវាស់</option>' +
+                        '<option value="មិនប្រវាស់">មិនប្រវាស់</option>' +
+                        '</select>';
+
+                    $('#noted_'+row_3).html(noted);
                     $('#num_animals_'+(row_3)).html(cow);
+                    $(".note_animals").select2({ allowClear:true, placeholder: "កំណត់សម្គាល់"});
                 }
         });
         //
@@ -3262,6 +3273,7 @@
             $('.new_rows_3  tr.myrow_3:eq(' + (n-1) +') td .num_animals_big').attr('name', 'num_animals_big['+(n-1)+']');
             $('.new_rows_3  tr.myrow_3:eq(' + (n-1) +') td .num_animals_small').attr('name', 'num_animals_small['+(n-1)+']');
             $('.new_rows_3  tr.myrow_3:eq(' + (n-1) +') td .note_animals').attr('name', 'note_animals['+(n-1)+']');
+            $('.new_rows_3  tr.myrow_3:eq(' + (n-1) +') td .ng').attr('id', 'noted_'+(n-1));
         }
     }
 
