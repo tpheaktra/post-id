@@ -1296,6 +1296,7 @@
                                             <tr>
                                                 <td>
                                                     <div class="form-group">
+                                                        <input name="num_animals[0]" id="num_animals" type="hidden" class="cal_animal form-control allowNumber num_animals"  />
                                                         <input name="num_animals_big[0]" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />
                                                     </div>
                                                 </td>
@@ -1336,11 +1337,14 @@
                                                             '<td>' +
                                                                 '<div class="form-group">' +
                                                                     '<input name="num_animals[0]" id="num_animals" type="text" class="cal_animal form-control allowNumber num_animals"  />' +
+                                                                    '<input autocomplete="off" name="num_animals_big[0]" id="num_animals_big" type="hidden" class="cal_animal form-control allowNumber" required="required" />' +
+                                                                    '<input autocomplete="off" name="num_animals_small[0]" id="num_animals_small" type="hidden" class="cal_animal form-control allowNumber"  />'+
                                                                 '</div>' +
                                                             '</td>' +
                                                         '</tr>'+
                                                     '</table>';
                                                 var noted = '<input autocomplete="off" name="note_animals[0]" type="text" class="cal_animal form-control"  />';
+
                                                 $('#num_animals_0').html(duk);
                                                 $('#noted_0').html(noted);
                                             }else if(index == 0 && type == 1){
@@ -1352,6 +1356,7 @@
                                                         '<tr>' +
                                                             '<td>' +
                                                                 '<div class="form-group">' +
+                                                                    '<input name="num_animals[0]" id="num_animals" type="hidden" class="cal_animal form-control allowNumber num_animals"/>' +
                                                                     '<input autocomplete="off" name="num_animals_big[0]" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />' +
                                                                 '</div>' +
                                                             '</td>' +
@@ -1359,7 +1364,7 @@
                                                                 '<div class="form-group">' +
                                                                     '<input autocomplete="off" name="num_animals_small[0]" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />' +
                                                                 '</div>' +
-                                                            '</td>' +
+                                                            '</td><input autocomplete="off" name="note_animals[0]" type="hidden" class="cal_animal form-control"  />' +
                                                         '</tr>' +
                                                     '</table>';
                                                 var noted = '<select style="width: 100%;" class="form-control note_animals" id="note_animals" name="note_animals[0]" required="required">' +
@@ -1433,69 +1438,33 @@
                             <p>មាន​ដីកសិកម្ម ឬ​ទេ ?</p>
                             <ul class="li-none add_land">
                                 @foreach($landAgricultural as $key => $land)
-                                    <li>
-                                        <label><input style="margin-right:10px;"  class="land" type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
-                                    </li>
+                                    @if($land->id == 1)
+                                        <li>
+                                            <label><input class="land" style="margin-right:10px;" type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <label><input style="margin-right:10px;"  id="land_{{$land->id}}"  class="land_{{$land->id}}" type="checkbox" name="land_{{$land->id}}" value="{{$land->id}}" multiple>  {{$land->name_kh}}</label>
+                                            @if($land->id == 2)
+                                                <div class="col-sm-12" id="show-land-other"></div>
+                                            @else
+                                                <div class="col-sm-12" id="show-land-personal"></div>
+                                            @endif
+                                        </li>
+                                    @endif
                                 @endforeach
                             </ul>
                             <script>
-                                $('.land').click(function () {
-                                    var land = $('input[name=land]:checked').val();
-                                    $('#show-land').empty();
-                                    var landshow = '<div class="col-sm-12">' +
-                                            '<table width="100%" class="table table-bordered table-striped tbl-land">' +
-                                                '<tr>' +
-                                                    '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
-                                                    '<td>' +
-                                                        '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" name="p_land_name" type="text" required="required" class="t_land allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
-                                                        '</div>' +
-                                                    '</td>' +
-                                                    '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
-                                                    '<td>' +
-                                                        '<div class="form-group ​​input-group input-group">' +
-                                                            '<input autocomplete="off" id="total_land" name="p_total_land" type="text" required="required" class="t_land form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>'+
-                                                        '</div>' +
-                                                    '</td>' +
-                                                '</tr>' +
-                                                '<tr>' +
-                                                    '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
-                                                    '<td>'+
-                                                        '<div class="form-group input-group">'+
-                                                            '<input id="land_farm" autocomplete="off" name="p_land_farm" type="text" required="required" class="allowFlot t_land form-control" /><span class="input-group-addon">កន្លែង</span>'+
-                                                        '</div>'+
-                                                    '</td>'+
-                                                    '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
-                                                    '<td>' +
-                                                        '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_farm" name="p_total_land_farm" type="text" required="required" class="t_land form-control allowFlot" /><span class="input-group-addon">ហិចតា</span>'+
-                                                        '</div>'+
-                                                    '</td>' +
-                                                '</tr>' +
-                                                '<tr>' +
-                                                    '<td></td>'+
-                                                    '<td>'+
-                                                    '</td>'+
-                                                    '<td><label class="control-label">ដីសរុប:</label></td>'+
-                                                    '<td>' +
-                                                        '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_and_land_farm" name="p_sum_land_farm" type="text" required="required" class="t_land form-control allowFlot" readonly="readonly" /><span class="input-group-addon">ហិចតា</span>'+
-                                                        '</div>'+
-                                                    '</td>' +
-                                                '</tr>' +
-                                                 '<tr>' +
-                                                    '<td></td>'+
-                                                    '<td>'+
-                                                    '</td>'+
-                                                    '<td><label class="control-label">7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
-                                                    '<td>' +
-                                                        '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowFlot" /><span class="input-group-addon">ពិន្ទុ</span>'+
-                                                        '</div>'+
-                                                    '</td>' +
-                                                '</tr>' +
-                                            '</table>'+
-                                        '</div>';
+
+                            $(".land").click( function(e){
+                                if($(this).hasClass("on")){
+                                    $(this).removeAttr('checked');
+                                }
+                                $(this).toggleClass("on");
+                            }).find(":checked").addClass("on");
+
+                            $('#land_2').click(function () {
+                                    var land = $('input[name=land_2]:checked').val();
 
                                         var otherland = '<div class="col-sm-12">' +
                                             '<table width="100%" class="table table-bordered table-striped tbl-land">' +
@@ -1551,12 +1520,10 @@
                                                 '</tr>' +
                                             '</table>'+
                                         '</div>';
-                                    if(land == 3) {
-                                        $('#show-land').append(landshow);
-                                    }
+
                                     if (land == 2) {
-                                        $('#show-land').append(otherland);
-                                    }
+                                        $('#show-land-other').html(otherland);
+                                    }else{$('#show-land-other').html('');}
                                     AllowFlot();
                                     $('.t_land').keyup(function(){
                                         var field = 0;
@@ -1591,10 +1558,107 @@
                                             }
                                     });
                                 });
+
+                                $('#land_3').click(function () {
+                                    var land = $('input[name=land_3]:checked.land_3').val();
+                                    var landshow = '<div class="col-sm-12">' +
+                                        '<table width="100%" class="table table-bordered table-striped tbl-land">' +
+                                        '<tr>' +
+                                        '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
+                                        '<td>' +
+                                        '<div class="form-group input-group">'+
+                                        '<input autocomplete="off" name="p_land_name" type="text" required="required" class="t_land allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                        '</div>' +
+                                        '</td>' +
+                                        '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
+                                        '<td>' +
+                                        '<div class="form-group ​​input-group input-group">' +
+                                        '<input autocomplete="off" id="total_land" name="p_total_land" type="text" required="required" class="t_land form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>'+
+                                        '</div>' +
+                                        '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                        '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
+                                        '<td>'+
+                                        '<div class="form-group input-group">'+
+                                        '<input id="land_farm" autocomplete="off" name="p_land_farm" type="text" required="required" class="allowFlot t_land form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                        '</div>'+
+                                        '</td>'+
+                                        '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
+                                        '<td>' +
+                                        '<div class="form-group input-group">'+
+                                        '<input autocomplete="off" id="total_land_farm" name="p_total_land_farm" type="text" required="required" class="t_land form-control allowFlot" /><span class="input-group-addon">ហិចតា</span>'+
+                                        '</div>'+
+                                        '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                        '<td></td>'+
+                                        '<td>'+
+                                        '</td>'+
+                                        '<td><label class="control-label">ដីសរុប:</label></td>'+
+                                        '<td>' +
+                                        '<div class="form-group input-group">'+
+                                        '<input autocomplete="off" id="total_land_and_land_farm" name="p_sum_land_farm" type="text" required="required" class="t_land form-control allowFlot" readonly="readonly" /><span class="input-group-addon">ហិចតា</span>'+
+                                        '</div>'+
+                                        '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                        '<td></td>'+
+                                        '<td>'+
+                                        '</td>'+
+                                        '<td><label class="control-label">7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
+                                        '<td>' +
+                                        '<div class="form-group input-group">'+
+                                        '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowFlot" /><span class="input-group-addon">ពិន្ទុ</span>'+
+                                        '</div>'+
+                                        '</td>' +
+                                        '</tr>' +
+                                        '</table>'+
+                                        '</div>';
+
+                                    if(land == 3) {
+                                        $('#show-land-personal').html(landshow);
+                                    }else{$('#show-land-personal').html('');}
+
+
+                                    AllowFlot();
+                                    $('.t_land').keyup(function(){
+                                        var field = 0;
+                                        var farm = 0;
+                                        field = Number($('#total_land').val());
+                                        farm  = Number($('#total_land_farm').val());
+                                        var people = parseInt($('#total_people').val());
+                                        // alert(people);
+                                        var sum = field + farm;
+                                        // $('#total_land_and_land_farm').val(sum);
+
+                                        if(farm == null || farm == ''){
+                                            document.getElementById('total_land_and_land_farm').value = field;
+                                        }else if(field == null || field == ''){
+                                            document.getElementById('total_land_and_land_farm').value = farm;
+                                        }else{
+                                            document.getElementById('total_land_and_land_farm').value = (field + farm);
+                                        }
+
+
+
+                                        if( ((people>=1 && people <=3) && (sum>=0 && sum <=0.6)) || ((people >=4 && people <=6) && (sum>=0 && sum <=1)) || ((people >=7 && people <= 10) && (sum>=0 && sum <=1.5)) || ((people>10) && (sum>=0 && sum<=2)) ){
+                                            $('#l_score').val(6);
+                                            // alert(people);
+                                        }
+                                        else if( ((people>=1 && people <=3) && (sum>0.6 && sum <=1.2)) || ((people >=4 && people <=6) && (sum>1 && sum <=2)) || ((people >=7 && people <= 10) && (sum>1.5 && sum <=3)) || ((people>10)&&(sum>2 && sum<=3.5)) ){
+                                            $('#l_score').val(4);
+                                            // alert(people);
+                                        }else{
+                                            $('#l_score').val(0);
+                                            // alert(people);
+                                        }
+                                    });
+                                });
                             </script>
 
                             <p>ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា)</p>
-                            <div class="col-sm-12" id="show-land"></div>
+
                         </div>
 
                         <div class="col-sm-12"><hr> </div>
@@ -2552,11 +2616,11 @@
             }
 
             //land
-            if (!$("input[name='land']:checked").val()) {
-                $('.add_land').addClass("error");
-                $('.alert').show();
-                isValid = false;
-            }else{$('.add_land').removeClass("error");}
+//            if (!$("input[name='land']:checked").val()) {
+//                $('.add_land').addClass("error");
+//                $('.alert').show();
+//                isValid = false;
+//            }else{$('.add_land').removeClass("error");}
             //if (isValid)
               //  nextStepWizard.removeAttr('disabled').trigger('click');
             if (isValid)
@@ -3130,6 +3194,7 @@
                         '<tr>' +
                             '<td>' +
                                 '<div class="form-group">' +
+                                    '<input name="num_animals['+row_3+']" id="num_animals" type="hidden" class="cal_animal form-control allowNumber num_animals"  />' +
                                     '<input autocomplete="off" name="num_animals_big['+row_3+']" type="text" class="cal_animal num_animals_big form-control allowNumber" required="required" />' +
                                 '</div>' +
                             '</td>' +
@@ -3168,16 +3233,19 @@
                         '<th>ចំនួនសត្វ</th>' +
                         '</tr>' +
                         '<tr>' +
-                        '<td>' +
-                        '<div class="form-group">' +
-                        '<input name="num_animals['+row_3+']" id="num_animals" type="text" class="cal_animal form-control allowNumber num_animals"  />' +
-                        '</div>' +
-                        '</td>' +
+                            '<td>' +
+                                '<div class="form-group">' +
+                                    '<input name="num_animals['+row_3+']" id="num_animals" type="text" class="cal_animal form-control allowNumber num_animals"  />' +
+                                    '<input autocomplete="off" name="num_animals_big['+row_3+']" id="num_animals_big" type="hidden" class="cal_animal form-control allowNumber" required="required" />' +
+                                    '<input autocomplete="off" name="num_animals_small['+row_3+']" id="num_animals_small" type="hidden" class="cal_animal form-control allowNumber"  />'+
+                                '</div>' +
+                            '</td>' +
                         '</tr>' +
                         '</table>';
                     var noted = '<input autocomplete="off" name="note_animals['+row_3+']" type="text" class="cal_animal form-control"  />';
                     $('#noted_'+row_3).html(noted);
                     $('#num_animals_'+(row_3)).html(duk);
+                    AllowNumber();
                 } else if ((index == (row_3)) && type == 1) {//$('#num_animals_'+ty).empty();
                     var cow = '<table class="table table-bordered" align="center">' +
                         '<tr>' +
@@ -3187,6 +3255,7 @@
                         '<tr>' +
                         '<td>' +
                         '<div class="form-group">' +
+                        '<input name="num_animals['+row_3+']" id="num_animals" type="hidden" class="cal_animal form-control allowNumber num_animals"  />' +
                         '<input autocomplete="off" name="num_animals_big['+row_3+']" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />' +
                         '</div>' +
                         '</td>' +
@@ -3197,14 +3266,15 @@
                         '</td>' +
                         '</tr>' +
                         '</table>';
-                    var noted = '<select style="width: 100%;" class="form-control note_animals" id="note_animals" name="note_animals[0]" required="required">' +
-                        '<option></option>' +
-                        '<option value="ប្រវាស់">ប្រវាស់</option>' +
-                        '<option value="មិនប្រវាស់">មិនប្រវាស់</option>' +
+                    var noted = '<select style="width: 100%;" class="form-control note_animals" id="note_animals" name="note_animals['+row_3+']" required="required">' +
+                            '<option></option>' +
+                            '<option value="ប្រវាស់">ប្រវាស់</option>' +
+                            '<option value="មិនប្រវាស់">មិនប្រវាស់</option>' +
                         '</select>';
 
                     $('#noted_'+row_3).html(noted);
                     $('#num_animals_'+(row_3)).html(cow);
+                    AllowNumber();
                     $(".note_animals").select2({ allowClear:true, placeholder: "កំណត់សម្គាល់"});
                 }
         });

@@ -349,6 +349,7 @@ where gi.id = 1');
                MemberFamilyModel::create($member_family);
            }
 
+
             //step 3
             // table general_situation_family
             $general_situation_family = array(
@@ -488,6 +489,7 @@ where gi.id = 1');
                 $animals = array(
                     'g_information_id'      =>  $gn_info->id,
                     'type_animals_id'       => $anim,
+                    'num_animals'           => $request->num_animals[$key],
                     'num_animals_big'       => $request->num_animals_big[$key],
                     'num_animals_small'     => $request->num_animals_small[$key],
                     'note_animals'          => $request->note_animals[$key],
@@ -497,33 +499,34 @@ where gi.id = 1');
             }
 
             //table land_agricultural_link
-            $land_agricultural = array(
-                'g_information_id'     =>  $gn_info->id,
-                'land_agricultural_id' => $request->land,
-                'land_name'            => $request->land_name,
-                'total_land'           => $request->total_land,
-                'land_farm'            => $request->land_farm,
-                'total_land_farm'      => $request->total_land_farm,
-                'sum_land_farm'        => $request->sum_land_farm,
-                'p_land_name'       => $request->p_land_name,
-                'p_total_land'      => $request->p_total_land,
-                'p_land_farm'       => $request->p_land_farm,
-                'p_total_land_farm' => $request->p_total_land_farm,
-                'p_sum_land_farm'   => $request->p_sum_land_farm,
-            );
-            LandAgriculturalLinkModel::create($land_agricultural);
+            if(!empty($request->land_2)) {
+                $land_agricultural_other = array(
+                    'g_information_id' => $gn_info->id,
+                    'land_agricultural_id' => $request->land,
+                    'land_name' => $request->land_name_other,
+                    'total_land' => $request->total_land_other,
+                    'land_farm' => $request->land_farm_other,
+                    'total_land_farm' => $request->total_land_farm_other,
+                    'sum_land_farm' => $request->sum_land_farm_other
+                );
+                LandOtherAgriculturalLinkModel::create($land_agricultural_other);
+            }
 
             //table land_agricultural_link
-            $land_agricultural_other = array(
-                'g_information_id'     =>  $gn_info->id,
-                'land_agricultural_id' => $request->land,
-                'land_name'            => $request->land_name_other,
-                'total_land'           => $request->total_land_other,
-                'land_farm'            => $request->land_farm_other,
-                'total_land_farm'      => $request->total_land_farm_other,
-                'sum_land_farm'        => $request->sum_land_farm_other
-            );
-            LandOtherAgriculturalLinkModel::create($land_agricultural_other);
+            if(!empty($request->land_3)) {
+                $land_agricultural = array(
+                    'g_information_id' => $gn_info->id,
+                    'land_agricultural_id' => $request->land,
+                    'p_land_name' => $request->p_land_name,
+                    'p_total_land' => $request->p_total_land,
+                    'p_land_farm' => $request->p_land_farm,
+                    'p_total_land_farm' => $request->p_total_land_farm,
+                    'p_sum_land_farm' => $request->p_sum_land_farm,
+                );
+                LandAgriculturalLinkModel::create($land_agricultural);
+            }
+
+
 
             //table other_income
             foreach ($request->income_name as $key => $in) {
