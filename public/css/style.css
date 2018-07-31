@@ -313,3 +313,13 @@ legend.scheduler-border {
     font-weight: 600;
     font-size: 14px;
 }
+.disable{
+    cursor: not-allowed;
+    color: #8888;
+    pointer-events: none;
+}
+.disable input{
+    cursor: not-allowed;
+    color: #8888;
+    pointer-events: none;
+}

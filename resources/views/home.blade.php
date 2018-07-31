@@ -1444,7 +1444,7 @@
                                         </li>
                                     @else
                                         <li>
-                                            <label><input style="margin-right:10px;"  id="land_{{$land->id}}"  class="land_{{$land->id}}" type="checkbox" name="land_{{$land->id}}" value="{{$land->id}}" multiple>  {{$land->name_kh}}</label>
+                                            <label class="testing"><input style="margin-right:10px;"  id="land_{{$land->id}}"  class="land_{{$land->id}}" type="checkbox" name="land_{{$land->id}}" value="{{$land->id}}" multiple>  {{$land->name_kh}}</label>
                                             @if($land->id == 2)
                                                 <div class="col-sm-12" id="show-land-other"></div>
                                             @else
@@ -1459,8 +1459,11 @@
                             $(".land").click( function(e){
                                 if($(this).hasClass("on")){
                                     $(this).removeAttr('checked');
+                                    $('.testing').attr('disable');
                                 }
                                 $(this).toggleClass("on");
+                                $('.testing').toggleClass("disable");
+
                             }).find(":checked").addClass("on");
 
                             $('#land_2').click(function () {
