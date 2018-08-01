@@ -1476,20 +1476,19 @@
 
                             $('#land_2').click(function () {
                                     var land = $('input[name=land_2]:checked').val();
-
                                         var otherland = '<div class="col-sm-12">' +
                                             '<table width="100%" class="table table-bordered table-striped tbl-land">' +
                                                 '<tr>' +
                                                     '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" name="land_name_other" type="text" required="required" class="t_land allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                                            '<input autocomplete="off" name="land_name_other_2" type="text" required="required" class="allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
                                                         '</div>' +
                                                     '</td>' +
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group ​​input-group input-group">' +
-                                                            '<input autocomplete="off" id="total_land" name="total_land_other" type="text" required="required" class="t_land form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_2" name="total_land_other_2" type="text" required="required" class="t_land_2 form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>' +
                                                     '</td>' +
                                                 '</tr>' +
@@ -1497,13 +1496,13 @@
                                                     '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
                                                     '<td>'+
                                                         '<div class="form-group input-group">'+
-                                                            '<input id="land_farm" autocomplete="off" name="land_farm_other" type="text" required="required" class="allowFlot t_land form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                                            '<input id="land_farm_2" autocomplete="off" name="land_farm_other_2" type="text" required="required" class="allowFlot form-control" /><span class="input-group-addon">កន្លែង</span>'+
                                                         '</div>'+
                                                     '</td>'+
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_farm" name="total_land_farm_other" type="text" required="required" class="t_land form-control allowFlot" /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_farm_2" name="total_land_farm_other_2" type="text" required="required" class="t_land_2 form-control allowFlot" /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1514,7 +1513,7 @@
                                                     '<td><label class="control-label">ដីសរុប:</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm_other" type="text" required="required" class="t_land form-control allowFlot" readonly="readonly" /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_and_land_farm_2" name="sum_land_farm_other_2" type="text" required="required" class="t_land_2 form-control allowFlot" readonly="readonly" /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1525,7 +1524,7 @@
                                                     '<td><label class="control-label">7.A.2 B  ផ្ទៃដីកសិកម្ម មិនមែនជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="l_score" name="other_farm_score" type="text" required="required" class="t_land form-control allowFlot"  /><span class="input-group-addon">ពិន្ទុ</span>'+
+                                                            '<input autocomplete="off" id="l_score_2" name="other_farm_score_2" type="text" required="required" class="t_land_2 form-control allowFlot"  /><span class="input-group-addon">ពិន្ទុ</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1536,36 +1535,33 @@
                                         $('#show-land-other').html(otherland);
                                     }else{$('#show-land-other').html('');}
                                     AllowFlot();
-                                    $('.t_land').keyup(function(){
+                                    $('.t_land_2').keyup(function(){
                                         var field = 0;
                                         var farm = 0;
-                                         field = Number($('#total_land').val());
-                                         farm  = Number($('#total_land_farm').val());
+                                         field = Number($('#total_land_2').val());
+                                         farm  = Number($('#total_land_farm_2').val());
                                         var people = parseInt($('#total_people').val());
                                         // alert(people);
                                         var sum = field + farm;
                                        // $('#total_land_and_land_farm').val(sum);
 
                                         if(farm == null || farm == ''){
-                                            document.getElementById('total_land_and_land_farm').value = field;
+                                            document.getElementById('total_land_and_land_farm_2').value = field;
                                         }else if(field == null || field == ''){
-                                            document.getElementById('total_land_and_land_farm').value = farm;
+                                            document.getElementById('total_land_and_land_farm_2').value = farm;
                                         }else{
-                                            document.getElementById('total_land_and_land_farm').value = (field + farm);
+                                            document.getElementById('total_land_and_land_farm_2').value = (field + farm);
                                         }
 
 
 
-                                        if( ((people>=1 && people <=3) && (sum>=0 && sum <=0.6)) || ((people >=4 && people <=6) && (sum>=0 && sum <=1)) || ((people >=7 && people <= 10) && (sum>=0 && sum <=1.5)) || ((people>10) && (sum>=0 && sum<=2)) ){
-                                                $('#l_score').val(6);
-                                                // alert(people);
+                                        if( ((people>=1 && people <=3) && (sum>=0 && sum <=1)) || ((people >=4 && people <=6) && (sum>=0 && sum <=1.5)) || ((people >=7 && people <= 10) && (sum>=0 && sum <=2.2)) || ((people>10) && (sum>=0 && sum<=3)) ){
+                                                $('#l_score_2').val(6);
                                             }
-                                            else if( ((people>=1 && people <=3) && (sum>0.6 && sum <=1.2)) || ((people >=4 && people <=6) && (sum>1 && sum <=2)) || ((people >=7 && people <= 10) && (sum>1.5 && sum <=3)) || ((people>10)&&(sum>2 && sum<=3.5)) ){
-                                                $('#l_score').val(4);
-                                                // alert(people);
+                                            else if( ((people>=1 && people <=3) && (sum>1 && sum <=2)) || ((people >=4 && people <=6) && (sum>1.5 && sum <=3)) || ((people >=7 && people <= 10) && (sum>2.2 && sum <=4)) || ((people>10)&&(sum>3 && sum<=5.5)) ){
+                                                $('#l_score_2').val(4);
                                             }else{
-                                                $('#l_score').val(0);
-                                                // alert(people);
+                                                $('#l_score_2').val(0);
                                             }
                                     });
                                 });
@@ -1578,7 +1574,7 @@
                                         '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" name="p_land_name" type="text" required="required" class="t_land allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                        '<input autocomplete="off" name="p_land_name" type="text" required="required" class="allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
                                         '</div>' +
                                         '</td>' +
                                         '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
@@ -1592,7 +1588,7 @@
                                         '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
                                         '<td>'+
                                         '<div class="form-group input-group">'+
-                                        '<input id="land_farm" autocomplete="off" name="p_land_farm" type="text" required="required" class="allowFlot t_land form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                        '<input id="land_farm" autocomplete="off" name="p_land_farm" type="text" required="required" class="allowFlot form-control" /><span class="input-group-addon">កន្លែង</span>'+
                                         '</div>'+
                                         '</td>'+
                                         '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
@@ -1712,7 +1708,7 @@
                                         <td colspan="6"><span style="float: right;">ចំណូលក្រៅពីកសិកម្មជាមធ្យមប្រចាំខែសម្រាប់មនុស្សម្នាក់​​ (១) :</span></td>
                                         <td colspan="2">
                                             <div class="input-group">
-                                                <input class="form-control" id="total_inc_person"  type="text" name="total_inc_person" readonly="readonly">
+                                                <input class="cal_incom form-control" id="total_inc_person"  type="text" name="total_inc_person" readonly="readonly">
                                                 <span class="input-group-addon">រៀល</span>
                                             </div>
                                         </td>
@@ -1722,15 +1718,13 @@
                                         <td colspan="6"><span style="float: right;">7.B.1   ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមានចំណូលពីសកម្មភាពកសិកម្ម</span></td>
                                         <td colspan="2">
                                             <div class="input-group">
-                                                <input class="form-control" id="income_out_farmer_score"  type="text" name="income_out_farmer_score">
+                                                <input class="cal_incom form-control" id="income_out_farmer_score"  type="text" name="income_out_farmer_score">
                                                 <span class="input-group-addon">ពិន្ទុ</span>
                                             </div>
                                         </td>
                                     </tr>
-
                                 </tfoot>
                             </table>
-
 
                             {{--<table class="tb_grid table table-bordered table-striped" width="100%">--}}
                                 {{--<thead>--}}
@@ -2245,7 +2239,7 @@
             step2Row = row_num;
             //console.log('1. step2='+ step2Row);
             //console.log('1. dataRow='+ dataRow);
-
+           
             ///document.getElementById('total_people').value =row_num;
             $('#total_people').val(row_num);
             $('.new_rows_4').empty();
@@ -2325,19 +2319,20 @@
                         '</td>'+
                         '<td>'+
                             '<div class="form-group input-group">'+
-                                '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="average_amount form-control allowNumber otherincome" required="required" autocomplete="off">'+
+                                '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="cal_incom average_amount form-control allowNumber otherincome" required="required" autocomplete="off">'+
                                 '<span class="input-group-addon">រៀល</span>'+
                             '</div>'+
                         '</td>'+
                         '<td>' +
                             '<div class="form-group input-group">' +
-                                '<input id="monthly_income_'+i+'" name="monthly_income['+i+']" type="text" class="monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
+                                '<input id="monthly_income_'+i+'" name="monthly_income['+i+']" type="text" class="cal_incom monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
                                 '<span class="input-group-addon">រៀល</span>' +
                             '</div>' +
                         '</td>'+
                         '<td style="text-align:center;">'+plus+'</td>' +
                     '</tr>';
                 $('.new_rows_4').append(otherIncome);
+                
                 var row_num11 = $('.new_rows_4 tr').length;
                 $('.otherincome').keyup(function () {
                     for(var ii=0; ii<row_num11; ii++) {
@@ -2846,7 +2841,7 @@
                 '</select>' +
                 '</div>' +
                 '</td>' +
-                '<td><input type="text" class="edu_score_'+row+' form-control"></td>'+
+                '<td><input type="text" class="edu_score_'+row+' form-control"  name="test[' + row + ']" ></td>'+
                 '<td><a class="btn btn-danger btn-sm remove_rows_kh"><span class="glyphicon glyphicon-minus"></span></a></td>' +
                 '</tr>';
             $(".new_rows").append(htmlstep2);
@@ -2858,16 +2853,24 @@
            var relation = $('#family_relationship_'+row).val();
            if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=1 && edu <=3) )) || (age>=16 && (edu >=1 && edu <=3))){
                 $('.edu_score_'+row).val(4);
+                //$('#edu_score').val(4);
             }else if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=4 && edu <=6)) ) || (age>=16 && (edu >=4 && edu <=6)) || (age<16 && edu==14) ){
                 $('.edu_score_'+row).val(2.5);
+                 //$('#edu_score').val(2.5);
             }
-            else{ $('.edu_score_'+row).val(0);}
+            else{ 
+                $('.edu_score_'+row).val(0);
+                //$('#edu_score').val(0);
+            }
 
             var value = $('.edu_score_'+row).val();
             if(value == 4 ){
-               $
+                $('#edu_score').val(4);
+            }else if(value == 2.5){
+              $('#edu_score').val(2.5);
+            }else{
+              $('#edu_score').val(0);
             }
-           
 
         });
 
@@ -3415,7 +3418,7 @@
                 '</td>'+
                 '<td>'+
                     '<div class="form-group input-group">'+
-                        '<input id="average_amount_'+num_4+'" name="average_amount['+num_4+']" type="text" class="average_amount form-control allowNumber otherincome" required="required" autocomplete="off">'+
+                        '<input id="average_amount_'+num_4+'" name="average_amount['+num_4+']" type="text" class="cal_incom average_amount form-control allowNumber otherincome" required="required" autocomplete="off">'+
                         '<span class="input-group-addon">រៀល</span>'+
                     '</div>'+
                 '</td>'+
@@ -3458,8 +3461,12 @@
                 document.getElementById('total_inc_person').value = tot/totalperson;
             }
         });
+        $('.cal_incom').change(function(){
+              var income_out_farmer_score = $('#income_out_farmer_score').val();
+              alert(income_out_farmer_score);
+        });
     });
-
+    
     function reOrder_other_income(){
         for(var n=0;n<(step2Row-1);n++){
             $('.new_rows_4  tr:eq(' + (n-1) +') td:first-child').html(n);
