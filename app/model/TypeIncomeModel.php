@@ -10,6 +10,7 @@ class TypeIncomeModel extends Model
     protected $fillable = [
         'g_information_id',
         'type_animals_id',
+        'num_animals',
         'num_animals_big',
         'num_animals_small',
         'note_animals',
