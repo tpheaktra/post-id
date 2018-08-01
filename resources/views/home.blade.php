@@ -115,7 +115,7 @@
                                        <select id="province" style="width: 100%" class="form-control" name="g_province">
                                            <option value="">...</option>
                                            @foreach($provinces as $key =>$p)
-                                               @if (old('g_province') == $p->code)
+                                               @if(old('g_province') == $p->code)
                                                    <option selected value="{{$p->code}}">{{$p->name_kh}}</option>
                                                @else
                                                    <option value="{{$p->code}}">{{$p->name_kh}}</option>
@@ -362,6 +362,7 @@
                                     </th>
                                     <th width="15%" rowspan="2">មុខងារ/​មុខរបរ(2) <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="(2)= ប្រភេទមុខរបរចម្បងរបស់គាត់/នាង ដូចជា កសិករ កម្មករ មន្ត្រីរាជការ រកស៊ី សិស្ស នៅផ្ទះ"></a></th>
                                     <th width="15%" rowspan="2">កម្រិតវប្បធម៌(3) <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="(3)= បើនៅរៀន បញ្ជាក់ពីថ្នាក់ទីប៉ុន្មាន។ បើជាមនុស្សពេញវ័យឬជាកុមារអាយុចាប់ពី៥ឆ្នាំតែឈប់រៀន សូមបញ្ជាក់ពីកម្រិតថ្នាក់នៅពេលឈប់រៀន"></a></th>
+                                    <th rowspan="2">Score test</th>
                                     <th width="15%" rowspan="2">សកម្មភាព</th>
                                 </tr>
                                 <tr>
@@ -411,7 +412,7 @@
                                     <td>
                                         <div class="form-group add_occupation">
                                             <select style="width: 100%;" class="cal_edu form-control occupation" name="occupation[0]" required="required" id="occupation">
-                                                <option></option>
+                                            <option></option>
                                                 @foreach($occupation as $keh => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
                                                 @endforeach
@@ -428,8 +429,9 @@
                                             </select>
                                         </div>
                                     </td>
+                                    <td><input type="text" class="edu_score_'+row+' form-control"></td>
                                     <td>
-                                        <a  class="btn btn-primary btn-sm" id="add_rows">
+                                        <a class="btn btn-primary btn-sm" id="add_rows">
                                             <span class="glyphicon glyphicon-plus"></span>
                                         </a>
                                     </td>
@@ -2200,7 +2202,7 @@
                     $('.add_m_sex_'+i).removeClass("has-error");
                 }
 
-                if ($('#occupation_'+i).val() == '') {
+                if ($('#occupation_'+i).val() == ''){
                     $('.alert').show();
                     $('.add_occupation_'+i).addClass("has-error");
                     isValid = false;
@@ -2751,10 +2753,10 @@
                 '</div>' +
                 '</td>' +
                 '<td><div class="form-group"><input autocomplete="off" maxlength="4" id="dob_' + row + '"  type="text" required="required" class="hh-member dob form-control allowNumber" name="dob[' + row + ']"/></div></td>' +
-                '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + row + '" type="text" required="required" class="hh-member age age_'+row+' form-control allowNumber" name="age[' + row + ']"/></div></td>' +
+                '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + row + '" type="text" required="required" class="cal_edu hh-member age age_'+row+' form-control allowNumber" name="age[' + row + ']"/></div></td>' +
                 '<td>' +
                 '<div class="form-group add_relationship_' + row + '">' +
-                '<select id="family_relationship_' + row + '" class="hh-member form-control family_relationship"  name="family_relationship[' + row + ']" required="required">' +
+                '<select id="family_relationship_' + row + '" class="cal_edu hh-member form-control family_relationship"  name="family_relationship[' + row + ']" required="required">' +
                 '<option></option>' +
                 '@foreach($relationship as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
                 '</select>' +
@@ -2770,15 +2772,37 @@
                 '</td>' +
                 '<td>' +
                 '<div class="form-group add_education_level_' + row + '">' +
-                '<select id="education_level_' + row + '" class="hh-member form-control education_level"  name="education_level[' + row + ']" required="required">' +
+                '<select id="education_level_' + row + '" class="cal_edu hh-member form-control education_level"  name="education_level[' + row + ']" required="required">' +
                 '<option></option>' +
                 '@foreach($education_level as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
                 '</select>' +
                 '</div>' +
                 '</td>' +
+                '<td><input type="text" class="edu_score_'+row+' form-control"></td>'+
                 '<td><a class="btn btn-danger btn-sm remove_rows_kh"><span class="glyphicon glyphicon-minus"></span></a></td>' +
                 '</tr>';
             $(".new_rows").append(htmlstep2);
+       
+        $('.cal_edu').change(function(){
+           var age = $('.age_'+row).val();
+           var child = $('.child').val();
+           var edu = $('#education_level_'+row).val();
+           var relation = $('#family_relationship_'+row).val();
+           if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=1 && edu <=3) )) || (age>=16 && (edu >=1 && edu <=3))){
+                $('.edu_score_'+row).val(4);
+            }else if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=4 && edu <=6)) ) || (age>=16 && (edu >=4 && edu <=6)) || (age<16 && edu==14) ){
+                $('.edu_score_'+row).val(2.5);
+            }
+            else{ $('.edu_score_'+row).val(0);}
+
+            var value = $('.edu_score_'+row).val();
+            if(value == 4 ){
+               $
+            }
+           
+
+        });
+
         dataRow++;
         $(".family_relationship").select2({allowClear:true, placeholder: "ទំនាក់ទំនង"});
         $(".m_sex").select2({allowClear:true, placeholder: 'ភេទ'});
