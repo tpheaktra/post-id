@@ -3170,8 +3170,10 @@
     });
     
     dataRow_income = 2;
+    
     var animal_ind = 0;
     $('#add_rows_3').click(function(){ //alert($m_id);
+        console.log(dataRow_income);
         var row_3 = $('.new_rows_3 tr.myrow_3').length;
         animal_ind= row_3;
         if(row_3 >= 3){
@@ -3221,12 +3223,13 @@
             '<td><a class="btn btn-danger btn-sm remove_rows_3"> <span class="glyphicon glyphicon-minus"></span></a></td>'+
             '</tr>';
         $(".new_rows_3").append(tab_rows_3);
-        dataRow_income++;
+
         reOrder_income();
         $(".type_animals").select2({ allowClear:true, placeholder: "ប្រភេទសត្វ"});
         $(".note_animals").select2({ allowClear:true, placeholder: "កំណត់សម្គាល់"});
 
         $('.type_animals').on('change', function (e) {
+            console.log(dataRow_income);
             var type = this.value;
             var index= $(this).attr('index');
                 if (index == (row_3) && (type == 2 || type == 3)) {
@@ -3280,6 +3283,7 @@
                     AllowNumber();
                     $(".note_animals").select2({ allowClear:true, placeholder: "កំណត់សម្គាល់"});
                 }
+            dataRow_income++;
         });
         //
         AllowNumber();
