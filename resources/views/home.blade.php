@@ -372,6 +372,7 @@
                             </thead>
                             <tbody class="new_rows">
                                 <tr class="myrow">
+                                <tr class="myrow" index="0">
                                     <td>1(មេ)</td>
                                     <td>
                                         <div class="form-group">
@@ -422,6 +423,7 @@
                                     <td>
                                         <div class="form-group add_education_level">
                                             <select style="width: 100%" id="education_level" class="cal_edu form-control education_level"  name="education_level[0]" required="required">
+                                            <select style="width: 100%" id="education_level"  class="cal_edu form-control education_level"  name="education_level[0]" required="required">
                                                 <option></option>
                                                 @foreach($education_level as $keh => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -430,12 +432,14 @@
                                         </div>
                                     </td>
                                     <td><input type="text" class="edu_score_'+row+' form-control"></td>
+                                    <td><input type="text" class="txt_score edu_score_0 form-control" readonly=""></td>
                                     <td>
                                         <a class="btn btn-primary btn-sm" id="add_rows">
                                             <span class="glyphicon glyphicon-plus"></span>
                                         </a>
                                     </td>
                                        <script type="text/javascript">
+                                           var edu_row = 0;
                                            $('.education_level').change(function(){
                                                 var edu_level = $('#education_level').val();
                                                 if( (edu_level>=1 && edu_level<=3) || (edu_level == 14) ){
@@ -447,6 +451,46 @@
                                                 if( (level>=1 && level<=3) || (level == 14) ){
                                                    $('#edu_score').val(4);
                                                 }else{$('#edu_score').val(0);}
+                                           $('.cal_edu').change(function(){
+                                               var myrow_ind = $('.myrow').attr('index');
+                                               var age = $('.age_'+myrow_ind).val();
+                                               var child = $('.child').val();
+                                               var edu = $('#education_level_'+myrow_ind).val();
+                                               var relation = $('#family_relationship_'+myrow_ind).val();
+                                               /* if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=1 && edu <=3) )) || (age>=16 && (edu >=1 && edu <=3))){
+                                                     $('.edu_score_'+row).val(4);
+                                                 }else if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=4 && edu <=6)) ) || (age>=16 && (edu >=4 && edu <=6)) || (age<16 && edu==14) ){
+                                                     $('.edu_score_'+row).val(2.5);
+                                                 }
+                                                 else{ $('.edu_score_'+row).val(0);}
+
+                                                 var value = $('.edu_score_'+row).val();
+                                                 if(value == 4 ){
+                                                    $
+                                                 }*/
+
+                                               $('.family_relationship').each(function (ind) {
+                                                   var rel = $(this).val();
+                                                   var row_score = 0;
+                                                   if(rel == 1 || rel == 2) {//check for head of household
+                                                       row_score = 4;
+                                                   }else{
+                                                       row_score = 2.5;
+                                                   }
+
+                                                   $('.edu_score_'+ind).val(row_score);
+                                               });
+
+
+
+                                               var maxScore = $('.edu_score_0').val();
+                                               $('.txt_score ').each(function(i){
+                                                   var score = $(this).val();
+                                                   if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                               });
+
+                                               $('#edu_score').val(maxScore);
+
                                            });
                                         </script>
                                 </tr>
@@ -1332,6 +1376,7 @@
                                 </tr>
                                   <script type="text/javascript">
 
+                                      var numRow = 0;
                                       $('#type_animals').on("change", function(e) {
                                           var type = this.value;
                                           var index= $(this).attr('index');
