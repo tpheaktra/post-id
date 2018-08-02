@@ -229,10 +229,12 @@ input[type=radio]{
     vertical-align: middle;
     padding-right: 10px;
 }
+
 .new_rows_1 tr td,
 .new_rows_2 tr td,
 .new_rows_3 tr td,
 .new_rows_4 tr td,
+.new_rows_5 tr td,
 .new_rows tr td{text-align: center;}
 .table tr td{  vertical-align: middle !important;  }
 .table .form-group{
