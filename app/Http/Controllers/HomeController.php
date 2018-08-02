@@ -103,11 +103,35 @@ class HomeController extends Controller
                 inner join dev_pmrs_share.villages v on gi.g_village_id = v.code
                where gi.id ='$id' group by gi.id order by gi.id desc 
             ");
-         $score= DB::select('select *from general_information gi left join store_score sc on sc.patient = gi.id
+//          $score= DB::select('select *from general_information gi left join store_score sc on sc.patient = gi.id
 
-where gi.id = 1');
+// where gi.id = $id');
+        $score_list = DB::select("
+         select sc.patient,
+         sc.size_member,
+         sc.toilet,
+         sc.roof,
+         sc.wall,
+         sc.house_status,
+         sc.price_rent_house,
+         sc.price_electronic,
+         sc.use_energy_elect,
+         sc.no_energy_elect,
+         sc.vehicle,
+         sc.animal,
+         sc.personal_farm,
+         sc.other_farm,
+         sc.income_out_farmer,
+         sc.income_out_not_farmer,
+         sc.income_child,
+         sc.disease,
+         sc.debt,
+         sc.edu,
+         sc.age_action,
+         sc.record_status
+         from general_information gi inner join store_score sc on gi.id = sc.patient where gi.id = '$id' ");
         $gender = Helpers::getGender();
-        return view('view',compact('gender','patient'));
+        return view('view',compact('gender','patient','score_list'));
     }
 
 

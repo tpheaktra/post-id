@@ -362,7 +362,7 @@
                                     </th>
                                     <th width="15%" rowspan="2">មុខងារ/​មុខរបរ(2) <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="(2)= ប្រភេទមុខរបរចម្បងរបស់គាត់/នាង ដូចជា កសិករ កម្មករ មន្ត្រីរាជការ រកស៊ី សិស្ស នៅផ្ទះ"></a></th>
                                     <th width="15%" rowspan="2">កម្រិតវប្បធម៌(3) <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="(3)= បើនៅរៀន បញ្ជាក់ពីថ្នាក់ទីប៉ុន្មាន។ បើជាមនុស្សពេញវ័យឬជាកុមារអាយុចាប់ពី៥ឆ្នាំតែឈប់រៀន សូមបញ្ជាក់ពីកម្រិតថ្នាក់នៅពេលឈប់រៀន"></a></th>
-                                    <th rowspan="2">Score test</th>
+                                    <th rowspan="2">ពិន្ទុតាមសមាជិក</th>
                                     <th width="15%" rowspan="2">សកម្មភាព</th>
                                 </tr>
                                 <tr>
@@ -520,16 +520,16 @@
                             <p>តើពួកគាត់រស់នៅទីកន្លែងណា? (សូម​ជ្រើរើស នៅចំលើយតែមួយ)</p>
 
                             <div class="add_household_family">
-                                <ul class="li-none">
+                                <table>
                                     @foreach($household as $key => $h)
-                                        <li><span>@if($h->id == 1) ក​ @elseif($h->id == 2) ខ​ @elseif($h->id == 3) គ @elseif($h->id == 4) ឃ​ @elseif($h->id == 5) ង​​ @endif</span>
-                                            <label>
-                                                 ​<input class="household_family_id" type="radio" name="household_family_id"  value="{{ $h->id }}"> {{$h->name_kh}}
-                                            </label>
-                                            @if($h->id == 5)<label id="household_family_id"></label>@endif
-                                        </li>
+                                        <tr><td>@if($h->id == 1) ក​). @elseif($h->id == 2) ខ​). @elseif($h->id == 3) គ). @elseif($h->id == 4) ឃ​). @elseif($h->id == 5) ង​​). @endif</td>
+                                            <td style="padding: 5px 10px;">
+                                                 ​<input class="household_family_id" type="radio" name="household_family_id"  value="{{ $h->id }}">  {{$h->name_kh}}
+                                            </td>
+                                            <td>@if($h->id == 5) <label id="household_family_id"> </label>@endif</td>
+                                        </tr>
                                     @endforeach
-                                </ul>
+                                </table>
                             </div>
 
                              <script>
@@ -543,7 +543,7 @@
                                      $('#building-year').empty();
                                      $('#household_area').empty();
                                      if(houshold == 5){
-                                         $('#household_family_id').append('<input class="form-control-custome" type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name" autocomplete="off" required="required">លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន : <input maxlength="10" class="allowNumber form-control-custome" type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone" autocomplete="off" required="required">');
+                                         $('#household_family_id').append('ឈ្មោះស្ថាប័ន : <input class="form-control-custome" type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name" autocomplete="off" required="required"> លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន : <input maxlength="10" class="allowNumber form-control-custome" type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone" autocomplete="off" required="required">');
                                          AllowNumber();
                                      }else if(houshold == 2){
                                          $('#home-rent').append('<h4>គ.៨) សម្រាប់គ្រួសារជួលផ្ទះគេ​ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ មិនបាច់បំពេញចំណុច គ៨ ហើយរំលងទៅ គ៩"></a></h4>' +
@@ -2058,7 +2058,7 @@
                                         '</div>' +
                                     '</div>'
                                 );
-                                $('.dept_money').keyup(function(){
+                                 $('.dept_money').keyup(function(){
                                     var total_debt = $('#total_debt').val();
                                     if( total_debt>1200100){
                                         $('#score_money').val(3); 
@@ -2070,6 +2070,7 @@
                                 });
                             }
                         });
+                             
                     </script>
 
                     <div class="col-sm-12">
@@ -2870,7 +2871,7 @@
                 '</select>' +
                 '</div>' +
                 '</td>' +
-                '<td><input type="text" class="txt_score edu_score_'+edu_row+' form-control" readonly></td>'+
+                '<td><input type="text" class="cal_edu txt_score edu_score_'+edu_row+' form-control" readonly></td>'+
                 '<td><a class="btn btn-danger btn-sm remove_rows_kh"><span class="glyphicon glyphicon-minus"></span></a></td>' +
                 '</tr>';
             $(".new_rows").append(htmlstep2);
@@ -2880,9 +2881,10 @@
            var age = $('.age_'+edu_row).val();
            var edu = $('#education_level_'+edu_row).val();
            var relation = $('#family_relationship'+edu_row).val();
-            if(relation ==5){
+
+            if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=1 && edu <=3) )) || (age>=16 && (edu >=1 && edu <=3)) ){
                   $('.edu_score_'+edu_row).val(4);
-            }else if(edu == 4) {
+            }else if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=4 && edu <=6)) ) || (age>=16 && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
                   $('.edu_score_'+edu_row).val(2.5);;
             }else{
               $('.edu_score_'+edu_row).val(0);;

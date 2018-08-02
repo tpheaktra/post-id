@@ -126,6 +126,7 @@
 	                    </div>
 	                  </div>
 	                  @endforeach
+	                  @foreach($score_list as $key=>$value)
 	                  <div class="col-sm-12"><hr></div>
 	                  <div class="col-md-12">
 	                  	<h4>1.អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ</h4>
@@ -139,12 +140,13 @@
 			                  		</tr>
 			                  		<tr>
 			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><input type="text" name="house_size" value=""​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><input type="text" name="house_size" value="{{$value->toilet}}"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
 	                  </div>
+	                  @endforeach
 	                  <div class="col-sm-12"><hr></div>
 	                  <div class="col-md-12">
 	                  	<h4>2.បង្គន់អនាម័យ (ចាក់ទឹក/ស្ងួត)</h4>
@@ -159,7 +161,7 @@
 			                  		<tr>
 			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><input type="text" name="house_size" value="4"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
 		                  	</p>
@@ -173,13 +175,13 @@
 			                  	<table class="table" style="border: 1px solid #ccc !important;">
 			                  		<tr style="background: #f9f3f3;">
 	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th style="text-align: center;">សំណង់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
 			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><input type="text" name="house_size" value="ស្បូវ ,ក្បឿង"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><input type="text" name="house_size" value="4"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
@@ -188,13 +190,13 @@
 			                  	<table class="table" style="border: 1px solid #ccc !important;">
 			                  		<tr style="background: #f9f3f3;">
 	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th style="text-align: center;">សំណង់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
 			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><input type="text" name="house_size" value="ឈើ"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><input type="text" name="house_size" value="6"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
@@ -209,7 +211,7 @@
 			                  		<tr>
 			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><input type="text" name="house_size" value="4"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
@@ -218,13 +220,13 @@
 			                  	<table class="table" style="border: 1px solid #ccc !important;">
 			                  		<tr style="background: #f9f3f3;">
 	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th style="text-align: center;"> តម្លៃជួលផ្ទះ </th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
 			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><input type="text" name="house_size" value="30000"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><input type="text" name="house_size" value="4"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
 		                    </p>
@@ -242,7 +244,7 @@
 			                  		<tr>
 			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
 			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td><input type="text" name="house_size" value="4"​ class="form-control" disabled style="text-align: center;"></td>
 			                  		</tr>
 			                  	</table>
 		                    </p>
@@ -291,7 +293,7 @@
 			                  	<table class="table" style="border: 1px solid #ccc !important;">
 			                  		<tr style="background: #f9f3f3;">
 	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th style="text-align: center;">តម្លៃសរុប</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
@@ -311,7 +313,7 @@
 			                  	<table class="table" style="border: 1px solid #ccc !important;">
 			                  		<tr style="background: #f9f3f3;">
 	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th style="text-align: center;">ចំនួនសត្វ</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
@@ -388,7 +390,7 @@
 			                  	<table class="table" style="border: 1px solid #ccc !important;">
 			                  		<tr style="background: #f9f3f3;">
 	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th style="text-align: center;"></th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
@@ -460,7 +462,7 @@
 			                  	<table class="table" style="border: 1px solid #ccc !important;">
 			                  		<tr style="background: #f9f3f3;">
 	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th style="text-align: center;">លទ្ធផល</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
