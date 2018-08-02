@@ -712,7 +712,7 @@
                                              var f_width = parseFloat($('#further_floor_width').val());
                                              $('#further_floor_area').val((f_length * f_width ? f_length * f_width : 0).toFixed(0));
                                          });
-                                         $('#ground_floor_length, #ground_floor_width, #upper_floor_length, #upper_floor_width,#further_floor_length, #further_floor_width').on('change',function() {
+                                         $('#ground_floor_length, #ground_floor_width, #upper_floor_length, #upper_floor_width,#further_floor_length, #further_floor_width').on('change' ,function() {
                                              var total_g = 0;
                                              var total_u = 0;
                                              var total_f = 0;
@@ -2890,7 +2890,7 @@
               $('.edu_score_'+edu_row).val(0);;
             }
           var maxScore = $('.edu_score_'+myrow_ind).val();
-          $('.txt_score ').each(function(i){
+          $('.txt_score').each(function(i){
               var score = $(this).val();
               if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
           });
