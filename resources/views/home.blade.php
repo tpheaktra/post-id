@@ -91,7 +91,7 @@
                                 <td width="35%"><label class="control-label"> អាយុ : </label></td>
                                 <td width="65%">
                                    <div class="form-group">
-                                       {{ Form::text('g_age',null,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'3']) }}
+                                       {{ Form::text('g_age',null,['class'=>'form-control allowNumber onlyNumber','required'=>'required','maxlength'=>'3']) }}
                                     </div>
                                 </td>
                             </tr>
@@ -220,7 +220,7 @@
                                 <td><label class="control-label"> អាយុ : </label></td>
                                 <td>
                                    <div class="form-group">
-                                       {{ Form::text('inter_age',null,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'3']) }}
+                                       {{ Form::text('inter_age',null,['class'=>'form-control allowNumber inter_age','required'=>'required','maxlength'=>'3']) }}
                                     </div>
                                 </td>
                             </tr>
@@ -228,7 +228,7 @@
                                 <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                       {{ Form::text('inter_phone',null,['class'=>'form-control telephone','required'=>'required','maxlength'=>'10']) }}
+                                       {{ Form::text('inter_phone',null,['class'=>'form-control telephone','maxlength'=>'10']) }}
                                     </div>
                                 </td>
                             </tr>
@@ -267,7 +267,7 @@
                                 <td><label class="control-label">ឈ្មោះ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                       {{ Form::text('fa_patient',null,['class'=>'form-control','required'=>'required']) }}
+                                       {{ Form::text('fa_patient',null,['class'=>'form-control']) }}
                                     </div>     
                                 </td>
                             </tr>
@@ -290,7 +290,7 @@
                                 <td><label class="control-label"> អាយុ : </label></td>
                                 <td>
                                    <div class="form-group">
-                                       {{ Form::text('fa_age',null,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'3']) }}
+                                       {{ Form::text('fa_age',null,['class'=>'form-control allowNumber fa_age','maxlength'=>'3']) }}
                                     </div>     
                                 </td>
                             </tr>
@@ -298,7 +298,7 @@
                                 <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
                                 <td>
                                    <div class="form-group">
-                                       {{ Form::text('fa_phone',null,['class'=>'form-control telephone','required'=>'required','maxlength'=>'10']) }}
+                                       {{ Form::text('fa_phone',null,['class'=>'form-control telephone','maxlength'=>'10']) }}
                                     </div>
                                 </td>
                             </tr>
@@ -403,7 +403,7 @@
                                             <select style="width: 100%" id="family_relationship_0" class="cal_edu form-control family_relationship" name="family_relationship[0]" required="required">
                                                 <option></option>
                                                 @foreach($relationship as $keh => $value)
-                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    <option @if($value->id == 1 || $value->id == 2)  @else disabled @endif value="{{$value->id}}">{{$value->name_kh}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -829,6 +829,8 @@
                                         // $('#home-preparing').append(home_preparing);
                                          $('#building-year').append(building_year);
                                          $('#home-yourself').append(homeyourselt);
+
+
                                          $('.cal_roof').change(function(){
                                             var chose = $('#roof_relationship').val();
                                             var status = $('#r_status').val();
@@ -843,17 +845,38 @@
                                          $("#year_select").select2({allowClear:true, placeholder: "ឆ្នាំ"});
                                          $(".roof_relationship").select2({allowClear:true, placeholder: "ដំបូល"});
                                          $(".r_status").select2({allowClear:true, placeholder: "ស្ថានភាព"});
+
                                          $('.homeyear').click(function () {
                                              var homeyear = $('input[name=home_prepare]:checked').val();
-                                             $('#homeyear').empty();
+
                                              if(homeyear == 2){
-                                                 $('#homeyear').append('<select name="home_year" style="width: 180px;" id="years"><option></option><?php $currentYear = date('Y');foreach (range(1950, $currentYear) as $value) { echo "<option value=".$value.">" . $value . "</option > ";}?> </select>');
+                                                 $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years"><option></option><?php $currentYear = date('Y');foreach (range(1950, $currentYear) as $value) { echo "<option value=".$value.">" . $value . "</option > ";}?> </select>');
                                                  $("#years").select2({
                                                      allowClear:true,
                                                      placeholder: 'ឆ្នាំ...'
                                                  });
                                              }
+
+
+
+                                             $('#years').change(function(event) {
+                                                 var building_year = $('#year_select').val();
+                                                 var prepare_yaer = $('#years option:selected').val();
+                                                // console.log(building_year+'='+prepare_yaer);
+                                                 if(building_year >= prepare_yaer){
+                                                    $("#years > option").removeAttr("selected");
+                                                    // $('#years').val('').trigger('change');
+                                                     $('#years').val('').triggerHandler('change');
+                                                     event.preventDefault();
+                                                     $('.alert').show();
+                                                 }
+
+
+                                             });
                                          });
+
+
+
                                          var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>' +
                                              '<div class="col-sm-6">' +
                                                  '<table width="100%">' +
@@ -1494,11 +1517,16 @@
                             <script>
 
                             $(".land").click( function(e){
+
                                 if($(this).hasClass("on")){
                                     $(this).removeAttr('checked');
                                     $('.testing').attr('disable');
                                 }
                                 $(this).toggleClass("on");
+                                $('#land_2').removeAttr('checked');
+                                $('#show-land-other').html('');
+                                $('#land_3').removeAttr('checked');
+                                $('#show-land-personal').html('');
                                 $('.testing').toggleClass("disable");
 
                             }).find(":checked").addClass("on");
@@ -2064,13 +2092,13 @@
             }else{
                 $('.inter_relationship').removeClass("has-error");
             }
-            if($('#fa_relationship').val() == ''){
-                $('.fa_relationship').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.fa_relationship').removeClass("has-error");
-            }
+//            if($('#fa_relationship').val() == ''){
+//                $('.fa_relationship').addClass("has-error");
+//                $('.alert').show();
+//                isValid = false;
+//            }else{
+//                $('.fa_relationship').removeClass("has-error");
+//            }
             //check radio
             if (!$("input[name='g_sex']:checked").val()) {
                 $('#g_sex').addClass("error");
@@ -2082,11 +2110,11 @@
                 $('.alert').show();
                 isValid = false;
             }else{$('#inter_sex').removeClass("error");}
-            if (!$("input[name='fa_sex']:checked").val()) {
-                $('#fa_sex').addClass("error");
-                $('.alert').show();
-                isValid = false;
-            }else{$('#fa_sex').removeClass("error");}
+//            if (!$("input[name='fa_sex']:checked").val()) {
+//                $('#fa_sex').addClass("error");
+//                $('.alert').show();
+//                isValid = false;
+//            }else{$('#fa_sex').removeClass("error");}
 
             if (isValid)
                 nextStepWizard.removeAttr('disabled').trigger('click');
@@ -2848,24 +2876,24 @@
         AllowNumber();
         var row_num = $('.new_rows tr').length;
 
-            $('.age').keyup(function () {
+            $('.age').change(function () {
                 for(var ii=1; ii<row_num; ii++) {
                     var age = Number($('#age_'+ii).val());
                     var currentyear = (new Date()).getFullYear();
                     var dob = currentyear-age;
-                    if(age >= 150){
+                    if(age >= 160){
                         $('#dob_'+ii).val('');
                     }else{
                         $('#dob_'+ii).val(dob);
                     }
                 }
             });
-            $('.dob').keyup(function () {
+            $('.dob').change(function () {
                 for(var ii=1; ii<row_num; ii++) {
                     var dob = Number($('#dob_' + ii).val());
                     var currentyear = (new Date()).getFullYear();
                     var age = currentyear - dob;
-                    if (dob >= currentyear || age >= 150) {
+                    if (dob >= currentyear || age >= 160) {
                         $('#age_' + ii).val('');
                     }
                     else {
@@ -2875,27 +2903,90 @@
             });
 
     });
-    $('#age').on('input', function() {
-        var age = Number($('#age').val());
+
+    $('#age').change(function(e) {
+
+        var num = this.value;
+        var result = '';
+        // console.log(num.length);
+        for (n = 0; n < num.length; n++) {
+            if (num[n] == '០') result += 0;
+            if (num[n] == '១') result += 1;
+            if (num[n] == '២') result += 2;
+            if (num[n] == '៣') result += 3;
+            if (num[n] == '៤') result += 4;
+            if (num[n] == '៥') result += 5;
+            if (num[n] == '៦') result += 6;
+            if (num[n] == '៧') result += 7;
+            if (num[n] == '៨') result += 8;
+            if (num[n] == '៩') result += 9;
+
+            //if (num[n] == '.') result += '.';
+            if (num[n] == 0) result += 0;
+            if (num[n] == 1) result += 1;
+            if (num[n] == 2) result += 2;
+            if (num[n] == 3) result += 3;
+            if (num[n] == 4) result += 4;
+            if (num[n] == 5) result += 5;
+            if (num[n] == 6) result += 6;
+            if (num[n] == 7) result += 7;
+            if (num[n] == 8) result += 8;
+            if (num[n] == 9) result += 9;
+        }
+
+        var dob = '';
+        var age = result;
         var currentyear = (new Date()).getFullYear();
-        var dob = currentyear-age;
-        if(age >= 150){
+        dob = currentyear-age;
+
+        if(age >= 160 || age < 1){
             $('#dob').val('');
         }else{
             $('#dob').val(dob);
         }
     });
-    $('#dob').on('input', function() {
-        var dob = Number($('#dob').val());
+    $('#dob').change(function(e) {
+        var num = this.value;
+        var result = '';
+        // console.log(num.length);
+        for (n = 0; n < num.length; n++) {
+            if (num[n] == '០') result += 0;
+            if (num[n] == '១') result += 1;
+            if (num[n] == '២') result += 2;
+            if (num[n] == '៣') result += 3;
+            if (num[n] == '៤') result += 4;
+            if (num[n] == '៥') result += 5;
+            if (num[n] == '៦') result += 6;
+            if (num[n] == '៧') result += 7;
+            if (num[n] == '៨') result += 8;
+            if (num[n] == '៩') result += 9;
+
+            //if (num[n] == '.') result += '.';
+            if (num[n] == 0) result += 0;
+            if (num[n] == 1) result += 1;
+            if (num[n] == 2) result += 2;
+            if (num[n] == 3) result += 3;
+            if (num[n] == 4) result += 4;
+            if (num[n] == 5) result += 5;
+            if (num[n] == 6) result += 6;
+            if (num[n] == 7) result += 7;
+            if (num[n] == 8) result += 8;
+            if (num[n] == 9) result += 9;
+        }
+
+        var age = '';
+        var dob = result;
         var currentyear = (new Date()).getFullYear();
-        var age = currentyear-dob;
-        if(dob >= currentyear || age >= 150){
+         age = currentyear-dob;
+        if(dob >= currentyear || age >= 160 || age < 1){
             $('#age').val('');
         }
         else{
             $('#age').val(age);
         }
     });
+
+
     function reOrder(){
         for(var n=2;n<(dataRow-1);n++){
             $('.new_rows  tr:eq(' + (n-1) +') td:first-child').html(n);

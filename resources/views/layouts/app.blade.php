@@ -69,7 +69,7 @@
 
             <div class="msg">
                 <div class="add_hide alert alert1 alert-danger alert-dismissable">
-                   សូមបញ្ជូលព័ត៌មានចាំបាច់.
+                   <span class="mysmg">សូមបញ្ជូលព័ត៌មានចាំបាច់.</span>
                 </div>
             </div>
 
