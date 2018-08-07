@@ -848,33 +848,38 @@
 
                                          $('.homeyear').click(function () {
                                              var homeyear = $('input[name=home_prepare]:checked').val();
+                                             var year_build = $('#year_select').val();
+
+                                             if(year_build != ''){
+                                                 year_build = $('#year_select').val();
+                                             }else{
+                                                 year_build = '{{date("Y")+1}}';
+                                             }
+                                             var cur_year = '{{date("Y")}}';
+
 
                                              if(homeyear == 2){
-                                                 $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years"><option></option><?php $currentYear = date('Y');foreach (range(1950, $currentYear) as $value) { echo "<option value=".$value.">" . $value . "</option > ";}?> </select>');
-                                                 $("#years").select2({
-                                                     allowClear:true,
-                                                     placeholder: 'ឆ្នាំ...'
-                                                 });
-                                             }
-
-
-
-                                             $('#years').change(function(event) {
-                                                 var building_year = $('#year_select').val();
-                                                 var prepare_yaer = $('#years option:selected').val();
-                                                // console.log(building_year+'='+prepare_yaer);
-                                                 if(building_year >= prepare_yaer){
-                                                    $("#years > option").removeAttr("selected");
-                                                    // $('#years').val('').trigger('change');
-                                                     $('#years').val('').triggerHandler('change');
-                                                     event.preventDefault();
-                                                     $('.alert').show();
+                                                 var opt = '';
+                                                 for(var y=year_build; y<=cur_year;y++){
+                                                     opt += '<option value="'+y+'" >'+y+'</option>';
                                                  }
-
-
-                                             });
+                                                $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years">'+opt+'</select>');
+                                                 $("#years").select2({allowClear:true, placeholder: 'ឆ្នាំ...'});
+                                             }else{
+                                                 $('#homeyear').html('');
+                                             }
                                          });
 
+                                         $('#year_select').change(function () {
+                                             var year_build = $(this).val();
+                                             var cur_year = '{{date("Y")}}';
+                                             var opt = '';
+                                             for (var y = year_build; y <= cur_year; y++) {
+                                                 opt += '<option value="' + y + '" >' + y + '</option>';
+                                             }
+                                             $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years">' + opt + '</select>');
+                                             $("#years").select2({allowClear: true, placeholder: 'ឆ្នាំ...'});
+                                         });
 
 
                                          var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>' +
