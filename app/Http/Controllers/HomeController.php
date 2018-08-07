@@ -289,13 +289,7 @@ class HomeController extends Controller
             'inter_patient'      => 'required',
             'inter_age'          => 'required',
             'inter_sex'          => 'required',
-            'inter_phone'        => 'required',
-            'inter_relationship' => 'required',
-            'fa_patient'           => 'required',
-            'fa_age'               => 'required',
-            'fa_sex'               => 'required',
-            'fa_phone'             => 'required',
-            'fa_relationship'      => 'required',
+
             //step2
             'nick_name'              => 'required',
             'nick_name.*'            => 'required',
