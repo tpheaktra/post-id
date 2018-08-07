@@ -4,7 +4,7 @@
 
 <ul class="li-none add_land">
     <li>
-        <label>
+        <label class="add_income_agricalture_type">
             <input index="1" class="income_agriculture" style="margin-right: 10px;" type="radio" value="1" name="income_agricalture_type"/>
             ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមានចំណូលពីសកម្មភាពកសិកម្ម
         </label>
@@ -60,7 +60,7 @@
     </li>
 
     <li>
-        <label>
+        <label class="add_income_agricalture_type">
             <input index="2" class="income_agriculture income_not_agriculture" style="margin-right: 10px;" type="radio" value="2" name="income_agricalture_type"/>
             ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្ម
         </label>

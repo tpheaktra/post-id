@@ -599,19 +599,19 @@
                                                             '<td><b>ផ្ទះជាន់ក្រោម៖</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                    '<input autocomplete="off" id="ground_floor_length" class="calculate form-control allowNumber ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">' +
+                                                                    '<input autocomplete="off" id="ground_floor_length" class="calculate form-control allowFlot ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">' +
                                                                     '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                    '<input autocomplete="off" id="ground_floor_width" class="calculate form-control allowNumber ground_floor"  placeholder="ទទឹង" type="text" name="ground_floor_width">' +
+                                                                    '<input autocomplete="off" id="ground_floor_width" class="calculate form-control allowFlot ground_floor"  placeholder="ទទឹង" type="text" name="ground_floor_width">' +
                                                                     '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="ground_floor_area" class="calculate form-control allowNumber"  placeholder="ផ្ទៃ" type="text" name="ground_floor_area" readonly="readonly">' +
+                                                                     '<input autocomplete="off" id="ground_floor_area" class="calculate form-control allowFlot"  placeholder="ផ្ទៃ" type="text" name="ground_floor_area" readonly="readonly">' +
                                                                     '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -620,19 +620,19 @@
                                                             '<td><b>ផ្ទះជាន់លើ(បើមាន)៖</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="upper_floor_length" class="calculate form-control allowNumber" placeholder="បណ្តោយ" type="text" name="upper_floor_length">' +
+                                                                     '<input autocomplete="off" id="upper_floor_length" class="calculate form-control allowFlot" placeholder="បណ្តោយ" type="text" name="upper_floor_length">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="upper_floor_width" class="calculate form-control allowNumber"  placeholder="ទទឹង" type="text" name="upper_floor_width">' +
+                                                                     '<input autocomplete="off" id="upper_floor_width" class="calculate form-control allowFlot"  placeholder="ទទឹង" type="text" name="upper_floor_width">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="upper_floor_area" class="calculate form-control allowNumber"  placeholder="ផ្ទៃ" type="text" name="upper_floor_area" readonly="readonly">' +
+                                                                     '<input autocomplete="off" id="upper_floor_area" class="calculate form-control allowFlot"  placeholder="ផ្ទៃ" type="text" name="upper_floor_area" readonly="readonly">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -641,19 +641,19 @@
                                                             '<td><b>សំណង់បន្ថែម ឧ. ផ្ទះបាយ... (បើមាន)៖ </b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="further_floor_length" class="calculate form-control allowNumber" placeholder="បណ្តោយ" type="text"  name="further_floor_length">' +
+                                                                     '<input autocomplete="off" id="further_floor_length" class="calculate form-control allowFlot" placeholder="បណ្តោយ" type="text"  name="further_floor_length">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                 '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="further_floor_width" class="calculate form-control allowNumber"  placeholder="ទទឹង" type="text" name="further_floor_width">' +
+                                                                     '<input autocomplete="off" id="further_floor_width" class="calculate form-control allowFlot"  placeholder="ទទឹង" type="text" name="further_floor_width">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="further_floor_area" class="calculate form-control allowNumber" required="required" placeholder="ផ្ទៃ" type="text" name="further_floor_area" readonly="readonly">' +
+                                                                     '<input autocomplete="off" id="further_floor_area" class="calculate form-control allowFlot" required="required" placeholder="ផ្ទៃ" type="text" name="further_floor_area" readonly="readonly">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -662,7 +662,7 @@
                                                             '<td colspan="3"><b style="float:right;">ផ្ទៃកម្រាលសរុប :</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input readonly="readonly" autocomplete="off" id="total_area" name="total_area" class="calculate form-control allowNumber"  placeholder="ផ្ម៉ែត្រក្រឡា..." type="text">' +
+                                                                     '<input readonly="readonly" autocomplete="off" id="total_area" name="total_area" class="calculate form-control allowFlot"  placeholder="ផ្ម៉ែត្រក្រឡា..." type="text">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រ​ក្រឡា</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -671,7 +671,7 @@
                                                             '<td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" type="text" id="a_score1" name="size_member_score" class="calculate form-control  allowNumber"​ required="required" readonly="readonly">' +
+                                                                     '<input autocomplete="off" type="text" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly">' +
                                                                      '<span class="input-group-addon">ពិន្ទុ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -681,33 +681,22 @@
                                              '</div>' +
                                              '<div class="col-sm-12"><hr></div>';
                                         $('#household_area').append(household_area);
-                                        AllowNumber();
+                                        AllowFlot();
                                          //family
-                                         $('.ground_floor').keyup(function(){
-//                                             if ($(this).val() > 90000000){
-//                                                 alert("No numbers above 90000000");
-//                                                 $(this).val('90000000');
-//                                             }
+                                         $('.ground_floor').change(function(){
                                              var g_length = 0;
                                              var g_width = 0;
                                              g_length = parseInt($('#ground_floor_length').val() ? $('#ground_floor_length').val() : 0);
                                              g_width  = parseFloat($('#ground_floor_width').val() ? $('#ground_floor_width').val() : 0);
                                              $('#ground_floor_area').val((g_length * g_width ? g_length * g_width : 0).toFixed(0));
                                          });
-                                         $('#upper_floor_length, #upper_floor_width').on('input',function() {
-//                                             if ($(this).val() > 90000000){
-//                                                 alert("No numbers above 90000000");
-//                                                 $(this).val('90000000');
-//                                             }
+
+                                         $('#upper_floor_length, #upper_floor_width').change(function() {
                                              var u_length = parseInt($('#upper_floor_length').val());
                                              var u_width = parseFloat($('#upper_floor_width').val());
                                              $('#upper_floor_area').val((u_length * u_width ? u_length * u_width : 0).toFixed(0));
                                          });
-                                         $('#further_floor_length, #further_floor_width').on('input',function() {
-//                                             if ($(this).val() > 90000000){
-//                                                 alert("No numbers above 90000000");
-//                                                 $(this).val('90000000');
-//                                             }
+                                         $('#further_floor_length, #further_floor_width').change(function() {
                                              var f_length = parseInt($('#further_floor_length').val());
                                              var f_width = parseFloat($('#further_floor_width').val());
                                              $('#further_floor_area').val((f_length * f_width ? f_length * f_width : 0).toFixed(0));
@@ -863,8 +852,9 @@
                                                  for(var y=year_build; y<=cur_year;y++){
                                                      opt += '<option value="'+y+'" >'+y+'</option>';
                                                  }
-                                                $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years">'+opt+'</select>');
+                                                 $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years">'+opt+'</select>');
                                                  $("#years").select2({allowClear:true, placeholder: 'ឆ្នាំ...'});
+                                                 $("#homeyear").css("display", "block");
                                              }else{
                                                  $('#homeyear').html('');
                                              }
@@ -878,6 +868,8 @@
                                                  opt += '<option value="' + y + '" >' + y + '</option>';
                                              }
                                              $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years">' + opt + '</select>');
+                                             $("#homeyear").css("display", "none");
+                                             $('input[name=home_prepare]').removeAttr('checked');
                                              $("#years").select2({allowClear: true, placeholder: 'ឆ្នាំ...'});
                                          });
 
@@ -1412,6 +1404,7 @@
 
                                                 $('#num_animals_0').html(duk);
                                                 $('#noted_0').html(noted);
+                                                AllowNumber();
                                             }else if(index == 0 && type == 1){
                                                 var cow = '<table class="table table-bordered" align="center">' +
                                                         '<tr>' +
@@ -1440,10 +1433,11 @@
                                                 $('#num_animals_0').html(cow);
                                                 $('#noted_0').html(noted);
                                                 $(".note_animals").select2({ allowClear:true, placeholder: "កំណត់សម្គាល់"});
+                                                AllowNumber();
                                             }
                                       });
 
-                                        $('.cal_animal').keyup(function(){
+                                        $('.cal_animal').change(function(){
 
                                             $('#score_animal').empty();
                                             var animal = $('#type_animals').val();
@@ -1596,8 +1590,9 @@
                                     if (land == 2) {
                                         $('#show-land-other').html(otherland);
                                     }else{$('#show-land-other').html('');}
+
                                     AllowFlot();
-                                    $('.t_land_2').keyup(function(){
+                                    $('.t_land_2').change(function(){
                                         var field = 0;
                                         var farm = 0;
                                          field = Number($('#total_land_2').val());
@@ -1608,11 +1603,11 @@
                                        // $('#total_land_and_land_farm').val(sum);
 
                                         if(farm == null || farm == ''){
-                                            document.getElementById('total_land_and_land_farm_2').value = field;
+                                            $('#total_land_and_land_farm_2').val(field);
                                         }else if(field == null || field == ''){
-                                            document.getElementById('total_land_and_land_farm_2').value = farm;
+                                            $('#total_land_and_land_farm_2').val(farm);
                                         }else{
-                                            document.getElementById('total_land_and_land_farm_2').value = (field + farm);
+                                            $('#total_land_and_land_farm_2').val((field + farm).toFixed(2));
                                         }
 
 
@@ -1691,7 +1686,7 @@
 
 
                                     AllowFlot();
-                                    $('.t_land').keyup(function(){
+                                    $('.t_land').change(function(){
                                         var field = 0;
                                         var farm = 0;
                                         field = Number($('#total_land').val());
@@ -1702,11 +1697,11 @@
                                         // $('#total_land_and_land_farm').val(sum);
 
                                         if(farm == null || farm == ''){
-                                            document.getElementById('total_land_and_land_farm').value = field;
+                                            $('#total_land_and_land_farm').val(field);
                                         }else if(field == null || field == ''){
-                                            document.getElementById('total_land_and_land_farm').value = farm;
+                                            $('#total_land_and_land_farm').val(farm);
                                         }else{
-                                            document.getElementById('total_land_and_land_farm').value = (field + farm);
+                                            $('#total_land_and_land_farm').val((field + farm).toFixed(2));
                                         }
 
 
@@ -1758,7 +1753,7 @@
                             <script>
 
                                 $('.health_id_0').click(function () {
-                                    var health_check = $('input[type=checkbox]:checked').val();//$("input[name=health_id]:checked").val();
+                                    var health_check = $('input[type=checkbox]:checked.health_id_0').val();//$("input[name=health_id]:checked").val();
                                     // alert(health_check);
                                     $('#health_1').empty();
                                     if(health_check == 1){
@@ -2047,79 +2042,50 @@
                    // $('.alert').show();
                 }
             }
-            if($('#hospital').val() == ''){
-                $('.add_hospital').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.add_hospital').removeClass("has-error");
-            }
-            if($('#province').val() == ''){
-                $('.g_province').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.g_province').removeClass("has-error");
-            }
-            if($('#district').val() == ''){
-                $('.g_district').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.g_district').removeClass("has-error");
-            }
-            if($('#commune').val() == ''){
-                $('.g_commune').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.g_commune').removeClass("has-error");
-            }
-            if($('#village').val() == ''){
-                $('.g_village').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.g_village').removeClass("has-error");
-            }
 
-            if($('#location').val() == ''){
-                $('.location').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.location').removeClass("has-error");
-            }
-            if($('#inter_relationship').val() == ''){
+            if(isNaN(parseInt($('#hospital').val())) ||
+                isNaN(parseInt($('#province').val())) ||
+                isNaN(parseInt($('#district').val())) ||
+                isNaN(parseInt($('#commune').val())) ||
+                isNaN(parseInt($('#village').val())) ||
+                isNaN(parseInt($('#inter_relationship').val()))
+            ){
+                $('.add_hospital').addClass("has-error");
+                $('.g_province').addClass("has-error");
+                $('.g_district').addClass("has-error");
+                $('.g_commune').addClass("has-error");
+                $('.g_village').addClass("has-error");
                 $('.inter_relationship').addClass("has-error");
                 $('.alert').show();
                 isValid = false;
             }else{
+                $('.add_hospital').removeClass("has-error");
+                $('.g_province').removeClass("has-error");
+                $('.g_district').removeClass("has-error");
+                $('.g_commune').removeClass("has-error");
+                $('.g_village').removeClass("has-error");
                 $('.inter_relationship').removeClass("has-error");
             }
-//            if($('#fa_relationship').val() == ''){
-//                $('.fa_relationship').addClass("has-error");
-//                $('.alert').show();
-//                isValid = false;
-//            }else{
-//                $('.fa_relationship').removeClass("has-error");
-//            }
+
+            if ($('#location').val() == '') {
+                $('.location').addClass("has-error");
+                $('.alert').show();
+                isValid = false;
+            } else {
+                $('.location').removeClass("has-error");
+            }
+
             //check radio
-            if (!$("input[name='g_sex']:checked").val()) {
-                $('#g_sex').addClass("error");
-                $('.alert').show();
-                isValid = false;
-            }else{$('#g_sex').removeClass("error");}
-            if (!$("input[name='inter_sex']:checked").val()) {
-                $('#inter_sex').addClass("error");
-                $('.alert').show();
-                isValid = false;
-            }else{$('#inter_sex').removeClass("error");}
-//            if (!$("input[name='fa_sex']:checked").val()) {
-//                $('#fa_sex').addClass("error");
-//                $('.alert').show();
-//                isValid = false;
-//            }else{$('#fa_sex').removeClass("error");}
+            if (!$("input[name='g_sex']:checked").val() ||
+                !$("input[name='inter_sex']:checked").val()) {
+                    $('#g_sex').addClass("error");
+                    $('#inter_sex').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('#g_sex').removeClass("error");
+                    $('#inter_sex').removeClass("error");
+                }
 
             if (isValid)
                 nextStepWizard.removeAttr('disabled').trigger('click');
@@ -2132,25 +2098,21 @@
                 nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
                 curInputs = curStep.find("input[type='text']"),
                 isValid = true;
-            $(".form-group").removeClass("has-error");
-            for(var i=0; i<curInputs.length; i++){
-                if (!curInputs[i].validity.valid){
-                    $('.alert').show();
-                    isValid = false;
-                    $(curInputs[i]).closest(".form-group").addClass("has-error");
-                    // $('.alert').show();
+                $(".form-group").removeClass("has-error");
+                for(var i=0; i<curInputs.length; i++){
+                    if (!curInputs[i].validity.valid){
+                        $('.alert').show();
+                        isValid = false;
+                        $(curInputs[i]).closest(".form-group").addClass("has-error");
+                    }
                 }
-            }
             //in append
             var row_num = $('.new_rows tr').length;
             var plus = '';
             var plus_not = '';
             step2Row = row_num;
             step2Row5 = row_num;
-            //console.log('1. step2='+ step2Row);
-            //console.log('1. dataRow='+ dataRow);
 
-            ///document.getElementById('total_people').value =row_num;
             $('#total_people').val(row_num);
             $('.new_rows_4').empty();
             $('.new_rows_5').empty();
@@ -2219,20 +2181,20 @@
                             '</div>' +
                         '</td>' +
                         '<td>' +
-                            '<div class="form-group">' +
-                                '<input name="income_unit['+i+']" type="text" class="form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">' +
+                            '<div class="form-group add_income_unit">' +
+                                '<input name="income_unit['+i+']" type="text" class="form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" >' +
                             '</div>' +
                         '</td>'+
 
                         '<td>' +
-                            '<div class="form-group input-group">' +
-                                '<input id="unit_in_month_'+i+'" name="unit_in_month['+i+']" type="text" class="unit_in_month form-control allowNumber otherincome" required="required" autocomplete="off">'+
+                            '<div class="form-group input-group add_unit_in_month">' +
+                                '<input id="unit_in_month_'+i+'" name="unit_in_month['+i+']" type="text" class="unit_in_month form-control allowNumber otherincome"  autocomplete="off">'+
                                 '<span class="input-group-addon">ថ្ងៃ</span>' +
                             '</div>' +
                         '</td>'+
                         '<td>'+
-                            '<div class="form-group input-group">'+
-                                '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="average_amount form-control allowNumber otherincome" required="required" autocomplete="off">'+
+                            '<div class="form-group input-group add_average_amount">'+
+                                '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="average_amount form-control allowNumber otherincome" autocomplete="off">'+
                                 '<span class="input-group-addon">រៀល</span>'+
                             '</div>'+
                         '</td>'+
@@ -2249,7 +2211,7 @@
 
                 AllowNumber();
                 var row_num11 = $('.new_rows_4 tr').length;
-                $('.otherincome').keyup(function () {
+                $('.otherincome').change(function () {
                     for(var ii=0; ii<row_num11; ii++) {
                         var sum = 0;
                         var unit_in_month = $('#unit_in_month_'+ii).val();
@@ -2262,7 +2224,7 @@
                 });
                 $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
 
-                $('.otherincome').keyup(function () {
+                $('.otherincome').change(function () {
                     var arr = document.getElementsByClassName('monthly_income_total');
                     var tot=0;
                     for(var i=0;i<arr.length;i++){
@@ -2272,9 +2234,9 @@
                     $('#total_monthly_income').val(tot);
                     var totalperson = $('#total_people').val();
                     if(totalperson == null || totalperson == ''){
-                        $('#total_inc_person').val(tot/1);
+                        $('#total_inc_person').val((tot/1).toFixed(2));
                     }else{
-                        $('#total_inc_person').val(tot/totalperson);
+                        $('#total_inc_person').val((tot/totalperson).toFixed(2));
                     }
                 });
 
@@ -2304,20 +2266,20 @@
                     '</div>' +
                     '</td>' +
                     '<td>' +
-                    '<div class="form-group">' +
-                    '<input name="income_unit_not['+i+']" type="text" class="form-control income_unit_not" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">' +
+                    '<div class="form-group add_income_unit_not">' +
+                    '<input name="income_unit_not['+i+']" type="text" class="form-control income_unit_not" placeholder="ថ្ងៃ" value="day" autocomplete="off">' +
                     '</div>' +
                     '</td>'+
 
                     '<td>' +
-                    '<div class="form-group input-group">' +
-                    '<input id="unit_in_month_not_'+i+'" name="unit_in_month_not['+i+']" type="text" class="unit_in_month_not form-control allowNumber otherincome_not" required="required" autocomplete="off">'+
+                    '<div class="form-group input-group add_unit_in_month_not">' +
+                    '<input id="unit_in_month_not_'+i+'" name="unit_in_month_not['+i+']" type="text" class="unit_in_month_not form-control allowNumber otherincome_not" autocomplete="off">'+
                     '<span class="input-group-addon">ថ្ងៃ</span>' +
                     '</div>' +
                     '</td>'+
                     '<td>'+
-                    '<div class="form-group input-group">'+
-                    '<input id="average_amount_not_'+i+'" name="average_amount_not['+i+']" type="text" class="average_amount_not form-control allowNumber otherincome_not" required="required" autocomplete="off">'+
+                    '<div class="form-group input-group add_average_amount_not">'+
+                    '<input id="average_amount_not_'+i+'" name="average_amount_not['+i+']" type="text" class="average_amount_not form-control allowNumber otherincome_not"  autocomplete="off">'+
                     '<span class="input-group-addon">រៀល</span>'+
                     '</div>'+
                     '</td>'+
@@ -2334,7 +2296,7 @@
 
                 AllowNumber();
                 var row_num_agric = $('.new_rows_5 tr').length;
-                $('.otherincome_not').keyup(function () {
+                $('.otherincome_not').change(function () {
                     for(var ii=0; ii<row_num_agric; ii++) {
                         var sum = 0;
                         var unit_in_month = $('#unit_in_month_not_'+ii).val();
@@ -2347,7 +2309,7 @@
                 });
                 $(".income_occupation_not").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
 
-                $('.otherincome_not').keyup(function () {
+                $('.otherincome_not').change(function () {
                     var arr = document.getElementsByClassName('monthly_income_total_not');
                     var tot=0;
                     for(var i=0;i<arr.length;i++){
@@ -2357,18 +2319,16 @@
                     $('#total_monthly_income_not').val(tot);
                     var totalperson = $('#total_people').val();
                     if(totalperson == null || totalperson == ''){
-                        $('#total_inc_person_not').val(tot/1);
+                        $('#total_inc_person_not').val((tot/1).toFixed(2));
                     }else{
-                        $('#total_inc_person_not').val(tot/totalperson);
+                        $('#total_inc_person_not').val((tot/totalperson).toFixed(2));
                     }
                 });
 
             }
             step2Row++;
             step2Row5++;
-            //console.log('1. step2='+ step2Row);
-           // console.log('1. dataRow='+ dataRow);
-           // $('.empapp').closest('tr').remove();
+
 
             if($('.family_relationship').val() == ''){
                 $('.alert').show();
@@ -2423,7 +2383,8 @@
                 $('.alert').show();
                 isValid = false;
             }else{$('.add_household_family').removeClass("error");}
-            if ($("input[name='household_family_id']:checked").val() == 1 || $("input[name='household_family_id']:checked").val() == 3) {
+            if ($("input[name='household_family_id']:checked").val() == 1 ||
+                $("input[name='household_family_id']:checked").val() == 3) {
                 if (!$("input[name='home_prepare']:checked").val()) {
                     $('.add_home_prepare').addClass("error");
                     $('.alert').show();
@@ -2565,12 +2526,49 @@
             }else{
                 $('.add_total_people').removeClass("has-error");
             }
+
+
+            if (!$("input[name='income_agricalture_type']:checked").val()) {
+                $('.add_income_agricalture_type').addClass("error");
+                $('.alert').show();
+                isValid = false;
+            }else{$('.add_income_agricalture_type').removeClass("error");}
+
+            if ($("input[name='income_agricalture_type']:checked").val()==1) {
+                if($('.unit_in_month').val() == '' ||
+                    $('.average_amount').val() == '' ||
+                    $('#income_occupation').val() == ''){
+                        $('.alert').show();
+                        $('.add_unit_in_month').addClass("has-error");
+                        $('.add_average_amount').addClass("has-error");
+                        $('.add_income_occupation').addClass("has-error");
+                        isValid = false;
+                }else{
+                    $('.add_unit_in_month').removeClass("has-error");
+                    $('.add_average_amount').removeClass("has-error");
+                    $('.add_income_occupation').removeClass("has-error");
+                }
+            }
+
+            if ($("input[name='income_agricalture_type']:checked").val()==2) {
+                if($('.unit_in_month_not').val() == '' ||
+                    $('.average_amount_not').val() == '' ){
+                    $('.alert').show();
+                    $('.add_unit_in_month_not').addClass("has-error");
+                    $('.add_average_amount_not').addClass("has-error");
+                    isValid = false;
+                }
+            }
+
+
+
             //debt
             if (!$("input[name='family_debt_id']:checked").val()) {
                 $('.add_family_debt_id').addClass("error");
                 $('.alert').show();
                 isValid = false;
             }else{$('.add_family_debt_id').removeClass("error");}
+
             if ($("input[name='family_debt_id']:checked").val()==1) {
                 if (!$("input[name='q_debt']:checked").val()) {
                     $('.debt_question').addClass("error");
@@ -2613,13 +2611,7 @@
                 $('.add_type_animals').removeClass("has-error");
             }
 
-            if($('#income_occupation').val() == ''){
-                $('.add_income_occupation').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.add_income_occupation').removeClass("has-error");
-            }
+
 
             //land
 //            if (!$("input[name='land']:checked").val()) {

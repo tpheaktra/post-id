@@ -110,21 +110,78 @@
     });
 
     function AllowFlot() {
-        $(".allowFlot").on("keypress keyup blur",function (event) {
-            //this.value = this.value.replace(/[^0-9\.]/g,'');
-            $(this).val($(this).val().replace(/[^0-9\.]/g,''));
-            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-                event.preventDefault();
-            }
-        });
+        $(".allowFlot").change(function (event) {
+                var num = this.value;
+                var result = '';
+                // console.log(num.length);
+                for (n = 0; n < num.length; n++) {
+                    if (num[n] == '០') result += 0;
+                    if (num[n] == '១') result += 1;
+                    if (num[n] == '២') result += 2;
+                    if (num[n] == '៣') result += 3;
+                    if (num[n] == '៤') result += 4;
+                    if (num[n] == '៥') result += 5;
+                    if (num[n] == '៦') result += 6;
+                    if (num[n] == '៧') result += 7;
+                    if (num[n] == '៨') result += 8;
+                    if (num[n] == '៩') result += 9;
+
+                    if (num[n] == '.') result += '.';
+                    if (num[n] == 0) result += 0;
+                    if (num[n] == 1) result += 1;
+                    if (num[n] == 2) result += 2;
+                    if (num[n] == 3) result += 3;
+                    if (num[n] == 4) result += 4;
+                    if (num[n] == 5) result += 5;
+                    if (num[n] == 6) result += 6;
+                    if (num[n] == 7) result += 7;
+                    if (num[n] == 8) result += 8;
+                    if (num[n] == 9) result += 9;
+                }
+                $(this).val(result);
+
+                //this.value = this.value.replace(/[^0-9\.]/g,'');
+//            $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+//            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+//                event.preventDefault();
+//            }
+            });
     }
 
-    $(".allowFlot").on("keypress keyup blur",function (event) {
-        //this.value = this.value.replace(/[^0-9\.]/g,'');
-        $(this).val($(this).val().replace(/[^0-9\.]/g,''));
-        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-            event.preventDefault();
+    $(".allowFlot").change(function (event) {
+        var num = this.value;
+        var result = '';
+        // console.log(num.length);
+        for (n = 0; n < num.length; n++) {
+            if (num[n] == '០') result += 0;
+            if (num[n] == '១') result += 1;
+            if (num[n] == '២') result += 2;
+            if (num[n] == '៣') result += 3;
+            if (num[n] == '៤') result += 4;
+            if (num[n] == '៥') result += 5;
+            if (num[n] == '៦') result += 6;
+            if (num[n] == '៧') result += 7;
+            if (num[n] == '៨') result += 8;
+            if (num[n] == '៩') result += 9;
+
+             if (num[n] == '.') result += '.';
+            if (num[n] == 0) result += 0;
+            if (num[n] == 1) result += 1;
+            if (num[n] == 2) result += 2;
+            if (num[n] == 3) result += 3;
+            if (num[n] == 4) result += 4;
+            if (num[n] == 5) result += 5;
+            if (num[n] == 6) result += 6;
+            if (num[n] == 7) result += 7;
+            if (num[n] == 8) result += 8;
+            if (num[n] == 9) result += 9;
         }
+        $(this).val(result);
+        //this.value = this.value.replace(/[^0-9\.]/g,'');
+//        $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+//        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+//            event.preventDefault();
+//        }
     });
 
     $('.inter_age').on('change', function (e) {
@@ -191,7 +248,7 @@
             var total = $('#total_meterial_costs').val();
             //  alert(total);
         });
-        $('.meterial').keyup(function () {
+        $('.meterial').change(function () {
             for(var i=1; i<row_num; i++) {
                 var sum = 0;
                 var number_meterial = $('#number_meterial_'+i).val();
@@ -203,7 +260,7 @@
             }
         });
 
-        $('.meterial').keyup(function () {
+        $('.meterial').change(function () {
             var arr = document.getElementsByClassName('totalallowNumber_meterial');
             var tot=0;
             for(var i=0;i<arr.length;i++){
@@ -239,7 +296,7 @@
         reOrder_meterial();
         dataRow_meterial--;
     });
-    $('.meterial').keyup(function () {
+    $('.meterial').change(function () {
         var sum = 0;
         var number_meterial = $('#number_meterial').val();
         var market_value_meterial = $('#market_value_meterial').val();
@@ -255,30 +312,21 @@
         });
     });
 
-    $('.meterial').keyup(function () {
+    $('.meterial').change(function () {
         var arr = document.getElementsByClassName('totalallowNumber_meterial');
         var tot=0;
         for(var i=0;i<arr.length;i++){
             if(parseInt(arr[i].value))
                 tot += parseInt(arr[i].value);
         }
-        document.getElementById('total_meterial_costs').value = tot;
+        $('#total_meterial_costs').val(tot);
     });
 
     //type_vehicle
-    $(".type_meterial").select2({
-        allowClear:true,
-        placeholder: 'សម្ភារប្រើបា្រស់'
-    });
-    $("#go_hospital").select2({
-        allowClear:true,
-        placeholder: 'មធ្យោបាយធ្វើដំណើរ'
-    });
+    $(".type_meterial").select2({allowClear:true, placeholder: 'សម្ភារប្រើបា្រស់'});
+    $("#go_hospital").select2({allowClear:true, placeholder: 'មធ្យោបាយធ្វើដំណើរ'});
     //type_vehicle
-    $(".type_vehicle").select2({
-        allowClear:true,
-        placeholder: 'សម្ភារប្រើបា្រស់'
-    });
+    $(".type_vehicle").select2({allowClear:true, placeholder: 'សម្ភារប្រើបា្រស់'});
 
 
 
@@ -290,7 +338,6 @@
     $('#add_rows_2').click(function(){ //alert($m_id);
         var row_2 = $('.new_rows_2 tr.myrow_2').length;
         if(row_2 >= 7){
-            //$('#add_rows_2').hide();
             alert('ប្រភេទយានជំនិះ​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
             return false;
         }
@@ -314,7 +361,7 @@
         AllowNumber();
         var row_num = $('.new_rows_2 tr').length;
 
-        $('.vehicle').keyup(function () {
+        $('.vehicle').change(function () {
             for(var i=1; i<row_num; i++) {
                 var sum = 0;
                 var number_vehicle_1 = $('#number_vehicle_'+i).val();
@@ -325,14 +372,14 @@
             }
         });
 
-        $('.vehicle').keyup(function () {
+        $('.vehicle').change(function () {
             var arr = document.getElementsByClassName('totalallowNumber_vehicle');
             var tot=0;
             for(var i=0;i<arr.length;i++){
                 if(parseInt(arr[i].value))
                     tot += parseInt(arr[i].value);
             }
-            document.getElementById('total_vehicle_costs').value = tot;
+            $('#total_vehicle_costs').val(tot);
         });
     });
     function reOrder_vehicle(){
@@ -353,7 +400,7 @@
     function remove_2(val) {
         var total_costs = parseInt($('#total_vehicle_costs').val()) - val;
         // $(this).parent().parent().remove();
-        document.getElementById('total_vehicle_costs').value = total_costs;
+        $('#total_vehicle_costs').val(total_costs);
     }
     $(".new_rows_2").on('click','.remove_rows_2',function(){
         $('#add_rows_2').show();
@@ -361,7 +408,7 @@
         reOrder_vehicle();
         dataRow_vehicle--;
     });
-    $('.vehicle').keyup(function () {
+    $('.vehicle').change(function () {
         var sum = 0;
         var number_vehicle = $('#number_vehicle').val();
         var market_value_vehicle = $('#market_value_vehicle').val();
@@ -383,14 +430,14 @@
             }
         });
     });
-    $('.vehicle').keyup(function () {
+    $('.vehicle').change(function () {
         var arr = document.getElementsByClassName('totalallowNumber_vehicle');
         var tot=0;
         for(var i=0;i<arr.length;i++){
             if(parseInt(arr[i].value))
                 tot += parseInt(arr[i].value);
         }
-        document.getElementById('total_vehicle_costs').value = tot;
+        $('#total_vehicle_costs').val(tot);
     });
 
 /*==================================================================
@@ -450,6 +497,7 @@
             '<td><a class="btn btn-danger btn-sm remove_rows_3"> <span class="glyphicon glyphicon-minus"></span></a></td>'+
             '</tr>';
         $(".new_rows_3").append(tab_rows_3);
+        AllowNumber();
         dataRow_income++;
         reOrder_income();
         $(".type_animals").select2({ allowClear:true, placeholder: "ប្រភេទសត្វ"});
@@ -514,10 +562,10 @@
             }
 
         });
-        //
-        AllowNumber();
+
+
         //score
-        $('.cal_animal').keyup(function(){
+        $('.cal_animal').change(function(){
             $('#score_animal').empty();
             var animal = $('.type_animals').val();
             var num_animals_big     = $('.num_animals_big').val();
@@ -641,7 +689,7 @@
         AllowNumber();
         step2Row++;
         var num_4_1 = $('.new_rows_4 tr').length+1;
-        $('.otherincome').keyup(function () {
+        $('.otherincome').change(function () {
             for(var ii=0; ii<num_4_1; ii++) {
                 var sum = 0;
                 var unit_in_month = $('#unit_in_month_'+ii).val();
@@ -654,19 +702,19 @@
         });
         $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
 
-        $('.otherincome').keyup(function () {
+        $('.otherincome').change(function () {
             var arr = document.getElementsByClassName('monthly_income_total');
             var tot=0;
             for(var i=0;i<arr.length;i++){
                 if(parseInt(arr[i].value))
                     tot += parseInt(arr[i].value);
             }
-            document.getElementById('total_monthly_income').value = tot;
+            $('#total_monthly_income').val(tot);
             var totalperson = $('#total_people').val();
             if(totalperson == null || totalperson == ''){
-                document.getElementById('total_inc_person').value = tot/1;
+                $('#total_inc_person').val((tot/1).toFixed(2));
             }else{
-                document.getElementById('total_inc_person').value = tot/totalperson;
+                $('#total_inc_person').val((tot/totalperson).toFixed(2));
             }
         });
     });
@@ -769,7 +817,7 @@
         AllowNumber();
         step2Row5++;
         var num_4_5 = $('.new_rows_5 tr').length+1;
-        $('.otherincome_not').keyup(function () {
+        $('.otherincome_not').change(function () {
             for(var ii=0; ii<num_4_5; ii++) {
                 var sum = 0;
                 var unit_in_month = $('#unit_in_month_not_'+ii).val();
@@ -782,7 +830,7 @@
         });
         $(".income_occupation_not").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
 
-        $('.otherincome_not').keyup(function () {
+        $('.otherincome_not').change(function () {
             var arr = document.getElementsByClassName('monthly_income_total_not');
             var tot=0;
             for(var i=0;i<arr.length;i++){
