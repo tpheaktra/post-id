@@ -2,6 +2,7 @@ $(document).ready(function() {
     $('#datatable1').DataTable({
         "processing": true,
         "serverSide": true,
+        //"searching": false,
         "retrieve": true,
         "ajax": url,
         "columns": [
@@ -21,7 +22,9 @@ $(document).ready(function() {
                         '<a class="btn btn-xs btn-danger" href="'+full.delete+'"><i class="fa fa-trash-o"></i></a>';
                 }
             },
-        ]
+        ],
+       // "order": [[1, 'asc']],
+       // deferRender: true,
     });
 
 });
