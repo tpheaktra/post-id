@@ -325,5 +325,5 @@ legend.scheduler-border {
     color: #8888;
     pointer-events: none;
 }
-#datatable1_wrapper tr td:nth-child(1),
-#datatable1_wrapper tr td:nth-child(7){text-align: center;}
+.dataTables_wrapper tr td:nth-child(1),
+.dataTables_wrapper tr td:nth-child(7){text-align: center;}

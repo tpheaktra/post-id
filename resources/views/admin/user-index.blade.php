@@ -11,7 +11,7 @@
                     </div>
 
                     <div class="user-mangement">
-                        <table id="datatable" class="table table-bordered table-striped">
+                        <table id="data-users" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>ល.រ</th>
@@ -24,25 +24,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($user as $key =>$val)
-                                    <tr>
-                                        <td>{{++$key}}</td>
-                                        <td>{{$val->email}}</td>
-                                        <td>{{$val->name}}</td>
-                                        <td>TO</td>
-                                        <td>0986687678</td>
-                                        <td>TO</td>
-                                        <td>
-                                            <a href="#">
-                                                កែប្រែ
-                                            </a> /
-                                            <a href="#">លុប</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+
                             </tbody>
                         </table>
-                        {{ $user->render() }}
+                        <script type="text/javascript">
+                            var url = "{{ route('user.getUserView') }}";
+                        </script>
                     </div>
                 </div>
             </div>

@@ -26,6 +26,9 @@
 
 
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
 
 
 
@@ -129,7 +132,7 @@
                         <ul class="home-menu">
                             <li class="@if(Route::currentRouteName() == 'home.index' || Route::currentRouteName() == 'homehome' || Route::currentRouteName() == 'editpatient.edit' || Route::currentRouteName() == 'view.data') active @endif"><a href="{{route('home.index')}}">ការធ្វើអត្តសញ្ញាណកម្ម</a></li>
                             <li class="@if(Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'user.create') active @endif"><a href="{{route('user.index')}}">គ្រប់គ្រងអ្នកប្រើប្រាស់</a></li>
-                            <li class="@if(Route::currentRouteName() == 'role.index' || Route::currentRouteName() == 'role.create') active @endif"><a href="{{route('role.index')}}">គ្រប់គ្រងតួនាទី</a></li>
+                            <li class="@if(Route::currentRouteName() == 'role.index' || Route::currentRouteName() == 'role.create' || Route::currentRouteName() == 'role.edit') active @endif"><a href="{{route('role.index')}}">គ្រប់គ្រងតួនាទី</a></li>
                         </ul>
                     </div>
                 </div>
@@ -178,9 +181,6 @@
 
 
     <script src="{{asset('js/jQuery.print.js')}}" type="text/javascript"></script>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
 
     <script type="text/javascript">

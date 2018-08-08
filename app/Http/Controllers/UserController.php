@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\PermissionGroup;
 use Illuminate\Http\Request;
 use DB;
 use App\Role;
 use App\User;
 use Hash;
+use Illuminate\Support\Facades\Crypt;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Redirect;
 class UserController extends Controller
 {
     /**
@@ -15,8 +19,18 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $user = User::paginate(4);
-        return view('admin.user-index',compact('user'));
+        return view('admin.user-index');
+    }
+
+    public function getUserView(){
+        $view = User::with('roles','user_group')->where('record_status',1)->get();
+        foreach ($view as $i =>$v){
+            $view[$i]->key  = $i+1;
+            $view[$i]->view = route('user.getUserView', Crypt::encrypt($v->id));
+            $view[$i]->edit = route('user.edit', Crypt::encrypt($v->id));
+            $view[$i]->delete = route('user.delete', Crypt::encrypt($v->id));
+        }
+        return Datatables::of($view)->make(true);
     }
 
     /**
@@ -27,7 +41,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('admin.user-create',compact('roles'));
+        $groups = PermissionGroup::all();
+        return view('admin.user-create',compact('roles','groups'));
     }
 
     /**
@@ -38,20 +53,33 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        DB::connection();
+        DB::beginTransaction();
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm',
-            'roles' => 'required'
+            'roles' => 'required',
+            'groups' => 'required'
         ]);
-
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
-        $user = User::create($input);
-        foreach ($request->input('roles') as $key => $value) {
-            $user->attachRole($value);
+        try {
+            $input = $request->all();
+            $input['password'] = Hash::make($input['password']);
+            $user = User::create($input);
+            //user role
+            foreach ($request->input('roles') as $key => $value) {
+                $user->attachRole($value);
+            }
+            //user group
+            foreach ($request->input('groups') as $key => $value) {
+                DB::table('user_group')->insert(array('user_id'=>$user->id,'group_id'=>$value));
+            }
+            DB::commit();
+            return redirect()->route('user.index')->with('success','Data Inset successfuly.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
         }
-        return redirect()->route('user.index')->with('success','Data Inset successfuly.');
 
     }
 
@@ -74,7 +102,26 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $id = Crypt::decrypt($id);
+        $roles = Role::all();
+        $groups = PermissionGroup::all();
+        $user = User::find($id);
+        $userRole = $user->roles->pluck('id','id')->toArray();
+
+
+        $userGroup = User::with('user_group')->where('id',$id)->firstOrFail();
+        $arr = [];
+        foreach($userGroup->user_group as $user_group){
+            $arr[] = $user_group->pivot->group_id;
+        }
+        //echo json_encode($arr);
+       // echo json_encode($userGroup);exit();
+        //echo $userGroup['user_group'];
+        //echo $userGroup['user_group'][0]->id;
+
+
+        return view('admin.user-edit',compact('user','roles','groups','userRole','arr'));
+
     }
 
     /**
@@ -95,8 +142,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $id = Crypt::decrypt($id);
+        DB::table("users")->where('id',$id)->update(array('record_status'=>0));
+        return back()->with('success','User delete successsfuly');
     }
 }
