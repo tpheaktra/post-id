@@ -667,6 +667,7 @@
                 document.getElementById('total_inc_person').value = tot/1;
             }else{
                 document.getElementById('total_inc_person').value = tot/totalperson;
+                
             }
         });
     });

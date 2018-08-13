@@ -395,7 +395,7 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            {{ Form::text('age[0]',null,['class'=>'form-control allowNumber age_0','id'=>'age_0','required'=>'required','maxlength'=>'3','id'=>'age']) }}
+                                            {{ Form::text('age[0]',null,['class'=>'form-control allowNumber age_g cal_edu age_0','id'=>'age_0','required'=>'required','maxlength'=>'3','id'=>'age']) }}
                                         </div>
                                     </td>
                                     <td>
@@ -443,39 +443,90 @@
                                            //         $('#edu_score').val(4);
                                            //      }else{$('#edu_score').val(0);}
                                            // });
+
                                            $('.cal_edu').change(function(){
                                                var myrow_ind = $('.myrow').attr('index');
                                                // var child = $('.child').val();
-                                               var edu = $('#education_level_'+myrow_ind).val();
+                                               // var edu = $('#education_level_'+myrow_ind).val();
                                                var relation = $('#family_relationship_'+myrow_ind).val();
-                                               var age = $('.age_'+myrow_ind).val();
+                                               // var age = $('.age_'+myrow_ind).val();
 
-                                                if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=1 && edu <=3) )) || (age>=16 && (edu >=1 && edu <=3))){
-                                                     $('.edu_score_0').val(4);
-                                                 }else if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=4 && edu <=6)) ) || (age>=16 && (edu >=4 && edu <=6)) || (age<16 && edu==14) ){
-                                                     $('.edu_score_0').val(2.5);
-                                                 }
-                                                 else{ $('.edu_score_0').val(0);}
+                                                // if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=1 && edu <=3) )) || (age>=16 && (edu >=1 && edu <=3))){
+                                                //      $('.edu_score_0').val(4);
+                                                //  }else if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=4 && edu <=6)) ) || (age>=16 && (edu >=4 && edu <=6)) || (age<16 && edu==14) ){
+                                                //      $('.edu_score_0').val(2.5);
+                                                //  }
+                                                //  else{ $('.edu_score_0').val(0);}
 
+                                              $('.age_g').each(function (ind) {
+                                                   var age = $('.age_'+ind).val();
+                                                   var edu = $('#education_level_'+ind).val();
+                                                   var relation = $(this).val();
+                                                   // var rel = $(this).val();
+                                                   var row_score = 0;
+                                                    if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                      row_score = 4;
+                                                    }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                                                      row_score = 2.5;
+                                                    }else{
+                                                      row_score = 0;
+                                                    }
+                                                   $('.edu_score_'+ind).val(row_score);
 
-
-                                               // $('.family_relationship').each(function (ind) {
-                                               //     var rel = $(this).val();
-                                               //     var row_score = 0;
-                                               //     if( (rel == 1 || rel == 2) || (edu == 3) ) {//check for head of household
-                                               //         row_score = 4;
-                                               //     }else{
-                                               //         row_score = 2.5;
-                                               //     }
-                                               //     $('.edu_score_'+ind).val(row_score);
-                                               // });
-
-                                               var maxScore = $('.edu_score_0').val();
-                                               $('.txt_score ').each(function(i){
-                                                   var score = $(this).val();
-                                                   if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                    var maxScore = $('.edu_score_0').val();
+                                                   $('.txt_score').each(function(i){
+                                                       var score = $(this).val();
+                                                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                   });
+                                                   $('#edu_score').val(maxScore);
                                                });
-                                               $('#edu_score').val(maxScore);
+
+                                               $('.family_relationship').each(function (ind) {
+                                                   var age = $('.age_'+ind).val();
+                                                   var edu = $('#education_level_'+ind).val();
+                                                   var relation = $(this).val();
+                                                   // var rel = $(this).val();
+                                                   var row_score = 0;
+                                                   if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                      row_score = 4;
+                                                    }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                                                      row_score = 2.5;
+                                                    }else{
+                                                      row_score = 0;
+                                                    }
+                                                   $('.edu_score_'+ind).val(row_score);
+
+                                                    var maxScore = $('.edu_score_0').val();
+                                                   $('.txt_score').each(function(i){
+                                                       var score = $(this).val();
+                                                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                   });
+                                                   $('#edu_score').val(maxScore);
+                                               });
+
+                                               $('.education_level').each(function (ind) {
+                                                   var age = $('.age_'+ind).val();
+                                                   var edu = $('#education_level_'+ind).val();
+                                                   var relation = $(this).val();
+                                                   // var rel = $(this).val();
+                                                   var row_score = 0;
+                                                   if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                      row_score = 4;
+                                                    }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                                                      row_score = 2.5;
+                                                    }else{
+                                                      row_score = 0;
+                                                    }
+                                                   $('.edu_score_'+ind).val(row_score);
+
+                                                    var maxScore = $('.edu_score_0').val();
+                                                   $('.txt_score').each(function(i){
+                                                       var score = $(this).val();
+                                                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                   });
+                                                   $('#edu_score').val(maxScore);
+                                               });
+                                             
                                            });
                                         </script>
                                 </tr>
@@ -1729,7 +1780,6 @@
                         <div class="col-sm-12">
                             @include('include.other-income-agriculture');
                         </div>
-
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
                             <h4>គ.១៣) សុខភាព និងពិការភាព</h4>
@@ -1938,13 +1988,13 @@
                              
                     </script>
 
-                    <div class="col-sm-12">
+                    <!-- <div class="col-sm-12">
                         <p>9. បំណុលរបស់គ្រួសារ</p>
                         <div class="input-group add_debt_duration" style="width: 300px;">
                             <input autocomplete="off" class="dept_money form-control allowNumber" type="text" name="debt_score" id="score_money" readonly="">
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
-                    </div><hr>
+                    </div><hr> -->
 
                     <div class="col-sm-12">
                         <h4>គ.១៥) ព័ត៍មានផ្សេងៗបន្ថែម ឬមតិយោបល់របស់អ្នកសម្ភាសន៍ (បើមាន)</h4>
@@ -2153,6 +2203,7 @@
             $('#total_inc_person').empty();
             $('#total_monthly_income_not').empty();
             $('#total_inc_person_not').empty();
+            $('#income_out_farmer_score').empty();
            // alert(row_num);
             for(var i=0; i<row_num; i++) {
                 if ($('#family_relationship_'+i).val() == '') {
@@ -2815,7 +2866,7 @@
                 '</div>' +
                 '</td>' +
                 '<td><div class="form-group"><input autocomplete="off" maxlength="4" id="dob_' + edu_row + '"  type="text" required="required" class="hh-member dob form-control allowNumber" name="dob[' + edu_row + ']"/></div></td>' +
-                '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + edu_row + '" type="text" required="required" class="cal_edu hh-member age age_'+edu_row+' form-control allowNumber" name="age[' + edu_row + ']"/></div></td>' +
+                '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + edu_row + '" type="text" required="required" class="cal_edu age_g hh-member age age_'+edu_row+' form-control allowNumber" name="age[' + edu_row + ']"/></div></td>' +
                 '<td>' +
                 '<div class="form-group add_relationship_' + edu_row + '">' +
                 '<select id="family_relationship_' + edu_row + '" class="cal_edu hh-member form-control family_relationship"  name="family_relationship[' + edu_row + ']" required="required">' +
@@ -2845,28 +2896,102 @@
                 '</tr>';
             $(".new_rows").append(htmlstep2);
        
-        $('.cal_edu').change(function(){
-           var myrow_ind = $('.myrow').attr('index');
-           var age = $('.age_'+edu_row).val();
-           var edu = $('#education_level_'+edu_row).val();
-           var relation = $('#family_relationship'+edu_row).val();
+            $('.cal_edu').change(function(){
+              var myrow_ind = $('.myrow').attr('index');
+              // var age = $('.age_'+edu_row).val();
+              // var edu = $('#education_level_'+edu_row).val();
+               //var relation = $('#family_relationship'+edu_row).val();
 
-            if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=1 && edu <=3) )) || (age>=16 && (edu >=1 && edu <=3)) ){
-                  $('.edu_score_'+edu_row).val(4);
-            }else if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=4 && edu <=6)) ) || (age>=16 && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
-                  $('.edu_score_'+edu_row).val(2.5);;
-            }else{
-              $('.edu_score_'+edu_row).val(0);;
-            }
-          var maxScore = $('.edu_score_'+myrow_ind).val();
-          $('.txt_score').each(function(i){
-              var score = $(this).val();
-              if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
-          });
 
-          $('#edu_score').val(maxScore);
+                // if( ((relation == 1 || relation == 2) && (edu == 14 || (edu >=1 && edu <=3) )) || (age>=16 && (edu >=1 && edu <=3)) ){
+                //       $('.edu_score_'+edu_row).val(4);
+                // }else if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=4 && edu <=6)) ) || (age>=16 && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                //       $('.edu_score_'+edu_row).val(2.5);
+                // }else{
+                //   $('.edu_score_'+edu_row).val(0);
+                // }
+                $('.age_g').each(function (ind) {
+                     var age = $('.age_'+ind).val();
+                     var edu = $('#education_level_'+ind).val();
+                     var relation = $(this).val();
+                     var row_score = 0;
+                     if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                        row_score = 4;
+                      }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                        row_score = 2.5;
+                      }else{
+                        row_score = 0;
+                      }
+                     $('.edu_score_'+ind).val(row_score);
+                      var maxScore = $('.edu_score_'+myrow_ind).val();
+                      $(".txt_score").each(function(i){
+                          var score = $(this).val();
+                          if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                      });
+                      $('#edu_score').val(maxScore);
+                });
 
-        });
+                $('.family_relationship').each(function (ind) {
+                     var age = $('.age_'+ind).val();
+                     var edu = $('#education_level_'+ind).val();
+                     var relation = $(this).val();
+                     var row_score = 0;
+                     if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                        row_score = 4;
+                      }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                        row_score = 2.5;
+                      }else{
+                        row_score = 0;
+                      }
+                     $('.edu_score_'+ind).val(row_score);
+                      var maxScore = $('.edu_score_'+myrow_ind).val();
+                      $(".txt_score").each(function(i){
+                          var score = $(this).val();
+                          if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                      });
+                      $('#edu_score').val(maxScore);
+                 });
+                $('.education_level').each(function (ind) {
+                     var age = $('.age_'+ind).val();
+                     var edu = $('#education_level_'+ind).val();
+                     var relation = $(this).val();
+                     var row_score = 0;
+                     if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                        row_score = 4;
+                      }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                        row_score = 2.5;
+                      }else{
+                        row_score = 0;
+                      }
+                     $('.edu_score_'+ind).val(row_score);
+                      var maxScore = $('.edu_score_'+myrow_ind).val();
+                      $(".txt_score").each(function(i){
+                          var score = $(this).val();
+                          if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                      });
+                      $('#edu_score').val(maxScore);
+                 });
+                // $('.education_level').each(function (ind) {
+                //      var age = $('.age_'+ind).val();
+                //      var edu = $('#education_level_'+ind).val();
+                //      var relation = $(this).val();
+                //      var row_score = 0;
+                //      if( ((relation == 1 || relation == 2) && (edu == 14 || (edu >=1 && edu <=3) )) || (age>=16 && (edu >=1 && edu <=3)) ){
+                //         row_score = 4;
+                //       }else if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=4 && edu <=6)) ) || (age>=16 && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                //         row_score = 2.5;
+                //       }else{
+                //         row_score = 0;
+                //       }
+                //      $('.edu_score_'+ind).val(row_score);
+                //       var maxScore = $('.edu_score_'+myrow_ind).val();
+                //       $(".txt_score").each(function(i){
+                //           var score = $(this).val();
+                //           if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                //       });
+                //       $('#edu_score').val(maxScore);
+                //  });
+            });
 
         dataRow++;
         $(".family_relationship").select2({allowClear:true, placeholder: "ទំនាក់ទំនង"});
