@@ -34,6 +34,7 @@ Route::GET('data-printing/{id}',['as'=>'print.data','uses'=>'HomeController@prin
 Route::GET('editpatient/{id}',['as'=>'editpatient.edit','uses'=>'HomeController@edit']);
 Route::POST('updatepatient/{id}',['as'=>'updatepatient.update','uses'=>'HomeController@update']);
 Route::get('deletepatient/{id}',['as'=>'deletepatient.delete','uses'=>'HomeController@delete']);
+Route::get('printinterviewresult/{id}',['as'=>'printInterviewResult.print','uses'=>'HomeController@pirntInterviewResult']);
 
 Route::group(['prefix' => 'home','middleware' => ['auth']], function() {
     /* role and set permission*/
