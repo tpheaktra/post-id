@@ -887,11 +887,12 @@ class HomeController extends Controller
         $template->setValue('id',$id);
 
         foreach ($memberFamily as $key=>$v){
-            $template->setValue('member_family',$v->nick_name);
-            $template->setValue('sex',$v->gender_id);
-            $template->setValue('dob',$v->dob);
-            $template->setValue('age',$v->age);
-            $template->setValue('relation',$v->family_relationship_id);
+            $template->setValue('key_'.$key,($key+1));
+            $template->setValue('member_family_'.$key,$v->nick_name);
+            $template->setValue('sex_'.$key,$v->gender_id);
+            $template->setValue('dob_'.$key,$v->dob);
+            $template->setValue('age_'.$key,$v->age);
+            $template->setValue('relation_'.$key,$v->family_relationship_id);
         }
 
         $name = 'result.docx';
