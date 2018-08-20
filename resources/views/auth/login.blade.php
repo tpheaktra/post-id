@@ -51,11 +51,11 @@
                                 <label for="email" class="col-sm-4 col-form-label text-md-right">ឈ្មោះប្រើប្រាស់</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                    <input id="email" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}"  autofocus>
 
-                                    @if ($errors->has('email'))
+                                    @if ($errors->has('name'))
                                         <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -65,7 +65,7 @@
                                 <label for="password" class="col-md-4 col-form-label text-md-right">ពាក្យសំងាត់</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" >
 
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback">
