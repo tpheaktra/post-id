@@ -31,22 +31,22 @@
                                         <td>{{$value->display_name }}</td>
                                         <td>
                                             @permission('role-edit')
-                                            <a href="#">កែប្រែ</a>
+                                                <a class="btn btn-xs btn-primary" href="{{route('role.edit',Crypt::encrypt($value->id))}}"><i class="fa fa-edit"></i></a>
                                             @endpermission
 
                                             @permission('role-delete')
-                                            @if($value->name != 'admin')
-                                            / <a onclick="return confirm('Are you sure you want to delete?');" href="#">
-                                                   លុប
-                                              </a>
-                                            @endif
+                                                @if($value->name != 'admin')
+                                                 <a onclick="return confirm('Are you sure you want to delete?');" href="{{route('role.delete',Crypt::encrypt($value->id))}}" class="btn btn-xs btn-danger">
+                                                       <i class="fa fa-trash-o"></i>
+                                                  </a>
+                                                @endif
                                             @endpermission
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                    {{$roles->render()}}
+
                 </div>
             </div>
         </div>

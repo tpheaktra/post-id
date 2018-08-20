@@ -17,16 +17,18 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
     <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/jquery.validate.js'></script>
+
     <link href="{{asset('js/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
     <script src="{{asset('js/bootstrap/js/bootstrap.min.js')}}"></script>
 
     <link href="{{asset('js/select2/select2.min.css')}}" rel="stylesheet" />
     <script src="{{asset('js/select2/select2.min.js')}}"></script>
 
-    <script src="{{asset('js/jQuery.print.js')}}" type="text/javascript"></script>
-    <link href="{{asset('js/datatables/dataTables.bootstrap.min.css')}}" rel="stylesheet">
-    <script src="{{asset('js/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('js/datatables/dataTables.bootstrap.min.js')}}"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
 
 
 
@@ -130,7 +132,7 @@
                         <ul class="home-menu">
                             <li class="@if(Route::currentRouteName() == 'home.index' || Route::currentRouteName() == 'homehome' || Route::currentRouteName() == 'editpatient.edit' || Route::currentRouteName() == 'view.data') active @endif"><a href="{{route('home.index')}}">ការធ្វើអត្តសញ្ញាណកម្ម</a></li>
                             <li class="@if(Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'user.create') active @endif"><a href="{{route('user.index')}}">គ្រប់គ្រងអ្នកប្រើប្រាស់</a></li>
-                            <li class="@if(Route::currentRouteName() == 'role.index' || Route::currentRouteName() == 'role.create') active @endif"><a href="{{route('role.index')}}">គ្រប់គ្រងតួនាទី</a></li>
+                            <li class="@if(Route::currentRouteName() == 'role.index' || Route::currentRouteName() == 'role.create' || Route::currentRouteName() == 'role.edit') active @endif"><a href="{{route('role.index')}}">គ្រប់គ្រងតួនាទី</a></li>
                         </ul>
                     </div>
                 </div>
@@ -178,14 +180,12 @@
     </div>
 
 
-
+    <script src="{{asset('js/jQuery.print.js')}}" type="text/javascript"></script>
 
 
     <script type="text/javascript">
         $('#datatable').DataTable();
-        $("a").tooltip({
-            placement:"top"
-        });
+        $("a").tooltip({placement:"top"});
         setTimeout(function() {
             $(".add_hide1").addClass("autho-hide1");
             $('.autho-hide1').fadeOut();

@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Role;
 use App\Permission;
 use DB;
-
+use Illuminate\Support\Facades\Crypt;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Redirect;
 class RoleController extends Controller
 {
     /**
@@ -16,9 +18,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::paginate(5);
+        $roles = Role::all();
         return view('admin.role-index',compact('roles'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +31,7 @@ class RoleController extends Controller
     public function create()
     {
         $permissions    = Permission::all();
-        $permission_sub = DB::select('select distinct parent_id From permissions');
+        $permission_sub = DB::select('select distinct group_id From permissions');
         return view('admin.role-create',compact('permissions','permission_sub'));
     }
 
@@ -75,10 +78,11 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
+        $id = Crypt::decrypt($id);
         $role = Role::find($id);
         $permissions = Permission::all();
         $role_permissions = $role->perms()->pluck('id','id')->toArray();
-        $permission_sub = DB::select('select distinct parent_id From permissions');
+        $permission_sub = DB::select('select distinct group_id From permissions');
         return view('admin.role-edit',compact('permissions','role','role_permissions','permission_sub'));
     }
 
@@ -91,28 +95,30 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        DB::connection();
+        DB::beginTransaction();
+        $id = Crypt::decrypt($id);
         $this->validate($request, [
-
             'display_name' => 'required',
-
-            'name' => 'required',
-
-            'permission' => 'required',
-
+            'name' => 'required|unique:roles,name,'.$id,
+            'permission'   => 'required',
         ]);
-
-
-
-
-        $role = Role::find($id);
-        $role->name = $request->name;
-        $role->display_name = $request->display_name;
-        $role->save();
-        DB::table("permission_role")->where('role_id',$id)->delete();
-        foreach($request->permission as $key=> $value){
-            $role->attachPermission($value);
+        try {
+            $role = Role::find($id);
+            $role->name = $request->name;
+            $role->display_name = $request->display_name;
+            $role->save();
+            DB::table("permission_role")->where('role_id',$id)->delete();
+            foreach($request->permission as $key=> $value){
+                $role->attachPermission($value);
+            }
+            DB::commit();
+            return redirect()->route('role.index')->with('success','Data bas been update successsfuly.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->with('danger','Data can not update.');
         }
-        return back()->with('success','Data bas been update successsfuly');
+
     }
 
     /**
@@ -121,8 +127,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
+        $id = Crypt::decrypt($id);
         DB::table("roles")->where('id',$id)->delete();
         return back()->with('success','Data delete successsfuly');
     }

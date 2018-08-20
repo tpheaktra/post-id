@@ -30,7 +30,7 @@
                                         <td width="35%"><label class="control-label">មន្ទីរពេទ្យ:</label></td>
                                         <td width="65%">
                                             <div class="form-group add_hospital">
-                                                <select id="hospital" style="width: 100%" class="form-control" name="hospital">
+                                                <select id="hospital" style="width: 100%" class="getdata form-control" name="hospital">
                                                     <option></option>
                                                     @foreach($hospital as $key =>$h)
                                                         @if (old('hospital') == $h->od_code)
@@ -163,7 +163,7 @@
                                     <div class="form-group g_village">
                                         <select id="village" style="width: 100%" class="form-control" name="g_village">
                                             <option value=""></option>
-                                            @if (!empty(old('g_village')))
+                                            @if(!empty(old('g_village')))
                                                 <option selected value="{{old('g_village')}}"></option>
                                             @endif
                                         </select>
@@ -201,6 +201,7 @@
                                     </div>     
                                 </td>
                             </tr>
+
                             <tr>
                                 <td><label class="control-label"> ភេទ : </label></td>
                                 <td>
@@ -420,8 +421,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="form-group add_education_level">
-                                            <select style="width: 100%" id="education_level_0"  class="cal_edu form-control education_level"  name="education_level[0]" required="required">
+                                       <div class="form-group add_education_level">
+                                          <select style="width: 100%" id="education_level_0"  class="cal_edu form-control education_level aa"  name="education_level[0]" required="required">
                                                 <option></option>
                                                 @foreach($education_level as $keh => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -443,8 +444,27 @@
                                            //         $('#edu_score').val(4);
                                            //      }else{$('#edu_score').val(0);}
                                            // });
+                                           $('.occupation').change(function(){
+                                                var oc = $('#occupation').val();
+                                                var level = $('#education_level_0').val();
+                                                if( oc== 3){
+                                                   var occu = $('.occupation').hide();
+                                                   var dis = '<div class="form-group add_education_level">'+
+                                                            '<select style="width: 100%" id="education_level_0"  class="cal_edu form-control education_level"  name="education_level[0]" required="required">'+
+                                                                  '<option></option>'+
+                                                                  '@foreach($education_level as $keh => $value)'+
+                                                                      '<option @if($value->id == 1 || $value->id == 2)  @else disabled @endif value="{{$value->id}}">{{$value->name_kh}}</option>'+
+                                                                  '@endforeach'+
+                                                              '</select>'+
+                                                          '</div>';
+                                                    $('.add_education_level').append(dis);
+                                                }
+                                              });
 
                                            $('.cal_edu').change(function(){
+
+                                             
+
                                                var myrow_ind = $('.myrow').attr('index');
                                                // var child = $('.child').val();
                                                // var edu = $('#education_level_'+myrow_ind).val();
@@ -650,19 +670,19 @@
                                                             '<td><b>ផ្ទះជាន់ក្រោម៖</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                    '<input autocomplete="off" id="ground_floor_length" class="calculate form-control allowNumber ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">' +
+                                                                    '<input autocomplete="off" id="ground_floor_length" class="calculate form-control allowFlot ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">' +
                                                                     '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                    '<input autocomplete="off" id="ground_floor_width" class="calculate form-control allowNumber ground_floor"  placeholder="ទទឹង" type="text" name="ground_floor_width">' +
+                                                                    '<input autocomplete="off" id="ground_floor_width" class="calculate form-control allowFlot ground_floor"  placeholder="ទទឹង" type="text" name="ground_floor_width">' +
                                                                     '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="ground_floor_area" class="calculate form-control allowNumber"  placeholder="ផ្ទៃ" type="text" name="ground_floor_area" readonly="readonly">' +
+                                                                     '<input autocomplete="off" id="ground_floor_area" class="calculate form-control allowFlot"  placeholder="ផ្ទៃ" type="text" name="ground_floor_area" readonly="readonly">' +
                                                                     '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -671,19 +691,19 @@
                                                             '<td><b>ផ្ទះជាន់លើ(បើមាន)៖</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="upper_floor_length" class="calculate form-control allowNumber" placeholder="បណ្តោយ" type="text" name="upper_floor_length">' +
+                                                                     '<input autocomplete="off" id="upper_floor_length" class="calculate form-control allowFlot" placeholder="បណ្តោយ" type="text" name="upper_floor_length">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="upper_floor_width" class="calculate form-control allowNumber"  placeholder="ទទឹង" type="text" name="upper_floor_width">' +
+                                                                     '<input autocomplete="off" id="upper_floor_width" class="calculate form-control allowFlot"  placeholder="ទទឹង" type="text" name="upper_floor_width">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="upper_floor_area" class="calculate form-control allowNumber"  placeholder="ផ្ទៃ" type="text" name="upper_floor_area" readonly="readonly">' +
+                                                                     '<input autocomplete="off" id="upper_floor_area" class="calculate form-control allowFlot"  placeholder="ផ្ទៃ" type="text" name="upper_floor_area" readonly="readonly">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -692,19 +712,19 @@
                                                             '<td><b>សំណង់បន្ថែម ឧ. ផ្ទះបាយ... (បើមាន)៖ </b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="further_floor_length" class="calculate form-control allowNumber" placeholder="បណ្តោយ" type="text"  name="further_floor_length">' +
+                                                                     '<input autocomplete="off" id="further_floor_length" class="calculate form-control allowFlot" placeholder="បណ្តោយ" type="text"  name="further_floor_length">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                 '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="further_floor_width" class="calculate form-control allowNumber"  placeholder="ទទឹង" type="text" name="further_floor_width">' +
+                                                                     '<input autocomplete="off" id="further_floor_width" class="calculate form-control allowFlot"  placeholder="ទទឹង" type="text" name="further_floor_width">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" id="further_floor_area" class="calculate form-control allowNumber" required="required" placeholder="ផ្ទៃ" type="text" name="further_floor_area" readonly="readonly">' +
+                                                                     '<input autocomplete="off" id="further_floor_area" class="calculate form-control allowFlot" required="required" placeholder="ផ្ទៃ" type="text" name="further_floor_area" readonly="readonly">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -713,7 +733,7 @@
                                                             '<td colspan="3"><b style="float:right;">ផ្ទៃកម្រាលសរុប :</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input readonly="readonly" autocomplete="off" id="total_area" name="total_area" class="calculate form-control allowNumber"  placeholder="ផ្ម៉ែត្រក្រឡា..." type="text">' +
+                                                                     '<input readonly="readonly" autocomplete="off" id="total_area" name="total_area" class="calculate form-control allowFlot"  placeholder="ផ្ម៉ែត្រក្រឡា..." type="text">' +
                                                                      '<span class="input-group-addon">ម៉ែត្រ​ក្រឡា</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -722,7 +742,7 @@
                                                             '<td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" type="text" id="a_score1" name="size_member_score" class="calculate form-control  allowNumber"​ required="required" readonly="readonly">' +
+                                                                     '<input autocomplete="off" type="text" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly">' +
                                                                      '<span class="input-group-addon">ពិន្ទុ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -732,33 +752,22 @@
                                              '</div>' +
                                              '<div class="col-sm-12"><hr></div>';
                                         $('#household_area').append(household_area);
-                                        AllowNumber();
+                                        AllowFlot();
                                          //family
-                                         $('.ground_floor').keyup(function(){
-//                                             if ($(this).val() > 90000000){
-//                                                 alert("No numbers above 90000000");
-//                                                 $(this).val('90000000');
-//                                             }
+                                         $('.ground_floor').change(function(){
                                              var g_length = 0;
                                              var g_width = 0;
                                              g_length = parseInt($('#ground_floor_length').val() ? $('#ground_floor_length').val() : 0);
                                              g_width  = parseFloat($('#ground_floor_width').val() ? $('#ground_floor_width').val() : 0);
                                              $('#ground_floor_area').val((g_length * g_width ? g_length * g_width : 0).toFixed(0));
                                          });
-                                         $('#upper_floor_length, #upper_floor_width').on('input',function() {
-//                                             if ($(this).val() > 90000000){
-//                                                 alert("No numbers above 90000000");
-//                                                 $(this).val('90000000');
-//                                             }
+
+                                         $('#upper_floor_length, #upper_floor_width').change(function() {
                                              var u_length = parseInt($('#upper_floor_length').val());
                                              var u_width = parseFloat($('#upper_floor_width').val());
                                              $('#upper_floor_area').val((u_length * u_width ? u_length * u_width : 0).toFixed(0));
                                          });
-                                         $('#further_floor_length, #further_floor_width').on('input',function() {
-//                                             if ($(this).val() > 90000000){
-//                                                 alert("No numbers above 90000000");
-//                                                 $(this).val('90000000');
-//                                             }
+                                         $('#further_floor_length, #further_floor_width').change(function() {
                                              var f_length = parseInt($('#further_floor_length').val());
                                              var f_width = parseFloat($('#further_floor_width').val());
                                              $('#further_floor_area').val((f_length * f_width ? f_length * f_width : 0).toFixed(0));
@@ -899,33 +908,41 @@
 
                                          $('.homeyear').click(function () {
                                              var homeyear = $('input[name=home_prepare]:checked').val();
+                                             var year_build = $('#year_select').val();
+
+                                             if(year_build != ''){
+                                                 year_build = $('#year_select').val();
+                                             }else{
+                                                 year_build = '{{date("Y")+1}}';
+                                             }
+                                             var cur_year = '{{date("Y")}}';
+
 
                                              if(homeyear == 2){
-                                                 $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years"><option></option><?php $currentYear = date('Y');foreach (range(1950, $currentYear) as $value) { echo "<option value=".$value.">" . $value . "</option > ";}?> </select>');
-                                                 $("#years").select2({
-                                                     allowClear:true,
-                                                     placeholder: 'ឆ្នាំ...'
-                                                 });
-                                             }
-
-
-
-                                             $('#years').change(function(event) {
-                                                 var building_year = $('#year_select').val();
-                                                 var prepare_yaer = $('#years option:selected').val();
-                                                // console.log(building_year+'='+prepare_yaer);
-                                                 if(building_year >= prepare_yaer){
-                                                    $("#years > option").removeAttr("selected");
-                                                    // $('#years').val('').trigger('change');
-                                                     $('#years').val('').triggerHandler('change');
-                                                     event.preventDefault();
-                                                     $('.alert').show();
+                                                 var opt = '';
+                                                 for(var y=year_build; y<=cur_year;y++){
+                                                     opt += '<option value="'+y+'" >'+y+'</option>';
                                                  }
-
-
-                                             });
+                                                 $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years">'+opt+'</select>');
+                                                 $("#years").select2({allowClear:true, placeholder: 'ឆ្នាំ...'});
+                                                 $("#homeyear").css("display", "block");
+                                             }else{
+                                                 $('#homeyear').html('');
+                                             }
                                          });
 
+                                         $('#year_select').change(function () {
+                                             var year_build = $(this).val();
+                                             var cur_year = '{{date("Y")}}';
+                                             var opt = '';
+                                             for (var y = year_build; y <= cur_year; y++) {
+                                                 opt += '<option value="' + y + '" >' + y + '</option>';
+                                             }
+                                             $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years">' + opt + '</select>');
+                                             $("#homeyear").css("display", "none");
+                                             $('input[name=home_prepare]').removeAttr('checked');
+                                             $("#years").select2({allowClear: true, placeholder: 'ឆ្នាំ...'});
+                                         });
 
 
                                          var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>' +
@@ -1289,88 +1306,80 @@
                                     </tr>
                                 </table>
                             </div>
+                        <table class="tb_grid table table-bordered table-striped" width="100%">
+                            <thead>
+                            <tr>
+                                <th>ល.រ</th>
+                                <th>ប្រភេទសម្ភារប្រើបា្រស់</th>
+                                <th>ចំនួន</th>
+                                <th>តម្លៃទីផ្សារ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title=" ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា"></a></th>
+                                <th>តម្លៃ​សរុប (រៀល)</th>
+                                <th>សកម្មភាព</th>
+                            </tr>
+                            </thead>
+                            <tbody class="new_rows_2">
+                            <tr class="myrow_2">
+                                <td>1</td>
+                                <td>
+                                    <div class="form-group add_type_vehicle">
+                                        <select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle[0]">
+                                            <option></option>
+                                            @foreach($typetransport as $keh => $value)
+                                                <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <input id="number_vehicle" name="number_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group input-group">
+                                        <input id="market_value_vehicle" name="market_value_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
+                                        <span class="input-group-addon">រៀល</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group input-group">
+                                        <input id="total_rail_vehicle" name="total_rail_vehicle[0]" type="text" required="required" class="form-control totalallowNumber_vehicle" readonly="readonly"/>
+                                        <span class="input-group-addon">រៀល</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a  class="btn btn-sm btn-primary" id="add_rows_2"><span class="glyphicon glyphicon-plus"></span></a>
+                                </td>
+                            </tr>
+                            </tbody>
 
-
-
-                            <table class="tb_grid table table-bordered table-striped" width="100%">
-                                <thead>
+                            <tfoot>
                                 <tr>
-                                    <th>ល.រ</th>
-                                    <th>ប្រភេទសម្ភារប្រើបា្រស់</th>
-                                    <th>ចំនួន</th>
-                                    <th>តម្លៃទីផ្សារ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title=" ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា"></a></th>
-                                    <th>តម្លៃ​សរុប (រៀល)</th>
-                                    <th>សកម្មភាព</th>
-                                </tr>
-                                </thead>
-                                <tbody class="new_rows_2">
-                                <tr class="myrow_2">
-                                    <td>1</td>
-                                    <td>
-                                        <div class="form-group add_type_vehicle">
-                                            <select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle[0]">
-                                                <option></option>
-                                                @foreach($typetransport as $keh => $value)
-                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input id="number_vehicle" name="number_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
-                                        </div>
-                                    </td>
+                                    <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                            <input id="market_value_vehicle" name="market_value_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
+                                            <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
                                             <span class="input-group-addon">រៀល</span>
                                         </div>
                                     </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"><b style="float:right">6. អំពីយានជំនិះរបស់គ្រួសារ</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                            <input id="total_rail_vehicle" name="total_rail_vehicle[0]" type="text" required="required" class="form-control totalallowNumber_vehicle" readonly="readonly"/>
-                                            <span class="input-group-addon">រៀល</span>
+                                            <input id="score_v" name="vehicle_score" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
+                                            <span class="input-group-addon">ពិន្ទុ</span>
                                         </div>
                                     </td>
-                                    <td>
-                                        <a  class="btn btn-sm btn-primary" id="add_rows_2"><span class="glyphicon glyphicon-plus"></span></a>
-                                    </td>
+                                    <td></td>
                                 </tr>
-                                </tbody>
-
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
-                                        <td>
-                                            <div class="form-group input-group">
-                                                <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
-                                                <span class="input-group-addon">រៀល</span>
-                                            </div>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4"><b style="float:right">6. អំពីយានជំនិះរបស់គ្រួសារ</b></td>
-                                        <td>
-                                            <div class="form-group input-group">
-                                                <input id="score_v" name="vehicle_score" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
-                                                <span class="input-group-addon">ពិន្ទុ</span>
-                                            </div>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            
+                            </tfoot>
+                        </table> 
                     </div>
-
-
-
 
                     <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
-
                             <h4>គ.១២) ចំណូល</h4>
                             <h5><b>គ.១២.១) ចំណូល​ ពីសកម្មភាពកសិកម្ម ផ្ទាល់ខ្លួន</b></h5>
                             <h5><b>គ.១២.១.១) ការចិញ្ចឹមសត្វ</b></h5>
@@ -1381,6 +1390,7 @@
                                     <th width="20%">ប្រភេទសត្វ</th>
                                     <th></th>
                                     <th>កំណត់សម្គាល់ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="បញ្ជាក់ បើសិនជាសត្វប្រវាស់គេ"></a></th>
+                                    <th>ពិន្ទុ</th>
                                     <th width="10%">សកម្មភាព</th>
                                 </tr>
                                 </thead>
@@ -1422,7 +1432,7 @@
 
                                     <td>
                                         <div class="form-group ng" id="noted_0">
-                                            <select style="width: 100%;" class="form-control note_animals" id="note_animals" name="note_animals[0]" required="required" index="0">
+                                            <select style="width: 100%;" class="cal_animal form-control note_animals" id="note_animals" name="note_animals[0]" required="required" index="0">
                                                 <option></option>
                                                 <option value="ប្រវាស់">ប្រវាស់</option>
                                                 <option value="មិនប្រវាស់">មិនប្រវាស់</option>
@@ -1430,34 +1440,52 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a  class="btn btn-sm btn-primary" id="add_rows_3"><span class="glyphicon glyphicon-plus"></span></a>
+                                      <div class="form-group input-group">
+                                            <input id="score_animal" name="animal_score" type="text" required="required" class="cal_animal form-control" readonly="readonly"/>
+                                            <span class="input-group-addon">ពិន្ទុ</span>
+                                      </div>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm btn-primary" id="add_rows_3"><span class="glyphicon glyphicon-plus"></span></a>
                                     </td>
                                 </tr>
                                   <script type="text/javascript">
                                       var numRow = 0;
-                                      $('#type_animals').on("change", function(e) {
+                                      $('#type_animals').on("change", function(e){
                                           var type = this.value;
                                           var index= $(this).attr('index');
                                           //$('#num_animals').empty();
-                                            if(index == 0 && (type == 2 || type == 3)){
+                                            if(index == 0 && type == 2){
                                                 var duk = '<table class="table table-bordered">' +
                                                         '<tr>' +
                                                             '<th>ចំនួនសត្វ</th>' +
                                                         '</tr>' +
-                                                        '<tr>' +
+                                                        '<tr>'+
                                                             '<td>' +
-                                                                '<div class="form-group">' +
-                                                                    '<input name="num_animals[0]" id="num_animals" type="text" class="cal_animal form-control allowNumber num_animals"  />' +
+                                                                '<div class="form-group">'+
+                                                                    '<input name="num_animals[0]" id="num_animals" type="text" class="cal_animal form-control allowNumber num_animals" />' +
                                                                     '<input autocomplete="off" name="num_animals_big[0]" id="num_animals_big" type="hidden" class="cal_animal form-control allowNumber" required="required" />' +
                                                                     '<input autocomplete="off" name="num_animals_small[0]" id="num_animals_small" type="hidden" class="cal_animal form-control allowNumber"  />'+
                                                                 '</div>' +
                                                             '</td>' +
                                                         '</tr>'+
                                                     '</table>';
-                                                var noted = '<input autocomplete="off" name="note_animals[0]" type="text" class="cal_animal form-control"  />';
-
+                                                var noted = '<input autocomplete="off" name="note_animals[0]" type="text" class="cal_animal form-control" />';
                                                 $('#num_animals_0').html(duk);
                                                 $('#noted_0').html(noted);
+                                                AllowNumber();
+
+                                                $('.cal_animal').change(function(){
+                                                  var num = $('#num_animals').val();
+                                                  var answer = 0;
+                                                  if( num>=1 && num < 3){
+                                                    //$('#animal_score').val(4);
+                                                     answer = 4;
+                                                  }else{
+                                                     answer = 0;
+                                                  }
+                                                  $('#score_animal').val(answer);
+                                                });
                                             }else if(index == 0 && type == 1){
                                                 var cow = '<table class="table table-bordered" align="center">' +
                                                         '<tr>' +
@@ -1478,7 +1506,7 @@
                                                             '</td><input autocomplete="off" name="note_animals[0]" type="hidden" class="cal_animal form-control"  />' +
                                                         '</tr>' +
                                                     '</table>';
-                                                var noted = '<select style="width: 100%;" class="form-control note_animals" id="note_animals" name="note_animals[0]" required="required">' +
+                                                var noted = '<select style="width: 100%;" class="cal_animal form-control note_animals" id="note_animals" name="note_animals[0]" required="required">' +
                                                     '<option></option>' +
                                                     '<option value="ប្រវាស់">ប្រវាស់</option>' +
                                                     '<option value="មិនប្រវាស់">មិនប្រវាស់</option>' +
@@ -1486,59 +1514,114 @@
                                                 $('#num_animals_0').html(cow);
                                                 $('#noted_0').html(noted);
                                                 $(".note_animals").select2({ allowClear:true, placeholder: "កំណត់សម្គាល់"});
+                                                AllowNumber();
+
+                                                $(".cal_animal").change(function(){
+                                                  var big = parseInt($("#num_animals_big").val());
+                                                  var small = parseInt($("#num_animals_small").val());
+                                                  var status = $("#note_animals").val();
+                                                  var bigsmall = big+small;
+                                                  var score = 0;
+
+                                                  if(bigsmall == 2 && status=="ប្រវាស់"){
+                                                    score = 4;
+                                                  }else if((big ==1 || small==2) && (status=="មិនប្រវាស់")){
+                                                    score = 4;
+                                                  }else if(big == 0 && small == 0){
+                                                    score=6;
+                                                  }else{
+                                                    score=0;
+                                                  }
+                                                  $('#score_animal').val(score);
+                                                });
+                                            }else if(index == 0 && type == 3){
+                                              var hend = '<table class="table table-bordered">' +
+                                                        '<tr>' +
+                                                            '<th>ចំនួនសត្វ</th>' +
+                                                        '</tr>' +
+                                                        '<tr>'+
+                                                            '<td>' +
+                                                                '<div class="form-group">'+
+                                                                    '<input name="num_animals[0]" id="hend" type="text" class="cal_animal form-control allowNumber num_animals" />' +
+                                                                    // '<input autocomplete="off" name="num_animals_big[0]" id="num_animals_big" type="hidden" class="cal_animal form-control allowNumber" required="required" />' +
+                                                                    // '<input autocomplete="off" name="num_animals_small[0]" id="num_animals_small" type="hidden" class="cal_animal form-control allowNumber"  />'+
+                                                                '</div>' +
+                                                            '</td>' +
+                                                        '</tr>'+
+                                                    '</table>';
+                                                var noted = '<input autocomplete="off" name="note_animals[0]" type="text" class="cal_animal form-control" />';
+                                                $('#num_animals_0').html(hend);
+                                                $('#noted_0').html(noted);
+                                                AllowNumber();
+
+                                                $(".cal_animal").change(function(){
+                                                  var hend = $("#hend").val();
+                                                  var score = 0;
+                                                  if(hend>=1 && hend<30){
+                                                     score = 6;
+                                                  }else if(hend >=1 && hend<50){
+                                                      score=4;
+                                                  }else{
+                                                      score=0;
+                                                  }
+                                                  $('#score_animal').val(score);
+                                                });
                                             }
+                                        //    $('.cal_animal').change(function(){
+
+                                        //     $('#score_animal').empty();
+                                        //     var animal = $('#type_animals').val();
+                                        //     var num_animals_big     = $('#num_animals_big').val();
+                                        //     var num_animals_small   = $('#num_animals_small').val();
+                                        //     var note_animals        = $('#note_animals').val();
+                                        //     if(animal == 1){
+                                        //         $('#score_animal').empty();
+                                        //         if((num_animals_big == 0 && num_animals_small == 0 && note_animals == 0)){
+                                        //             $('#score_animal').val(6);
+                                        //         }else if( num_animals_big == 1 || num_animals_small <= 2 || note_animals == 2){
+                                        //            $('#score_animal').val(4); 
+                                        //         }else if(num_animals_big>1 || num_animals_small>3 || note_animals>2){
+                                        //             $('#score_animal').val(0); 
+                                        //         }else{$('#score_animal').val(0);}
+
+                                        //     }else if(animal == 2){
+                                        //         $('#score_animal').empty();
+                                        //         if( (num_animals_big == 0 && num_animals_small == 0) ){
+                                        //             $('#score_animal').val(6);
+                                        //         }else if(num_animals_big<3 || num_animals_small < 3){
+                                        //             $('#score_animal').val(4);
+                                        //         }else if(num_animals_big==3 || num_animals_small==3 ){
+                                        //              $('#score_animal').val(0);
+                                        //         }else{$('#score_animal').val(0);}
+
+                                        //     }else{
+                                        //         $('#score_animal').empty();
+                                        //         if(num_animals_small < 30 || num_animals_big < 30){
+                                        //             $('#score_animal').val(6);
+                                        //         }else if( (num_animals_big>30 && num_animals_big<50) || (num_animals_big>30 && num_animals_big<50) ){
+                                        //             $('#score_animal').val(4); 
+                                        //         }else if(num_animals_big == 50 || num_animals_small == 50){
+                                        //             $('#score_animal').val(0);
+                                        //         }else{$('#score_animal').val(0);}
+
+                                        //     }
+                                        // });
                                       });
-
-                                        $('.cal_animal').keyup(function(){
-
-                                            $('#score_animal').empty();
-                                            var animal = $('#type_animals').val();
-                                            var num_animals_big     = $('#num_animals_big').val();
-                                            var num_animals_small   = $('#num_animals_small').val();
-                                            var note_animals        = $('#note_animals').val();
-                                            if(animal == 1){
-                                                $('#score_animal').empty();
-                                                if((num_animals_big == 0 && num_animals_small == 0 && note_animals == 0)){
-                                                    $('#score_animal').val(6);
-                                                }else if( num_animals_big == 1 || num_animals_small <= 2 || note_animals == 2){
-                                                   $('#score_animal').val(4); 
-                                                }else if(num_animals_big>1 || num_animals_small>3 || note_animals>2){
-                                                    $('#score_animal').val(0); 
-                                                }else{$('#score_animal').val(0);}
-
-                                            }else if(animal == 2){
-                                                $('#score_animal').empty();
-                                                if( (num_animals_big == 0 && num_animals_small == 0) ){
-                                                    $('#score_animal').val(6);
-                                                }else if(num_animals_big<3 || num_animals_small < 3){
-                                                    $('#score_animal').val(4);
-                                                }else if(num_animals_big==3 || num_animals_small==3 ){
-                                                     $('#score_animal').val(0);
-                                                }else{$('#score_animal').val(0);}
-
-                                            }else{
-                                                $('#score_animal').empty();
-                                                if(num_animals_small < 30 || num_animals_big < 30){
-                                                    $('#score_animal').val(6);
-                                                }else if( (num_animals_big>30 && num_animals_big<50) || (num_animals_big>30 && num_animals_big<50) ){
-                                                    $('#score_animal').val(4); 
-                                                }else if(num_animals_big == 50 || num_animals_small == 50){
-                                                    $('#score_animal').val(0);
-                                                }else{$('#score_animal').val(0);}
-
-                                            }
-                                        });
+                                    // $('.cal_animal').change(function(){
+                                    //   alert(1);
+                                    // });
                                     </script>
                             </tbody>
                                 <tr>
+                                    <td></td>
                                     <td colspan="3"><b style="float:right">7.A.1 ការចិញ្ចឹមសត្វ</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                            <input id="score_animal" name="animal_score" type="text" required="required" class="form-control cal_animal" readonly="readonly"/>
+                                            <input id="score_animal" name="animal_score1" type="text" required="required" class="form-control cal_animal" readonly="readonly"/>
                                             <span class="input-group-addon">ពិន្ទុ</span>
                                         </div>
                                     </td>
-                                    <td></td>
+                                    
                                 </tr>
                             </table>
                     </div>
@@ -1642,8 +1725,9 @@
                                     if (land == 2) {
                                         $('#show-land-other').html(otherland);
                                     }else{$('#show-land-other').html('');}
+
                                     AllowFlot();
-                                    $('.t_land_2').keyup(function(){
+                                    $('.t_land_2').change(function(){
                                         var field = 0;
                                         var farm = 0;
                                          field = Number($('#total_land_2').val());
@@ -1654,11 +1738,11 @@
                                        // $('#total_land_and_land_farm').val(sum);
 
                                         if(farm == null || farm == ''){
-                                            document.getElementById('total_land_and_land_farm_2').value = field;
+                                            $('#total_land_and_land_farm_2').val(field);
                                         }else if(field == null || field == ''){
-                                            document.getElementById('total_land_and_land_farm_2').value = farm;
+                                            $('#total_land_and_land_farm_2').val(farm);
                                         }else{
-                                            document.getElementById('total_land_and_land_farm_2').value = (field + farm);
+                                            $('#total_land_and_land_farm_2').val((field + farm).toFixed(2));
                                         }
 
 
@@ -1737,7 +1821,7 @@
 
 
                                     AllowFlot();
-                                    $('.t_land').keyup(function(){
+                                    $('.t_land').change(function(){
                                         var field = 0;
                                         var farm = 0;
                                         field = Number($('#total_land').val());
@@ -1748,11 +1832,11 @@
                                         // $('#total_land_and_land_farm').val(sum);
 
                                         if(farm == null || farm == ''){
-                                            document.getElementById('total_land_and_land_farm').value = field;
+                                            $('#total_land_and_land_farm').val(field);
                                         }else if(field == null || field == ''){
-                                            document.getElementById('total_land_and_land_farm').value = farm;
+                                            $('#total_land_and_land_farm').val(farm);
                                         }else{
-                                            document.getElementById('total_land_and_land_farm').value = (field + farm);
+                                            $('#total_land_and_land_farm').val((field + farm).toFixed(2));
                                         }
 
 
@@ -1803,7 +1887,7 @@
                             <script>
 
                                 $('.health_id_0').click(function () {
-                                    var health_check = $('input[type=checkbox]:checked').val();//$("input[name=health_id]:checked").val();
+                                    var health_check = $('input[type=checkbox]:checked.health_id_0').val();//$("input[name=health_id]:checked").val();
                                     // alert(health_check);
                                     $('#health_1').empty();
                                     if(health_check == 1){
@@ -2011,7 +2095,7 @@
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </div>
-                    <div class="col-sm-12"><hr> </div>
+                    <div class="col-sm-12"><hr></div>
                     <div class="col-sm-12">
                         <!-- <a  class="pull-left btn btn-default print-link3"><img src="" width="30"></a> -->
                         <button id="nextStep3" class="btn btn-primary pull-right mysubmit nextBtn btnSave" type="button">រក្សាទុក​​ និង បញ្ចប់</button>
@@ -2092,79 +2176,50 @@
                    // $('.alert').show();
                 }
             }
-            if($('#hospital').val() == ''){
-                $('.add_hospital').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.add_hospital').removeClass("has-error");
-            }
-            if($('#province').val() == ''){
-                $('.g_province').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.g_province').removeClass("has-error");
-            }
-            if($('#district').val() == ''){
-                $('.g_district').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.g_district').removeClass("has-error");
-            }
-            if($('#commune').val() == ''){
-                $('.g_commune').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.g_commune').removeClass("has-error");
-            }
-            if($('#village').val() == ''){
-                $('.g_village').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.g_village').removeClass("has-error");
-            }
 
-            if($('#location').val() == ''){
-                $('.location').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.location').removeClass("has-error");
-            }
-            if($('#inter_relationship').val() == ''){
+            if(isNaN(parseInt($('#hospital').val())) ||
+                isNaN(parseInt($('#province').val())) ||
+                isNaN(parseInt($('#district').val())) ||
+                isNaN(parseInt($('#commune').val())) ||
+                isNaN(parseInt($('#village').val())) ||
+                isNaN(parseInt($('#inter_relationship').val()))
+            ){
+                $('.add_hospital').addClass("has-error");
+                $('.g_province').addClass("has-error");
+                $('.g_district').addClass("has-error");
+                $('.g_commune').addClass("has-error");
+                $('.g_village').addClass("has-error");
                 $('.inter_relationship').addClass("has-error");
                 $('.alert').show();
                 isValid = false;
             }else{
+                $('.add_hospital').removeClass("has-error");
+                $('.g_province').removeClass("has-error");
+                $('.g_district').removeClass("has-error");
+                $('.g_commune').removeClass("has-error");
+                $('.g_village').removeClass("has-error");
                 $('.inter_relationship').removeClass("has-error");
             }
-//            if($('#fa_relationship').val() == ''){
-//                $('.fa_relationship').addClass("has-error");
-//                $('.alert').show();
-//                isValid = false;
-//            }else{
-//                $('.fa_relationship').removeClass("has-error");
-//            }
+
+            if ($('#location').val() == '') {
+                $('.location').addClass("has-error");
+                $('.alert').show();
+                isValid = false;
+            } else {
+                $('.location').removeClass("has-error");
+            }
+
             //check radio
-            if (!$("input[name='g_sex']:checked").val()) {
-                $('#g_sex').addClass("error");
-                $('.alert').show();
-                isValid = false;
-            }else{$('#g_sex').removeClass("error");}
-            if (!$("input[name='inter_sex']:checked").val()) {
-                $('#inter_sex').addClass("error");
-                $('.alert').show();
-                isValid = false;
-            }else{$('#inter_sex').removeClass("error");}
-//            if (!$("input[name='fa_sex']:checked").val()) {
-//                $('#fa_sex').addClass("error");
-//                $('.alert').show();
-//                isValid = false;
-//            }else{$('#fa_sex').removeClass("error");}
+            if (!$("input[name='g_sex']:checked").val() ||
+                !$("input[name='inter_sex']:checked").val()) {
+                    $('#g_sex').addClass("error");
+                    $('#inter_sex').addClass("error");
+                    $('.alert').show();
+                    isValid = false;
+                }else{
+                    $('#g_sex').removeClass("error");
+                    $('#inter_sex').removeClass("error");
+                }
 
             if (isValid)
                 nextStepWizard.removeAttr('disabled').trigger('click');
@@ -2177,25 +2232,21 @@
                 nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
                 curInputs = curStep.find("input[type='text']"),
                 isValid = true;
-            $(".form-group").removeClass("has-error");
-            for(var i=0; i<curInputs.length; i++){
-                if (!curInputs[i].validity.valid){
-                    $('.alert').show();
-                    isValid = false;
-                    $(curInputs[i]).closest(".form-group").addClass("has-error");
-                    // $('.alert').show();
+                $(".form-group").removeClass("has-error");
+                for(var i=0; i<curInputs.length; i++){
+                    if (!curInputs[i].validity.valid){
+                        $('.alert').show();
+                        isValid = false;
+                        $(curInputs[i]).closest(".form-group").addClass("has-error");
+                    }
                 }
-            }
             //in append
             var row_num = $('.new_rows tr').length;
             var plus = '';
             var plus_not = '';
             step2Row = row_num;
             step2Row5 = row_num;
-            //console.log('1. step2='+ step2Row);
-            //console.log('1. dataRow='+ dataRow);
 
-            ///document.getElementById('total_people').value =row_num;
             $('#total_people').val(row_num);
             $('.new_rows_4').empty();
             $('.new_rows_5').empty();
@@ -2265,20 +2316,20 @@
                             '</div>' +
                         '</td>' +
                         '<td>' +
-                            '<div class="form-group">' +
-                                '<input name="income_unit['+i+']" type="text" class="form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">' +
+                            '<div class="form-group add_income_unit">' +
+                                '<input name="income_unit['+i+']" type="text" class="form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" >' +
                             '</div>' +
                         '</td>'+
 
                         '<td>' +
-                            '<div class="form-group input-group">' +
-                                '<input id="unit_in_month_'+i+'" name="unit_in_month['+i+']" type="text" class="unit_in_month form-control allowNumber otherincome" required="required" autocomplete="off">'+
+                            '<div class="form-group input-group add_unit_in_month">' +
+                                '<input id="unit_in_month_'+i+'" name="unit_in_month['+i+']" type="text" class="unit_in_month form-control allowNumber otherincome"  autocomplete="off">'+
                                 '<span class="input-group-addon">ថ្ងៃ</span>' +
                             '</div>' +
                         '</td>'+
                         '<td>'+
-                            '<div class="form-group input-group">'+
-                                '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="average_amount form-control allowNumber otherincome" required="required" autocomplete="off">'+
+                            '<div class="form-group input-group add_average_amount">'+
+                                '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="average_amount form-control allowNumber otherincome" autocomplete="off">'+
                                 '<span class="input-group-addon">រៀល</span>'+
                             '</div>'+
                         '</td>'+
@@ -2295,7 +2346,7 @@
 
                 AllowNumber();
                 var row_num11 = $('.new_rows_4 tr').length;
-                $('.otherincome').keyup(function () {
+                $('.otherincome').change(function () {
                     for(var ii=0; ii<row_num11; ii++) {
                         var sum = 0;
                         var unit_in_month = $('#unit_in_month_'+ii).val();
@@ -2308,7 +2359,7 @@
                 });
                 $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
 
-                $('.otherincome').keyup(function () {
+                $('.otherincome').change(function () {
                     var arr = document.getElementsByClassName('monthly_income_total');
                     var tot=0;
                     for(var i=0;i<arr.length;i++){
@@ -2318,12 +2369,13 @@
                     $('#total_monthly_income').val(tot);
                     var totalperson = $('#total_people').val();
                     if(totalperson == null || totalperson == ''){
-                        $('#total_inc_person').val(tot/1);
+                        $('#total_inc_person').val((tot/1).toFixed(2));
                     }else{
-                        $('#total_inc_person').val(tot/totalperson);
+                        $('#total_inc_person').val((tot/totalperson).toFixed(2));
                     }
                 });
 
+                
 
                 //other income not agriculture
                 if(i==0) {
@@ -2350,20 +2402,20 @@
                     '</div>' +
                     '</td>' +
                     '<td>' +
-                    '<div class="form-group">' +
-                    '<input name="income_unit_not['+i+']" type="text" class="form-control income_unit_not" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">' +
+                    '<div class="form-group add_income_unit_not">' +
+                    '<input name="income_unit_not['+i+']" type="text" class="form-control income_unit_not" placeholder="ថ្ងៃ" value="day" autocomplete="off">' +
                     '</div>' +
                     '</td>'+
 
                     '<td>' +
-                    '<div class="form-group input-group">' +
-                    '<input id="unit_in_month_not_'+i+'" name="unit_in_month_not['+i+']" type="text" class="unit_in_month_not form-control allowNumber otherincome_not" required="required" autocomplete="off">'+
+                    '<div class="form-group input-group add_unit_in_month_not">' +
+                    '<input id="unit_in_month_not_'+i+'" name="unit_in_month_not['+i+']" type="text" class="unit_in_month_not form-control allowNumber otherincome_not" autocomplete="off">'+
                     '<span class="input-group-addon">ថ្ងៃ</span>' +
                     '</div>' +
                     '</td>'+
                     '<td>'+
-                    '<div class="form-group input-group">'+
-                    '<input id="average_amount_not_'+i+'" name="average_amount_not['+i+']" type="text" class="average_amount_not form-control allowNumber otherincome_not" required="required" autocomplete="off">'+
+                    '<div class="form-group input-group add_average_amount_not">'+
+                    '<input id="average_amount_not_'+i+'" name="average_amount_not['+i+']" type="text" class="average_amount_not form-control allowNumber otherincome_not"  autocomplete="off">'+
                     '<span class="input-group-addon">រៀល</span>'+
                     '</div>'+
                     '</td>'+
@@ -2380,7 +2432,7 @@
 
                 AllowNumber();
                 var row_num_agric = $('.new_rows_5 tr').length;
-                $('.otherincome_not').keyup(function () {
+                $('.otherincome_not').change(function () {
                     for(var ii=0; ii<row_num_agric; ii++) {
                         var sum = 0;
                         var unit_in_month = $('#unit_in_month_not_'+ii).val();
@@ -2391,9 +2443,14 @@
                         $('#monthly_income_not_'+ii).val(sum);
                     }
                 });
+
+                $(".getdata").click(function(){
+                  alert(1);
+                });
+
                 $(".income_occupation_not").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
 
-                $('.otherincome_not').keyup(function () {
+                $('.otherincome_not').change(function () {
                     var arr = document.getElementsByClassName('monthly_income_total_not');
                     var tot=0;
                     for(var i=0;i<arr.length;i++){
@@ -2403,18 +2460,16 @@
                     $('#total_monthly_income_not').val(tot);
                     var totalperson = $('#total_people').val();
                     if(totalperson == null || totalperson == ''){
-                        $('#total_inc_person_not').val(tot/1);
+                        $('#total_inc_person_not').val((tot/1).toFixed(2));
                     }else{
-                        $('#total_inc_person_not').val(tot/totalperson);
+                        $('#total_inc_person_not').val((tot/totalperson).toFixed(2));
                     }
                 });
 
             }
             step2Row++;
             step2Row5++;
-            //console.log('1. step2='+ step2Row);
-           // console.log('1. dataRow='+ dataRow);
-           // $('.empapp').closest('tr').remove();
+
 
             if($('.family_relationship').val() == ''){
                 $('.alert').show();
@@ -2469,7 +2524,8 @@
                 $('.alert').show();
                 isValid = false;
             }else{$('.add_household_family').removeClass("error");}
-            if ($("input[name='household_family_id']:checked").val() == 1 || $("input[name='household_family_id']:checked").val() == 3) {
+            if ($("input[name='household_family_id']:checked").val() == 1 ||
+                $("input[name='household_family_id']:checked").val() == 3) {
                 if (!$("input[name='home_prepare']:checked").val()) {
                     $('.add_home_prepare').addClass("error");
                     $('.alert').show();
@@ -2611,12 +2667,49 @@
             }else{
                 $('.add_total_people').removeClass("has-error");
             }
+
+
+            if (!$("input[name='income_agricalture_type']:checked").val()) {
+                $('.add_income_agricalture_type').addClass("error");
+                $('.alert').show();
+                isValid = false;
+            }else{$('.add_income_agricalture_type').removeClass("error");}
+
+            if ($("input[name='income_agricalture_type']:checked").val()==1) {
+                if($('.unit_in_month').val() == '' ||
+                    $('.average_amount').val() == '' ||
+                    $('#income_occupation').val() == ''){
+                        $('.alert').show();
+                        $('.add_unit_in_month').addClass("has-error");
+                        $('.add_average_amount').addClass("has-error");
+                        $('.add_income_occupation').addClass("has-error");
+                        isValid = false;
+                }else{
+                    $('.add_unit_in_month').removeClass("has-error");
+                    $('.add_average_amount').removeClass("has-error");
+                    $('.add_income_occupation').removeClass("has-error");
+                }
+            }
+
+            if ($("input[name='income_agricalture_type']:checked").val()==2) {
+                if($('.unit_in_month_not').val() == '' ||
+                    $('.average_amount_not').val() == '' ){
+                    $('.alert').show();
+                    $('.add_unit_in_month_not').addClass("has-error");
+                    $('.add_average_amount_not').addClass("has-error");
+                    isValid = false;
+                }
+            }
+
+
+
             //debt
             if (!$("input[name='family_debt_id']:checked").val()) {
                 $('.add_family_debt_id').addClass("error");
                 $('.alert').show();
                 isValid = false;
             }else{$('.add_family_debt_id').removeClass("error");}
+
             if ($("input[name='family_debt_id']:checked").val()==1) {
                 if (!$("input[name='q_debt']:checked").val()) {
                     $('.debt_question').addClass("error");
@@ -2659,13 +2752,7 @@
                 $('.add_type_animals').removeClass("has-error");
             }
 
-            if($('#income_occupation').val() == ''){
-                $('.add_income_occupation').addClass("has-error");
-                $('.alert').show();
-                isValid = false;
-            }else{
-                $('.add_income_occupation').removeClass("has-error");
-            }
+
 
             //land
 //            if (!$("input[name='land']:checked").val()) {

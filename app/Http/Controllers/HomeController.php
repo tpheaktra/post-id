@@ -223,6 +223,13 @@ class HomeController extends Controller
 
     }
 
+    public function getdatacode(request $request){
+        $od_code = $request->od_code;
+        $query = Helpers::getInterviewCode($od_code);
+        $check = DB::select("SELECT count(*) as id FROM general_information gi where gi.od_code=".$od_code);
+        $interview_code= $check[0]->id + 1;
+        echo json_encode($query[0]->shortcut.'/'.date('y m d').'/0'.$interview_code);
+    }
     /*
      * get data with ajax
      */

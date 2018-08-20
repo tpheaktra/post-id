@@ -1,110 +1,117 @@
-@section('title','Users | Edit')
-@extends('layouts.admin')
+@section('title','Users | Created Users')
+@extends('layouts.app')
 
 @section('content')
-        <section class="content-header">
-          <ol class="breadcrumb pull-left">
-            <li><a href="#"><i class="fa fa-dashboard"></i> @lang('dashboard.dashboard')</a></li>
-            <li class="active"> @lang('users.users')</li>
-          </ol>
-        </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="container content">
         <div class="row">
             <div class="col-xs-12">
+                <div class="user-mangement">
+                    <div class="box">
+                        <div class="box-body">
+                            {!! Form::open(['route' => 'user.store'],['enctype'=>'multipart/form-data']) !!}
 
-                <div class="box">
-                    <div class="box-body">
-                        {!! Form::model($user, array('route' => array('user.update', $user->id))) !!}
-                            
-                                <div class="row">     
-
-                                    <div class="col-md-6 col-xs-12 ">
-                                        <label class=" control-label">First Name <span class="color-red">*</span></label>  
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            {{ Form::text('first_name',null,['class'=>'form-control','placeholder'=>'First Name']) }}
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border"><h4 class="box-title">ព័តមានអ្នកប្រើប្រាស់ថ្មី </h4></legend>
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <table class="user-table">
+                                                <tr>
+                                                    <td width="50%">ឈ្មោះប្រើប្រាស់ <span class="text-danger">*</span></td>
+                                                    <td width="50%">
+                                                        {{ Form::text('name',$user->name,['class'=>'form-control','placeholder'=>'ឈ្មោះប្រើប្រាស់']) }}
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
-                                    </div>
-                                                
-                                                      
-                                    <div class="col-md-6 col-xs-12 ">
-                                        <label class="control-label" >Last Name <span class="color-red">*</span></label> 
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            {{ Form::text('last_name',null,['class'=>'form-control','placeholder'=>'Last Name']) }}
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-6 col-xs-12 ">
-                                        <label class="control-label" >E-Mail <span class="color-red">*</span></label> 
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                            {{ Form::email('email',$user->email,['class'=>'form-control','placeholder'=>'E-Mail Address','disabled'=>'true']) }}
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <table class="user-table">
+                                                <tr>
+                                                    <td width="50%">លេខទូរសព្ទ</td>
+                                                    <td width="50%">
+                                                        {{ Form::number('phone',$user->phone,['class'=>'form-control','placeholder'=>'លេខទូរសព្ទ']) }}
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-6 col-xs-12 ">
-                                        <label class="control-label" >Phone</label> 
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                                            {{ Form::text('phone',null,['class'=>'form-control','placeholder'=>'(845)555-1212']) }}
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <table class="user-table">
+                                                <tr>
+                                                    <td>សារអេឡិចត្រូនិច <span class="text-danger">*</span></td>
+                                                    <td>
+                                                        {{ Form::email('email',$user->email,['class'=>'form-control','placeholder'=>'សារអេឡិចត្រូនិច']) }}
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-6 col-xs-12 ">
-                                        <label class="control-label" >Password <span class="color-red">*</span></label> 
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                            {{ Form::password('password',['class'=>'form-control','placeholder'=>'Password']) }}
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 col-xs-12 ">
-                                        <label class="control-label" >Confirm Password <span class="color-red">*</span></label> 
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                            {{ Form::password('confirm-password',['class'=>'form-control','placeholder'=>'confirm password']) }}
-                                        </div>
-                                    </div>
 
 
-         
-                                    <div class="col-md-12 col-xs-12 ">
-                                        <label class="control-label" >Address</label> 
-                                        <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                            {{ Form::textarea('address',null,['class'=>'form-control myarea','placeholder'=>'Address']) }}
-                                        </div>
+
+                                        {{--<div class="form-group col-sm-6 col-xs-12">--}}
+                                            {{--<table class="user-table">--}}
+                                                {{--<tr>--}}
+                                                    {{--<td>ពាក្យសំងាត់ <span class="text-danger">*</span></td>--}}
+                                                    {{--<td>--}}
+                                                        {{--{{ Form::password('password',['class'=>'form-control','placeholder'=>'ពាក្យសំងាត់']) }}--}}
+                                                    {{--</td>--}}
+                                                {{--</tr>--}}
+                                            {{--</table>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="form-group col-sm-6 col-xs-12">--}}
+                                            {{--<table class="user-table">--}}
+                                                {{--<tr>--}}
+                                                    {{--<td>បញ្ជាក់ <span class="text-danger">*</span></td>--}}
+                                                    {{--<td>--}}
+                                                        {{--{{ Form::password('confirm',['class'=>'form-control','placeholder'=>'បញ្ជាក់']) }}--}}
+                                                    {{--</td>--}}
+                                                {{--</tr>--}}
+                                            {{--</table>--}}
+                                        {{--</div>--}}
                                     </div>
                                 </div>
+                            </fieldset>
 
-                                <br>
-                                <div class="box box-default">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title">Users Privileges</h3>
-                                    </div>
-                                    <div class="box-body">
-                                        <div class="row">
-                                            @foreach($roles as $role)
-                                                <div class="col-sm-6 col-md-3 col-xs-12">
-                                                    {{ Form::checkbox('roles[]',$role->id) }}  {{$role->display_name}} <br>
-                                                </div>
-                                            @endforeach
-                                        </div>
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border"><h4 class="box-title">កំណត់តួនាទី <span class="text-danger">*</span></h4></legend>
+                                <div class="box-body">
+                                    <div class="row">
+                                        @foreach($roles as $role)
+                                            <div class="form-group col-sm-6 col-md-3 col-xs-12">
+                                                {{ Form::checkbox('roles[]',$role->id,in_array($role->id,$userRole)?"checked":"") }}  {{$role->display_name}} <br>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
+                            </fieldset>
 
-                                 <div class="col-sm-12">
-                                    <button type="submit" class="btn btn-primary pull-right" id="submit">
-                                        <i class="glyphicon glyphicon-edit"></i> Updated
-                                    </button>
+
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border"><h4 class="box-title">កំណត់​ក្រុម​​​​ <span class="text-danger">*</span></h4></legend>
+                                <div class="box-body">
+                                    <div class="row">
+                                        @foreach($groups as $group)
+                                            <div class="form-group col-sm-6 col-md-3 col-xs-12">
+                                                {{ Form::checkbox('groups[]',$group->id,in_array($group->id,$arr)?"checked":"")}}  {{$group->name}} <br>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
-                        {!! Form::close() !!}
+                            </fieldset>
 
-                    </div>
-                </div><!-- box -->
+
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary pull-right" id="submit">
+                                    <i class="fa fa-floppy-o"></i> រក្សាទុក
+                                </button>
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div><!-- box -->
+                </div>
             </div>
         </div>
     </section>
