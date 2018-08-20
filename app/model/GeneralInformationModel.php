@@ -34,6 +34,9 @@ class GeneralInformationModel extends Model
         'fa_relationship_id',
         'record_status'
     ];
+    public function provinces(){
+        return $this->hasMany(ProvinceModel::class, 'code', 'g_province_id');
+    }
     /*
    * district
    */
@@ -46,4 +49,9 @@ class GeneralInformationModel extends Model
     public function village(){
         return $this->hasMany(VillageModel::class, 'code', 'g_village_id');
     }
+
+    public function memberFamily(){
+        return $this->hasMany(MemberFamilyModel::class, 'g_information_id', 'id');
+    }
+
 }

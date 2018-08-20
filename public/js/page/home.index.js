@@ -16,10 +16,11 @@ $(document).ready(function() {
             {
                 "render": function (data, type, full, meta)
                 {
-                    return '<a class="btn btn-xs btn-success" href="'+full.view+'"><i class="fa fa-eye"></i></a> '+
-                        '<a class="btn btn-xs btn-primary" href="'+full.edit+'"><i class="fa fa-edit"></i></a> '+
-                        '<a class="btn btn-xs btn-info" href="'+full.print+'"  target="blank"><i class="fa fa-print"></i></a> '+
-                        '<a class="btn btn-xs btn-danger" href="'+full.delete+'"><i class="fa fa-trash-o"></i></a>';
+                    return '<a data-hint="'+full.txtprint_result+'" class="btn btn-xs btn-default hint--left hint--default" href="'+full.printInterviewResult+'"><i class="fa fa-print"></i></a> '+
+                        '<a data-hint="'+full.txtview+'" class="btn btn-xs btn-success hint--left hint--success" href="'+full.view+'"><i class="fa fa-eye"></i></a> '+
+                        '<a data-hint="'+full.txtedit+'"​​ class="btn btn-xs btn-primary hint--left hint--primary" href="'+full.edit+'"><i class="fa fa-edit"></i></a> '+
+                        '<a data-hint="'+full.txtprint+'" class="btn btn-xs btn-info hint--left hint--info" href="'+full.print+'"  target="blank"><i class="fa fa-print"></i></a> '+
+                        '<a data-hint="'+full.txtdelete+'" class="btn btn-xs btn-danger hint--left hint--error" href="'+full.delete+'"><i class="fa fa-trash-o"></i></a>';
                 }
             },
         ],
