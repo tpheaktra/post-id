@@ -28,4 +28,5 @@ $(document).ready(function() {
        // deferRender: true,
     });
 
+    $.fn.dataTable.ext.errMode = 'throw';
 });

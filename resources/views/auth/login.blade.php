@@ -51,7 +51,7 @@
                                 <label for="email" class="col-sm-4 col-form-label text-md-right">ឈ្មោះប្រើប្រាស់</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}"  autofocus>
+                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}"  autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback">
