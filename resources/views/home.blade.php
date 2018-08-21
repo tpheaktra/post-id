@@ -444,22 +444,22 @@
                                            //         $('#edu_score').val(4);
                                            //      }else{$('#edu_score').val(0);}
                                            // });
-                                           $('.occupation').change(function(){
-                                                var oc = $('#occupation').val();
-                                                var level = $('#education_level_0').val();
-                                                if( oc== 3){
-                                                   var occu = $('.occupation').hide();
-                                                   var dis = '<div class="form-group add_education_level">'+
-                                                            '<select style="width: 100%" id="education_level_0"  class="cal_edu form-control education_level"  name="education_level[0]" required="required">'+
-                                                                  '<option></option>'+
-                                                                  '@foreach($education_level as $keh => $value)'+
-                                                                      '<option @if($value->id == 1 || $value->id == 2)  @else disabled @endif value="{{$value->id}}">{{$value->name_kh}}</option>'+
-                                                                  '@endforeach'+
-                                                              '</select>'+
-                                                          '</div>';
-                                                    $('.add_education_level').append(dis);
-                                                }
-                                              });
+                                           // $('.occupation').change(function(){
+                                           //      var oc = $('#occupation').val();
+                                           //      var level = $('#education_level_0').val();
+                                           //      if( oc== 3){
+                                           //         var occu = $('.occupation').hide();
+                                           //         var dis = '<div class="form-group add_education_level">'+
+                                           //                   '<select style="width: 100%" id="education_level_0"  class="cal_edu form-control education_level"  name="education_level[0]" required="required">'+
+                                           //                        '<option></option>'+
+                                           //                        '@foreach($education_level as $keh => $value)'+
+                                           //                            '<option @if($value->id == 1 || $value->id == 2)  @else disabled @endif value="{{$value->id}}">{{$value->name_kh}}</option>'+
+                                           //                        '@endforeach'+
+                                           //                    '</select>'+
+                                           //                '</div>';
+                                           //          $('.add_education_level').append(dis);
+                                           //      }
+                                           //    });
 
                                            $('.cal_edu').change(function(){
 
@@ -1399,7 +1399,7 @@
                                     <td class="auto_id">1</td>
                                     <td>
                                         <div class="form-group add_type_animals">
-                                            <select style="width: 100%;" class="cal_animal form-control type_animals" id="type_animals" name="type_animals[0]" required="required" index="0">
+                                            <select style="width: 100%;" class="0 form-control type_animals" id="type_animals" name="type_animals[0]" required="required" index="0">
                                                 <option></option>
                                                 @foreach($typeanimals as $key => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>

@@ -145,7 +145,7 @@
                 var od_code = $('.getdata').val();
                 $.ajax({
                     type: 'GET',
-                    url: "{{ route('getdata') }}",
+                    url: "",
                     data: {'od_code': od_code},
                     beforeSend: function(){
                         $("#loading").fadeIn();
