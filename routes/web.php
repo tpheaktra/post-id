@@ -20,6 +20,7 @@ Route::get('datatable/getposts', ['as'=>'datatable.getposts','uses'=>'HomeContro
  * ajax
  */
 Route::GET('getInterviewCode',['as'=>'getInterviewCode','uses'=>'HomeController@getInterviewCode']);
+Route::GET('getHealthFacilitiesCode',['as'=>'getHealthFacilitiesCode','uses'=>'HomeController@getHealthFacilitiesCode']);
 Route::GET('getdata',['as'=>'getdata','uses'=>'HomeController@getdatacode']);
 Route::GET('getDistrict',['as'=>'getDistrict','uses'=>'HomeController@getDistrict']);
 Route::GET('getCommune',['as'=>'getCommune','uses'=>'HomeController@getCommune']);

@@ -52,6 +52,8 @@
                                         <td width="65%">
                                             <div class="form-group">
                                                 {{ Form::text('interview_code',null,['class'=>'form-control','required'=>'required','readonly'=>'readonly','id'=>'interview_code']) }}
+                                                {{ Form::hidden('hf_code',null,['required'=>'required','readonly'=>'readonly','id'=>'health_facilities_code']) }}
+
                                             </div>
                                         </td>
                                     </tr>
@@ -1715,7 +1717,7 @@
                                                     '<td><label class="control-label">7.A.2 B  ផ្ទៃដីកសិកម្ម មិនមែនជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="l_score_2" name="other_farm_score_2" type="text" required="required" class="t_land_2 form-control allowFlot"  /><span class="input-group-addon">ពិន្ទុ</span>'+
+                                                            '<input autocomplete="off" id="l_score_2" name="other_farm_score_2" type="text" required="required" class="t_land_2 form-control allowFlot" readonly="readonly" /><span class="input-group-addon">ពិន្ទុ</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1808,7 +1810,7 @@
                                         '<td><label class="control-label">7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowFlot" /><span class="input-group-addon">ពិន្ទុ</span>'+
+                                        '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowFlot" readonly="readonly"/><span class="input-group-addon">ពិន្ទុ</span>'+
                                         '</div>'+
                                         '</td>' +
                                         '</tr>' +
@@ -2802,6 +2804,27 @@
             },
             error: function (report){
                 console.log(report);
+            }
+        });
+    });
+
+    $("#hospital").change(function () {
+        var od_code  = $('#hospital').val();
+        var hospital = $('#hospital option:selected').text();
+
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('getHealthFacilitiesCode') }}",
+            data: {'od_code': od_code,'hospital': hospital},
+            beforeSend: function(){
+                $("#loading").fadeIn();
+            },
+            success: function (data) {
+                var obj = JSON.parse(data);
+                $("#health_facilities_code").val(obj);
+            },
+            complete: function(){
+                $("#loading").fadeOut(100);
             }
         });
     });

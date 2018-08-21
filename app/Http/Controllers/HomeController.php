@@ -224,6 +224,16 @@ class HomeController extends Controller
 
     }
 
+    /*
+     * get data with ajax health_facilities
+     */
+    public function getHealthFacilitiesCode(request $request){
+        $od_code = $request->od_code;
+        $hf_code  = substr($request->hospital,36);
+        $query   = Helpers::getHealthFacilitiesCode($od_code,$hf_code);
+        echo  json_encode($query[0]->hf_code);
+    }
+
     public function getdatacode(request $request){
         $od_code = $request->od_code;
         $query = Helpers::getInterviewCode($od_code);
@@ -341,6 +351,7 @@ class HomeController extends Controller
             $data = array(
                 'user_id'            => auth::user()->id,
                 'od_code'            => $od_code,
+                'hf_code'            => $request->hf_code,
                 'interview_code'     =>$interview_code,
                 'g_patient'          =>$request->g_patient,
                 'g_age'              =>$request->g_age,
@@ -875,34 +886,49 @@ class HomeController extends Controller
     }
 
 
+    /*
+     * generate
+     * member family interview
+     */
 
     public function pirntInterviewResult($id){
         $id = Crypt::decrypt($id);
         // Creating the new document...
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $template = new \PhpOffice\PhpWord\TemplateProcessor('template/Post_ID_result_printing_form.docx');
-       // $gInfo = GeneralInformationModel::with('memberFamily')->where('id',$id)->firstOrFail();
 
-        $gInfo             = GeneralInformationModel::with('provinces','district','commune','village')->findOrFail($id);
-        //echo json_encode($gInfo);exit();
-        $memberFamily      = MemberFamilyModel::with('generalInfo')->where('g_information_id',$id)->get();
-       // echo json_encode($gInfo);exit();
-        // echo json_encode($gInfo->interview_code);exit();
+        $gInfo             = GeneralInformationModel::with('hospital','provinces','district','commune','village')->findOrFail($id);
+
+        $memberFamily = DB::select("select mf.nick_name,g.name_kh as sex,mf.dob,mf.age,fr.name_kh as relation from member_family mf 
+                                    inner join gender g on mf.gender_id = g.id
+                                    inner join relationship fr on mf.family_relationship_id = fr.id
+                                    where mf.g_information_id = '$id'");
+        $address = 'ភូមិ '.$gInfo['village'][0]->name_kh.' ឃុំ/សង្កាត់ '.$gInfo['commune'][0]->name_kh.' ស្រុក/ខណ្ឌ '.$gInfo['district'][0]->name_kh.' ខេត្ត/ក្រុង '.$gInfo['provinces'][0]->name_kh;
+        $template->setValue('hospital',$gInfo['hospital'][0]->name_kh);
         $template->setValue('interview_code',$gInfo->interview_code);
-        $template->setValue('address',$gInfo['provinces'][0]->name_kh.','.$gInfo['district'][0]->name_kh.','.$gInfo['commune'][0]->name_kh.','.$gInfo['village'][0]->name_kh);
+        $template->setValue('address',$address);
         $template->setValue('location',$gInfo->g_local_village);
         $template->setValue('id',$id);
-
-        foreach ($memberFamily as $key=>$v){
-            $template->setValue('key_'.$key,($key+1));
-            $template->setValue('member_family_'.$key,$v->nick_name);
-            $template->setValue('sex_'.$key,$v->gender_id);
-            $template->setValue('dob_'.$key,$v->dob);
-            $template->setValue('age_'.$key,$v->age);
-            $template->setValue('relation_'.$key,$v->family_relationship_id);
+        for($i=0;$i<=8;$i++) {
+            foreach ($memberFamily as $key => $v) {
+                if($i == $key) {
+                    $template->setValue('key_' . $i, ($i + 1));
+                    $template->setValue('member_family_' . $key, $v->nick_name);
+                    $template->setValue('sex_' . $key, $v->sex);
+                    $template->setValue('dob_' . $key, $v->dob);
+                    $template->setValue('age_' . $key, $v->age);
+                    $template->setValue('relation_' . $key, $v->relation);
+                }
+            }
+            $template->setValue('key_' . $i, '');
+            $template->setValue('member_family_' . $i, '');
+            $template->setValue('sex_' . $i, '');
+            $template->setValue('dob_' . $i, '');
+            $template->setValue('age_' . $i, '');
+            $template->setValue('relation_' . $i, '');
         }
 
-        $name = 'result.docx';
+        $name = 'member_family_interview.docx';
         //echo date('H:i:s'), " Write to Word2007 format", PHP_EOL;
         $template->saveAs($name);
         $file=  "{$name}";
@@ -911,11 +937,8 @@ class HomeController extends Controller
             'Content-Type: vnd.openxmlformats-officedocument.wordprocessingml.document'
         );
         ob_end_clean();
-
         return response()->download($file, $name, $headers);
         exit();
-       // $objWriter->save('helloWorld.pdf');
-
     }
 
 }
