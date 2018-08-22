@@ -2109,8 +2109,11 @@
     </form>
 
 
-    <div class="col-sm-12" style="padding: 0;"><h3>ទិន្នន័យ​អ្នកជំងឺ</h3></div>
+    <div class="col-sm-12" style="padding: 0;"><h3>ទិន្នន័យសំភាសន៍​អ្នកជំងឺ</h3></div>
     <div class="data-list">
+        <a href="{{route('generateReportByMonth')}}" class="btn btn-default pull-right">Export Patient By Month</a>
+        <br>
+       <hr>
         <table id="datatable1" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <th>ល.រ</th>

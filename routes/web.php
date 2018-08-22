@@ -21,12 +21,12 @@ Route::get('datatable/getposts', ['as'=>'datatable.getposts','uses'=>'HomeContro
  */
 Route::GET('getInterviewCode',['as'=>'getInterviewCode','uses'=>'HomeController@getInterviewCode']);
 Route::GET('getHealthFacilitiesCode',['as'=>'getHealthFacilitiesCode','uses'=>'HomeController@getHealthFacilitiesCode']);
-
 Route::GET('getdata',['as'=>'getdata','uses'=>'HomeController@getdatacode']);
 
 Route::GET('getDistrict',['as'=>'getDistrict','uses'=>'HomeController@getDistrict']);
 Route::GET('getCommune',['as'=>'getCommune','uses'=>'HomeController@getCommune']);
 Route::GET('getVillage',['as'=>'getVillage','uses'=>'HomeController@getVillage']);
+
 
 /*
  * insert data
@@ -38,7 +38,14 @@ Route::GET('data-printing/{id}',['as'=>'print.data','uses'=>'HomeController@prin
 Route::GET('editpatient/{id}',['as'=>'editpatient.edit','uses'=>'HomeController@edit']);
 Route::POST('updatepatient/{id}',['as'=>'updatepatient.update','uses'=>'HomeController@update']);
 Route::get('deletepatient/{id}',['as'=>'deletepatient.delete','uses'=>'HomeController@delete']);
-Route::get('printinterviewresult/{id}',['as'=>'printInterviewResult.print','uses'=>'HomeController@pirntInterviewResult']);
+
+
+/*
+* Report
+*/
+Route::GET('generateReportByMonth',['as'=>'generateReportByMonth','uses'=>'ReportController@generateReportByMonth']);
+Route::get('printinterviewresult/{id}',['as'=>'printInterviewResult.print','uses'=>'ReportController@pirntInterviewResult']);
+
 
 Route::group(['prefix' => 'home','middleware' => ['auth']], function() {
     /* role and set permission*/

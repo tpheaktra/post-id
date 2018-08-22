@@ -21,6 +21,7 @@ use App\model\TypeIncomeModel;
 use App\model\TypeToiletLinkModel;
 use App\model\YesElectricLinkModel;
 use App\model\StoreScoreModel;
+use App\User;
 use Illuminate\Http\Request;
 use App\model\RelationshipModel;
 use App\model\FamilyrelationModel;
@@ -33,7 +34,7 @@ use DB;
 use auth;
 use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\DataTables;
-use PhpOffice\PhpWord;
+use Carbon\Carbon;
 class HomeController extends Controller
 {
     /**
@@ -41,10 +42,13 @@ class HomeController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('auth');
     }
+
+
 
 //    function getOD1(request $request,$code=2,$od_name='Battambang'){
 //        $od = Helpers::getOD($code,$od_name);
@@ -883,62 +887,6 @@ class HomeController extends Controller
             DB::rollBack();
             return Redirect::back()->with('danger','លុបទិន្នន័យមិនបានជោគជ័យ');
         }
-    }
-
-
-    /*
-     * generate
-     * member family interview
-     */
-
-    public function pirntInterviewResult($id){
-        $id = Crypt::decrypt($id);
-        // Creating the new document...
-        $phpWord = new \PhpOffice\PhpWord\PhpWord();
-        $template = new \PhpOffice\PhpWord\TemplateProcessor('template/Post_ID_result_printing_form.docx');
-
-        $gInfo             = GeneralInformationModel::with('hospital','provinces','district','commune','village')->findOrFail($id);
-
-        $memberFamily = DB::select("select mf.nick_name,g.name_kh as sex,mf.dob,mf.age,fr.name_kh as relation from member_family mf 
-                                    inner join gender g on mf.gender_id = g.id
-                                    inner join relationship fr on mf.family_relationship_id = fr.id
-                                    where mf.g_information_id = '$id'");
-        $address = 'ភូមិ '.$gInfo['village'][0]->name_kh.' ឃុំ/សង្កាត់ '.$gInfo['commune'][0]->name_kh.' ស្រុក/ខណ្ឌ '.$gInfo['district'][0]->name_kh.' ខេត្ត/ក្រុង '.$gInfo['provinces'][0]->name_kh;
-        $template->setValue('hospital',$gInfo['hospital'][0]->name_kh);
-        $template->setValue('interview_code',$gInfo->interview_code);
-        $template->setValue('address',$address);
-        $template->setValue('location',$gInfo->g_local_village);
-        $template->setValue('id',$id);
-        for($i=0;$i<=8;$i++) {
-            foreach ($memberFamily as $key => $v) {
-                if($i == $key) {
-                    $template->setValue('key_' . $i, ($i + 1));
-                    $template->setValue('member_family_' . $key, $v->nick_name);
-                    $template->setValue('sex_' . $key, $v->sex);
-                    $template->setValue('dob_' . $key, $v->dob);
-                    $template->setValue('age_' . $key, $v->age);
-                    $template->setValue('relation_' . $key, $v->relation);
-                }
-            }
-            $template->setValue('key_' . $i, '');
-            $template->setValue('member_family_' . $i, '');
-            $template->setValue('sex_' . $i, '');
-            $template->setValue('dob_' . $i, '');
-            $template->setValue('age_' . $i, '');
-            $template->setValue('relation_' . $i, '');
-        }
-
-        $name = 'member_family_interview.docx';
-        //echo date('H:i:s'), " Write to Word2007 format", PHP_EOL;
-        $template->saveAs($name);
-        $file=  "{$name}";
-        $headers = array(
-            'Content-Type: application/msword',
-            'Content-Type: vnd.openxmlformats-officedocument.wordprocessingml.document'
-        );
-        ob_end_clean();
-        return response()->download($file, $name, $headers);
-        exit();
     }
 
 }
