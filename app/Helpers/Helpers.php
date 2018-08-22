@@ -22,13 +22,21 @@ class Helpers{
         return $hospital;
     }
 
+    /*
+    * function getInterviewCode
+    */
+    public static function getHealthFacilitiesCode($od_code,$hf_code){
+        $interview = DB::connection("mysql2")
+            ->select("select hf.code as hf_code from health_facilities hf inner join od_shortcuts os on hf.od_code = os.od_code where hf.od_code = '$od_code' and hf.name_kh = '$hf_code'");
+        return $interview;
+    }
 
     /*
     * function getInterviewCode
     */
     public static function getInterviewCode($od_code){
         $interview = DB::connection("mysql2")
-            ->select("select os.shortcut from health_facilities hf inner join od_shortcuts os on hf.od_code = os.od_code where hf.od_code = '$od_code' limit 1");
+            ->select("select os.shortcut,hf.code as hf_code from health_facilities hf inner join od_shortcuts os on hf.od_code = os.od_code where hf.od_code = '$od_code' limit 1");
         return $interview;
     }
 

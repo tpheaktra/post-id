@@ -21,6 +21,7 @@ use App\model\TypeIncomeModel;
 use App\model\TypeToiletLinkModel;
 use App\model\YesElectricLinkModel;
 use App\model\StoreScoreModel;
+use App\User;
 use Illuminate\Http\Request;
 use App\model\RelationshipModel;
 use App\model\FamilyrelationModel;
@@ -33,7 +34,7 @@ use DB;
 use auth;
 use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\DataTables;
-use PhpOffice\PhpWord;
+use Carbon\Carbon;
 class HomeController extends Controller
 {
     /**
@@ -41,10 +42,13 @@ class HomeController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('auth');
     }
+
+
 
 //    function getOD1(request $request,$code=2,$od_name='Battambang'){
 //        $od = Helpers::getOD($code,$od_name);
@@ -224,6 +228,16 @@ class HomeController extends Controller
 
     }
 
+    /*
+     * get data with ajax health_facilities
+     */
+    public function getHealthFacilitiesCode(request $request){
+        $od_code = $request->od_code;
+        $hf_code  = substr($request->hospital,36);
+        $query   = Helpers::getHealthFacilitiesCode($od_code,$hf_code);
+        echo  json_encode($query[0]->hf_code);
+    }
+
     public function getdatacode(request $request){
         $od_code = $request->od_code;
         $query = Helpers::getInterviewCode($od_code);
@@ -341,6 +355,7 @@ class HomeController extends Controller
             $data = array(
                 'user_id'            => auth::user()->id,
                 'od_code'            => $od_code,
+                'hf_code'            => $request->hf_code,
                 'interview_code'     =>$interview_code,
                 'g_patient'          =>$request->g_patient,
                 'g_age'              =>$request->g_age,
@@ -872,50 +887,6 @@ class HomeController extends Controller
             DB::rollBack();
             return Redirect::back()->with('danger','លុបទិន្នន័យមិនបានជោគជ័យ');
         }
-    }
-
-
-
-    public function pirntInterviewResult($id){
-        $id = Crypt::decrypt($id);
-        // Creating the new document...
-        $phpWord = new \PhpOffice\PhpWord\PhpWord();
-        $template = new \PhpOffice\PhpWord\TemplateProcessor('template/Post_ID_result_printing_form.docx');
-       // $gInfo = GeneralInformationModel::with('memberFamily')->where('id',$id)->firstOrFail();
-
-        $gInfo             = GeneralInformationModel::with('provinces','district','commune','village')->findOrFail($id);
-        //echo json_encode($gInfo);exit();
-        $memberFamily      = MemberFamilyModel::with('generalInfo')->where('g_information_id',$id)->get();
-       // echo json_encode($gInfo);exit();
-        // echo json_encode($gInfo->interview_code);exit();
-        $template->setValue('interview_code',$gInfo->interview_code);
-        $template->setValue('address',$gInfo['provinces'][0]->name_kh.','.$gInfo['district'][0]->name_kh.','.$gInfo['commune'][0]->name_kh.','.$gInfo['village'][0]->name_kh);
-        $template->setValue('location',$gInfo->g_local_village);
-        $template->setValue('id',$id);
-
-        foreach ($memberFamily as $key=>$v){
-            $template->setValue('key_'.$key,($key+1));
-            $template->setValue('member_family_'.$key,$v->nick_name);
-            $template->setValue('sex_'.$key,$v->gender_id);
-            $template->setValue('dob_'.$key,$v->dob);
-            $template->setValue('age_'.$key,$v->age);
-            $template->setValue('relation_'.$key,$v->family_relationship_id);
-        }
-
-        $name = 'result.docx';
-        //echo date('H:i:s'), " Write to Word2007 format", PHP_EOL;
-        $template->saveAs($name);
-        $file=  "{$name}";
-        $headers = array(
-            'Content-Type: application/msword',
-            'Content-Type: vnd.openxmlformats-officedocument.wordprocessingml.document'
-        );
-        ob_end_clean();
-
-        return response()->download($file, $name, $headers);
-        exit();
-       // $objWriter->save('helloWorld.pdf');
-
     }
 
 }

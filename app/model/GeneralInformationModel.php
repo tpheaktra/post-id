@@ -10,6 +10,7 @@ class GeneralInformationModel extends Model
     protected $fillable = [
         'user_id',
         'od_code',
+        'hf_code',
         'interview_code',
         'g_patient',
         'g_age',
@@ -34,12 +35,12 @@ class GeneralInformationModel extends Model
         'fa_relationship_id',
         'record_status'
     ];
+    public function hospital(){
+        return $this->hasMany(HospitalModel::class, 'code', 'hf_code');
+    }
     public function provinces(){
         return $this->hasMany(ProvinceModel::class, 'code', 'g_province_id');
     }
-    /*
-   * district
-   */
     public function district(){
         return $this->hasMany(DistrictModel::class, 'code', 'g_district_id');
     }
