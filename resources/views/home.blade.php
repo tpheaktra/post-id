@@ -556,7 +556,13 @@
                                     <td colspan="7"><b style="float: right;">10.  ការអប់រំ (មើលចម្លើយនៅក្នុងតារាងផ្នែក ខ)</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                           <input autocomplete="off" id="edu_score"  type="text" required="required" class="cal_edu form-control allowNumber" name="edu_score"​​ readonly="readonly" /><span class="input-group-addon">ពិន្ទុ</span>
+                                           <input autocomplete="off" id="edu_score"  type="text" required="required" class="cal_edu form-control allowNumber" name="edu_score"​​ readonly="readonly" /><span class="input-
+
+
+
+
+
+                                           -addon">ពិន្ទុ</span>
                                         </div>
                                     </td>
                                     <td></td>
@@ -1488,24 +1494,24 @@
                                                 });
                                             }else if(index == 0 && type == 1){
                                                 var cow = '<table class="table table-bordered" align="center">' +
-                                                        '<tr>' +
-                                                            '<th>ចំនួនសត្វធំ</th>' +
-                                                            '<th>ចំនួនកូនសត្វ</th>' +
-                                                        '</tr>' +
-                                                        '<tr>' +
-                                                            '<td>' +
-                                                                '<div class="form-group">' +
-                                                                    '<input name="num_animals[0]" id="num_animals" type="hidden" class="cal_animal form-control allowNumber num_animals"/>' +
-                                                                    '<input autocomplete="off" name="num_animals_big[0]" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />' +
-                                                                '</div>' +
-                                                            '</td>' +
-                                                            '<td>' +
-                                                                '<div class="form-group">' +
-                                                                    '<input autocomplete="off" name="num_animals_small[0]" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />' +
-                                                                '</div>' +
-                                                            '</td><input autocomplete="off" name="note_animals[0]" type="hidden" class="cal_animal form-control"  />' +
-                                                        '</tr>' +
-                                                    '</table>';
+                                                          '<tr>' +
+                                                              '<th>ចំនួនសត្វធំ</th>' +
+                                                              '<th>ចំនួនកូនសត្វ</th>' +
+                                                          '</tr>' +
+                                                          '<tr>' +
+                                                              '<td>' +
+                                                                  '<div class="form-group">' +
+                                                                      '<input name="num_animals[0]" id="num_animals" type="hidden" class="cal_animal form-control allowNumber num_animals"/>' +
+                                                                      '<input autocomplete="off" name="num_animals_big[0]" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />' +
+                                                                  '</div>' +
+                                                              '</td>' +
+                                                              '<td>' +
+                                                                  '<div class="form-group">' +
+                                                                      '<input autocomplete="off" name="num_animals_small[0]" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />' +
+                                                                  '</div>' +
+                                                              '</td><input autocomplete="off" name="note_animals[0]" type="hidden" class="cal_animal form-control"  />' +
+                                                          '</tr>' +
+                                                      '</table>';
                                                 var noted = '<select style="width: 100%;" class="cal_animal form-control note_animals" id="note_animals" name="note_animals[0]" required="required">' +
                                                     '<option></option>' +
                                                     '<option value="ប្រវាស់">ប្រវាស់</option>' +
@@ -1555,17 +1561,17 @@
                                                 AllowNumber();
 
                                                 $(".cal_animal").change(function(){
-                                                  var hend = $("#hend").val();
-                                                  var score = 0;
-                                                  if(hend>=1 && hend<30){
-                                                     score = 6;
-                                                  }else if(hend >=1 && hend<50){
-                                                      score=4;
-                                                  }else{
-                                                      score=0;
-                                                  }
-                                                  $('#score_animal').val(score);
-                                                });
+                                                //   var hend = $("#hend").val();
+                                                //   var score = 0;
+                                                //   if(hend>=1 && hend<30){
+                                                //      score = 6;
+                                                //   }else if(hend >=1 && hend<50){
+                                                //       score=4;
+                                                //   }else{
+                                                //       score=0;
+                                                //   }
+                                                //   $('#score_animal').val(score);
+                                                // });
                                             }
                                         //    $('.cal_animal').change(function(){
 
