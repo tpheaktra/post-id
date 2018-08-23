@@ -52,8 +52,6 @@
                                         <td width="65%">
                                             <div class="form-group">
                                                 {{ Form::text('interview_code',null,['class'=>'form-control','required'=>'required','readonly'=>'readonly','id'=>'interview_code']) }}
-                                                {{ Form::hidden('hf_code',null,['required'=>'required','readonly'=>'readonly','id'=>'health_facilities_code']) }}
-
                                             </div>
                                         </td>
                                     </tr>
@@ -128,7 +126,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="35%"><label class="control-label">   ស្រុក : </label></td>
+                                <td width="35%"><label class="control-label"> ស្រុក : </label></td>
                                 <td width="65%">
                                    <div class="form-group g_district">
                                        <select id="district" style="width: 100%" class="form-control" name="g_district">
@@ -1563,17 +1561,17 @@
                                                 AllowNumber();
 
                                                 $(".cal_animal").change(function(){
-                                                //   var hend = $("#hend").val();
-                                                //   var score = 0;
-                                                //   if(hend>=1 && hend<30){
-                                                //      score = 6;
-                                                //   }else if(hend >=1 && hend<50){
-                                                //       score=4;
-                                                //   }else{
-                                                //       score=0;
-                                                //   }
-                                                //   $('#score_animal').val(score);
-                                                // });
+                                                  var hend = $("#hend").val();
+                                                  var score = 0;
+                                                  if(hend>=1 && hend<30){
+                                                     score = 6;
+                                                  }else if(hend >=1 && hend<50){
+                                                      score=4;
+                                                  }else{
+                                                      score=0;
+                                                  }
+                                                  $('#score_animal').val(score);
+                                                });
                                             }
                                         //    $('.cal_animal').change(function(){
 
@@ -1723,7 +1721,7 @@
                                                     '<td><label class="control-label">7.A.2 B  ផ្ទៃដីកសិកម្ម មិនមែនជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="l_score_2" name="other_farm_score_2" type="text" required="required" class="t_land_2 form-control allowFlot" readonly="readonly" /><span class="input-group-addon">ពិន្ទុ</span>'+
+                                                            '<input autocomplete="off" id="l_score_2" name="other_farm_score_2" type="text" required="required" class="t_land_2 form-control allowFlot"  /><span class="input-group-addon">ពិន្ទុ</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1816,7 +1814,7 @@
                                         '<td><label class="control-label">7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowFlot" readonly="readonly"/><span class="input-group-addon">ពិន្ទុ</span>'+
+                                        '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowFlot" /><span class="input-group-addon">ពិន្ទុ</span>'+
                                         '</div>'+
                                         '</td>' +
                                         '</tr>' +
@@ -2115,11 +2113,8 @@
     </form>
 
 
-    <div class="col-sm-12" style="padding: 0;"><h3>ទិន្នន័យសំភាសន៍​អ្នកជំងឺ</h3></div>
+    <div class="col-sm-12" style="padding: 0;"><h3>ទិន្នន័យ​អ្នកជំងឺ</h3></div>
     <div class="data-list">
-        <a href="{{route('generateReportByMonth')}}" class="btn btn-default pull-right">Export Patient By Month</a>
-        <br>
-       <hr>
         <table id="datatable1" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <th>ល.រ</th>
@@ -2328,25 +2323,25 @@
                         '</td>' +
                         '<td>' +
                             '<div class="form-group add_income_unit">' +
-                                '<input name="income_unit['+i+']" type="text" class="form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" >' +
+                                '<input name="income_unit['+i+']" type="text" class="cal_incom form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" >' +
                             '</div>' +
                         '</td>'+
 
                         '<td>' +
                             '<div class="form-group input-group add_unit_in_month">' +
-                                '<input id="unit_in_month_'+i+'" name="unit_in_month['+i+']" type="text" class="unit_in_month form-control allowNumber otherincome"  autocomplete="off">'+
+                                '<input id="unit_in_month_'+i+'" name="unit_in_month['+i+']" type="text" class="cal_incom unit_in_month form-control allowNumber otherincome"  autocomplete="off">'+
                                 '<span class="input-group-addon">ថ្ងៃ</span>' +
                             '</div>' +
                         '</td>'+
                         '<td>'+
-                            '<div class="form-group input-group add_average_amount">'+
-                                '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="average_amount form-control allowNumber otherincome" autocomplete="off">'+
+                            '<div class="cal_incom form-group input-group add_average_amount">'+
+                                '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="cal_incom average_amount form-control allowNumber otherincome" autocomplete="off">'+
                                 '<span class="input-group-addon">រៀល</span>'+
                             '</div>'+
                         '</td>'+
                         '<td>' +
                             '<div class="form-group input-group">' +
-                                '<input id="monthly_income_'+i+'" name="monthly_income['+i+']" type="text" class="monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
+                                '<input id="monthly_income_'+i+'" name="monthly_income['+i+']" type="text" class="cal_incom monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
                                 '<span class="input-group-addon">រៀល</span>' +
                             '</div>' +
                         '</td>'+
@@ -2366,8 +2361,10 @@
                         sum = Number(unit_in_month * average_amount);
                         $("#other_income_"+ii).attr({"onclick": "remove_4("+sum+")"});
                         $('#monthly_income_'+ii).val(sum);
+                       
                     }
                 });
+
                 $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
 
                 $('.otherincome').change(function () {
@@ -2386,6 +2383,25 @@
                     }
                 });
 
+                $('.cal_incom').change(function(){
+                   var total_per = $('#total_inc_person').val();
+                        var money_score = 0;
+                        if(total_per < 40000 ){
+                          money_score = 4;
+                        }else if(total_per>=40000 && total_per < 70000){
+                          money_score = 2;
+                        }else if(total_per>=70000 && total_per< 100000){
+                          money_score = 0;
+                        }else if(total_per>=100000 && total_per< 125000){
+                          money_score = -3;
+                        }else if(total_per>=125000 && total_per < 1500000){
+                          money_score = -9;
+                        }else if(total_per >200000){
+                          money_score = -12;
+                        }else{
+                          money_score = 0;
+                        }$('#income_out_farmer_score').val(money_score);
+                });
                 
 
                 //other income not agriculture
@@ -2420,19 +2436,19 @@
 
                     '<td>' +
                     '<div class="form-group input-group add_unit_in_month_not">' +
-                    '<input id="unit_in_month_not_'+i+'" name="unit_in_month_not['+i+']" type="text" class="unit_in_month_not form-control allowNumber otherincome_not" autocomplete="off">'+
+                    '<input id="unit_in_month_not_'+i+'" name="unit_in_month_not['+i+']" type="text" class="cal_incom unit_in_month_not form-control allowNumber otherincome_not" autocomplete="off">'+
                     '<span class="input-group-addon">ថ្ងៃ</span>' +
                     '</div>' +
                     '</td>'+
                     '<td>'+
                     '<div class="form-group input-group add_average_amount_not">'+
-                    '<input id="average_amount_not_'+i+'" name="average_amount_not['+i+']" type="text" class="average_amount_not form-control allowNumber otherincome_not"  autocomplete="off">'+
+                    '<input id="average_amount_not_'+i+'" name="average_amount_not['+i+']" type="text" class="cal_incom average_amount_not form-control allowNumber otherincome_not"  autocomplete="off">'+
                     '<span class="input-group-addon">រៀល</span>'+
                     '</div>'+
                     '</td>'+
                     '<td>' +
                     '<div class="form-group input-group">' +
-                    '<input id="monthly_income_not_'+i+'" name="monthly_income_not['+i+']" type="text" class="monthly_income_not form-control allowNumber monthly_income_total_not" readonly="readonly" autocomplete="off">'+
+                    '<input id="monthly_income_not_'+i+'" name="monthly_income_not['+i+']" type="text" class="cal_incom monthly_income_not form-control allowNumber monthly_income_total_not" readonly="readonly" autocomplete="off">'+
                     '<span class="input-group-addon">រៀល</span>' +
                     '</div>' +
                     '</td>'+
@@ -2813,27 +2829,6 @@
             },
             error: function (report){
                 console.log(report);
-            }
-        });
-    });
-
-    $("#hospital").change(function () {
-        var od_code  = $('#hospital').val();
-        var hospital = $('#hospital option:selected').text();
-
-        $.ajax({
-            type: 'GET',
-            url: "{{ route('getHealthFacilitiesCode') }}",
-            data: {'od_code': od_code,'hospital': hospital},
-            beforeSend: function(){
-                $("#loading").fadeIn();
-            },
-            success: function (data) {
-                var obj = JSON.parse(data);
-                $("#health_facilities_code").val(obj);
-            },
-            complete: function(){
-                $("#loading").fadeOut(100);
             }
         });
     });

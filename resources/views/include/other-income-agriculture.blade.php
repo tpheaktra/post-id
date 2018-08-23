@@ -29,7 +29,7 @@
                         <td colspan="6"><span style="float: right;">សរុបចំណូល ប្រចាំខែ សម្រាប់គ្រួសារទាំងមូល (គិតជារៀល):</span></td>
                         <td colspan="2">
                             <div class="input-group">
-                                <input id="total_monthly_income" class="form-control"  type="text" name="total_mon_income" readonly="readonly">
+                                <input id="total_monthly_income" class="cal_incom form-control"  type="text" name="total_mon_income" readonly="readonly">
                                 <span class="input-group-addon">រៀល</span>
                             </div>
                         </td>
@@ -49,7 +49,7 @@
                         <td colspan="6"><span style="float: right;"> 7.B.1  ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមានចំណូលពីសកម្មភាពកសិកម្ម</span></td>
                         <td colspan="2">
                             <div class="input-group">
-                                <input class="cal_incom form-control" id="income_out_farmer_score"  type="text" name="income_out_farmer_score">
+                                <input class="cal_incom otherincome form-control" id="income_out_farmer_score"  type="text" name="income_out_farmer_score">
                                 <span class="input-group-addon">ពិន្ទុ</span>
                             </div>
                         </td>
