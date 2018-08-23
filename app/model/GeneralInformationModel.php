@@ -33,7 +33,9 @@ class GeneralInformationModel extends Model
         'fa_sex',
         'fa_phone',
         'fa_relationship_id',
-        'record_status'
+        'record_status',
+        'interview_date',
+        'expire_date'
     ];
     public function hospital(){
         return $this->hasMany(HospitalModel::class, 'code', 'hf_code');

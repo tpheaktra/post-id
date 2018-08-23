@@ -45,6 +45,8 @@ class ReportController extends Controller
                                     inner join relationship fr on mf.family_relationship_id = fr.id
                                     where mf.g_information_id = '$id'");
         $address = 'ភូមិ '.$gInfo['village'][0]->name_kh.' ឃុំ/សង្កាត់ '.$gInfo['commune'][0]->name_kh.' ស្រុក/ខណ្ឌ '.$gInfo['district'][0]->name_kh.' ខេត្ត/ក្រុង '.$gInfo['provinces'][0]->name_kh;
+        $template->setValue('interview_date',$gInfo->interview_date);
+        $template->setValue('expire_date',$gInfo->expire_date);
         $template->setValue('hospital',$gInfo['hospital'][0]->name_kh);
         $template->setValue('interview_code',$gInfo->interview_code);
         $template->setValue('address',$address);
@@ -95,13 +97,13 @@ class ReportController extends Controller
                 hf.name_kh AS hospital,
                 COUNT(*) AS num,
                 gi.hf_code, 
-                year(gi.created_at) as  `year`,
-                month(gi.created_at) as `month`
+                year(gi.interview_date) as  `year`,
+                month(gi.interview_date) as `month`
             FROM `post-id`.general_information gi
             INNER JOIN dev_pmrs_share.provinces p ON gi.g_province_id = p.code
             INNER JOIN dev_pmrs_share.health_facilities hf ON gi.hf_code = hf.code
-            WHERE YEAR(gi.created_at) = '$year'
-            GROUP BY gi.hf_code ,month(gi.created_at) , year(gi.created_at) ");
+            WHERE YEAR(gi.interview_date) = '$year'
+            GROUP BY gi.hf_code ,month(gi.interview_date) , year(gi.interview_date) ");
 
         $tmp_data = [];
         if(!empty($memberFamily) && is_array($memberFamily)){
@@ -114,7 +116,9 @@ class ReportController extends Controller
         return $tmp_data;
     }
 
-    public function generateReportByMonth($year = 2019){
+    public function generateReportByMonth($year = 2018){
+        $now   = Carbon::now();
+        $year  = $now->year;
         $memberFamily = $this->reportBymonth($year);
         if(empty($memberFamily)) {
             return Redirect::back()->with('danger','No Data');

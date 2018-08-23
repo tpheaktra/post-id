@@ -24,12 +24,13 @@
     <link href="{{asset('js/select2/select2.min.css')}}" rel="stylesheet" />
     <script src="{{asset('js/select2/select2.min.js')}}"></script>
 
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="{{asset('js/datepicker/css/datepicker.css')}}" />
+    <script type="text/javascript" src="{{asset('js/datepicker/js/bootstrap-datepicker.js')}}"></script>
 
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('js/datatables/dataTables.min.css') }}"/>--}}
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
-
 
     <link href="{{asset('css/hint.css')}}" rel="stylesheet" />
 

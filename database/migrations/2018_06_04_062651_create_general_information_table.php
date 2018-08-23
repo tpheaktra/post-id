@@ -18,6 +18,7 @@ class CreateGeneralInformationTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->nullable();
             $table->integer('od_code')->nullable();
+            $table->integer('hf_code')->nullable();
             $table->string('interview_code')->nullable();
             $table->string('g_patient')->nullable();
             $table->string('g_age')->nullable();
@@ -41,6 +42,8 @@ class CreateGeneralInformationTable extends Migration
             $table->string('fa_phone')->nullable();
             $table->integer('fa_relationship_id')->nullable();
             $table->integer('record_status')->default(1);
+            $table->date('interview_date')->nullable();
+            $table->date('expire_date')->nullable();
             $table->timestamps();
         });
     }

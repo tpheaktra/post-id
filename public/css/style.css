@@ -4,7 +4,7 @@
 body{
     font-family: 'Battambang', Helvetica,Arial,sans-serif !important;
 }
-.dropdown-menu{  left:auto !important; right:0px !important;  padding:5px !important;}
+#navbarSupportedContent .dropdown-menu{  left:auto !important; right:0px !important;  padding:5px !important;}
 .auto-hide1,
 .auto-hide{
     display: none !important;
