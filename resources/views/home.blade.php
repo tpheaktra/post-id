@@ -1882,6 +1882,7 @@
                                   <script type="text/javascript">
                                       var numRow = 0;
                                       $('#type_animals').on("change", function(e){
+                                          $('#score_animal_0').val(4);
                                           var type = this.value;
                                           var index= $(this).attr('index');
                                           //$('#num_animals').empty();
@@ -1973,8 +1974,6 @@
                                                             '<td>' +
                                                                 '<div class="form-group">'+
                                                                     '<input name="num_animals[0]" id="hend" type="text" class="cal_animal form-control allowNumber num_animals" />' +
-                                                                    // '<input autocomplete="off" name="num_animals_big[0]" id="num_animals_big" type="hidden" class="cal_animal form-control allowNumber" required="required" />' +
-                                                                    // '<input autocomplete="off" name="num_animals_small[0]" id="num_animals_small" type="hidden" class="cal_animal form-control allowNumber"  />'+
                                                                 '</div>' +
                                                             '</td>' +
                                                         '</tr>'+
@@ -2047,7 +2046,7 @@
                                     <td colspan="3"><b style="float:right">7.A.1 ការចិញ្ចឹមសត្វ</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                            <input id="score_animal" name="animal_score1" type="text" required="required" class="form-control cal_animal" readonly="readonly"/>
+                                            <input id="score_animal_0" name="animal_score1" type="text" required="required" class="form-control cal_animal" readonly="readonly"/>
                                             <span class="input-group-addon">ពិន្ទុ</span>
                                         </div>
                                     </td>
@@ -2145,7 +2144,7 @@
                                                     '<td><label class="control-label">7.A.2 B  ផ្ទៃដីកសិកម្ម មិនមែនជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="l_score_2" name="other_farm_score_2" type="text" required="required" class="t_land_2 form-control allowFlot"  /><span class="input-group-addon">ពិន្ទុ</span>'+
+                                                            '<input autocomplete="off" id="l_score_2" name="other_farm_score_2" type="text" required="required" class="t_land_2 form-control allowFlot"  readonly/><span class="input-group-addon">ពិន្ទុ</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -2238,7 +2237,7 @@
                                         '<td><label class="control-label">7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowFlot" /><span class="input-group-addon">ពិន្ទុ</span>'+
+                                        '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowFlot" readonly/><span class="input-group-addon">ពិន្ទុ</span>'+
                                         '</div>'+
                                         '</td>' +
                                         '</tr>' +
@@ -2476,7 +2475,7 @@
 //                                                        '</td>' +
                                                         '<td>' +
                                                             '<div class="input-group add_debt_duration">' +
-                                                                '<input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="" id="score_money">' +
+                                                                '<input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="" id="score_money" readonly>' +
                                                                 '<span class="input-group-addon">ពិន្ទុ</span>' +
                                                             '</div>'+
                                                         '</td>'+
@@ -2517,14 +2516,7 @@
                         </div>
                     </div>
 
-                    <hr><hr>
-                    <div class="col-sm-12">
-                        <p>11. វ័យពលកម្ម (ចន្លោះពី១៨ឆ្នាំដល់៦៥ឆ្នាំ) </p>
-                        <div class="input-group add_debt_duration" style="width: 300px;">
-                            <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score">
-                            <span class="input-group-addon">ពិន្ទុ</span>
-                        </div>
-                    </div>
+                    <hr>
                     <div class="col-sm-12"><hr></div>
                     <div class="col-sm-12">
                         <!-- <a  class="pull-left btn btn-default print-link3"><img src="" width="30"></a> -->

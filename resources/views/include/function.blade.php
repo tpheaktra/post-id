@@ -514,8 +514,24 @@
             var type = this.value;
             var index= $(this).attr('index');
             // console.log(numRow + '==' + index + ' ---- ' + type);
-            if ((type == 2 || type == 3)) {
-
+            if (type == 2) {
+                var sheep = '<table class="table table-bordered">' +
+                    '<tr>' +
+                    '<th>ចំនួនសត្វ</th>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td>' +
+                    '<div class="form-group">' +
+                    '<input name="num_animals['+numRow+']" id="num_sheep" type="text" class="cal_animal form-control allowNumber num_animals"  />' +
+                    '</div>' +
+                    '</td>' +
+                    '</tr>' +
+                    '</table>';
+                var noted = '<input autocomplete="off" name="note_animals['+numRow+']" type="text" class="cal_animal form-control"  />';
+                $('#noted_'+index).html(noted);
+                $('#num_animals_'+(index)).html(sheep);
+                AllowNumber();
+            }else if( type == 3 ){
                 var duk = '<table class="table table-bordered">' +
                     '<tr>' +
                     '<th>ចំនួនសត្វ</th>' +
@@ -523,9 +539,7 @@
                     '<tr>' +
                     '<td>' +
                     '<div class="form-group">' +
-                    '<input name="num_animals['+numRow+']" id="num_animals" type="text" class="cal_animal form-control allowNumber num_animals"  />' +
-                    '<input autocomplete="off" name="num_animals_big['+numRow+']" id="num_animals_big" type="hidden" class="cal_animal form-control allowNumber" required="required" />' +
-                    '<input autocomplete="off" name="num_animals_small['+numRow+']" id="num_animals_small" type="hidden" class="cal_animal form-control allowNumber"  />'+
+                    '<input autocomplete="off" name="num_animals_big['+numRow+']" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />' +
                     '</div>' +
                     '</td>' +
                     '</tr>' +
@@ -534,7 +548,19 @@
                 $('#noted_'+index).html(noted);
                 $('#num_animals_'+(index)).html(duk);
                 AllowNumber();
-            } else if (type == 1) {//$('#num_animals_'+ty).empty();
+
+                $('.cal_animal').change(function(){
+                  var num = $('#num_animals').val();
+                  var answer = 0;
+                  if( num>=1 && num < 3){
+                    //$('#animal_score').val(4);
+                     answer = 4;
+                  }else{
+                     answer = 0;
+                  }
+                  $('#score_animal').val(answer);
+                });
+            }else if (type == 1) {//$('#num_animals_'+ty).empty();
                 var cow = '<table class="table table-bordered" align="center">' +
                     '<tr>' +
                     '<th>ចំនួនសត្វធំ</th>' +

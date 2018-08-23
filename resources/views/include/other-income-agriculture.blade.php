@@ -49,7 +49,7 @@
                         <td colspan="6"><span style="float: right;"> 7.B.1  ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមានចំណូលពីសកម្មភាពកសិកម្ម</span></td>
                         <td colspan="2">
                             <div class="input-group">
-                                <input class="cal_incom otherincome form-control" id="income_out_farmer_score"  type="text" name="income_out_farmer_score">
+                                <input class="cal_incom otherincome form-control" id="income_out_farmer_score"  type="text" name="income_out_farmer_score" readonly>
                                 <span class="input-group-addon">ពិន្ទុ</span>
                             </div>
                         </td>
@@ -105,7 +105,7 @@
                     <td colspan="6"><span style="float: right;">7.B.2 ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្ម</span></td>
                     <td>
                         <div class="input-group">
-                            <input class="cal_incom form-control" id="income_out_farmer_score_2"  type="text" name="income_out_farmer_score_2">
+                            <input class="cal_incom form-control" id="income_out_farmer_score_2"  type="text" name="income_out_farmer_score_2" readonly>
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </td>
@@ -114,11 +114,21 @@
             </table>
 
             <table>
-                <tr>
+                <tr style="line-height: 50px;">
                     <td><b style="float: right;"> 7. C កុមារ(អាយុក្រោម ១៨ឆ្នាំ )រកចំណូល</b> </td>
                     <td>
                         <div class="input-group">
-                            <input class="form-control" id="income_child_score"  type="text" name="income_child_score">
+                            <input class="form-control" id="income_child_score"  type="text" name="income_child_score" readonly value="4">
+                            <span class="input-group-addon">ពិន្ទុ</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b style="float: right;">11. វ័យពលកម្ម (ចន្លោះពី១៨ឆ្នាំដល់៦៥ឆ្នាំ) </b>
+                    </td>
+                    <td>
+                        <div class="input-group add_debt_duration" style="width: 300px;">
+                            <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly value="2.5" >
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </td>
