@@ -85,7 +85,7 @@
                         <td colspan="6"><span style="float: right;">សរុបចំណូល ប្រចាំខែ សម្រាប់គ្រួសារទាំងមូល (គិតជារៀល):</span></td>
                         <td colspan="2">
                             <div class="input-group">
-                                <input id="total_monthly_income_not" class="form-control"  type="text" name="total_mon_income_not" readonly="readonly">
+                                <input id="total_monthly_income_not" class="cal_incom_2 form-control"  type="text" name="total_mon_income_not" readonly="readonly">
                                 <span class="input-group-addon">រៀល</span>
                             </div>
                         </td>
@@ -95,7 +95,7 @@
                     <td colspan="6"><span style="float: right;">ចំណូលក្រៅពីកសិកម្មជាមធ្យមប្រចាំខែសម្រាប់មនុស្សម្នាក់​​ (១) :</span></td>
                     <td colspan="2">
                         <div class="input-group">
-                            <input class="cal_incom form-control" id="total_inc_person_not"  type="text" name="total_inc_person_not" readonly="readonly">
+                            <input class="cal_incom_2 form-control" id="total_inc_person_not"  type="text" name="total_inc_person_not" readonly="readonly">
                             <span class="input-group-addon">រៀល</span>
                         </div>
                     </td>
@@ -105,12 +105,9 @@
                     <td colspan="6"><span style="float: right;">7.B.2 ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្ម</span></td>
                     <td>
                         <div class="input-group">
-                            <input class="cal_incom form-control" id="income_out_farmer_score"  type="text" name="income_out_farmer_score">
+                            <input class="cal_incom form-control" id="income_out_farmer_score_2"  type="text" name="income_out_farmer_score_2">
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="show" id="showtype">
                     </td>
                 </tr>
                 </tfoot>

@@ -824,13 +824,13 @@
             '</td>'+
             '<td>'+
             '<div class="form-group input-group">'+
-            '<input id="average_amount_not_'+num_5+'" name="average_amount_not['+num_5+']" type="text" class="average_amount_not form-control allowNumber otherincome_not" required="required" autocomplete="off">'+
+            '<input id="average_amount_not_'+num_5+'" name="average_amount_not['+num_5+']" type="text" class="cal_incom_2 average_amount_not form-control allowNumber otherincome_not" required="required" autocomplete="off">'+
             '<span class="input-group-addon">រៀល</span>'+
             '</div>'+
             '</td>'+
             '<td>' +
             '<div class="form-group input-group">' +
-            '<input id="monthly_income_not_'+num_5+'" name="monthly_income_not['+num_5+']" type="text" class="monthly_income_not form-control allowNumber monthly_income_total_not" readonly="readonly" autocomplete="off">'+
+            '<input id="monthly_income_not_'+num_5+'" name="monthly_income_not['+num_5+']" type="text" class="cal_incom_2 monthly_income_not form-control allowNumber monthly_income_total_not" readonly="readonly" autocomplete="off">'+
             '<span class="input-group-addon">រៀល</span>' +
             '</div>' +
             '</td>'+
@@ -868,6 +868,25 @@
                 $('#total_inc_person_not').val(tot/totalperson);
             }
         });
+         $('.cal_incom_2').change(function(){
+               var total_per = $('#total_inc_person_not').val();
+                    var money_score = 0;
+                    if(total_per < 40000 ){
+                      money_score = 4;
+                    }else if(total_per>=40000 && total_per < 70000){
+                      money_score = 2;
+                    }else if(total_per>=70000 && total_per< 100000){
+                      money_score = 0;
+                    }else if(total_per>=100000 && total_per< 125000){
+                      money_score = -3;
+                    }else if(total_per>=125000 && total_per < 1500000){
+                      money_score = -9;
+                    }else if(total_per >200000){
+                      money_score = -12;
+                    }else{
+                      money_score = 0;
+                    }$('#income_out_farmer_score_2').val(money_score);
+            });
     });
 
     function reOrder_other_income_not(){

@@ -2878,19 +2878,19 @@
 
                     '<td>' +
                     '<div class="form-group input-group add_unit_in_month_not">' +
-                    '<input id="unit_in_month_not_'+i+'" name="unit_in_month_not['+i+']" type="text" class="cal_incom unit_in_month_not form-control allowNumber otherincome_not" autocomplete="off">'+
+                    '<input id="unit_in_month_not_'+i+'" name="unit_in_month_not['+i+']" type="text" class="cal_incom_2 unit_in_month_not form-control allowNumber otherincome_not" autocomplete="off">'+
                     '<span class="input-group-addon">ថ្ងៃ</span>' +
                     '</div>' +
                     '</td>'+
                     '<td>'+
                     '<div class="form-group input-group add_average_amount_not">'+
-                    '<input id="average_amount_not_'+i+'" name="average_amount_not['+i+']" type="text" class="cal_incom average_amount_not form-control allowNumber otherincome_not"  autocomplete="off">'+
+                    '<input id="average_amount_not_'+i+'" name="average_amount_not['+i+']" type="text" class="cal_incom_2 average_amount_not form-control allowNumber otherincome_not"  autocomplete="off">'+
                     '<span class="input-group-addon">រៀល</span>'+
                     '</div>'+
                     '</td>'+
                     '<td>' +
                     '<div class="form-group input-group">' +
-                    '<input id="monthly_income_not_'+i+'" name="monthly_income_not['+i+']" type="text" class="cal_incom monthly_income_not form-control allowNumber monthly_income_total_not" readonly="readonly" autocomplete="off">'+
+                    '<input id="monthly_income_not_'+i+'" name="monthly_income_not['+i+']" type="text" class="cal_incom_2 monthly_income_not form-control allowNumber monthly_income_total_not" readonly="readonly" autocomplete="off">'+
                     '<span class="input-group-addon">រៀល</span>' +
                     '</div>' +
                     '</td>'+
@@ -2934,7 +2934,25 @@
                         $('#total_inc_person_not').val((tot/totalperson).toFixed(2));
                     }
                 });
-
+                $('.cal_incom_2').change(function(){
+                 var total_per = $('#total_inc_person_not').val();
+                      var money_score = 0;
+                      if(total_per < 40000 ){
+                        money_score = 4;
+                      }else if(total_per>=40000 && total_per < 70000){
+                        money_score = 2;
+                      }else if(total_per>=70000 && total_per< 100000){
+                        money_score = 0;
+                      }else if(total_per>=100000 && total_per< 125000){
+                        money_score = -3;
+                      }else if(total_per>=125000 && total_per < 1500000){
+                        money_score = -9;
+                      }else if(total_per >200000){
+                        money_score = -12;
+                      }else{
+                        money_score = 0;
+                      }$('#income_out_farmer_score_2').val(money_score);
+              });
             }
             step2Row++;
             step2Row5++;
