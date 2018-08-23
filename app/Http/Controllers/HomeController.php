@@ -306,6 +306,8 @@ class HomeController extends Controller
         DB::beginTransaction();
         //check validation
         $this->validate($request, [
+            'interview_date' => 'required',
+            'expire_date'    => 'required',
             'hospital'       => 'required',
             'interview_code' => 'required',
             'g_patient'      => 'required',
@@ -378,6 +380,8 @@ class HomeController extends Controller
                 'fa_sex'              =>$request->fa_sex,
                 'fa_phone'            =>$request->fa_phone,
                 'fa_relationship_id'  =>$request->fa_relationship,
+                'interview_date'     => $request->interview_date,
+                'expire_date'        => $request->expire_date,
             );
             $gn_info = GeneralInformationModel::create($data);
 
