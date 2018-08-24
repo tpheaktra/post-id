@@ -980,13 +980,7 @@
                                     <td colspan="7"><b style="float: right;">10.  ការអប់រំ (មើលចម្លើយនៅក្នុងតារាងផ្នែក ខ)</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                           <input autocomplete="off" id="edu_score"  type="text" required="required" class="cal_edu form-control allowNumber" name="edu_score"​​ readonly="readonly" /><span class="input-
-
-
-
-
-
-                                           -addon">ពិន្ទុ</span>
+                                           <input autocomplete="off" id="edu_score"  type="text" required="required" class="cal_edu form-control allowNumber" name="edu_score"​​ readonly="readonly" /><span class="input-addon">ពិន្ទុ</span>
                                         </div>
                                     </td>
                                     <td></td>
@@ -1555,12 +1549,15 @@
                                     <table class="tb_grid table table-bordered table-striped" width="100%">
                                         <thead>
                                             <tr>
-                                                <th>ល.រ</th>
-                                                <th>ប្រភេទសម្ភារប្រើបា្រស់</th>
-                                                <th>ចំនួន</th>
-                                                <th>តម្លៃទីផ្សារ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title=" ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា"></a></th>
-                                                <th>តម្លៃ​សរុប (រៀល)</th>
-                                                <th>សកម្មភាព</th>
+                                                <th rowspan="2">ល.រ</th>
+                                                <th rowspan="2">ប្រភេទសម្ភារប្រើបា្រស់</th>
+                                                <th colspan="2">តម្លៃទីផ្សារ ប្រសិន​លក់​</th>
+                                                <th rowspan="2">តម្លៃ​សរុប (រៀល)</th>
+                                                <th rowspan="2">សកម្មភាព</th>
+                                            </tr>
+                                            <tr>
+                                                <th>បរិមាណ</th>
+                                                <th>តម្លៃ</th>
                                             </tr>
                                         </thead>
                                         <tbody class="new_rows_1">
@@ -1739,12 +1736,15 @@
                         <table class="tb_grid table table-bordered table-striped" width="100%">
                             <thead>
                             <tr>
-                                <th>ល.រ</th>
-                                <th>ប្រភេទសម្ភារប្រើបា្រស់</th>
-                                <th>ចំនួន</th>
-                                <th>តម្លៃទីផ្សារ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title=" ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា"></a></th>
-                                <th>តម្លៃ​សរុប (រៀល)</th>
-                                <th>សកម្មភាព</th>
+                                <th rowspan="2">ល.រ</th>
+                                <th rowspan="2">ប្រភេទសម្ភារប្រើបា្រស់</th>
+                                <th colspan="2">តម្លៃទីផ្សារ ប្រសិន​លក់​វា​ចេញ</th>
+                                <th rowspan="2">តម្លៃ​សរុប (រៀល)</th>
+                                <th rowspan="2">សកម្មភាព</th>
+                            </tr>
+                            <tr>
+                                <th>បរិមាណ</th>
+                                <th>តម្លៃ</th>
                             </tr>
                             </thead>
                             <tbody class="new_rows_2">
