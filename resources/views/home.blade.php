@@ -649,7 +649,7 @@
                                                edu_row++;
                                                var row = $('.new_rows tr.myrow').length;
                                                var totalPople = $('.new_rows tr.myrow').length+1;
-                                               document.getElementById('total_people').value =totalPople;
+                                               $('#total_people').val(totalPople);
 
                                                if(row >= 10){
                                                    // $('#add_rows').hide();
@@ -980,13 +980,7 @@
                                     <td colspan="7"><b style="float: right;">10.  ការអប់រំ (មើលចម្លើយនៅក្នុងតារាងផ្នែក ខ)</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                           <input autocomplete="off" id="edu_score"  type="text" required="required" class="cal_edu form-control allowNumber" name="edu_score"​​ readonly="readonly" /><span class="input-
-
-
-
-
-
-                                           -addon">ពិន្ទុ</span>
+                                           <input autocomplete="off" id="edu_score"  type="text" required="required" class="cal_edu form-control allowNumber" name="edu_score"​​ readonly="readonly" /><span class="input-group-addon">ពិន្ទុ</span>
                                         </div>
                                     </td>
                                     <td></td>
@@ -2698,6 +2692,7 @@
             $('#total_inc_person_not').empty();
             $('#income_out_farmer_score').empty();
            // alert(row_num);
+
             for(var i=0; i<row_num; i++) {
 
 
