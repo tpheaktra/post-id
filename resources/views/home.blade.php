@@ -42,23 +42,23 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div class="col-sm-6">
-                                <table class="pull-right">
-                                    <tr>
-                                        <td width="35%"><label class="control-label">ថ្ងៃផុតកំណត់:</label></td>
-                                        <td width="65%">
-                                            <div class="form-group">
-                                                <div class="input-group date expire_date">
-                                                    <input type="text" class="form-control" id="expire_date" name="expire_date"/>
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                            {{--<div class="col-sm-6">--}}
+                                {{--<table class="pull-right">--}}
+                                    {{--<tr>--}}
+                                        {{--<td width="35%"><label class="control-label">ថ្ងៃផុតកំណត់:</label></td>--}}
+                                        {{--<td width="65%">--}}
+                                            {{--<div class="form-group">--}}
+                                                {{--<div class="input-group date expire_date">--}}
+                                                    {{--<input type="text" class="form-control" id="expire_date" name="expire_date"/>--}}
+                                                    {{--<span class="input-group-addon">--}}
+                                                        {{--<span class="glyphicon glyphicon-calendar"></span>--}}
+                                                    {{--</span>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</td>--}}
+                                    {{--</tr>--}}
+                                {{--</table>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
 
@@ -66,33 +66,38 @@
 
                         var nowTemp = new Date();
                         var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-
                         var checkin = $('#current_date').datepicker({
                             autoOpen: false,
                             showOnFocus: false,
                             focus: false,
                             format: "yyyy-mm-dd",
-                            onRender: function(date) {
-                                return date.valueOf() < now.valueOf() ? 'disabled' : '';
-                            }
-                        }).on('changeDate', function(ev) {
-                            if (ev.date.valueOf() > checkout.date.valueOf()) {
-                                var newDate = new Date(ev.date)
-                                newDate.setDate(newDate.getDate() + 1);
-                                checkout.setValue(newDate);
-                            }
-                            checkin.hide();
-                            $('#expire_date').focus();
-                        }).data('datepicker');
-
-                        var checkout = $('#expire_date').datepicker({
-                            format: "yyyy-mm-dd",
-                            onRender: function(date) {
-                                return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-                            }
-                        }).on('changeDate', function(ev) {
-                            checkout.hide();
-                        }).data('datepicker');
+                        });
+//                        var checkin = $('#current_date').datepicker({
+//                            autoOpen: false,
+//                            showOnFocus: false,
+//                            focus: false,
+//                            format: "yyyy-mm-dd",
+//                            onRender: function(date) {
+//                                return date.valueOf() < now.valueOf() ? 'disabled' : '';
+//                            }
+//                        }).on('changeDate', function(ev) {
+//                            if (ev.date.valueOf() > checkout.date.valueOf()) {
+//                                var newDate = new Date(ev.date)
+//                                newDate.setDate(newDate.getDate() + 1);
+//                                checkout.setValue(newDate);
+//                            }
+//                            checkin.hide();
+//                            $('#expire_date').focus();
+//                        }).data('datepicker');
+//
+//                        var checkout = $('#expire_date').datepicker({
+//                            format: "yyyy-mm-dd",
+//                            onRender: function(date) {
+//                                return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+//                            }
+//                        }).on('changeDate', function(ev) {
+//                            checkout.hide();
+//                        }).data('datepicker');
 
                     </script>
                     <div class="col-sm-12">
