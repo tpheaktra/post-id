@@ -340,3 +340,8 @@ legend.scheduler-border {
 }
 .dataTables_wrapper tr td:nth-child(1),
 .dataTables_wrapper tr td:nth-child(7){text-align: center;}
+.score-num{
+    color: #153899;
+    font-size: 22px !important;
+    text-align: center;
+}

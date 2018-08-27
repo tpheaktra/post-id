@@ -108,7 +108,9 @@
         <div class="container">
             <div class="wrap-home">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12"><img src="{{asset('images/banner-top.jpg')}}" width="99%"></div>
+                    
+                    <!-- <div class="col-sm-12">
                         <div class="logo-home">
                             <table style="margin:auto;">
                                 <tbody>
@@ -125,7 +127,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
 

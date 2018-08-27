@@ -118,7 +118,7 @@
                     <td><b style="float: right;"> 7. C កុមារ(អាយុក្រោម ១៨ឆ្នាំ )រកចំណូល</b> </td>
                     <td>
                         <div class="input-group">
-                            <input class="form-control" id="income_child_score"  type="text" name="income_child_score" readonly value="4">
+                            <input class="cal_child form-control" id="income_child_score"  type="text" name="income_child_score" readonly value="4">
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </td>
@@ -173,5 +173,9 @@
                 });
             });
         }
+    });
+
+    $('.cal_child').change(function(){
+        $('#income_child_score').val(5);
     });
 </script>
