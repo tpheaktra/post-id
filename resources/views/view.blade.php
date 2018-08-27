@@ -132,16 +132,47 @@
 	                  	<h4>1.អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ</h4>
 	                  	<p>ទិន្នន័យបានមកពី :​ តារា  ខ) ចំនួនសមាជិកគ្រួសារ និង គ.៣) ផ្ទៃក្រឡាទីលំនៅ</p>
 	                  		<p style="padding: 2px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th>មាតិកា</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value=""​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="{{$value->toilet}}"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>-ចំពោះចំនួនមនុស្សពី ១-៣នាក់              : ផ្ទៃក្រឡា ≤ 20 ម៉ែត្រក្រឡា</p>
+			                  				<p style="background: #ccc;">-ចំពោះចំនួនមនុស្សពី ១-៣នាក់</p>
+			                  				<p>-ចំពោះចំនួនមនុស្សពី ៤-៦នាក់               : ផ្ទៃក្រឡា  ≤ 30 ម៉ែត្រក្រឡា </p>
+			                  				<p>-ចំពោះចំនួនមនុស្សពី ៧-១០នាក់            : ផ្ទៃក្រឡា  ≤ 40 ម៉ែត្រក្រឡា</p>
+			                  				<p>-ចំពោះចំនួនមនុស្សលើសពី១០នាក់         : ផ្ទៃក្រឡា  ≤ 50 ម៉ែត្រក្រឡា </p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">8</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>-ចំពោះចំនួនមនុស្សពី ១-៣នាក់               : 20ម៉ែត្រក្រឡា < ផ្ទៃក្រឡា ≤ 30ម៉ែត្រក្រឡា</p>
+			                  				<p>-ចំពោះចំនួនមនុស្សពី ៤-៦នាក់                : 30ម៉ែត្រក្រឡា < ផ្ទៃក្រឡា  ≤ 40ម៉ែត្រក្រឡា</p>
+			                  				<p>-ចំពោះចំនួនមនុស្សពី ៧-១០នាក់             : 40ម៉ែត្រក្រឡា < ផ្ទៃក្រឡា ≤ 55ម៉ែត្រក្រឡា</p>
+			                  				<p>-ចំពោះចំនួនមនុស្សលើសពី១០នាក់         : 50ម៉ែត្រក្រឡា < ផ្ទៃក្រឡា ≤ 65 ម៉ែត្រក្រឡា</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">6</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>-ចំពោះចំនួនមនុស្សពី ១-៣នាក់               : 30ម៉ែត្រក្រឡា < ផ្ទៃក្រឡា ≤ 40 ម៉ែត្រក្រឡា</p>
+			                  				<p>-ចំពោះចំនួនមនុស្សពី ៤-៦នាក់                : 40ម៉ែត្រក្រឡា < ផ្ទៃក្រឡា ≤ 50 ម៉ែត្រក្រឡា</p>
+			                  				<p>-ចំពោះចំនួនមនុស្សពី ៧-១០នាក់             : 55ម៉ែត្រក្រឡា < ផ្ទៃក្រឡា ≤ 65 ម៉ែត្រក្រឡា</p>
+			                  				<p>-ចំពោះចំនួនមនុស្សលើសពី១០នាក់          : 65ម៉ែត្រក្រឡា < ផ្ទៃក្រឡា ≤ 75 ម៉ែត្រក្រឡា</p>
+			                  			</td>
+			                  			<td width="30%"><h3 align="center">3</h3></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>-ចំពោះចំនួនមនុស្សពី ១-៣នាក់                 : 40 ម៉ែត្រក្រឡា < ផ្ទៃក្រឡា</p>
+			                  				<p>-ចំពោះចំនួនមនុស្សពី ៤-៦នាក់                  : 50 ម៉ែត្រក្រឡា < ផ្ទៃក្រឡា</p>
+			                  				<p>-ចំពោះចំនួនមនុស្សពី ៧-១០នាក់              : 65 ម៉ែត្រក្រឡា < ផ្ទៃក្រឡា</p>
+			                  				<p>-ចំពោះចំនួនមនុស្សលើសពី១០នាក់          : 75 ម៉ែត្រក្រឡា < ផ្ទៃក្រឡា</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
@@ -152,55 +183,91 @@
 	                  	<h4>2.បង្គន់អនាម័យ (ចាក់ទឹក/ស្ងួត)</h4>
 	                  		<p>ទិន្នន័យបានមកពី :​ តារា</p>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="4"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>-គ្មានបង្គន់អនាម័យប្រើប្រាស់</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">4</span></td>
+			                  		</tr>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>-មានបង្គន់អនាម័យប្រើរួមជាមួយគ្រួសារដទៃទៀត</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">2.5</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>-មានបង្គន់អនាម័យផ្ទាល់ខ្លួន</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  	</p>
 	                  </div>
 	                  <div class="col-sm-12"><hr></div>
 	                  <div class="col-md-12">
-	                  	<h4>3.ស្ថានភាពផ្ទះ</h4>
-	                  	<p>- 3A   គ្រួសារដែលរស់នៅផ្ទះផ្ទាល់ខ្លួន ឬស្នាក់នៅជាមួយអ្នកដ៏ទៃ</p>
-	                  	<p>- 3A 1 : ស្ថានភាពដំបូលផ្ទះ (តើដំបូលផ្ទះសង់ពីអ្វី?)</p>
+	                  	<h4 style="font-weight: bold;">3.ស្ថានភាពផ្ទះ</h4>
+	                  	<p style="font-weight: bold;">- 3A   គ្រួសារដែលរស់នៅផ្ទះផ្ទាល់ខ្លួន ឬស្នាក់នៅជាមួយអ្នកដ៏ទៃ</p>
+	                  	<p style="font-weight: bold;">- 3A 1 : ស្ថានភាពដំបូលផ្ទះ (តើដំបូលផ្ទះសង់ពីអ្វី?)</p>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">សំណង់</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="ស្បូវ ,ក្បឿង"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="4"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>- ដំបូលប្រក់ស្បូវ, ស្លឹក, តង់កៅស៊ូពណ៌/ប្លាស្ទីក, ស័ង្កសីចាស់/សំណល់, ឈើចាស់ៗ, សម្ភារស្រាលៗដទៃទៀត ។</p> 
+			                  			</td>
+			                  			<td width="30%"><h3 align="center">6</h3></td>
+			                  		</tr>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>- ដំបូលប្រក់លាយគ្នាមានស័ង្កសីចាស់/សំណល់ខ្លះនិង មានលាយថ្មីខ្លះៗ </p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">4</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>-  ក្បឿង, ហ្វីប្រូស៊ីម៉ងត៍, បេតុង, ស័ង្កសីថ្មី</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
-	                  	<p>- 3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ (សម្រាប់គ្រួសារដែលរស់នៅផ្ទាស់ខ្លួនតែប៉ុណ្ណោះ)</p>
+	                  	<p style="font-weight: bold;">- 3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ (សម្រាប់គ្រួសារដែលរស់នៅផ្ទាស់ខ្លួនតែប៉ុណ្ណោះ)</p>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">សំណង់</th>
+	                    				<th>មាតិកា</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="ឈើ"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="6"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>- ធ្វើពីស្លឹកត្នោត, ស្បូវ, ឬស្សី, គ្មានជញ្ជាំង</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">6</span></td>
+			                  		</tr>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>-ធ្វើពីឈើ</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">4</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>-ឥដ្ឋ, ស៊ីម៉ង់ </p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
-	                  	<p>- 3A 3 : ស្ថានភាពទូទៅរបស់ផ្ទះ </p>
+	                  	<p style="font-weight: bold;">- 3A 3 : ស្ថានភាពទូទៅរបស់ផ្ទះ </p>
 	                  		<p style="padding: 5px;">
 			                  	<table class="table" style="border: 1px solid #ccc !important;">
 			                  		<tr style="background: #f9f3f3;">
@@ -215,7 +282,7 @@
 			                  		</tr>
 			                  	</table>
 		                  </p>
-	                  	<p>- 3B   គ្រួសារដែលនៅផ្ទះជួលគេ     តម្លៃជួលផ្ទះ (ប្រើសម្រាប់តែគ្រួសារដែលជួលផ្ទះគេ)</p>
+	                  	<p style="font-weight: bold;">- 3B   គ្រួសារដែលនៅផ្ទះជួលគេ     តម្លៃជួលផ្ទះ (ប្រើសម្រាប់តែគ្រួសារដែលជួលផ្ទះគេ)</p>
 	                  		<p style="padding: 5px;">
 			                  	<table class="table" style="border: 1px solid #ccc !important;">
 			                  		<tr style="background: #f9f3f3;">
