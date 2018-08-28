@@ -58,7 +58,8 @@ body{
     display: table;
     width: 100%;
     position: relative;
-    margin-top: 40px;
+    margin-top: 5px;
+    float: left;
 }
 
 .stepwizard-step button[disabled] {
@@ -93,7 +94,7 @@ body{
     border-radius: 15px;
 }
 
-label{font-weight: 100 !important; cursor: pointer;}
+label{font-weight: 100 !important;}
 .navbar-nav>li{ list-style: none;  line-height: 38px;}
 .header .navbar-nav>li>a{
     padding: 6px 7px !important;
@@ -114,7 +115,7 @@ label{font-weight: 100 !important; cursor: pointer;}
     text-decoration: underline;
 }
 .form-group-post h3{
-    color: #153899;
+    color: #428bca;
     font-size: 22px !important;
 }
 
@@ -152,7 +153,7 @@ label{font-weight: 100 !important; cursor: pointer;}
 .form-control{
     border-radius: 2px !important;
 }
-select.form-control:not([size]):not([multiple]){ height: auto !important; }
+
 .table>thead>tr>th{ border-bottom: 1px solid #dadada !important;
     text-align: center; }
 .has-noted{ color: #dc3545; }
@@ -345,3 +346,43 @@ legend.scheduler-border {
     font-size: 22px !important;
     text-align: center;
 }
+input[type="radio"], input[type="checkbox"]{
+    cursor: pointer;
+}
+select.form-control:not([size]):not([multiple]),
+[readonly]{
+    height: auto !important;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    cursor: not-allowed;
+    background-color: #eee;
+}
+#tolet,
+.add_toilet,
+.add_household_family{
+    float: left;
+    width: 100%;
+    padding-left: 10px;
+}
+.add_toilet ul,
+.add_toilet_1 ul,
+.add_toilet_2 ul,
+.add_household_family table{
+    margin-left: 10px;
+}
+.stepwizard-step .btn{
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+    width: 30px;
+    height: 30px;
+    line-height: 20px;
+}
+#household_family_id{ margin-top: 10px;}
+#household_family_id table{ margin-left: 50px;}
