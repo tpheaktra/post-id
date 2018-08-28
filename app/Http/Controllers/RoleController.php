@@ -31,7 +31,7 @@ class RoleController extends Controller
     public function create()
     {
         $permissions    = Permission::all();
-        $permission_sub = DB::select('select distinct group_id From permissions');
+        $permission_sub = DB::select('select distinct parent_id From permissions');
         return view('admin.role-create',compact('permissions','permission_sub'));
     }
 
@@ -82,7 +82,7 @@ class RoleController extends Controller
         $role = Role::find($id);
         $permissions = Permission::all();
         $role_permissions = $role->perms()->pluck('id','id')->toArray();
-        $permission_sub = DB::select('select distinct group_id From permissions');
+        $permission_sub = DB::select('select distinct parent_id From permissions');
         return view('admin.role-edit',compact('permissions','role','role_permissions','permission_sub'));
     }
 

@@ -28,7 +28,7 @@
                             <div class="col-sm-6">
                                 <table width="100%">
                                     <tr>
-                                        <td width="35%"><label class="control-label">ថ្ងៃសម្ភាសន៍:</label></td>
+                                        <td width="35%"><label class="control-label">ថ្ងៃសម្ភាសន៍ <spand class="text-danger">*</spand></label></td>
                                         <td width="65%">
                                             <div class="form-group">
                                                 <div class="input-group date current_date">
@@ -70,8 +70,10 @@
                             autoOpen: false,
                             showOnFocus: false,
                             focus: false,
-                            format: "yyyy-mm-dd",
-                        });
+                            format: "yyyy-mm-dd"
+                        }).on('changeDate', function(ev) {
+                            checkin.hide();
+                        }).data('datepicker');
 //                        var checkin = $('#current_date').datepicker({
 //                            autoOpen: false,
 //                            showOnFocus: false,
@@ -105,7 +107,7 @@
                             <div class="col-sm-6">
                                 <table width="100%">
                                     <tr>
-                                        <td width="35%"><label class="control-label">មន្ទីរពេទ្យ:</label></td>
+                                        <td width="35%"><label class="control-label">មន្ទីរពេទ្យ <spand class="text-danger">*</spand></label></td>
                                         <td width="65%">
                                             <div class="form-group add_hospital">
                                                 <select id="hospital" style="width: 100%" class="getdata form-control" name="hospital">
@@ -126,10 +128,11 @@
                             <div class="col-sm-6">
                                 <table class="pull-right">
                                     <tr>
-                                        <td width="35%"><label class="control-label">លេខកូដសម្ភាសន៍:</label></td>
-                                        <td width="65%">
+                                        <td width="40%"><label class="control-label">លេខកូដសម្ភាសន៍ <spand class="text-danger"> * </spand></label> </td>
+                                        <td width="60%">
                                             <div class="form-group">
                                                 {{ Form::text('interview_code',null,['class'=>'form-control','required'=>'required','readonly'=>'readonly','id'=>'interview_code']) }}
+                                                {{ Form::hidden('hf_code',null,['required'=>'required','readonly'=>'readonly','id'=>'health_facilities_code']) }}
                                             </div>
                                         </td>
                                     </tr>
@@ -141,7 +144,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label">ឈ្មោះអ្នកជំងឺ :</label></td>
+                                <td width="35%"><label class="control-label">ឈ្មោះអ្នកជំងឺ <spand class="text-danger">*</spand></label></td>
                                 <td width="65%">
                                    <div class="form-group">
                                        {{ Form::text('g_patient',null,['class'=>'form-control','required'=>'required']) }}
@@ -149,7 +152,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="35%"><label class="control-label"> ភេទ : </label></td>
+                                <td width="35%"><label class="control-label"> ភេទ <spand class="text-danger">*</spand> </label></td>
                                 <td width="65%">
                                    <div class="form-group"  id="g_sex">
                                        @foreach($gender as $key => $g)
@@ -166,15 +169,15 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label"> អាយុ : </label></td>
+                                <td width="35%"><label class="control-label"> អាយុ <spand class="text-danger">*</spand> </label></td>
                                 <td width="65%">
                                    <div class="form-group">
-                                       {{ Form::text('g_age',null,['class'=>'form-control allowNumber onlyNumber','required'=>'required','maxlength'=>'3']) }}
+                                       {{ Form::text('g_age',null,['class'=>'form-control allowNumber onlyNumber g_age','required'=>'required','maxlength'=>'3']) }}
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td width="35%"><label class="control-label">លេខទូរស័ព្ធ :</label></td>
+                                <td width="35%"><label class="control-label">លេខទូរស័ព្ធ <spand class="text-danger">*</spand></label></td>
                                 <td width="65%">
                                    <div class="form-group">
                                        {{ Form::text('g_phone',null,['class'=>'form-control telephone','required'=>'required','maxlength'=>'10']) }}
@@ -187,7 +190,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label">ខេត្ត : </label></td>
+                                <td width="35%"><label class="control-label">ខេត្ត <spand class="text-danger">*</spand> </label></td>
                                 <td width="65%">
                                    <div class="form-group g_province">
                                        <select id="province" style="width: 100%" class="form-control" name="g_province">
@@ -204,7 +207,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="35%"><label class="control-label"> ស្រុក : </label></td>
+                                <td width="35%"><label class="control-label"> ស្រុក <spand class="text-danger">*</spand> </label></td>
                                 <td width="65%">
                                    <div class="form-group g_district">
                                        <select id="district" style="width: 100%" class="form-control" name="g_district">
@@ -223,7 +226,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label">ឃំុ :</label></td>
+                                <td width="35%"><label class="control-label">ឃំុ <spand class="text-danger">*</spand></label></td>
                                 <td width="65%">
                                     <div class="form-group g_commune">
                                         <select id="commune" style="width: 100%" class="form-control" name="g_commune">
@@ -236,7 +239,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="35%"><label class="control-label">ភូមិ :</label></td>
+                                <td width="35%"><label class="control-label">ភូមិ <spand class="text-danger">*</spand></label></td>
                                 <td width="65%">
                                     <div class="form-group g_village">
                                         <select id="village" style="width: 100%" class="form-control" name="g_village">
@@ -254,7 +257,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label"> ទីតាំងនៅក្នុងភូមិ : </label></td>
+                                <td width="35%"><label class="control-label"> ទីតាំងនៅក្នុងភូមិ <spand class="text-danger">*</spand> </label></td>
                                 <td width="65%">
                                    <div class="form-group location">
                                        {{ Form::textarea('g_local_village',null,['class'=>'form-control','id'=>'location','maxlength'=>'300','style'=>'height: 60px;']) }}
@@ -267,21 +270,21 @@
 
                    <div class="col-sm-12"><hr> </div>
                    <div class="col-sm-12">
-                        <h4> ក.២ ព័ត៌មានអំពីអ្នកដែលផ្តល់ចំលើយ(អ្នកដែលបានសំភាសន៏)</h4>
+                        <h4> ក.២ ព័ត៌មានអំពីអ្នកដែលផ្តល់ចំលើយ(អ្នកដែលបានសំភាសន៍)</h4>
                    </div>
                    <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label">ឈ្មោះ :</label></td>
+                                <td><label class="control-label">ឈ្មោះ </label></td>
                                 <td>
                                    <div class="form-group">
-                                       {{ Form::text('inter_patient',null,['class'=>'form-control','required'=>'required']) }}
+                                       {{ Form::text('inter_patient',null,['class'=>'form-control']) }}
                                     </div>     
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label class="control-label"> ភេទ : </label></td>
+                                <td><label class="control-label"> ភេទ  </label></td>
                                 <td>
                                    <div class="form-group" id="inter_sex">
                                        @foreach($gender as $key => $g)
@@ -296,15 +299,15 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label"> អាយុ : </label></td>
+                                <td><label class="control-label"> អាយុ  </label></td>
                                 <td>
                                    <div class="form-group">
-                                       {{ Form::text('inter_age',null,['class'=>'form-control allowNumber inter_age','required'=>'required','maxlength'=>'3']) }}
+                                       {{ Form::text('inter_age',null,['class'=>'form-control allowNumber inter_age','maxlength'=>'3']) }}
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
+                                <td><label class="control-label">លេខទូរស័ព្ធ </label></td>
                                 <td>
                                    <div class="form-group">
                                        {{ Form::text('inter_phone',null,['class'=>'form-control telephone','maxlength'=>'10']) }}
@@ -317,7 +320,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="50%"><label class="control-label">ត្រូវជា(ទំនាក់ទំនងជាមួយមេគ្រួសារ) : </label></td>
+                                <td width="50%"><label class="control-label">ត្រូវជា(ទំនាក់ទំនងជាមួយមេគ្រួសារ)  </label></td>
                                 <td width="50%">
                                     <div class="form-group inter_relationship">
                                         <select style="width: 100%;" class="form-control" id="inter_relationship" name="inter_relationship">
@@ -343,7 +346,7 @@
                    <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label">ឈ្មោះ :</label></td>
+                                <td><label class="control-label">ឈ្មោះ </label></td>
                                 <td>
                                    <div class="form-group">
                                        {{ Form::text('fa_patient',null,['class'=>'form-control']) }}
@@ -351,7 +354,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label"> ភេទ : </label></td>
+                                <td><label class="control-label"> ភេទ  </label></td>
                                 <td>
                                    <div class="form-group" id="fa_sex">
                                        @foreach($gender as $key => $g)
@@ -366,7 +369,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label"> អាយុ : </label></td>
+                                <td><label class="control-label"> អាយុ  </label></td>
                                 <td>
                                    <div class="form-group">
                                        {{ Form::text('fa_age',null,['class'=>'form-control allowNumber fa_age','maxlength'=>'3']) }}
@@ -374,7 +377,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
+                                <td><label class="control-label">លេខទូរស័ព្ធ </label></td>
                                 <td>
                                    <div class="form-group">
                                        {{ Form::text('fa_phone',null,['class'=>'form-control telephone','maxlength'=>'10']) }}
@@ -387,7 +390,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="50%"><label class="control-label">ត្រូវជា(ដែលមិនមែនសមាជិកគ្រួសារ) : </label></td>
+                                <td width="50%"><label class="control-label">ត្រូវជា(ដែលមិនមែនសមាជិកគ្រួសារ)  </label></td>
                                 <td width="50%">
                                     <div class="form-group fa_relationship">
                                         <select style="width: 100%;" class="form-control" id="fa_relationship" name="fa_relationship">
@@ -407,7 +410,6 @@
                     </div>
                     <div class="col-sm-12"><hr> </div>
                     <div class="col-sm-12">
-                        <!-- <a class="btn btn-default pull-left print-link1"><img src="" width="30"></a> -->
                         <button  class="btn btn-primary nextBtn pull-right" type="button">រក្សាទុកនិងជំហានបន្ទាប់</button>
                     </div>
                 </div>
@@ -785,7 +787,7 @@
                                                        var age = Number($('#age_'+ii).val());
                                                        var currentyear = (new Date()).getFullYear();
                                                        var dob = currentyear-age;
-                                                       if(age >= 160){
+                                                       if(age >= 150){
                                                            $('#dob_'+ii).val('');
                                                        }else{
                                                            $('#dob_'+ii).val(dob);
@@ -797,7 +799,7 @@
                                                        var dob = Number($('#dob_' + ii).val());
                                                        var currentyear = (new Date()).getFullYear();
                                                        var age = currentyear - dob;
-                                                       if (dob >= currentyear || age >= 160) {
+                                                       if (dob >= currentyear || age >= 150) {
                                                            $('#age_' + ii).val('');
                                                        }
                                                        else {
@@ -811,7 +813,7 @@
                                                    $(".family_relationship").removeAttr("readonly");
                                                    var val = $(this).val();
                                                    for(var ii=1; ii<row_num; ii++) {
-                                                       console.log(index+'_'+ii);
+                                                       //console.log(index+'_'+ii);
                                                        if (index == ii && val == 1) {
                                                            $("#family_relationship_"+ii+" option[value='2']").attr('disabled', true);
                                                        } else {
@@ -1017,19 +1019,19 @@
                        <div class="col-sm-12"><hr> </div>
                        <div class="col-sm-12">
                             <h4> គ.១ ផ្ទះសម្បែងរបស់ក្រុមគ្រួសារ</h4> 
-                            <p>តើពួកគាត់រស់នៅទីកន្លែងណា? (សូម​ជ្រើរើស នៅចំលើយតែមួយ)</p>
 
                             <div class="add_household_family">
+                                <p> តើពួកគាត់រស់នៅទីកន្លែងណា? <spand class="text-danger">*</spand> (សូម​ជ្រើរើស នៅចំលើយតែមួយ)</p>
                                 <table>
                                     @foreach($household as $key => $h)
                                         <tr><td>@if($h->id == 1) ក​). @elseif($h->id == 2) ខ​). @elseif($h->id == 3) គ). @elseif($h->id == 4) ឃ​). @elseif($h->id == 5) ង​​). @endif</td>
                                             <td style="padding: 5px 10px;">
                                                  ​<input class="household_family_id" type="radio" name="household_family_id"  value="{{ $h->id }}">  {{$h->name_kh}}
                                             </td>
-                                            <td>@if($h->id == 5) <label id="household_family_id"> </label>@endif</td>
                                         </tr>
                                     @endforeach
                                 </table>
+                                <div id="household_family_id" class="col-sm-6"></div>
                             </div>
 
                              <script>
@@ -1043,7 +1045,17 @@
                                      $('#building-year').empty();
                                      $('#household_area').empty();
                                      if(houshold == 5){
-                                         $('#household_family_id').append('ឈ្មោះស្ថាប័ន : <input class="form-control-custome" type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name" autocomplete="off" required="required"> លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន : <input maxlength="10" class="allowNumber form-control-custome" type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone" autocomplete="off" required="required">');
+                                         $('#household_family_id').html(
+                                             '<table class="tb_grid table table-bordered table-striped"><tr><th>ឈ្មោះស្ថាប័ន <spand class="text-danger">*</spand></th><th>លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន <spand class="text-danger">*</spand></th></tr>' +
+                                                 '<tr>' +
+                                                    '<td>' +
+                                                        '<input class="form-control-custome form-control" type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name" autocomplete="off" required="required">'+
+                                                    '</td>' +
+                                                     '<td>' +
+                                                        '<input maxlength="10" class="allowNumber form-control-custome form-control" type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone" autocomplete="off" required="required">'+
+                                                     '</td>' +
+                                                 '</tr>'+
+                                             '</table>');
                                          AllowNumber();
                                      }else if(houshold == 2){
                                          $('#home-rent').append('<h4>គ.៨) សម្រាប់គ្រួសារជួលផ្ទះគេ​ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ មិនបាច់បំពេញចំណុច គ៨ ហើយរំលងទៅ គ៩"></a></h4>' +
@@ -1234,11 +1246,13 @@
                                              }
                                          });
 
-                                         var homeyourselt = '<div class="col-sm-12"><hr> </div><h4>គ.៥ ដំបូល</h4>' +
-                                             '<div class="col-sm-6">' +
-                                                 '<table width="100%">' +
+                                         var homeyourselt = '<h4>គ.៥ ដំបូល</h4>' +
+                                                 '<table width="100%" class="table table-bordered table-striped">' +
+                                                    '<thead><tr>' +
+                                                        '<th>ដំបូលធ្វើអំពី <spand class="text-danger">*</spand></th>' +
+                                                        '<th>និង​ស្ថានភាព <spand class="text-danger">*</spand></th>' +
+                                                    '</tr></thead>'+
                                                      '<tr>' +
-                                                        '<td><label class="control-label"> ដំបូលធ្វើអំពី : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group add_roof_relationship">' +
                                                                  '<select class="form-control roof_relationship cal_roof" id="roof_relationship" name="roof_made">' +
@@ -1249,13 +1263,6 @@
                                                                  '</select>' +
                                                              '</div>' +
                                                          '</td>'+
-                                                     '</tr>'+
-                                                 '</table>' +
-                                             '</div>'+
-                                             '<div class="col-sm-6">' +
-                                                 '<table width="100%">' +
-                                                     '<tr>' +
-                                                        '<td><label class="control-label">​ និង​ស្ថានភាព : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group add_r_status">' +
                                                                  '<select class="cal_roof form-control r_status" id="r_status" name="roof_status">' +
@@ -1264,21 +1271,23 @@
                                                              '</div>' +
                                                          '</td>'+
                                                      '</tr>'+
-                                                 '</table>' +
-                                             '</div>'+
-                                             '<p>'+'3A 1 : ស្ថានភាពដំបូលផ្ទះ '+'<p>'+
-                                             '<div class="form-group input-group" style="width: 300px;">'+
-                                               '<input id="roof_score" type="text" name="roof_score" class="cal_roof form-control allowNumber"​ readonly>'+
-                                               '<span class="input-group-addon">ពិន្ទុ</span>'+
-                                            '</div>';
-                                            
-                                           
+                                                    '<tr>' +
+                                                        '<td>3A 1 : ស្ថានភាពដំបូលផ្ទះ </td>' +
+                                                        '<td>' +
+                                                         '<div class="form-group input-group" style="width: 300px;">'+
+                                                            '<input id="roof_score" type="text" name="roof_score" class="cal_roof form-control allowNumber"​ readonly>'+
+                                                            '<span class="input-group-addon">ពិន្ទុ</span>'+
+                                                         '</div>'+
+                                                        '</td>' +
+                                                    '</tr>'+
+                                                 '</table>';
+
                                             var building_year = '<div class="col-sm-6">' +
                                                     '<table class="table-home table table-bordered table-striped">' +
                                                     '<thead>' +
                                                         '<tr>' +
-                                                            '<th>ផ្ទះសាងសង់នៅឆ្នាំណា?</th>' +
-                                                            '<th>តើធ្លាប់ជួសជុលឬទេ?</th>' +
+                                                            '<th>ផ្ទះសាងសង់នៅឆ្នាំណា? <spand class="text-danger">*</spand></th>' +
+                                                            '<th>តើធ្លាប់ជួសជុលឬទេ? <spand class="text-danger">*</spand></th>' +
                                                         '</tr>' +
                                                     '</thead>'+
                                                         '<tr>' +
@@ -1375,10 +1384,12 @@
 
 
                                          var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>' +
-                                             '<div class="col-sm-6">' +
-                                                 '<table width="100%">' +
+                                                 '<table width="100%" class="table table-bordered table-striped">' +
+                                                    '<thead><tr>' +
+                                                         '<th>​ជញ្ជាំងធ្វើអំពី <spand class="text-danger">*</spand></th>' +
+                                                         '<th>និង​ស្ថានភាព <spand class="text-danger">*</spand></th>' +
+                                                    '</tr></thead>' +
                                                      '<tr>' +
-                                                        '<td><label class="control-label"> ​ជញ្ជាំងធ្វើអំពី : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group add_wall_relationship">' +
                                                                  '<select class="cal_wall form-control wall_relationship" id="wall_relationship" name="walls_made">' +
@@ -1386,30 +1397,26 @@
                                                                     '@foreach($wall_made as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
                                                                  '</select>' +
                                                              '</div>' +
-                                                         '</td>'+
-                                                     '</tr>'+
-                                                 '</table>'+
-                                             '</div>'+
-                                            '<div class="col-sm-6">'+
-                                                '<table width="100%">'+
-                                                    '<tr>'+
-                                                        '<td><label class="control-label">​​ និង​ស្ថានភាព : </label></td>'+
-                                                        '<td>'+
-                                                            '<div class="form-group add_h_status">'+
-                                                                '<select class="cal_wall form-control h_status" id="h_status" name="walls_status">'+
+                                                         '</td>' +
+                                                         '<td>'+
+                                                             '<div class="form-group add_h_status">'+
+                                                                 '<select class="cal_wall form-control h_status" id="h_status" name="walls_status">'+
                                                                     '<option></option>'+
                                                                     '@foreach($house_status as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
-                                                                '</select>'+
-                                                                '</div>'+
-                                                        '</td>'+
-                                                    '</tr>'+
-                                                '</table>'+
-                                            '</div>'+
-                                            '<p>'+'3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ  '+'<p>'+
-                                             '<div class="form-group input-group" style="width: 300px;">'+
-                                               '<input id="wall_score" type="text" name="wall_score" class="cal_wall form-control allowNumber"​ readonly>'+
-                                               '<span class="input-group-addon">ពិន្ទុ</span>'+
-                                            '</div>';
+                                                                 '</select>'+
+                                                             '</div>'+
+                                                         '</td>'+
+                                                     '</tr>' +
+                                                     '<tr>' +
+                                                         '<td>3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ</td>' +
+                                                         '<td>' +
+                                                             '<div class="form-group input-group" style="width: 300px;">'+
+                                                                '<input id="wall_score" type="text" name="wall_score" class="cal_wall form-control allowNumber"​ readonly>'+
+                                                                '<span class="input-group-addon">ពិន្ទុ</span>'+
+                                                             '</div>'+
+                                                         '</td>' +
+                                                     '</tr>'+
+                                                 '</table>';
                                          
                                          $('#home-ke').append(homeke);
                                          $('.cal_wall').change(function(){
@@ -1456,10 +1463,10 @@
                        <div class="col-sm-12">
                             <h4>  គ.២ តើ​មាន​មនុស្សសរុប​ចំនួន​ប៉ុន្មាន​នាក់ រស់​នៅក្នុងផ្ទះដែលអ្នកស្នាក់នៅ
                                 <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title=" រាប់ទាំង​សមាជិក​គ្រួសារ និង​អ្នកផ្សេង"></a></h4>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <table width="100%">
                                     <tr>
-                                        <td><label class="control-label">សរុប: </label></td>
+                                        <td><label class="control-label">សរុប </label></td>
                                         <td>
                                            <div class="form-group input-group add_total_people">
                                                <input readonly="readonly" id="total_people" type="text" name="total_people" class="calculate cal t_land form-control allowNumber"​>
@@ -1476,9 +1483,9 @@
 
                         <div class="col-sm-12">
                             <h4> គ.៤ បង្គន់</h4>
-                            <h5>- តើគ្រួសាររបស់អ្នកមានបង្គន់ប្រើដែរឬទេ?</h5>
 
                             <div class="form-group add_toilet">
+                                <h5>តើគ្រួសាររបស់អ្នកមានបង្គន់ប្រើដែរឬទេ? <spand class="text-danger">*</spand></h5>
                                 <ul class="li-none">
                                     @foreach($question_totel as $key =>$val)
                                         <li>
@@ -1498,7 +1505,7 @@
                                 $('.tolet').click(function () {
                                     var tolet = $('input[name=tolet]:checked').val();
                                     $('#tolet').empty();
-                                    var tott = '<h5>- បើមាន តើជាបង្គន់ចាក់ទឹក ឬ បង្គន់ស្ងួត?</h5>' +
+                                    var tott = '<h5>បើមាន តើជាបង្គន់ចាក់ទឹក ឬ បង្គន់ស្ងួត? <spand class="text-danger">*</spand></h5>' +
                                             '<div class="add_toilet_1"><ul class="li-none">' +
                                                 '<li>' +
                                                     '<label><input style="margin-right:10px;" type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>' +
@@ -1507,7 +1514,7 @@
                                                     '<label><input style="margin-right:10px;" type="radio" name="tolet_1" value="បង្គន់ស្ងួត">  បង្គន់ស្ងួត</label>' +
                                                 '</li>' +
                                             '</ul></div>' +
-                                        '<h5>- ជាបង្គន់​របស់នរណា?</h5>' +
+                                        '<h5>ជាបង្គន់​របស់នរណា? <spand class="text-danger">*</spand></h5>' +
                                             '<div class="add_toilet_2"><ul class="li-none">' +
                                                 '<li>' +
                                                     '<label><input style="margin-right:10px;" type="radio" class="toilet_my" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>' +
@@ -1539,8 +1546,12 @@
 
 
 
-                        <div class="col-sm-12" id="home-yourself"> </div>
-                        <div class="col-sm-12" id="home-ke"></div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-6" id="home-yourself"></div>
+                                <div class="col-sm-6" id="home-ke"></div>
+                            </div>
+                        </div>
                         <div class="col-sm-12" id="general-status"></div>
 
                         <div class="col-sm-12"><hr> </div>
@@ -1555,14 +1566,14 @@
                                         <thead>
                                             <tr>
                                                 <th rowspan="2">ល.រ</th>
-                                                <th rowspan="2">ប្រភេទសម្ភារប្រើបា្រស់</th>
-                                                <th colspan="2">តម្លៃទីផ្សារ ប្រសិន​លក់​</th>
+                                                <th rowspan="2">ប្រភេទសម្ភារប្រើបា្រស់ <spand class="text-danger">*</spand></th>
+                                                <th colspan="2">តម្លៃទីផ្សារ ប្រសិន​លក់ ​</th>
                                                 <th rowspan="2">តម្លៃ​សរុប (រៀល)</th>
                                                 <th rowspan="2">សកម្មភាព</th>
                                             </tr>
                                             <tr>
-                                                <th>បរិមាណ</th>
-                                                <th>តម្លៃ</th>
+                                                <th>បរិមាណ <spand class="text-danger">*</spand></th>
+                                                <th>តម្លៃ <spand class="text-danger">*</spand></th>
                                             </tr>
                                         </thead>
                                         <tbody class="new_rows_1">
@@ -1635,7 +1646,7 @@
                         <div class="col-sm-12">
 
                             <h4>គ.១០) អគ្គិសនី</h4>
-                            <p>តើបានតបណ្តាញអគ្គិសនី (រដ្ឋឬឯកជន) ដែរឬទេ?</p>
+                            <p>តើបានតបណ្តាញអគ្គិសនី (រដ្ឋឬឯកជន) ដែរឬទេ? <spand class="text-danger">*</spand></p>
                             <div>
                                 <ul class="li-none">
                                     @foreach($question_electric as $key => $qe)
@@ -1658,8 +1669,8 @@
                                         $('#electric_yes').append('<p>ប្រសិនបានតបណ្តាញអគ្គិសនី </p>'+
                                             '<table class="tb_grid table table-bordered table-striped ">'+
                                             '<tr>'+
-                                                '<th>តម្លៃក្នុងមួយគីឡូវ៉ាត់/ម៉ោង</th>'+
-                                                '<th>ចំនួនគីឡូវ៉ាត់ដែលប្រើជាមធ្យមក្នុងមួយខែ</th>'+
+                                                '<th>តម្លៃក្នុងមួយគីឡូវ៉ាត់/ម៉ោង <spand class="text-danger">*</spand></th>'+
+                                                '<th>ចំនួនគីឡូវ៉ាត់ដែលប្រើជាមធ្យមក្នុងមួយខែ <spand class="text-danger">*</spand></th>'+
                                                 '<th>ចំណាយ​ជា​មធ្យមក្នុងមួយខែ</th>'+
                                             '</tr>'+
                                             '<tr>'+
@@ -1742,14 +1753,14 @@
                             <thead>
                             <tr>
                                 <th rowspan="2">ល.រ</th>
-                                <th rowspan="2">ប្រភេទសម្ភារប្រើបា្រស់</th>
+                                <th rowspan="2">ប្រភេទសម្ភារប្រើបា្រស់ <spand class="text-danger">*</spand></th>
                                 <th colspan="2">តម្លៃទីផ្សារ ប្រសិន​លក់​វា​ចេញ</th>
                                 <th rowspan="2">តម្លៃ​សរុប (រៀល)</th>
                                 <th rowspan="2">សកម្មភាព</th>
                             </tr>
                             <tr>
-                                <th>បរិមាណ</th>
-                                <th>តម្លៃ</th>
+                                <th>បរិមាណ <spand class="text-danger">*</spand></th>
+                                <th>តម្លៃ <spand class="text-danger">*</spand></th>
                             </tr>
                             </thead>
                             <tbody class="new_rows_2">
@@ -1822,7 +1833,7 @@
                                 <thead>
                                 <tr>
                                     <th>ល.រ</th>
-                                    <th width="20%">ប្រភេទសត្វ</th>
+                                    <th width="20%">ប្រភេទសត្វ <spand class="text-danger">*</spand></th>
                                     <th></th>
                                     <th>កំណត់សម្គាល់ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="បញ្ជាក់ បើសិនជាសត្វប្រវាស់គេ"></a></th>
                                     <th>ពិន្ទុ</th>
@@ -1834,7 +1845,7 @@
                                     <td class="auto_id">1</td>
                                     <td>
                                         <div class="form-group add_type_animals">
-                                            <select style="width: 100%;" class="0 form-control type_animals" id="type_animals" name="type_animals[0]" required="required" index="0">
+                                            <select style="width: 100%;" class="0 form-control type_animals1" id="type_animals" name="type_animals[0]" required="required" index="0">
                                                 <option></option>
                                                 @foreach($typeanimals as $key => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -1846,7 +1857,7 @@
                                     <td id="num_animals_0" class="add_ajust_animals">
                                         <table class="table table-bordered" align="center">
                                             <tr>
-                                                <th>ចំនួនសត្វធំ</th>
+                                                <th>ចំនួនសត្វធំ <spand class="text-danger">*</spand></th>
                                                 <th>ចំនួនកូនសត្វ</th>
                                             </tr>
                                             <tr>
@@ -1894,7 +1905,7 @@
                                             if(index == 0 && type == 2){
                                                 var duk = '<table class="table table-bordered">' +
                                                         '<tr>' +
-                                                            '<th>ចំនួនសត្វ</th>' +
+                                                            '<th>ចំនួនសត្វ <spand class="text-danger">*</spand></th>' +
                                                         '</tr>' +
                                                         '<tr>'+
                                                             '<td>' +
@@ -1925,7 +1936,7 @@
                                             }else if(index == 0 && type == 1){
                                                 var cow = '<table class="table table-bordered" align="center">' +
                                                           '<tr>' +
-                                                              '<th>ចំនួនសត្វធំ</th>' +
+                                                              '<th>ចំនួនសត្វធំ <spand class="text-danger">*</spand></th>' +
                                                               '<th>ចំនួនកូនសត្វ</th>' +
                                                           '</tr>' +
                                                           '<tr>' +
@@ -1973,7 +1984,7 @@
                                             }else if(index == 0 && type == 3){
                                               var hend = '<table class="table table-bordered">' +
                                                         '<tr>' +
-                                                            '<th>ចំនួនសត្វ</th>' +
+                                                            '<th>ចំនួនសត្វ <spand class="text-danger">*</spand></th>' +
                                                         '</tr>' +
                                                         '<tr>'+
                                                             '<td>' +
@@ -2001,49 +2012,8 @@
                                                   $('#score_animal').val(score);
                                                 });
                                             }
-                                        //    $('.cal_animal').change(function(){
 
-                                        //     $('#score_animal').empty();
-                                        //     var animal = $('#type_animals').val();
-                                        //     var num_animals_big     = $('#num_animals_big').val();
-                                        //     var num_animals_small   = $('#num_animals_small').val();
-                                        //     var note_animals        = $('#note_animals').val();
-                                        //     if(animal == 1){
-                                        //         $('#score_animal').empty();
-                                        //         if((num_animals_big == 0 && num_animals_small == 0 && note_animals == 0)){
-                                        //             $('#score_animal').val(6);
-                                        //         }else if( num_animals_big == 1 || num_animals_small <= 2 || note_animals == 2){
-                                        //            $('#score_animal').val(4); 
-                                        //         }else if(num_animals_big>1 || num_animals_small>3 || note_animals>2){
-                                        //             $('#score_animal').val(0); 
-                                        //         }else{$('#score_animal').val(0);}
-
-                                        //     }else if(animal == 2){
-                                        //         $('#score_animal').empty();
-                                        //         if( (num_animals_big == 0 && num_animals_small == 0) ){
-                                        //             $('#score_animal').val(6);
-                                        //         }else if(num_animals_big<3 || num_animals_small < 3){
-                                        //             $('#score_animal').val(4);
-                                        //         }else if(num_animals_big==3 || num_animals_small==3 ){
-                                        //              $('#score_animal').val(0);
-                                        //         }else{$('#score_animal').val(0);}
-
-                                        //     }else{
-                                        //         $('#score_animal').empty();
-                                        //         if(num_animals_small < 30 || num_animals_big < 30){
-                                        //             $('#score_animal').val(6);
-                                        //         }else if( (num_animals_big>30 && num_animals_big<50) || (num_animals_big>30 && num_animals_big<50) ){
-                                        //             $('#score_animal').val(4); 
-                                        //         }else if(num_animals_big == 50 || num_animals_small == 50){
-                                        //             $('#score_animal').val(0);
-                                        //         }else{$('#score_animal').val(0);}
-
-                                        //     }
-                                        // });
                                       });
-                                    // $('.cal_animal').change(function(){
-                                    //   alert(1);
-                                    // });
                                     </script>
                             </tbody>
                                 <tr>
@@ -2062,7 +2032,7 @@
 
                     <div class="col-sm-12"><hr></div>
                         <div class="col-sm-12">
-                            <h5><b>គ.១២.១.២​)ដីកសិកម្ម</b></h5>
+                            <h5><b>គ.១២.១.២​)ដីកសិកម្ម <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="" data-original-title="ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា) "></a></b></h5>
                             <p>មាន​ដីកសិកម្ម ឬ​ទេ ?</p>
                             <ul class="li-none add_land">
                                 @foreach($landAgricultural as $key => $land)
@@ -2107,13 +2077,13 @@
                                                     '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" name="land_name_other_2" type="text" required="required" class="allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                                            '<input autocomplete="off" name="land_name_other_2" type="text" class="allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
                                                         '</div>' +
                                                     '</td>' +
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group ​​input-group input-group">' +
-                                                            '<input autocomplete="off" id="total_land_2" name="total_land_other_2" type="text" required="required" class="t_land_2 form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_2" name="total_land_other_2" type="text" class="t_land_2 form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>' +
                                                     '</td>' +
                                                 '</tr>' +
@@ -2121,13 +2091,13 @@
                                                     '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
                                                     '<td>'+
                                                         '<div class="form-group input-group">'+
-                                                            '<input id="land_farm_2" autocomplete="off" name="land_farm_other_2" type="text" required="required" class="allowFlot form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                                            '<input id="land_farm_2" autocomplete="off" name="land_farm_other_2" type="text"  class="allowFlot form-control" /><span class="input-group-addon">កន្លែង</span>'+
                                                         '</div>'+
                                                     '</td>'+
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_farm_2" name="total_land_farm_other_2" type="text" required="required" class="t_land_2 form-control allowFlot" /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_farm_2" name="total_land_farm_other_2" type="text"  class="t_land_2 form-control allowFlot" /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -2200,13 +2170,13 @@
                                         '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" name="p_land_name" type="text" required="required" class="allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                        '<input autocomplete="off" name="p_land_name" type="text" class="allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
                                         '</div>' +
                                         '</td>' +
                                         '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                         '<td>' +
                                         '<div class="form-group ​​input-group input-group">' +
-                                        '<input autocomplete="off" id="total_land" name="p_total_land" type="text" required="required" class="t_land form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>'+
+                                        '<input autocomplete="off" id="total_land" name="p_total_land" type="text" class="t_land form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>'+
                                         '</div>' +
                                         '</td>' +
                                         '</tr>' +
@@ -2290,7 +2260,6 @@
                                 });
                             </script>
 
-                            <p>ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា)</p>
 
                         </div>
 
@@ -2420,7 +2389,7 @@
 
                             <h4>គ.១៤) បំណុលគ្រួសារ</h4>
                             <div class="col-sm-12">
-                                <p>តើ​គ្រួសារ​របស់​អ្នក​នៅមាន​បំណុល/​កម្ចី​មិនទាន់​បាន​សង​ដែរ​ឬ​ទេ?</p>
+                                <p>តើ​គ្រួសារ​របស់​អ្នក​នៅមាន​បំណុល/​កម្ចី​មិនទាន់​បាន​សង​ដែរ​ឬ​ទេ? <spand class="text-danger">*</spand></p>
                                 <ul class="debt_question_group">
                                     @foreach($loan as $key => $ge)
                                         <li>
@@ -2456,24 +2425,7 @@
                                                                 '<span class="input-group-addon">រៀល</span>' +
                                                             '</div>' +
                                                         '</td>' +
-//                                                        '<td>' +
-//                                                            '<div class="input-group add_debt_duration">' +
-//                                                                '<input autocomplete="off" class="form-control allowNumber" type="text" name="debt_duration" id="debt_duration">' +
-//                                                                '<span class="input-group-addon">ថ្ងៃ</span>' +
-//                                                            '</div>' +
-//                                                        '</td>' +
                                                     '</tr>' +
-
-//                                                     '<tr>' +
-// //                                                        '<td>' +
-// //                                                        '</td>' +
-//                                                         '<td>' +
-//                                                             '<div class="input-group add_debt_duration">' +
-//                                                                 '<input autocomplete="off" class="dept_money form-control allowNumber" type="text" name="" id="score_money">' +
-//                                                                 '<span class="input-group-addon">ពិន្ទុ</span>' +
-//                                                             '</div>'+
-//                                                         '</td>'+
-//                                                     '</tr>'+
 
                                                     '<tr>' +
 //                                                        '<td>' +
@@ -2489,8 +2441,8 @@
                                                 '</tbody>'+
                                             '</table>'+
                                         '</div>' +
-                                    '</div>'
-                                );
+                                    '</div>');
+                                    AllowNumber();
                                  $('.dept_money').keyup(function(){
                                     var total_debt = $('#total_debt').val();
                                     if( total_debt>1200100){
@@ -2628,15 +2580,13 @@
                 isNaN(parseInt($('#province').val())) ||
                 isNaN(parseInt($('#district').val())) ||
                 isNaN(parseInt($('#commune').val())) ||
-                isNaN(parseInt($('#village').val())) ||
-                isNaN(parseInt($('#inter_relationship').val()))
+                isNaN(parseInt($('#village').val()))
             ){
                 $('.add_hospital').addClass("has-error");
                 $('.g_province').addClass("has-error");
                 $('.g_district').addClass("has-error");
                 $('.g_commune').addClass("has-error");
                 $('.g_village').addClass("has-error");
-                $('.inter_relationship').addClass("has-error");
                 $('.alert').show();
                 isValid = false;
             }else{
@@ -2645,7 +2595,6 @@
                 $('.g_district').removeClass("has-error");
                 $('.g_commune').removeClass("has-error");
                 $('.g_village').removeClass("has-error");
-                $('.inter_relationship').removeClass("has-error");
             }
 
             if ($('#location').val() == '') {
@@ -2657,15 +2606,12 @@
             }
 
             //check radio
-            if (!$("input[name='g_sex']:checked").val() ||
-                !$("input[name='inter_sex']:checked").val()) {
+            if (!$("input[name='g_sex']:checked").val()) {
                     $('#g_sex').addClass("error");
-                    $('#inter_sex').addClass("error");
                     $('.alert').show();
                     isValid = false;
                 }else{
                     $('#g_sex').removeClass("error");
-                    $('#inter_sex').removeClass("error");
                 }
 
             if (isValid)
@@ -2707,13 +2653,13 @@
             for(var i=0; i<row_num; i++) {
 
 
-//                if ($('#family_relationship_'+i).val() == '') {
-//                    $('.alert').show();
-//                    $('.add_relationship_'+i).addClass("has-error");
-//                    isValid = false;
-//                } else {
-//                    $('.add_relationship_'+i).removeClass("has-error");
-//                }
+                if ($('#family_relationship_'+i).val() == '') {
+                    $('.alert').show();
+                    $('.add_relationship_'+i).addClass("has-error");
+                    isValid = false;
+                } else {
+                    $('.add_relationship_'+i).removeClass("has-error");
+                }
 
                 if($('#m_sex_'+i).val() == ''){
                     $('.alert').show();
@@ -2766,7 +2712,7 @@
                         '</td>' +
                         '<td>' +
                             '<div class="form-group add_income_unit">' +
-                                '<input name="income_unit['+i+']" type="text" class="cal_incom form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" >' +
+                                '<input name="income_unit['+i+']" type="text" class="cal_incom form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" readonly="readonly">' +
                             '</div>' +
                         '</td>'+
 
@@ -2873,7 +2819,7 @@
                     '</td>' +
                     '<td>' +
                     '<div class="form-group add_income_unit_not">' +
-                    '<input name="income_unit_not['+i+']" type="text" class="form-control income_unit_not" placeholder="ថ្ងៃ" value="day" autocomplete="off">' +
+                    '<input name="income_unit_not['+i+']" type="text" class="form-control income_unit_not" placeholder="ថ្ងៃ" value="day" autocomplete="off" readonly="readonly">' +
                     '</div>' +
                     '</td>'+
 
@@ -3290,6 +3236,27 @@
             },
             error: function (report){
                 console.log(report);
+            }
+        });
+    });
+
+    $("#hospital").change(function () {
+        var od_code  = $('#hospital').val();
+        var hospital = $('#hospital option:selected').text();
+
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('getHealthFacilitiesCode') }}",
+            data: {'od_code': od_code,'hospital': hospital},
+            beforeSend: function(){
+                $("#loading").fadeIn();
+            },
+            success: function (data) {
+                var obj = JSON.parse(data);
+                $("#health_facilities_code").val(obj);
+            },
+            complete: function(){
+                $("#loading").fadeOut(100);
             }
         });
     });

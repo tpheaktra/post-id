@@ -307,18 +307,14 @@ class HomeController extends Controller
         //check validation
         $this->validate($request, [
             'interview_date' => 'required',
-            'expire_date'    => 'required',
             'hospital'       => 'required',
             'interview_code' => 'required',
             'g_patient'      => 'required',
             'g_age'          => 'required',
             'g_sex'          => 'required',
             'g_phone'        => 'required',
-            'g_province'         => 'required',
-            'g_local_village'    => 'required',
-            'inter_patient'      => 'required',
-            'inter_age'          => 'required',
-            'inter_sex'          => 'required',
+            'g_province'     => 'required',
+            'g_local_village'=> 'required',
 
             //step2
             'nick_name'              => 'required',
@@ -381,7 +377,6 @@ class HomeController extends Controller
                 'fa_phone'            =>$request->fa_phone,
                 'fa_relationship_id'  =>$request->fa_relationship,
                 'interview_date'     => $request->interview_date,
-                'expire_date'        => $request->expire_date,
             );
             $gn_info = GeneralInformationModel::create($data);
 
@@ -539,16 +534,18 @@ class HomeController extends Controller
             //table type_income
             foreach ($request->type_animals as $key => $anim) {
                 $animals = array(
-                    'g_information_id'      =>  $gn_info->id,
+                    'g_information_id'      => $gn_info->id,
                     'type_animals_id'       => $anim,
                     'num_animals'           => $request->num_animals[$key],
-                    'num_animals_big'       => $request->num_animals_big[$key],
-                    'num_animals_small'     => $request->num_animals_small[$key],
+                    'num_animals_big'       => isset($request->num_animals_big[$key]) ? $request->num_animals_big[$key] : 0,
+                    'num_animals_small'     => isset($request->num_animals_small[$key]) ? $request->num_animals_small[$key] : 0,
                     'note_animals'          => $request->note_animals[$key],
                     'total_animals_costs'   => $request->total_animals_costs
                 );
                 TypeIncomeModel::create($animals);
             }
+
+
 
             //table land_agricultural_link
             if(!empty($request->land_2)) {
@@ -563,6 +560,8 @@ class HomeController extends Controller
                 );
                 LandOtherAgriculturalLinkModel::create($land_agricultural_other);
             }
+
+
 
             //table land_agricultural_link
             if(!empty($request->land_3)) {
@@ -668,6 +667,7 @@ class HomeController extends Controller
                 'age_action'    => $request->age_action_score,
                 'record_status' => "1"
             );
+           // dd($score);exit();
             StoreScoreModel::create($score);
 
             DB::commit();

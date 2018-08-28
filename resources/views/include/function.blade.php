@@ -183,17 +183,22 @@
 //            event.preventDefault();
 //        }
     });
+    $('.g_age').on('change', function (e) {
+        var InterAge = $('.g_age').val();
+        if(InterAge <= 1){$('.g_age').val('');}
+        if(InterAge >= 150){$('.g_age').val('');}
+    });
 
     $('.inter_age').on('change', function (e) {
         var InterAge = $('.inter_age').val();
         if(InterAge <= 16){$('.inter_age').val('');}
-        if(InterAge >= 160){$('.inter_age').val('');}
+        if(InterAge >= 150){$('.inter_age').val('');}
     });
 
     $('.fa_age').on('change', function (e) {
         var InterAge = $('.fa_age').val();
         if(InterAge <= 16){$('.fa_age').val('');}
-        if(InterAge >= 160){$('.fa_age').val('');}
+        if(InterAge >= 150){$('.fa_age').val('');}
     });
 
     //validation alert
@@ -466,7 +471,7 @@
             '<td id="num_animals_'+numRow+'" class="add_ajust_animals">'+
             '<table class="table table-bordered" align="center">' +
             '<tr>' +
-            '<th>ចំនួនសត្វធំ</th>' +
+            '<th>ចំនួនសត្វធំ <spand class="text-danger">*</spand></th>' +
             '<th>ចំនួនកូនសត្វ</th>' +
             '</tr>' +
             '<tr>' +
@@ -534,7 +539,7 @@
             }else if( type == 3 ){
                 var duk = '<table class="table table-bordered">' +
                     '<tr>' +
-                    '<th>ចំនួនសត្វ</th>' +
+                    '<th>ចំនួនសត្វ <spand class="text-danger">*</spand></th>' +
                     '</tr>' +
                     '<tr>' +
                     '<td>' +
@@ -563,7 +568,7 @@
             }else if (type == 1) {//$('#num_animals_'+ty).empty();
                 var cow = '<table class="table table-bordered" align="center">' +
                     '<tr>' +
-                    '<th>ចំនួនសត្វធំ</th>' +
+                    '<th>ចំនួនសត្វធំ <spand class="text-danger">*</spand></th>' +
                     '<th>ចំនួនកូនសត្វ</th>' +
                     '</tr>' +
                     '<tr>' +
@@ -646,6 +651,7 @@
     });
     //type_animals
     $(".type_animals").select2({allowClear:true, placeholder: 'ប្រភេទសត្វ' });
+    $(".type_animals1").select2({allowClear:true, placeholder: 'ប្រភេទសត្វ' });
     $(".note_animals").select2({allowClear:true, placeholder: 'កំណត់សម្គាល់' });
 
     function reOrder_income(){
@@ -691,7 +697,7 @@
             '</td>' +
             '<td>' +
             '<div class="form-group">' +
-            '<input name="income_unit['+num_4+']" type="text" class="income_unit form-control" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">' +
+            '<input name="income_unit['+num_4+']" type="text" class="income_unit form-control" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required" readonly="readonly">' +
             '</div>' +
             '</td>'+
 

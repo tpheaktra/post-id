@@ -45,14 +45,14 @@
 
                                                         <div class="tab-pane active" id="home" role="tabpanel">
                                                             @foreach($permission_sub as $sub)
-                                                                @if($sub->group_id==1)
+                                                                @if($sub->parent_id==1)
                                                                     <label class="main-page"> Roles List <input type="checkbox" id="role_1" class="hidden"/> <a>Check all </a><span class="text-danger">*</span></label>
                                                                     <script>
                                                                         $("#role_1").click(function () {
                                                                             $('.role_1 input:checkbox').not(this).prop('checked', this.checked);
                                                                         });
                                                                     </script>
-                                                                @elseif($sub->group_id==2)
+                                                                @elseif($sub->parent_id==2)
                                                                     <label class="main-page"> Users List <input type="checkbox" id="role_2" class="hidden"/> <a>Check all </a><span class="text-danger">*</span></label>
                                                                     <script>
                                                                         $("#role_2").click(function () {
@@ -64,9 +64,9 @@
                                                                     <table>
                                                                         <tr>
                                                                             @foreach($permissions as $permission)
-                                                                                @if($sub->group_id==1 || $sub->group_id==2)
-                                                                                    @if($permission->group_id==$sub->group_id)
-                                                                                        <td class="role_{{$permission->group_id}}">
+                                                                                @if($sub->parent_id==1 || $sub->parent_id==2)
+                                                                                    @if($permission->parent_id==$sub->parent_id)
+                                                                                        <td class="role_{{$permission->parent_id}}">
                                                                                             {{ Form::checkbox('permission[]',$permission->id,in_array($permission->id,$role_permissions)?"checked":"") }}  {{$permission->display_name}}
                                                                                         </td>
                                                                                     @endif
@@ -80,7 +80,7 @@
 
                                                         <div class="tab-pane" id="general" role="tabpanel">
                                                             @foreach($permission_sub as $sub)
-                                                                @if($sub->group_id==3)
+                                                                @if($sub->parent_id==3)
                                                                     <label class="main-page"> Course List <input type="checkbox" id="role_3" class="hidden"/> <a>Check all</a></label>
                                                                     <script>
                                                                         $("#role_3").click(function () {
@@ -92,9 +92,9 @@
                                                                     <table>
                                                                         <tr>
                                                                             @foreach($permissions as $permission)
-                                                                                @if($sub->group_id==3)
-                                                                                    @if($permission->group_id==$sub->group_id)
-                                                                                        <td class="role_{{$permission->group_id}}">
+                                                                                @if($sub->parent_id==3)
+                                                                                    @if($permission->parent_id==$sub->parent_id)
+                                                                                        <td class="role_{{$permission->parent_id}}">
                                                                                             {{ Form::checkbox('permission[]',$permission->id,in_array($permission->id,$role_permissions)?"checked":"") }}  {{$permission->display_name}}
                                                                                         </td>
                                                                                     @endif
@@ -108,7 +108,7 @@
 
                                                         <div class="tab-pane" id="our-team" role="tabpanel">
                                                             @foreach($permission_sub as $sub)
-                                                                @if($sub->group_id==4)
+                                                                @if($sub->parent_id==4)
                                                                     <label class="main-page"> Student List <input type="checkbox" id="role_4" class="hidden"/> <a>Check all</a></label>
                                                                     <script>
                                                                         $("#role_4").click(function () {
@@ -120,9 +120,9 @@
                                                                     <table>
                                                                         <tr>
                                                                             @foreach($permissions as $permission)
-                                                                                @if($sub->group_id==4)
-                                                                                    @if($permission->group_id==$sub->group_id)
-                                                                                        <td class="role_{{$permission->group_id}}">
+                                                                                @if($sub->parent_id==4)
+                                                                                    @if($permission->parent_id==$sub->parent_id)
+                                                                                        <td class="role_{{$permission->parent_id}}">
                                                                                             {{ Form::checkbox('permission[]',$permission->id,in_array($permission->id,$role_permissions)?"checked":"") }}  {{$permission->display_name}}
 
                                                                                         </td>
@@ -137,7 +137,7 @@
 
                                                         <div class="tab-pane" id="post" role="tabpanel">
                                                             @foreach($permission_sub as $sub)
-                                                                @if($sub->group_id==5)
+                                                                @if($sub->parent_id==5)
                                                                     <label class="main-page"> Fees List <input type="checkbox" id="role_5" class="hidden"/> <a>Check all</a></label>
                                                                     <script>
                                                                         $("#role_5").click(function () {
@@ -149,9 +149,9 @@
                                                                     <table>
                                                                         <tr>
                                                                             @foreach($permissions as $permission)
-                                                                                @if($sub->group_id==5)
-                                                                                    @if($permission->group_id==$sub->group_id)
-                                                                                        <td class="role_{{$permission->group_id}}">
+                                                                                @if($sub->parent_id==5)
+                                                                                    @if($permission->parent_id==$sub->parent_id)
+                                                                                        <td class="role_{{$permission->parent_id}}">
                                                                                             {{ Form::checkbox('permission[]',$permission->id,in_array($permission->id,$role_permissions)?"checked":"") }}  {{$permission->display_name}}
                                                                                         </td>
                                                                                     @endif

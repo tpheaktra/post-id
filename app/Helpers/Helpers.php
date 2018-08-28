@@ -18,7 +18,7 @@ class Helpers{
         $hospital = DB::connection("mysql2")
             ->select('select os.od_code,os.shortcut,hf.name_kh from operational_districts od 
                     inner join od_shortcuts os on od.code = os.od_code
-                    inner join health_facilities hf on os.od_code = hf.od_code');
+                    inner join health_facilities hf on os.od_code = hf.od_code where hf.`type` in(4,5,6) and hf.`status` = 1');
         return $hospital;
     }
 
