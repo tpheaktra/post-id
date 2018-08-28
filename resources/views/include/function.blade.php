@@ -714,10 +714,17 @@
             '</select>'+
             '</div>' +
             '</td>' +
-            '<td>' +
+            '<td class="hidden">' +
             '<div class="form-group">' +
             '<input name="income_unit['+num_4+']" type="text" class="income_unit form-control" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required" readonly="readonly">' +
             '</div>' +
+            '</td>'+
+
+            '<td>'+
+            '<div class="form-group input-group">'+
+            '<input id="average_amount_'+num_4+'" name="average_amount['+num_4+']" type="text" class="cal_incom average_amount form-control allowNumber otherincome" required="required" autocomplete="off">'+
+            '<span class="input-group-addon">រៀល</span>'+
+            '</div>'+
             '</td>'+
 
             '<td>' +
@@ -726,12 +733,7 @@
             '<span class="input-group-addon">ថ្ងៃ</span>' +
             '</div>' +
             '</td>'+
-            '<td>'+
-            '<div class="form-group input-group">'+
-            '<input id="average_amount_'+num_4+'" name="average_amount['+num_4+']" type="text" class="cal_incom average_amount form-control allowNumber otherincome" required="required" autocomplete="off">'+
-            '<span class="input-group-addon">រៀល</span>'+
-            '</div>'+
-            '</td>'+
+
             '<td>' +
             '<div class="form-group input-group">' +
             '<input id="monthly_income_'+num_4+'" name="monthly_income['+num_4+']" type="text" class="cal_incom monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
@@ -861,10 +863,17 @@
             '</select>'+
             '</div>' +
             '</td>' +
-            '<td>' +
+            '<td class="hidden">' +
             '<div class="form-group">' +
             '<input name="income_unit_not['+num_5+']" type="text" class="income_unit_not form-control" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">' +
             '</div>' +
+            '</td>'+
+
+            '<td>'+
+            '<div class="form-group input-group">'+
+            '<input id="average_amount_not_'+num_5+'" name="average_amount_not['+num_5+']" type="text" class="cal_incom_2 average_amount_not form-control allowNumber otherincome_not" required="required" autocomplete="off">'+
+            '<span class="input-group-addon">រៀល</span>'+
+            '</div>'+
             '</td>'+
 
             '<td>' +
@@ -873,12 +882,7 @@
             '<span class="input-group-addon">ថ្ងៃ</span>' +
             '</div>' +
             '</td>'+
-            '<td>'+
-            '<div class="form-group input-group">'+
-            '<input id="average_amount_not_'+num_5+'" name="average_amount_not['+num_5+']" type="text" class="cal_incom_2 average_amount_not form-control allowNumber otherincome_not" required="required" autocomplete="off">'+
-            '<span class="input-group-addon">រៀល</span>'+
-            '</div>'+
-            '</td>'+
+
             '<td>' +
             '<div class="form-group input-group">' +
             '<input id="monthly_income_not_'+num_5+'" name="monthly_income_not['+num_5+']" type="text" class="cal_incom_2 monthly_income_not form-control allowNumber monthly_income_total_not" readonly="readonly" autocomplete="off">'+

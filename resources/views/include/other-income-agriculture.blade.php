@@ -16,9 +16,9 @@
                     <th width="12%">ឈ្មោះសមាជិក</th>
                     <th width="9%">អាយុ​</th>
                     <th width="15%">មុខរបររកចំណូល <spand class="text-danger">*</spand></th>
-                    <th width="9%">ឯកត្តា</th>
-                    <th>ចំនួនឯកត្តាក្នុងមួយខែ <spand class="text-danger">*</spand></th>
-                    <th width="18%"​​>ទឹកប្រាក់មធ្យមក្នុងមួយឯកត្តា <spand class="text-danger">*</spand></th>
+                    <th width="9%" class="hidden">ឯកត្តា</th>
+                    <th width="18%"​​>ចំណូលជាមធ្យមប្រចាំថ្ងៃ <spand class="text-danger">*</spand></th>
+                    <th width="18%"​​>ចំនួនថ្ងៃជាមធ្យមប្រចាំខែ <spand class="text-danger">*</spand></th>
                     <th>ចំណូលមធ្យមប្រចាំខែ</th>
                     <th>សកម្មភាព</th>
                 </tr>
@@ -72,9 +72,9 @@
                         <th width="12%">ឈ្មោះសមាជិក</th>
                         <th width="9%">អាយុ​</th>
                         <th width="15%">មុខរបររកចំណូល <spand class="text-danger">*</spand></th>
-                        <th width="9%">ឯកត្តា</th>
-                        <th>ចំនួនឯកត្តាក្នុងមួយខែ <spand class="text-danger">*</spand></th>
-                        <th width="18%"​​>ទឹកប្រាក់មធ្យមក្នុងមួយឯកត្តា <spand class="text-danger">*</spand></th>
+                        <th width="9%" class="hidden">ឯកត្តា</th>
+                        <th width="18%"​​>ចំណូលជាមធ្យមប្រចាំថ្ងៃ <spand class="text-danger">*</spand></th>
+                        <th width="18%"​​>ចំនួនថ្ងៃជាមធ្យមប្រចាំខែ <spand class="text-danger">*</spand></th>
                         <th>ចំណូលមធ្យមប្រចាំខែ</th>
                         <th>សកម្មភាព</th>
                     </tr>

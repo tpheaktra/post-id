@@ -25,8 +25,8 @@
     <script src="{{asset('js/select2/select2.min.js')}}"></script>
 
     <!-- bootstrap datepicker -->
-    <link rel="stylesheet" href="{{asset('js/datepicker/css/datepicker.css')}}" />
-    <script type="text/javascript" src="{{asset('js/datepicker/js/bootstrap-datepicker.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('js/datepicker/css/bootstrap-datepicker.min.css')}}" />
+    <script type="text/javascript" src="{{asset('js/datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>

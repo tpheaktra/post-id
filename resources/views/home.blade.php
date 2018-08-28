@@ -63,44 +63,11 @@
                     </div>
 
                     <script type="text/javascript">
-
-                        var nowTemp = new Date();
-                        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-                        var checkin = $('#current_date').datepicker({
-                            autoOpen: false,
-                            showOnFocus: false,
-                            focus: false,
-                            format: "yyyy-mm-dd"
-                        }).on('changeDate', function(ev) {
-                            checkin.hide();
-                        }).data('datepicker');
-//                        var checkin = $('#current_date').datepicker({
-//                            autoOpen: false,
-//                            showOnFocus: false,
-//                            focus: false,
-//                            format: "yyyy-mm-dd",
-//                            onRender: function(date) {
-//                                return date.valueOf() < now.valueOf() ? 'disabled' : '';
-//                            }
-//                        }).on('changeDate', function(ev) {
-//                            if (ev.date.valueOf() > checkout.date.valueOf()) {
-//                                var newDate = new Date(ev.date)
-//                                newDate.setDate(newDate.getDate() + 1);
-//                                checkout.setValue(newDate);
-//                            }
-//                            checkin.hide();
-//                            $('#expire_date').focus();
-//                        }).data('datepicker');
-//
-//                        var checkout = $('#expire_date').datepicker({
-//                            format: "yyyy-mm-dd",
-//                            onRender: function(date) {
-//                                return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-//                            }
-//                        }).on('changeDate', function(ev) {
-//                            checkout.hide();
-//                        }).data('datepicker');
-
+                        $('#current_date').datepicker({
+                            autoclose: true,
+                            format: 'yyyy-mm-dd',
+                            todayHighlight: true
+                        });
                     </script>
                     <div class="col-sm-12">
                         <div class="row">
@@ -2710,10 +2677,17 @@
                                 '</select>'+
                             '</div>' +
                         '</td>' +
-                        '<td>' +
+                        '<td class="hidden">' +
                             '<div class="form-group add_income_unit">' +
                                 '<input name="income_unit['+i+']" type="text" class="cal_incom form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" readonly="readonly">' +
                             '</div>' +
+                        '</td>'+
+
+                        '<td>'+
+                            '<div class="cal_incom form-group input-group add_average_amount">'+
+                                '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="cal_incom average_amount form-control allowNumber otherincome" autocomplete="off">'+
+                                '<span class="input-group-addon">រៀល</span>'+
+                            '</div>'+
                         '</td>'+
 
                         '<td>' +
@@ -2722,12 +2696,7 @@
                                 '<span class="input-group-addon">ថ្ងៃ</span>' +
                             '</div>' +
                         '</td>'+
-                        '<td>'+
-                            '<div class="cal_incom form-group input-group add_average_amount">'+
-                                '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="cal_incom average_amount form-control allowNumber otherincome" autocomplete="off">'+
-                                '<span class="input-group-addon">រៀល</span>'+
-                            '</div>'+
-                        '</td>'+
+
                         '<td>' +
                             '<div class="form-group input-group">' +
                                 '<input id="monthly_income_'+i+'" name="monthly_income['+i+']" type="text" class="cal_incom monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
@@ -2817,10 +2786,17 @@
                     '</select>'+
                     '</div>' +
                     '</td>' +
-                    '<td>' +
+                    '<td class="hidden">' +
                     '<div class="form-group add_income_unit_not">' +
                     '<input name="income_unit_not['+i+']" type="text" class="form-control income_unit_not" placeholder="ថ្ងៃ" value="day" autocomplete="off" readonly="readonly">' +
                     '</div>' +
+                    '</td>'+
+
+                    '<td>'+
+                    '<div class="form-group input-group add_average_amount_not">'+
+                    '<input id="average_amount_not_'+i+'" name="average_amount_not['+i+']" type="text" class="cal_incom_2 average_amount_not form-control allowNumber otherincome_not"  autocomplete="off">'+
+                    '<span class="input-group-addon">រៀល</span>'+
+                    '</div>'+
                     '</td>'+
 
                     '<td>' +
@@ -2829,12 +2805,7 @@
                     '<span class="input-group-addon">ថ្ងៃ</span>' +
                     '</div>' +
                     '</td>'+
-                    '<td>'+
-                    '<div class="form-group input-group add_average_amount_not">'+
-                    '<input id="average_amount_not_'+i+'" name="average_amount_not['+i+']" type="text" class="cal_incom_2 average_amount_not form-control allowNumber otherincome_not"  autocomplete="off">'+
-                    '<span class="input-group-addon">រៀល</span>'+
-                    '</div>'+
-                    '</td>'+
+
                     '<td>' +
                     '<div class="form-group input-group">' +
                     '<input id="monthly_income_not_'+i+'" name="monthly_income_not['+i+']" type="text" class="cal_incom_2 monthly_income_not form-control allowNumber monthly_income_total_not" readonly="readonly" autocomplete="off">'+
@@ -3123,15 +3094,19 @@
                     $('.add_average_amount').removeClass("has-error");
                     $('.add_income_occupation').removeClass("has-error");
                 }
-            }
-
-            if ($("input[name='income_agricalture_type']:checked").val()==2) {
+            }else{
                 if($('.unit_in_month_not').val() == '' ||
-                    $('.average_amount_not').val() == '' ){
+                    $('.average_amount_not').val() == '' ||
+                    $('#income_occupation_not').val() == ''){
                     $('.alert').show();
                     $('.add_unit_in_month_not').addClass("has-error");
                     $('.add_average_amount_not').addClass("has-error");
+                    $('.add_income_occupation_not').addClass("has-error");
                     isValid = false;
+                }else{
+                    $('.add_unit_in_month_not').removeClass("has-error");
+                    $('.add_average_amount_not').removeClass("has-error");
+                    $('.add_income_occupation_not').removeClass("has-error");
                 }
             }
 
