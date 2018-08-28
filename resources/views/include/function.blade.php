@@ -256,7 +256,13 @@
                 sum = Number(number_meterial * market_value_meterial);
                 $("#meterial_"+i).attr({"onclick": "remove_1("+sum+")"});
                 $('#total_rail_meterial_'+i).val(sum);
-
+                $('.cal_el').change(function(){
+                    var total = $('#total_meterial_costs').val();
+                    if( total>=0 && total <=400000) { $('#el_score').val(6); }
+                    else if( total>=404000 && total<=800000 ){ $('#el_score').val(4);}
+                    else if( total>=804000 && total<= 1200000){ $('#el_score').val(2);}
+                    else{ $('#el_score').val(0); }
+                });
             }
         });
 
@@ -370,6 +376,18 @@
                 $("#vehicle_"+i).attr({"onclick": "remove_2("+sum+")"});
                 $('#total_rail_vehicle_'+i).val(sum);
             }
+            $('.cal_v').change(function(){
+                var tot = $('#total_vehicle_costs').val();
+                if(tot>=0 && tot<=600000) {
+                    $('#score_v').val(6);
+                }else if(tot>=604000 && tot <= 1200000){
+                    $('#score_v').val(4);
+                }else if(tot>=1204000 && tot <= 2000000){
+                    $('#score_v').val(2);
+                }else{
+                    $('#score_v').val(0);
+                }
+            });
         });
 
         $('.vehicle').change(function () {
@@ -421,15 +439,16 @@
             var tot = $('#total_vehicle_costs').val();
             if(tot>=0 && tot<=600000) {
                 $('#score_v').val(6);
-            }else if(tot>=604000 && tot<=1200000){
+            }else if(tot>=604000 && tot <= 1200000){
                 $('#score_v').val(4);
-            }else if(tot>=1204000 && tot<=2000000){
+            }else if(tot>=1204000 && tot <= 2000000){
                 $('#score_v').val(2);
             }else{
                 $('#score_v').val(0);
             }
         });
     });
+    
     $('.vehicle').change(function () {
         var arr = document.getElementsByClassName('totalallowNumber_vehicle');
         var tot=0;

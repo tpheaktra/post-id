@@ -134,14 +134,13 @@
 	                  		<p style="padding: 2px;">
 			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>មាតិកា</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
 			                  			<td>
 			                  				<p>-ចំពោះចំនួនមនុស្សពី ១-៣នាក់              : ផ្ទៃក្រឡា ≤ 20 ម៉ែត្រក្រឡា</p>
-			                  				<p style="background: #ccc;">-ចំពោះចំនួនមនុស្សពី ១-៣នាក់</p>
-			                  				<p>-ចំពោះចំនួនមនុស្សពី ៤-៦នាក់               : ផ្ទៃក្រឡា  ≤ 30 ម៉ែត្រក្រឡា </p>
+			                  				<p style="background: #ccc;">-ចំពោះចំនួនមនុស្សពី ៤-៦នាក់               : ផ្ទៃក្រឡា  ≤ 30 ម៉ែត្រក្រឡា </p>
 			                  				<p>-ចំពោះចំនួនមនុស្សពី ៧-១០នាក់            : ផ្ទៃក្រឡា  ≤ 40 ម៉ែត្រក្រឡា</p>
 			                  				<p>-ចំពោះចំនួនមនុស្សលើសពី១០នាក់         : ផ្ទៃក្រឡា  ≤ 50 ម៉ែត្រក្រឡា </p>
 			                  			</td>
@@ -244,7 +243,7 @@
 	                  		<p style="padding: 5px;">
 			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>មាតិកា</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
@@ -253,13 +252,13 @@
 			                  			</td>
 			                  			<td width="30%" align="center"><span class="score-num">6</span></td>
 			                  		</tr>
-			                  		<tr style="background: #ccc;">
+			                  		<tr>
 			                  			<td>
 			                  				<p>-ធ្វើពីឈើ</p>
 			                  			</td>
 			                  			<td width="30%" align="center"><span class="score-num">4</span></td>
 			                  		</tr>
-			                  		<tr>
+			                  		<tr style="background: #ccc;">
 			                  			<td>
 			                  				<p>-ឥដ្ឋ, ស៊ីម៉ង់ </p>
 			                  			</td>
@@ -269,31 +268,73 @@
 		                  </p>
 	                  	<p style="font-weight: bold;">- 3A 3 : ស្ថានភាពទូទៅរបស់ផ្ទះ </p>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="4"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>- ស្ថានភាពទ្រុឌទ្រោម</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">4</span></td>
+			                  		</tr>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>- ស្ថានភាពមធ្យម, អាចរស់នៅបាន</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">2.5</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ស្ថានភាពល្អ</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
 	                  	<p style="font-weight: bold;">- 3B   គ្រួសារដែលនៅផ្ទះជួលគេ     តម្លៃជួលផ្ទះ (ប្រើសម្រាប់តែគ្រួសារដែលជួលផ្ទះគេ)</p>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;"> តម្លៃជួលផ្ទះ </th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="30000"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="4"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ១-៣នាក់              : ថ្លៃជួល  ≤ 20$ </p>
+			                  				<p style="background: #ccc;">- ចំពោះចំនួនមនុស្សពី ៤-៦នាក់               : ថ្លៃជួល    ≤ 30$</p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៧-១០នាក់            : ថ្លៃជួល  ≤ 45$</p>
+			                  				<p>- ចំពោះចំនួនមនុស្សលើសពី១០នាក់      : ថ្លៃជួល    ≤ 60$</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">16</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ១-៣នាក់               : 20$ < ថ្លៃជួល  ≤ 40$ </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៤-៦នាក់                : 30$ <ថ្លៃជួល  ≤ 50$ </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៧-១០នាក់             : 45$ < ថ្លៃជួល  ≤ 70$</p>
+			                  				<p>- ចំពោះចំនួនមនុស្សលើសពី១០នាក់         : 60$ < ថ្លៃជួល  ≤ 85$ </p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">11</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ១-៣នាក់                : 40$ <ថ្លៃជួល  ≤ 50$ </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៤-៦នាក់                 : 50$ < ថ្លៃជួល  ≤ 60$ </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៧-១០នាក់             : 70$ < ថ្លៃជួល  ≤ 85$</p>
+			                  				<p>- ចំពោះចំនួនមនុស្សលើសពី១០នាក់          : 85$ < ថ្លៃជួល  ≤ 100$</p>
+			                  			</td>
+			                  			<td width="30%"><h3 align="center">5</h3></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ១-៣នាក់                 : 50$ < ថ្លៃជួល  </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៤-៦នាក់                  : 60$ < ថ្លៃជួល  </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៧-១០នាក់              : 85$ < ថ្លៃជួល  </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សលើសពី១០នាក់          : 100$ <ថ្លៃជួល  </p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                    </p>
@@ -302,16 +343,34 @@
 	                  <div class="col-md-12">
 	                  	<h4>4.ទ្រព្យសម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិចរបស់គ្រួសារ </h4>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="4"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>- សរុបតម្លៃមុខទំនិញទាំងអស់មានតម្លៃចាប់ពី $0 - $100</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">6</span></td>
+			                  		</tr>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>- សរុបតម្លៃមុខទំនិញទាំងអស់មានតម្លៃចាប់ពី $101 - $200</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">4</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- សរុបតម្លៃមុខទំនិញទាំងអស់មានតម្លៃចាប់ពី $201 – 300$</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">2</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- សរុបតម្លៃមុខទំនិញទាំងអស់មានតម្លៃចាប់ពី 301$ ឡើង</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                    </p>
@@ -319,35 +378,59 @@
 	                  <div class="col-sm-12"><hr></div>
 	                  <div class="col-md-12">
 	                  	<h4>5.អគ្គិសនីប្រើប្រាស់</h4>
-	                  	<p>- 5A.  គ្រួសារដែលបានតបណ្តាញអគ្គីសនីប្រើប្រាស់ </p>
+	                  	<p style="font-weight: bold;">- 5A.  គ្រួសារដែលបានតបណ្តាញអគ្គីសនីប្រើប្រាស់ </p>
 	                  	
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>- បានចំណាយប្រាក់តិចជាង 15 000រៀល/ខែឬបានប្រើប្រាស់តិចជាង២០គីឡូវ៉ាត់ម៉ោង/ខែ</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">8</span></td>
+			                  		</tr>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>- បានចំណាយប្រាក់ចាប់ពី 15 100 – 30 000រៀល/ខែ ឬបានប្រើប្រាស់ចាប់ពី 21-49គីឡូវ៉ាតម៉ោង/ខែ</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">5</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- បានចំណាយចាប់ពី30 100រៀលឡើង/ខែ ឬបានប្រើប្រាស់ចាប់ពី50គីឡូវ៉ាត់ម៉ោងឡើង/ខែ </p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  	</p>
-	                  	<p>- 5B. គ្រួសារដែលមិនបានតបណ្តាញអគ្គីសនីប្រើប្រាស់</p>
+	                  	<p style="font-weight: bold;">- 5B. គ្រួសារដែលមិនបានតបណ្តាញអគ្គីសនីប្រើប្រាស់</p>
 	                  	
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>- ប្រើចង្កៀងប្រេងកាត</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">8</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ប្រើអាគុយ  ឬ ថាមពលព្រះអាទិត្យ</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">5</span></td>
+			                  		</tr>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>- ប្រើម៉ាស៊ីនភ្លើងផ្ទាល់ខ្លួន</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  	</p>
@@ -357,16 +440,34 @@
 	                  	<h4>6.អំពីយានជំនិះរបស់គ្រួសារ</h4>
 	                  	
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">តម្លៃសរុប</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>- សរុបតម្លៃយានជំនិះទាំងអស់មានតម្លៃចាប់ពី $0 - $150</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">6</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- សរុបតម្លៃយានជំនិះទាំងអស់មានតម្លៃចាប់ពី $151 - $300</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">4</span></td>
+			                  		</tr>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>- សរុបតម្លៃយានជំនិះទាំងអស់មានតម្លៃចាប់ពី $301 – 500$</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">2</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- សរុបតម្លៃយានជំនិះទាំងអស់មានតម្លៃចាប់ពី 501$ ឡើង</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
@@ -374,96 +475,223 @@
 	                  <div class="col-sm-12"><hr></div>
 	                  <div class="col-md-12">
 	                  	<h4>7.ចំណូលរបស់គ្រួសារ</h4>
-	                  	<p>- 7.A.    ចំណូលសម្រាប់គ្រួសារដែលមានដី ឬ មានចំណូលពីកសិកម្ម</p>
-	                  	<p>- 7.A.1   ការចិញ្ចឹមសត្វ</p>
+	                  	<p style="font-weight: bold;">- 7.A.    ចំណូលសម្រាប់គ្រួសារដែលមានដី ឬ មានចំណូលពីកសិកម្ម</p>
+	                  	<p style="font-weight: bold;">- 7.A.1   ការចិញ្ចឹមសត្វ</p>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ចំនួនសត្វ</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>- គ្មានគោ/ក្របីធំ១ ជ្រូក/ពពែ នឹងមាន់/ទាតិចជាង ៣០</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">6</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- មានគោធំ១ ឬគោតូច២ ឬគោប្រវាស់២ និង/ឬ ជ្រូក/ពពែ តិចជាង៣ និង/ឬ មាន់តិចជាង ៥០, ទាតិចជាង៣០</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">4</span></td>
+			                  		</tr>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>- មានគោធំច្រើនជាង១ ឬគោតូចច្រើនជាង៣ ឬគោប្រវាស់ច្រើនជាង២  ឬជ្រូក/ពពែ ៣ ឬមាន់ ៥០ </p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
-	                  	<p>- 7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</p>
+	                  	<p style="font-weight: bold;">- 7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</p>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ១-៣នាក់              : ផ្ទៃក្រឡា  ≤ 0.6 Ha </p>
+			                  				<p style="background: #ccc;">- ចំពោះចំនួនមនុស្សពី ៤-៦នាក់               : ផ្ទៃក្រឡា  ≤ 1Ha</p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៧-១០នាក់            : ផ្ទៃក្រឡា  ≤ 1.5Ha</p>
+			                  				<p>- ចំពោះចំនួនមនុស្សលើសពី១០នាក់        : ផ្ទៃក្រឡា  ≤ 2Ha</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">6</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ១-៣នាក់               : 0.60 Ha < ផ្ទៃក្រឡា    ≤ 1.2 Ha  </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៤-៦នាក់               : 1 ha < ផ្ទៃក្រឡា  ≤ 2 Ha</p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៧-១០នាក់            : 1.5 Ha <ផ្ទៃក្រឡា    ≤ 3 Ha </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សលើសពី១០នាក់        : 2 ha < ផ្ទៃក្រឡា  ≤ 3.5 Ha </p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">4</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ១-៣នាក់              : ផ្ទៃក្រឡា  >  1.2 Ha   </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៤-៦នាក់               :  ផ្ទៃក្រឡា    > 2 Ha  </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៧-១០នាក់            :  ផ្ទៃក្រឡា    > 3 Ha </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សលើសពី១០នាក់        :  ផ្ទៃក្រឡា    > 3.5 Ha </p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
-	                  	<p>- 7.A.2 B  ផ្ទៃដីកសិកម្ម មិនមែនជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</p>
+	                  	<p style="font-weight: bold;">- 7.A.2 B  ផ្ទៃដីកសិកម្ម មិនមែនជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</p>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ១-៣នាក់              : ផ្ទៃក្រឡា  ≤ 1 Ha </p>
+			                  				<p style="background: #ccc;">- ចំពោះចំនួនមនុស្សពី ៤-៦នាក់               : ផ្ទៃក្រឡា  ≤ 1.5Ha</p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៧-១០នាក់            : ផ្ទៃក្រឡា  ≤ 2.2Ha</p>
+			                  				<p>- ចំពោះចំនួនមនុស្សលើសពី១០នាក់        : ផ្ទៃក្រឡា  ≤ 3Ha</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">6</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ១-៣នាក់               : 1 Ha < ផ្ទៃក្រឡា    ≤ 2 Ha  </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៤-៦នាក់               : 1.5 ha < ផ្ទៃក្រឡា  ≤ 3 Ha</p>
+			                  				<p>-ចំពោះចំនួនមនុស្សពី ៧-១០នាក់            : 2.2 Ha <ផ្ទៃក្រឡា    ≤ 4 Ha </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សលើសពី១០នាក់        : 3 ha < ផ្ទៃក្រឡា  ≤ 5 Ha </p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">4</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ១-៣នាក់              : ផ្ទៃក្រឡា  >  2 Ha  </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៤-៦នាក់               :  ផ្ទៃក្រឡា    > 3 Ha</p>
+			                  				<p>- ចំពោះចំនួនមនុស្សពី ៧-១០នាក់            :  ផ្ទៃក្រឡា    > 4 Ha  </p>
+			                  				<p>- ចំពោះចំនួនមនុស្សលើសពី១០នាក់        :  ផ្ទៃក្រឡា    > 5 Ha </p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
-	                  	<P>- 7.B.1   ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមានចំណូលពីសកម្មភាពកសិកម្ម</P>
-	                  	<p>(ប្រាក់ចំណូលប្រចាំខែ  ចំណូលមធ្យមប្រចាំខែរបស់សមាជិកគ្រួសារម្នាក់ៗ)</p>
+	                  	<P style="font-weight: bold;">- 7.B.1   ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមានចំណូលពីសកម្មភាពកសិកម្ម</P>
+	                  	<p style="font-weight: bold;">(ប្រាក់ចំណូលប្រចាំខែ  ចំណូលមធ្យមប្រចាំខែរបស់សមាជិកគ្រួសារម្នាក់ៗ)</p>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>- តិចជាង 40 000 រៀល</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">4</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ចន្លោះពី  40 000 រៀល - 70 000រៀល</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">2</span></td>
+			                  		</tr>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>- ចន្លោះពី    70 000 រៀល - 100 000 រៀល </p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ចន្លោះពី  100 000 រៀល - 125 000រៀល</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">-3</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ចន្លោះពី  125 000 រៀល - 150 000 រៀល </p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">-6</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ចន្លោះពី  150 000 រៀល - 175 000 រៀល </p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">-9</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ច្រើនជាង 200 000 រៀល</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">-12</span></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
-	                  	<P>- 7.B.2  ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្ម</P>
-	                  	<p>(ប្រាក់ចំណូលប្រចាំខែ  ចំណូលមធ្យមប្រចាំខែរបស់សមាជិកគ្រួសារម្នាក់ៗ)</p>
+	                  	<P style="font-weight: bold;">- 7.B.2  ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្ម</P>
+	                  	<p style="font-weight: bold;">(ប្រាក់ចំណូលប្រចាំខែ  ចំណូលមធ្យមប្រចាំខែរបស់សមាជិកគ្រួសារម្នាក់ៗ)</p>
 	                  		<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	   	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>-ចំណូលមធ្យមប្រចាំខែរបស់សមាជិកគ្រួសារម្នាក់ៗ៖
+សម្រាប់រាជធានីភ្នំពេញ= តិចជាង165.000 រៀល
+,សម្រាប់តំបន់ទីប្រជុំជនដទៃទៀត= តិចជាង138.000 រៀល
+,សម្រាប់ទីជនបទ = តិចជាង 110 000 រៀល
+
+</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">16</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- ចំណូលមធ្យមប្រចាំខែរបស់សមាជិកគ្រួសារម្នាក់ៗ៖
+សម្រាប់រាជធានីភ្នំពេញ= ចន្លោះពី 165.100រៀល- 336 000រៀល
+,សម្រាប់តំបន់ទីប្រជុំជនដទៃទៀត= ចន្លោះពី 138.100 រៀល- 231.000រៀល
+,សម្រាប់ទីជនបទ =  ចន្លោះពី 110. 100 រៀល-180.000រៀល
+</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">11</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>-	ចំណូលមធ្យមប្រចាំខែរបស់សមាជិកគ្រួសារម្នាក់ៗ៖
+សម្រាប់រាជធានីភ្នំពេញ= ចន្លោះពី  336 100រៀល -400.000រៀល
+,សម្រាប់តំបន់ទីប្រជុំជនដទៃទៀត= ចន្លោះពី  231.100រៀល - 300.000រៀល
+,សម្រាប់ទីជនបទ =  ចន្លោះពី180.100រៀល - 230.000រៀល
+</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">5</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>-	ចំណូលមធ្យមប្រចាំខែរបស់សមាជិកគ្រួសារម្នាក់ៗ៖
+សម្រាប់រាជធានីភ្នំពេញ= ច្រើនជាង  400.100រៀល
+,សម្រាប់តំបន់ទីប្រជុំជនដទៃទៀត= ច្រើនជាង 300.100រៀល
+,សម្រាប់ទីជនបទ =  ច្រើនជាង 230.100រៀល
+</p>
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
-	                  	<p>- 7. C កុមារ(អាយុក្រោម 1៨ឆ្នាំ )រកចំណូល</p>
+	                  	<p style="font-weight: bold;">- 7. C កុមារ(អាយុក្រោម 1៨ឆ្នាំ )រកចំណូល</p>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;"></th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
-			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>សរុបចំនួនកុមារអាយុក្រោម១៨ឆ្នាំរកចំណូលឲ្យគ្រួសារ (ចំនួនកុមាររកចំណូល x 2ពិន្ទុ)</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">4</span></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
@@ -472,16 +700,40 @@
 	                  <div class="col-md-12">
 	                  	<h4>8.ជំងឺ ,របួសនិងពិការភាព</h4>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>-	សមាជិកគ្រួសារយ៉ាងតិច២នាក់ អាយុក្រោម៦៥ឆ្នាំ(<65) បាត់បង់លទ្ធភាពពលកម្ម ស្ទើរទាំងស្រុង(មិនអាចរកប្រាក់ចំណូល/មិនអាចរៀនបាន) </p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">10</span></td>
+			                  		</tr>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>-	សមាជិកគ្រួសារ ១នាក់ អាយុក្រោម៦៥ឆ្នាំ (<65) បាត់បង់លទ្ធភាពពលកម្មស្ទើរទាំងស្រុង ឬ   
+<br>-	សមាជិកគ្រួសារយ៉ាងតិច ២នាក់ អាយុក្រោម ៦៥ឆ្នាំ(<65)  បាត់បង់លទ្ធភាពពលកម្មប្រហែល៥០ % 
+</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">7</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>-	សមាជិកគ្រួសារ ១នាក់ អាយុក្រោម ៦៥ឆ្នាំ(<65) បាត់បង់លទ្ធភាពពលកម្មប្រហែល៥០ % ឬ
+<br>-	សមាជិកគ្រួសារយ៉ាងតិច 1នាក់ អាយុ ៦៥ឆ្នាំឡើង បាត់បង់លទ្ធភាពពលកម្ម ស្ទើរទាំងស្រុង
+</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">4</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>-	គ្មានសមាជិកគ្រួសារណាម្នាក់អាយុក្រោម ៦៥ឆ្នាំ(<65) មានជំងឺរ៉ាំរ៉ៃ/ពិការភាពធ្ងន់ធ្ងរឡើយ។ ឬ
+<br>-	មានសមាជិកគ្រួសារ អាយុ ៦៥ឆ្នាំឡើង បាត់បង់លទ្ធភាពពលកម្ម ត្រឹមប្រហែល៥០ %ប៉ុណ្ណោះ
+</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
@@ -490,16 +742,36 @@
 	                  <div class="col-md-12">
 	                  	<h4>9. បំណុលរបស់គ្រួសារ</h4>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>-	គ្រួសារនេះមិនអាចខ្ចីប្រាក់គេសូម្បីតែ$100(មួយរយ)ក៏មិនបាន
+<br>-	គ្រួសារនេះ មានបំណុល ច្រើនជាង  1.200.100រៀល
+ </p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">3</span></td>
+			                  		</tr>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>-	គ្រួសារនេះមិនអាចខ្ចីប្រាក់គេចន្លោះពី $100 - $200(មួយរយ - ពីររយ)
+<br>-	គ្រួសារនេះមានបំណុល ចន្លោះពី  600.000 រៀល- 1.200.000រៀល
+
+</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">2</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>-	គ្រួសារនេះមិនមានជាប់បំណុលគេ
+<br>-	គ្រួសារនេះមានបំណុល តិចជាង  600.000 រៀល
+
+</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
@@ -508,16 +780,41 @@
 	                  <div class="col-md-12">
 	                  	<h4>10.  ការអប់រំ (មើលចម្លើយនៅក្នុងតារាងផ្នែក ខ)</h4>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">ផ្ទៃក្រឡា</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>គ្រួសារដែលបំពេញតាមលក្ខខណ្ឌវិនិច្ឆ័យ ១ ក្នុងចំណោម ៣ខាងក្រោម៖
+<br>-	មេគ្រួសារ ឬ ប្តីប្រពន្ធ មិនបានរៀនសោះ ឬ មានកម្រិតវប្បធម៌ត្រឹមថ្នាក់ទី1 – 3
+<br>-	យ៉ាងហោចណាស់មានកុមារម្នាក់(១៦ឆ្នាំឡើង)មានកម្រិតវប្បធម៌ត្រឹមថ្នាក់ទី 1-3 
+<br>-	យ៉ាងហោចណាស់មានក្មេង ២នាក់ (ដែលមានអាយុក្រោម16ឆ្នាំ) មិនបានចូលរៀនឬ បោះបង់ចោលសាលា ។
+
+ </p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">43</span></td>
+			                  		</tr>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>គ្រួសារដែលបំពេញតាមលក្ខខណ្ឌវិនិច្ឆ័យ ១ ក្នុងចំណោម ៣ខាងក្រោម៖
+<br>-	មេគ្រួសារ ឬ ប្តីប្រពន្ធ មិនបានរៀនសោះ ឬ មានកម្រិតវប្បធម៌ត្រឹមថ្នាក់ទី4 – 6
+<br>-	យ៉ាងហោចណាស់មានកុមារម្នាក់(១៦ឆ្នាំឡើង)មានកម្រិតវប្បធម៌ត្រឹមថ្នាក់ទី4-6 
+<br>-	យ៉ាងហោចណាស់មានក្មេង 1នាក់ (ដែលមានអាយុក្រោម16ឆ្នាំ) មិនបានចូលរៀនឬ បោះបង់ចោលសាលា ។
+
+
+</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">2.5</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>- គ្រួសារមិនស្របតាមលក្ខខណ្ឌវិនិច្ឆ័យណាមួយដូចខាងលើ
+
+</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
 			                  		</tr>
 			                  	</table>
 		                  </p>
@@ -526,16 +823,45 @@
 	                  <div class="col-md-12">
 	                  	<h4>11. វ័យពលកម្ម (ចន្លោះពី1៨ឆ្នាំដល់៦៥ឆ្នាំ) </h4>
 	                  	<p style="padding: 5px;">
-			                  	<table class="table" style="border: 1px solid #ccc !important;">
+			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ចំពោះចំនួនមនុស្ស</th>
-	                    				<th style="text-align: center;">លទ្ធផល</th>
+	                    				<th>ចំណាត់ថ្នាក់</th>
 	                    				<th style="text-align: center;">ពិន្ទុ</th>
 			                  		</tr>
 			                  		<tr>
-			                  			<td>ចំពោះចំនួនមនុស្សពី ១-៣នាក់</td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
-			                  			<td><input type="text" name="house_size" value="5"​ class="form-control" disabled style="text-align: center;"></td>
+			                  			<td>
+			                  				<p>លទ្ធផល ≤ 0,33
+ </p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">43</span></td>
+			                  		</tr>
+			                  		<tr style="background: #ccc;">
+			                  			<td>
+			                  				<p>0,33 <    លទ្ធផល   < 0,66
+
+
+</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">2.5</span></td>
+			                  		</tr>
+			                  		<tr>
+			                  			<td>
+			                  				<p>0,66  ≤ លទ្ធផល   ≥ 0
+
+</p> 
+			                  			</td>
+			                  			<td width="30%" align="center"><span class="score-num">0</span></td>
+			                  		</tr>
+			                  	</table>
+		                  </p>
+	                  </div>
+	                  <div class="col-sm-12"><hr></div>
+	                  <div class="col-md-12">
+	                  	<p style="padding: 5px;">
+			                  	<table id="datatable1" class="table table-bordered">
+			                  		<tr style="background: #f9f3f3;">
+	                    				<th>ពិន្ទុសរុប</th>
+	                    				<th style="text-align: center;"><span class="score-num">(73)​ ពិន្ទុ</span></th>
 			                  		</tr>
 			                  	</table>
 		                  </p>
