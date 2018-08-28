@@ -63,6 +63,7 @@ Route::group(['prefix' => 'home','middleware' => ['auth']], function() {
     Route::GET('user/create.html',['as'=>'user.create','uses'=>'UserController@create','middleware' => ['permission:user-create']]);
     Route::POST('user/store.html',['as'=>'user.store','uses'=>'UserController@store','middleware' => ['permission:user-create']]);
     Route::GET('user/edit/{id}',['as'=>'user.edit','uses'=>'UserController@edit','middleware' => ['permission:user-edit']]);
+    Route::POST('user/updated/{id}',['as'=>'user.update','uses'=>'UserController@update','middleware' => ['permission:user-edit']]);
     Route::GET('user/delete/{id}',['as'=>'user.delete','uses'=>'UserController@delete','middleware' => ['permission:user-delete']]);
 
 

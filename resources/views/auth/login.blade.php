@@ -51,11 +51,11 @@
                                 <label for="email" class="col-sm-4 col-form-label text-md-right">ឈ្មោះប្រើប្រាស់</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}"  autofocus>
+                                    <input id="name" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}"  autofocus>
 
-                                    @if ($errors->has('name'))
+                                    @if ($errors->has('username'))
                                         <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('username') }}</strong>
                                     </span>
                                     @endif
                                 </div>

@@ -10,7 +10,8 @@
                 <div class="user-mangement">
                     <div class="box">
                         <div class="box-body">
-                            {!! Form::open(['route' => 'user.store'],['enctype'=>'multipart/form-data']) !!}
+
+                            {!! Form::model($user, array('route' => array('user.update', Crypt::encrypt($user->id)))) !!}
 
                             <fieldset class="scheduler-border">
                                 <legend class="scheduler-border"><h4 class="box-title">ព័តមានអ្នកប្រើប្រាស់ថ្មី </h4></legend>
@@ -19,9 +20,20 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <table class="user-table">
                                                 <tr>
+                                                    <td width="50%">ឈ្មោះ<span class="text-danger">*</span></td>
+                                                    <td width="50%">
+                                                        {{ Form::text('name',$user->name,['class'=>'form-control','placeholder'=>'ឈ្មោះ']) }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <table class="user-table">
+                                                <tr>
                                                     <td width="50%">ឈ្មោះប្រើប្រាស់ <span class="text-danger">*</span></td>
                                                     <td width="50%">
-                                                        {{ Form::text('name',$user->name,['class'=>'form-control','placeholder'=>'ឈ្មោះប្រើប្រាស់']) }}
+                                                        {{ Form::text('username',$user->username,['class'=>'form-control','placeholder'=>'ឈ្មោះប្រើប្រាស់','readonly'=>'readonly']) }}
                                                     </td>
                                                 </tr>
                                             </table>
@@ -30,18 +42,7 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <table class="user-table">
                                                 <tr>
-                                                    <td width="50%">លេខទូរសព្ទ</td>
-                                                    <td width="50%">
-                                                        {{ Form::number('phone',$user->phone,['class'=>'form-control','placeholder'=>'លេខទូរសព្ទ']) }}
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-
-                                        <div class="form-group col-sm-6 col-xs-12">
-                                            <table class="user-table">
-                                                <tr>
-                                                    <td>សារអេឡិចត្រូនិច <span class="text-danger">*</span></td>
+                                                    <td>សារអេឡិចត្រូនិច </td>
                                                     <td>
                                                         {{ Form::email('email',$user->email,['class'=>'form-control','placeholder'=>'សារអេឡិចត្រូនិច']) }}
                                                     </td>
@@ -49,6 +50,16 @@
                                             </table>
                                         </div>
 
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <table class="user-table">
+                                                <tr>
+                                                    <td>លេខទូរសព្ទ</td>
+                                                    <td>
+                                                        {{ Form::number('phone',$user->phone,['class'=>'form-control','placeholder'=>'លេខទូរសព្ទ']) }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
 
 
                                         {{--<div class="form-group col-sm-6 col-xs-12">--}}

@@ -19,9 +19,9 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                            <table class="user-table">
                                                <tr>
-                                                   <td width="50%">ឈ្មោះប្រើប្រាស់ <span class="text-danger">*</span></td>
+                                                   <td width="50%">ឈ្មោះ<span class="text-danger">*</span></td>
                                                    <td width="50%">
-                                                       {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'ឈ្មោះប្រើប្រាស់']) }}
+                                                       {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'ឈ្មោះ']) }}
                                                    </td>
                                                </tr>
                                            </table>
@@ -30,9 +30,9 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <table class="user-table">
                                                 <tr>
-                                                    <td width="50%">លេខទូរសព្ទ</td>
+                                                    <td width="50%">ឈ្មោះប្រើប្រាស់ <span class="text-danger">*</span></td>
                                                     <td width="50%">
-                                                        {{ Form::number('phone',null,['class'=>'form-control','placeholder'=>'លេខទូរសព្ទ']) }}
+                                                        {{ Form::text('username',null,['class'=>'form-control','placeholder'=>'ឈ្មោះប្រើប្រាស់']) }}
                                                     </td>
                                                 </tr>
                                             </table>
@@ -41,7 +41,7 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <table class="user-table">
                                                 <tr>
-                                                    <td>សារអេឡិចត្រូនិច <span class="text-danger">*</span></td>
+                                                    <td>សារអេឡិចត្រូនិច </td>
                                                     <td>
                                                         {{ Form::email('email',null,['class'=>'form-control','placeholder'=>'សារអេឡិចត្រូនិច']) }}
                                                     </td>
@@ -52,9 +52,9 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <table class="user-table">
                                                 <tr>
-                                                    <td>ឈ្មោះក្រុម</td>
+                                                    <td>លេខទូរសព្ទ</td>
                                                     <td>
-                                                        {{ Form::text('group',null,['class'=>'form-control','placeholder'=>'ឈ្មោះក្រុម']) }}
+                                                        {{ Form::number('phone',null,['class'=>'form-control','placeholder'=>'លេខទូរសព្ទ']) }}
                                                     </td>
                                                 </tr>
                                             </table>
