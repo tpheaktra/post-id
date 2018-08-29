@@ -57,11 +57,11 @@ return [
 
         'mysql2' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => '54.254.99.132',
             'port' => env('DB_PORT', '3306'),
-            'database' => 'dev_pmrs_share',
-            'username' => 'root',
-            'password' => '',
+            'database' => 'tmp_pmrs_share',
+            'username' => 'temp',
+            'password' => '$Tmp@2018$',
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
@@ -73,11 +73,11 @@ return [
 
         'mysql3' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => '54.254.99.132',
             'port' => env('DB_PORT', '3306'),
-            'database' => 'dev_pmrs_households',
-            'username' => 'root',
-            'password' => '',
+            'database' => 'tmp_pmrs_households',
+            'username' => 'temp',
+            'password' => '$Tmp@2018$',
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
