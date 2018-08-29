@@ -519,7 +519,7 @@
             '</td>'+
             '<td>'+
                  '<div class="form-group input-group">'+
-                    '<input id="score_animal" name="animal_score['+row_3+']" type="text" required="required" class="cal_animal form-control" readonly="readonly"/>'+
+                    '<input id="score_animal" name="animal_score['+row_3+']" type="text" required="required" class="cal_animal txt_score_animal score_animal_'+numRow+' form-control" readonly="readonly"/>'+
                     '<span class="input-group-addon">ពិន្ទុ</span>'+
                   '</div>'+
             '</td>'+
@@ -546,7 +546,7 @@
                     '<tr>' +
                     '<td>' +
                     '<div class="form-group">' +
-                    '<input name="num_animals['+numRow+']" id="num_sheep" type="text" class="cal_animal form-control allowNumber num_animals"  />' +
+                    '<input name="num_animals['+numRow+']" id="num_sheep_'+numRow+'" type="text" class="cal_animal form-control allowNumber num_animals"  />' +
                     '</div>' +
                     '</td>' +
                     '</tr>' +
@@ -555,6 +555,25 @@
                 $('#noted_'+index).html(noted);
                 $('#num_animals_'+(index)).html(sheep);
                 AllowNumber();
+                $('.cal_animal').change(function(){
+                  var myrow_ind = $('.myrow_3').attr('index');
+                  var num = $('#num_sheep_'+index).val();
+                  var answer = 0;
+                  if( num>=1 && num < 3){
+                    //$('#animal_score').val(4);
+                     answer = 4;
+                  }else{
+                     answer = 0;
+                  }
+                  $(".score_animal_"+index).val(answer);
+                  var maxScore = $('.score_animal_'+myrow_ind).val();
+                   $(".txt_score_animal").each(function(i){
+                       var score = $(this).val();
+                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                   });
+                   $('#score_animal_total').val(maxScore);
+                });
+
             }else if( type == 3 ){
                 var duk = '<table class="table table-bordered">' +
                     '<tr>' +
@@ -563,7 +582,7 @@
                     '<tr>' +
                     '<td>' +
                     '<div class="form-group">' +
-                    '<input autocomplete="off" name="num_animals_big['+numRow+']" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />' +
+                    '<input autocomplete="off" name="num_animals_big['+numRow+']" id="hend_'+numRow+'" type="text" class="cal_animal form-control allowNumber" required="required" />' +
                     '</div>' +
                     '</td>' +
                     '</tr>' +
@@ -572,17 +591,25 @@
                 $('#noted_'+index).html(noted);
                 $('#num_animals_'+(index)).html(duk);
                 AllowNumber();
-
-                $('.cal_animal').change(function(){
-                  var num = $('#num_animals').val();
-                  var answer = 0;
-                  if( num>=1 && num < 3){
-                    //$('#animal_score').val(4);
-                     answer = 4;
+                $(".cal_animal").change(function(){
+                  var myrow_ind = $('.myrow_3').attr('index');
+                  var hend = $("#hend_"+index).val();
+                  var score = 0;
+                  if(hend>=1 && hend<30){
+                     score = 6;
+                  }else if(hend >=1 && hend<50){
+                      score=4;
                   }else{
-                     answer = 0;
+                      score=0;
                   }
-                  $('#score_animal').val(answer);
+                  $('.score_animal_'+index).val(score);
+
+                   var maxScore = $('.score_animal_'+myrow_ind).val();
+                   $(".txt_score_animal").each(function(i){
+                       var score = $(this).val();
+                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                   });
+                   $('#score_animal_total').val(maxScore);
                 });
             }else if (type == 1) {//$('#num_animals_'+ty).empty();
                 var cow = '<table class="table table-bordered" align="center">' +
@@ -594,17 +621,17 @@
                     '<td>' +
                     '<div class="form-group">' +
                     '<input name="num_animals['+numRow+']" id="num_animals" type="hidden" class="cal_animal form-control allowNumber num_animals"  />' +
-                    '<input autocomplete="off" name="num_animals_big['+numRow+']" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />' +
+                    '<input autocomplete="off" name="num_animals_big['+numRow+']" id="num_animals_big_'+numRow+'" type="text" class="cal_animal form-control allowNumber" required="required" />' +
                     '</div>' +
                     '</td>' +
                     '<td>' +
                     '<div class="form-group">' +
-                    '<input autocomplete="off" name="num_animals_small['+numRow+']" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />' +
+                    '<input autocomplete="off" name="num_animals_small['+numRow+']" id="num_animals_small_'+numRow+'" type="text" class="cal_animal form-control allowNumber"  />' +
                     '</div>' +
                     '</td>' +
                     '</tr>' +
                     '</table>';
-                var noted = '<select style="width: 100%;" class="form-control note_animals" id="note_animals" name="note_animals['+numRow+']" required="required">' +
+                var noted = '<select style="width: 100%;" class="cal_animal form-control note_animals" id="note_animals_'+numRow+'" name="note_animals['+numRow+']" required="required">' +
                     '<option></option>' +
                     '<option value="ប្រវាស់">ប្រវាស់</option>' +
                     '<option value="មិនប្រវាស់">មិនប្រវាស់</option>' +
@@ -614,6 +641,31 @@
                 $('#num_animals_'+(index)).html(cow);
                 AllowNumber();
                 $(".note_animals").select2({ allowClear:true, placeholder: "កំណត់សម្គាល់"});
+
+                $(".cal_animal").change(function(){
+                  var myrow_ind = $('.myrow_3').attr('index');
+                  var big = parseInt($("#num_animals_big_"+index).val());
+                  var small = parseInt($("#num_animals_small_"+index).val());
+                  var status = $("#note_animals_"+index).val();
+                  var bigsmall = big+small;
+                  var score = 0;
+                  if(big == 0 && small == 0){
+                    score = 6;
+                  }else if( ((big <=1 && small == 0) || (big == 0 && small <=2 )) || (bigsmall == 2 && status =="ប្រវាស់") ){
+                      score = 4;
+                  }
+                  else{
+                    score = 0;
+                  }
+                  $(".score_animal_"+index).val(score);
+
+                  var maxScore = $('.score_animal_'+myrow_ind).val();
+                   $(".txt_score_animal").each(function(i){
+                       var score = $(this).val();
+                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                   });
+                   $('#score_animal_total').val(maxScore);
+                });
             }
         });
 
