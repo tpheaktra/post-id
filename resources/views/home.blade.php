@@ -707,7 +707,7 @@
                                                            row_score = 0;
                                                        }
                                                        $('.edu_score_'+ind).val(row_score);
-                                                       var maxScore = $('.edu_score_'+myrow_ind).val();
+                                                       var maxScore = $('.score_animal_'+myrow_ind).val();
                                                        $(".txt_score").each(function(i){
                                                            var score = $(this).val();
                                                            if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
@@ -1068,7 +1068,7 @@
                                                  '</table>' +
                                              '</div>');
                                              //3B គ្រួសារដែលនៅផ្ទះជួលគេតម្លៃជួលផ្ទះ (ប្រើសម្រាប់តែគ្រួសារដែលជួលផ្ទះគេ)    
-                                                $('.cal').keyup(function(){
+                                                $('.cal').change(function(){
                                                     var person = $('#total_people').val();
                                                     var price = $('#price').val();
                                                     if( ((person>=1 && person <=3) && (price>=1 && price <=80000)) || ((person >=4 && person <=6) && (price>=1 && price <=120000)) || ((person >=7 && person <= 10) && (price>=1 && price <=180000)) || ((person>10)&&(price>=1 && price<=240000)) )
@@ -1825,7 +1825,7 @@
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_3">
-                                <tr class="myrow_3">
+                                <tr class="myrow_3" index="0" >
                                     <td class="auto_id">1</td>
                                     <td>
                                         <div class="form-group add_type_animals">
@@ -1871,7 +1871,7 @@
                                     </td>
                                     <td>
                                       <div class="form-group input-group">
-                                            <input id="score_animal" name="animal_score" type="text" required="required" class="cal_animal form-control" readonly="readonly"/>
+                                            <input id="score_animal_0" name="animal_score" type="text" required="required" class="cal_animal txt_score_animal score_animal_0 form-control" readonly="readonly"/>
                                             <span class="input-group-addon">ពិន្ទុ</span>
                                       </div>
                                     </td>
@@ -1882,7 +1882,6 @@
                                   <script type="text/javascript">
                                       var numRow = 0;
                                       $('#type_animals').on("change", function(e){
-                                          $('#score_animal_0').val(4);
                                           var type = this.value;
                                           var index= $(this).attr('index');
                                           //$('#num_animals').empty();
@@ -1907,6 +1906,7 @@
                                                 AllowNumber();
 
                                                 $('.cal_animal').change(function(){
+                                                  var myrow_ind = $('.myrow_3').attr('index');
                                                   var num = $('#num_animals').val();
                                                   var answer = 0;
                                                   if( num>=1 && num < 3){
@@ -1915,7 +1915,13 @@
                                                   }else{
                                                      answer = 0;
                                                   }
-                                                  $('#score_animal').val(answer);
+                                                  $('.score_animal_0').val(answer);
+                                                  var maxScore = $('.score_animal_0').val();
+                                                   $(".txt_score_animal").each(function(i){
+                                                       var score = $(this).val();
+                                                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                   });
+                                                   $('#score_animal_total').val(maxScore);
                                                 });
                                             }else if(index == 0 && type == 1){
                                                 var cow = '<table class="table table-bordered" align="center">' +
@@ -1948,22 +1954,30 @@
                                                 AllowNumber();
 
                                                 $(".cal_animal").change(function(){
+                                                  var myrow_ind = $('.myrow_3').attr('index');
+
                                                   var big = parseInt($("#num_animals_big").val());
                                                   var small = parseInt($("#num_animals_small").val());
                                                   var status = $("#note_animals").val();
                                                   var bigsmall = big+small;
                                                   var score = 0;
 
-                                                  if(bigsmall == 2 && status=="ប្រវាស់"){
-                                                    score = 4;
-                                                  }else if((big ==1 || small==2) && (status=="មិនប្រវាស់")){
-                                                    score = 4;
-                                                  }else if(big == 0 && small == 0){
-                                                    score=6;
-                                                  }else{
-                                                    score=0;
+                                                  if(big == 0 && small == 0){
+                                                    score = 6;
+                                                  }else if( ((big <=1 && small == 0) || (big == 0 && small <=2 )) || (bigsmall == 2 && status =="ប្រវាស់") ){
+                                                      score = 4;
                                                   }
-                                                  $('#score_animal').val(score);
+                                                  else{
+                                                    score = 0;
+                                                  }
+
+                                                  $('.score_animal_0').val(score);
+                                                  var maxScore = $('.score_animal_0').val();
+                                                   $(".txt_score_animal").each(function(i){
+                                                       var score = $(this).val();
+                                                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                   });
+                                                   $('#score_animal_total').val(maxScore);
                                                 });
                                             }else if(index == 0 && type == 3){
                                               var hend = '<table class="table table-bordered">' +
@@ -1984,6 +1998,8 @@
                                                 AllowNumber();
 
                                                 $(".cal_animal").change(function(){
+                                                  var myrow_ind = $('.myrow_3').attr('index');
+
                                                   var hend = $("#hend").val();
                                                   var score = 0;
                                                   if(hend>=1 && hend<30){
@@ -1993,7 +2009,13 @@
                                                   }else{
                                                       score=0;
                                                   }
-                                                  $('#score_animal').val(score);
+                                                  $('.score_animal_0').val(score);
+                                                  var maxScore = $('.score_animal_0').val();
+                                                   $(".txt_score_animal").each(function(i){
+                                                       var score = $(this).val();
+                                                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                   });
+                                                   $('#score_animal_total').val(maxScore);
                                                 });
                                             }
 
@@ -2005,7 +2027,7 @@
                                     <td colspan="3"><b style="float:right">7.A.1 ការចិញ្ចឹមសត្វ</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                            <input id="score_animal_0" name="animal_score1" type="text" required="required" class="form-control cal_animal" readonly="readonly"/>
+                                            <input id="score_animal_total" name="animal_score" type="text" required="required" class="form-control cal_animal" readonly="readonly"/>
                                             <span class="input-group-addon">ពិន្ទុ</span>
                                         </div>
                                     </td>
