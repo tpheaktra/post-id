@@ -38,20 +38,24 @@ class ReportController extends Controller
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $template = new \PhpOffice\PhpWord\TemplateProcessor('template/Post_ID_result_printing_form.docx');
 
-        $gInfo             = GeneralInformationModel::with('hospital','provinces','district','commune','village')->findOrFail($id);
+        $gInfo             = GeneralInformationModel::with('score','hospital','provinces','district','commune','village','shpHouseholds')->findOrFail($id);
 
         $memberFamily = DB::select("select mf.nick_name,g.name_kh as sex,mf.dob,mf.age,fr.name_kh as relation from member_family mf 
                                     inner join gender g on mf.gender_id = g.id
                                     inner join relationship fr on mf.family_relationship_id = fr.id
                                     where mf.g_information_id = '$id'");
         $address = 'ភូមិ '.$gInfo['village'][0]->name_kh.' ឃុំ/សង្កាត់ '.$gInfo['commune'][0]->name_kh.' ស្រុក/ខណ្ឌ '.$gInfo['district'][0]->name_kh.' ខេត្ត/ក្រុង '.$gInfo['provinces'][0]->name_kh;
+
         $template->setValue('interview_date',$gInfo->interview_date);
         $template->setValue('expire_date',$gInfo->expire_date);
         $template->setValue('hospital',$gInfo['hospital'][0]->name_kh);
         $template->setValue('interview_code',$gInfo->interview_code);
         $template->setValue('address',$address);
         $template->setValue('location',$gInfo->g_local_village);
-        $template->setValue('id',$id);
+        $template->setValue('hhid',$gInfo->printcardno);
+        $template->setValue('score',$gInfo['score'][0]->total);
+        $template->setValue('p',$gInfo['shpHouseholds'][0]->poorcategory);
+
         for($i=0;$i<=8;$i++) {
             foreach ($memberFamily as $key => $v) {
                 if($i == $key) {

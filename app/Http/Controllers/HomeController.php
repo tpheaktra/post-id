@@ -17,6 +17,7 @@ use App\model\MemberFamilyModel;
 use App\model\NoElectricLinkModel;
 use App\model\OtherIncomeModel;
 use App\model\OtherIncomeNotAgricultureModel;
+use App\model\ShpHouseholdsModel;
 use App\model\TypeIncomeModel;
 use App\model\TypeToiletLinkModel;
 use App\model\YesElectricLinkModel;
@@ -26,6 +27,7 @@ use Illuminate\Http\Request;
 use App\model\RelationshipModel;
 use App\model\FamilyrelationModel;
 use App\Helpers\Helpers;
+use App\Helpers\PreIdRoundManager;
 use App\model\ConditionhouseModel;
 use App\model\WallMadeModel;
 use App\model\RoofMadeModel;
@@ -35,6 +37,7 @@ use auth;
 use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\DataTables;
 use Carbon\Carbon;
+
 class HomeController extends Controller
 {
     /**
@@ -245,13 +248,25 @@ class HomeController extends Controller
         $interview_code= $check[0]->id + 1;
         echo json_encode($query[0]->shortcut.'/'.date('y m d').'/0'.$interview_code);
     }
+
     /*
      * get data with ajax
      */
     public function getDistrict(request $request){
         $pro_code = $request->province_id;
         $query = Helpers::getDistrict($pro_code);
-        echo json_encode($query);
+        //$pro = isset($_GET['pro']) ? $_GET['pro'] : '';
+        $iDate = date('Y-m-d');
+        $result= array('expiredDate'=> null, 'odData'=>array());
+        $val = array('expired'=> date('d M ').(date('Y') + 1));
+        if($pro_code != '' && $iDate != ''){
+            $preObj = new PreIdRoundManager($pro_code, $iDate);
+            $val['expired'] = date('Y-m-d', strtotime($preObj->getPostExpireDate()));
+        }
+        $result['expiredDate'] = $val;
+        $result['odData'] = $query;
+        //echo json_encode($val);
+        echo json_encode($result);
     }
 
 
@@ -266,6 +281,22 @@ class HomeController extends Controller
         $commune_code = $request->commune_id;
         $query = Helpers::getVillage($commune_code);
         echo json_encode($query);
+    }
+
+    public function getPrintCardNo(request $request){
+        $printCard = $request->village_id;
+        $label = $request->label;
+        $query = Helpers::getPrintNoCard($printCard);
+
+        if($query[0]->card == null || $query[0]->card == ''){
+            $card = $label.'-'."0001";
+            $print_card = "0001";
+        }else{
+            $print_card = substr($query[0]->card,9);
+            $card = $label.'-'.($print_card+1);
+        }
+        $result= array('hhid'=> ($print_card+1), 'result_card'=>$card);
+        return $result;
     }
 
     /*
@@ -307,6 +338,7 @@ class HomeController extends Controller
         //check validation
         $this->validate($request, [
             'interview_date' => 'required',
+            'expire_date'    => 'required',
             'hospital'       => 'required',
             'interview_code' => 'required',
             'g_patient'      => 'required',
@@ -354,7 +386,8 @@ class HomeController extends Controller
                 'user_id'            => auth::user()->id,
                 'od_code'            => $od_code,
                 'hf_code'            => $request->hf_code,
-                'interview_code'     =>$interview_code,
+                'interview_code'     => $interview_code,
+                'printcardno'        => $request->printcardno,
                 'g_patient'          =>$request->g_patient,
                 'g_age'              =>$request->g_age,
                 'g_sex'              =>$request->g_sex,
@@ -376,9 +409,12 @@ class HomeController extends Controller
                 'fa_sex'              =>$request->fa_sex,
                 'fa_phone'            =>$request->fa_phone,
                 'fa_relationship_id'  =>$request->fa_relationship,
-                'interview_date'     => $request->interview_date,
+                'interview_date'      => $request->interview_date,
+                'expire_date'         => $request->expire_date,
             );
             $gn_info = GeneralInformationModel::create($data);
+
+
 
             //step2
             //table member_family
@@ -642,7 +678,7 @@ class HomeController extends Controller
             DebtLoanLinkModel::create($debt);
             
             //tabel score
-
+            $total = $request->size_member_score + $request->toilet_score + $request->roof_score + $request->wall_score + $request->house_score + $request->price_rent_house_score + $request->price_electronic_score + $request->use_energy_elect_score + $request->no_energy_elect_score + $request->vehicle_score + $request->animal_score + $request->personal_farm_score + $request->other_farm_score + $request->income_out_farmer_score + $request->income_out_not_farmer_score + $request->income_child_score + $request->disease_score + $request->debt_score + $request->edu_score + $request->age_action_score;
             $score = array(
                 'patient' => $gn_info->id,
                 'size_member'   =>$request->size_member_score,
@@ -655,20 +691,50 @@ class HomeController extends Controller
                 'use_energy_elect' => $request->use_energy_elect_score,
                 'no_energy_elect'  => $request->no_energy_elect_score,
                 'vehicle'          => $request->vehicle_score,
-                'animal'        =>$request->animal_score,
-                'personal_farm' => $request->personal_farm_score,
-                'other_farm'    => $request->other_farm_score,
+                'animal'                => $request->animal_score,
+                'personal_farm'         => $request->personal_farm_score,
+                'other_farm'            => $request->other_farm_score,
                 'income_out_farmer'     => $request->income_out_farmer_score,
                 'income_out_not_farmer' => $request->income_out_not_farmer_score,
-                'income_child'  => $request->income_child_score,
-                'disease'       => $request->disease_score,
-                'debt'  => $request->debt_score,
-                'edu'   => $request->edu_score,
-                'age_action'    => $request->age_action_score,
-                'record_status' => "1"
+                'income_child'          => $request->income_child_score,
+                'disease'               => $request->disease_score,
+                'debt'                  => $request->debt_score,
+                'edu'                   => $request->edu_score,
+                'age_action'            => $request->age_action_score,
+                'total'                 => $total
             );
-           // dd($score);exit();
-            StoreScoreModel::create($score);
+
+            $score = StoreScoreModel::create($score);
+            $total_score = $score->total;
+            echo $total_score;
+
+            $poor = 0;
+            if($total_score <= 42){
+                $poor = 3;
+            }elseif(($total_score > 42) && ($total_score < 85) ){
+                $poor = 2;
+            }elseif($total_score >= 85){
+                $poor = 1;
+            }
+            echo $poor;
+
+            $shp_household_pmrs = array(
+                'hhid'          =>$request->hhid,
+                'province'      =>$request->g_province,
+                'district'      =>$request->g_district,
+                'commune'       =>$request->g_commune,
+                'village'       =>$request->g_village,
+                'location'      =>$request->g_local_village,
+                'printedcardno' =>$request->printcardno,
+                'roundnum'      =>0,
+                'interviewscore'=>$total_score,
+                'interviewdate' =>$request->interview_date,
+                'expirydate'    =>$request->expire_date,
+                'entryby'       =>auth::user()->id,
+                'entrydate'     =>Carbon::now(),
+                'poorcategory'  =>$poor
+            );
+           $shp= ShpHouseholdsModel::create($shp_household_pmrs);
 
             DB::commit();
             return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');

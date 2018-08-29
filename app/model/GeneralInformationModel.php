@@ -12,6 +12,7 @@ class GeneralInformationModel extends Model
         'od_code',
         'hf_code',
         'interview_code',
+        'printcardno',
         'g_patient',
         'g_age',
         'g_sex',
@@ -51,6 +52,12 @@ class GeneralInformationModel extends Model
     }
     public function village(){
         return $this->hasMany(VillageModel::class, 'code', 'g_village_id');
+    }
+    public function score(){
+        return $this->hasMany(StoreScoreModel::class, 'patient', 'id');
+    }
+    public function shpHouseholds(){
+        return $this->hasMany(ShpHouseholdsModel::class, 'printedcardno', 'printcardno');
     }
 
     public function memberFamily(){

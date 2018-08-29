@@ -42,23 +42,26 @@
                                     </tr>
                                 </table>
                             </div>
-                            {{--<div class="col-sm-6">--}}
-                                {{--<table class="pull-right">--}}
-                                    {{--<tr>--}}
-                                        {{--<td width="35%"><label class="control-label">ថ្ងៃផុតកំណត់:</label></td>--}}
-                                        {{--<td width="65%">--}}
-                                            {{--<div class="form-group">--}}
-                                                {{--<div class="input-group date expire_date">--}}
-                                                    {{--<input type="text" class="form-control" id="expire_date" name="expire_date"/>--}}
-                                                    {{--<span class="input-group-addon">--}}
-                                                        {{--<span class="glyphicon glyphicon-calendar"></span>--}}
-                                                    {{--</span>--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                        {{--</td>--}}
-                                    {{--</tr>--}}
-                                {{--</table>--}}
-                            {{--</div>--}}
+
+
+                            <div class="col-sm-6">
+                                <table width="100%">
+                                    <tr>
+                                        <td width="35%"><label class="control-label">ថ្ងៃផុតកំណត់ <spand class="text-danger">*</spand></label></td>
+                                        <td width="65%">
+                                            <div class="form-group">
+                                                <div class="input-group date expire_date">
+                                                    <input type="text" class="form-control" readonly id="expire_date" name="expire_date" placeholder="2018-12-31"/>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
                         </div>
                     </div>
 
@@ -68,6 +71,13 @@
                             format: 'yyyy-mm-dd',
                             todayHighlight: true
                         });
+                        $("#current_date").datepicker().datepicker("setDate", new Date());
+                        $('#expire_date').datepicker({
+                            autoclose: true,
+                            format: 'yyyy-mm-dd',
+                            minDate: true
+                        });
+
                     </script>
                     <div class="col-sm-12">
                         <div class="row">
@@ -93,13 +103,20 @@
                                 </table>
                             </div>
                             <div class="col-sm-6">
-                                <table class="pull-right">
+                                <table width="100%">
                                     <tr>
-                                        <td width="40%"><label class="control-label">លេខកូដសម្ភាសន៍ <spand class="text-danger"> * </spand></label> </td>
-                                        <td width="60%">
+                                        <td width="35%"><label class="control-label">លេខកូដសម្ភាសន៍ <spand class="text-danger"> * </spand></label> </td>
+                                        <td width="30%">
                                             <div class="form-group">
-                                                {{ Form::text('interview_code',null,['class'=>'form-control','required'=>'required','readonly'=>'readonly','id'=>'interview_code']) }}
+                                                {{ Form::text('interview_code',null,['class'=>'form-control','required'=>'required','readonly'=>'readonly' ,'placeholder'=>'PNP/18 08 29/01','id'=>'interview_code']) }}
                                                 {{ Form::hidden('hf_code',null,['required'=>'required','readonly'=>'readonly','id'=>'health_facilities_code']) }}
+                                            </div>
+                                        </td>
+                                        <td></td>
+                                        <td width="30%">
+                                            <div class="form-group">
+                                                <input id="printcard" name="printcardno" type="text" class="form-control" placeholder="23020101-0001" readonly style="text-align: center; font-size: 18px;  padding: 4px;"/>
+                                                <input id="hhid" name="hhid" type="hidden"/>
                                             </div>
                                         </td>
                                     </tr>
@@ -3253,10 +3270,15 @@
             },
             success: function (data) {
                 // console.log(data);
-                var obj = JSON.parse(data);
+                //console.log(JSON.parse(data));
+                data = JSON.parse(data);
+                var obj = data.odData;
+                //console.log(obj);
                 $("#district").empty();
                 $("#commune").empty();
                 $("#village").empty();
+                $("#expire_date").empty();
+                $("#expire_date").val(data.expiredDate.expired);
                 $("#district").append('<option selected="selected"></option>');
                 $.each(obj, function (index, element) {
                     $("#district").append(new Option(element.name_kh, element.code));
@@ -3323,9 +3345,12 @@
             success: function (data) {
                 var obj = JSON.parse(data);
                 $("#village").empty();
-                $("#village").append('<option selected="selected"></option>');
+                $("#village").append('<option ></option>');
                 $.each(obj, function (index, element) {
-                    $("#village").append(new Option(element.name_kh, element.code));
+                    $("#village").append(
+                        '<option index="'+element.label+'" value="'+element.code+'">' +element.name_kh+ '</option>'
+                       // new Option(element.name_kh, element.code)
+                    );
                 });
             },
             complete: function(){
@@ -3336,9 +3361,38 @@
             }
         });
     });
+
+
     /*======================================================
     ===============// select2 in village //=================
     ========================================================*/
+    $("#village").change(function () {
+        var village_id = $('#village').val();
+        var index=$('#village option:selected').attr('index');
+
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('getPrintCardNo') }}",
+            data: {'label':index,'village_id': village_id},
+            beforeSend: function(){
+                //$("#loading").fadeIn();
+            },
+            success: function (data) {
+               // var obj = JSON.parse(data);
+                $("#printcard").empty();
+                $("#hhid").empty();
+                $("#printcard").val(data.result_card);
+                $("#hhid").val(data.hhid);
+            },
+            complete: function(){
+                //$("#loading").fadeOut(100);
+            },
+            error: function (report){
+                console.log(report);
+            }
+        });
+    });
+
     $("#village").select2({
         allowClear:true,
         placeholder: 'ភូមិ'

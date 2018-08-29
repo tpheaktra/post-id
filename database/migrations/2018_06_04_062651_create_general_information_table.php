@@ -20,6 +20,7 @@ class CreateGeneralInformationTable extends Migration
             $table->integer('od_code')->nullable();
             $table->integer('hf_code')->nullable();
             $table->string('interview_code')->nullable();
+            $table->string('printcardno')->nullable();
             $table->string('g_patient')->nullable();
             $table->string('g_age')->nullable();
             $table->string('g_sex')->nullable();

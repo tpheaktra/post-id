@@ -26,7 +26,7 @@ Route::GET('getdata',['as'=>'getdata','uses'=>'HomeController@getdatacode']);
 Route::GET('getDistrict',['as'=>'getDistrict','uses'=>'HomeController@getDistrict']);
 Route::GET('getCommune',['as'=>'getCommune','uses'=>'HomeController@getCommune']);
 Route::GET('getVillage',['as'=>'getVillage','uses'=>'HomeController@getVillage']);
-
+Route::GET('getPrintCardNo',['as'=>'getPrintCardNo','uses'=>'HomeController@getPrintCardNo']);
 
 /*
  * insert data
