@@ -292,10 +292,28 @@ class HomeController extends Controller
             $card = $label.'-'."0001";
             $print_card = "0001";
         }else{
-            $print_card = substr($query[0]->card,9);
-            $card = $label.'-'.($print_card+1);
+            $print_card = substr($query[0]->card,-4);
+
+            //return $print_card;
+            $n = ($print_card+1);
+
+            $numlength = strlen((string)$n);
+
+            if($numlength == 3){
+                $nd = 0;
+                $num = $nd.$n;
+            }elseif($numlength == 2){
+                $nd = 00;
+                $num = $nd.$n;
+            }elseif ($numlength == 1){
+                $nd = 000;
+                $num = $nd.$n;
+            }else{
+                $num = $n;
+            }
+            $card = $label.'-'.($num);
         }
-        $result= array('hhid'=> ($print_card+1), 'result_card'=>$card);
+        $result= array('hhid'=> ($num), 'result_card'=>$card);
         return $result;
     }
 
@@ -372,7 +390,7 @@ class HomeController extends Controller
             'education_level.*.required'     => 'The education is required.'
         ]);
 
-        try {
+      //  try {
 
             //check od
             $od_code = $request->hospital;
@@ -736,13 +754,13 @@ class HomeController extends Controller
             );
            $shp= ShpHouseholdsModel::create($shp_household_pmrs);
 
-            DB::commit();
-            return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
-        } catch (\Exception $e) {
-            DB::rollBack();
-           // return $this->errorResponse($e->getMessage(), 203);
-            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
-        }
+//            DB::commit();
+//            return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
+//        } catch (\Exception $e) {
+//            DB::rollBack();
+//           // return $this->errorResponse($e->getMessage(), 203);
+//            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
+//        }
 
     }
 
