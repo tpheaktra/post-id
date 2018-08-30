@@ -140,13 +140,12 @@
 <script>
     var my_id = $('.myrow').attr('index');
     $('.cal_child').change(function(){
-
-          var maxScore = $('.age_'+my_id).val();
+          var people = $('.age_'+my_id).val();
            $(".txt_age").each(function(i){
                var age = $(this).length;
-               if(i>18 && i<=65) maxScore = age;
+               if(i>18 && i<=65) people = age;
            });
-           $('#score_animal_total').val(maxScore);
+           $('#score_animal_total').val(people);
     });
     $('.income_agriculture').click(function () {
         var index = $(this).attr('index');

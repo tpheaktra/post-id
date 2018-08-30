@@ -1909,7 +1909,7 @@
                                                   var myrow_ind = $('.myrow_3').attr('index');
                                                   var num = $('#num_animals').val();
                                                   var answer = 0;
-                                                  if( num>=1 && num < 3){
+                                                  if( num>=0 && num < 3){
                                                     //$('#animal_score').val(4);
                                                      answer = 4;
                                                   }else{
