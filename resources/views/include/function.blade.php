@@ -249,6 +249,7 @@
         var row_num = $('.new_rows_1 tr').length;
 
 
+
         $('.cal_el').change(function(){
             var total = $('#total_meterial_costs').val();
             //  alert(total);
@@ -299,9 +300,15 @@
     //remove add
     function remove_1(val) {
         var total_costs = parseInt($('#total_meterial_costs').val()) - val;
-        document.getElementById('total_meterial_costs').value = total_costs;
+        $('total_meterial_costs').val(total_costs);
     }
-    $(".new_rows_1").on('click','.remove_rows_1',function(){
+    $(".new_rows_1").on('click','.remove_rows_1',function(e){
+        var result = window.confirm('Are you sure?');
+        if (result == false) {
+            e.preventDefault();
+            return false;
+        }
+
         $('#add_rows_1').show();
         $(this).parent().parent().remove();
         reOrder_meterial();
@@ -348,10 +355,10 @@
     dataRow_vehicle=2;
     $('#add_rows_2').click(function(){ //alert($m_id);
         var row_2 = $('.new_rows_2 tr.myrow_2').length;
-        if(row_2 >= 7){
-            alert('ប្រភេទយានជំនិះ​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
-            return false;
-        }
+//        if(row_2 >= 7){
+//            alert('ប្រភេទយានជំនិះ​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
+//            return false;
+//        }
         reOrder_vehicle();
         //   var rowindex_2 = row_2+1;
         var html = '<tr class="myrow_2">'+
@@ -425,7 +432,12 @@
         // $(this).parent().parent().remove();
         $('#total_vehicle_costs').val(total_costs);
     }
-    $(".new_rows_2").on('click','.remove_rows_2',function(){
+    $(".new_rows_2").on('click','.remove_rows_2',function(e){
+        var result = window.confirm('Are you sure?');
+        if (result == false) {
+            e.preventDefault();
+            return false;
+        }
         $('#add_rows_2').show();
         $(this).parent().parent().remove();
         reOrder_vehicle();
@@ -471,13 +483,13 @@
     var animal_ind = 0;
     $('#add_rows_3').click(function(){ //alert($m_id);
         numRow++;
-        console.log(numRow);
+       // console.log(numRow);
         var row_3 = $('.new_rows_3 tr.myrow_3').length;
         animal_ind = row_3;
-        if(row_3 >= 3){
-            alert('ប្រភេទចំណូលមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
-            return false;
-        }
+//        if(row_3 >= 3){
+//            alert('ប្រភេទចំណូលមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
+//            return false;
+//        }
         // var rowindex_3 = row_3+1;
         var tab_rows_3 ='<tr class="myrow_3">'+
             '<td class="auto_id">'+dataRow_income+'</td>'+
@@ -713,7 +725,12 @@
 
 
     //remove add
-    $(".new_rows_3").on('click','.remove_rows_3',function(){
+    $(".new_rows_3").on('click','.remove_rows_3',function(e){
+        var result = window.confirm('Are you sure?');
+        if (result == false) {
+            e.preventDefault();
+            return false;
+        }
         $('#add_rows_3').show();
         $(this).parent().parent().remove();
         reOrder_income();
@@ -881,7 +898,12 @@
             document.getElementById('total_inc_person').value =total_costs/totalperson;
         }
     }
-    $(".new_rows_4").on('click','.remove_rows_4',function(){
+    $(".new_rows_4").on('click','.remove_rows_4',function(e){
+        var result = window.confirm('Are you sure?');
+        if (result == false) {
+            e.preventDefault();
+            return false;
+        }
         $('#add_rows_4').show();
         $(this).parent().parent().remove();
         reOrder_other_income();
