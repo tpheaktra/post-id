@@ -2002,9 +2002,9 @@
 
                                                   var hend = $("#hend").val();
                                                   var score = 0;
-                                                  if(hend>=1 && hend<30){
+                                                  if(hend>=0 && hend<30){
                                                      score = 6;
-                                                  }else if(hend >=1 && hend<50){
+                                                  }else if(hend >=30 && hend<50){
                                                       score=4;
                                                   }else{
                                                       score=0;
