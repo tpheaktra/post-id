@@ -797,7 +797,7 @@
                                                    $(".family_relationship").removeAttr("readonly");
                                                    var val = $(this).val();
                                                    for(var ii=1; ii<row_num; ii++) {
-                                                       //console.log(index+'_'+ii);
+                                                       console.log(index+'_'+ii);
                                                        if (index == ii && val == 1) {
                                                            $("#family_relationship_"+ii+" option[value='2']").attr('disabled', true);
                                                        } else {
@@ -1819,7 +1819,7 @@
                                     <th>ល.រ</th>
                                     <th width="20%">ប្រភេទសត្វ <spand class="text-danger">*</spand></th>
                                     <th></th>
-                                    <th>កំណត់សម្គាល់ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="បញ្ជាក់ បើសិនជាសត្វប្រវាស់គេ"></a></th>
+                                    <th width="20%">កំណត់សម្គាល់ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="បញ្ជាក់ បើសិនជាសត្វប្រវាស់គេ"></a></th>
                                     <th>ពិន្ទុ</th>
                                     <th width="10%">សកម្មភាព</th>
                                 </tr>
@@ -2655,10 +2655,13 @@
             $('#total_inc_person_not').empty();
             $('#income_out_farmer_score').empty();
            // alert(row_num);
-
+            //$('.family_relationship').trigger('change');
             for(var i=0; i<row_num; i++) {
 
+                var re = $('#family_relationship_'+i+' option:selected').val();
 
+               // $('#family_relationship_'+i).change();
+                console.log(re);
                 if ($('#family_relationship_'+i).val() == '') {
                     $('.alert').show();
                     $('.add_relationship_'+i).addClass("has-error");

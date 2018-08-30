@@ -191,13 +191,13 @@
 
     $('.inter_age').on('change', function (e) {
         var InterAge = $('.inter_age').val();
-        if(InterAge <= 16){$('.inter_age').val('');}
+        if(InterAge < 16){$('.inter_age').val('');}
         if(InterAge >= 150){$('.inter_age').val('');}
     });
 
     $('.fa_age').on('change', function (e) {
         var InterAge = $('.fa_age').val();
-        if(InterAge <= 16){$('.fa_age').val('');}
+        if(InterAge < 16){$('.fa_age').val('');}
         if(InterAge >= 150){$('.fa_age').val('');}
     });
 
@@ -223,11 +223,11 @@
     var dataRow_meterial = 2;
     $('#add_rows_1').click(function(){ //alert($m_id);
         var row_1 = $('.new_rows_1 tr.myrow_1').length;
-        if(row_1 >= 6){
-            // $('#add_rows_1').hide();
-            alert('ប្រភេទសម្ភារប្រើបា្រស់​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
-            return false;
-        }
+//        if(row_1 >= 6){
+//            // $('#add_rows_1').hide();
+//            alert('ប្រភេទសម្ភារប្រើបា្រស់​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
+//            return false;
+//        }
         reOrder_meterial();
         // var rowindex_1 = row_1+1;
         var tab_rows_1 ='<tr class="myrow_1">'+
