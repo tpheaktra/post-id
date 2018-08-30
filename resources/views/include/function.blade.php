@@ -517,7 +517,7 @@
                 '</select>'+
                 '</div>' +
             '</td>'+
-            '<td>'+
+            '<td​​ class="my_hide">'+
                  '<div class="form-group input-group">'+
                     '<input id="score_animal" name="animal_score['+row_3+']" type="text" required="required" class="cal_animal txt_score_animal score_animal_'+numRow+' form-control" readonly="readonly"/>'+
                     '<span class="input-group-addon">ពិន្ទុ</span>'+

@@ -3,7 +3,12 @@
 
 @section('content')
 
-
+<style type="text/css">
+/*use for hide score*/
+    .my_hide{
+        display: none;
+    }
+</style>
 <!------ Include the above in your HEAD tag ---------->
 <div class="container content">
     <div class="col-sm-12">
@@ -42,8 +47,7 @@
                                     </tr>
                                 </table>
                             </div>
-
-
+                            
                             <div class="col-sm-6">
                                 <table width="100%">
                                     <tr>
@@ -427,7 +431,7 @@
                                     </th>
                                     <th width="15%" rowspan="2">មុខងារ/​មុខរបរ(2) <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="(2)= ប្រភេទមុខរបរចម្បងរបស់គាត់/នាង ដូចជា កសិករ កម្មករ មន្ត្រីរាជការ រកស៊ី សិស្ស នៅផ្ទះ"></a></th>
                                     <th width="15%" rowspan="2">កម្រិតវប្បធម៌(3) <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="(3)= បើនៅរៀន បញ្ជាក់ពីថ្នាក់ទីប៉ុន្មាន។ បើជាមនុស្សពេញវ័យឬជាកុមារអាយុចាប់ពី៥ឆ្នាំតែឈប់រៀន សូមបញ្ជាក់ពីកម្រិតថ្នាក់នៅពេលឈប់រៀន"></a></th>
-                                    <th rowspan="2">ពិន្ទុតាមសមាជិក</th>
+                                    <th rowspan="2" class="my_hide">ពិន្ទុតាមសមាជិក</th>
                                     <th width="15%" rowspan="2">សកម្មភាព</th>
                                 </tr>
                                 <tr>
@@ -494,7 +498,7 @@
                                             </select>
                                         </div>
                                     </td>
-                                    <td><input type="text" class="cal_edu txt_score edu_score_0 form-control" readonly=""></td>
+                                    <td class="my_hide"><input type="text" class="cal_edu txt_score edu_score_0 form-control" readonly=""></td>
                                     <td>
                                         <a class="btn btn-primary btn-sm" id="add_rows">
                                             <span class="glyphicon glyphicon-plus"></span>
@@ -687,7 +691,7 @@
                                                    '</select>' +
                                                    '</div>' +
                                                    '</td>' +
-                                                   '<td><input type="text" class="cal_edu txt_score edu_score_'+edu_row+' form-control" readonly></td>'+
+                                                   '<td class="my_hide"><input type="text" class="cal_edu txt_score edu_score_'+edu_row+' form-control" readonly></td>'+
                                                    '<td><a class="btn btn-danger btn-sm remove_rows_kh"><span class="glyphicon glyphicon-minus"></span></a></td>' +
                                                    '</tr>';
                                                $(".new_rows").append(htmlstep2);
@@ -993,7 +997,7 @@
                                 </tr>
                             </tbody>
                             <tfoot>
-                                <tr>
+                                <tr class="my_hide">
                                     <td colspan="7"><b style="float: right;">10.  ការអប់រំ (មើលចម្លើយនៅក្នុងតារាងផ្នែក ខ)</b></td>
                                     <td>
                                         <div class="form-group input-group">
@@ -1081,7 +1085,7 @@
                                                              '</div>' +
                                                          '</td>' +
                                                      '</tr>' +
-                                                     '<tr>'+
+                                                     '<tr class="my_hide">'+
                                                         '<td width="50%">' +
                                                            '<label class="control-label"> គ្រួសារដែលនៅផ្ទះជួលគេ 3B</label>' +
                                                         '</td>' +
@@ -1189,11 +1193,11 @@
                                                                  '</div>' +
                                                              '</td>' +
                                                          '</tr>' +
-                                                         '<tr>' +
+                                                         '<tr class="my_hide">' +
                                                             '<td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" type="text" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly">' +
+                                                                     '<input autocomplete="off" type="hidden" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly">' +
                                                                      '<span class="input-group-addon">ពិន្ទុ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -1281,15 +1285,15 @@
                                                              '</div>' +
                                                          '</td>'+
                                                      '</tr>'+
-                                                    '<tr>' +
-                                                        '<td>3A 1 : ស្ថានភាពដំបូលផ្ទះ </td>' +
-                                                        '<td>' +
-                                                         '<div class="form-group input-group" style="width: 300px;">'+
+                                                    // '<tr​ style="display:none;">' +
+                                                        // '<td>3A 1 : ស្ថានភាពដំបូលផ្ទះ </td>' +
+                                                        // '<td>' +
+                                                         '<div class="my_hide form-group input-group" style="width: 300px;">'+
                                                             '<input id="roof_score" type="text" name="roof_score" class="cal_roof form-control allowNumber"​ readonly>'+
                                                             '<span class="input-group-addon">ពិន្ទុ</span>'+
                                                          '</div>'+
                                                         '</td>' +
-                                                    '</tr>'+
+                                                    // '</tr>'
                                                  '</table>';
 
                                             var building_year = '<div class="col-sm-6">' +
@@ -1417,7 +1421,7 @@
                                                              '</div>'+
                                                          '</td>'+
                                                      '</tr>' +
-                                                     '<tr>' +
+                                                     '<tr class="my_hide">' +
                                                          '<td>3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ</td>' +
                                                          '<td>' +
                                                              '<div class="form-group input-group" style="width: 300px;">'+
@@ -1448,7 +1452,7 @@
                                                      '</li>' +
                                                  '@endforeach'+
                                              '</ul></div>'+
-                                             '<div class="form-group input-group" style="width: 300px;">'+
+                                             '<div class="my_hide form-group input-group" style="width: 300px;">'+
                                                '<input id="house_score" type="text" name="house_score" class="house_score form-control allowNumber"​ readonly>'+
                                                '<span class="input-group-addon">ពិន្ទុ</span>'+
                                             '</div>';
@@ -1505,8 +1509,8 @@
                                 </ul>
                             </div>
                             <div id="tolet"></div>
-                            <label>បង្គន់អនាម័យ </label>
-                            <div class="form-group input-group add_total_people" style="width: 300px;">
+                            <label class="my_hide">បង្គន់អនាម័យ </label>
+                            <div class="my_hide form-group input-group add_total_people" style="width: 300px;">
                                <input readonly="readonly" id="toilet_score" type="text" name="toilet_score" class="form-control allowNumber"​>
                                <span class="input-group-addon">ពិន្ទុ</span>
                             </div>
@@ -1634,7 +1638,7 @@
                                                 </td>
                                                 <td></td>
                                             </tr>
-                                             <tr>
+                                             <tr class="my_hide">
                                                 <td colspan="4"><b style="float:right">4. ទ្រព្យសម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិចរបស់គ្រួសារ</b>
                                                 </td>
                                                 <td>
@@ -1688,7 +1692,7 @@
                                                 '<td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber myelectric" id="number_in_month" required="required" type="text" name="number_in_month" required="required"><span class="input-group-addon">គីឡូវ៉ាត់</span></div></td>'+
                                                 '<td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
                                             '</tr>'+
-                                            '<tr>'+
+                                            '<tr class="my_hide">'+
                                                 '<td></td>'+
                                                 '<td></td>'+
                                                 '<td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber" id="cost_score" required="required" type="text" name="use_energy_elect_score" readonly="readonly"><span class="input-group-addon">ពិន្ទុ</span></div></td>'+
@@ -1718,7 +1722,7 @@
                                             });
                                         AllowNumber();
                                     }else if(electric == 2){
-                                        $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>'+'<div class="form-group input-group" style="width: 300px;">'+
+                                        $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>'+'<div class="my_hide form-group input-group" style="width: 300px;">'+
                                                '<input id="score_power" type="text" name="no_energy_elect_score" class="score_power form-control allowNumber"​ readonly>'+
                                                '<span class="input-group-addon">ពិន្ទុ</span>'+
                                             '</div>');
@@ -1820,7 +1824,7 @@
                                     </td>
                                     <td></td>
                                 </tr>
-                                <tr>
+                                <tr class="my_hide">
                                     <td colspan="4"><b style="float:right">6. អំពីយានជំនិះរបស់គ្រួសារ</b></td>
                                     <td>
                                         <div class="form-group input-group">
@@ -1846,12 +1850,12 @@
                                     <th width="20%">ប្រភេទសត្វ <spand class="text-danger">*</spand></th>
                                     <th></th>
                                     <th width="20%">កំណត់សម្គាល់ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="បញ្ជាក់ បើសិនជាសត្វប្រវាស់គេ"></a></th>
-                                    <th>ពិន្ទុ</th>
+                                    <th class="my_hide">ពិន្ទុ</th>
                                     <th width="10%">សកម្មភាព</th>
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_3">
-                                <tr class="myrow_3" index="0" >
+                                <tr class="myrow_3" index="0">
                                     <td class="auto_id">1</td>
                                     <td>
                                         <div class="form-group add_type_animals">
@@ -1895,7 +1899,7 @@
                                             </select>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td class="my_hide">
                                       <div class="form-group input-group">
                                             <input id="score_animal_0" name="animal_score" type="text" required="required" class="cal_animal txt_score_animal score_animal_0 form-control" readonly="readonly"/>
                                             <span class="input-group-addon">ពិន្ទុ</span>
@@ -2048,7 +2052,7 @@
                                       });
                                     </script>
                             </tbody>
-                                <tr>
+                                <tr class="my_hide">
                                     <td></td>
                                     <td colspan="3"><b style="float:right">7.A.1 ការចិញ្ចឹមសត្វ</b></td>
                                     <td>
@@ -2144,7 +2148,7 @@
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
-                                                 '<tr>' +
+                                                 '<tr class="my_hide">' +
                                                     '<td></td>'+
                                                     '<td>'+
                                                     '</td>'+
@@ -2237,7 +2241,7 @@
                                         '</div>'+
                                         '</td>' +
                                         '</tr>' +
-                                        '<tr>' +
+                                        '<tr class="my_hide">' +
                                         '<td></td>'+
                                         '<td>'+
                                         '</td>'+
@@ -2291,10 +2295,7 @@
                                     });
                                 });
                             </script>
-
-
                         </div>
-
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
                             @include('include.other-income-agriculture');
@@ -2314,8 +2315,8 @@
                                        </li>
                                     @endforeach
                                 </ul>
-                                <P>8. ជំងឺ,របួសនិងពិការភាព</P>
-                                <div class="form-group input-group" style="width: 300px;">
+                                <P class="my_hide" >8. ជំងឺ,របួសនិងពិការភាព</P>
+                                <div class="my_hide form-group input-group" style="width: 300px;">
                                     <input id="score_health" name="disease_score" type="text" required="required" class="cal_health form-control" readonly="readonly"/>
                                     <span class="input-group-addon">ពិន្ទុ</span>
                                 </div>
@@ -2459,7 +2460,7 @@
                                                         '</td>' +
                                                     '</tr>' +
 
-                                                    '<tr>' +
+                                                    '<tr class="my_hide">' +
 //                                                        '<td>' +
 //                                                        '</td>' +
                                                         '<td>' +
