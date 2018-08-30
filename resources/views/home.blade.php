@@ -633,7 +633,6 @@
 
 
 
-
                                            //* ============= step 2 ======================*//
                                            var dataRow = 2;
                                            $('#add_rows').click(function(){ //alert($m_id);
@@ -647,6 +646,7 @@
                                                    alert('ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់មិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
                                                    return false;
                                                }
+
                                                // var rowindex = row+1;
                                                //console.log(dataRow);
                                                reOrder();
@@ -691,6 +691,9 @@
                                                    '<td><a class="btn btn-danger btn-sm remove_rows_kh"><span class="glyphicon glyphicon-minus"></span></a></td>' +
                                                    '</tr>';
                                                $(".new_rows").append(htmlstep2);
+                                               //ConfirmDelete();
+
+
 
                                                $('.cal_edu').change(function(){
                                                    var myrow_ind = $('.myrow').attr('index');
@@ -792,12 +795,25 @@
                                                    }
                                                });
 
+                                               $(".cal_edu").change(function(e){
+                                                   for(var ii=1; ii<row_num; ii++) {
+                                                       var nic  = $(".nick_name_"+ii).val();
+                                                       var msex = $("#m_sex_"+ii).val();
+                                                       var ag   = $("#age_"+ii).val();
+                                                       var fal  = $("#family_relationship"+ii).val();
+
+                                                       if ((nic != '' && msex != '' && ag != '' && fal != '')) {
+                                                           $('#add_rows').removeAttr("disabled", true);
+                                                       }
+                                                   }
+                                               });
+
                                                $('.m_sex').change(function(){
                                                    var index= $(this).attr('index');
                                                    $(".family_relationship").removeAttr("readonly");
                                                    var val = $(this).val();
                                                    for(var ii=1; ii<row_num; ii++) {
-                                                       console.log(index+'_'+ii);
+                                                      // console.log(index+'_'+ii);
                                                        if (index == ii && val == 1) {
                                                            $("#family_relationship_"+ii+" option[value='2']").attr('disabled', true);
                                                        } else {
@@ -810,27 +826,31 @@
                                                        }
                                                        if ((index == ii && val == 1)) {
 
-                                                           $("#family_relationship_"+ii).trigger("change");
+                                                           //$("#family_relationship_"+ii).trigger("change");
                                                            $("#family_relationship_"+ii+" option[value='1']").removeAttr('disabled');
                                                            $("#family_relationship_"+ii).select2({
                                                                allowClear: true,
                                                                placeholder: "ទំនាក់ទំនង"
-                                                           }).trigger('change');
+                                                           });//.trigger('change');
                                                        }
                                                        if ((index == ii && val == 2)) {
 
-                                                           $("#family_relationship_"+ii).trigger("change");
+                                                           //$("#family_relationship_"+ii).trigger("change");
                                                            $("#family_relationship_"+ii+ " option[value='2']").removeAttr('disabled');
                                                            $("#family_relationship_"+ii).select2({
                                                                allowClear: true,
                                                                placeholder: "ទំនាក់ទំនង"
-                                                           }).trigger('change');
+                                                           });//.trigger('change');
                                                        }
                                                    }
 
                                                });
 
+                                               $('#add_rows').attr("disabled", true);
+
                                            });
+
+
 
                                            $('#age').change(function(e) {
 
@@ -919,6 +939,7 @@
                                                for(var n=2;n<(dataRow-1);n++){
                                                    $('.new_rows  tr:eq(' + (n-1) +') td:first-child').html(n);
                                                    $('.new_rows  tr:eq(' + (n-1) +') td .nickname').attr('name', 'nick_name['+(n-1)+']');
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .nickname').attr('class', 'hh-member form-control nickname nick_name_'+(n-1));
                                                    $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('name', 'dob['+(n-1)+']');
                                                    $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('id', 'dob_'+(n-1));
                                                    $('.new_rows  tr:eq(' + (n-1) +') td .age').attr('name', 'age['+(n-1)+']');
@@ -926,6 +947,7 @@
                                                    $('.new_rows  tr:eq(' + (n-1) +') td .family_relationship').attr('name', 'family_relationship['+(n-1)+']');
                                                    $('.new_rows  tr:eq(' + (n-1) +') td .m_sex').attr('name', 'm_sex['+(n-1)+']');
                                                    $('.new_rows  tr:eq(' + (n-1) +') td .m_sex').attr('index', (n-1));
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .m_sex').attr('id', 'm_sex'+(n-1));
                                                    $('.new_rows  tr:eq(' + (n-1) +') td .family_relationship').attr('id', 'family_relationship_'+(n-1));
                                                    $('.new_rows  tr:eq(' + (n-1) +') td #status').attr('class', 'form-group add_relationship_'+(n-1));
                                                    $('.new_rows  tr:eq(' + (n-1) +') td .occupation ').attr('name', 'occupation['+(n-1)+']');
@@ -935,7 +957,13 @@
                                                }
                                            }
                                            //remove add
-                                           $(".new_rows").on('click','.remove_rows_kh',function(){
+                                           $(".new_rows").on('click','.remove_rows_kh',function(e){
+                                               $('#add_rows').removeAttr("disabled", true);
+                                               var result = window.confirm('Are you sure?');
+                                               if (result == false) {
+                                                   e.preventDefault();
+                                                   return false;
+                                               }
                                                $('#add_rows').show();
                                                $(this).parent().parent().remove();
                                                // console.log(dataRow);
@@ -943,11 +971,9 @@
                                                dataRow--;
                                                edu_row--;
                                            });
-                                           //family_relationship
-//                                           $(".family_relationship").select2({
-//                                               allowClear:true,
-//                                               placeholder: 'ទំនាក់ទំនង'
-//                                           });
+
+
+
                                            //occupation
                                            $(".m_sex").select2({
                                                allowClear:true,
@@ -2656,12 +2682,67 @@
             $('#income_out_farmer_score').empty();
            // alert(row_num);
             //$('.family_relationship').trigger('change');
+
+//            var fa1 = $('#family_relationship_1 option:selected').val();
+//            var fa2 = $('#family_relationship_2 option:selected').val();
+//            var fa3 = $('#family_relationship_3 option:selected').val();
+//            var fa4 = $('#family_relationship_4 option:selected').val();
+//            var fa5 = $('#family_relationship_5 option:selected').val();
+//            var fa6 = $('#family_relationship_6 option:selected').val();
+//            var fa7 = $('#family_relationship_7 option:selected').val();
+//            var fa8 = $('#family_relationship_8 option:selected').val();
+//            var fa9 = $('#family_relationship_9 option:selected').val();
+//            var fa10 = $('#family_relationship_10 option:selected').val();
+//            console.log(fa1+'-'+fa2+'-'+fa3+'-'+fa4+'-'+fa5+'-'+fa6+'-'+fa7+'-'+fa8+'-'+fa9+'-'+fa10);
+//            if (!fa1) {
+//                $('.alert').show();
+//                $('.add_relationship_1').addClass("has-error");
+//                isValid = false;
+//            } else {
+//                $('.add_relationship_1').removeClass("has-error");
+//            }
+//
+//            if (fa2 == '') {
+//                $('.alert').show();
+//                $('.add_relationship_2').addClass("has-error");
+//                isValid = false;
+//            } else {
+//                $('.add_relationship_2').removeClass("has-error");
+//            }
+//            if (fa3 == '') {
+//                $('.alert').show();
+//                $('.add_relationship_3').addClass("has-error");
+//                isValid = false;
+//            } else {
+//                $('.add_relationship_3').removeClass("has-error");
+//            }
+//            if (fa4 == '') {
+//                $('.alert').show();
+//                $('.add_relationship_4').addClass("has-error");
+//                isValid = false;
+//            } else {
+//                $('.add_relationship_4').removeClass("has-error");
+//            }
+//            if (fa5 == '') {
+//                $('.alert').show();
+//                $('.add_relationship_5').addClass("has-error");
+//                isValid = false;
+//            } else {
+//                $('.add_relationship_5').removeClass("has-error");
+//            }
+//            if (fa6 == '') {
+//                $('.alert').show();
+//                $('.add_relationship_6').addClass("has-error");
+//                isValid = false;
+//            } else {
+//                $('.add_relationship_6').removeClass("has-error");
+//            }
+
             for(var i=0; i<row_num; i++) {
 
-                var re = $('#family_relationship_'+i+' option:selected').val();
 
                // $('#family_relationship_'+i).change();
-                console.log(re);
+              //  console.log(re);
                 if ($('#family_relationship_'+i).val() == '') {
                     $('.alert').show();
                     $('.add_relationship_'+i).addClass("has-error");
