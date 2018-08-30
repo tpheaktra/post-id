@@ -2151,7 +2151,7 @@
                                                     '<td><label class="control-label">7.A.2 B  ផ្ទៃដីកសិកម្ម មិនមែនជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="l_score_2" name="other_farm_score_2" type="text" required="required" class="t_land_2 form-control allowFlot"  readonly/><span class="input-group-addon">ពិន្ទុ</span>'+
+                                                            '<input autocomplete="off" id="l_score_2" name="other_farm_score" type="text" required="required" class="t_land_2 form-control allowFlot"  readonly/><span class="input-group-addon">ពិន្ទុ</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -2464,7 +2464,7 @@
 //                                                        '</td>' +
                                                         '<td>' +
                                                             '<div class="input-group add_debt_duration">' +
-                                                                '<input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="" id="score_money" readonly>' +
+                                                                '<input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="debt_score" id="score_money" readonly>' +
                                                                 '<span class="input-group-addon">ពិន្ទុ</span>' +
                                                             '</div>'+
                                                         '</td>'+
