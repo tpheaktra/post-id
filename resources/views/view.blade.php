@@ -127,6 +127,28 @@
 	                  </div>
 	                  @endforeach
 	                  @foreach($score_list as $key=>$value)
+	                  	<!-- {{$value->size_member}},
+	                  	{{$value->toilet}},
+	                  	{{$value->roof}},
+	                  	{{$value->wall}},
+	                  	{{$value->house_status}},
+	                  	{{$value->price_rent_house}},
+	                  	{{$value->price_electronic}},
+	                  	{{$value->use_energy_elect}},
+	                  	{{$value->no_energy_elect}},
+	                  	{{$value->vehicle}},
+	                  	{{$value->animal}},
+	                  	{{$value->personal_farm}},
+	                  	{{$value->other_farm}},
+	                  	{{$value->income_out_farmer}},
+	                  	{{$value->income_out_not_farmer}},
+	                  	{{$value->income_child}},
+	                  	{{$value->disease}},
+	                  	{{$value->debt}},
+	                  	{{$value->edu}},
+	                  	{{$value->age_action}}
+	                  	{{$value->total}} -->
+	                  	 
 	                  <div class="col-sm-12"><hr></div>
 	                  <div class="col-md-12">
 	                  	<h4>1.អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ</h4>
@@ -176,7 +198,7 @@
 			                  	</table>
 		                  </p>
 	                  </div>
-	                  @endforeach
+	                  
 	                  <div class="col-sm-12"><hr></div>
 	                  <div class="col-md-12">
 	                  	<h4>2.បង្គន់អនាម័យ (ចាក់ទឹក/ស្ងួត)</h4>
@@ -860,12 +882,42 @@
 	                  	<p style="padding: 5px;">
 			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th>ពិន្ទុសរុប</th>
-	                    				<th style="text-align: center;"><span class="score-num">(73)​ ពិន្ទុ</span></th>
+	                    				<th style="text-align: center;"><span class="score-num">ពិន្ទុសរុប</span></th>
+	                    				<th style="text-align: center;"><span class="score-num">({{$value->total}})​ ពិន្ទុ</span></th>
 			                  		</tr>
+			                  		<tr style="background: #f9f3f3;">
+	                    				<th style="text-align: center;"><span class="score-num">លទ្ធផល</span></th>
+	                    				<td style="text-align: center;">
+	                    					<input type="hidden" value="{{$value->total}}" id="result" class="form-control">
+	                    					<span class="score-num" id="a">កំរិតក្រីក្រ១</span>
+	                    					<span class="score-num" id="b">កំរិតក្រីក្រ២​ ឬ​ ងាយរងគ្រោះ</span>
+	                    					<span class="score-num" id ="c">មិនជាប់ជាគ្រួសារក្រីក្រ</span>
+	                    				</td>
+			                  		</tr>
+			                  		<script type="text/javascript">
+			                  			var total = $('#result').val();
+			                  			if(total > 0 && total < 42){
+			                  				$('#a').hide();
+				                  			$('#b').hide();
+				                  			$('#c').show();
+			                  			}else if(total > 41 && total < 59){
+			                  				$('#a').hide();
+				                  			$('#b').show();
+				                  			$('#c').hide();
+			                  			}else if(total > 58){
+			                  				$('#a').show();
+				                  			$('#b').hide();
+				                  			$('#c').hide();
+			                  			}else{
+			                  				$('#a').hide();
+				                  			$('#b').hide();
+				                  			$('#c').hide();
+			                  			}
+			                  		</script>
 			                  	</table>
 		                  </p>
 	                  </div>
+	            @endforeach
                 </div>
             </div>
         </div>
