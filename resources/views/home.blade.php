@@ -443,7 +443,7 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            {{ Form::text('age[0]',null,['class'=>'form-control allowNumber age_g cal_edu age_0','id'=>'age_0','required'=>'required','maxlength'=>'3','id'=>'age']) }}
+                                            {{ Form::text('age[0]',null,['class'=>'form-control allowNumber age_g cal_edu​​​ cal_child txt_age age_0','id'=>'age_0','required'=>'required','maxlength'=>'3','id'=>'age']) }}
                                         </div>
                                     </td>
                                     <td>
@@ -645,7 +645,7 @@
                                                    '</div>' +
                                                    '</td>' +
                                                    '<td><div class="form-group"><input autocomplete="off" maxlength="4" id="dob_' + edu_row + '"  type="text" required="required" class="hh-member dob form-control allowNumber" name="dob[' + edu_row + ']"/></div></td>' +
-                                                   '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + edu_row + '" type="text" required="required" class="cal_edu age_g hh-member age age_'+edu_row+' form-control allowNumber" name="age[' + edu_row + ']"/></div></td>' +
+                                                   '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + edu_row + '" type="text" required="required" class="cal_edu cal_child txt_age age_g hh-member age age_'+edu_row+' form-control allowNumber" name="age[' + edu_row + ']"/></div></td>' +
                                                    '<td>' +
                                                    '<div class="form-group add_relationship_' + edu_row + '" id="status">' +
                                                    '<select id="family_relationship_' + edu_row + '" class="cal_edu hh-member form-control family_relationship"  name="family_relationship[' + edu_row + ']" required="required" readonly="readonly">' +
