@@ -559,7 +559,7 @@
                   var myrow_ind = $('.myrow_3').attr('index');
                   var num = $('#num_sheep_'+index).val();
                   var answer = 0;
-                  if( num>=1 && num < 3){
+                  if( num>=0 && num < 3){
                     //$('#animal_score').val(4);
                      answer = 4;
                   }else{
@@ -595,9 +595,9 @@
                   var myrow_ind = $('.myrow_3').attr('index');
                   var hend = $("#hend_"+index).val();
                   var score = 0;
-                  if(hend>=1 && hend<30){
+                  if(hend>=0 && hend<30){
                      score = 6;
-                  }else if(hend >=1 && hend<50){
+                  }else if(hend >=30 && hend<50){
                       score=4;
                   }else{
                       score=0;
