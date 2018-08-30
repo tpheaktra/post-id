@@ -300,7 +300,7 @@
     //remove add
     function remove_1(val) {
         var total_costs = parseInt($('#total_meterial_costs').val()) - val;
-        $('total_meterial_costs').val(total_costs);
+        $('#total_meterial_costs').val(total_costs);
     }
     $(".new_rows_1").on('click','.remove_rows_1',function(e){
         var result = window.confirm('Are you sure?');
@@ -890,12 +890,12 @@
     //remove add
     function remove_4(val) {
         var total_costs = parseInt($('#total_monthly_income').val()) - val;
-        document.getElementById('total_monthly_income').value = total_costs;
+        $('#total_monthly_income').val(total_costs);
         var totalperson = $('#total_people').val();
         if(totalperson == null || totalperson == ''){
-            document.getElementById('total_inc_person').value = total_costs/1;
+            $('#total_inc_person').val((total_costs/1).toFixed(2));
         }else{
-            document.getElementById('total_inc_person').value =total_costs/totalperson;
+            $('#total_inc_person').val((total_costs/totalperson).toFixed(2));
         }
     }
     $(".new_rows_4").on('click','.remove_rows_4',function(e){
@@ -992,9 +992,9 @@
             $('#total_monthly_income_not').val(tot);
             var totalperson = $('#total_people').val();
             if(totalperson == null || totalperson == ''){
-                $('#total_inc_person_not').val(tot/1);
+                $('#total_inc_person_not').val((tot/1).toFixed(2));
             }else{
-                $('#total_inc_person_not').val(tot/totalperson);
+                $('#total_inc_person_not').val((tot/totalperson).toFixed(2));
             }
         });
          $('.cal_incom_2').change(function(){
@@ -1047,12 +1047,17 @@
         $('#total_monthly_income_not').val(total_costs);
         var totalperson = $('#total_people').val();
         if(totalperson == null || totalperson == ''){
-            $('#total_inc_person_not').val(total_costs/1);
+            $('#total_inc_person_not').val((total_costs/1).toFixed(2));
         }else{
-            $('#total_inc_person_not').val(total_costs/totalperson);
+            $('#total_inc_person_not').val((total_costs/totalperson).toFixed(2));
         }
     }
-    $(".new_rows_5").on('click','.remove_rows_5',function(){
+    $(".new_rows_5").on('click','.remove_rows_5',function(e){
+        var result = window.confirm('Are you sure?');
+        if (result == false) {
+            e.preventDefault();
+            return false;
+        }
         $('#add_rows_5').show();
         $(this).parent().parent().remove();
         reOrder_other_income_not();

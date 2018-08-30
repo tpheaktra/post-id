@@ -177,7 +177,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <img src="{{ asset('images/usaid.png') }}">
-                        <span class="footer-develop">រក្សាសិទ្ធិគ្រប់បែបយ៉ាងដោយនាយកដ្ឋានផែនការនិង ព័ត៌មានសុខាភិបាលនៃក្រសួងសុខាភិបាល DPHI/MoH. 2013</span>
+                        <span class="footer-develop">រក្សាសិទ្ធិគ្រប់បែបយ៉ាងដោយនាយកដ្ឋានផែនការនិង ព័ត៌មានសុខាភិបាលនៃក្រសួងសុខាភិបាល DPHI/MoH. <?php echo date('Y'); ?></span>
                     </div>
                 </div>
             </div>

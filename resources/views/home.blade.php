@@ -1499,7 +1499,7 @@
                         <div class="col-sm-12">
                             <h4> គ.៤ បង្គន់</h4>
 
-                            <div class="form-group add_toilet">
+                            <div class="add_toilet">
                                 <h5>តើគ្រួសាររបស់អ្នកមានបង្គន់ប្រើដែរឬទេ? <spand class="text-danger">*</spand></h5>
                                 <ul class="li-none">
                                     @foreach($question_totel as $key =>$val)
