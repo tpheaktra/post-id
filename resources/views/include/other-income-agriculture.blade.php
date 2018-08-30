@@ -105,7 +105,7 @@
                     <td colspan="6"><span style="float: right;">7.B.2 ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្ម</span></td>
                     <td>
                         <div class="input-group">
-                            <input class="cal_incom form-control" id="income_out_farmer_score_2"  type="text" name="income_out_farmer_score_2" readonly>
+                            <input class="cal_incom form-control" id="income_out_farmer_score_2"  type="text" name="income_out_not_farmer_score" readonly>
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </td>
