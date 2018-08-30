@@ -45,7 +45,7 @@
                         </td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="my_hide">
                         <td colspan="6"><span style="float: right;"> 7.B.1  ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមានចំណូលពីសកម្មភាពកសិកម្ម</span></td>
                         <td colspan="2">
                             <div class="input-group">
@@ -101,7 +101,7 @@
                     </td>
                     <td></td>
                 </tr>
-                <tr>
+                <tr class="my_hide">
                     <td colspan="6"><span style="float: right;">7.B.2 ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្ម</span></td>
                     <td>
                         <div class="input-group">
@@ -113,8 +113,8 @@
                 </tfoot>
             </table>
 
-            <table>
-                <tr style="line-height: 50px;">
+            <table class="my_hide">
+                <tr style="line-height: 50px;" class="my_hide">
                     <td><b style="float: right;"> 7. C កុមារ(អាយុក្រោម ១៨ឆ្នាំ )រកចំណូល</b> </td>
                     <td>
                         <div class="input-group">
@@ -123,12 +123,12 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <tr class="my_hide">
                     <td><b style="float: right;">11. វ័យពលកម្ម (ចន្លោះពី១៨ឆ្នាំដល់៦៥ឆ្នាំ) </b>
                     </td>
                     <td>
                         <div class="input-group add_debt_duration" style="width: 300px;">
-                            <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly value="2.5" >
+                            <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly value="2.5">
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </td>
