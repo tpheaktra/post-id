@@ -19,21 +19,21 @@ Route::get('datatable/getposts', ['as'=>'datatable.getposts','uses'=>'HomeContro
 /*
  * ajax
  */
-Route::GET('getInterviewCode',['as'=>'getInterviewCode','uses'=>'HomeController@getInterviewCode']);
-Route::GET('getHealthFacilitiesCode',['as'=>'getHealthFacilitiesCode','uses'=>'HomeController@getHealthFacilitiesCode']);
-Route::GET('getdata',['as'=>'getdata','uses'=>'HomeController@getdatacode']);
+Route::GET('getInterviewCode',['as'=>'getInterviewCode','uses'=>'AjaxController@getInterviewCode']);
+Route::GET('getHealthFacilitiesCode',['as'=>'getHealthFacilitiesCode','uses'=>'AjaxController@getHealthFacilitiesCode']);
+Route::GET('getdata',['as'=>'getdata','uses'=>'AjaxController@getdatacode']);
 
-Route::GET('getDistrict',['as'=>'getDistrict','uses'=>'HomeController@getDistrict']);
-Route::GET('getCommune',['as'=>'getCommune','uses'=>'HomeController@getCommune']);
-Route::GET('getVillage',['as'=>'getVillage','uses'=>'HomeController@getVillage']);
-Route::GET('getPrintCardNo',['as'=>'getPrintCardNo','uses'=>'HomeController@getPrintCardNo']);
+Route::GET('getDistrict',['as'=>'getDistrict','uses'=>'AjaxController@getDistrict']);
+Route::GET('getCommune',['as'=>'getCommune','uses'=>'AjaxController@getCommune']);
+Route::GET('getVillage',['as'=>'getVillage','uses'=>'AjaxController@getVillage']);
+Route::GET('getPrintCardNo',['as'=>'getPrintCardNo','uses'=>'AjaxController@getPrintCardNo']);
+Route::GET('getPatientView',['as'=>'view.getPatientView','uses'=>'AjaxController@getPatientView']);
 
 /*
  * insert data
  */
 Route::POST('insertpatient',['as'=>'insert.index','uses'=>'HomeController@insert']);
 Route::GET('viewpatient/{id}',['as'=>'view.data','uses'=>'HomeController@view']);
-Route::GET('getPatientView',['as'=>'view.getPatientView','uses'=>'HomeController@getPatientView']);
 Route::GET('data-printing/{id}',['as'=>'print.data','uses'=>'HomeController@print']);
 Route::GET('editpatient/{id}',['as'=>'editpatient.edit','uses'=>'HomeController@edit']);
 Route::POST('updatepatient/{id}',['as'=>'updatepatient.update','uses'=>'HomeController@update']);
