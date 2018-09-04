@@ -138,17 +138,17 @@
     </li>
 </ul>
 <script>
-    var my_id = $('.myrow').attr('index');
-    $('.cal_child').change(function(){
-          var people = $('.age_'+my_id).val();
-           $(".txt_age").each(function(i){
-               var age = $(this).val();
-               if(i>18 && i<=65) {
-                $('#score_animal_total').val(age);
-               }
-           });
+    // var my_id = $('.myrow').attr('index');
+    // $('.cal_child').change(function(){
+    //       var people = $('.age_'+my_id).val();
+    //        $(".txt_age").each(function(i){
+    //            var age = $(this).val();
+    //            if(i>18 && i<=65) {
+    //             $('#score_animal_total').val(age);
+    //            }
+    //        });
            
-    });
+    // });
     $('.income_agriculture').click(function () {
         var index = $(this).attr('index');
         // console.log(index);
