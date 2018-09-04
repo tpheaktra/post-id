@@ -1604,13 +1604,13 @@
                                         '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input disabled value="{{$landAg->land_name}}" autocomplete="off" name="land_name" type="text" required="required" class="t_land allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                        '<input disabled value="{{$landAg->land_name ?? ''}}" autocomplete="off" name="land_name" type="text" required="required" class="t_land allowNumber form-control"/><span class="input-group-addon">កន្លែង</span>' +
                                         '</div>' +
                                         '</td>' +
                                         '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                         '<td>' +
                                         '<div class="form-group ​​input-group input-group">' +
-                                        '<input disabled value="{{$landAg->total_land}}" autocomplete="off" id="total_land" name="total_land" type="text" required="required" onkeyup class="t_land form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
+                                        '<input disabled value="{{$landAg->total_land ?? ''}}" autocomplete="off" id="total_land" name="total_land" type="text" required="required" onkeyup class="t_land form-control allowNumber"/><span class="input-group-addon">ហិចតា</span>'+
                                         '</div>' +
                                         '</td>' +
                                         '</tr>' +
@@ -1618,13 +1618,13 @@
                                         '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
                                         '<td>'+
                                         '<div class="form-group input-group">'+
-                                        '<input disabled value="{{$landAg->land_farm}}" autocomplete="off" name="land_farm" type="text" required="required" class="t_land allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                        '<input disabled value="{{$landAg->land_farm ?? ''}}" autocomplete="off" name="land_farm" type="text" required="required" class="t_land allowNumber form-control" /><span class="input-group-addon">កន្លែង</span>'+
                                         '</div>'+
                                         '</td>'+
                                         '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input disabled value="{{$landAg->total_land_farm}}" autocomplete="off" id="total_land_farm" name="total_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
+                                        '<input disabled value="{{$landAg->total_land_farm ?? ''}}" autocomplete="off" id="total_land_farm" name="total_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber" /><span class="input-group-addon">ហិចតា</span>'+
                                         '</div>'+
                                         '</td>' +
                                         '</tr>' +
@@ -1635,7 +1635,7 @@
                                         '<td><label class="control-label">ដីសរុប:</label></td>'+
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input disabled readonly="readonly" value="{{$landAg->sum_land_farm}}" autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber"  /><span class="input-group-addon">ហិចតា</span>'+
+                                        '<input disabled readonly="readonly" value="{{$landAg->sum_land_farm ?? ''}}" autocomplete="off" id="total_land_and_land_farm" name="sum_land_farm" type="text" required="required" onkeyup class="t_land form-control allowNumber"  /><span class="input-group-addon">ហិចតា</span>'+
                                         '</div>'+
                                         '</td>' +
                                         '</tr>' +
