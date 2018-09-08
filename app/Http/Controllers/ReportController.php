@@ -10,6 +10,7 @@ use Excel;
 use Carbon\Carbon;
 use PHPExcel_Style_Border;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
@@ -26,6 +27,9 @@ class ReportController extends Controller
         $this->excel = $excel;
     }
 
+    public function index(){
+        return view('report.report-index');
+    }
 
     /*
      * generate
@@ -120,12 +124,15 @@ class ReportController extends Controller
         return $tmp_data;
     }
 
-    public function generateReportByMonth($year = 2018){
-        $now   = Carbon::now();
-        $year  = $now->year;
+    public function generateReportByYear(request $request){
+        $this->validate($request, [
+            'year' => 'required',
+        ]);
+
+        $year  = $request->year;
         $memberFamily = $this->reportBymonth($year);
         if(empty($memberFamily)) {
-            return Redirect::back()->with('danger','No Data');
+            return Redirect::back()->with('danger','មិនមានទិន្ន័យសំភាសអ្នកជំងឺទេ');
           //  die('No Data');
         }
         //dd($memberFamily);

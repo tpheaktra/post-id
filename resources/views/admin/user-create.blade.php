@@ -6,10 +6,14 @@
     <!-- Main content -->
     <section class="container content">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12"><br>
+                <div class="col-sm-12 text-center">
+                    <h4> បង្កើតអ្នក​ប្រើប្រាស់​ថ្មី</h4>
+                </div>
                 <div class="user-mangement">
                     <div class="box">
                         <div class="box-body">
+
                             {!! Form::open(['route' => 'user.store'],['enctype'=>'multipart/form-data']) !!}
 
                             <fieldset class="scheduler-border">
@@ -37,6 +41,40 @@
                                                 </tr>
                                             </table>
                                         </div>
+
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <table class="user-table">
+                                                <tr>
+                                                    <td width="50%">ថ្ងៃ ខែ ​ឆ្នាំ​កំណើត <span class="text-danger">*</span></td>
+                                                    <td width="50%">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control"  id="dob" name="dob"/>
+                                                            <span class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <table class="user-table">
+                                                <tr>
+                                                    <td width="50%">កាលបរិច្ឆេទបង្កើត <span class="text-danger">*</span></td>
+                                                    <td width="50%">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control"  id="date_join" name="date_join"/>
+                                                                    <span class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+
 
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <table class="user-table">
@@ -125,4 +163,18 @@
             </div>
         </div>
     </section>
+
+
+    <script>
+        $('#date_join').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd',
+            todayHighlight: true
+        });
+        $("#date_join").datepicker().datepicker("setDate", new Date());
+        $('#dob').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd',
+        });
+    </script>
 @endsection

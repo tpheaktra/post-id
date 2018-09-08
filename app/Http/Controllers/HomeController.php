@@ -705,7 +705,7 @@ class HomeController extends Controller
 
     /*
      * by pheaktra
-     * function updated
+     * function upload
      */
     public function update($id,request $request){
         //check db insert all table
@@ -822,7 +822,7 @@ class HomeController extends Controller
 
     /*
      * by pheaktra
-     * function updated
+     * function upload
      */
     public function delete($id){
         //check db insert all table

@@ -47,7 +47,7 @@
                             @guest
 
                                 @else
-                                    <li><a class="nav-link">Welcome, {{ Auth::user()->name }}  </a> </li>
+                                    <li><a href="{{route('profile.index')}}" class="nav-link">Welcome, {{ Auth::user()->name }}  </a> </li>
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             ចាកចេញ
@@ -136,7 +136,8 @@
                     <div class="col-sm-12">
                         <ul class="home-menu">
                             <li class="@if(Route::currentRouteName() == 'home.index' || Route::currentRouteName() == 'homehome' || Route::currentRouteName() == 'editpatient.edit' || Route::currentRouteName() == 'view.data') active @endif"><a href="{{route('home.index')}}">ការធ្វើអត្តសញ្ញាណកម្ម</a></li>
-                            <li class="@if(Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'user.create') active @endif"><a href="{{route('user.index')}}">គ្រប់គ្រងអ្នកប្រើប្រាស់</a></li>
+                            <li class="@if(Route::currentRouteName() == 'report.index') active @endif"><a href="{{route('report.index')}}">របាយការណ៍</a></li>
+                            <li class="@if(Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'user.create' || Route::currentRouteName() == 'user.edit') active @endif"><a href="{{route('user.index')}}">គ្រប់គ្រងអ្នកប្រើប្រាស់</a></li>
                             <li class="@if(Route::currentRouteName() == 'role.index' || Route::currentRouteName() == 'role.create' || Route::currentRouteName() == 'role.edit') active @endif"><a href="{{route('role.index')}}">គ្រប់គ្រងតួនាទី</a></li>
                         </ul>
                     </div>

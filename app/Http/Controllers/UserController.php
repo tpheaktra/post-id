@@ -25,9 +25,10 @@ class UserController extends Controller
 
     public function getUserView(){
         $view = User::with('roles','user_group')->where('record_status',1)->get();
-       // dd($view);exit();
+       // echo json_encode($view);exit();
         //echo dd($view[0]['roles'][0]->name);exit();
         foreach ($view as $i =>$v){
+            $view[$i]->id  = $v->id;
             $view[$i]->key  = $i+1;
             $view[$i]->view = route('user.getUserView', Crypt::encrypt($v->id));
             $view[$i]->edit = route('user.edit', Crypt::encrypt($v->id));
@@ -59,15 +60,18 @@ class UserController extends Controller
         DB::connection();
         DB::beginTransaction();
         $this->validate($request, [
-            'name'     => 'required',
-            'username' => 'required|unique:users,username',
-            'password' => 'required|same:confirm',
-            'roles'    => 'required',
-            'groups'   => 'required'
+            'name'       => 'required',
+            'username'   => 'required|unique:users,username',
+            'dob'        => 'required',
+            'date_join'  => 'required',
+            'password'   => 'required|same:confirm',
+            'roles'      => 'required',
+            'groups'     => 'required'
         ]);
         try {
             $input = $request->all();
             $input['password'] = Hash::make($input['password']);
+            $input['profile']  = 'avatar5.png';
             $user = User::create($input);
             //user role
             foreach ($request->input('roles') as $key => $value) {
@@ -160,7 +164,7 @@ class UserController extends Controller
                 DB::table('user_group')->insert(array('user_id' => $user->id, 'group_id' => $value));
             }
             DB::commit();
-            return redirect()->route('user.index')->with('success','Data updated successfuly.');
+            return redirect()->route('user.index')->with('success','Data upload successfuly.');
         } catch (\Exception $e) {
             DB::rollBack();
             return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');

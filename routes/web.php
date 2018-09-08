@@ -43,11 +43,13 @@ Route::get('deletepatient/{id}',['as'=>'deletepatient.delete','uses'=>'HomeContr
 /*
 * Report
 */
-Route::GET('generateReportByMonth',['as'=>'generateReportByMonth','uses'=>'ReportController@generateReportByMonth']);
-Route::get('printinterviewresult/{id}',['as'=>'printInterviewResult.print','uses'=>'ReportController@pirntInterviewResult']);
+Route::group(['prefix' => 'report/','middleware' => ['auth']], function() {
+    Route::GET('report.html',['as'=>'report.index','uses'=>'ReportController@index']);
+    Route::POST('generate/by/year',['as'=>'reportbymonth','uses'=>'ReportController@generateReportByYear']);
+    Route::get('printinterviewresult/{id}',['as'=>'printInterviewResult.print','uses'=>'ReportController@pirntInterviewResult']);
+});
 
-
-Route::group(['prefix' => 'home','middleware' => ['auth']], function() {
+Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     /* role and set permission*/
     Route::GET('role.html',['as'=>'role.index','uses'=>'RoleController@index','middleware' => ['permission:role-list']]);
     Route::GET('role/create.html',['as'=>'role.create','uses'=>'RoleController@create','middleware' => ['permission:role-create']]);
@@ -63,8 +65,15 @@ Route::group(['prefix' => 'home','middleware' => ['auth']], function() {
     Route::GET('user/create.html',['as'=>'user.create','uses'=>'UserController@create','middleware' => ['permission:user-create']]);
     Route::POST('user/store.html',['as'=>'user.store','uses'=>'UserController@store','middleware' => ['permission:user-create']]);
     Route::GET('user/edit/{id}',['as'=>'user.edit','uses'=>'UserController@edit','middleware' => ['permission:user-edit']]);
-    Route::POST('user/updated/{id}',['as'=>'user.update','uses'=>'UserController@update','middleware' => ['permission:user-edit']]);
+    Route::POST('user/upload/{id}',['as'=>'user.update','uses'=>'UserController@update','middleware' => ['permission:user-edit']]);
     Route::GET('user/delete/{id}',['as'=>'user.delete','uses'=>'UserController@delete','middleware' => ['permission:user-delete']]);
 
 
 });
+
+/*
+ *
+ * Profile
+ */
+Route::get('profile',['as'=>'profile.index','uses'=>'ProfileController@profile']);
+Route::POST('profile/updated',['as'=>'profile.update','uses'=>'ProfileController@UpdatedProfile']);

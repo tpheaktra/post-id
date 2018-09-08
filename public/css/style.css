@@ -13,7 +13,6 @@ body{
     border-left: 1px solid #dadada;
     border-bottom: 1px solid #dadada;
     border-right: 1px solid #dadada;
-    border-radius: 4px;
 }
 .logo-home{
     text-align: center;
@@ -30,8 +29,8 @@ body{
 .home-menu li{
     padding: 10px;
     float: left;
-    border-left: 1px solid #dadada;
     list-style-type: none;
+    border-right: 1px solid #eee;
 }
 .home-menu li.active{
     background: #428bca;
@@ -227,6 +226,9 @@ input[type=radio]{
     margin-bottom: 20px;
 }
 .header{
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
     border-color: #dddddd !important;
     background: linear-gradient(to bottom,  #ffffff 0%,#f6f6f6 47%,#ededed 100%);
     background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
