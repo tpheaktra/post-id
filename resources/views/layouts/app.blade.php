@@ -3,10 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=1024">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>POSTID - @yield('title')</title>
+    <link href="{{asset('images/moh_logo.jpg')}}" rel="icon">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="//fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -24,13 +25,15 @@
     <link href="{{asset('js/select2/select2.min.css')}}" rel="stylesheet" />
     <script src="{{asset('js/select2/select2.min.js')}}"></script>
 
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="{{asset('js/datepicker/css/bootstrap-datepicker.min.css')}}" />
+    <script type="text/javascript" src="{{asset('js/datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
-
-
+    <link href="{{asset('css/hint.css')}}" rel="stylesheet" />
 
 </head>
 <body>
@@ -44,7 +47,7 @@
                             @guest
 
                                 @else
-                                    <li><a class="nav-link">{{ Auth::user()->name }}  </a> </li>
+                                    <li><a href="{{route('profile.index')}}" class="nav-link">Welcome, {{ Auth::user()->name }}  </a> </li>
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             ចាកចេញ
@@ -106,7 +109,9 @@
         <div class="container">
             <div class="wrap-home">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12"><img src="{{asset('images/banner-top.jpg')}}" width="99%"></div>
+                    
+                    <!-- <div class="col-sm-12">
                         <div class="logo-home">
                             <table style="margin:auto;">
                                 <tbody>
@@ -123,7 +128,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
 
@@ -131,7 +136,8 @@
                     <div class="col-sm-12">
                         <ul class="home-menu">
                             <li class="@if(Route::currentRouteName() == 'home.index' || Route::currentRouteName() == 'homehome' || Route::currentRouteName() == 'editpatient.edit' || Route::currentRouteName() == 'view.data') active @endif"><a href="{{route('home.index')}}">ការធ្វើអត្តសញ្ញាណកម្ម</a></li>
-                            <li class="@if(Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'user.create') active @endif"><a href="{{route('user.index')}}">គ្រប់គ្រងអ្នកប្រើប្រាស់</a></li>
+                            <li class="@if(Route::currentRouteName() == 'report.index') active @endif"><a href="{{route('report.index')}}">របាយការណ៍</a></li>
+                            <li class="@if(Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'user.create' || Route::currentRouteName() == 'user.edit') active @endif"><a href="{{route('user.index')}}">គ្រប់គ្រងអ្នកប្រើប្រាស់</a></li>
                             <li class="@if(Route::currentRouteName() == 'role.index' || Route::currentRouteName() == 'role.create' || Route::currentRouteName() == 'role.edit') active @endif"><a href="{{route('role.index')}}">គ្រប់គ្រងតួនាទី</a></li>
                         </ul>
                     </div>
@@ -172,7 +178,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <img src="{{ asset('images/usaid.png') }}">
-                        <span class="footer-develop">រក្សាសិទ្ធិគ្រប់បែបយ៉ាងដោយនាយកដ្ឋានផែនការនិង ព័ត៌មានសុខាភិបាលនៃក្រសួងសុខាភិបាល DPHI/MoH. 2013</span>
+                        <span class="footer-develop">រក្សាសិទ្ធិគ្រប់បែបយ៉ាងដោយនាយកដ្ឋានផែនការនិង ព័ត៌មានសុខាភិបាលនៃក្រសួងសុខាភិបាល DPHI/MoH. <?php echo date('Y'); ?></span>
                     </div>
                 </div>
             </div>

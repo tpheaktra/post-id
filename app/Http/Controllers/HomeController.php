@@ -17,22 +17,21 @@ use App\model\MemberFamilyModel;
 use App\model\NoElectricLinkModel;
 use App\model\OtherIncomeModel;
 use App\model\OtherIncomeNotAgricultureModel;
+use App\model\ShpHouseholdsModel;
 use App\model\TypeIncomeModel;
 use App\model\TypeToiletLinkModel;
 use App\model\YesElectricLinkModel;
 use App\model\StoreScoreModel;
 use Illuminate\Http\Request;
 use App\model\RelationshipModel;
-use App\model\FamilyrelationModel;
 use App\Helpers\Helpers;
 use App\model\ConditionhouseModel;
-use App\model\WallMadeModel;
-use App\model\RoofMadeModel;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 use auth;
 use Illuminate\Support\Facades\Crypt;
-use Yajra\DataTables\DataTables;
+use Carbon\Carbon;
+
 class HomeController extends Controller
 {
     /**
@@ -40,15 +39,12 @@ class HomeController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-//    function getOD1(request $request,$code=2,$od_name='Battambang'){
-//        $od = Helpers::getOD($code,$od_name);
-//        return $od[0]->shortcut;
-//    }
 
     /**
      * Show the application dashboard.
@@ -129,6 +125,7 @@ class HomeController extends Controller
          sc.debt,
          sc.edu,
          sc.age_action,
+         sc.total,
          sc.record_status
          from general_information gi inner join store_score sc on gi.id = sc.patient where gi.id = '$id' ");
         $gender = Helpers::getGender();
@@ -211,62 +208,6 @@ class HomeController extends Controller
 
 
 
-    /*
-     * get data with ajax
-     */
-    public function getInterviewCode(request $request){
-        $od_code = $request->od_code;
-        $query = Helpers::getInterviewCode($od_code);
-        $check = DB::select("SELECT count(*) as id FROM general_information gi where gi.od_code=".$od_code);
-        $interview_code= $check[0]->id + 1;
-        echo  json_encode($query[0]->shortcut.'/'.date('y m d').'/0'.$interview_code);
-
-    }
-
-    /*
-     * get data with ajax
-     */
-    public function getDistrict(request $request){
-        $pro_code = $request->province_id;
-        $query = Helpers::getDistrict($pro_code);
-        echo json_encode($query);
-    }
-
-
-    public function getCommune(request $request){
-        $district_code = $request->district_id;
-        $query = Helpers::getCommune($district_code);
-        echo json_encode($query);
-    }
-
-
-    public function getVillage(request $request){
-        $commune_code = $request->commune_id;
-        $query = Helpers::getVillage($commune_code);
-        echo json_encode($query);
-    }
-
-    /*
-     * by pheaktra
-     * function get view with datatable
-     */
-
-    public function getPatientView(){
-        $view = DB::select("select 
-            gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh as g_sex,gi.g_phone
-            from general_information gi
-            inner join gender gg on gi.g_sex = gg.id
-            where gi.record_status = 1
-            group by gi.interview_code order by gi.id desc");
-
-        foreach ($view as $i =>$v){
-            $view[$i]->view = route('view.data', Crypt::encrypt($v->id));
-            $view[$i]->edit = route('editpatient.edit', Crypt::encrypt($v->id));
-            $view[$i]->print = route('print.data', Crypt::encrypt($v->id));
-            $view[$i]->delete = route('deletepatient.delete', Crypt::encrypt($v->id));
-        }
-        return Datatables::of($view)->addIndexColumn()->make(true);
-    }
 
     /*
      * by pheaktra
@@ -278,17 +219,16 @@ class HomeController extends Controller
         DB::beginTransaction();
         //check validation
         $this->validate($request, [
+            'interview_date' => 'required',
+            'expire_date'    => 'required',
             'hospital'       => 'required',
             'interview_code' => 'required',
             'g_patient'      => 'required',
             'g_age'          => 'required',
             'g_sex'          => 'required',
             'g_phone'        => 'required',
-            'g_province'         => 'required',
-            'g_local_village'    => 'required',
-            'inter_patient'      => 'required',
-            'inter_age'          => 'required',
-            'inter_sex'          => 'required',
+            'g_province'     => 'required',
+            'g_local_village'=> 'required',
 
             //step2
             'nick_name'              => 'required',
@@ -327,7 +267,9 @@ class HomeController extends Controller
             $data = array(
                 'user_id'            => auth::user()->id,
                 'od_code'            => $od_code,
-                'interview_code'     =>$interview_code,
+                'hf_code'            => $request->hf_code,
+                'interview_code'     => $interview_code,
+                'printcardno'        => $request->printcardno,
                 'g_patient'          =>$request->g_patient,
                 'g_age'              =>$request->g_age,
                 'g_sex'              =>$request->g_sex,
@@ -349,8 +291,12 @@ class HomeController extends Controller
                 'fa_sex'              =>$request->fa_sex,
                 'fa_phone'            =>$request->fa_phone,
                 'fa_relationship_id'  =>$request->fa_relationship,
+                'interview_date'      => $request->interview_date,
+                'expire_date'         => $request->expire_date,
             );
             $gn_info = GeneralInformationModel::create($data);
+
+
 
             //step2
             //table member_family
@@ -506,16 +452,18 @@ class HomeController extends Controller
             //table type_income
             foreach ($request->type_animals as $key => $anim) {
                 $animals = array(
-                    'g_information_id'      =>  $gn_info->id,
+                    'g_information_id'      => $gn_info->id,
                     'type_animals_id'       => $anim,
                     'num_animals'           => $request->num_animals[$key],
-                    'num_animals_big'       => $request->num_animals_big[$key],
-                    'num_animals_small'     => $request->num_animals_small[$key],
+                    'num_animals_big'       => isset($request->num_animals_big[$key]) ? $request->num_animals_big[$key] : 0,
+                    'num_animals_small'     => isset($request->num_animals_small[$key]) ? $request->num_animals_small[$key] : 0,
                     'note_animals'          => $request->note_animals[$key],
                     'total_animals_costs'   => $request->total_animals_costs
                 );
                 TypeIncomeModel::create($animals);
             }
+
+
 
             //table land_agricultural_link
             if(!empty($request->land_2)) {
@@ -530,6 +478,8 @@ class HomeController extends Controller
                 );
                 LandOtherAgriculturalLinkModel::create($land_agricultural_other);
             }
+
+
 
             //table land_agricultural_link
             if(!empty($request->land_3)) {
@@ -610,7 +560,7 @@ class HomeController extends Controller
             DebtLoanLinkModel::create($debt);
             
             //tabel score
-
+            $total = $request->size_member_score + $request->toilet_score + $request->roof_score + $request->wall_score + $request->house_score + $request->price_rent_house_score + $request->price_electronic_score + $request->use_energy_elect_score + $request->no_energy_elect_score + $request->vehicle_score + $request->animal_score + $request->personal_farm_score + $request->other_farm_score + $request->income_out_farmer_score + $request->income_out_not_farmer_score + $request->income_child_score + $request->disease_score + $request->debt_score + $request->edu_score + $request->age_action_score;
             $score = array(
                 'patient' => $gn_info->id,
                 'size_member'   =>$request->size_member_score,
@@ -623,19 +573,50 @@ class HomeController extends Controller
                 'use_energy_elect' => $request->use_energy_elect_score,
                 'no_energy_elect'  => $request->no_energy_elect_score,
                 'vehicle'          => $request->vehicle_score,
-                'animal'        =>$request->animal_score,
-                'personal_farm' => $request->personal_farm_score,
-                'other_farm'    => $request->other_farm_score,
+                'animal'                => $request->animal_score,
+                'personal_farm'         => $request->personal_farm_score,
+                'other_farm'            => $request->other_farm_score,
                 'income_out_farmer'     => $request->income_out_farmer_score,
                 'income_out_not_farmer' => $request->income_out_not_farmer_score,
-                'income_child'  => $request->income_child_score,
-                'disease'       => $request->disease_score,
-                'debt'  => $request->debt_score,
-                'edu'   => $request->edu_score,
-                'age_action'    => $request->age_action_score,
-                'record_status' => "1"
+                'income_child'          => $request->income_child_score,
+                'disease'               => $request->disease_score,
+                'debt'                  => $request->debt_score,
+                'edu'                   => $request->edu_score,
+                'age_action'            => $request->age_action_score,
+                'total'                 => $total
             );
-            StoreScoreModel::create($score);
+
+            $score = StoreScoreModel::create($score);
+            $total_score = $score->total;
+            echo $total_score;
+
+            $poor = 0;
+            if($total_score <= 42){
+                $poor = 3;
+            }elseif(($total_score > 42) && ($total_score < 85) ){
+                $poor = 2;
+            }elseif($total_score >= 85){
+                $poor = 1;
+            }
+            echo $poor;
+
+            $shp_household_pmrs = array(
+                'hhid'          =>$request->hhid,
+                'province'      =>$request->g_province,
+                'district'      =>$request->g_district,
+                'commune'       =>$request->g_commune,
+                'village'       =>$request->g_village,
+                'location'      =>$request->g_local_village,
+                'printedcardno' =>$request->printcardno,
+                'roundnum'      =>0,
+                'interviewscore'=>$total_score,
+                'interviewdate' =>$request->interview_date,
+                'expirydate'    =>$request->expire_date,
+                'entryby'       =>auth::user()->id,
+                'entrydate'     =>Carbon::now(),
+                'poorcategory'  =>$poor
+            );
+           $shp= ShpHouseholdsModel::create($shp_household_pmrs);
 
             DB::commit();
             return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
@@ -724,7 +705,7 @@ class HomeController extends Controller
 
     /*
      * by pheaktra
-     * function updated
+     * function upload
      */
     public function update($id,request $request){
         //check db insert all table
@@ -841,7 +822,7 @@ class HomeController extends Controller
 
     /*
      * by pheaktra
-     * function updated
+     * function upload
      */
     public function delete($id){
         //check db insert all table

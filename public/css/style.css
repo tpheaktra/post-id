@@ -4,7 +4,7 @@
 body{
     font-family: 'Battambang', Helvetica,Arial,sans-serif !important;
 }
-.dropdown-menu{  left:auto !important; right:0px !important;  padding:5px !important;}
+#navbarSupportedContent .dropdown-menu{  left:auto !important; right:0px !important;  padding:5px !important;}
 .auto-hide1,
 .auto-hide{
     display: none !important;
@@ -13,7 +13,6 @@ body{
     border-left: 1px solid #dadada;
     border-bottom: 1px solid #dadada;
     border-right: 1px solid #dadada;
-    border-radius: 4px;
 }
 .logo-home{
     text-align: center;
@@ -30,8 +29,8 @@ body{
 .home-menu li{
     padding: 10px;
     float: left;
-    border-left: 1px solid #dadada;
     list-style-type: none;
+    border-right: 1px solid #eee;
 }
 .home-menu li.active{
     background: #428bca;
@@ -58,7 +57,8 @@ body{
     display: table;
     width: 100%;
     position: relative;
-    margin-top: 40px;
+    margin-top: 5px;
+    float: left;
 }
 
 .stepwizard-step button[disabled] {
@@ -93,7 +93,7 @@ body{
     border-radius: 15px;
 }
 
-label{font-weight: 100 !important; cursor: pointer;}
+label{font-weight: 100 !important;}
 .navbar-nav>li{ list-style: none;  line-height: 38px;}
 .header .navbar-nav>li>a{
     padding: 6px 7px !important;
@@ -114,7 +114,7 @@ label{font-weight: 100 !important; cursor: pointer;}
     text-decoration: underline;
 }
 .form-group-post h3{
-    color: #153899;
+    color: #428bca;
     font-size: 22px !important;
 }
 
@@ -127,7 +127,12 @@ label{font-weight: 100 !important; cursor: pointer;}
     width: 100%;
     padding: 5px 0px;
     margin-top: 50px;
-    background: #F6F6F6;
+    background: linear-gradient(to bottom,  #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+    background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed));
+    background: -webkit-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+    background: -o-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+    background: -ms-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
     border-top: 1px solid #DDDDDD;
     font-size: 14px;
 }
@@ -147,7 +152,7 @@ label{font-weight: 100 !important; cursor: pointer;}
 .form-control{
     border-radius: 2px !important;
 }
-select.form-control:not([size]):not([multiple]){ height: auto !important; }
+
 .table>thead>tr>th{ border-bottom: 1px solid #dadada !important;
     text-align: center; }
 .has-noted{ color: #dc3545; }
@@ -220,7 +225,18 @@ input[type=radio]{
     padding: 8px;
     margin-bottom: 20px;
 }
-.header{ border-color: #dddddd !important;}
+.header{
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+    border-color: #dddddd !important;
+    background: linear-gradient(to bottom,  #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+    background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed));
+    background: -webkit-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+    background: -o-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+    background: -ms-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+}
 .table-home{
     float: left;
     width: 100%;
@@ -327,3 +343,48 @@ legend.scheduler-border {
 }
 .dataTables_wrapper tr td:nth-child(1),
 .dataTables_wrapper tr td:nth-child(7){text-align: center;}
+.score-num{
+    color: #153899;
+    font-size: 22px !important;
+    text-align: center;
+}
+input[type="radio"], input[type="checkbox"]{
+    cursor: pointer;
+}
+select.form-control:not([size]):not([multiple]),
+[readonly]{
+    height: auto !important;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    cursor: not-allowed;
+    background-color: #eee;
+}
+#tolet,
+.add_toilet,
+.add_household_family{
+    float: left;
+    width: 100%;
+    padding-left: 10px;
+}
+.add_toilet ul,
+.add_toilet_1 ul,
+.add_toilet_2 ul,
+.add_household_family table{
+    margin-left: 10px;
+}
+.stepwizard-step .btn{
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+    width: 30px;
+    height: 30px;
+    line-height: 20px;
+}
+#household_family_id{ margin-top: 10px;}
+#household_family_id table{ margin-left: 50px;}

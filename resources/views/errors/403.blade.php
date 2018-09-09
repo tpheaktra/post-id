@@ -23,7 +23,8 @@
 		#container {
 			margin: 0 auto;
 			text-align: center;
-			margin-top: 30px;
+			margin-top: 180px;
+			margin-bottom: 180px;
 		}
 		p {
 			margin: 12px 15px 12px 15px;

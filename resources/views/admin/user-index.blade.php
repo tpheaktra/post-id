@@ -15,8 +15,8 @@
                             <thead>
                                 <tr>
                                     <th>ល.រ</th>
-                                    <th>ឈ្មោះប្រើប្រាស់</th>
                                     <th>ឈ្មោះ</th>
+                                    <th>ឈ្មោះប្រើប្រាស់</th>
                                     <th>ឈ្មោះក្រុម</th>
                                     <th>លេខទូរសព្ទ</th>
                                     <th>តួនាទី</th>
@@ -29,6 +29,7 @@
                         </table>
                         <script type="text/javascript">
                             var url = "{{ route('user.getUserView') }}";
+                            var checkid = "{{ auth::user()->id }}";
                         </script>
                     </div>
                 </div>

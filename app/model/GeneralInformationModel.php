@@ -10,7 +10,9 @@ class GeneralInformationModel extends Model
     protected $fillable = [
         'user_id',
         'od_code',
+        'hf_code',
         'interview_code',
+        'printcardno',
         'g_patient',
         'g_age',
         'g_sex',
@@ -32,11 +34,16 @@ class GeneralInformationModel extends Model
         'fa_sex',
         'fa_phone',
         'fa_relationship_id',
-        'record_status'
+        'record_status',
+        'interview_date',
+        'expire_date'
     ];
-    /*
-   * district
-   */
+    public function hospital(){
+        return $this->hasMany(HospitalModel::class, 'code', 'hf_code');
+    }
+    public function provinces(){
+        return $this->hasMany(ProvinceModel::class, 'code', 'g_province_id');
+    }
     public function district(){
         return $this->hasMany(DistrictModel::class, 'code', 'g_district_id');
     }
@@ -46,4 +53,15 @@ class GeneralInformationModel extends Model
     public function village(){
         return $this->hasMany(VillageModel::class, 'code', 'g_village_id');
     }
+    public function score(){
+        return $this->hasMany(StoreScoreModel::class, 'patient', 'id');
+    }
+    public function shpHouseholds(){
+        return $this->hasMany(ShpHouseholdsModel::class, 'printedcardno', 'printcardno');
+    }
+
+    public function memberFamily(){
+        return $this->hasMany(MemberFamilyModel::class, 'g_information_id', 'id');
+    }
+
 }

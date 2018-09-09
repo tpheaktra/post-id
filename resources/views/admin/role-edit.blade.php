@@ -7,16 +7,20 @@
     <section class="container content">
         <div class="row">
             <div class="col-xs-12">
+                <br>
+                <div class="col-sm-12 text-center">
+                    <h4> កែប្រែតួនាទី</h4>
+                </div>
                 <div class="user-mangement">
 
-                    <form method="POST" action="{{route('role.update',Crypt::encrypt($role->id))}}">
+                    <form method="POST" action="{{route('role.update',Crypt::encrypt($role->id))}}" style="padding: 15px;">
                         {{ csrf_field() }}
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-6 form-group">
                                 <label>	ឈ្មោះ​សំរាប់​ប្រព័ន្ធ <span class="text-danger">*</span></label>
-                                {!! Form::text('name',$role->name,['class'=>'form-control','placeholder'=>'ឈ្មោះ​សំរាប់​ប្រព័ន្ធ'])!!}
+                                {!! Form::text('name',$role->name,['class'=>'form-control','placeholder'=>'ឈ្មោះ​សំរាប់​ប្រព័ន្ធ','readonly'=>'readonly'])!!}
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-6 form-group">
                                 <label>បង្ហាញតូនាទី <span class="text-danger">*</span></label>
                                 {!! Form::text('display_name',$role->display_name,['class'=>'form-control','placeholder'=>'បង្ហាញតូនាទី'])!!}
                             </div>
@@ -46,14 +50,14 @@
                                                         <div class="tab-pane active" id="home" role="tabpanel">
                                                             @foreach($permission_sub as $sub)
                                                                 @if($sub->group_id==1)
-                                                                    <label class="main-page"> Roles List <input type="checkbox" id="role_1" class="hidden"/> <a>Check all </a><span class="text-danger">*</span></label>
+                                                                    <label class="main-page"> Roles List <input type="checkbox" id="role_1" class="hidden"/> <span data-hint="ចុច" class="btn btn-xs btn-info hint--left hint--info">ជ្រើសទាំងអស់</span></label>
                                                                     <script>
                                                                         $("#role_1").click(function () {
                                                                             $('.role_1 input:checkbox').not(this).prop('checked', this.checked);
                                                                         });
                                                                     </script>
                                                                 @elseif($sub->group_id==2)
-                                                                    <label class="main-page"> Users List <input type="checkbox" id="role_2" class="hidden"/> <a>Check all </a><span class="text-danger">*</span></label>
+                                                                    <label class="main-page"> Users List <input type="checkbox" id="role_2" class="hidden"/> <span data-hint="ចុច" class="btn btn-xs btn-info hint--left hint--info">ជ្រើសទាំងអស់</span> </label>
                                                                     <script>
                                                                         $("#role_2").click(function () {
                                                                             $('.role_2 input:checkbox').not(this).prop('checked', this.checked);
@@ -81,7 +85,7 @@
                                                         <div class="tab-pane" id="general" role="tabpanel">
                                                             @foreach($permission_sub as $sub)
                                                                 @if($sub->group_id==3)
-                                                                    <label class="main-page"> Course List <input type="checkbox" id="role_3" class="hidden"/> <a>Check all</a></label>
+                                                                    <label class="main-page"> Course List <input type="checkbox" id="role_3" class="hidden"/> <span data-hint="ចុច" class="btn btn-xs btn-info hint--left hint--info">ជ្រើសទាំងអស់</span></label>
                                                                     <script>
                                                                         $("#role_3").click(function () {
                                                                             $('.role_3 input:checkbox').not(this).prop('checked', this.checked);
@@ -138,7 +142,7 @@
                                                         <div class="tab-pane" id="post" role="tabpanel">
                                                             @foreach($permission_sub as $sub)
                                                                 @if($sub->group_id==5)
-                                                                    <label class="main-page"> Fees List <input type="checkbox" id="role_5" class="hidden"/> <a>Check all</a></label>
+                                                                    <label class="main-page"> Fees List <input type="checkbox" id="role_5" class="hidden"/> <span data-hint="ចុច" class="btn btn-xs btn-info hint--left hint--info">ជ្រើសទាំងអស់</span></label>
                                                                     <script>
                                                                         $("#role_5").click(function () {
                                                                             $('.role_5 input:checkbox').not(this).prop('checked', this.checked);
@@ -175,7 +179,7 @@
 
                             <div class="col-sm-12"><hr>
                                 <button type="submit" class="btn btn-primary pull-right" id="submit">
-                                    <i class="fa fa-floppy-o"></i> រក្សាទុក
+                                    <i class="fa fa-floppy-o"></i>  ធ្វើបច្ចុប្បន្នភាព
                                 </button>
                             </div>
                         </div>
@@ -205,7 +209,7 @@
         .nav-tabs > li a{margin: 0px;border: 0px;}
         .nav-tabs > li.active a,
         .nav > li > a:focus,
-        .nav > li > a:hover{border: 0px;border-radius: 0;background-color: #eeeeee !important;}
+        .nav > li > a:hover{border: 0px;border-radius: 0;background: linear-gradient(to bottom, rgba(249,249,249,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%) !important;}
         .nav-tabs{ border-bottom: none !important}
         span.labels{ font-size: 16px; font-weight: 600;}
         .tabbable .nav-tabs{ background-color: #fff !important;}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\model\RoleUserModel;
 use App\PermissionGroup;
 use Illuminate\Http\Request;
 use DB;
@@ -24,7 +25,10 @@ class UserController extends Controller
 
     public function getUserView(){
         $view = User::with('roles','user_group')->where('record_status',1)->get();
+       // echo json_encode($view);exit();
+        //echo dd($view[0]['roles'][0]->name);exit();
         foreach ($view as $i =>$v){
+            $view[$i]->id  = $v->id;
             $view[$i]->key  = $i+1;
             $view[$i]->view = route('user.getUserView', Crypt::encrypt($v->id));
             $view[$i]->edit = route('user.edit', Crypt::encrypt($v->id));
@@ -56,15 +60,18 @@ class UserController extends Controller
         DB::connection();
         DB::beginTransaction();
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm',
-            'roles' => 'required',
-            'groups' => 'required'
+            'name'       => 'required',
+            'username'   => 'required|unique:users,username',
+            'dob'        => 'required',
+            'date_join'  => 'required',
+            'password'   => 'required|same:confirm',
+            'roles'      => 'required',
+            'groups'     => 'required'
         ]);
         try {
             $input = $request->all();
             $input['password'] = Hash::make($input['password']);
+            $input['profile']  = 'avatar5.png';
             $user = User::create($input);
             //user role
             foreach ($request->input('roles') as $key => $value) {
@@ -108,18 +115,11 @@ class UserController extends Controller
         $user = User::find($id);
         $userRole = $user->roles->pluck('id','id')->toArray();
 
-
         $userGroup = User::with('user_group')->where('id',$id)->firstOrFail();
         $arr = [];
         foreach($userGroup->user_group as $user_group){
             $arr[] = $user_group->pivot->group_id;
         }
-        //echo json_encode($arr);
-       // echo json_encode($userGroup);exit();
-        //echo $userGroup['user_group'];
-        //echo $userGroup['user_group'][0]->id;
-
-
         return view('admin.user-edit',compact('user','roles','groups','userRole','arr'));
 
     }
@@ -133,7 +133,44 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::connection();
+        DB::beginTransaction();
+        $id = Crypt::decrypt($id);
+        $this->validate($request, [
+            'name'     => 'required',
+            'username' => 'required|unique:users,username,'.$id,
+           // 'password' => 'required|same:confirm',
+            'roles'    => 'required',
+            'groups'   => 'required'
+        ]);
+        try {
+            $input = $request->all();
+            if (!empty($input['password'])) {
+                $input['password'] = Hash::make($input['password']);
+            } else {
+                $input = array_except($input, array('password'));
+            }
+
+            $user = User::find($id);
+            $user->update($input);
+            RoleUserModel::where('user_id', $id)->delete();
+
+            foreach ($request->input('roles') as $key => $value) {
+                $user->attachRole($value);
+            }
+            DB::table('user_group')->where('user_id', $id)->delete();
+            //user group
+            foreach ($request->input('groups') as $key => $value) {
+                DB::table('user_group')->insert(array('user_id' => $user->id, 'group_id' => $value));
+            }
+            DB::commit();
+            return redirect()->route('user.index')->with('success','Data upload successfuly.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
+        }
+
+
     }
 
     /**

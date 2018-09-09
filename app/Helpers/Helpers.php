@@ -18,17 +18,25 @@ class Helpers{
         $hospital = DB::connection("mysql2")
             ->select('select os.od_code,os.shortcut,hf.name_kh from operational_districts od 
                     inner join od_shortcuts os on od.code = os.od_code
-                    inner join health_facilities hf on os.od_code = hf.od_code');
+                    inner join health_facilities hf on os.od_code = hf.od_code where hf.`type` in(4,5,6) and hf.`status` = 1 group by hf.name_kh');
         return $hospital;
     }
 
+    /*
+    * function getInterviewCode
+    */
+    public static function getHealthFacilitiesCode($od_code,$hf_code){
+        $interview = DB::connection("mysql2")
+            ->select("select hf.code as hf_code from health_facilities hf inner join od_shortcuts os on hf.od_code = os.od_code where hf.od_code = '$od_code' and hf.name_kh = '$hf_code'");
+        return $interview;
+    }
 
     /*
     * function getInterviewCode
     */
     public static function getInterviewCode($od_code){
         $interview = DB::connection("mysql2")
-            ->select("select os.shortcut from health_facilities hf inner join od_shortcuts os on hf.od_code = os.od_code where hf.od_code = '$od_code' limit 1");
+            ->select("select os.shortcut,hf.code as hf_code from health_facilities hf inner join od_shortcuts os on hf.od_code = os.od_code where hf.od_code = '$od_code' limit 1");
         return $interview;
     }
 
@@ -47,7 +55,7 @@ class Helpers{
     * function getDistrict
     */
     public static function getDistrict($pro){
-        $province = DB::connection("mysql2")->select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS district, province_code ,name_kh, code from districts where province_code='.$pro);
+        $province = DB::connection("mysql2")->select('select label,'.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS district, province_code ,name_kh, code from districts where province_code='.$pro);
         return $province;
     }
 
@@ -55,7 +63,7 @@ class Helpers{
 	* function getCommune
 	*/
     public static function getCommune($dis){
-        $province =  DB::connection("mysql2")->select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS commune, district_code ,name_kh, code from communes where district_code='.$dis);
+        $province =  DB::connection("mysql2")->select('select label,'.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS commune, district_code ,name_kh, code from communes where district_code='.$dis);
         return $province;
     }
 
@@ -65,9 +73,17 @@ class Helpers{
     * function getVillag
     */
 	public static function getVillage($com){
-		$province =DB::connection("mysql2")->select('select '.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS village, commune_code ,name_kh,code from villages where commune_code='.$com);
+		$province =DB::connection("mysql2")->select('select label,'.(Helpers::lang() == 'en' ? 'name_en' : 'name_kh').' AS village, commune_code ,name_kh,code from villages where commune_code='.$com);
 		return $province;
 	}
+
+	/*
+	 * function print_nocard
+	 */
+	public static function getPrintNoCard($vil){
+        $printcard =DB::connection("mysql3")->select('select max(h.printedcardno) as card from shp_households h where h.village ='.$vil);
+        return $printcard;
+    }
 
     /*
     * function get gender

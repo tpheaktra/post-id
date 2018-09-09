@@ -183,17 +183,22 @@
 //            event.preventDefault();
 //        }
     });
+    $('.g_age').on('change', function (e) {
+        var InterAge = $('.g_age').val();
+        if(InterAge <= 1){$('.g_age').val('');}
+        if(InterAge >= 150){$('.g_age').val('');}
+    });
 
     $('.inter_age').on('change', function (e) {
         var InterAge = $('.inter_age').val();
-        if(InterAge <= 16){$('.inter_age').val('');}
-        if(InterAge >= 160){$('.inter_age').val('');}
+        if(InterAge < 16){$('.inter_age').val('');}
+        if(InterAge >= 150){$('.inter_age').val('');}
     });
 
     $('.fa_age').on('change', function (e) {
         var InterAge = $('.fa_age').val();
-        if(InterAge <= 16){$('.fa_age').val('');}
-        if(InterAge >= 160){$('.fa_age').val('');}
+        if(InterAge < 16){$('.fa_age').val('');}
+        if(InterAge >= 150){$('.fa_age').val('');}
     });
 
     //validation alert
@@ -218,11 +223,11 @@
     var dataRow_meterial = 2;
     $('#add_rows_1').click(function(){ //alert($m_id);
         var row_1 = $('.new_rows_1 tr.myrow_1').length;
-        if(row_1 >= 6){
-            // $('#add_rows_1').hide();
-            alert('ប្រភេទសម្ភារប្រើបា្រស់​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
-            return false;
-        }
+//        if(row_1 >= 6){
+//            // $('#add_rows_1').hide();
+//            alert('ប្រភេទសម្ភារប្រើបា្រស់​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
+//            return false;
+//        }
         reOrder_meterial();
         // var rowindex_1 = row_1+1;
         var tab_rows_1 ='<tr class="myrow_1">'+
@@ -244,6 +249,7 @@
         var row_num = $('.new_rows_1 tr').length;
 
 
+
         $('.cal_el').change(function(){
             var total = $('#total_meterial_costs').val();
             //  alert(total);
@@ -256,7 +262,13 @@
                 sum = Number(number_meterial * market_value_meterial);
                 $("#meterial_"+i).attr({"onclick": "remove_1("+sum+")"});
                 $('#total_rail_meterial_'+i).val(sum);
-
+                $('.cal_el').change(function(){
+                    var total = $('#total_meterial_costs').val();
+                    if( total>=0 && total <=400000) { $('#el_score').val(6); }
+                    else if( total>=404000 && total<=800000 ){ $('#el_score').val(4);}
+                    else if( total>=804000 && total<= 1200000){ $('#el_score').val(2);}
+                    else{ $('#el_score').val(0); }
+                });
             }
         });
 
@@ -288,9 +300,15 @@
     //remove add
     function remove_1(val) {
         var total_costs = parseInt($('#total_meterial_costs').val()) - val;
-        document.getElementById('total_meterial_costs').value = total_costs;
+        $('#total_meterial_costs').val(total_costs);
     }
-    $(".new_rows_1").on('click','.remove_rows_1',function(){
+    $(".new_rows_1").on('click','.remove_rows_1',function(e){
+        var result = window.confirm('Are you sure?');
+        if (result == false) {
+            e.preventDefault();
+            return false;
+        }
+
         $('#add_rows_1').show();
         $(this).parent().parent().remove();
         reOrder_meterial();
@@ -337,10 +355,10 @@
     dataRow_vehicle=2;
     $('#add_rows_2').click(function(){ //alert($m_id);
         var row_2 = $('.new_rows_2 tr.myrow_2').length;
-        if(row_2 >= 7){
-            alert('ប្រភេទយានជំនិះ​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
-            return false;
-        }
+//        if(row_2 >= 7){
+//            alert('ប្រភេទយានជំនិះ​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
+//            return false;
+//        }
         reOrder_vehicle();
         //   var rowindex_2 = row_2+1;
         var html = '<tr class="myrow_2">'+
@@ -370,6 +388,18 @@
                 $("#vehicle_"+i).attr({"onclick": "remove_2("+sum+")"});
                 $('#total_rail_vehicle_'+i).val(sum);
             }
+            $('.cal_v').change(function(){
+                var tot = $('#total_vehicle_costs').val();
+                if(tot>=0 && tot<=600000) {
+                    $('#score_v').val(6);
+                }else if(tot>=604000 && tot <= 1200000){
+                    $('#score_v').val(4);
+                }else if(tot>=1204000 && tot <= 2000000){
+                    $('#score_v').val(2);
+                }else{
+                    $('#score_v').val(0);
+                }
+            });
         });
 
         $('.vehicle').change(function () {
@@ -402,7 +432,12 @@
         // $(this).parent().parent().remove();
         $('#total_vehicle_costs').val(total_costs);
     }
-    $(".new_rows_2").on('click','.remove_rows_2',function(){
+    $(".new_rows_2").on('click','.remove_rows_2',function(e){
+        var result = window.confirm('Are you sure?');
+        if (result == false) {
+            e.preventDefault();
+            return false;
+        }
         $('#add_rows_2').show();
         $(this).parent().parent().remove();
         reOrder_vehicle();
@@ -421,15 +456,16 @@
             var tot = $('#total_vehicle_costs').val();
             if(tot>=0 && tot<=600000) {
                 $('#score_v').val(6);
-            }else if(tot>=604000 && tot<=1200000){
+            }else if(tot>=604000 && tot <= 1200000){
                 $('#score_v').val(4);
-            }else if(tot>=1204000 && tot<=2000000){
+            }else if(tot>=1204000 && tot <= 2000000){
                 $('#score_v').val(2);
             }else{
                 $('#score_v').val(0);
             }
         });
     });
+    
     $('.vehicle').change(function () {
         var arr = document.getElementsByClassName('totalallowNumber_vehicle');
         var tot=0;
@@ -447,18 +483,17 @@
     var animal_ind = 0;
     $('#add_rows_3').click(function(){ //alert($m_id);
         numRow++;
-        console.log(numRow);
+       // console.log(numRow);
         var row_3 = $('.new_rows_3 tr.myrow_3').length;
-        animal_ind= row_3;
-        if(row_3 >= 3){
-            alert('ប្រភេទចំណូលមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
-            return false;
-        }
-
+        animal_ind = row_3;
+//        if(row_3 >= 3){
+//            alert('ប្រភេទចំណូលមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
+//            return false;
+//        }
         // var rowindex_3 = row_3+1;
         var tab_rows_3 ='<tr class="myrow_3">'+
             '<td class="auto_id">'+dataRow_income+'</td>'+
-            '<td>' +
+            '<td>'+
             '<div class="form-group add_type_animals_'+numRow+'">'+
             '<select required="required" style="width: 100%;" class="cal_animal form-control type_animals" id="type_animals_'+numRow+'" name="type_animals['+numRow+']" index="'+(numRow)+'">' +
             '<option></option>@foreach($typeanimals as $key => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
@@ -467,7 +502,7 @@
             '<td id="num_animals_'+numRow+'" class="add_ajust_animals">'+
             '<table class="table table-bordered" align="center">' +
             '<tr>' +
-            '<th>ចំនួនសត្វធំ</th>' +
+            '<th>ចំនួនសត្វធំ <spand class="text-danger">*</spand></th>' +
             '<th>ចំនួនកូនសត្វ</th>' +
             '</tr>' +
             '<tr>' +
@@ -486,13 +521,19 @@
             '</table>' +
             '</td>'+
             '<td>' +
-            '<div class="form-group ng" id="noted_'+numRow+'">' +
-            '<select style="width: 100%;" class="form-control note_animals" id="note_animals" name="note_animals['+row_3+']" required="required" index="0">' +
-            '<option></option>' +
-            '<option value="ប្រវាស់">ប្រវាស់</option>' +
-            '<option value="មិនប្រវាស់">មិនប្រវាស់</option>' +
-            '</select>'+
-            '</div>' +
+                '<div class="form-group ng" id="noted_'+numRow+'">' +
+                '<select style="width: 100%;" class="form-control note_animals" id="note_animals" name="note_animals['+row_3+']" required="required" index="0">' +
+                '<option></option>' +
+                '<option value="ប្រវាស់">ប្រវាស់</option>' +
+                '<option value="មិនប្រវាស់">មិនប្រវាស់</option>' +
+                '</select>'+
+                '</div>' +
+            '</td>'+
+            '<td​​ class="my_hide">'+
+                 '<div class="form-group input-group">'+
+                    '<input id="score_animal" name="animal_score['+row_3+']" type="text" required="required" class="cal_animal txt_score_animal score_animal_'+numRow+' form-control" readonly="readonly"/>'+
+                    '<span class="input-group-addon">ពិន្ទុ</span>'+
+                  '</div>'+
             '</td>'+
             '<td><a class="btn btn-danger btn-sm remove_rows_3"> <span class="glyphicon glyphicon-minus"></span></a></td>'+
             '</tr>';
@@ -509,18 +550,51 @@
             var type = this.value;
             var index= $(this).attr('index');
             // console.log(numRow + '==' + index + ' ---- ' + type);
-            if ((type == 2 || type == 3)) {
-
-                var duk = '<table class="table table-bordered">' +
+            if (type == 2) {
+                var sheep = '<table class="table table-bordered">' +
                     '<tr>' +
                     '<th>ចំនួនសត្វ</th>' +
                     '</tr>' +
                     '<tr>' +
                     '<td>' +
                     '<div class="form-group">' +
-                    '<input name="num_animals['+numRow+']" id="num_animals" type="text" class="cal_animal form-control allowNumber num_animals"  />' +
-                    '<input autocomplete="off" name="num_animals_big['+numRow+']" id="num_animals_big" type="hidden" class="cal_animal form-control allowNumber" required="required" />' +
-                    '<input autocomplete="off" name="num_animals_small['+numRow+']" id="num_animals_small" type="hidden" class="cal_animal form-control allowNumber"  />'+
+                    '<input name="num_animals['+numRow+']" id="num_sheep_'+numRow+'" type="text" class="cal_animal form-control allowNumber num_animals"  />' +
+                    '</div>' +
+                    '</td>' +
+                    '</tr>' +
+                    '</table>';
+                var noted = '<input autocomplete="off" name="note_animals['+numRow+']" type="text" class="cal_animal form-control"  />';
+                $('#noted_'+index).html(noted);
+                $('#num_animals_'+(index)).html(sheep);
+                AllowNumber();
+                $('.cal_animal').change(function(){
+                  var myrow_ind = $('.myrow_3').attr('index');
+                  var num = $('#num_sheep_'+index).val();
+                  var answer = 0;
+                  if( num>=0 && num < 3){
+                    //$('#animal_score').val(4);
+                     answer = 4;
+                  }else{
+                     answer = 0;
+                  }
+                  $(".score_animal_"+index).val(answer);
+                  var maxScore = $('.score_animal_'+myrow_ind).val();
+                   $(".txt_score_animal").each(function(i){
+                       var score = $(this).val();
+                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                   });
+                   $('#score_animal_total').val(maxScore);
+                });
+
+            }else if( type == 3 ){
+                var duk = '<table class="table table-bordered">' +
+                    '<tr>' +
+                    '<th>ចំនួនសត្វ <spand class="text-danger">*</spand></th>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td>' +
+                    '<div class="form-group">' +
+                    '<input autocomplete="off" name="num_animals_big['+numRow+']" id="hend_'+numRow+'" type="text" class="cal_animal form-control allowNumber" required="required" />' +
                     '</div>' +
                     '</td>' +
                     '</tr>' +
@@ -529,27 +603,47 @@
                 $('#noted_'+index).html(noted);
                 $('#num_animals_'+(index)).html(duk);
                 AllowNumber();
-            } else if (type == 1) {//$('#num_animals_'+ty).empty();
+                $(".cal_animal").change(function(){
+                  var myrow_ind = $('.myrow_3').attr('index');
+                  var hend = $("#hend_"+index).val();
+                  var score = 0;
+                  if(hend>=0 && hend<30){
+                     score = 6;
+                  }else if(hend >=30 && hend<50){
+                      score=4;
+                  }else{
+                      score=0;
+                  }
+                  $('.score_animal_'+index).val(score);
+
+                   var maxScore = $('.score_animal_'+myrow_ind).val();
+                   $(".txt_score_animal").each(function(i){
+                       var score = $(this).val();
+                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                   });
+                   $('#score_animal_total').val(maxScore);
+                });
+            }else if (type == 1) {//$('#num_animals_'+ty).empty();
                 var cow = '<table class="table table-bordered" align="center">' +
                     '<tr>' +
-                    '<th>ចំនួនសត្វធំ</th>' +
+                    '<th>ចំនួនសត្វធំ <spand class="text-danger">*</spand></th>' +
                     '<th>ចំនួនកូនសត្វ</th>' +
                     '</tr>' +
                     '<tr>' +
                     '<td>' +
                     '<div class="form-group">' +
                     '<input name="num_animals['+numRow+']" id="num_animals" type="hidden" class="cal_animal form-control allowNumber num_animals"  />' +
-                    '<input autocomplete="off" name="num_animals_big['+numRow+']" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />' +
+                    '<input autocomplete="off" name="num_animals_big['+numRow+']" id="num_animals_big_'+numRow+'" type="text" class="cal_animal form-control allowNumber" required="required" />' +
                     '</div>' +
                     '</td>' +
                     '<td>' +
                     '<div class="form-group">' +
-                    '<input autocomplete="off" name="num_animals_small['+numRow+']" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />' +
+                    '<input autocomplete="off" name="num_animals_small['+numRow+']" id="num_animals_small_'+numRow+'" type="text" class="cal_animal form-control allowNumber"  />' +
                     '</div>' +
                     '</td>' +
                     '</tr>' +
                     '</table>';
-                var noted = '<select style="width: 100%;" class="form-control note_animals" id="note_animals" name="note_animals['+numRow+']" required="required">' +
+                var noted = '<select style="width: 100%;" class="cal_animal form-control note_animals" id="note_animals_'+numRow+'" name="note_animals['+numRow+']" required="required">' +
                     '<option></option>' +
                     '<option value="ប្រវាស់">ប្រវាស់</option>' +
                     '<option value="មិនប្រវាស់">មិនប្រវាស់</option>' +
@@ -559,55 +653,84 @@
                 $('#num_animals_'+(index)).html(cow);
                 AllowNumber();
                 $(".note_animals").select2({ allowClear:true, placeholder: "កំណត់សម្គាល់"});
-            }
 
+                $(".cal_animal").change(function(){
+                  var myrow_ind = $('.myrow_3').attr('index');
+                  var big = parseInt($("#num_animals_big_"+index).val());
+                  var small = parseInt($("#num_animals_small_"+index).val());
+                  var status = $("#note_animals_"+index).val();
+                  var bigsmall = big+small;
+                  var score = 0;
+                  if(big == 0 && small == 0){
+                    score = 6;
+                  }else if( ((big <=1 && small == 0) || (big == 0 && small <=2 )) || (bigsmall == 2 && status =="ប្រវាស់") ){
+                      score = 4;
+                  }
+                  else{
+                    score = 0;
+                  }
+                  $(".score_animal_"+index).val(score);
+
+                  var maxScore = $('.score_animal_'+myrow_ind).val();
+                   $(".txt_score_animal").each(function(i){
+                       var score = $(this).val();
+                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                   });
+                   $('#score_animal_total').val(maxScore);
+                });
+            }
         });
 
 
         //score
-        $('.cal_animal').change(function(){
-            $('#score_animal').empty();
-            var animal = $('.type_animals').val();
-            var num_animals_big     = $('.num_animals_big').val();
-            var num_animals_small   = $('.num_animals_small').val();
-            var note_animals        = $('.note_animals').val();
-            if(animal == 1){
-                $('#score_animal').empty();
-                if((num_animals_big == 0 && num_animals_small == 0 && note_animals == 0)){
-                    $('#score_animal').val(6);
-                }else if( (num_animals_big == 1 || num_animals_small <= 2) || (note_animals == 2) ){
-                    $('#score_animal').val(4);
-                }else if(num_animals_big>1 || num_animals_small>3 || note_animals>2){
-                    $('#score_animal').val(0);
-                }else{$('#score_animal').val(0);}
+        // $('.cal_animal').change(function(){
+        //     $('#score_animal').empty();
+        //     var animal = $('.type_animals').val();
+        //     var num_animals_big     = $('.num_animals_big').val();
+        //     var num_animals_small   = $('.num_animals_small').val();
+        //     var note_animals        = $('.note_animals').val();
+        //     if(animal == 1){
+        //         $('#score_animal').empty();
+        //         if((num_animals_big == 0 && num_animals_small == 0 && note_animals == 0)){
+        //             $('#score_animal').val(6);
+        //         }else if( (num_animals_big == 1 || num_animals_small <= 2) || (note_animals == 2) ){
+        //             $('#score_animal').val(4);
+        //         }else if(num_animals_big>1 || num_animals_small>3 || note_animals>2){
+        //             $('#score_animal').val(0);
+        //         }else{$('#score_animal').val(0);}
 
-            }else if(animal == 2){
-                $('#score_animal').empty();
-                if( (num_animals_big == 0 && num_animals_small == 0 && note_animals == 0) ){
-                    $('#score_animal').val(6);
-                }else if(num_animals_big<3 || num_animals_small < 3){
-                    $('#score_animal').val(4);
-                }else if(num_animals_big==3 || num_animals_small==3 ){
-                    $('#score_animal').val(0);
-                }else{$('#score_animal').val(0);}
+        //     }else if(animal == 2){
+        //         $('#score_animal').empty();
+        //         if( (num_animals_big == 0 && num_animals_small == 0 && note_animals == 0) ){
+        //             $('#score_animal').val(6);
+        //         }else if(num_animals_big<3 || num_animals_small < 3){
+        //             $('#score_animal').val(4);
+        //         }else if(num_animals_big==3 || num_animals_small==3 ){
+        //             $('#score_animal').val(0);
+        //         }else{$('#score_animal').val(0);}
 
-            }else{
-                $('#score_animal').empty();
-                if(num_animals_small < 30 || num_animals_big < 30){
-                    $('#score_animal').val(6);
-                }else if( (num_animals_big>30 && num_animals_big<50) || (num_animals_big>30 && num_animals_big<50) ){
-                    $('#score_animal').val(4);
-                }else if(num_animals_big == 50 || num_animals_small == 50){
-                    $('#score_animal').val(0);
-                }else{$('#score_animal').val(0);}
+        //     }else{
+        //         $('#score_animal').empty();
+        //         if(num_animals_small < 30 || num_animals_big < 30){
+        //             $('#score_animal').val(6);
+        //         }else if( (num_animals_big>30 && num_animals_big<50) || (num_animals_big>30 && num_animals_big<50) ){
+        //             $('#score_animal').val(4);
+        //         }else if(num_animals_big == 50 || num_animals_small == 50){
+        //             $('#score_animal').val(0);
+        //         }else{$('#score_animal').val(0);}
 
-            }
-        });
+        //     }
+        // });
     });
 
 
     //remove add
-    $(".new_rows_3").on('click','.remove_rows_3',function(){
+    $(".new_rows_3").on('click','.remove_rows_3',function(e){
+        var result = window.confirm('Are you sure?');
+        if (result == false) {
+            e.preventDefault();
+            return false;
+        }
         $('#add_rows_3').show();
         $(this).parent().parent().remove();
         reOrder_income();
@@ -616,6 +739,7 @@
     });
     //type_animals
     $(".type_animals").select2({allowClear:true, placeholder: 'ប្រភេទសត្វ' });
+    $(".type_animals1").select2({allowClear:true, placeholder: 'ប្រភេទសត្វ' });
     $(".note_animals").select2({allowClear:true, placeholder: 'កំណត់សម្គាល់' });
 
     function reOrder_income(){
@@ -659,10 +783,17 @@
             '</select>'+
             '</div>' +
             '</td>' +
-            '<td>' +
+            '<td class="hidden">' +
             '<div class="form-group">' +
-            '<input name="income_unit['+num_4+']" type="text" class="income_unit form-control" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">' +
+            '<input name="income_unit['+num_4+']" type="text" class="income_unit form-control" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required" readonly="readonly">' +
             '</div>' +
+            '</td>'+
+
+            '<td>'+
+            '<div class="form-group input-group">'+
+            '<input id="average_amount_'+num_4+'" name="average_amount['+num_4+']" type="text" class="cal_incom average_amount form-control allowNumber otherincome" required="required" autocomplete="off">'+
+            '<span class="input-group-addon">រៀល</span>'+
+            '</div>'+
             '</td>'+
 
             '<td>' +
@@ -671,15 +802,10 @@
             '<span class="input-group-addon">ថ្ងៃ</span>' +
             '</div>' +
             '</td>'+
-            '<td>'+
-            '<div class="form-group input-group">'+
-            '<input id="average_amount_'+num_4+'" name="average_amount['+num_4+']" type="text" class="average_amount form-control allowNumber otherincome" required="required" autocomplete="off">'+
-            '<span class="input-group-addon">រៀល</span>'+
-            '</div>'+
-            '</td>'+
+
             '<td>' +
             '<div class="form-group input-group">' +
-            '<input id="monthly_income_'+num_4+'" name="monthly_income['+num_4+']" type="text" class="monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
+            '<input id="monthly_income_'+num_4+'" name="monthly_income['+num_4+']" type="text" class="cal_incom monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
             '<span class="input-group-addon">រៀល</span>' +
             '</div>' +
             '</td>'+
@@ -717,6 +843,25 @@
                 $('#total_inc_person').val((tot/totalperson).toFixed(2));
             }
         });
+        $('.cal_incom').change(function(){
+               var total_per = $('#total_inc_person').val();
+                    var money_score = 0;
+                    if(total_per < 40000 ){
+                      money_score = 4;
+                    }else if(total_per>=40000 && total_per < 70000){
+                      money_score = 2;
+                    }else if(total_per>=70000 && total_per< 100000){
+                      money_score = 0;
+                    }else if(total_per>=100000 && total_per< 125000){
+                      money_score = -3;
+                    }else if(total_per>=125000 && total_per < 1500000){
+                      money_score = -9;
+                    }else if(total_per >200000){
+                      money_score = -12;
+                    }else{
+                      money_score = 0;
+                    }$('#income_out_farmer_score').val(money_score);
+            });
     });
 
     function reOrder_other_income(){
@@ -745,15 +890,20 @@
     //remove add
     function remove_4(val) {
         var total_costs = parseInt($('#total_monthly_income').val()) - val;
-        document.getElementById('total_monthly_income').value = total_costs;
+        $('#total_monthly_income').val(total_costs);
         var totalperson = $('#total_people').val();
         if(totalperson == null || totalperson == ''){
-            document.getElementById('total_inc_person').value = total_costs/1;
+            $('#total_inc_person').val((total_costs/1).toFixed(2));
         }else{
-            document.getElementById('total_inc_person').value =total_costs/totalperson;
+            $('#total_inc_person').val((total_costs/totalperson).toFixed(2));
         }
     }
-    $(".new_rows_4").on('click','.remove_rows_4',function(){
+    $(".new_rows_4").on('click','.remove_rows_4',function(e){
+        var result = window.confirm('Are you sure?');
+        if (result == false) {
+            e.preventDefault();
+            return false;
+        }
         $('#add_rows_4').show();
         $(this).parent().parent().remove();
         reOrder_other_income();
@@ -787,10 +937,17 @@
             '</select>'+
             '</div>' +
             '</td>' +
-            '<td>' +
+            '<td class="hidden">' +
             '<div class="form-group">' +
             '<input name="income_unit_not['+num_5+']" type="text" class="income_unit_not form-control" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required">' +
             '</div>' +
+            '</td>'+
+
+            '<td>'+
+            '<div class="form-group input-group">'+
+            '<input id="average_amount_not_'+num_5+'" name="average_amount_not['+num_5+']" type="text" class="cal_incom_2 average_amount_not form-control allowNumber otherincome_not" required="required" autocomplete="off">'+
+            '<span class="input-group-addon">រៀល</span>'+
+            '</div>'+
             '</td>'+
 
             '<td>' +
@@ -799,15 +956,10 @@
             '<span class="input-group-addon">ថ្ងៃ</span>' +
             '</div>' +
             '</td>'+
-            '<td>'+
-            '<div class="form-group input-group">'+
-            '<input id="average_amount_not_'+num_5+'" name="average_amount_not['+num_5+']" type="text" class="average_amount_not form-control allowNumber otherincome_not" required="required" autocomplete="off">'+
-            '<span class="input-group-addon">រៀល</span>'+
-            '</div>'+
-            '</td>'+
+
             '<td>' +
             '<div class="form-group input-group">' +
-            '<input id="monthly_income_not_'+num_5+'" name="monthly_income_not['+num_5+']" type="text" class="monthly_income_not form-control allowNumber monthly_income_total_not" readonly="readonly" autocomplete="off">'+
+            '<input id="monthly_income_not_'+num_5+'" name="monthly_income_not['+num_5+']" type="text" class="cal_incom_2 monthly_income_not form-control allowNumber monthly_income_total_not" readonly="readonly" autocomplete="off">'+
             '<span class="input-group-addon">រៀល</span>' +
             '</div>' +
             '</td>'+
@@ -840,11 +992,30 @@
             $('#total_monthly_income_not').val(tot);
             var totalperson = $('#total_people').val();
             if(totalperson == null || totalperson == ''){
-                $('#total_inc_person_not').val(tot/1);
+                $('#total_inc_person_not').val((tot/1).toFixed(2));
             }else{
-                $('#total_inc_person_not').val(tot/totalperson);
+                $('#total_inc_person_not').val((tot/totalperson).toFixed(2));
             }
         });
+         $('.cal_incom_2').change(function(){
+               var total_per = $('#total_inc_person_not').val();
+                    var money_score = 0;
+                    if(total_per < 40000 ){
+                      money_score = 4;
+                    }else if(total_per>=40000 && total_per < 70000){
+                      money_score = 2;
+                    }else if(total_per>=70000 && total_per< 100000){
+                      money_score = 0;
+                    }else if(total_per>=100000 && total_per< 125000){
+                      money_score = -3;
+                    }else if(total_per>=125000 && total_per < 1500000){
+                      money_score = -9;
+                    }else if(total_per >200000){
+                      money_score = -12;
+                    }else{
+                      money_score = 0;
+                    }$('#income_out_farmer_score_2').val(money_score);
+            });
     });
 
     function reOrder_other_income_not(){
@@ -876,12 +1047,17 @@
         $('#total_monthly_income_not').val(total_costs);
         var totalperson = $('#total_people').val();
         if(totalperson == null || totalperson == ''){
-            $('#total_inc_person_not').val(total_costs/1);
+            $('#total_inc_person_not').val((total_costs/1).toFixed(2));
         }else{
-            $('#total_inc_person_not').val(total_costs/totalperson);
+            $('#total_inc_person_not').val((total_costs/totalperson).toFixed(2));
         }
     }
-    $(".new_rows_5").on('click','.remove_rows_5',function(){
+    $(".new_rows_5").on('click','.remove_rows_5',function(e){
+        var result = window.confirm('Are you sure?');
+        if (result == false) {
+            e.preventDefault();
+            return false;
+        }
         $('#add_rows_5').show();
         $(this).parent().parent().remove();
         reOrder_other_income_not();

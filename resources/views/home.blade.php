@@ -3,7 +3,12 @@
 
 @section('content')
 
-
+<style type="text/css">
+/*use for hide score*/
+    .my_hide{
+        display: none;
+    }
+</style>
 <!------ Include the above in your HEAD tag ---------->
 <div class="container content">
     <div class="col-sm-12">
@@ -22,15 +27,71 @@
                         <div class="col-sm-12" style="padding: 0;"><hr> </div>
                         <h4>ក.១ ព័ត៌មានទូទៅ</h4>
                     </div>
+
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-6">
                                 <table width="100%">
                                     <tr>
-                                        <td width="35%"><label class="control-label">មន្ទីរពេទ្យ:</label></td>
+                                        <td width="35%"><label class="control-label">ថ្ងៃសម្ភាសន៍ <spand class="text-danger">*</spand></label></td>
+                                        <td width="65%">
+                                            <div class="form-group">
+                                                <div class="input-group date current_date">
+                                                    <input type="text" class="form-control"  id="current_date" name="interview_date"/>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <div class="col-sm-6">
+                                <table width="100%">
+                                    <tr>
+                                        <td width="35%"><label class="control-label">ថ្ងៃផុតកំណត់ <spand class="text-danger">*</spand></label></td>
+                                        <td width="65%">
+                                            <div class="form-group">
+                                                <div class="input-group date expire_date">
+                                                    <input type="text" class="form-control" readonly id="expire_date" name="expire_date" placeholder="2018-12-31"/>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        $('#current_date').datepicker({
+                            autoclose: true,
+                            format: 'yyyy-mm-dd',
+                            todayHighlight: true
+                        });
+                        $("#current_date").datepicker().datepicker("setDate", new Date());
+                        $('#expire_date').datepicker({
+                            autoclose: true,
+                            format: 'yyyy-mm-dd',
+                            minDate: true
+                        });
+
+                    </script>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <table width="100%">
+                                    <tr>
+                                        <td width="35%"><label class="control-label">មន្ទីរពេទ្យ <spand class="text-danger">*</spand></label></td>
                                         <td width="65%">
                                             <div class="form-group add_hospital">
-                                                <select id="hospital" style="width: 100%" class="form-control" name="hospital">
+                                                <select id="hospital" style="width: 100%" class="getdata form-control" name="hospital">
                                                     <option></option>
                                                     @foreach($hospital as $key =>$h)
                                                         @if (old('hospital') == $h->od_code)
@@ -46,12 +107,20 @@
                                 </table>
                             </div>
                             <div class="col-sm-6">
-                                <table class="pull-right">
+                                <table width="100%">
                                     <tr>
-                                        <td width="35%"><label class="control-label">លេខកូដសម្ភាសន៍:</label></td>
-                                        <td width="65%">
+                                        <td width="35%"><label class="control-label">លេខកូដសម្ភាសន៍ <spand class="text-danger"> * </spand></label> </td>
+                                        <td width="30%">
                                             <div class="form-group">
-                                                {{ Form::text('interview_code',null,['class'=>'form-control','required'=>'required','readonly'=>'readonly','id'=>'interview_code']) }}
+                                                {{ Form::text('interview_code',null,['class'=>'form-control','required'=>'required','readonly'=>'readonly' ,'placeholder'=>'PNP/18 08 29/01','id'=>'interview_code']) }}
+                                                {{ Form::hidden('hf_code',null,['required'=>'required','readonly'=>'readonly','id'=>'health_facilities_code']) }}
+                                            </div>
+                                        </td>
+                                        <td></td>
+                                        <td width="30%">
+                                            <div class="form-group">
+                                                <input id="printcard" name="printcardno" type="text" class="form-control" placeholder="23020101-0001" readonly style="text-align: center; font-size: 18px;  padding: 4px;"/>
+                                                <input id="hhid" name="hhid" type="hidden"/>
                                             </div>
                                         </td>
                                     </tr>
@@ -63,7 +132,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label">ឈ្មោះអ្នកជំងឺ :</label></td>
+                                <td width="35%"><label class="control-label">ឈ្មោះអ្នកជំងឺ <spand class="text-danger">*</spand></label></td>
                                 <td width="65%">
                                    <div class="form-group">
                                        {{ Form::text('g_patient',null,['class'=>'form-control','required'=>'required']) }}
@@ -71,7 +140,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="35%"><label class="control-label"> ភេទ : </label></td>
+                                <td width="35%"><label class="control-label"> ភេទ <spand class="text-danger">*</spand> </label></td>
                                 <td width="65%">
                                    <div class="form-group"  id="g_sex">
                                        @foreach($gender as $key => $g)
@@ -88,15 +157,15 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label"> អាយុ : </label></td>
+                                <td width="35%"><label class="control-label"> អាយុ <spand class="text-danger">*</spand> </label></td>
                                 <td width="65%">
                                    <div class="form-group">
-                                       {{ Form::text('g_age',null,['class'=>'form-control allowNumber onlyNumber','required'=>'required','maxlength'=>'3']) }}
+                                       {{ Form::text('g_age',null,['class'=>'form-control allowNumber onlyNumber g_age','required'=>'required','maxlength'=>'3']) }}
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td width="35%"><label class="control-label">លេខទូរស័ព្ធ :</label></td>
+                                <td width="35%"><label class="control-label">លេខទូរស័ព្ធ <spand class="text-danger">*</spand></label></td>
                                 <td width="65%">
                                    <div class="form-group">
                                        {{ Form::text('g_phone',null,['class'=>'form-control telephone','required'=>'required','maxlength'=>'10']) }}
@@ -109,7 +178,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label">ខេត្ត : </label></td>
+                                <td width="35%"><label class="control-label">ខេត្ត <spand class="text-danger">*</spand> </label></td>
                                 <td width="65%">
                                    <div class="form-group g_province">
                                        <select id="province" style="width: 100%" class="form-control" name="g_province">
@@ -126,7 +195,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="35%"><label class="control-label">   ស្រុក : </label></td>
+                                <td width="35%"><label class="control-label"> ស្រុក <spand class="text-danger">*</spand> </label></td>
                                 <td width="65%">
                                    <div class="form-group g_district">
                                        <select id="district" style="width: 100%" class="form-control" name="g_district">
@@ -145,7 +214,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label">ឃំុ :</label></td>
+                                <td width="35%"><label class="control-label">ឃំុ <spand class="text-danger">*</spand></label></td>
                                 <td width="65%">
                                     <div class="form-group g_commune">
                                         <select id="commune" style="width: 100%" class="form-control" name="g_commune">
@@ -158,12 +227,12 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="35%"><label class="control-label">ភូមិ :</label></td>
+                                <td width="35%"><label class="control-label">ភូមិ <spand class="text-danger">*</spand></label></td>
                                 <td width="65%">
                                     <div class="form-group g_village">
                                         <select id="village" style="width: 100%" class="form-control" name="g_village">
                                             <option value=""></option>
-                                            @if (!empty(old('g_village')))
+                                            @if(!empty(old('g_village')))
                                                 <option selected value="{{old('g_village')}}"></option>
                                             @endif
                                         </select>
@@ -176,7 +245,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="35%"><label class="control-label"> ទីតាំងនៅក្នុងភូមិ : </label></td>
+                                <td width="35%"><label class="control-label"> ទីតាំងនៅក្នុងភូមិ <spand class="text-danger">*</spand> </label></td>
                                 <td width="65%">
                                    <div class="form-group location">
                                        {{ Form::textarea('g_local_village',null,['class'=>'form-control','id'=>'location','maxlength'=>'300','style'=>'height: 60px;']) }}
@@ -189,20 +258,21 @@
 
                    <div class="col-sm-12"><hr> </div>
                    <div class="col-sm-12">
-                        <h4> ក.២ ព័ត៌មានអំពីអ្នកដែលផ្តល់ចំលើយ(អ្នកដែលបានសំភាសន៏)</h4>
+                        <h4> ក.២ ព័ត៌មានអំពីអ្នកដែលផ្តល់ចំលើយ(អ្នកដែលបានសំភាសន៍)</h4>
                    </div>
                    <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label">ឈ្មោះ :</label></td>
+                                <td><label class="control-label">ឈ្មោះ </label></td>
                                 <td>
                                    <div class="form-group">
-                                       {{ Form::text('inter_patient',null,['class'=>'form-control','required'=>'required']) }}
+                                       {{ Form::text('inter_patient',null,['class'=>'form-control']) }}
                                     </div>     
                                 </td>
                             </tr>
+
                             <tr>
-                                <td><label class="control-label"> ភេទ : </label></td>
+                                <td><label class="control-label"> ភេទ  </label></td>
                                 <td>
                                    <div class="form-group" id="inter_sex">
                                        @foreach($gender as $key => $g)
@@ -217,15 +287,15 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label"> អាយុ : </label></td>
+                                <td><label class="control-label"> អាយុ  </label></td>
                                 <td>
                                    <div class="form-group">
-                                       {{ Form::text('inter_age',null,['class'=>'form-control allowNumber inter_age','required'=>'required','maxlength'=>'3']) }}
+                                       {{ Form::text('inter_age',null,['class'=>'form-control allowNumber inter_age','maxlength'=>'3']) }}
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
+                                <td><label class="control-label">លេខទូរស័ព្ធ </label></td>
                                 <td>
                                    <div class="form-group">
                                        {{ Form::text('inter_phone',null,['class'=>'form-control telephone','maxlength'=>'10']) }}
@@ -238,7 +308,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="50%"><label class="control-label">ត្រូវជា(ទំនាក់ទំនងជាមួយមេគ្រួសារ) : </label></td>
+                                <td width="50%"><label class="control-label">ត្រូវជា(ទំនាក់ទំនងជាមួយមេគ្រួសារ)  </label></td>
                                 <td width="50%">
                                     <div class="form-group inter_relationship">
                                         <select style="width: 100%;" class="form-control" id="inter_relationship" name="inter_relationship">
@@ -264,7 +334,7 @@
                    <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label">ឈ្មោះ :</label></td>
+                                <td><label class="control-label">ឈ្មោះ </label></td>
                                 <td>
                                    <div class="form-group">
                                        {{ Form::text('fa_patient',null,['class'=>'form-control']) }}
@@ -272,7 +342,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label"> ភេទ : </label></td>
+                                <td><label class="control-label"> ភេទ  </label></td>
                                 <td>
                                    <div class="form-group" id="fa_sex">
                                        @foreach($gender as $key => $g)
@@ -287,7 +357,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td><label class="control-label"> អាយុ : </label></td>
+                                <td><label class="control-label"> អាយុ  </label></td>
                                 <td>
                                    <div class="form-group">
                                        {{ Form::text('fa_age',null,['class'=>'form-control allowNumber fa_age','maxlength'=>'3']) }}
@@ -295,7 +365,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="control-label">លេខទូរស័ព្ធ :</label></td>
+                                <td><label class="control-label">លេខទូរស័ព្ធ </label></td>
                                 <td>
                                    <div class="form-group">
                                        {{ Form::text('fa_phone',null,['class'=>'form-control telephone','maxlength'=>'10']) }}
@@ -308,7 +378,7 @@
                     <div class="col-sm-6">
                         <table width="100%">
                             <tr>
-                                <td width="50%"><label class="control-label">ត្រូវជា(ដែលមិនមែនសមាជិកគ្រួសារ) : </label></td>
+                                <td width="50%"><label class="control-label">ត្រូវជា(ដែលមិនមែនសមាជិកគ្រួសារ)  </label></td>
                                 <td width="50%">
                                     <div class="form-group fa_relationship">
                                         <select style="width: 100%;" class="form-control" id="fa_relationship" name="fa_relationship">
@@ -328,7 +398,6 @@
                     </div>
                     <div class="col-sm-12"><hr> </div>
                     <div class="col-sm-12">
-                        <!-- <a class="btn btn-default pull-left print-link1"><img src="" width="30"></a> -->
                         <button  class="btn btn-primary nextBtn pull-right" type="button">រក្សាទុកនិងជំហានបន្ទាប់</button>
                     </div>
                 </div>
@@ -362,7 +431,7 @@
                                     </th>
                                     <th width="15%" rowspan="2">មុខងារ/​មុខរបរ(2) <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="(2)= ប្រភេទមុខរបរចម្បងរបស់គាត់/នាង ដូចជា កសិករ កម្មករ មន្ត្រីរាជការ រកស៊ី សិស្ស នៅផ្ទះ"></a></th>
                                     <th width="15%" rowspan="2">កម្រិតវប្បធម៌(3) <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="(3)= បើនៅរៀន បញ្ជាក់ពីថ្នាក់ទីប៉ុន្មាន។ បើជាមនុស្សពេញវ័យឬជាកុមារអាយុចាប់ពី៥ឆ្នាំតែឈប់រៀន សូមបញ្ជាក់ពីកម្រិតថ្នាក់នៅពេលឈប់រៀន"></a></th>
-                                    <th rowspan="2">ពិន្ទុតាមសមាជិក</th>
+                                    <th rowspan="2" class="my_hide">ពិន្ទុតាមសមាជិក</th>
                                     <th width="15%" rowspan="2">សកម្មភាព</th>
                                 </tr>
                                 <tr>
@@ -380,7 +449,7 @@
                                     </td>
                                     <td>
                                         <div class="form-group add_m_sex">
-                                            <select style="width: 100%" class="form-control m_sex" name="m_sex[0]" required="required">
+                                            <select style="width: 100%" class="form-control m_sex" name="m_sex[0]" required="required" index="0">
                                                 <option></option>
                                                 @foreach($gender as $keh => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -395,12 +464,12 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            {{ Form::text('age[0]',null,['class'=>'form-control allowNumber age_0','id'=>'age_0','required'=>'required','maxlength'=>'3','id'=>'age']) }}
+                                            {{ Form::text('age[0]',null,['class'=>'form-control allowNumber age_g cal_edu​​​ cal_child txt_age age_0','id'=>'age_0','required'=>'required','maxlength'=>'3','id'=>'age']) }}
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group add_relationship">
-                                            <select style="width: 100%" id="family_relationship_0" class="cal_edu form-control family_relationship" name="family_relationship[0]" required="required">
+                                            <select style="width: 100%" id="family_relationship_0" class="cal_edu form-control family_relationship" name="family_relationship[0]" required="required" readonly="readonly">
                                                 <option></option>
                                                 @foreach($relationship as $keh => $value)
                                                     <option @if($value->id == 1 || $value->id == 2)  @else disabled @endif value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -420,8 +489,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="form-group add_education_level">
-                                            <select style="width: 100%" id="education_level_0"  class="cal_edu form-control education_level"  name="education_level[0]" required="required">
+                                       <div class="form-group add_education_level">
+                                          <select style="width: 100%" id="education_level_0"  class="cal_edu form-control education_level aa"  name="education_level[0]" required="required">
                                                 <option></option>
                                                 @foreach($education_level as $keh => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -429,13 +498,31 @@
                                             </select>
                                         </div>
                                     </td>
-                                    <td><input type="text" class="cal_edu txt_score edu_score_0 form-control" readonly=""></td>
+                                    <td class="my_hide"><input type="text" class="cal_edu txt_score edu_score_0 form-control" readonly=""></td>
                                     <td>
                                         <a class="btn btn-primary btn-sm" id="add_rows">
                                             <span class="glyphicon glyphicon-plus"></span>
                                         </a>
                                     </td>
                                        <script type="text/javascript">
+                                           $('.m_sex').change(function(){
+                                                    var index= $(this).attr('index');
+                                                    var val = $(this).val();
+                                                    if(index == 0 && val == 1){
+                                                        $(".family_relationship option[value='2']").attr('disabled',true);
+                                                    }else {
+                                                        $(".family_relationship option[value='2']").removeAttr('disabled');
+                                                    }
+                                                    if(index == 0 && val == 2){
+                                                        $(".family_relationship option[value='1']").attr('disabled', true);
+                                                    }else{
+                                                        $(".family_relationship option[value='1']").removeAttr('disabled');
+                                                    }
+                                               $("#family_relationship_0").removeAttr("readonly");
+                                               $("#family_relationship_0").select2({allowClear:true, placeholder: "ទំនាក់ទំនង"}).trigger('change');
+                                               $("#family_relationship_0 > option").removeAttr("selected");
+                                               $("#family_relationship_0").trigger("change");
+                                           });
                                             var edu_row = 0;
                                            // $('.education_level').change(function(){
                                            //      var edu_level = $('#education_level').val();
@@ -443,45 +530,475 @@
                                            //         $('#edu_score').val(4);
                                            //      }else{$('#edu_score').val(0);}
                                            // });
+                                           // $('.occupation').change(function(){
+                                           //      var oc = $('#occupation').val();
+                                           //      var level = $('#education_level_0').val();
+                                           //      if( oc== 3){
+                                           //         var occu = $('.occupation').hide();
+                                           //         var dis = '<div class="form-group add_education_level">'+
+                                           //                   '<select style="width: 100%" id="education_level_0"  class="cal_edu form-control education_level"  name="education_level[0]" required="required">'+
+                                           //                        '<option></option>'+
+                                           //                        '@foreach($education_level as $keh => $value)'+
+                                           //                            '<option @if($value->id == 1 || $value->id == 2)  @else disabled @endif value="{{$value->id}}">{{$value->name_kh}}</option>'+
+                                           //                        '@endforeach'+
+                                           //                    '</select>'+
+                                           //                '</div>';
+                                           //          $('.add_education_level').append(dis);
+                                           //      }
+                                           //    });
+
                                            $('.cal_edu').change(function(){
+
+
+
                                                var myrow_ind = $('.myrow').attr('index');
                                                // var child = $('.child').val();
-                                               var edu = $('#education_level_'+myrow_ind).val();
+                                               // var edu = $('#education_level_'+myrow_ind).val();
                                                var relation = $('#family_relationship_'+myrow_ind).val();
-                                               var age = $('.age_'+myrow_ind).val();
+                                               // var age = $('.age_'+myrow_ind).val();
 
-                                                if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=1 && edu <=3) )) || (age>=16 && (edu >=1 && edu <=3))){
-                                                     $('.edu_score_0').val(4);
-                                                 }else if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=4 && edu <=6)) ) || (age>=16 && (edu >=4 && edu <=6)) || (age<16 && edu==14) ){
-                                                     $('.edu_score_0').val(2.5);
-                                                 }
-                                                 else{ $('.edu_score_0').val(0);}
+                                                // if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=1 && edu <=3) )) || (age>=16 && (edu >=1 && edu <=3))){
+                                                //      $('.edu_score_0').val(4);
+                                                //  }else if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=4 && edu <=6)) ) || (age>=16 && (edu >=4 && edu <=6)) || (age<16 && edu==14) ){
+                                                //      $('.edu_score_0').val(2.5);
+                                                //  }
+                                                //  else{ $('.edu_score_0').val(0);}
 
+                                              $('.age_g').each(function (ind) {
+                                                   var age = $('.age_'+ind).val();
+                                                   var edu = $('#education_level_'+ind).val();
+                                                   var relation = $(this).val();
+                                                   // var rel = $(this).val();
+                                                   var row_score = 0;
+                                                    if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                      row_score = 4;
+                                                    }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                                                      row_score = 2.5;
+                                                    }else{
+                                                      row_score = 0;
+                                                    }
+                                                   $('.edu_score_'+ind).val(row_score);
 
-
-                                               // $('.family_relationship').each(function (ind) {
-                                               //     var rel = $(this).val();
-                                               //     var row_score = 0;
-                                               //     if( (rel == 1 || rel == 2) || (edu == 3) ) {//check for head of household
-                                               //         row_score = 4;
-                                               //     }else{
-                                               //         row_score = 2.5;
-                                               //     }
-                                               //     $('.edu_score_'+ind).val(row_score);
-                                               // });
-
-                                               var maxScore = $('.edu_score_0').val();
-                                               $('.txt_score ').each(function(i){
-                                                   var score = $(this).val();
-                                                   if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                    var maxScore = $('.edu_score_0').val();
+                                                   $('.txt_score').each(function(i){
+                                                       var score = $(this).val();
+                                                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                   });
+                                                   $('#edu_score').val(maxScore);
                                                });
-                                               $('#edu_score').val(maxScore);
+
+                                               $('.family_relationship').each(function (ind) {
+                                                   var age = $('.age_'+ind).val();
+                                                   var edu = $('#education_level_'+ind).val();
+                                                   var relation = $(this).val();
+                                                   // var rel = $(this).val();
+                                                   var row_score = 0;
+                                                   if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                      row_score = 4;
+                                                    }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                                                      row_score = 2.5;
+                                                    }else{
+                                                      row_score = 0;
+                                                    }
+                                                   $('.edu_score_'+ind).val(row_score);
+
+                                                    var maxScore = $('.edu_score_0').val();
+                                                   $('.txt_score').each(function(i){
+                                                       var score = $(this).val();
+                                                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                   });
+                                                   $('#edu_score').val(maxScore);
+                                               });
+
+                                               $('.education_level').each(function (ind) {
+                                                   var age = $('.age_'+ind).val();
+                                                   var edu = $('#education_level_'+ind).val();
+                                                   var relation = $(this).val();
+                                                   // var rel = $(this).val();
+                                                   var row_score = 0;
+                                                   if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                      row_score = 4;
+                                                    }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                                                      row_score = 2.5;
+                                                    }else{
+                                                      row_score = 0;
+                                                    }
+                                                   $('.edu_score_'+ind).val(row_score);
+
+                                                    var maxScore = $('.edu_score_0').val();
+                                                   $('.txt_score').each(function(i){
+                                                       var score = $(this).val();
+                                                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                   });
+                                                   $('#edu_score').val(maxScore);
+                                               });
+
+                                           });
+
+
+
+                                           //* ============= step 2 ======================*//
+                                           var dataRow = 2;
+                                           $('#add_rows').click(function(){ //alert($m_id);
+                                               edu_row++;
+                                               var row = $('.new_rows tr.myrow').length;
+                                               var totalPople = $('.new_rows tr.myrow').length+1;
+                                               $('#total_people').val(totalPople);
+
+                                               if(row >= 10){
+                                                   // $('#add_rows').hide();
+                                                   alert('ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់មិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
+                                                   return false;
+                                               }
+
+                                               // var rowindex = row+1;
+                                               //console.log(dataRow);
+                                               reOrder();
+                                               var htmlstep2 = '<tr class="myrow" index="' + edu_row + '">' +
+                                                   '<td>'+dataRow+'</td>' +
+                                                   '<td><div class="form-group"><input autocomplete="off" type="text" required="required" class="hh-member form-control nick_name_'+edu_row+' nickname" name="nick_name[' + edu_row + ']"/></div></td>' +
+                                                   '<td>' +
+                                                   '<div class="form-group add_m_sex_' + edu_row + '">' +
+                                                   '<select style="width: 100%" id="m_sex_' + edu_row + '" class="form-control m_sex"  name="m_sex[' + edu_row + ']" required="required" index="'+edu_row+'">' +
+                                                   '<option></option>' +
+                                                   '@foreach($gender as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                                                   '</select>' +
+                                                   '</div>' +
+                                                   '</td>' +
+                                                   '<td><div class="form-group"><input autocomplete="off" maxlength="4" id="dob_' + edu_row + '"  type="text" required="required" class="hh-member dob form-control allowNumber" name="dob[' + edu_row + ']"/></div></td>' +
+                                                   '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + edu_row + '" type="text" required="required" class="cal_edu cal_child txt_age age_g hh-member age age_'+edu_row+' form-control allowNumber" name="age[' + edu_row + ']"/></div></td>' +
+                                                   '<td>' +
+                                                   '<div class="form-group add_relationship_' + edu_row + '" id="status">' +
+                                                   '<select id="family_relationship_' + edu_row + '" class="cal_edu hh-member form-control family_relationship"  name="family_relationship[' + edu_row + ']" readonly="readonly">' +
+                                                   '<option></option>' +
+                                                   '@foreach($relationship as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                                                   '</select>' +
+                                                   '</div>' +
+                                                   '</td>' +
+                                                   '<td>' +
+                                                   '<div class="form-group add_occupation_' + edu_row + '">' +
+                                                   '<select id="occupation_' + edu_row + '" class="hh-member form-control occupation"  name="occupation[' + edu_row + ']" required="required">' +
+                                                   '<option></option>' +
+                                                   '@foreach($occupation as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                                                   '</select>' +
+                                                   '</div>' +
+                                                   '</td>' +
+                                                   '<td>' +
+                                                   '<div class="form-group add_education_level_' + edu_row + '">' +
+                                                   '<select id="education_level_' + edu_row + '" class="cal_edu hh-member form-control education_level"  name="education_level[' + edu_row + ']" required="required">' +
+                                                   '<option></option>' +
+                                                   '@foreach($education_level as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                                                   '</select>' +
+                                                   '</div>' +
+                                                   '</td>' +
+                                                   '<td class="my_hide"><input type="text" class="cal_edu txt_score edu_score_'+edu_row+' form-control" readonly></td>'+
+                                                   '<td><a class="btn btn-danger btn-sm remove_rows_kh"><span class="glyphicon glyphicon-minus"></span></a></td>' +
+                                                   '</tr>';
+                                               $(".new_rows").append(htmlstep2);
+                                               //ConfirmDelete();
+
+
+
+                                               $('.cal_edu').change(function(){
+                                                   var myrow_ind = $('.myrow').attr('index');
+                                                   $('.age_g').each(function (ind) {
+                                                       var age = $('.age_'+ind).val();
+                                                       var edu = $('#education_level_'+ind).val();
+                                                       var relation = $(this).val();
+                                                       var row_score = 0;
+                                                       if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                           row_score = 4;
+                                                       }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                                                           row_score = 2.5;
+                                                       }else{
+                                                           row_score = 0;
+                                                       }
+                                                       $('.edu_score_'+ind).val(row_score);
+                                                       var maxScore = $('.score_animal_'+myrow_ind).val();
+                                                       $(".txt_score").each(function(i){
+                                                           var score = $(this).val();
+                                                           if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                       });
+                                                       $('#edu_score').val(maxScore);
+                                                   });
+
+                                                   $('.family_relationship').each(function (ind) {
+                                                       var age = $('.age_'+ind).val();
+                                                       var edu = $('#education_level_'+ind).val();
+                                                       var relation = $(this).val();
+                                                       var row_score = 0;
+                                                       if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                           row_score = 4;
+                                                       }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                                                           row_score = 2.5;
+                                                       }else{
+                                                           row_score = 0;
+                                                       }
+                                                       $('.edu_score_'+ind).val(row_score);
+                                                       var maxScore = $('.edu_score_'+myrow_ind).val();
+                                                       $(".txt_score").each(function(i){
+                                                           var score = $(this).val();
+                                                           if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                       });
+                                                       $('#edu_score').val(maxScore);
+                                                   });
+                                                   $('.education_level').each(function (ind) {
+                                                       var age = $('.age_'+ind).val();
+                                                       var edu = $('#education_level_'+ind).val();
+                                                       var relation = $(this).val();
+                                                       var row_score = 0;
+                                                       if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                           row_score = 4;
+                                                       }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                                                           row_score = 2.5;
+                                                       }else{
+                                                           row_score = 0;
+                                                       }
+                                                       $('.edu_score_'+ind).val(row_score);
+                                                       var maxScore = $('.edu_score_'+myrow_ind).val();
+                                                       $(".txt_score").each(function(i){
+                                                           var score = $(this).val();
+                                                           if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                       });
+                                                       $('#edu_score').val(maxScore);
+                                                   });
+
+                                               });
+
+                                               dataRow++;
+                                              // $(".family_relationship").select2({allowClear:true, placeholder: "ទំនាក់ទំនង"});
+                                               $(".m_sex").select2({allowClear:true, placeholder: 'ភេទ'});
+                                               $(".occupation").select2({allowClear:true, placeholder: "មុខរបរ"});
+                                               $(".education_level").select2({ allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
+                                               AllowNumber();
+                                               var row_num = $('.new_rows tr').length;
+
+                                               $('.age').change(function () {
+                                                   for(var ii=1; ii<row_num; ii++) {
+                                                       var age = Number($('#age_'+ii).val());
+                                                       var currentyear = (new Date()).getFullYear();
+                                                       var dob = currentyear-age;
+                                                       if(age >= 150){
+                                                           $('#dob_'+ii).val('');
+                                                       }else{
+                                                           $('#dob_'+ii).val(dob);
+                                                       }
+                                                   }
+                                               });
+                                               $('.dob').change(function () {
+                                                   for(var ii=1; ii<row_num; ii++) {
+                                                       var dob = Number($('#dob_' + ii).val());
+                                                       var currentyear = (new Date()).getFullYear();
+                                                       var age = currentyear - dob;
+                                                       if (dob >= currentyear || age >= 150) {
+                                                           $('#age_' + ii).val('');
+                                                       }
+                                                       else {
+                                                           $('#age_' + ii).val(age);
+                                                       }
+                                                   }
+                                               });
+
+                                               $(".cal_edu").change(function(e){
+                                                   for(var ii=1; ii<row_num; ii++) {
+                                                       var nic  = $(".nick_name_"+ii).val();
+                                                       var msex = $("#m_sex_"+ii).val();
+                                                       var ag   = $("#age_"+ii).val();
+                                                       var fal  = $("#family_relationship_"+ii).val();
+                                                       var op   = $("#occupation_"+ii).val();
+                                                       var ed   = $("#education_level_"+ii).val();
+
+                                                       if ((nic != '' && msex != '' && ag != '' && fal != '' && op != '' && ed != '')) {
+                                                           $('#add_rows').removeAttr("disabled", true);
+                                                       }
+                                                   }
+                                               });
+
+                                               $('.m_sex').change(function(){
+                                                   var index= $(this).attr('index');
+                                                   $(".family_relationship").removeAttr("readonly");
+                                                   var val = $(this).val();
+                                                   for(var ii=1; ii<row_num; ii++) {
+
+                                                       if (index == ii && val == 1) {
+                                                           $("#family_relationship_"+ii+" option[value='2']").attr('disabled', true);
+                                                       } else {
+                                                           $("#family_relationship_" + ii + " > option").removeAttr("disabled");
+                                                       }
+                                                       if (index == ii && val == 2) {
+                                                           $("#family_relationship_"+ii+" option[value='1']").attr('disabled', true);
+                                                       } else {
+                                                           $("#family_relationship_"+ii+ " option[value='1']").removeAttr('disabled');
+                                                       }
+
+                                                       if ((index == ii && val == 1)) {
+                                                           $("#family_relationship_"+ii+" > option").removeAttr("selected");
+                                                           //console.log(index+'_'+ii);
+                                                           $("#family_relationship_"+ii).trigger("change");
+                                                           $("#family_relationship_"+ii+" option[value='1']").removeAttr('disabled');
+                                                           $("#family_relationship_"+ii).select2({allowClear:true, placeholder: 'ទំនាក់ទំនង'}).trigger('change');
+                                                       }
+                                                       if ((index == ii && val == 2)) {
+                                                           $("#family_relationship_"+ii+" > option").removeAttr("selected");
+                                                           //console.log(index+'='+ii+'_'+val+'=2');
+                                                           $("#family_relationship_"+ii).trigger("change");
+                                                           $("#family_relationship_"+ii+ " option[value='2']").removeAttr('disabled');
+                                                           $("#family_relationship_"+ii).select2({allowClear:true, placeholder: 'ទំនាក់ទំនង'}).trigger('change');
+                                                       }
+                                                   }
+
+                                               });
+
+                                               $('#add_rows').attr("disabled", true);
+
+                                           });
+
+
+
+                                           $('#age').change(function(e) {
+
+                                               var num = this.value;
+                                               var result = '';
+                                               // console.log(num.length);
+                                               for (n = 0; n < num.length; n++) {
+                                                   if (num[n] == '០') result += 0;
+                                                   if (num[n] == '១') result += 1;
+                                                   if (num[n] == '២') result += 2;
+                                                   if (num[n] == '៣') result += 3;
+                                                   if (num[n] == '៤') result += 4;
+                                                   if (num[n] == '៥') result += 5;
+                                                   if (num[n] == '៦') result += 6;
+                                                   if (num[n] == '៧') result += 7;
+                                                   if (num[n] == '៨') result += 8;
+                                                   if (num[n] == '៩') result += 9;
+
+                                                   //if (num[n] == '.') result += '.';
+                                                   if (num[n] == 0) result += 0;
+                                                   if (num[n] == 1) result += 1;
+                                                   if (num[n] == 2) result += 2;
+                                                   if (num[n] == 3) result += 3;
+                                                   if (num[n] == 4) result += 4;
+                                                   if (num[n] == 5) result += 5;
+                                                   if (num[n] == 6) result += 6;
+                                                   if (num[n] == 7) result += 7;
+                                                   if (num[n] == 8) result += 8;
+                                                   if (num[n] == 9) result += 9;
+                                               }
+
+                                               var dob = '';
+                                               var age = result;
+                                               var currentyear = (new Date()).getFullYear();
+                                               dob = currentyear-age;
+
+                                               if(age >= 160 || age < 1){
+                                                   $('#dob').val('');
+                                               }else{
+                                                   $('#dob').val(dob);
+                                               }
+                                           });
+                                           $('#dob').change(function(e) {
+                                               var num = this.value;
+                                               var result = '';
+                                               // console.log(num.length);
+                                               for (n = 0; n < num.length; n++) {
+                                                   if (num[n] == '០') result += 0;
+                                                   if (num[n] == '១') result += 1;
+                                                   if (num[n] == '២') result += 2;
+                                                   if (num[n] == '៣') result += 3;
+                                                   if (num[n] == '៤') result += 4;
+                                                   if (num[n] == '៥') result += 5;
+                                                   if (num[n] == '៦') result += 6;
+                                                   if (num[n] == '៧') result += 7;
+                                                   if (num[n] == '៨') result += 8;
+                                                   if (num[n] == '៩') result += 9;
+
+                                                   //if (num[n] == '.') result += '.';
+                                                   if (num[n] == 0) result += 0;
+                                                   if (num[n] == 1) result += 1;
+                                                   if (num[n] == 2) result += 2;
+                                                   if (num[n] == 3) result += 3;
+                                                   if (num[n] == 4) result += 4;
+                                                   if (num[n] == 5) result += 5;
+                                                   if (num[n] == 6) result += 6;
+                                                   if (num[n] == 7) result += 7;
+                                                   if (num[n] == 8) result += 8;
+                                                   if (num[n] == 9) result += 9;
+                                               }
+
+                                               var age = '';
+                                               var dob = result;
+                                               var currentyear = (new Date()).getFullYear();
+                                               age = currentyear-dob;
+                                               if(dob >= currentyear || age >= 160 || age < 1){
+                                                   $('#age').val('');
+                                               }
+                                               else{
+                                                   $('#age').val(age);
+                                               }
+                                           });
+
+
+                                           function reOrder(){
+                                               for(var n=2;n<(dataRow-1);n++){
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td:first-child').html(n);
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .nickname').attr('name', 'nick_name['+(n-1)+']');
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .nickname').attr('class', 'hh-member form-control nickname nick_name_'+(n-1));
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('name', 'dob['+(n-1)+']');
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('id', 'dob_'+(n-1));
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .age').attr('name', 'age['+(n-1)+']');
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .age').attr('id', 'age_'+(n-1));
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .family_relationship').attr('name', 'family_relationship['+(n-1)+']');
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .m_sex').attr('name', 'm_sex['+(n-1)+']');
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .m_sex').attr('index', (n-1));
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .m_sex').attr('id', 'm_sex_'+(n-1));
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .family_relationship').attr('id', 'family_relationship_'+(n-1));
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td #status').attr('class', 'form-group add_relationship_'+(n-1));
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .occupation').attr('name', 'occupation['+(n-1)+']');
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .occupation').attr('id', 'occupation_'+(n-1));
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .education_level').attr('name', 'education_level['+(n-1)+']');
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .education_level').attr('id', 'education_level_'+(n-1));
+                                                   $('.new_rows  tr.myrow:eq(' + (n-1) +')').attr('index', (n-1));
+                                                   $('.new_rows  tr:eq(' + (n-1) +') td .txt_score').attr('class', 'txt_score form-control edu_score_'+(n-1));
+                                               }
+                                           }
+                                           //remove add
+                                           $(".new_rows").on('click','.remove_rows_kh',function(e){
+                                               $('#add_rows').removeAttr("disabled", true);
+                                               var result = window.confirm('Are you sure?');
+                                               if (result == false) {
+                                                   e.preventDefault();
+                                                   return false;
+                                               }
+                                               $('#add_rows').show();
+                                               $(this).parent().parent().remove();
+                                               // console.log(dataRow);
+                                               reOrder();
+                                               dataRow--;
+                                               edu_row--;
+                                           });
+
+
+
+                                           //occupation
+                                           $(".m_sex").select2({
+                                               allowClear:true,
+                                               placeholder: 'ភេទ'
+                                           });
+                                           //occupation
+                                           $(".occupation").select2({
+                                               allowClear:true,
+                                               placeholder: 'មុខរបរ'
+                                           });
+                                           //education
+                                           $(".education_level").select2({
+                                               allowClear:true,
+                                               placeholder: 'កម្រិតវប្បធម៌'
                                            });
                                         </script>
                                 </tr>
                             </tbody>
                             <tfoot>
-                                <tr>
+                                <tr class="my_hide">
                                     <td colspan="7"><b style="float: right;">10.  ការអប់រំ (មើលចម្លើយនៅក្នុងតារាងផ្នែក ខ)</b></td>
                                     <td>
                                         <div class="form-group input-group">
@@ -517,19 +1034,19 @@
                        <div class="col-sm-12"><hr> </div>
                        <div class="col-sm-12">
                             <h4> គ.១ ផ្ទះសម្បែងរបស់ក្រុមគ្រួសារ</h4> 
-                            <p>តើពួកគាត់រស់នៅទីកន្លែងណា? (សូម​ជ្រើរើស នៅចំលើយតែមួយ)</p>
 
                             <div class="add_household_family">
+                                <p> តើពួកគាត់រស់នៅទីកន្លែងណា? <spand class="text-danger">*</spand> (សូម​ជ្រើរើស នៅចំលើយតែមួយ)</p>
                                 <table>
                                     @foreach($household as $key => $h)
                                         <tr><td>@if($h->id == 1) ក​). @elseif($h->id == 2) ខ​). @elseif($h->id == 3) គ). @elseif($h->id == 4) ឃ​). @elseif($h->id == 5) ង​​). @endif</td>
                                             <td style="padding: 5px 10px;">
                                                  ​<input class="household_family_id" type="radio" name="household_family_id"  value="{{ $h->id }}">  {{$h->name_kh}}
                                             </td>
-                                            <td>@if($h->id == 5) <label id="household_family_id"> </label>@endif</td>
                                         </tr>
                                     @endforeach
                                 </table>
+                                <div id="household_family_id" class="col-sm-6"></div>
                             </div>
 
                              <script>
@@ -543,7 +1060,17 @@
                                      $('#building-year').empty();
                                      $('#household_area').empty();
                                      if(houshold == 5){
-                                         $('#household_family_id').append('ឈ្មោះស្ថាប័ន : <input class="form-control-custome" type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name" autocomplete="off" required="required"> លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន : <input maxlength="10" class="allowNumber form-control-custome" type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone" autocomplete="off" required="required">');
+                                         $('#household_family_id').html(
+                                             '<table class="tb_grid table table-bordered table-striped"><tr><th>ឈ្មោះស្ថាប័ន <spand class="text-danger">*</spand></th><th>លេខទូរសព្ទបុគ្គលទំនាក់ទំនងនៅស្ថាប័ន <spand class="text-danger">*</spand></th></tr>' +
+                                                 '<tr>' +
+                                                    '<td>' +
+                                                        '<input class="form-control-custome form-control" type="text" placeholder="ឈ្មោះស្ថាប័ន" name="institutions_name" autocomplete="off" required="required">'+
+                                                    '</td>' +
+                                                     '<td>' +
+                                                        '<input maxlength="10" class="allowNumber form-control-custome form-control" type="text" placeholder="លេខទូរសព្ទ" name="instatutions_phone" autocomplete="off" required="required">'+
+                                                     '</td>' +
+                                                 '</tr>'+
+                                             '</table>');
                                          AllowNumber();
                                      }else if(houshold == 2){
                                          $('#home-rent').append('<h4>គ.៨) សម្រាប់គ្រួសារជួលផ្ទះគេ​ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ មិនបាច់បំពេញចំណុច គ៨ ហើយរំលងទៅ គ៩"></a></h4>' +
@@ -559,7 +1086,7 @@
                                                              '</div>' +
                                                          '</td>' +
                                                      '</tr>' +
-                                                     '<tr>'+
+                                                     '<tr class="my_hide">'+
                                                         '<td width="50%">' +
                                                            '<label class="control-label"> គ្រួសារដែលនៅផ្ទះជួលគេ 3B</label>' +
                                                         '</td>' +
@@ -572,7 +1099,7 @@
                                                  '</table>' +
                                              '</div>');
                                              //3B គ្រួសារដែលនៅផ្ទះជួលគេតម្លៃជួលផ្ទះ (ប្រើសម្រាប់តែគ្រួសារដែលជួលផ្ទះគេ)    
-                                                $('.cal').keyup(function(){
+                                                $('.cal').change(function(){
                                                     var person = $('#total_people').val();
                                                     var price = $('#price').val();
                                                     if( ((person>=1 && person <=3) && (price>=1 && price <=80000)) || ((person >=4 && person <=6) && (price>=1 && price <=120000)) || ((person >=7 && person <= 10) && (price>=1 && price <=180000)) || ((person>10)&&(price>=1 && price<=240000)) )
@@ -667,11 +1194,11 @@
                                                                  '</div>' +
                                                              '</td>' +
                                                          '</tr>' +
-                                                         '<tr>' +
+                                                         '<tr class="my_hide">' +
                                                             '<td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>' +
                                                              '<td>' +
                                                                  '<div class="form-group input-group">' +
-                                                                     '<input autocomplete="off" type="text" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly">' +
+                                                                     '<input autocomplete="off" type="hidden" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly">' +
                                                                      '<span class="input-group-addon">ពិន្ទុ</span>' +
                                                                  '</div>' +
                                                              '</td>' +
@@ -701,7 +1228,7 @@
                                              var f_width = parseFloat($('#further_floor_width').val());
                                              $('#further_floor_area').val((f_length * f_width ? f_length * f_width : 0).toFixed(0));
                                          });
-                                         $('#ground_floor_length, #ground_floor_width, #upper_floor_length, #upper_floor_width,#further_floor_length, #further_floor_width').on('change',function() {
+                                         $('#ground_floor_length, #ground_floor_width, #upper_floor_length, #upper_floor_width,#further_floor_length, #further_floor_width').on('change' ,function() {
                                              var total_g = 0;
                                              var total_u = 0;
                                              var total_f = 0;
@@ -734,11 +1261,13 @@
                                              }
                                          });
 
-                                         var homeyourselt = '<div class="col-sm-12"><hr> </div><h4>គ.៥ ដំបូល</h4>' +
-                                             '<div class="col-sm-6">' +
-                                                 '<table width="100%">' +
+                                         var homeyourselt = '<h4>គ.៥ ដំបូល</h4>' +
+                                                 '<table width="100%" class="table table-bordered table-striped">' +
+                                                    '<thead><tr>' +
+                                                        '<th>ដំបូលធ្វើអំពី <spand class="text-danger">*</spand></th>' +
+                                                        '<th>និង​ស្ថានភាព <spand class="text-danger">*</spand></th>' +
+                                                    '</tr></thead>'+
                                                      '<tr>' +
-                                                        '<td><label class="control-label"> ដំបូលធ្វើអំពី : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group add_roof_relationship">' +
                                                                  '<select class="form-control roof_relationship cal_roof" id="roof_relationship" name="roof_made">' +
@@ -749,13 +1278,6 @@
                                                                  '</select>' +
                                                              '</div>' +
                                                          '</td>'+
-                                                     '</tr>'+
-                                                 '</table>' +
-                                             '</div>'+
-                                             '<div class="col-sm-6">' +
-                                                 '<table width="100%">' +
-                                                     '<tr>' +
-                                                        '<td><label class="control-label">​ និង​ស្ថានភាព : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group add_r_status">' +
                                                                  '<select class="cal_roof form-control r_status" id="r_status" name="roof_status">' +
@@ -764,21 +1286,23 @@
                                                              '</div>' +
                                                          '</td>'+
                                                      '</tr>'+
-                                                 '</table>' +
-                                             '</div>'+
-                                             '<p>'+'3A 1 : ស្ថានភាពដំបូលផ្ទះ '+'<p>'+
-                                             '<div class="form-group input-group" style="width: 300px;">'+
-                                               '<input id="roof_score" type="text" name="roof_score" class="cal_roof form-control allowNumber"​ readonly>'+
-                                               '<span class="input-group-addon">ពិន្ទុ</span>'+
-                                            '</div>';
-                                            
-                                           
+                                                    // '<tr​ style="display:none;">' +
+                                                        // '<td>3A 1 : ស្ថានភាពដំបូលផ្ទះ </td>' +
+                                                        // '<td>' +
+                                                         '<div class="my_hide form-group input-group" style="width: 300px;">'+
+                                                            '<input id="roof_score" type="text" name="roof_score" class="cal_roof form-control allowNumber"​ readonly>'+
+                                                            '<span class="input-group-addon">ពិន្ទុ</span>'+
+                                                         '</div>'+
+                                                        '</td>' +
+                                                    // '</tr>'
+                                                 '</table>';
+
                                             var building_year = '<div class="col-sm-6">' +
                                                     '<table class="table-home table table-bordered table-striped">' +
                                                     '<thead>' +
                                                         '<tr>' +
-                                                            '<th>ផ្ទះសាងសង់នៅឆ្នាំណា?</th>' +
-                                                            '<th>តើធ្លាប់ជួសជុលឬទេ?</th>' +
+                                                            '<th>ផ្ទះសាងសង់នៅឆ្នាំណា? <spand class="text-danger">*</spand></th>' +
+                                                            '<th>តើធ្លាប់ជួសជុលឬទេ? <spand class="text-danger">*</spand></th>' +
                                                         '</tr>' +
                                                     '</thead>'+
                                                         '<tr>' +
@@ -875,10 +1399,12 @@
 
 
                                          var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>' +
-                                             '<div class="col-sm-6">' +
-                                                 '<table width="100%">' +
+                                                 '<table width="100%" class="table table-bordered table-striped">' +
+                                                    '<thead><tr>' +
+                                                         '<th>​ជញ្ជាំងធ្វើអំពី <spand class="text-danger">*</spand></th>' +
+                                                         '<th>និង​ស្ថានភាព <spand class="text-danger">*</spand></th>' +
+                                                    '</tr></thead>' +
                                                      '<tr>' +
-                                                        '<td><label class="control-label"> ​ជញ្ជាំងធ្វើអំពី : </label></td>' +
                                                          '<td>' +
                                                              '<div class="form-group add_wall_relationship">' +
                                                                  '<select class="cal_wall form-control wall_relationship" id="wall_relationship" name="walls_made">' +
@@ -886,30 +1412,26 @@
                                                                     '@foreach($wall_made as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
                                                                  '</select>' +
                                                              '</div>' +
-                                                         '</td>'+
-                                                     '</tr>'+
-                                                 '</table>'+
-                                             '</div>'+
-                                            '<div class="col-sm-6">'+
-                                                '<table width="100%">'+
-                                                    '<tr>'+
-                                                        '<td><label class="control-label">​​ និង​ស្ថានភាព : </label></td>'+
-                                                        '<td>'+
-                                                            '<div class="form-group add_h_status">'+
-                                                                '<select class="cal_wall form-control h_status" id="h_status" name="walls_status">'+
+                                                         '</td>' +
+                                                         '<td>'+
+                                                             '<div class="form-group add_h_status">'+
+                                                                 '<select class="cal_wall form-control h_status" id="h_status" name="walls_status">'+
                                                                     '<option></option>'+
                                                                     '@foreach($house_status as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
-                                                                '</select>'+
-                                                                '</div>'+
-                                                        '</td>'+
-                                                    '</tr>'+
-                                                '</table>'+
-                                            '</div>'+
-                                            '<p>'+'3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ  '+'<p>'+
-                                             '<div class="form-group input-group" style="width: 300px;">'+
-                                               '<input id="wall_score" type="text" name="wall_score" class="cal_wall form-control allowNumber"​ readonly>'+
-                                               '<span class="input-group-addon">ពិន្ទុ</span>'+
-                                            '</div>';
+                                                                 '</select>'+
+                                                             '</div>'+
+                                                         '</td>'+
+                                                     '</tr>' +
+                                                     '<tr class="my_hide">' +
+                                                         '<td>3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ</td>' +
+                                                         '<td>' +
+                                                             '<div class="form-group input-group" style="width: 300px;">'+
+                                                                '<input id="wall_score" type="text" name="wall_score" class="cal_wall form-control allowNumber"​ readonly>'+
+                                                                '<span class="input-group-addon">ពិន្ទុ</span>'+
+                                                             '</div>'+
+                                                         '</td>' +
+                                                     '</tr>'+
+                                                 '</table>';
                                          
                                          $('#home-ke').append(homeke);
                                          $('.cal_wall').change(function(){
@@ -931,7 +1453,7 @@
                                                      '</li>' +
                                                  '@endforeach'+
                                              '</ul></div>'+
-                                             '<div class="form-group input-group" style="width: 300px;">'+
+                                             '<div class="my_hide form-group input-group" style="width: 300px;">'+
                                                '<input id="house_score" type="text" name="house_score" class="house_score form-control allowNumber"​ readonly>'+
                                                '<span class="input-group-addon">ពិន្ទុ</span>'+
                                             '</div>';
@@ -956,10 +1478,10 @@
                        <div class="col-sm-12">
                             <h4>  គ.២ តើ​មាន​មនុស្សសរុប​ចំនួន​ប៉ុន្មាន​នាក់ រស់​នៅក្នុងផ្ទះដែលអ្នកស្នាក់នៅ
                                 <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title=" រាប់ទាំង​សមាជិក​គ្រួសារ និង​អ្នកផ្សេង"></a></h4>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <table width="100%">
                                     <tr>
-                                        <td><label class="control-label">សរុប: </label></td>
+                                        <td><label class="control-label">សរុប </label></td>
                                         <td>
                                            <div class="form-group input-group add_total_people">
                                                <input readonly="readonly" id="total_people" type="text" name="total_people" class="calculate cal t_land form-control allowNumber"​>
@@ -976,9 +1498,9 @@
 
                         <div class="col-sm-12">
                             <h4> គ.៤ បង្គន់</h4>
-                            <h5>- តើគ្រួសាររបស់អ្នកមានបង្គន់ប្រើដែរឬទេ?</h5>
 
-                            <div class="form-group add_toilet">
+                            <div class="add_toilet">
+                                <h5>តើគ្រួសាររបស់អ្នកមានបង្គន់ប្រើដែរឬទេ? <spand class="text-danger">*</spand></h5>
                                 <ul class="li-none">
                                     @foreach($question_totel as $key =>$val)
                                         <li>
@@ -988,8 +1510,8 @@
                                 </ul>
                             </div>
                             <div id="tolet"></div>
-                            <label>បង្គន់អនាម័យ </label>
-                            <div class="form-group input-group add_total_people" style="width: 300px;">
+                            <label class="my_hide">បង្គន់អនាម័យ </label>
+                            <div class="my_hide form-group input-group add_total_people" style="width: 300px;">
                                <input readonly="readonly" id="toilet_score" type="text" name="toilet_score" class="form-control allowNumber"​>
                                <span class="input-group-addon">ពិន្ទុ</span>
                             </div>
@@ -998,7 +1520,7 @@
                                 $('.tolet').click(function () {
                                     var tolet = $('input[name=tolet]:checked').val();
                                     $('#tolet').empty();
-                                    var tott = '<h5>- បើមាន តើជាបង្គន់ចាក់ទឹក ឬ បង្គន់ស្ងួត?</h5>' +
+                                    var tott = '<h5>បើមាន តើជាបង្គន់ចាក់ទឹក ឬ បង្គន់ស្ងួត? <spand class="text-danger">*</spand></h5>' +
                                             '<div class="add_toilet_1"><ul class="li-none">' +
                                                 '<li>' +
                                                     '<label><input style="margin-right:10px;" type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>' +
@@ -1007,7 +1529,7 @@
                                                     '<label><input style="margin-right:10px;" type="radio" name="tolet_1" value="បង្គន់ស្ងួត">  បង្គន់ស្ងួត</label>' +
                                                 '</li>' +
                                             '</ul></div>' +
-                                        '<h5>- ជាបង្គន់​របស់នរណា?</h5>' +
+                                        '<h5>ជាបង្គន់​របស់នរណា? <spand class="text-danger">*</spand></h5>' +
                                             '<div class="add_toilet_2"><ul class="li-none">' +
                                                 '<li>' +
                                                     '<label><input style="margin-right:10px;" type="radio" class="toilet_my" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>' +
@@ -1039,8 +1561,12 @@
 
 
 
-                        <div class="col-sm-12" id="home-yourself"> </div>
-                        <div class="col-sm-12" id="home-ke"></div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-6" id="home-yourself"></div>
+                                <div class="col-sm-6" id="home-ke"></div>
+                            </div>
+                        </div>
                         <div class="col-sm-12" id="general-status"></div>
 
                         <div class="col-sm-12"><hr> </div>
@@ -1054,12 +1580,15 @@
                                     <table class="tb_grid table table-bordered table-striped" width="100%">
                                         <thead>
                                             <tr>
-                                                <th>ល.រ</th>
-                                                <th>ប្រភេទសម្ភារប្រើបា្រស់</th>
-                                                <th>ចំនួន</th>
-                                                <th>តម្លៃទីផ្សារ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title=" ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា"></a></th>
-                                                <th>តម្លៃ​សរុប (រៀល)</th>
-                                                <th>សកម្មភាព</th>
+                                                <th rowspan="2">ល.រ</th>
+                                                <th rowspan="2">ប្រភេទសម្ភារប្រើបា្រស់ <spand class="text-danger">*</spand></th>
+                                                <th colspan="2">តម្លៃទីផ្សារ ប្រសិន​លក់ ​</th>
+                                                <th rowspan="2">តម្លៃ​សរុប (រៀល)</th>
+                                                <th rowspan="2">សកម្មភាព</th>
+                                            </tr>
+                                            <tr>
+                                                <th>បរិមាណ <spand class="text-danger">*</spand></th>
+                                                <th>តម្លៃ <spand class="text-danger">*</spand></th>
                                             </tr>
                                         </thead>
                                         <tbody class="new_rows_1">
@@ -1110,7 +1639,7 @@
                                                 </td>
                                                 <td></td>
                                             </tr>
-                                             <tr>
+                                             <tr class="my_hide">
                                                 <td colspan="4"><b style="float:right">4. ទ្រព្យសម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិចរបស់គ្រួសារ</b>
                                                 </td>
                                                 <td>
@@ -1132,7 +1661,7 @@
                         <div class="col-sm-12">
 
                             <h4>គ.១០) អគ្គិសនី</h4>
-                            <p>តើបានតបណ្តាញអគ្គិសនី (រដ្ឋឬឯកជន) ដែរឬទេ?</p>
+                            <p>តើបានតបណ្តាញអគ្គិសនី (រដ្ឋឬឯកជន) ដែរឬទេ? <spand class="text-danger">*</spand></p>
                             <div>
                                 <ul class="li-none">
                                     @foreach($question_electric as $key => $qe)
@@ -1155,8 +1684,8 @@
                                         $('#electric_yes').append('<p>ប្រសិនបានតបណ្តាញអគ្គិសនី </p>'+
                                             '<table class="tb_grid table table-bordered table-striped ">'+
                                             '<tr>'+
-                                                '<th>តម្លៃក្នុងមួយគីឡូវ៉ាត់/ម៉ោង</th>'+
-                                                '<th>ចំនួនគីឡូវ៉ាត់ដែលប្រើជាមធ្យមក្នុងមួយខែ</th>'+
+                                                '<th>តម្លៃក្នុងមួយគីឡូវ៉ាត់/ម៉ោង <spand class="text-danger">*</spand></th>'+
+                                                '<th>ចំនួនគីឡូវ៉ាត់ដែលប្រើជាមធ្យមក្នុងមួយខែ <spand class="text-danger">*</spand></th>'+
                                                 '<th>ចំណាយ​ជា​មធ្យមក្នុងមួយខែ</th>'+
                                             '</tr>'+
                                             '<tr>'+
@@ -1164,7 +1693,7 @@
                                                 '<td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber myelectric" id="number_in_month" required="required" type="text" name="number_in_month" required="required"><span class="input-group-addon">គីឡូវ៉ាត់</span></div></td>'+
                                                 '<td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>'+
                                             '</tr>'+
-                                            '<tr>'+
+                                            '<tr class="my_hide">'+
                                                 '<td></td>'+
                                                 '<td></td>'+
                                                 '<td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber" id="cost_score" required="required" type="text" name="use_energy_elect_score" readonly="readonly"><span class="input-group-addon">ពិន្ទុ</span></div></td>'+
@@ -1194,7 +1723,7 @@
                                             });
                                         AllowNumber();
                                     }else if(electric == 2){
-                                        $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>'+'<div class="form-group input-group" style="width: 300px;">'+
+                                        $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>'+'<div class="my_hide form-group input-group" style="width: 300px;">'+
                                                '<input id="score_power" type="text" name="no_energy_elect_score" class="score_power form-control allowNumber"​ readonly>'+
                                                '<span class="input-group-addon">ពិន្ទុ</span>'+
                                             '</div>');
@@ -1235,88 +1764,83 @@
                                     </tr>
                                 </table>
                             </div>
+                        <table class="tb_grid table table-bordered table-striped" width="100%">
+                            <thead>
+                            <tr>
+                                <th rowspan="2">ល.រ</th>
+                                <th rowspan="2">ប្រភេទសម្ភារប្រើបា្រស់ <spand class="text-danger">*</spand></th>
+                                <th colspan="2">តម្លៃទីផ្សារ ប្រសិន​លក់​វា​ចេញ</th>
+                                <th rowspan="2">តម្លៃ​សរុប (រៀល)</th>
+                                <th rowspan="2">សកម្មភាព</th>
+                            </tr>
+                            <tr>
+                                <th>បរិមាណ <spand class="text-danger">*</spand></th>
+                                <th>តម្លៃ <spand class="text-danger">*</spand></th>
+                            </tr>
+                            </thead>
+                            <tbody class="new_rows_2">
+                            <tr class="myrow_2">
+                                <td>1</td>
+                                <td>
+                                    <div class="form-group add_type_vehicle">
+                                        <select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle[0]">
+                                            <option></option>
+                                            @foreach($typetransport as $keh => $value)
+                                                <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <input id="number_vehicle" name="number_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group input-group">
+                                        <input id="market_value_vehicle" name="market_value_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
+                                        <span class="input-group-addon">រៀល</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group input-group">
+                                        <input id="total_rail_vehicle" name="total_rail_vehicle[0]" type="text" required="required" class="form-control totalallowNumber_vehicle" readonly="readonly"/>
+                                        <span class="input-group-addon">រៀល</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a  class="btn btn-sm btn-primary" id="add_rows_2"><span class="glyphicon glyphicon-plus"></span></a>
+                                </td>
+                            </tr>
+                            </tbody>
 
-
-
-                            <table class="tb_grid table table-bordered table-striped" width="100%">
-                                <thead>
+                            <tfoot>
                                 <tr>
-                                    <th>ល.រ</th>
-                                    <th>ប្រភេទសម្ភារប្រើបា្រស់</th>
-                                    <th>ចំនួន</th>
-                                    <th>តម្លៃទីផ្សារ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title=" ប្រសិន​លក់​វា​ចេញចំនួនតម្លៃឯកត្តា"></a></th>
-                                    <th>តម្លៃ​សរុប (រៀល)</th>
-                                    <th>សកម្មភាព</th>
-                                </tr>
-                                </thead>
-                                <tbody class="new_rows_2">
-                                <tr class="myrow_2">
-                                    <td>1</td>
-                                    <td>
-                                        <div class="form-group add_type_vehicle">
-                                            <select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle[0]">
-                                                <option></option>
-                                                @foreach($typetransport as $keh => $value)
-                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input id="number_vehicle" name="number_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
-                                        </div>
-                                    </td>
+                                    <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                            <input id="market_value_vehicle" name="market_value_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
+                                            <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
                                             <span class="input-group-addon">រៀល</span>
                                         </div>
                                     </td>
+                                    <td></td>
+                                </tr>
+                                <tr class="my_hide">
+                                    <td colspan="4"><b style="float:right">6. អំពីយានជំនិះរបស់គ្រួសារ</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                            <input id="total_rail_vehicle" name="total_rail_vehicle[0]" type="text" required="required" class="form-control totalallowNumber_vehicle" readonly="readonly"/>
-                                            <span class="input-group-addon">រៀល</span>
+                                            <input id="score_v" name="vehicle_score" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
+                                            <span class="input-group-addon">ពិន្ទុ</span>
                                         </div>
                                     </td>
-                                    <td>
-                                        <a  class="btn btn-sm btn-primary" id="add_rows_2"><span class="glyphicon glyphicon-plus"></span></a>
-                                    </td>
+                                    <td></td>
                                 </tr>
-                                </tbody>
-
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
-                                        <td>
-                                            <div class="form-group input-group">
-                                                <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
-                                                <span class="input-group-addon">រៀល</span>
-                                            </div>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4"><b style="float:right">6. អំពីយានជំនិះរបស់គ្រួសារ</b></td>
-                                        <td>
-                                            <div class="form-group input-group">
-                                                <input id="score_v" name="vehicle_score" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
-                                                <span class="input-group-addon">ពិន្ទុ</span>
-                                            </div>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            
+                            </tfoot>
+                        </table> 
                     </div>
-
-
-
 
                     <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
-
                             <h4>គ.១២) ចំណូល</h4>
                             <h5><b>គ.១២.១) ចំណូល​ ពីសកម្មភាពកសិកម្ម ផ្ទាល់ខ្លួន</b></h5>
                             <h5><b>គ.១២.១.១) ការចិញ្ចឹមសត្វ</b></h5>
@@ -1324,18 +1848,19 @@
                                 <thead>
                                 <tr>
                                     <th>ល.រ</th>
-                                    <th width="20%">ប្រភេទសត្វ</th>
+                                    <th width="20%">ប្រភេទសត្វ <spand class="text-danger">*</spand></th>
                                     <th></th>
-                                    <th>កំណត់សម្គាល់ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="បញ្ជាក់ បើសិនជាសត្វប្រវាស់គេ"></a></th>
+                                    <th width="20%">កំណត់សម្គាល់ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="បញ្ជាក់ បើសិនជាសត្វប្រវាស់គេ"></a></th>
+                                    <th class="my_hide">ពិន្ទុ</th>
                                     <th width="10%">សកម្មភាព</th>
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_3">
-                                <tr class="myrow_3">
+                                <tr class="myrow_3" index="0">
                                     <td class="auto_id">1</td>
                                     <td>
                                         <div class="form-group add_type_animals">
-                                            <select style="width: 100%;" class="cal_animal form-control type_animals" id="type_animals" name="type_animals[0]" required="required" index="0">
+                                            <select style="width: 100%;" class="0 form-control type_animals1" id="type_animals" name="type_animals[0]" required="required" index="0">
                                                 <option></option>
                                                 @foreach($typeanimals as $key => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -1347,7 +1872,7 @@
                                     <td id="num_animals_0" class="add_ajust_animals">
                                         <table class="table table-bordered" align="center">
                                             <tr>
-                                                <th>ចំនួនសត្វធំ</th>
+                                                <th>ចំនួនសត្វធំ <spand class="text-danger">*</spand></th>
                                                 <th>ចំនួនកូនសត្វ</th>
                                             </tr>
                                             <tr>
@@ -1368,64 +1893,88 @@
 
                                     <td>
                                         <div class="form-group ng" id="noted_0">
-                                            <select style="width: 100%;" class="form-control note_animals" id="note_animals" name="note_animals[0]" required="required" index="0">
+                                            <select style="width: 100%;" class="cal_animal form-control note_animals" id="note_animals" name="note_animals[0]" required="required" index="0">
                                                 <option></option>
                                                 <option value="ប្រវាស់">ប្រវាស់</option>
                                                 <option value="មិនប្រវាស់">មិនប្រវាស់</option>
                                             </select>
                                         </div>
                                     </td>
+                                    <td class="my_hide">
+                                      <div class="form-group input-group">
+                                            <input id="score_animal_0" name="animal_score" type="text" required="required" class="cal_animal txt_score_animal score_animal_0 form-control" readonly="readonly"/>
+                                            <span class="input-group-addon">ពិន្ទុ</span>
+                                      </div>
+                                    </td>
                                     <td>
-                                        <a  class="btn btn-sm btn-primary" id="add_rows_3"><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="btn btn-sm btn-primary" id="add_rows_3"><span class="glyphicon glyphicon-plus"></span></a>
                                     </td>
                                 </tr>
                                   <script type="text/javascript">
                                       var numRow = 0;
-                                      $('#type_animals').on("change", function(e) {
+                                      $('#type_animals').on("change", function(e){
                                           var type = this.value;
                                           var index= $(this).attr('index');
                                           //$('#num_animals').empty();
-                                            if(index == 0 && (type == 2 || type == 3)){
+                                            if(index == 0 && type == 2){
                                                 var duk = '<table class="table table-bordered">' +
                                                         '<tr>' +
-                                                            '<th>ចំនួនសត្វ</th>' +
+                                                            '<th>ចំនួនសត្វ <spand class="text-danger">*</spand></th>' +
                                                         '</tr>' +
-                                                        '<tr>' +
+                                                        '<tr>'+
                                                             '<td>' +
-                                                                '<div class="form-group">' +
-                                                                    '<input name="num_animals[0]" id="num_animals" type="text" class="cal_animal form-control allowNumber num_animals"  />' +
+                                                                '<div class="form-group">'+
+                                                                    '<input name="num_animals[0]" id="num_animals" type="text" class="cal_animal form-control allowNumber num_animals" />' +
                                                                     '<input autocomplete="off" name="num_animals_big[0]" id="num_animals_big" type="hidden" class="cal_animal form-control allowNumber" required="required" />' +
                                                                     '<input autocomplete="off" name="num_animals_small[0]" id="num_animals_small" type="hidden" class="cal_animal form-control allowNumber"  />'+
                                                                 '</div>' +
                                                             '</td>' +
                                                         '</tr>'+
                                                     '</table>';
-                                                var noted = '<input autocomplete="off" name="note_animals[0]" type="text" class="cal_animal form-control"  />';
-
+                                                var noted = '<input autocomplete="off" name="note_animals[0]" type="text" class="cal_animal form-control" />';
                                                 $('#num_animals_0').html(duk);
                                                 $('#noted_0').html(noted);
                                                 AllowNumber();
+
+                                                $('.cal_animal').change(function(){
+                                                  var myrow_ind = $('.myrow_3').attr('index');
+                                                  var num = $('#num_animals').val();
+                                                  var answer = 0;
+                                                  if( num>=0 && num < 3){
+                                                    //$('#animal_score').val(4);
+                                                     answer = 4;
+                                                  }else{
+                                                     answer = 0;
+                                                  }
+                                                  $('.score_animal_0').val(answer);
+                                                  var maxScore = $('.score_animal_0').val();
+                                                   $(".txt_score_animal").each(function(i){
+                                                       var score = $(this).val();
+                                                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                   });
+                                                   $('#score_animal_total').val(maxScore);
+                                                });
                                             }else if(index == 0 && type == 1){
                                                 var cow = '<table class="table table-bordered" align="center">' +
-                                                        '<tr>' +
-                                                            '<th>ចំនួនសត្វធំ</th>' +
-                                                            '<th>ចំនួនកូនសត្វ</th>' +
-                                                        '</tr>' +
-                                                        '<tr>' +
-                                                            '<td>' +
-                                                                '<div class="form-group">' +
-                                                                    '<input name="num_animals[0]" id="num_animals" type="hidden" class="cal_animal form-control allowNumber num_animals"/>' +
-                                                                    '<input autocomplete="off" name="num_animals_big[0]" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />' +
-                                                                '</div>' +
-                                                            '</td>' +
-                                                            '<td>' +
-                                                                '<div class="form-group">' +
-                                                                    '<input autocomplete="off" name="num_animals_small[0]" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />' +
-                                                                '</div>' +
-                                                            '</td><input autocomplete="off" name="note_animals[0]" type="hidden" class="cal_animal form-control"  />' +
-                                                        '</tr>' +
-                                                    '</table>';
-                                                var noted = '<select style="width: 100%;" class="form-control note_animals" id="note_animals" name="note_animals[0]" required="required">' +
+                                                          '<tr>' +
+                                                              '<th>ចំនួនសត្វធំ <spand class="text-danger">*</spand></th>' +
+                                                              '<th>ចំនួនកូនសត្វ</th>' +
+                                                          '</tr>' +
+                                                          '<tr>' +
+                                                              '<td>' +
+                                                                  '<div class="form-group">' +
+                                                                      '<input name="num_animals[0]" id="num_animals" type="hidden" class="cal_animal form-control allowNumber num_animals"/>' +
+                                                                      '<input autocomplete="off" name="num_animals_big[0]" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />' +
+                                                                  '</div>' +
+                                                              '</td>' +
+                                                              '<td>' +
+                                                                  '<div class="form-group">' +
+                                                                      '<input autocomplete="off" name="num_animals_small[0]" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />' +
+                                                                  '</div>' +
+                                                              '</td><input autocomplete="off" name="note_animals[0]" type="hidden" class="cal_animal form-control"  />' +
+                                                          '</tr>' +
+                                                      '</table>';
+                                                var noted = '<select style="width: 100%;" class="cal_animal form-control note_animals" id="note_animals" name="note_animals[0]" required="required">' +
                                                     '<option></option>' +
                                                     '<option value="ប្រវាស់">ប្រវាស់</option>' +
                                                     '<option value="មិនប្រវាស់">មិនប្រវាស់</option>' +
@@ -1434,66 +1983,93 @@
                                                 $('#noted_0').html(noted);
                                                 $(".note_animals").select2({ allowClear:true, placeholder: "កំណត់សម្គាល់"});
                                                 AllowNumber();
+
+                                                $(".cal_animal").change(function(){
+                                                  var myrow_ind = $('.myrow_3').attr('index');
+
+                                                  var big = parseInt($("#num_animals_big").val());
+                                                  var small = parseInt($("#num_animals_small").val());
+                                                  var status = $("#note_animals").val();
+                                                  var bigsmall = big+small;
+                                                  var score = 0;
+
+                                                  if(big == 0 && small == 0){
+                                                    score = 6;
+                                                  }else if( ((big <=1 && small == 0) || (big == 0 && small <=2 )) || (bigsmall == 2 && status =="ប្រវាស់") ){
+                                                      score = 4;
+                                                  }
+                                                  else{
+                                                    score = 0;
+                                                  }
+
+                                                  $('.score_animal_0').val(score);
+                                                  var maxScore = $('.score_animal_0').val();
+                                                   $(".txt_score_animal").each(function(i){
+                                                       var score = $(this).val();
+                                                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                   });
+                                                   $('#score_animal_total').val(maxScore);
+                                                });
+                                            }else if(index == 0 && type == 3){
+                                              var hend = '<table class="table table-bordered">' +
+                                                        '<tr>' +
+                                                            '<th>ចំនួនសត្វ <spand class="text-danger">*</spand></th>' +
+                                                        '</tr>' +
+                                                        '<tr>'+
+                                                            '<td>' +
+                                                                '<div class="form-group">'+
+                                                                    '<input name="num_animals[0]" id="hend" type="text" class="cal_animal form-control allowNumber num_animals" />' +
+                                                                '</div>' +
+                                                            '</td>' +
+                                                        '</tr>'+
+                                                    '</table>';
+                                                var noted = '<input autocomplete="off" name="note_animals[0]" type="text" class="cal_animal form-control" />';
+                                                $('#num_animals_0').html(hend);
+                                                $('#noted_0').html(noted);
+                                                AllowNumber();
+
+                                                $(".cal_animal").change(function(){
+                                                  var myrow_ind = $('.myrow_3').attr('index');
+
+                                                  var hend = $("#hend").val();
+                                                  var score = 0;
+                                                  if(hend>=0 && hend<30){
+                                                     score = 6;
+                                                  }else if(hend >=30 && hend<50){
+                                                      score=4;
+                                                  }else{
+                                                      score=0;
+                                                  }
+                                                  $('.score_animal_0').val(score);
+                                                  var maxScore = $('.score_animal_0').val();
+                                                   $(".txt_score_animal").each(function(i){
+                                                       var score = $(this).val();
+                                                       if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
+                                                   });
+                                                   $('#score_animal_total').val(maxScore);
+                                                });
                                             }
+
                                       });
-
-                                        $('.cal_animal').change(function(){
-
-                                            $('#score_animal').empty();
-                                            var animal = $('#type_animals').val();
-                                            var num_animals_big     = $('#num_animals_big').val();
-                                            var num_animals_small   = $('#num_animals_small').val();
-                                            var note_animals        = $('#note_animals').val();
-                                            if(animal == 1){
-                                                $('#score_animal').empty();
-                                                if((num_animals_big == 0 && num_animals_small == 0 && note_animals == 0)){
-                                                    $('#score_animal').val(6);
-                                                }else if( num_animals_big == 1 || num_animals_small <= 2 || note_animals == 2){
-                                                   $('#score_animal').val(4); 
-                                                }else if(num_animals_big>1 || num_animals_small>3 || note_animals>2){
-                                                    $('#score_animal').val(0); 
-                                                }else{$('#score_animal').val(0);}
-
-                                            }else if(animal == 2){
-                                                $('#score_animal').empty();
-                                                if( (num_animals_big == 0 && num_animals_small == 0) ){
-                                                    $('#score_animal').val(6);
-                                                }else if(num_animals_big<3 || num_animals_small < 3){
-                                                    $('#score_animal').val(4);
-                                                }else if(num_animals_big==3 || num_animals_small==3 ){
-                                                     $('#score_animal').val(0);
-                                                }else{$('#score_animal').val(0);}
-
-                                            }else{
-                                                $('#score_animal').empty();
-                                                if(num_animals_small < 30 || num_animals_big < 30){
-                                                    $('#score_animal').val(6);
-                                                }else if( (num_animals_big>30 && num_animals_big<50) || (num_animals_big>30 && num_animals_big<50) ){
-                                                    $('#score_animal').val(4); 
-                                                }else if(num_animals_big == 50 || num_animals_small == 50){
-                                                    $('#score_animal').val(0);
-                                                }else{$('#score_animal').val(0);}
-
-                                            }
-                                        });
                                     </script>
                             </tbody>
-                                <tr>
+                                <tr class="my_hide">
+                                    <td></td>
                                     <td colspan="3"><b style="float:right">7.A.1 ការចិញ្ចឹមសត្វ</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                            <input id="score_animal" name="animal_score" type="text" required="required" class="form-control cal_animal" readonly="readonly"/>
+                                            <input id="score_animal_total" name="animal_score" type="text" required="required" class="form-control cal_animal" readonly="readonly"/>
                                             <span class="input-group-addon">ពិន្ទុ</span>
                                         </div>
                                     </td>
-                                    <td></td>
+                                    
                                 </tr>
                             </table>
                     </div>
 
                     <div class="col-sm-12"><hr></div>
                         <div class="col-sm-12">
-                            <h5><b>គ.១២.១.២​)ដីកសិកម្ម</b></h5>
+                            <h5><b>គ.១២.១.២​)ដីកសិកម្ម <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="" data-original-title="ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា) "></a></b></h5>
                             <p>មាន​ដីកសិកម្ម ឬ​ទេ ?</p>
                             <ul class="li-none add_land">
                                 @foreach($landAgricultural as $key => $land)
@@ -1538,13 +2114,13 @@
                                                     '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" name="land_name_other_2" type="text" required="required" class="allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                                            '<input autocomplete="off" name="land_name_other_2" type="text" class="allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
                                                         '</div>' +
                                                     '</td>' +
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group ​​input-group input-group">' +
-                                                            '<input autocomplete="off" id="total_land_2" name="total_land_other_2" type="text" required="required" class="t_land_2 form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_2" name="total_land_other_2" type="text" class="t_land_2 form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>' +
                                                     '</td>' +
                                                 '</tr>' +
@@ -1552,13 +2128,13 @@
                                                     '<td><label class="control-label">​ ដីចំការមាន </label></td>'+
                                                     '<td>'+
                                                         '<div class="form-group input-group">'+
-                                                            '<input id="land_farm_2" autocomplete="off" name="land_farm_other_2" type="text" required="required" class="allowFlot form-control" /><span class="input-group-addon">កន្លែង</span>'+
+                                                            '<input id="land_farm_2" autocomplete="off" name="land_farm_other_2" type="text"  class="allowFlot form-control" /><span class="input-group-addon">កន្លែង</span>'+
                                                         '</div>'+
                                                     '</td>'+
                                                     '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="total_land_farm_2" name="total_land_farm_other_2" type="text" required="required" class="t_land_2 form-control allowFlot" /><span class="input-group-addon">ហិចតា</span>'+
+                                                            '<input autocomplete="off" id="total_land_farm_2" name="total_land_farm_other_2" type="text"  class="t_land_2 form-control allowFlot" /><span class="input-group-addon">ហិចតា</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1573,14 +2149,14 @@
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
-                                                 '<tr>' +
+                                                 '<tr class="my_hide">' +
                                                     '<td></td>'+
                                                     '<td>'+
                                                     '</td>'+
                                                     '<td><label class="control-label">7.A.2 B  ផ្ទៃដីកសិកម្ម មិនមែនជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
                                                     '<td>' +
                                                         '<div class="form-group input-group">'+
-                                                            '<input autocomplete="off" id="l_score_2" name="other_farm_score_2" type="text" required="required" class="t_land_2 form-control allowFlot"  /><span class="input-group-addon">ពិន្ទុ</span>'+
+                                                            '<input autocomplete="off" id="l_score_2" name="other_farm_score" type="text" required="required" class="t_land_2 form-control allowFlot"  readonly/><span class="input-group-addon">ពិន្ទុ</span>'+
                                                         '</div>'+
                                                     '</td>' +
                                                 '</tr>' +
@@ -1631,13 +2207,13 @@
                                         '<td><label class="control-label"> ដីស្រែមាន </label></td>' +
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" name="p_land_name" type="text" required="required" class="allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
+                                        '<input autocomplete="off" name="p_land_name" type="text" class="allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>' +
                                         '</div>' +
                                         '</td>' +
                                         '<td><label class="control-label"> ទំហំសរុប : </label></td>'+
                                         '<td>' +
                                         '<div class="form-group ​​input-group input-group">' +
-                                        '<input autocomplete="off" id="total_land" name="p_total_land" type="text" required="required" class="t_land form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>'+
+                                        '<input autocomplete="off" id="total_land" name="p_total_land" type="text" class="t_land form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>'+
                                         '</div>' +
                                         '</td>' +
                                         '</tr>' +
@@ -1666,14 +2242,14 @@
                                         '</div>'+
                                         '</td>' +
                                         '</tr>' +
-                                        '<tr>' +
+                                        '<tr class="my_hide">' +
                                         '<td></td>'+
                                         '<td>'+
                                         '</td>'+
                                         '<td><label class="control-label">7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>'+
                                         '<td>' +
                                         '<div class="form-group input-group">'+
-                                        '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowFlot" /><span class="input-group-addon">ពិន្ទុ</span>'+
+                                        '<input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowFlot" readonly/><span class="input-group-addon">ពិន្ទុ</span>'+
                                         '</div>'+
                                         '</td>' +
                                         '</tr>' +
@@ -1720,16 +2296,11 @@
                                     });
                                 });
                             </script>
-
-                            <p>ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា)</p>
-
                         </div>
-
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
                             @include('include.other-income-agriculture');
                         </div>
-
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
                             <h4>គ.១៣) សុខភាព និងពិការភាព</h4>
@@ -1745,8 +2316,8 @@
                                        </li>
                                     @endforeach
                                 </ul>
-                                <P>8. ជំងឺ,របួសនិងពិការភាព</P>
-                                <div class="form-group input-group" style="width: 300px;">
+                                <P class="my_hide" >8. ជំងឺ,របួសនិងពិការភាព</P>
+                                <div class="my_hide form-group input-group" style="width: 300px;">
                                     <input id="score_health" name="disease_score" type="text" required="required" class="cal_health form-control" readonly="readonly"/>
                                     <span class="input-group-addon">ពិន្ទុ</span>
                                 </div>
@@ -1852,7 +2423,7 @@
 
                             <h4>គ.១៤) បំណុលគ្រួសារ</h4>
                             <div class="col-sm-12">
-                                <p>តើ​គ្រួសារ​របស់​អ្នក​នៅមាន​បំណុល/​កម្ចី​មិនទាន់​បាន​សង​ដែរ​ឬ​ទេ?</p>
+                                <p>តើ​គ្រួសារ​របស់​អ្នក​នៅមាន​បំណុល/​កម្ចី​មិនទាន់​បាន​សង​ដែរ​ឬ​ទេ? <spand class="text-danger">*</spand></p>
                                 <ul class="debt_question_group">
                                     @foreach($loan as $key => $ge)
                                         <li>
@@ -1888,31 +2459,14 @@
                                                                 '<span class="input-group-addon">រៀល</span>' +
                                                             '</div>' +
                                                         '</td>' +
-//                                                        '<td>' +
-//                                                            '<div class="input-group add_debt_duration">' +
-//                                                                '<input autocomplete="off" class="form-control allowNumber" type="text" name="debt_duration" id="debt_duration">' +
-//                                                                '<span class="input-group-addon">ថ្ងៃ</span>' +
-//                                                            '</div>' +
-//                                                        '</td>' +
                                                     '</tr>' +
 
-//                                                     '<tr>' +
-// //                                                        '<td>' +
-// //                                                        '</td>' +
-//                                                         '<td>' +
-//                                                             '<div class="input-group add_debt_duration">' +
-//                                                                 '<input autocomplete="off" class="dept_money form-control allowNumber" type="text" name="" id="score_money">' +
-//                                                                 '<span class="input-group-addon">ពិន្ទុ</span>' +
-//                                                             '</div>'+
-//                                                         '</td>'+
-//                                                     '</tr>'+
-
-                                                    '<tr>' +
+                                                    '<tr class="my_hide">' +
 //                                                        '<td>' +
 //                                                        '</td>' +
                                                         '<td>' +
                                                             '<div class="input-group add_debt_duration">' +
-                                                                '<input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="" id="score_money">' +
+                                                                '<input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="debt_score" id="score_money" readonly>' +
                                                                 '<span class="input-group-addon">ពិន្ទុ</span>' +
                                                             '</div>'+
                                                         '</td>'+
@@ -1921,8 +2475,8 @@
                                                 '</tbody>'+
                                             '</table>'+
                                         '</div>' +
-                                    '</div>'
-                                );
+                                    '</div>');
+                                    AllowNumber();
                                  $('.dept_money').keyup(function(){
                                     var total_debt = $('#total_debt').val();
                                     if( total_debt>1200100){
@@ -1938,13 +2492,13 @@
                              
                     </script>
 
-                    <div class="col-sm-12">
+                    <!-- <div class="col-sm-12">
                         <p>9. បំណុលរបស់គ្រួសារ</p>
                         <div class="input-group add_debt_duration" style="width: 300px;">
                             <input autocomplete="off" class="dept_money form-control allowNumber" type="text" name="debt_score" id="score_money" readonly="">
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
-                    </div><hr>
+                    </div><hr> -->
 
                     <div class="col-sm-12">
                         <h4>គ.១៥) ព័ត៍មានផ្សេងៗបន្ថែម ឬមតិយោបល់របស់អ្នកសម្ភាសន៍ (បើមាន)</h4>
@@ -1953,15 +2507,8 @@
                         </div>
                     </div>
 
-                    <hr><hr>
-                    <div class="col-sm-12">
-                        <p>11. វ័យពលកម្ម (ចន្លោះពី១៨ឆ្នាំដល់៦៥ឆ្នាំ) </p>
-                        <div class="input-group add_debt_duration" style="width: 300px;">
-                            <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score">
-                            <span class="input-group-addon">ពិន្ទុ</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-12"><hr> </div>
+                    <hr>
+                    <div class="col-sm-12"><hr></div>
                     <div class="col-sm-12">
                         <!-- <a  class="pull-left btn btn-default print-link3"><img src="" width="30"></a> -->
                         <button id="nextStep3" class="btn btn-primary pull-right mysubmit nextBtn btnSave" type="button">រក្សាទុក​​ និង បញ្ចប់</button>
@@ -1975,6 +2522,7 @@
 
     <div class="col-sm-12" style="padding: 0;"><h3>ទិន្នន័យ​អ្នកជំងឺ</h3></div>
     <div class="data-list">
+
         <table id="datatable1" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <th>ល.រ</th>
@@ -2023,7 +2571,7 @@
                 $item.addClass('btn-primary');
                 allWells.hide();
                 $target.show();
-                $target.find('input:eq(0)').focus();
+               // $target.find('input:eq(2)').focus();
             }
         });
         //step1
@@ -2043,19 +2591,34 @@
                 }
             }
 
+            if ($('#current_date').val() == '') {
+                $('.current_date').addClass("has-error");
+                $('.alert').show();
+                isValid = false;
+            } else {
+                $('.current_date').removeClass("has-error");
+            }
+
+            if ($('#expire_date').val() == '') {
+                $('.expire_date').addClass("has-error");
+                $('.alert').show();
+                isValid = false;
+            } else {
+                $('.expire_date').removeClass("has-error");
+            }
+
+
             if(isNaN(parseInt($('#hospital').val())) ||
                 isNaN(parseInt($('#province').val())) ||
                 isNaN(parseInt($('#district').val())) ||
                 isNaN(parseInt($('#commune').val())) ||
-                isNaN(parseInt($('#village').val())) ||
-                isNaN(parseInt($('#inter_relationship').val()))
+                isNaN(parseInt($('#village').val()))
             ){
                 $('.add_hospital').addClass("has-error");
                 $('.g_province').addClass("has-error");
                 $('.g_district').addClass("has-error");
                 $('.g_commune').addClass("has-error");
                 $('.g_village').addClass("has-error");
-                $('.inter_relationship').addClass("has-error");
                 $('.alert').show();
                 isValid = false;
             }else{
@@ -2064,7 +2627,6 @@
                 $('.g_district').removeClass("has-error");
                 $('.g_commune').removeClass("has-error");
                 $('.g_village').removeClass("has-error");
-                $('.inter_relationship').removeClass("has-error");
             }
 
             if ($('#location').val() == '') {
@@ -2076,15 +2638,12 @@
             }
 
             //check radio
-            if (!$("input[name='g_sex']:checked").val() ||
-                !$("input[name='inter_sex']:checked").val()) {
+            if (!$("input[name='g_sex']:checked").val()) {
                     $('#g_sex').addClass("error");
-                    $('#inter_sex').addClass("error");
                     $('.alert').show();
                     isValid = false;
                 }else{
                     $('#g_sex').removeClass("error");
-                    $('#inter_sex').removeClass("error");
                 }
 
             if (isValid)
@@ -2120,10 +2679,71 @@
             $('#total_inc_person').empty();
             $('#total_monthly_income_not').empty();
             $('#total_inc_person_not').empty();
+            $('#income_out_farmer_score').empty();
            // alert(row_num);
+            //$('.family_relationship').trigger('change');
+
+//            var fa1 = $('#family_relationship_1 option:selected').val();
+//            var fa2 = $('#family_relationship_2 option:selected').val();
+//            var fa3 = $('#family_relationship_3 option:selected').val();
+//            var fa4 = $('#family_relationship_4 option:selected').val();
+//            var fa5 = $('#family_relationship_5 option:selected').val();
+//            var fa6 = $('#family_relationship_6 option:selected').val();
+//            var fa7 = $('#family_relationship_7 option:selected').val();
+//            var fa8 = $('#family_relationship_8 option:selected').val();
+//            var fa9 = $('#family_relationship_9 option:selected').val();
+//            var fa10 = $('#family_relationship_10 option:selected').val();
+//            console.log(fa1+'-'+fa2+'-'+fa3+'-'+fa4+'-'+fa5+'-'+fa6+'-'+fa7+'-'+fa8+'-'+fa9+'-'+fa10);
+//            if (!fa1) {
+//                $('.alert').show();
+//                $('.add_relationship_1').addClass("has-error");
+//                isValid = false;
+//            } else {
+//                $('.add_relationship_1').removeClass("has-error");
+//            }
+//
+//            if (fa2 == '') {
+//                $('.alert').show();
+//                $('.add_relationship_2').addClass("has-error");
+//                isValid = false;
+//            } else {
+//                $('.add_relationship_2').removeClass("has-error");
+//            }
+//            if (fa3 == '') {
+//                $('.alert').show();
+//                $('.add_relationship_3').addClass("has-error");
+//                isValid = false;
+//            } else {
+//                $('.add_relationship_3').removeClass("has-error");
+//            }
+//            if (fa4 == '') {
+//                $('.alert').show();
+//                $('.add_relationship_4').addClass("has-error");
+//                isValid = false;
+//            } else {
+//                $('.add_relationship_4').removeClass("has-error");
+//            }
+//            if (fa5 == '') {
+//                $('.alert').show();
+//                $('.add_relationship_5').addClass("has-error");
+//                isValid = false;
+//            } else {
+//                $('.add_relationship_5').removeClass("has-error");
+//            }
+//            if (fa6 == '') {
+//                $('.alert').show();
+//                $('.add_relationship_6').addClass("has-error");
+//                isValid = false;
+//            } else {
+//                $('.add_relationship_6').removeClass("has-error");
+//            }
+
             for(var i=0; i<row_num; i++) {
+
+                var re = $('#family_relationship_'+i).val();
+                var index= $('.m_sex').attr('index');
+                //console.log(index+'='+re);
                 if ($('#family_relationship_'+i).val() == '') {
-                   // alert($('#family_relationship_1').val());
                     $('.alert').show();
                     $('.add_relationship_'+i).addClass("has-error");
                     isValid = false;
@@ -2180,27 +2800,29 @@
                                 '</select>'+
                             '</div>' +
                         '</td>' +
-                        '<td>' +
+                        '<td class="hidden">' +
                             '<div class="form-group add_income_unit">' +
-                                '<input name="income_unit['+i+']" type="text" class="form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" >' +
+                                '<input name="income_unit['+i+']" type="text" class="cal_incom form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" readonly="readonly">' +
                             '</div>' +
+                        '</td>'+
+
+                        '<td>'+
+                            '<div class="cal_incom form-group input-group add_average_amount">'+
+                                '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="cal_incom average_amount form-control allowNumber otherincome" autocomplete="off">'+
+                                '<span class="input-group-addon">រៀល</span>'+
+                            '</div>'+
                         '</td>'+
 
                         '<td>' +
                             '<div class="form-group input-group add_unit_in_month">' +
-                                '<input id="unit_in_month_'+i+'" name="unit_in_month['+i+']" type="text" class="unit_in_month form-control allowNumber otherincome"  autocomplete="off">'+
+                                '<input id="unit_in_month_'+i+'" name="unit_in_month['+i+']" type="text" class="cal_incom unit_in_month form-control allowNumber otherincome"  autocomplete="off">'+
                                 '<span class="input-group-addon">ថ្ងៃ</span>' +
                             '</div>' +
                         '</td>'+
-                        '<td>'+
-                            '<div class="form-group input-group add_average_amount">'+
-                                '<input id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="average_amount form-control allowNumber otherincome" autocomplete="off">'+
-                                '<span class="input-group-addon">រៀល</span>'+
-                            '</div>'+
-                        '</td>'+
+
                         '<td>' +
                             '<div class="form-group input-group">' +
-                                '<input id="monthly_income_'+i+'" name="monthly_income['+i+']" type="text" class="monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
+                                '<input id="monthly_income_'+i+'" name="monthly_income['+i+']" type="text" class="cal_incom monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
                                 '<span class="input-group-addon">រៀល</span>' +
                             '</div>' +
                         '</td>'+
@@ -2220,8 +2842,10 @@
                         sum = Number(unit_in_month * average_amount);
                         $("#other_income_"+ii).attr({"onclick": "remove_4("+sum+")"});
                         $('#monthly_income_'+ii).val(sum);
+                       
                     }
                 });
+
                 $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
 
                 $('.otherincome').change(function () {
@@ -2240,6 +2864,26 @@
                     }
                 });
 
+                $('.cal_incom').change(function(){
+                   var total_per = $('#total_inc_person').val();
+                        var money_score = 0;
+                        if(total_per < 40000 ){
+                          money_score = 4;
+                        }else if(total_per>=40000 && total_per < 70000){
+                          money_score = 2;
+                        }else if(total_per>=70000 && total_per< 100000){
+                          money_score = 0;
+                        }else if(total_per>=100000 && total_per< 125000){
+                          money_score = -3;
+                        }else if(total_per>=125000 && total_per < 1500000){
+                          money_score = -9;
+                        }else if(total_per >200000){
+                          money_score = -12;
+                        }else{
+                          money_score = 0;
+                        }$('#income_out_farmer_score').val(money_score);
+                });
+                
 
                 //other income not agriculture
                 if(i==0) {
@@ -2265,27 +2909,29 @@
                     '</select>'+
                     '</div>' +
                     '</td>' +
-                    '<td>' +
+                    '<td class="hidden">' +
                     '<div class="form-group add_income_unit_not">' +
-                    '<input name="income_unit_not['+i+']" type="text" class="form-control income_unit_not" placeholder="ថ្ងៃ" value="day" autocomplete="off">' +
+                    '<input name="income_unit_not['+i+']" type="text" class="form-control income_unit_not" placeholder="ថ្ងៃ" value="day" autocomplete="off" readonly="readonly">' +
                     '</div>' +
+                    '</td>'+
+
+                    '<td>'+
+                    '<div class="form-group input-group add_average_amount_not">'+
+                    '<input id="average_amount_not_'+i+'" name="average_amount_not['+i+']" type="text" class="cal_incom_2 average_amount_not form-control allowNumber otherincome_not"  autocomplete="off">'+
+                    '<span class="input-group-addon">រៀល</span>'+
+                    '</div>'+
                     '</td>'+
 
                     '<td>' +
                     '<div class="form-group input-group add_unit_in_month_not">' +
-                    '<input id="unit_in_month_not_'+i+'" name="unit_in_month_not['+i+']" type="text" class="unit_in_month_not form-control allowNumber otherincome_not" autocomplete="off">'+
+                    '<input id="unit_in_month_not_'+i+'" name="unit_in_month_not['+i+']" type="text" class="cal_incom_2 unit_in_month_not form-control allowNumber otherincome_not" autocomplete="off">'+
                     '<span class="input-group-addon">ថ្ងៃ</span>' +
                     '</div>' +
                     '</td>'+
-                    '<td>'+
-                    '<div class="form-group input-group add_average_amount_not">'+
-                    '<input id="average_amount_not_'+i+'" name="average_amount_not['+i+']" type="text" class="average_amount_not form-control allowNumber otherincome_not"  autocomplete="off">'+
-                    '<span class="input-group-addon">រៀល</span>'+
-                    '</div>'+
-                    '</td>'+
+
                     '<td>' +
                     '<div class="form-group input-group">' +
-                    '<input id="monthly_income_not_'+i+'" name="monthly_income_not['+i+']" type="text" class="monthly_income_not form-control allowNumber monthly_income_total_not" readonly="readonly" autocomplete="off">'+
+                    '<input id="monthly_income_not_'+i+'" name="monthly_income_not['+i+']" type="text" class="cal_incom_2 monthly_income_not form-control allowNumber monthly_income_total_not" readonly="readonly" autocomplete="off">'+
                     '<span class="input-group-addon">រៀល</span>' +
                     '</div>' +
                     '</td>'+
@@ -2307,6 +2953,11 @@
                         $('#monthly_income_not_'+ii).val(sum);
                     }
                 });
+
+                $(".getdata").click(function(){
+                  //alert(1);
+                });
+
                 $(".income_occupation_not").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
 
                 $('.otherincome_not').change(function () {
@@ -2324,7 +2975,25 @@
                         $('#total_inc_person_not').val((tot/totalperson).toFixed(2));
                     }
                 });
-
+                $('.cal_incom_2').change(function(){
+                 var total_per = $('#total_inc_person_not').val();
+                      var money_score = 0;
+                      if(total_per < 40000 ){
+                        money_score = 4;
+                      }else if(total_per>=40000 && total_per < 70000){
+                        money_score = 2;
+                      }else if(total_per>=70000 && total_per< 100000){
+                        money_score = 0;
+                      }else if(total_per>=100000 && total_per< 125000){
+                        money_score = -3;
+                      }else if(total_per>=125000 && total_per < 1500000){
+                        money_score = -9;
+                      }else if(total_per >200000){
+                        money_score = -12;
+                      }else{
+                        money_score = 0;
+                      }$('#income_out_farmer_score_2').val(money_score);
+              });
             }
             step2Row++;
             step2Row5++;
@@ -2548,15 +3217,19 @@
                     $('.add_average_amount').removeClass("has-error");
                     $('.add_income_occupation').removeClass("has-error");
                 }
-            }
-
-            if ($("input[name='income_agricalture_type']:checked").val()==2) {
+            }else{
                 if($('.unit_in_month_not').val() == '' ||
-                    $('.average_amount_not').val() == '' ){
+                    $('.average_amount_not').val() == '' ||
+                    $('#income_occupation_not').val() == ''){
                     $('.alert').show();
                     $('.add_unit_in_month_not').addClass("has-error");
                     $('.add_average_amount_not').addClass("has-error");
+                    $('.add_income_occupation_not').addClass("has-error");
                     isValid = false;
+                }else{
+                    $('.add_unit_in_month_not').removeClass("has-error");
+                    $('.add_average_amount_not').removeClass("has-error");
+                    $('.add_income_occupation_not').removeClass("has-error");
                 }
             }
 
@@ -2664,6 +3337,27 @@
             }
         });
     });
+
+    $("#hospital").change(function () {
+        var od_code  = $('#hospital').val();
+        var hospital = $('#hospital option:selected').text();
+
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('getHealthFacilitiesCode') }}",
+            data: {'od_code': od_code,'hospital': hospital},
+            beforeSend: function(){
+                $("#loading").fadeIn();
+            },
+            success: function (data) {
+                var obj = JSON.parse(data);
+                $("#health_facilities_code").val(obj);
+            },
+            complete: function(){
+                $("#loading").fadeOut(100);
+            }
+        });
+    });
     /*========================================================================
      ===============// select province code append district //=================
      ==========================================================================*/
@@ -2682,10 +3376,15 @@
             },
             success: function (data) {
                 // console.log(data);
-                var obj = JSON.parse(data);
+                //console.log(JSON.parse(data));
+                data = JSON.parse(data);
+                var obj = data.odData;
+                //console.log(obj);
                 $("#district").empty();
                 $("#commune").empty();
                 $("#village").empty();
+                $("#expire_date").empty();
+                $("#expire_date").val(data.expiredDate.expired);
                 $("#district").append('<option selected="selected"></option>');
                 $.each(obj, function (index, element) {
                     $("#district").append(new Option(element.name_kh, element.code));
@@ -2752,9 +3451,12 @@
             success: function (data) {
                 var obj = JSON.parse(data);
                 $("#village").empty();
-                $("#village").append('<option selected="selected"></option>');
+                $("#village").append('<option ></option>');
                 $.each(obj, function (index, element) {
-                    $("#village").append(new Option(element.name_kh, element.code));
+                    $("#village").append(
+                        '<option index="'+element.label+'" value="'+element.code+'">' +element.name_kh+ '</option>'
+                       // new Option(element.name_kh, element.code)
+                    );
                 });
             },
             complete: function(){
@@ -2765,9 +3467,38 @@
             }
         });
     });
+
+
     /*======================================================
     ===============// select2 in village //=================
     ========================================================*/
+    $("#village").change(function () {
+        var village_id = $('#village').val();
+        var index=$('#village option:selected').attr('index');
+
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('getPrintCardNo') }}",
+            data: {'label':index,'village_id': village_id},
+            beforeSend: function(){
+                //$("#loading").fadeIn();
+            },
+            success: function (data) {
+               // var obj = JSON.parse(data);
+                $("#printcard").empty();
+                $("#hhid").empty();
+                $("#printcard").val(data.result_card);
+                $("#hhid").val(data.hhid);
+            },
+            complete: function(){
+                //$("#loading").fadeOut(100);
+            },
+            error: function (report){
+                console.log(report);
+            }
+        });
+    });
+
     $("#village").select2({
         allowClear:true,
         placeholder: 'ភូមិ'
@@ -2782,254 +3513,6 @@
         allowClear:true,
         placeholder: 'ទំនាក់ទំនង'
     });
-
-
-    //* ============= step 2 ======================*//
-    var dataRow = 2;
-    $('#add_rows').click(function(){ //alert($m_id);
-        edu_row++;
-        var row = $('.new_rows tr.myrow').length;
-        var totalPople = $('.new_rows tr.myrow').length+1;
-        document.getElementById('total_people').value =totalPople;
-
-        if(row >= 10){
-           // $('#add_rows').hide();
-            alert('ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់មិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
-            return false;
-        }
-        // var rowindex = row+1;
-        //console.log(dataRow);
-        reOrder();
-            var htmlstep2 = '<tr class="myrow" index="' + edu_row + '">' +
-                '<td>'+dataRow+'</td>' +
-                '<td><div class="form-group"><input autocomplete="off" type="text" required="required" class="hh-member form-control nick_name_'+edu_row+' nickname" name="nick_name[' + edu_row + ']"/></div></td>' +
-                '<td>' +
-                '<div class="form-group add_m_sex_' + edu_row + '">' +
-                '<select style="width: 100%" id="m_sex_' + edu_row + '" class="form-control m_sex"  name="m_sex[' + edu_row + ']" required="required">' +
-                '<option></option>' +
-                '@foreach($gender as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
-                '</select>' +
-                '</div>' +
-                '</td>' +
-                '<td><div class="form-group"><input autocomplete="off" maxlength="4" id="dob_' + edu_row + '"  type="text" required="required" class="hh-member dob form-control allowNumber" name="dob[' + edu_row + ']"/></div></td>' +
-                '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + edu_row + '" type="text" required="required" class="cal_edu hh-member age age_'+edu_row+' form-control allowNumber" name="age[' + edu_row + ']"/></div></td>' +
-                '<td>' +
-                '<div class="form-group add_relationship_' + edu_row + '">' +
-                '<select id="family_relationship_' + edu_row + '" class="cal_edu hh-member form-control family_relationship"  name="family_relationship[' + edu_row + ']" required="required">' +
-                '<option></option>' +
-                '@foreach($relationship as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
-                '</select>' +
-                '</div>' +
-                '</td>' +
-                '<td>' +
-                '<div class="form-group add_occupation_' + edu_row + '">' +
-                '<select id="occupation_' + edu_row + '" class="hh-member form-control occupation"  name="occupation[' + edu_row + ']" required="required">' +
-                '<option></option>' +
-                '@foreach($occupation as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
-                '</select>' +
-                '</div>' +
-                '</td>' +
-                '<td>' +
-                '<div class="form-group add_education_level_' + edu_row + '">' +
-                '<select id="education_level_' + edu_row + '" class="cal_edu hh-member form-control education_level"  name="education_level[' + edu_row + ']" required="required">' +
-                '<option></option>' +
-                '@foreach($education_level as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
-                '</select>' +
-                '</div>' +
-                '</td>' +
-                '<td><input type="text" class="cal_edu txt_score edu_score_'+edu_row+' form-control" readonly></td>'+
-                '<td><a class="btn btn-danger btn-sm remove_rows_kh"><span class="glyphicon glyphicon-minus"></span></a></td>' +
-                '</tr>';
-            $(".new_rows").append(htmlstep2);
-       
-        $('.cal_edu').change(function(){
-           var myrow_ind = $('.myrow').attr('index');
-           var age = $('.age_'+edu_row).val();
-           var edu = $('#education_level_'+edu_row).val();
-           var relation = $('#family_relationship'+edu_row).val();
-
-            if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=1 && edu <=3) )) || (age>=16 && (edu >=1 && edu <=3)) ){
-                  $('.edu_score_'+edu_row).val(4);
-            }else if( ((relation == 1 || relation == 2) && (edu ==14 || (edu >=4 && edu <=6)) ) || (age>=16 && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
-                  $('.edu_score_'+edu_row).val(2.5);;
-            }else{
-              $('.edu_score_'+edu_row).val(0);;
-            }
-          var maxScore = $('.edu_score_'+myrow_ind).val();
-          $('.txt_score ').each(function(i){
-              var score = $(this).val();
-              if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
-          });
-
-          $('#edu_score').val(maxScore);
-
-        });
-
-        dataRow++;
-        $(".family_relationship").select2({allowClear:true, placeholder: "ទំនាក់ទំនង"});
-        $(".m_sex").select2({allowClear:true, placeholder: 'ភេទ'});
-        $(".occupation").select2({allowClear:true, placeholder: "មុខរបរ"});
-        $(".education_level").select2({ allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
-        AllowNumber();
-        var row_num = $('.new_rows tr').length;
-
-            $('.age').change(function () {
-                for(var ii=1; ii<row_num; ii++) {
-                    var age = Number($('#age_'+ii).val());
-                    var currentyear = (new Date()).getFullYear();
-                    var dob = currentyear-age;
-                    if(age >= 160){
-                        $('#dob_'+ii).val('');
-                    }else{
-                        $('#dob_'+ii).val(dob);
-                    }
-                }
-            });
-            $('.dob').change(function () {
-                for(var ii=1; ii<row_num; ii++) {
-                    var dob = Number($('#dob_' + ii).val());
-                    var currentyear = (new Date()).getFullYear();
-                    var age = currentyear - dob;
-                    if (dob >= currentyear || age >= 160) {
-                        $('#age_' + ii).val('');
-                    }
-                    else {
-                        $('#age_' + ii).val(age);
-                    }
-                }
-            });
-
-    });
-
-    $('#age').change(function(e) {
-
-        var num = this.value;
-        var result = '';
-        // console.log(num.length);
-        for (n = 0; n < num.length; n++) {
-            if (num[n] == '០') result += 0;
-            if (num[n] == '១') result += 1;
-            if (num[n] == '២') result += 2;
-            if (num[n] == '៣') result += 3;
-            if (num[n] == '៤') result += 4;
-            if (num[n] == '៥') result += 5;
-            if (num[n] == '៦') result += 6;
-            if (num[n] == '៧') result += 7;
-            if (num[n] == '៨') result += 8;
-            if (num[n] == '៩') result += 9;
-
-            //if (num[n] == '.') result += '.';
-            if (num[n] == 0) result += 0;
-            if (num[n] == 1) result += 1;
-            if (num[n] == 2) result += 2;
-            if (num[n] == 3) result += 3;
-            if (num[n] == 4) result += 4;
-            if (num[n] == 5) result += 5;
-            if (num[n] == 6) result += 6;
-            if (num[n] == 7) result += 7;
-            if (num[n] == 8) result += 8;
-            if (num[n] == 9) result += 9;
-        }
-
-        var dob = '';
-        var age = result;
-        var currentyear = (new Date()).getFullYear();
-        dob = currentyear-age;
-
-        if(age >= 160 || age < 1){
-            $('#dob').val('');
-        }else{
-            $('#dob').val(dob);
-        }
-    });
-    $('#dob').change(function(e) {
-        var num = this.value;
-        var result = '';
-        // console.log(num.length);
-        for (n = 0; n < num.length; n++) {
-            if (num[n] == '០') result += 0;
-            if (num[n] == '១') result += 1;
-            if (num[n] == '២') result += 2;
-            if (num[n] == '៣') result += 3;
-            if (num[n] == '៤') result += 4;
-            if (num[n] == '៥') result += 5;
-            if (num[n] == '៦') result += 6;
-            if (num[n] == '៧') result += 7;
-            if (num[n] == '៨') result += 8;
-            if (num[n] == '៩') result += 9;
-
-            //if (num[n] == '.') result += '.';
-            if (num[n] == 0) result += 0;
-            if (num[n] == 1) result += 1;
-            if (num[n] == 2) result += 2;
-            if (num[n] == 3) result += 3;
-            if (num[n] == 4) result += 4;
-            if (num[n] == 5) result += 5;
-            if (num[n] == 6) result += 6;
-            if (num[n] == 7) result += 7;
-            if (num[n] == 8) result += 8;
-            if (num[n] == 9) result += 9;
-        }
-
-        var age = '';
-        var dob = result;
-        var currentyear = (new Date()).getFullYear();
-         age = currentyear-dob;
-        if(dob >= currentyear || age >= 160 || age < 1){
-            $('#age').val('');
-        }
-        else{
-            $('#age').val(age);
-        }
-    });
-
-
-    function reOrder(){
-        for(var n=2;n<(dataRow-1);n++){
-            $('.new_rows  tr:eq(' + (n-1) +') td:first-child').html(n);
-            $('.new_rows  tr:eq(' + (n-1) +') td .nickname').attr('name', 'nick_name['+(n-1)+']');
-            $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('name', 'dob['+(n-1)+']');
-            $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('id', 'dob_'+(n-1));
-            $('.new_rows  tr:eq(' + (n-1) +') td .age').attr('name', 'age['+(n-1)+']');
-            $('.new_rows  tr:eq(' + (n-1) +') td .age').attr('id', 'age_'+(n-1));
-            $('.new_rows  tr:eq(' + (n-1) +') td .family_relationship').attr('name', 'family_relationship['+(n-1)+']');
-            $('.new_rows  tr:eq(' + (n-1) +') td .m_sex').attr('name', 'm_sex['+(n-1)+']');
-            $('.new_rows  tr:eq(' + (n-1) +') td .occupation ').attr('name', 'occupation['+(n-1)+']');
-            $('.new_rows  tr:eq(' + (n-1) +') td .education_level').attr('name', 'education_level['+(n-1)+']');
-            $('.new_rows  tr.myrow:eq(' + (n-1) +')').attr('index', (n-1));
-            $('.new_rows  tr:eq(' + (n-1) +') td .txt_score').attr('class', 'txt_score form-control edu_score_'+(n-1));
-        }
-    }
-    //remove add
-    $(".new_rows").on('click','.remove_rows_kh',function(){
-        $('#add_rows').show();
-        $(this).parent().parent().remove();
-       // console.log(dataRow);
-        reOrder();
-        dataRow--;
-        edu_row--;
-    });
-    //family_relationship
-    $(".family_relationship").select2({
-        allowClear:true,
-        placeholder: 'ទំនាក់ទំនង'
-    });
-    //occupation
-    $(".m_sex").select2({
-        allowClear:true,
-        placeholder: 'ភេទ'
-    });
-    //occupation
-    $(".occupation").select2({
-        allowClear:true,
-        placeholder: 'មុខរបរ'
-    });
-    //education
-    $(".education_level").select2({
-        allowClear:true,
-        placeholder: 'កម្រិតវប្បធម៌'
-    });
-
 
 </script>
     @include('include.function')

@@ -29,6 +29,7 @@ class StoreScoreModel extends Model
         'debt',
         'edu',
         'age_action',
+        'total',
         'record_status',
         'created_at',
         'updated_at'
