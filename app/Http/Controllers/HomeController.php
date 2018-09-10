@@ -269,6 +269,7 @@ class HomeController extends Controller
                 'od_code'            => $od_code,
                 'hf_code'            => $request->hf_code,
                 'interview_code'     => $interview_code,
+                'hhid'               => $request->hhid,
                 'printcardno'        => $request->printcardno,
                 'g_patient'          =>$request->g_patient,
                 'g_age'              =>$request->g_age,
@@ -598,7 +599,7 @@ class HomeController extends Controller
             }elseif($total_score >= 85){
                 $poor = 1;
             }
-            echo $poor;
+            //echo $poor;
 
             $shp_household_pmrs = array(
                 'hhid'          =>$request->hhid,
@@ -691,7 +692,7 @@ class HomeController extends Controller
         $debt_link = DebtLoanLinkModel::where('g_information_id',$id)->first();
        // echo json_encode($ginfo);exit();
 
-        return view('edit',compact('hospital','relationship',
+        return view('home-edit',compact('hospital','relationship',
             'provinces','gender','household',
             'homePrepar','condition_house','question','electricgrid',
             'landAgricultural','loan','family','occupation','education_level',
@@ -714,24 +715,17 @@ class HomeController extends Controller
         $id = Crypt::decrypt($id);
         //check validation
         $this->validate($request, [
+            'interview_date' => 'required',
+            'expire_date'    => 'required',
             'hospital'       => 'required',
             'interview_code' => 'required',
             'g_patient'      => 'required',
             'g_age'          => 'required',
             'g_sex'          => 'required',
             'g_phone'        => 'required',
-            'g_province'         => 'required',
-            'g_local_village'    => 'required',
-            'inter_patient'      => 'required',
-            'inter_age'          => 'required',
-            'inter_sex'          => 'required',
-            'inter_phone'        => 'required',
-            'inter_relationship' => 'required',
-            'fa_patient'           => 'required',
-            'fa_age'               => 'required',
-            'fa_sex'               => 'required',
-            'fa_phone'             => 'required',
-            'fa_relationship'      => 'required',
+            'g_province'     => 'required',
+            'g_local_village'=> 'required',
+
             //step2
             'nick_name'              => 'required',
             'nick_name.*'            => 'required',
@@ -771,6 +765,12 @@ class HomeController extends Controller
                 'user_id'            => auth::user()->id,
                 //'od_code'            =>$od_code,
                 //'interview_code'     =>$interview_code,
+                //'od_code'            => $od_code,
+                //'hf_code'            => $request->hf_code,
+                //'interview_code'     => $interview_code,
+                'hhid'               => $request->hhid,
+                'printcardno'        => $request->printcardno,
+
                 'g_patient'          =>$request->g_patient,
                 'g_age'              =>$request->g_age,
                 'g_sex'              =>$request->g_sex,
@@ -781,17 +781,17 @@ class HomeController extends Controller
                 'g_village_id'       =>$request->g_village,
                 'g_local_village'    =>$request->g_local_village,
                 //interview
-                'inter_patient'      =>$request->inter_patient,
-                'inter_age'          =>$request->inter_age,
-                'inter_sex'          =>$request->inter_sex,
-                'inter_phone'        =>$request->inter_phone,
-                'inter_relationship_id' =>$request->inter_relationship,
+                'inter_patient'         => $request->inter_patient,
+                'inter_age'             => $request->inter_age,
+                'inter_sex'             => $request->inter_sex,
+                'inter_phone'           => $request->inter_phone,
+                'inter_relationship_id' => $request->inter_relationship,
                 //family
-                'fa_patient'          =>$request->fa_patient,
-                'fa_age'              =>$request->fa_age,
-                'fa_sex'              =>$request->fa_sex,
-                'fa_phone'            =>$request->fa_phone,
-                'fa_relationship_id'  =>$request->fa_relationship,
+                'fa_patient'          => $request->fa_patient,
+                'fa_age'              => $request->fa_age,
+                'fa_sex'              => $request->fa_sex,
+                'fa_phone'            => $request->fa_phone,
+                'fa_relationship_id'  => $request->fa_relationship,
             );
             $gn_info = GeneralInformationModel::where('id',$id)->update($data);
             //step2
@@ -807,10 +807,13 @@ class HomeController extends Controller
                     'family_relationship_id'  => $request->family_relationship[$key],
                     'occupation_id'           => $request->occupation[$key],
                     'education_level_id'      => $request->education_level[$key],
+                    'created_at'              => Carbon::now(),
+                    'updated_at'              => Carbon::now()
                 ];
             }
             MemberFamilyModel::where('g_information_id',$id)->delete();
             MemberFamilyModel::insert($member_family);
+            //echo json_encode($member_family);
             DB::commit();
             return Redirect::back()->with('success','ការសម្ភាសទិន្នន័យត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ');
         } catch (\Exception $e) {

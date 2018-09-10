@@ -943,7 +943,7 @@
                                         <td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>
                                         <td>
                                             <div class="form-group input-group">
-                                                <input autocomplete="off" type="text" id="a_score1" name="total_people" onkeyup class="form-control calculate allowNumber"​ required="required" readonly="readonly" value="{{$household_root->total_people}}">
+                                                <input autocomplete="off" type="text" id="a_score1" name="total_people"  class="form-control calculate allowNumber"​ required="required" readonly="readonly" value="{{$household_root->total_people}}">
                                                 <span class="input-group-addon">ពិន្ទុ</span>
                                                 </div>
                                             </td>
