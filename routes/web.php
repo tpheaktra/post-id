@@ -75,5 +75,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
  *
  * Profile
  */
-Route::get('profile',['as'=>'profile.index','uses'=>'ProfileController@profile']);
-Route::POST('profile/updated',['as'=>'profile.update','uses'=>'ProfileController@UpdatedProfile']);
+Route::group(['prefix' => 'profile','middleware' => ['auth']], function() {
+    Route::get('/', ['as' => 'profile.index', 'uses' => 'ProfileController@profile']);
+    Route::POST('/updated', ['as' => 'profile.update', 'uses' => 'ProfileController@UpdatedProfile']);
+});

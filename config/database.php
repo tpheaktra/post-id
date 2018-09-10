@@ -46,13 +46,13 @@ return [
             'port' => env('DB_PORT', '3306'),
             'database' => 'post-id',
             'username' => 'root',
-<<<<<<< HEAD
-            'password' => 'root',
-            'unix_socket' => '/Applications/MAMP/tmp/mysql/mysql.sock',
-=======
+
+            //'password' => 'root',
+            //'unix_socket' => '/Applications/MAMP/tmp/mysql/mysql.sock',
+
             'password' => '',
             'unix_socket' => env('DB_SOCKET', ''),
->>>>>>> 79283cf30550131fda16d675c7d3b0f402b4993e
+
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',

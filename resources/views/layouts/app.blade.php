@@ -38,132 +38,23 @@
 </head>
 <body>
     <div class="wrapper" id="header">
+
         <nav class="header navbar navbar-expand-md navbar-light navbar-laravel">
-                <div class="container">
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto pull-right">
-                            @guest
-
-                                @else
-                                    <li><a href="{{route('profile.index')}}" class="nav-link">Welcome, {{ Auth::user()->name }}  </a> </li>
-                                    <li class="nav-item dropdown">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                            ចាកចេញ
-                                        </a>
-
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
-                                        </div>
-                                    </li>
-                               @endguest
-                        </ul>
-                    </div>
-                </div>
-
-
-
-            <div class="msg">
-                <div class="add_hide alert alert1 alert-danger alert-dismissable">
-                   <span class="mysmg">សូមបញ្ជូលព័ត៌មានចាំបាច់.</span>
+            <div class="container">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    @include('include.header-top')
                 </div>
             </div>
-
-
-            @if(!empty($errors->first()))
-                <div class="msg">
-                    <div class="add_hide1 alert-danger alert-dismissable">
-                        <span>{{ $errors->first() }}</span>
-                    </div>
-                </div>
-            @endif
-
-            @if(session()->has('success'))
-                <div class="msg">
-                    <div class="add_hide1  alert-success alert-dismissable">
-                        {{ session()->get('success') }}
-                    </div>
-                </div>
-            @endif
-
-            @if(session()->has('danger'))
-                <div class="msg">
-                    <div class="add_hide1  alert-danger alert-dismissable">
-                        {{ session()->get('danger') }}
-                    </div>
-                </div>
-            @endif
-
+            @include('include.message')
         </nav>
 
-        <!-- end menu top -->
         <div class="container">
             <div class="wrap-home">
-                <div class="row">
-                    <div class="col-sm-12"><img src="{{asset('images/banner-top.jpg')}}" width="99%"></div>
-                    
-                    <!-- <div class="col-sm-12">
-                        <div class="logo-home">
-                            <table style="margin:auto;">
-                                <tbody>
-                                    <tr>
-                                        <td style="padding-right:30px;">
-                                            <div><img src="{{asset('images/moh_logo.jpg')}}"></div>
-                                            <h4 style="margin:0 auto 0px;font-size:14px;">ក្រសួង&#8203;សុខាភិបាល</h4>
-                                        </td>
-                                        <td>
-                                            <h3 style="font-family:'Khmer OS Muol', 'Khmer Moul', 'Kh Muol';font-weight:normal; text-shadow: 0 0 5px #bbb; -webkit-text-shadow: 0 0 5px #bbb; -moz-text-shadow: 0 0 5px #bbb; color:#153899; margin:45px 0 10px 0;">ការធ្វើអត្តសញ្ញាណកម្មគ្រួសារក្រីក្រនៅមន្ទីពេទ្យ</h3>
-                                            <div><img src="{{asset('images/head-swirl.jpg')}}" style="height:20px;"></div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div> -->
-                </div>
-
-
-                <div class="row ">
-                    <div class="col-sm-12">
-                        <ul class="home-menu">
-                            <li class="@if(Route::currentRouteName() == 'home.index' || Route::currentRouteName() == 'homehome' || Route::currentRouteName() == 'editpatient.edit' || Route::currentRouteName() == 'view.data') active @endif"><a href="{{route('home.index')}}">ការធ្វើអត្តសញ្ញាណកម្ម</a></li>
-                            <li class="@if(Route::currentRouteName() == 'report.index') active @endif"><a href="{{route('report.index')}}">របាយការណ៍</a></li>
-                            <li class="@if(Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'user.create' || Route::currentRouteName() == 'user.edit') active @endif"><a href="{{route('user.index')}}">គ្រប់គ្រងអ្នកប្រើប្រាស់</a></li>
-                            <li class="@if(Route::currentRouteName() == 'role.index' || Route::currentRouteName() == 'role.create' || Route::currentRouteName() == 'role.edit') active @endif"><a href="{{route('role.index')}}">គ្រប់គ្រងតួនាទី</a></li>
-                        </ul>
-                    </div>
-                </div>
-
+                @include('include.menu-logo')
             </div>
         </div>
-
-
-
-            <!-- loding image -->
-            <div class="modal modal-primary" id="loading">
-                <div class="modal-dialog" style="top:30%">
-                    <div class="">
-                        <div class="modal-body" style="text-align: center;">
-                            <img src="{{ asset('images/loading.gif') }}"/>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal -->
-
-    </div>
-
+        @include('include.loading-ajax')
+    </div><!-- end header -->
 
 
     <main class="wrapper" id="content">
@@ -187,8 +78,6 @@
 
 
     <script src="{{asset('js/jQuery.print.js')}}" type="text/javascript"></script>
-
-
     <script type="text/javascript">
         $('#datatable').DataTable();
         $("a").tooltip({placement:"top"});
