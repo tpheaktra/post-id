@@ -73,7 +73,7 @@
                                             <div class="profile-info-row">
                                                 <div class="profile-info-name"> លេខទូរសព្ទ </div>
                                                 <div class="profile-info-value">
-                                                    <span><input type="text" value="{{$logo->phone}}" class="input-hidden form-control" name="phone_number"></span>
+                                                    <span><input type="text" value="{{$logo->phone ? $logo->phone : '(+855) xxx xxx xxx'}}" class="input-hidden form-control" name="phone_number"></span>
                                                 </div>
                                             </div>
 
@@ -81,29 +81,22 @@
                                                 <div class="profile-info-name"> ទីកន្លែង </div>
                                                 <div class="profile-info-value">
                                                     <i class="fa fa-map-marker light-orange bigger-110"></i>
-                                                    <span>Netherlands</span>
-                                                    <span>Amsterdam</span>
+                                                    <span>{{$logo->address ? $logo->address : 'Phnom Penh, Cambodia.'}}</span>
                                                 </div>
                                             </div>
 
                                             <div class="profile-info-row">
                                                 <div class="profile-info-name"> ថ្ងៃ ខែ ​ឆ្នាំ​កំណើត </div>
                                                 <div class="profile-info-value">
-                                                    <span><input type="text" value="{{$logo->dob}}" class="input-hidden form-control" name="date_of_birth"></span>
+                                                    <span><input type="text" value="{{ date('d M Y', strtotime($logo->dob)) }}" class="input-hidden form-control" name="date_of_birth" id="date_of_birth"></span>
                                                 </div>
                                             </div>
 
-                                            <div class="profile-info-row">
-                                                <div class="profile-info-name"> Joined </div>
-                                                <div class="profile-info-value">
-                                                    <span><input type="text" value="{{$logo->created_at->format('d M Y')}}" class="input-hidden form-control" name="date_join"></span>
-                                                </div>
-                                            </div>
 
                                             <div class="profile-info-row">
-                                                <div class="profile-info-name"> Last Online </div>
+                                                <div class="profile-info-name"> last login </div>
                                                 <div class="profile-info-value">
-                                                    <span>3 hours ago</span>
+                                                    <span>{{ $logo->last_login_at}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -494,8 +487,11 @@
         </style>
 
         <script type="text/javascript">
-
-
+            $('#date_of_birth').datepicker({
+                autoclose: true,
+                format: 'dd M yyyy',
+                todayHighlight: true
+            });
 
         </script>
     </section>

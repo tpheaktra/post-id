@@ -41,8 +41,8 @@ class ProfileController extends Controller
         $input->name                = $request->name;
         $input->phone               = $request->phone_number;
         $input->address             = $request->address;
-        $input->dob                 = $request->date_of_birth;
-        $input->date_join           = $request->date_join;
+        $input->dob                 = date('Y-m-d', strtotime($request->date_of_birth));
+
 
 
         if($request->hasFile('profile')) {
@@ -72,10 +72,10 @@ class ProfileController extends Controller
 //                            //'data' => new UserResource($input),
 //                            'message' => 'Your password  has been updated',
 //                        ], 200);
-                        return back()->with('success',trans('message.profile'));
+                        return back()->with('success',trans('អ្នកបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ'));
                     }
                 } else {
-                    return back()->with('danger',trans('Wrong old password entered.'));
+                    return back()->with('danger',trans('បញ្ចូលពាក្យសម្ងាត់ចាស់មិនត្រឹមត្រូវ'));
                 }
             }
 
@@ -88,7 +88,7 @@ class ProfileController extends Controller
 //        }
 
         $input->save();
-        return back()->with('success',trans('message.profile'));
+        return back()->with('success',trans('អ្នកបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ'));
     }
 
 }
