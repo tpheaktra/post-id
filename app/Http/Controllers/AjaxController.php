@@ -116,27 +116,29 @@ class AjaxController extends Controller
      * function get view with datatable
      */
 
-    public function getPatientView(){
-        $view = DB::select("select 
-            gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh as g_sex,gi.g_phone
-            from general_information gi
-            inner join gender gg on gi.g_sex = gg.id
-            where gi.record_status = 1
-            group by gi.interview_code order by gi.id desc");
-
-        foreach ($view as $i =>$v){
-            $view[$i]->view = route('view.data', Crypt::encrypt($v->id));
-            $view[$i]->edit = route('editpatient.edit', Crypt::encrypt($v->id));
-            $view[$i]->print = route('print.data', Crypt::encrypt($v->id));
-            $view[$i]->delete = route('deletepatient.delete', Crypt::encrypt($v->id));
-            $view[$i]->printInterviewResult = route('printInterviewResult.print', Crypt::encrypt($v->id));
-            $view[$i]->txtprint_result='លទ្ធផលវាយតម្លៃសំរាប់អ្នកជំងឺ';
-            $view[$i]->txtview = 'មើលពិន្ទុនៃការសំភាស';
-            $view[$i]->txtedit = 'ការធ្វើបច្ចប្បន្នភាព';
-            $view[$i]->txtprint = 'បោះពុម្ព';
-            $view[$i]->txtdelete = 'លុបការសំភាស';
-        }
-        return Datatables::of($view)->addIndexColumn()->make(true);
-    }
+//    public function getPatientView(){
+//        $view = DB::select("select
+//            gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh as g_sex,gi.g_phone
+//            from general_information gi
+//            inner join gender gg on gi.g_sex = gg.id
+//            where gi.record_status = 1
+//            group by gi.interview_code order by gi.id desc");
+//        return view('include.result-interview',compact('view'));
+//
+//        foreach ($view as $i =>$v){
+//            $view[$i]->view = route('view.data', Crypt::encrypt($v->id));
+//            $view[$i]->edit = route('editpatient.edit', Crypt::encrypt($v->id));
+//            $view[$i]->print = route('print.data', Crypt::encrypt($v->id));
+//            $view[$i]->delete = route('deletepatient.delete', Crypt::encrypt($v->id));
+//            $view[$i]->printInterviewResult = route('printInterviewResult.print', Crypt::encrypt($v->id));
+//
+//            $view[$i]->txtprint_result='លទ្ធផលវាយតម្លៃសំរាប់អ្នកជំងឺ';
+//            $view[$i]->txtview = 'មើលពិន្ទុនៃការសំភាស';
+//            $view[$i]->txtedit = 'ការធ្វើបច្ចប្បន្នភាព';
+//            $view[$i]->txtprint = 'បោះពុម្ព';
+//            $view[$i]->txtdelete = 'លុបការសំភាស';
+//        }
+//        return Datatables::of($view)->addIndexColumn()->make(true);
+//    }
 
 }
