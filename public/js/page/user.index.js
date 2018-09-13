@@ -19,11 +19,11 @@ $(document).ready(function() {
             {
                 "render": function (data, type, full)
                 {
-                    if(full.id != checkid) {
-                        return  '<a class="btn btn-xs btn-primary" href="' + full.edit + '"><i class="fa fa-edit"></i></a>  ' +
-                                '<a class="btn btn-xs btn-danger" href="' + full.delete + '"><i class="fa fa-trash-o"></i></a>';
+                    if(full.id == checkid) {
+                        return  '<a class="btn btn-xs btn-primary" href="' + full.edit + '"><i class="fa fa-edit"></i></a> ';
                        }else{
-                        return '';
+                        return '<a class="btn btn-xs btn-primary" href="' + full.edit + '"><i class="fa fa-edit"></i></a> '+
+                        '<a class="btn btn-xs btn-danger" href="' + full.delete + '"><i class="fa fa-trash-o"></i></a>';
                     }
                 }
             },

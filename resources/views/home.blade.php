@@ -2522,21 +2522,7 @@
 
     <div class="col-sm-12" style="padding: 0;"><h3>ទិន្នន័យ​អ្នកជំងឺ</h3></div>
     <div class="data-list">
-
-        <table id="datatable1" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-                <th>ល.រ</th>
-                <th>ឈ្មោះអ្នកជំងឺ</th>
-                <th>អាយុ</th>
-                <th>ភេទ</th>
-                <th>លេខទូរស័ព្ធ</th>
-                <th>លេខកូដសម្ភាសន៍</th>
-                <th>សកម្មភាព</th>
-            </thead>
-            <script type="text/javascript">
-                var url = "{{ route('view.getPatientView') }}";
-            </script>
-        </table>
+        @include('include.result-interview')
     </div>
 </div>
 

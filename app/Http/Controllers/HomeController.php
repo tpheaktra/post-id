@@ -76,13 +76,24 @@ class HomeController extends Controller
         $question_electric = Helpers::getQuestionElectric();
         $question_totel    = Helpers::getQuestionTolet();
         $health            = Helpers::getHealth();
+
+        $view = DB::select("select 
+            gi.id,gi.interview_code,gi.g_patient,
+            gi.g_age,gg.name_kh as g_sex,gi.g_phone,
+            us.name as interview_by,gi.user_id
+            from general_information gi
+            inner join gender gg on gi.g_sex = gg.id
+            inner join users us on gi.user_id = us.id
+            where gi.record_status = 1
+            group by gi.interview_code order by gi.id desc");
+
         return view('home',compact('hospital','relationship',
             'provinces','gender','household',
             'homePrepar','condition_house','question','electricgrid',
             'landAgricultural','loan','family','occupation','education_level',
             'landAgricultural','loan','family','roof_made','wall_made','house_status',
             'question_electric','typemeterial','typeanimals',
-            'typetransport','question_totel','health'));
+            'typetransport','question_totel','health','view'));
     }
 
 
