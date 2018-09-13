@@ -255,7 +255,7 @@
                         </table>
                     </div>
 
-
+                <div class="step1-section-2">
                    <div class="col-sm-12"><hr> </div>
                    <div class="col-sm-12">
                         <h4> ក.២ ព័ត៌មានអំពីអ្នកដែលផ្តល់ចំលើយ(អ្នកដែលបានសំភាសន៍)</h4>
@@ -326,6 +326,7 @@
                             </tr>
                         </table>
                     </div>
+                </div>
 
                    <div class="col-sm-12"><hr> </div>
                    <div class="col-sm-12">
@@ -1839,6 +1840,7 @@
                         </table> 
                     </div>
 
+                <div class="step3-section-3">
                     <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
                             <h4>គ.១២) ចំណូល</h4>
@@ -2066,8 +2068,27 @@
                                 </tr>
                             </table>
                     </div>
+                </div>
 
-                    <div class="col-sm-12"><hr></div>
+
+                <div class="col-sm-12"><hr></div>
+                {{--<div class="col-sm-12">--}}
+                    {{--<input class="btn btn-info pull-right" type="button" id="skp" value="skip">--}}
+                {{--</div>--}}
+
+                <script>
+                    $("#skp").click(function (e) {
+                        var str= $(this).val();
+                        if(str === 'skip'){
+                            $('#skp').val('back');
+                        }else{
+                            $('#skp').val('skip');
+                        }
+                        $('.step3-section-3').toggle();
+                    });
+                </script>
+
+
                         <div class="col-sm-12">
                             <h5><b>គ.១២.១.២​)ដីកសិកម្ម <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="" data-original-title="ប្រសិនបើមានដីផ្ទាល់ខ្លួន ឫជួលគេ សូមបញ្ជាក់ ទំហំដីកសិកម្ម (សុំសរសេរជាទំហំសរុបដោយបូកគ្រប់កន្លែង និងបញ្ជាក់ពីឯកតា) "></a></b></h5>
                             <p>មាន​ដីកសិកម្ម ឬ​ទេ ?</p>

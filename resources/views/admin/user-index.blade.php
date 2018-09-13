@@ -24,13 +24,46 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($dataUser as $key =>$u)
 
+                                    <tr>
+                                        <td>{{++$key}}</td>
+                                        <td>{{$u->name}}</td>
+                                        <td>{{$u->username}}</td>
+                                        <td>
+                                            @foreach($u['user_group'] as $g =>$gr)
+                                                <span class="btn btn-xs btn-default">{{$gr->name}}</span>
+                                            @endforeach
+                                        </td>
+                                        <td>{{$u->phone ? $u->phone : '(+855) xxx xxx xxx'}}</td>
+                                        <td>
+                                            @foreach($u['roles'] as $r =>$rl)
+                                                <span class="btn btn-xs btn-default">{{$rl->name}}</span>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @permission('user-edit')
+                                                @if($u->username != 'supperadmin')
+                                                    <a data-hint="ការធ្វើបច្ចប្បន្នភាព"​​ class="btn btn-xs btn-primary hint--left hint--primary" href="{{route('user.edit', Crypt::encrypt($u->id))}}"><i class="fa fa-edit"></i></a>
+                                                @endif
+                                                @if($u->username == 'supperadmin' && auth::user()->id == $u->id)
+                                                    <a data-hint="ការធ្វើបច្ចប្បន្នភាព"​​ class="btn btn-xs btn-primary hint--left hint--primary" href="{{route('user.edit', Crypt::encrypt($u->id))}}"><i class="fa fa-edit"></i></a>
+                                                @endif
+                                            @endpermission
+
+                                            @permission('user-delete')
+                                            @if(auth::user()->id != $u->id)
+                                                @if($u->username != 'supperadmin')
+                                                    <a data-hint="លុបការសំភាស" class="btn btn-xs btn-danger hint--left hint--error" href="{{route('user.delete', Crypt::encrypt($u->id))}}"><i class="fa fa-trash-o"></i></a>
+                                                @endif
+                                            @endif
+                                            @endpermission
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
-                        <script type="text/javascript">
-                            var url = "{{ route('user.getUserView') }}";
-                            var checkid = "{{ auth::user()->id }}";
-                        </script>
+
                     </div>
                 </div>
             </div>

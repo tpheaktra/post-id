@@ -128,9 +128,11 @@
                                 <div class="box-body">
                                     <div class="row">
                                         @foreach($roles as $role)
+                                            @if($role->name != 'supperadmin' || auth::user()->username == 'supperadmin')
                                             <div class="form-group col-sm-6 col-md-3 col-xs-12">
                                                 {{ Form::checkbox('roles[]',$role->id) }}  {{$role->display_name}} <br>
                                             </div>
+                                            @endif
                                         @endforeach
                                     </div>
                                 </div>

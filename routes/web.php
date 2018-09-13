@@ -58,7 +58,7 @@ Route::group(['prefix' => 'report/','middleware' => ['auth']], function() {
 
 Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     /* role and set permission*/
-    Route::GET('role.html',['as'=>'role.index','uses'=>'RoleController@index','middleware' => ['permission:role-list']]);
+    Route::GET('role.html',['as'=>'role.index','uses'=>'RoleController@index']);
     Route::GET('role/create.html',['as'=>'role.create','uses'=>'RoleController@create','middleware' => ['permission:role-create']]);
     Route::POST('role/store.html',['as'=>'role.store','uses'=>'RoleController@store','middleware' => ['permission:role-create']]);
     Route::GET('role/edit/{id}',['as'=>'role.edit','uses'=>'RoleController@edit','middleware' => ['permission:role-edit']]);
@@ -67,8 +67,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
 
 
     /*users*/
-    Route::GET('user.html',['as'=>'user.index','uses'=>'UserController@index','middleware' => ['permission:user-list']]);
-    Route::GET('user/view.html',['as'=>'user.getUserView','uses'=>'UserController@getUserView']);
+    Route::GET('user.html',['as'=>'user.index','uses'=>'UserController@index']);
+   // Route::GET('user/view.html',['as'=>'user.getUserView','uses'=>'UserController@getUserView','middleware' => ['permission:user-list']]);
     Route::GET('user/create.html',['as'=>'user.create','uses'=>'UserController@create','middleware' => ['permission:user-create']]);
     Route::POST('user/store.html',['as'=>'user.store','uses'=>'UserController@store','middleware' => ['permission:user-create']]);
     Route::GET('user/edit/{id}',['as'=>'user.edit','uses'=>'UserController@edit','middleware' => ['permission:user-edit']]);

@@ -20,22 +20,24 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        return view('admin.user-index');
+        $dataUser = User::with('roles','user_group')->where('record_status',1)->get();
+     //   echo json_encode($dataUser);exit();
+        return view('admin.user-index',compact('dataUser'));
     }
 
-    public function getUserView(){
-        $view = User::with('roles','user_group')->where('record_status',1)->get();
-       // echo json_encode($view);exit();
-        //echo dd($view[0]['roles'][0]->name);exit();
-        foreach ($view as $i =>$v){
-            $view[$i]->id  = $v->id;
-            $view[$i]->key  = $i+1;
-            $view[$i]->view = route('user.getUserView', Crypt::encrypt($v->id));
-            $view[$i]->edit = route('user.edit', Crypt::encrypt($v->id));
-            $view[$i]->delete = route('user.delete', Crypt::encrypt($v->id));
-        }
-        return Datatables::of($view)->make(true);
-    }
+//    public function getUserView(){
+//        $view = User::with('roles','user_group')->where('record_status',1)->get();
+//       // echo json_encode($view);exit();
+//        //echo dd($view[0]['roles'][0]->name);exit();
+//        foreach ($view as $i =>$v){
+//            $view[$i]->id  = $v->id;
+//            $view[$i]->key  = $i+1;
+//            $view[$i]->view = route('user.getUserView', Crypt::encrypt($v->id));
+//            $view[$i]->edit = route('user.edit', Crypt::encrypt($v->id));
+//            $view[$i]->delete = route('user.delete', Crypt::encrypt($v->id));
+//        }
+//        return Datatables::of($view)->make(true);
+//    }
 
     /**
      * Show the form for creating a new resource.

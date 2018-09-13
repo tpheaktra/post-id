@@ -29,14 +29,14 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{$value->name}}</td>
                                         <td>{{$value->display_name }}</td>
-                                        <td>
+                                        <td align="center">
                                             @permission('role-edit')
-                                                <a class="btn btn-xs btn-primary" href="{{route('role.edit',Crypt::encrypt($value->id))}}"><i class="fa fa-edit"></i></a>
+                                                <a data-hint="ការធ្វើបច្ចប្បន្នភាព"​​ class="btn btn-xs btn-primary hint--left hint--primary" href="{{route('role.edit',Crypt::encrypt($value->id))}}"><i class="fa fa-edit"></i></a>
                                             @endpermission
 
                                             @permission('role-delete')
                                                 @if($value->name != 'administrator')
-                                                  <a onclick="return confirm('Are you sure you want to delete?');" href="{{route('role.delete',Crypt::encrypt($value->id))}}" class="btn btn-xs btn-danger">
+                                                  <a data-hint="លុបការសំភាស" class="btn btn-xs btn-danger hint--left hint--error" onclick="return confirm('Are you sure you want to delete?');" href="{{route('role.delete',Crypt::encrypt($value->id))}}">
                                                        <i class="fa fa-trash-o"></i>
                                                   </a>
                                                 @endif
