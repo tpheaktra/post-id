@@ -118,7 +118,7 @@
                     <td><b style="float: right;"> 7. C កុមារ(អាយុក្រោម ១៨ឆ្នាំ )រកចំណូល</b> </td>
                     <td>
                         <div class="input-group">
-                            <input class="cal_child form-control" id="income_child_score"  type="text" name="income_child_score">
+                            <input class="cal_child cal_age form-control" id="income_child_score"  type="text" name="income_child_score">
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </td>
@@ -138,17 +138,15 @@
     </li>
 </ul>
 <script>
-    // var my_id = $('.myrow').attr('index');
-    // $('.cal_child').change(function(){
-    //       var people = $('.age_'+my_id).val();
-    //        $(".txt_age").each(function(i){
-    //            var age = $(this).val();
-    //            if(i>18 && i<=65) {
-    //             $('#score_animal_total').val(age);
-    //            }
-    //        });
-           
-    // });
+    $('.cal_age').change(function(){
+        var my_id = $('.myrow').attr('index');
+        var small_age = $('.cal_child_'+my_id).val();
+           $('.txt_age').each(function(i){
+               var age = $(this).val();
+               if(i > 0 && (parseFloat(age) < parseFloat(small_age))) small_age = age;
+           });
+           $('#income_child_score').val(small_age);
+    });
     $('.income_agriculture').click(function () {
         var index = $(this).attr('index');
         // console.log(index);
