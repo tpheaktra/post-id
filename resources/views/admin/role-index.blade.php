@@ -25,7 +25,7 @@
                             </thead>
                             <tbody>
                                 @foreach($roles as $key=> $value)
-                                    <tr>
+                                    <tr class=" @if($value->name == 'supperadmin') hidden @endif ">
                                         <td>{{ ++$key }}</td>
                                         <td>{{$value->name}}</td>
                                         <td>{{$value->display_name }}</td>
@@ -35,8 +35,8 @@
                                             @endpermission
 
                                             @permission('role-delete')
-                                                @if($value->name != 'admin')
-                                                 <a onclick="return confirm('Are you sure you want to delete?');" href="{{route('role.delete',Crypt::encrypt($value->id))}}" class="btn btn-xs btn-danger">
+                                                @if($value->name != 'administrator')
+                                                  <a onclick="return confirm('Are you sure you want to delete?');" href="{{route('role.delete',Crypt::encrypt($value->id))}}" class="btn btn-xs btn-danger">
                                                        <i class="fa fa-trash-o"></i>
                                                   </a>
                                                 @endif
