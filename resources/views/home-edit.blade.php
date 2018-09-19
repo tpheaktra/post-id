@@ -19,1008 +19,8 @@
 
         <form role="form" method="post" class="form-group-post" action="{{ route('updatepatient.update',Crypt::encrypt($ginfo->id)) }}" id="check_validate">
             {{ csrf_field() }}
-            <div class="row setup-content" id="step-1">
-                <div class="col-xs-12">
-                    <div class="col-md-12" id="div1">
-                        <div class="col-md-12">
-                            <h3> ក) ព័ត៌មានទូទៅ</h3>
-                            <div class="col-sm-12" style="padding: 0;"><hr> </div>
-                            <h4>ក.១ ព័ត៌មានទូទៅ</h4>
-                        </div>
-
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <table width="100%">
-                                        <tr>
-                                            <td width="35%"><label class="control-label">ថ្ងៃសម្ភាសន៍ <spand class="text-danger">*</spand></label></td>
-                                            <td width="65%">
-                                                <div class="form-group">
-                                                    <div class="input-group date current_date">
-                                                        <input type="text" class="form-control"  id="current_date" name="interview_date" value="{{$ginfo->interview_date}}"/>
-                                                        <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <table width="100%">
-                                        <tr>
-                                            <td width="35%"><label class="control-label">ថ្ងៃផុតកំណត់ <spand class="text-danger">*</spand></label></td>
-                                            <td width="65%">
-                                                <div class="form-group">
-                                                    <div class="input-group date expire_date">
-                                                        <input type="text" class="form-control" readonly id="expire_date" name="expire_date" value="{{$ginfo->interview_date}}"/>
-                                                        <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <script type="text/javascript">
-                            $('#current_date').datepicker({
-                                autoclose: true,
-                                format: 'yyyy-mm-dd',
-                                todayHighlight: true
-                            });
-                            //$("#current_date").datepicker().datepicker("setDate", new Date());
-                            $('#expire_date').datepicker({
-                                autoclose: true,
-                                format: 'yyyy-mm-dd',
-                                minDate: true
-                            });
-
-                        </script>
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <table width="100%">
-                                        <tr>
-                                            <td width="35%"><label class="control-label">មន្ទីរពេទ្យ <spand class="text-danger">*</spand></label></td>
-                                            <td width="65%">
-                                                <div class="form-group add_hospital">
-                                                    <select id="hospital" style="width: 100%" class="getdata form-control" name="hospital">
-                                                        <option></option>
-                                                        @foreach($hospital as $key =>$h)
-                                                            @if (old('hospital') == $h->od_code)
-                                                                <option selected value="{{$h->od_code}}">មន្ទីរពេទ្យ - {{$h->name_kh}}</option>
-                                                            @else
-                                                                <option @if($ginfo->od_code==$h->od_code) selected @endif value="{{$h->od_code}}">មន្ទីរពេទ្យ - {{$h->name_kh}}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="col-sm-6">
-                                    <table width="100%">
-                                        <tr>
-                                            <td width="35%"><label class="control-label">លេខកូដសម្ភាសន៍ <spand class="text-danger"> * </spand></label> </td>
-                                            <td width="30%">
-                                                <div class="form-group">
-                                                    {{ Form::text('interview_code',$ginfo->interview_code,['class'=>'form-control','required'=>'required','readonly'=>'readonly' ,'placeholder'=>'PNP/18 08 29/01','id'=>'interview_code']) }}
-                                                    {{ Form::hidden('hf_code',$ginfo->hf_code,['required'=>'required','readonly'=>'readonly','id'=>'health_facilities_code']) }}
-                                                </div>
-                                            </td>
-                                            <td></td>
-                                            <td width="30%">
-                                                <div class="form-group">
-                                                    <input id="printcard" value="{{ $ginfo->printcardno }}" name="printcardno" type="text" class="form-control" placeholder="23020101-0001" readonly style="text-align: center; font-size: 18px;  padding: 4px;"/>
-                                                    <input id="hhid" name="hhid" type="hidden" value="{{ $ginfo->hhid }}"/>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <table width="100%">
-                                <tr>
-                                    <td width="35%"><label class="control-label">ឈ្មោះអ្នកជំងឺ <spand class="text-danger">*</spand></label></td>
-                                    <td width="65%">
-                                        <div class="form-group">
-                                            {{ Form::text('g_patient',$ginfo->g_patient,['class'=>'form-control','required'=>'required']) }}
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="35%"><label class="control-label"> ភេទ <spand class="text-danger">*</spand> </label></td>
-                                    <td width="65%">
-                                        <div class="form-group"  id="g_sex">
-                                            @foreach($gender as $key => $g)
-                                                <label>
-                                                    {{ Form::radio('g_sex',$g->id,$ginfo->g_sex == $g->id,['style'=>'margin-right:10px;']) }}  {{$g->name_kh}}
-                                                </label>
-                                            @endforeach
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <table width="100%">
-                                <tr>
-                                    <td width="35%"><label class="control-label"> អាយុ <spand class="text-danger">*</spand> </label></td>
-                                    <td width="65%">
-                                        <div class="form-group">
-                                            {{ Form::text('g_age',$ginfo->g_age,['class'=>'form-control allowNumber onlyNumber g_age','required'=>'required','maxlength'=>'3']) }}
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="35%"><label class="control-label">លេខទូរស័ព្ធ <spand class="text-danger">*</spand></label></td>
-                                    <td width="65%">
-                                        <div class="form-group">
-                                            {{ Form::text('g_phone',$ginfo->g_phone,['class'=>'form-control telephone','required'=>'required','maxlength'=>'10']) }}
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <table width="100%">
-                                <tr>
-                                    <td width="35%"><label class="control-label">ខេត្ត <spand class="text-danger">*</spand> </label></td>
-                                    <td width="65%">
-                                        <div class="form-group g_province">
-                                            <select id="province" style="width: 100%" class="form-control" name="g_province">
-                                                <option value="">...</option>
-                                                @foreach($provinces as $key =>$p)
-                                                    @if(old('g_province') == $p->code)
-                                                        <option selected value="{{$p->code}}">{{$p->name_kh}}</option>
-                                                    @else
-                                                        <option @if($ginfo->g_province_id == $p->code) selected @endif value="{{$p->code}}">{{$p->name_kh}}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="35%"><label class="control-label"> ស្រុក <spand class="text-danger">*</spand> </label></td>
-                                    <td width="65%">
-                                        <div class="form-group g_district">
-                                            <select id="district" style="width: 100%" class="form-control" name="g_district">
-                                                <option value="{{$ginfo->g_district_id}}"> {{$ginfo['district'][0]->name_kh}} </option>
-                                                @if (!empty(old('g_district')))
-                                                    <option selected value="{{old('g_district')}}"></option>
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-
-                        <div class="col-sm-6">
-                            <table width="100%">
-                                <tr>
-                                    <td width="35%"><label class="control-label">ឃំុ <spand class="text-danger">*</spand></label></td>
-                                    <td width="65%">
-                                        <div class="form-group g_commune">
-                                            <select id="commune" style="width: 100%" class="form-control" name="g_commune">
-                                                <option value="{{$ginfo->g_commune_id}}">{{$ginfo['commune'][0]->name_kh}}</option>
-                                                @if (!empty(old('g_commune')))
-                                                    <option selected value="{{old('g_commune')}}"></option>
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="35%"><label class="control-label">ភូមិ <spand class="text-danger">*</spand></label></td>
-                                    <td width="65%">
-                                        <div class="form-group g_village">
-                                            <select id="village" style="width: 100%" class="form-control" name="g_village">
-                                                <option value="{{$ginfo->g_village_id}}">{{$ginfo['village'][0]->name_kh}}</option>
-                                                @if(!empty(old('g_village')))
-                                                    <option selected value="{{old('g_village')}}"></option>
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <table width="100%">
-                                <tr>
-                                    <td width="35%"><label class="control-label"> ទីតាំងនៅក្នុងភូមិ <spand class="text-danger">*</spand> </label></td>
-                                    <td width="65%">
-                                        <div class="form-group location">
-                                            {{ Form::textarea('g_local_village',$ginfo->g_local_village,['class'=>'form-control','id'=>'location','maxlength'=>'300','style'=>'height: 60px;']) }}
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-
-                        <div class="col-sm-12"><hr> </div>
-                        <div class="col-sm-12">
-                            <h4> ក.២ ព័ត៌មានអំពីអ្នកដែលផ្តល់ចំលើយ(អ្នកដែលបានសំភាសន៍)</h4>
-                        </div>
-                        <div class="col-sm-6">
-                            <table width="100%">
-                                <tr>
-                                    <td><label class="control-label">ឈ្មោះ </label></td>
-                                    <td>
-                                        <div class="form-group">
-                                            {{ Form::text('inter_patient',$ginfo->inter_patient,['class'=>'form-control']) }}
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td><label class="control-label"> ភេទ  </label></td>
-                                    <td>
-                                        <div class="form-group" id="inter_sex">
-                                            @foreach($gender as $key => $g)
-                                                <label>{{ Form::radio('inter_sex',$g->id,$ginfo->inter_sex == $g->id,['style'=>'margin-right:10px;']) }}  {{$g->name_kh}}</label>
-                                            @endforeach
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <table width="100%">
-                                <tr>
-                                    <td><label class="control-label"> អាយុ  </label></td>
-                                    <td>
-                                        <div class="form-group">
-                                            {{ Form::text('inter_age',$ginfo->inter_age,['class'=>'form-control allowNumber inter_age','maxlength'=>'3']) }}
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label class="control-label">លេខទូរស័ព្ធ </label></td>
-                                    <td>
-                                        <div class="form-group">
-                                            {{ Form::text('inter_phone',$ginfo->inter_phone,['class'=>'form-control telephone','maxlength'=>'10']) }}
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <table width="100%">
-                                <tr>
-                                    <td width="50%"><label class="control-label">ត្រូវជា(ទំនាក់ទំនងជាមួយមេគ្រួសារ)  </label></td>
-                                    <td width="50%">
-                                        <div class="form-group inter_relationship">
-                                            <select style="width: 100%;" class="form-control" id="inter_relationship" name="inter_relationship">
-                                                <option></option>
-                                                @foreach($relationship as $keh => $value)
-                                                    @if (old('inter_relationship') == $value->id)
-                                                        <option selected value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                    @else
-                                                        <option @if($ginfo->inter_relationship_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="col-sm-12"><hr> </div>
-                        <div class="col-sm-12">
-                            <h4> ក.៣ ព័ត៌មានអំពី​ អ្នកដែលអាចបញ្ជាក់ពីស្ថានភាពគ្រួសារ (ដែលមិនមែនសមាជិកគ្រួសារ)ដូចជាមេភូមិ អ្នកជិតខាង​ មិត្តភ័ក្រ្ត </h4>
-                        </div>
-                        <div class="col-sm-6">
-                            <table width="100%">
-                                <tr>
-                                    <td><label class="control-label">ឈ្មោះ </label></td>
-                                    <td>
-                                        <div class="form-group">
-                                            {{ Form::text('fa_patient',$ginfo->fa_patient,['class'=>'form-control']) }}
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label class="control-label"> ភេទ  </label></td>
-                                    <td>
-                                        <div class="form-group" id="fa_sex">
-                                            @foreach($gender as $key => $g)
-                                                <label>{{ Form::radio('fa_sex',$g->id,$ginfo->fa_sex == $g->id,['style'=>'margin-right:10px;']) }}  {{$g->name_kh}}</label>
-                                            @endforeach
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <table width="100%">
-                                <tr>
-                                    <td><label class="control-label"> អាយុ  </label></td>
-                                    <td>
-                                        <div class="form-group">
-                                            {{ Form::text('fa_age',$ginfo->fa_age,['class'=>'form-control allowNumber fa_age','maxlength'=>'3']) }}
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label class="control-label">លេខទូរស័ព្ធ </label></td>
-                                    <td>
-                                        <div class="form-group">
-                                            {{ Form::text('fa_phone',$ginfo->fa_phone,['class'=>'form-control telephone','maxlength'=>'10']) }}
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <table width="100%">
-                                <tr>
-                                    <td width="50%"><label class="control-label">ត្រូវជា(ដែលមិនមែនសមាជិកគ្រួសារ)  </label></td>
-                                    <td width="50%">
-                                        <div class="form-group fa_relationship">
-                                            <select style="width: 100%;" class="form-control" id="fa_relationship" name="fa_relationship">
-                                                <option></option>
-                                                @foreach($family as $keh => $value)
-                                                    @if (old('fa_relationship') == $value->id)
-                                                        <option selected value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                    @else
-                                                        <option  @if($ginfo->fa_relationship_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="col-sm-12"><hr> </div>
-                        <div class="col-sm-12">
-                            <button  class="btn btn-primary nextBtn pull-right" type="button">រក្សាទុកនិងជំហានបន្ទាប់</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <?php /*
-            ===========================================
-            --------------- step2 ---------------------
-            =========================================== */ ?>
-
-            <div class="row setup-content" id="step-2">
-                <div class="col-xs-12">
-                    <div class="col-md-12" id="div2">
-                        <div class="col-sm-12">
-                            <h3> ខ) ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់</h3>
-                            <hr>
-                            <p>មនុស្ស​ដែល​គេ​ចាត់ទុកថាជាសមាជិក​គ្រួសារលុះ​ត្រាតែ​រស់​នៅជាប្រចាំ​ក្នុង​គ្រួសារ ឬ​អវត្តមាន​តិច​ជាង​ ៦ខែ​​ (ត្រូវមានឯកសារយោងដូចជា សៀវភៅគ្រួសារ សៀវភៅស្នាក់នៅ សំបុត្រកំណើត លិខិតបញ្ជាក់ពីអាជ្ញាធរ)</p>
-
-
-                            <table class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th rowspan="2">ល.រ</th>
-                                    <th width="15%" rowspan="2">ឈ្មោះ</th>
-                                    <th width="10%" rowspan="2">ភេទ</th>
-                                    <th colspan="2"><p align="center">ឆ្នាំកំណើត ឬ អាយុ</p></th>
-                                    <th width="15%" rowspan="2">ទំនាក់ទំនង​ជាមួយ​មេ​គ្រួសារ(1) <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="(1)= មេ​គ្រួសារ ប្តី/​ប្រពន្ធ កូន ឪពុក​ម្តាយ ក្មួយ ផ្សេងៗ"></a>
-                                    </th>
-                                    <th width="15%" rowspan="2">មុខងារ/​មុខរបរ(2) <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="(2)= ប្រភេទមុខរបរចម្បងរបស់គាត់/នាង ដូចជា កសិករ កម្មករ មន្ត្រីរាជការ រកស៊ី សិស្ស នៅផ្ទះ"></a></th>
-                                    <th width="15%" rowspan="2">កម្រិតវប្បធម៌(3) <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="(3)= បើនៅរៀន បញ្ជាក់ពីថ្នាក់ទីប៉ុន្មាន។ បើជាមនុស្សពេញវ័យឬជាកុមារអាយុចាប់ពី៥ឆ្នាំតែឈប់រៀន សូមបញ្ជាក់ពីកម្រិតថ្នាក់នៅពេលឈប់រៀន"></a></th>
-                                    <th rowspan="2" class="my_hide">ពិន្ទុតាមសមាជិក</th>
-                                    <th width="15%" rowspan="2">សកម្មភាព</th>
-                                </tr>
-                                <tr>
-                                    <th width="15%">ឆ្នាំ​កំណើត</th>
-                                    <th width="8%">អាយុ</th>
-                                </tr>
-                                </thead>
-                                <tbody class="new_rows">
-                                @foreach($memberFamily as $key =>$m)
-                                <tr class="myrow" index="{{$key}}">
-                                    <td>{{$key+1}} @if($key==0)(មេ)@endif <input name="mid[{{$key}}]" type="hidden" value="{{$m->id}}"></td>
-                                    <td>
-                                        <div class="form-group">
-                                            {{ Form::text('nick_name['.$key.']',$m->nick_name,['class'=>'form-control nick_name_'.$key,'required'=>'required']) }}
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group add_m_sex_{{$key}}">
-                                            <select style="width: 100%" class="form-control m_sex" id="m_sex_{{$key}}" name="m_sex[{{$key}}]" required="required" index="{{$key}}">
-                                                <option></option>
-                                                @foreach($gender as $keh => $value)
-                                                    <option @if($m->gender_id == $value->id) selected @endif  value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            {{ Form::text('dob['.$key.']',$m->age,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'4','id'=>'dob']) }}
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            {{ Form::text('age['.$key.']',$m->age,['class'=>'form-control allowNumber age_g cal_edu​​​ cal_child txt_age age_'.$key,'id'=>'age_'.$key,'required'=>'required','maxlength'=>'3','id'=>'age']) }}
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group add_relationship_{{$key}}" id="status">
-                                            <select style="width: 100%" id="family_relationship_{{$key}}" class="cal_edu form-control family_relationship" name="family_relationship[{{$key}}]" required="required" readonly="readonly">
-                                                <option></option>
-                                                @foreach($relationship as $keh => $value)
-                                                    <option @if($m->family_relationship_id == $value->id) selected @endif  value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                    </td>
-                                    <td>
-                                        <div class="form-group add_occupation">
-                                            <select style="width: 100%;" class="cal_edu form-control occupation" name="occupation[{{$key}}]" required="required" id="occupation">
-                                                <option></option>
-                                                @foreach($occupation as $keh => $value)
-                                                    <option @if($m->occupation_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group add_education_level">
-                                            <select style="width: 100%" id="education_level_{{$key}}"  class="cal_edu form-control education_level aa"  name="education_level[{{$key}}]" required="required">
-                                                <option></option>
-                                                @foreach($education_level as $keh => $value)
-                                                    <option @if($m->education_level_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td class="my_hide"><input type="text" class="cal_edu txt_score edu_score_{{$key}} form-control" readonly=""></td>
-                                    <td>
-                                        @if($key==0)
-                                            <a class="btn btn-primary btn-sm" id="add_rows">
-                                                <span class="glyphicon glyphicon-plus"></span>
-                                            </a>
-                                        @else
-                                            <a status="0" class="btn remove_rows_kh btn-danger btn-sm">
-                                                <span class="glyphicon glyphicon-minus"></span>
-                                            </a>
-                                        @endif
-                                    </td>
-                                </tr>
-
-                                @endforeach
-
-                                </tbody>
-                                <tfoot>
-                                <tr class="my_hide">
-                                    <td colspan="7"><b style="float: right;">10.  ការអប់រំ (មើលចម្លើយនៅក្នុងតារាងផ្នែក ខ)</b></td>
-                                    <td>
-                                        <div class="form-group input-group">
-                                            <input autocomplete="off" id="edu_score"  type="text" required="required" class="cal_edu form-control allowNumber" name="edu_score"​​ readonly="readonly" /><span class="input-group-addon">ពិន្ទុ</span>
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                </tfoot>
-                            </table>
-
-                            <!-- <div class="col-sm-12"><hr> </div> -->
-                        </div>
-                        <div class="col-sm-12 form-group">
-                            <button id="step2Next" class="btn btn-primary  pull-right" type="button" >រក្សាទុក និង ជំហានបន្ទាប់</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <script type="text/javascript">
-                var edu_row = $('.new_rows tr.myrow').length-1;
-                var dataRow = $('.new_rows tr.myrow').length+1;
-                var num_row = $('.new_rows tr.myrow').length;
-
-                $('.m_sex').change(function(){
-                    var index= $(this).attr('index');
-                    $(".family_relationship").removeAttr("readonly");
-                    var val = $(this).val();
-                    for(var ii=0; ii<num_row; ii++) {
-
-                        if (index == ii && val == 1) {
-                            $("#family_relationship_"+ii+" option[value='2']").attr('disabled', true);
-                        } else {
-                            $("#family_relationship_" + ii + " > option").removeAttr("disabled");
-                        }
-                        if (index == ii && val == 2) {
-                            $("#family_relationship_"+ii+" option[value='1']").attr('disabled', true);
-                        } else {
-                            $("#family_relationship_"+ii+ " option[value='1']").removeAttr('disabled');
-                        }
-
-                        if ((index == ii && val == 1)) {
-                            $("#family_relationship_"+ii+" > option").removeAttr("selected");
-                            //console.log(index+'_'+ii);
-                            $("#family_relationship_"+ii).trigger("change");
-                            $("#family_relationship_"+ii+" option[value='1']").removeAttr('disabled');
-                            $("#family_relationship_"+ii).select2({allowClear:true, placeholder: 'ទំនាក់ទំនង'}).trigger('change');
-                        }
-                        if ((index == ii && val == 2)) {
-                            $("#family_relationship_"+ii+" > option").removeAttr("selected");
-                            //console.log(index+'='+ii+'_'+val+'=2');
-                            $("#family_relationship_"+ii).trigger("change");
-                            $("#family_relationship_"+ii+ " option[value='2']").removeAttr('disabled');
-                            $("#family_relationship_"+ii).select2({allowClear:true, placeholder: 'ទំនាក់ទំនង'}).trigger('change');
-                        }
-                    }
-
-                });
-
-
-                $('.cal_edu').change(function(){
-                    var myrow_ind = $('.myrow').attr('index');
-                    // var child = $('.child').val();
-                    // var edu = $('#education_level_'+myrow_ind).val();
-                    var relation = $('#family_relationship_'+myrow_ind).val();
-
-                    $('.age_g').each(function (ind) {
-                        var age = $('.age_'+ind).val();
-                        var edu = $('#education_level_'+ind).val();
-                        var relation = $(this).val();
-                        // var rel = $(this).val();
-                        var row_score = 0;
-                        if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
-                            row_score = 4;
-                        }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
-                            row_score = 2.5;
-                        }else{
-                            row_score = 0;
-                        }
-                        $('.edu_score_'+ind).val(row_score);
-
-                        var maxScore = $('.edu_score_0').val();
-                        $('.txt_score').each(function(i){
-                            var score = $(this).val();
-                            if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
-                        });
-                        $('#edu_score').val(maxScore);
-                    });
-
-                    $('.family_relationship').each(function (ind) {
-                        var age = $('.age_'+ind).val();
-                        var edu = $('#education_level_'+ind).val();
-                        var relation = $(this).val();
-                        // var rel = $(this).val();
-                        var row_score = 0;
-                        if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
-                            row_score = 4;
-                        }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
-                            row_score = 2.5;
-                        }else{
-                            row_score = 0;
-                        }
-                        $('.edu_score_'+ind).val(row_score);
-
-                        var maxScore = $('.edu_score_0').val();
-                        $('.txt_score').each(function(i){
-                            var score = $(this).val();
-                            if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
-                        });
-                        $('#edu_score').val(maxScore);
-                    });
-
-                    $('.education_level').each(function (ind) {
-                        var age = $('.age_'+ind).val();
-                        var edu = $('#education_level_'+ind).val();
-                        var relation = $(this).val();
-                        // var rel = $(this).val();
-                        var row_score = 0;
-                        if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
-                            row_score = 4;
-                        }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
-                            row_score = 2.5;
-                        }else{
-                            row_score = 0;
-                        }
-                        $('.edu_score_'+ind).val(row_score);
-
-                        var maxScore = $('.edu_score_0').val();
-                        $('.txt_score').each(function(i){
-                            var score = $(this).val();
-                            if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
-                        });
-                        $('#edu_score').val(maxScore);
-                    });
-
-                });
-
-
-
-                //* ============= step 2 ======================*//
-               // var dataRow = 2;
-
-
-                $('#add_rows').click(function(){ //alert($m_id);
-                    edu_row++;
-                    var row = $('.new_rows tr.myrow').length;
-                    var totalPople = $('.new_rows tr.myrow').length+1;
-                    $('#total_people').val(totalPople);
-
-                    if(row >= 10){
-                        // $('#add_rows').hide();
-                        alert('ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់មិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
-                        return false;
-                    }
-
-                    // var rowindex = row+1;
-                    //console.log(dataRow);
-                    reOrder();
-                    var htmlstep2 = '<tr class="myrow" index="' + edu_row + '">' +
-                        '<td>'+dataRow+'</td>' +
-                        '<td><div class="form-group"><input autocomplete="off" type="text" required="required" class="hh-member form-control nick_name_'+edu_row+' nickname" name="nick_name[' + edu_row + ']"/></div></td>' +
-                        '<td>' +
-                        '<div class="form-group add_m_sex_' + edu_row + '">' +
-                        '<select style="width: 100%" id="m_sex_' + edu_row + '" class="form-control m_sex"  name="m_sex[' + edu_row + ']" required="required" index="'+edu_row+'">' +
-                        '<option></option>' +
-                        '@foreach($gender as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
-                        '</select>' +
-                        '</div>' +
-                        '</td>' +
-                        '<td><div class="form-group"><input autocomplete="off" maxlength="4" id="dob_' + edu_row + '"  type="text" required="required" class="hh-member dob form-control allowNumber" name="dob[' + edu_row + ']"/></div></td>' +
-                        '<td><div class="form-group"><input autocomplete="off" maxlength="3" id="age_' + edu_row + '" type="text" required="required" class="cal_edu cal_child txt_age age_g hh-member age age_'+edu_row+' form-control allowNumber" name="age[' + edu_row + ']"/></div></td>' +
-                        '<td>' +
-                        '<div class="form-group add_relationship_' + edu_row + '" id="status">' +
-                        '<select id="family_relationship_' + edu_row + '" class="cal_edu hh-member form-control family_relationship"  name="family_relationship[' + edu_row + ']" readonly="readonly">' +
-                        '<option></option>' +
-                        '@foreach($relationship as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
-                        '</select>' +
-                        '</div>' +
-                        '</td>' +
-                        '<td>' +
-                        '<div class="form-group add_occupation_' + edu_row + '">' +
-                        '<select id="occupation_' + edu_row + '" class="hh-member form-control occupation"  name="occupation[' + edu_row + ']" required="required">' +
-                        '<option></option>' +
-                        '@foreach($occupation as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
-                        '</select>' +
-                        '</div>' +
-                        '</td>' +
-                        '<td>' +
-                        '<div class="form-group add_education_level_' + edu_row + '">' +
-                        '<select id="education_level_' + edu_row + '" class="cal_edu hh-member form-control education_level"  name="education_level[' + edu_row + ']" required="required">' +
-                        '<option></option>' +
-                        '@foreach($education_level as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
-                        '</select>' +
-                        '</div>' +
-                        '</td>' +
-                        '<td class="my_hide"><input type="text" class="cal_edu txt_score edu_score_'+edu_row+' form-control" readonly></td>'+
-                        '<td><a class="btn btn-danger btn-sm remove_rows_kh"><span class="glyphicon glyphicon-minus"></span></a></td>' +
-                        '</tr>';
-                    $(".new_rows").append(htmlstep2);
-                    //ConfirmDelete();
-
-
-
-                    $('.cal_edu').change(function(){
-                        var myrow_ind = $('.myrow').attr('index');
-                        $('.age_g').each(function (ind) {
-                            var age = $('.age_'+ind).val();
-                            var edu = $('#education_level_'+ind).val();
-                            var relation = $(this).val();
-                            var row_score = 0;
-                            if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
-                                row_score = 4;
-                            }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
-                                row_score = 2.5;
-                            }else{
-                                row_score = 0;
-                            }
-                            $('.edu_score_'+ind).val(row_score);
-                            var maxScore = $('.score_animal_'+myrow_ind).val();
-                            $(".txt_score").each(function(i){
-                                var score = $(this).val();
-                                if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
-                            });
-                            $('#edu_score').val(maxScore);
-                        });
-
-                        $('.family_relationship').each(function (ind) {
-                            var age = $('.age_'+ind).val();
-                            var edu = $('#education_level_'+ind).val();
-                            var relation = $(this).val();
-                            var row_score = 0;
-                            if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
-                                row_score = 4;
-                            }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
-                                row_score = 2.5;
-                            }else{
-                                row_score = 0;
-                            }
-                            $('.edu_score_'+ind).val(row_score);
-                            var maxScore = $('.edu_score_'+myrow_ind).val();
-                            $(".txt_score").each(function(i){
-                                var score = $(this).val();
-                                if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
-                            });
-                            $('#edu_score').val(maxScore);
-                        });
-                        $('.education_level').each(function (ind) {
-                            var age = $('.age_'+ind).val();
-                            var edu = $('#education_level_'+ind).val();
-                            var relation = $(this).val();
-                            var row_score = 0;
-                            if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
-                                row_score = 4;
-                            }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
-                                row_score = 2.5;
-                            }else{
-                                row_score = 0;
-                            }
-                            $('.edu_score_'+ind).val(row_score);
-                            var maxScore = $('.edu_score_'+myrow_ind).val();
-                            $(".txt_score").each(function(i){
-                                var score = $(this).val();
-                                if(i>0 && (parseFloat(score) > parseFloat(maxScore))) maxScore = score;
-                            });
-                            $('#edu_score').val(maxScore);
-                        });
-
-                    });
-
-                    dataRow++;
-                    // $(".family_relationship").select2({allowClear:true, placeholder: "ទំនាក់ទំនង"});
-                    $(".m_sex").select2({allowClear:true, placeholder: 'ភេទ'});
-                    $(".occupation").select2({allowClear:true, placeholder: "មុខរបរ"});
-                    $(".education_level").select2({ allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
-                    AllowNumber();
-                    var row_num = $('.new_rows tr').length;
-
-                    $('.age').change(function () {
-                        for(var ii=1; ii<row_num; ii++) {
-                            var age = Number($('#age_'+ii).val());
-                            var currentyear = (new Date()).getFullYear();
-                            var dob = currentyear-age;
-                            if(age >= 150){
-                                $('#dob_'+ii).val('');
-                            }else{
-                                $('#dob_'+ii).val(dob);
-                            }
-                        }
-                    });
-                    $('.dob').change(function () {
-                        for(var ii=1; ii<row_num; ii++) {
-                            var dob = Number($('#dob_' + ii).val());
-                            var currentyear = (new Date()).getFullYear();
-                            var age = currentyear - dob;
-                            if (dob >= currentyear || age >= 150) {
-                                $('#age_' + ii).val('');
-                            }
-                            else {
-                                $('#age_' + ii).val(age);
-                            }
-                        }
-                    });
-
-                    $(".cal_edu").change(function(e){
-                        for(var ii=1; ii<row_num; ii++) {
-                            var nic  = $(".nick_name_"+ii).val();
-                            var msex = $("#m_sex_"+ii).val();
-                            var ag   = $("#age_"+ii).val();
-                            var fal  = $("#family_relationship_"+ii).val();
-                            var op   = $("#occupation_"+ii).val();
-                            var ed   = $("#education_level_"+ii).val();
-
-                            if ((nic != '' && msex != '' && ag != '' && fal != '' && op != '' && ed != '')) {
-                                $('#add_rows').removeAttr("disabled", true);
-                            }
-                        }
-                    });
-
-                    $('.m_sex').change(function(){
-                        var index= $(this).attr('index');
-                        $(".family_relationship").removeAttr("readonly");
-                        var val = $(this).val();
-                        for(var ii=0; ii<row_num; ii++) {
-
-                            if (index == ii && val == 1) {
-                                $("#family_relationship_"+ii+" option[value='2']").attr('disabled', true);
-                            } else {
-                                $("#family_relationship_" + ii + " > option").removeAttr("disabled");
-                            }
-                            if (index == ii && val == 2) {
-                                $("#family_relationship_"+ii+" option[value='1']").attr('disabled', true);
-                            } else {
-                                $("#family_relationship_"+ii+ " option[value='1']").removeAttr('disabled');
-                            }
-
-                            if ((index == ii && val == 1)) {
-                                $("#family_relationship_"+ii+" > option").removeAttr("selected");
-                                //console.log(index+'_'+ii);
-                                $("#family_relationship_"+ii).trigger("change");
-                                $("#family_relationship_"+ii+" option[value='1']").removeAttr('disabled');
-                                $("#family_relationship_"+ii).select2({allowClear:true, placeholder: 'ទំនាក់ទំនង'}).trigger('change');
-                            }
-                            if ((index == ii && val == 2)) {
-                                $("#family_relationship_"+ii+" > option").removeAttr("selected");
-                                //console.log(index+'='+ii+'_'+val+'=2');
-                                $("#family_relationship_"+ii).trigger("change");
-                                $("#family_relationship_"+ii+ " option[value='2']").removeAttr('disabled');
-                                $("#family_relationship_"+ii).select2({allowClear:true, placeholder: 'ទំនាក់ទំនង'}).trigger('change');
-                            }
-                        }
-
-                    });
-
-                    $('#add_rows').attr("disabled", true);
-
-                });
-
-
-
-                $('#age').change(function(e) {
-
-                    var num = this.value;
-                    var result = '';
-                    // console.log(num.length);
-                    for (n = 0; n < num.length; n++) {
-                        if (num[n] == '០') result += 0;
-                        if (num[n] == '១') result += 1;
-                        if (num[n] == '២') result += 2;
-                        if (num[n] == '៣') result += 3;
-                        if (num[n] == '៤') result += 4;
-                        if (num[n] == '៥') result += 5;
-                        if (num[n] == '៦') result += 6;
-                        if (num[n] == '៧') result += 7;
-                        if (num[n] == '៨') result += 8;
-                        if (num[n] == '៩') result += 9;
-
-                        //if (num[n] == '.') result += '.';
-                        if (num[n] == 0) result += 0;
-                        if (num[n] == 1) result += 1;
-                        if (num[n] == 2) result += 2;
-                        if (num[n] == 3) result += 3;
-                        if (num[n] == 4) result += 4;
-                        if (num[n] == 5) result += 5;
-                        if (num[n] == 6) result += 6;
-                        if (num[n] == 7) result += 7;
-                        if (num[n] == 8) result += 8;
-                        if (num[n] == 9) result += 9;
-                    }
-
-                    var dob = '';
-                    var age = result;
-                    var currentyear = (new Date()).getFullYear();
-                    dob = currentyear-age;
-
-                    if(age >= 160 || age < 1){
-                        $('#dob').val('');
-                    }else{
-                        $('#dob').val(dob);
-                    }
-                });
-                $('#dob').change(function(e) {
-                    var num = this.value;
-                    var result = '';
-                    // console.log(num.length);
-                    for (n = 0; n < num.length; n++) {
-                        if (num[n] == '០') result += 0;
-                        if (num[n] == '១') result += 1;
-                        if (num[n] == '២') result += 2;
-                        if (num[n] == '៣') result += 3;
-                        if (num[n] == '៤') result += 4;
-                        if (num[n] == '៥') result += 5;
-                        if (num[n] == '៦') result += 6;
-                        if (num[n] == '៧') result += 7;
-                        if (num[n] == '៨') result += 8;
-                        if (num[n] == '៩') result += 9;
-
-                        //if (num[n] == '.') result += '.';
-                        if (num[n] == 0) result += 0;
-                        if (num[n] == 1) result += 1;
-                        if (num[n] == 2) result += 2;
-                        if (num[n] == 3) result += 3;
-                        if (num[n] == 4) result += 4;
-                        if (num[n] == 5) result += 5;
-                        if (num[n] == 6) result += 6;
-                        if (num[n] == 7) result += 7;
-                        if (num[n] == 8) result += 8;
-                        if (num[n] == 9) result += 9;
-                    }
-
-                    var age = '';
-                    var dob = result;
-                    var currentyear = (new Date()).getFullYear();
-                    age = currentyear-dob;
-                    if(dob >= currentyear || age >= 160 || age < 1){
-                        $('#age').val('');
-                    }
-                    else{
-                        $('#age').val(age);
-                    }
-                });
-
-
-                function reOrder(){
-                    for(var n=2;n<(dataRow-1);n++){
-                        $('.new_rows  tr:eq(' + (n-1) +') td:first-child').html(n);
-                        $('.new_rows  tr:eq(' + (n-1) +') td .nickname').attr('name', 'nick_name['+(n-1)+']');
-                        $('.new_rows  tr:eq(' + (n-1) +') td .nickname').attr('class', 'hh-member form-control nickname nick_name_'+(n-1));
-                        $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('name', 'dob['+(n-1)+']');
-                        $('.new_rows  tr:eq(' + (n-1) +') td .dob').attr('id', 'dob_'+(n-1));
-                        $('.new_rows  tr:eq(' + (n-1) +') td .age').attr('name', 'age['+(n-1)+']');
-                        $('.new_rows  tr:eq(' + (n-1) +') td .age').attr('id', 'age_'+(n-1));
-                        $('.new_rows  tr:eq(' + (n-1) +') td .family_relationship').attr('name', 'family_relationship['+(n-1)+']');
-                        $('.new_rows  tr:eq(' + (n-1) +') td .m_sex').attr('name', 'm_sex['+(n-1)+']');
-                        $('.new_rows  tr:eq(' + (n-1) +') td .m_sex').attr('index', (n-1));
-                        $('.new_rows  tr:eq(' + (n-1) +') td .m_sex').attr('id', 'm_sex_'+(n-1));
-                        $('.new_rows  tr:eq(' + (n-1) +') td .family_relationship').attr('id', 'family_relationship_'+(n-1));
-                        $('.new_rows  tr:eq(' + (n-1) +') td #status').attr('class', 'form-group add_relationship_'+(n-1));
-                        $('.new_rows  tr:eq(' + (n-1) +') td .occupation').attr('name', 'occupation['+(n-1)+']');
-                        $('.new_rows  tr:eq(' + (n-1) +') td .occupation').attr('id', 'occupation_'+(n-1));
-                        $('.new_rows  tr:eq(' + (n-1) +') td .education_level').attr('name', 'education_level['+(n-1)+']');
-                        $('.new_rows  tr:eq(' + (n-1) +') td .education_level').attr('id', 'education_level_'+(n-1));
-                        $('.new_rows  tr.myrow:eq(' + (n-1) +')').attr('index', (n-1));
-                        $('.new_rows  tr:eq(' + (n-1) +') td .txt_score').attr('class', 'txt_score form-control edu_score_'+(n-1));
-                    }
-                }
-                //remove add
-                $(".new_rows").on('click','.remove_rows_kh',function(e){
-                    $('#add_rows').removeAttr("disabled", true);
-                    var result = window.confirm('Are you sure?');
-                    if (result == false) {
-                        e.preventDefault();
-                        return false;
-                    }
-                    $('#add_rows').show();
-                    $(this).parent().parent().remove();
-                    // console.log(dataRow);
-                    reOrder();
-                    dataRow--;
-                    edu_row--;
-                });
-
-                //occupation
-                $(".m_sex").select2({
-                    allowClear:true,
-                    placeholder: 'ភេទ'
-                });
-                //occupation
-                $(".occupation").select2({
-                    allowClear:true,
-                    placeholder: 'មុខរបរ'
-                });
-                //education
-                $(".education_level").select2({
-                    allowClear:true,
-                    placeholder: 'កម្រិតវប្បធម៌'
-                });
-            </script>
-
-
-            <?php /*
-            ===========================================
-            --------------- step3 ---------------------
-            =========================================== */ ?>
+            @include('include.edit-step-1')
+            @include('include.edit-step-2')
 
             <div class="row setup-content" id="step-3">
                 <div class="col-xs-12">
@@ -1080,11 +80,11 @@
                                             '</tr>'+
                                             '</table>');
                                         AllowNumber();
-                                    }else if(houshold == 2){
+                                    }else if(houshold == 2) {
                                         $('#home-rent').append('<h4>គ.៨) សម្រាប់គ្រួសារជួលផ្ទះគេ​ <a class="fa fa-question-circle" href="#" data-toggle="tooltip" title="សម្រាប់គ្រួសារមានផ្ទះផ្ទាល់ខ្លួន ឬ ​ នៅជាមួយគេដោយអត់បង់ថ្លៃ មិនបាច់បំពេញចំណុច គ៨ ហើយរំលងទៅ គ៩"></a></h4>' +
                                             '<div class="col-sm-6">' +
                                             '<table width="100%">' +
-                                            '<tr>'+
+                                            '<tr>' +
                                             '<td width="50%">' +
                                             '<label class="control-label"> តើថ្លៃជួលប្រចាំខែជាមធ្យមប៉ុន្មាន?: </label>' +
                                             '</td>' +
@@ -1094,7 +94,7 @@
                                             '</div>' +
                                             '</td>' +
                                             '</tr>' +
-                                            '<tr class="my_hide">'+
+                                            '<tr class="my_hide">' +
                                             '<td width="50%">' +
                                             '<label class="control-label"> គ្រួសារដែលនៅផ្ទះជួលគេ 3B</label>' +
                                             '</td>' +
@@ -1107,25 +107,25 @@
                                             '</table>' +
                                             '</div>');
                                         //3B គ្រួសារដែលនៅផ្ទះជួលគេតម្លៃជួលផ្ទះ (ប្រើសម្រាប់តែគ្រួសារដែលជួលផ្ទះគេ)
-                                        $('.cal').change(function(){
+                                        $('.cal').change(function () {
                                             var person = $('#total_people').val();
                                             var price = $('#price').val();
-                                            if( ((person>=1 && person <=3) && (price>=1 && price <=80000)) || ((person >=4 && person <=6) && (price>=1 && price <=120000)) || ((person >=7 && person <= 10) && (price>=1 && price <=180000)) || ((person>10)&&(price>=1 && price<=240000)) )
-                                            {
+                                            if (((person >= 1 && person <= 3) && (price >= 1 && price <= 80000)) || ((person >= 4 && person <= 6) && (price >= 1 && price <= 120000)) || ((person >= 7 && person <= 10) && (price >= 1 && price <= 180000)) || ((person > 10) && (price >= 1 && price <= 240000))) {
                                                 $('#r_score').val(16);
                                             }
-                                            else if( ((person>= 1 && person <=3) && (price>80000 && price<=160000)) || ((person>=4 && person<=6)&&(price>120000 && price<=200000)) || ((person>=7 && person<=10)&&(price>180000 && price<=280000)) || ((person>10)&&(price>240000 && price<=340000)) ){
+                                            else if (((person >= 1 && person <= 3) && (price > 80000 && price <= 160000)) || ((person >= 4 && person <= 6) && (price > 120000 && price <= 200000)) || ((person >= 7 && person <= 10) && (price > 180000 && price <= 280000)) || ((person > 10) && (price > 240000 && price <= 340000))) {
                                                 $('#r_score').val(11);
                                             }
-                                            else if( ((person>= 1 && person <=3) && (price>160000 && price<=200000)) || ((person>=4 && person<=6)&&(price>200000 && price<=240000)) || ((person>=7 && person<=10)&&(price>280000 && price<=340000)) || ((person>10)&&(price>340000 && price<=400000)) ){
+                                            else if (((person >= 1 && person <= 3) && (price > 160000 && price <= 200000)) || ((person >= 4 && person <= 6) && (price > 200000 && price <= 240000)) || ((person >= 7 && person <= 10) && (price > 280000 && price <= 340000)) || ((person > 10) && (price > 340000 && price <= 400000))) {
                                                 $('#r_score').val(5);
                                             }
-                                            else{
+                                            else {
                                                 $('#r_score').val(0);
                                             }
                                         });
-                                    }else if(houshold == 1 || houshold == 3){
 
+
+                                    }else if(houshold == 1){
                                         var household_area = '<div class="col-sm-12">' +
                                             '<h4> គ.៣ តើ​ផ្ទៃ​ក្រឡា​ទីលំនៅរបស់ក្រុម​គ្រួសារ ​មាន​ចំនួន​ប៉ុន្មាន​ម៉ែត្រ​ក្រឡា​?​</h4>' +
                                             '<table class="tb_grid table table-bordered table-striped tbl-floor" style="width:100%;">' +
@@ -1134,19 +134,19 @@
                                             '<td><b>ផ្ទះជាន់ក្រោម៖</b></td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input value="{{$household_root->ground_floor_length ?? ''}}" autocomplete="off" id="ground_floor_length" class="calculate form-control allowFlot ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">' +
+                                            '<input value="{{$household_root_yourself->ground_floor_length ?? ''}}" autocomplete="off" id="ground_floor_length" class="calculate form-control allowFlot ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">' +
                                             '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input value="{{$household_root->ground_floor_width ?? ''}}" autocomplete="off" id="ground_floor_width" class="calculate form-control allowFlot ground_floor"  placeholder="ទទឹង" type="text" name="ground_floor_width">' +
+                                            '<input value="{{$household_root_yourself->ground_floor_width ?? ''}}" autocomplete="off" id="ground_floor_width" class="calculate form-control allowFlot ground_floor"  placeholder="ទទឹង" type="text" name="ground_floor_width">' +
                                             '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input value="{{$household_root->ground_floor_area ?? ''}}" autocomplete="off" id="ground_floor_area" class="calculate form-control allowFlot"  placeholder="ផ្ទៃ" type="text" name="ground_floor_area" readonly="readonly">' +
+                                            '<input value="{{$household_root_yourself->ground_floor_area ?? ''}}" autocomplete="off" id="ground_floor_area" class="calculate form-control allowFlot"  placeholder="ផ្ទៃ" type="text" name="ground_floor_area" readonly="readonly">' +
                                             '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                             '</div>' +
                                             '</td>' +
@@ -1155,19 +155,19 @@
                                             '<td><b>ផ្ទះជាន់លើ(បើមាន)៖</b></td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input value="{{$household_root->upper_floor_length ?? ''}}" autocomplete="off" id="upper_floor_length" class="calculate form-control allowFlot" placeholder="បណ្តោយ" type="text" name="upper_floor_length">' +
+                                            '<input value="{{$household_root_yourself->upper_floor_length ?? ''}}" autocomplete="off" id="upper_floor_length" class="calculate form-control allowFlot" placeholder="បណ្តោយ" type="text" name="upper_floor_length">' +
                                             '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input value="{{$household_root->upper_floor_width ?? ''}} " autocomplete="off" id="upper_floor_width" class="calculate form-control allowFlot"  placeholder="ទទឹង" type="text" name="upper_floor_width">' +
+                                            '<input value="{{$household_root_yourself->upper_floor_width ?? ''}}" autocomplete="off" id="upper_floor_width" class="calculate form-control allowFlot"  placeholder="ទទឹង" type="text" name="upper_floor_width">' +
                                             '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input value="{{$household_root->upper_floor_area ?? ''}}" autocomplete="off" id="upper_floor_area" class="calculate form-control allowFlot"  placeholder="ផ្ទៃ" type="text" name="upper_floor_area" readonly="readonly">' +
+                                            '<input value="{{$household_root_yourself->upper_floor_area ?? ''}}" autocomplete="off" id="upper_floor_area" class="calculate form-control allowFlot"  placeholder="ផ្ទៃ" type="text" name="upper_floor_area" readonly="readonly">' +
                                             '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                             '</div>' +
                                             '</td>' +
@@ -1176,19 +176,19 @@
                                             '<td><b>សំណង់បន្ថែម ឧ. ផ្ទះបាយ... (បើមាន)៖ </b></td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input value="{{$household_root->further_floor_length ?? ''}}" autocomplete="off" id="further_floor_length" class="calculate form-control allowFlot" placeholder="បណ្តោយ" type="text"  name="further_floor_length">' +
+                                            '<input value="{{$household_root_yourself->further_floor_length ?? ''}}" autocomplete="off" id="further_floor_length" class="calculate form-control allowFlot" placeholder="បណ្តោយ" type="text"  name="further_floor_length">' +
                                             '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input value="{{$household_root->further_floor_width ?? ''}}" autocomplete="off" id="further_floor_width" class="calculate form-control allowFlot"  placeholder="ទទឹង" type="text" name="further_floor_width">' +
+                                            '<input value="{{$household_root_yourself->further_floor_width ?? ''}}" autocomplete="off" id="further_floor_width" class="calculate form-control allowFlot"  placeholder="ទទឹង" type="text" name="further_floor_width">' +
                                             '<span class="input-group-addon">ម៉ែត្រ</span>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input value="{{$household_root->further_floor_area ?? ''}}" autocomplete="off" id="further_floor_area" class="calculate form-control allowFlot" required="required" placeholder="ផ្ទៃ" type="text" name="further_floor_area" readonly="readonly">' +
+                                            '<input value="{{$household_root_yourself->further_floor_area ?? ''}}" autocomplete="off" id="further_floor_area" class="calculate form-control allowFlot" required="required" placeholder="ផ្ទៃ" type="text" name="further_floor_area" readonly="readonly">' +
                                             '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
                                             '</div>' +
                                             '</td>' +
@@ -1197,7 +197,360 @@
                                             '<td colspan="3"><b style="float:right;">ផ្ទៃកម្រាលសរុប :</b></td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input value="{{$household_root->total_area ?? ''}}" readonly="readonly" autocomplete="off" id="total_area" name="total_area" class="calculate form-control allowFlot"  placeholder="ផ្ម៉ែត្រក្រឡា..." type="text">' +
+                                            '<input value="{{$household_root_yourself->total_area ?? ''}}" readonly="readonly" autocomplete="off" id="total_area" name="total_area" class="calculate form-control allowFlot"  placeholder="ផ្ម៉ែត្រក្រឡា..." type="text">' +
+                                            '<span class="input-group-addon">ម៉ែត្រ​ក្រឡា</span>' +
+                                            '</div>' +
+                                            '</td>' +
+                                            '</tr>' +
+                                            '<tr class="my_hide">' +
+                                            '<td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>' +
+                                            '<td>' +
+                                            '<div class="form-group input-group">' +
+                                            '<input autocomplete="off" type="hidden" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly">' +
+                                            '<span class="input-group-addon">ពិន្ទុ</span>' +
+                                            '</div>' +
+                                            '</td>' +
+                                            '</tr>' +
+                                            '</tbody>' +
+                                            '</table>' +
+                                            '</div>' +
+                                            '<div class="col-sm-12"><hr></div>';
+                                        $('#household_area').append(household_area);
+                                        AllowFlot();
+                                        //family
+                                        $('.ground_floor').change(function(){
+                                            var g_length = 0;
+                                            var g_width = 0;
+                                            g_length = parseInt($('#ground_floor_length').val() ? $('#ground_floor_length').val() : 0);
+                                            g_width  = parseFloat($('#ground_floor_width').val() ? $('#ground_floor_width').val() : 0);
+                                            $('#ground_floor_area').val((g_length * g_width ? g_length * g_width : 0).toFixed(0));
+                                        });
+
+                                        $('#upper_floor_length, #upper_floor_width').change(function() {
+                                            var u_length = parseInt($('#upper_floor_length').val());
+                                            var u_width = parseFloat($('#upper_floor_width').val());
+                                            $('#upper_floor_area').val((u_length * u_width ? u_length * u_width : 0).toFixed(0));
+                                        });
+                                        $('#further_floor_length, #further_floor_width').change(function() {
+                                            var f_length = parseInt($('#further_floor_length').val());
+                                            var f_width = parseFloat($('#further_floor_width').val());
+                                            $('#further_floor_area').val((f_length * f_width ? f_length * f_width : 0).toFixed(0));
+                                        });
+                                        $('#ground_floor_length, #ground_floor_width, #upper_floor_length, #upper_floor_width,#further_floor_length, #further_floor_width').on('change' ,function() {
+                                            var total_g = 0;
+                                            var total_u = 0;
+                                            var total_f = 0;
+                                            var sum = 0;
+
+                                            total_g = Number($('#ground_floor_area').val());
+                                            total_u = Number($('#upper_floor_area').val());
+                                            total_f = Number($('#further_floor_area').val());
+                                            sum = Number(total_g + total_u + total_f);
+                                            $('#total_area').val(sum);
+                                        });
+                                        //family
+                                        $('.calculate').change(function(){
+                                            var member = parseInt($('#total_people').val());
+                                            var land = parseInt($('#total_area').val());
+                                            var score = $('#a_score1').val();
+                                            // 1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ
+                                            if(((member >=1 && member <= 3) && (land>=1 && land <=20)) || ((member >=4 && member <=6) && (land>=1 && land <=30)) || ((member >=7 && member <= 10) && (land>=1 && land <=40)) || ((member>10)&&(land>=1 && land<=50))){
+                                                $('#a_score1').val(8);
+                                            }
+                                            else if(((member >= 1 && member <=3) && (land>20 && land<=30)) || ((member>=4 && member<=6)&&(land>30 && land<=40)) || ((member>=7 && member<=10)&&(land>40 && land<=55)) || ((member>10)&&(land>50 && land<=65)) )
+                                            {
+                                                $('#a_score1').val(6);
+                                            }
+                                            else if( ((member >= 1 && member <=3) && (land>30 && land<=40)) || ((member>=4 && member<=6)&&(land>40 && land<=50)) || ((member>=7 && member<=10)&&(land>55 && land<=65)) || ((member>10)&&(land>65 && land<=75)) ){
+                                                $('#a_score1').val(3);
+                                            }
+                                            else{
+                                                $('#a_score1').val(0);
+                                            }
+                                        });
+
+
+
+                                        var homeyourselt = '<h4>គ.៥ ដំបូល</h4>' +
+                                            '<table width="100%" class="table table-bordered table-striped">' +
+                                            '<thead><tr>' +
+                                            '<th>ដំបូលធ្វើអំពី <spand class="text-danger">*</spand></th>' +
+                                            '<th>និង​ស្ថានភាព <spand class="text-danger">*</spand></th>' +
+                                            '</tr></thead>'+
+                                            '<tr>' +
+                                            '<td>' +
+                                            '<div class="form-group add_roof_relationship">' +
+                                            '<select class="form-control roof_relationship cal_roof" id="roof_relationship" name="roof_made">' +
+                                            '<option></option>' +
+                                            '@foreach($roof_made as $keh => $value)' +
+                                            '<option @if($household_root != null && $household_root->roof_made_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>' +
+                                            '@endforeach'+
+                                            '</select>' +
+                                            '</div>' +
+                                            '</td>'+
+                                            '<td>' +
+                                            '<div class="form-group add_r_status">' +
+                                            '<select class="cal_roof form-control r_status" id="r_status" name="roof_status">' +
+                                            '<option></option>@foreach($house_status as $keh => $value)<option @if($household_root != null && $household_root->roof_status_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                                            '</select>' +
+                                            '</div>' +
+                                            '</td>'+
+                                            '</tr>'+
+                                            // '<tr​ style="display:none;">' +
+                                            // '<td>3A 1 : ស្ថានភាពដំបូលផ្ទះ </td>' +
+                                            // '<td>' +
+                                            '<div class="my_hide form-group input-group" style="width: 300px;">'+
+                                            '<input id="roof_score" type="text" name="roof_score" class="cal_roof form-control allowNumber"​ readonly>'+
+                                            '<span class="input-group-addon">ពិន្ទុ</span>'+
+                                            '</div>'+
+                                            '</td>' +
+                                            // '</tr>'
+                                            '</table>';
+
+                                        var building_year = '<div class="col-sm-6">' +
+                                            '<table class="table-home table table-bordered table-striped">' +
+                                            '<thead>' +
+                                            '<tr>' +
+                                            '<th>ផ្ទះសាងសង់នៅឆ្នាំណា? <spand class="text-danger">*</spand></th>' +
+                                            '<th>តើធ្លាប់ជួសជុលឬទេ? <spand class="text-danger">*</spand></th>' +
+                                            '</tr>' +
+                                            '</thead>'+
+                                            '<tr>' +
+                                            '<td width="50%">' +
+                                            '<div class="add_huild_year">' +
+                                            '<select name="h_build_year" id="year_select" style="width: 100%;" name="build_in">'+
+                                            '<option></option>' +
+                                            '@php $currentYear = date('Y'); @endphp  @foreach (range(1950, $currentYear) as $value) <option @if($household_root->h_build_year ?? '' == $value) selected @endif value="{{$value}}">{{$value}}</option> @endforeach' +
+                                            '</select>' +
+                                            '</div>' +
+                                            '</td>' +
+                                            '<td width="50%">' +
+                                            '<div class="add_home_prepare">' +
+                                            '<ul class="li-none">' +
+                                            '@foreach($homePrepar as $key =>$p)' +
+                                            '<li>' +
+                                            '<label><input @if($household_root->home_prepare_id ?? '' == $p->id) checked @endif style="margin-right: 10px;" class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
+                                            '@if($p->id == 2)<label id="homeyear">'+
+                                                ' <label id="homeyear">' +
+                                                '@if($household_root->home_prepare_id ?? '' ==2)' +
+                                                    '<select name="home_year" style="width: 180px;" id="years"><option></option>' +
+                                                        '<?php $currentYear = date('Y'); ?>'+
+                                                        '@foreach (range(1950, $currentYear) as $value)' +
+                                                            '<option @if($homePreparLink->home_year == $value) selected @endif value="{{$value}}">{{$value}}</option>' +
+                                                        '@endforeach' +
+                                                    '</select>' +
+                                                '@endif'+
+                                                '</label>'+
+                                            '</label>@endif' +
+                                            '</li>' +
+                                            '@endforeach'+
+                                            '</ul>' +
+                                            '</div>'+
+                                            '</td>'+
+                                            '</tr>' +
+                                            '</table>'+
+                                            '</div>';
+
+                                        $('#building-year').append(building_year);
+                                        $('#home-yourself').append(homeyourselt);
+                                        $("#years").select2({allowClear:true, placeholder: "ឆ្នាំ"});
+
+                                        $('.cal_roof').change(function(){
+                                            var chose = $('#roof_relationship').val();
+                                            var status = $('#r_status').val();
+                                            if(chose == 3 || chose ==2 || chose == 6 || (chose == 4 && status == 1) || (chose ==1 && status == 1) || chose== 9){
+                                                $('#roof_score').val(6);
+                                            }else if( (chose == 4 && status == 2)){
+                                                $('#roof_score').val(4);
+                                            }else{
+                                                $('#roof_score').val(0);
+                                            }
+                                        });
+                                        $("#year_select").select2({allowClear:true, placeholder: "ឆ្នាំ"});
+                                        $(".roof_relationship").select2({allowClear:true, placeholder: "ដំបូល"});
+                                        $(".r_status").select2({allowClear:true, placeholder: "ស្ថានភាព"});
+
+                                        $('.homeyear').click(function () {
+                                            var homeyear = $('input[name=home_prepare]:checked').val();
+                                            var year_build = $('#year_select').val();
+
+                                            if(year_build != ''){
+                                                year_build = $('#year_select').val();
+                                            }else{
+                                                year_build = '{{date("Y")+1}}';
+                                            }
+                                            var cur_year = '{{date("Y")}}';
+
+
+                                            if(homeyear == 2){
+                                                var opt = '';
+                                                for(var y=year_build; y<=cur_year;y++){
+                                                    opt += '<option value="'+y+'" >'+y+'</option>';
+                                                }
+                                                $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years">'+opt+'</select>');
+                                                $("#years").select2({allowClear:true, placeholder: 'ឆ្នាំ...'});
+                                                $("#homeyear").css("display", "block");
+                                            }else{
+                                                $('#homeyear').html('');
+                                            }
+                                        });
+
+                                        $('#year_select').change(function () {
+                                            var year_build = $(this).val();
+                                            var cur_year = '{{date("Y")}}';
+                                            var opt = '';
+                                            for (var y = year_build; y <= cur_year; y++) {
+                                                opt += '<option value="' + y + '" >' + y + '</option>';
+                                            }
+                                            $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years">' + opt + '</select>');
+                                            $("#homeyear").css("display", "none");
+                                            $('input[name=home_prepare]').removeAttr('checked');
+                                            $("#years").select2({allowClear: true, placeholder: 'ឆ្នាំ...'});
+                                        });
+
+
+                                        var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>' +
+                                            '<table width="100%" class="table table-bordered table-striped">' +
+                                            '<thead><tr>' +
+                                            '<th>​ជញ្ជាំងធ្វើអំពី <spand class="text-danger">*</spand></th>' +
+                                            '<th>និង​ស្ថានភាព <spand class="text-danger">*</spand></th>' +
+                                            '</tr></thead>' +
+                                            '<tr>' +
+                                            '<td>' +
+                                            '<div class="form-group add_wall_relationship">' +
+                                            '<select class="cal_wall form-control wall_relationship" id="wall_relationship" name="walls_made">' +
+                                            '<option></option>' +
+                                            '@foreach($wall_made as $keh => $value)<option @if($household_root != null && $household_root->walls_made_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                                            '</select>' +
+                                            '</div>' +
+                                            '</td>' +
+                                            '<td>'+
+                                            '<div class="form-group add_h_status">'+
+                                            '<select class="cal_wall form-control h_status" id="h_status" name="walls_status">'+
+                                            '<option></option>'+
+                                            '@foreach($house_status as $keh => $value)<option @if($household_root != null && $household_root->walls_status_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
+                                            '</select>'+
+                                            '</div>'+
+                                            '</td>'+
+                                            '</tr>' +
+                                            '<tr class="my_hide">' +
+                                            '<td>3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ</td>' +
+                                            '<td>' +
+                                            '<div class="form-group input-group" style="width: 300px;">'+
+                                            '<input id="wall_score" type="text" name="wall_score" class="cal_wall form-control allowNumber"​ readonly>'+
+                                            '<span class="input-group-addon">ពិន្ទុ</span>'+
+                                            '</div>'+
+                                            '</td>' +
+                                            '</tr>'+
+                                            '</table>';
+
+                                        $('#home-ke').append(homeke);
+                                        $('.cal_wall').change(function(){
+                                            var chose = $('#wall_relationship').val();
+                                            var status = $('#h_status').val();
+                                            if( (chose >=1 && chose<=3) || chose ==7 ){
+                                                $('#wall_score').val(6);
+                                            }else if(chose == 5){
+                                                $('#wall_score').val(4);
+                                            }else{ $('#wall_score').val(0);}
+                                        });
+                                        $(".wall_relationship").select2({ allowClear:true, placeholder: "ជញ្ជាំង"});
+                                        $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
+                                        var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>' +
+                                            '<div class="add_condition_house"><ul class="li-none">'+
+                                            '@foreach($condition_house as $key => $c)' +
+                                            '<li>' +
+                                            '<label><input @if($household_root != null && $household_root->condition_house_id  == $c->id) checked @endif style="margin-right:10px;" class="condition_house" type="radio" name="condition_house" ​ value="{{$c->id}}" > {{$c->name_kh}}</label>' +
+                                            '</li>' +
+                                            '@endforeach'+
+                                            '</ul></div>'+
+                                            '<div class="my_hide form-group input-group" style="width: 300px;">'+
+                                            '<input id="house_score" type="text" name="house_score" class="house_score form-control allowNumber"​ readonly>'+
+                                            '<span class="input-group-addon">ពិន្ទុ</span>'+
+                                            '</div>';
+                                        $('#general-status').append(generalStatus);
+
+                                        $('.condition_house').click(function(){
+                                            var house = $('input[name=condition_house]:checked').val();
+                                            if(house ==1){
+                                                $('#house_score').val(4);
+                                            }else if(house == 2){
+                                                $('#house_score').val(2.5);
+                                            }else{ $('#house_score').val(0);}
+                                        });
+                                    }else if(houshold == 3){
+                                        var household_area = '<div class="col-sm-12">' +
+                                            '<h4> គ.៣ តើ​ផ្ទៃ​ក្រឡា​ទីលំនៅរបស់ក្រុម​គ្រួសារ ​មាន​ចំនួន​ប៉ុន្មាន​ម៉ែត្រ​ក្រឡា​?​</h4>' +
+                                            '<table class="tb_grid table table-bordered table-striped tbl-floor" style="width:100%;">' +
+                                            '<tbody>' +
+                                            '<tr>' +
+                                            '<td><b>ផ្ទះជាន់ក្រោម៖</b></td>' +
+                                            '<td>' +
+                                            '<div class="form-group input-group">' +
+                                            '<input value="{{$household_root_rend->ground_floor_length ?? ''}}" autocomplete="off" id="ground_floor_length" class="calculate form-control allowFlot ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">' +
+                                            '<span class="input-group-addon">ម៉ែត្រ</span>' +
+                                            '</div>' +
+                                            '</td>' +
+                                            '<td>' +
+                                            '<div class="form-group input-group">' +
+                                            '<input value="{{$household_root_rend->ground_floor_width ?? ''}}" autocomplete="off" id="ground_floor_width" class="calculate form-control allowFlot ground_floor"  placeholder="ទទឹង" type="text" name="ground_floor_width">' +
+                                            '<span class="input-group-addon">ម៉ែត្រ</span>' +
+                                            '</div>' +
+                                            '</td>' +
+                                            '<td>' +
+                                            '<div class="form-group input-group">' +
+                                            '<input value="{{$household_root_rend->ground_floor_area ?? ''}}" autocomplete="off" id="ground_floor_area" class="calculate form-control allowFlot"  placeholder="ផ្ទៃ" type="text" name="ground_floor_area" readonly="readonly">' +
+                                            '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
+                                            '</div>' +
+                                            '</td>' +
+                                            '</tr>' +
+                                            '<tr>' +
+                                            '<td><b>ផ្ទះជាន់លើ(បើមាន)៖</b></td>' +
+                                            '<td>' +
+                                            '<div class="form-group input-group">' +
+                                            '<input value="{{$household_root_rend->upper_floor_length ?? ''}}" autocomplete="off" id="upper_floor_length" class="calculate form-control allowFlot" placeholder="បណ្តោយ" type="text" name="upper_floor_length">' +
+                                            '<span class="input-group-addon">ម៉ែត្រ</span>' +
+                                            '</div>' +
+                                            '</td>' +
+                                            '<td>' +
+                                            '<div class="form-group input-group">' +
+                                            '<input value="{{$household_root_rend->upper_floor_width ?? ''}}" autocomplete="off" id="upper_floor_width" class="calculate form-control allowFlot"  placeholder="ទទឹង" type="text" name="upper_floor_width">' +
+                                            '<span class="input-group-addon">ម៉ែត្រ</span>' +
+                                            '</div>' +
+                                            '</td>' +
+                                            '<td>' +
+                                            '<div class="form-group input-group">' +
+                                            '<input value="{{$household_root_rend->upper_floor_area ?? ''}}" autocomplete="off" id="upper_floor_area" class="calculate form-control allowFlot"  placeholder="ផ្ទៃ" type="text" name="upper_floor_area" readonly="readonly">' +
+                                            '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
+                                            '</div>' +
+                                            '</td>' +
+                                            '</tr>' +
+                                            '<tr>' +
+                                            '<td><b>សំណង់បន្ថែម ឧ. ផ្ទះបាយ... (បើមាន)៖ </b></td>' +
+                                            '<td>' +
+                                            '<div class="form-group input-group">' +
+                                            '<input value="{{$household_root_rend->further_floor_length ?? ''}}" autocomplete="off" id="further_floor_length" class="calculate form-control allowFlot" placeholder="បណ្តោយ" type="text"  name="further_floor_length">' +
+                                            '<span class="input-group-addon">ម៉ែត្រ</span>' +
+                                            '</div>' +
+                                            '</td>' +
+                                            '<td>' +
+                                            '<div class="form-group input-group">' +
+                                            '<input value="{{$household_root_rend->further_floor_width ?? ''}}" autocomplete="off" id="further_floor_width" class="calculate form-control allowFlot"  placeholder="ទទឹង" type="text" name="further_floor_width">' +
+                                            '<span class="input-group-addon">ម៉ែត្រ</span>' +
+                                            '</div>' +
+                                            '</td>' +
+                                            '<td>' +
+                                            '<div class="form-group input-group">' +
+                                            '<input value="{{$household_root_rend->further_floor_area ?? ''}}" autocomplete="off" id="further_floor_area" class="calculate form-control allowFlot" required="required" placeholder="ផ្ទៃ" type="text" name="further_floor_area" readonly="readonly">' +
+                                            '<span class="input-group-addon">ម៉ែត្រក្រឡា</span>' +
+                                            '</div>' +
+                                            '</td>' +
+                                            '</tr>' +
+                                            '<tr>' +
+                                            '<td colspan="3"><b style="float:right;">ផ្ទៃកម្រាលសរុប :</b></td>' +
+                                            '<td>' +
+                                            '<div class="form-group input-group">' +
+                                            '<input value="{{$household_root_rend->total_area ?? ''}}" readonly="readonly" autocomplete="off" id="total_area" name="total_area" class="calculate form-control allowFlot"  placeholder="ផ្ម៉ែត្រក្រឡា..." type="text">' +
                                             '<span class="input-group-addon">ម៉ែត្រ​ក្រឡា</span>' +
                                             '</div>' +
                                             '</td>' +
@@ -1281,7 +634,7 @@
                                             '<select class="form-control roof_relationship cal_roof" id="roof_relationship" name="roof_made">' +
                                             '<option></option>' +
                                             '@foreach($roof_made as $keh => $value)' +
-                                            '<option value="{{$value->id}}">{{$value->name_kh}}</option>' +
+                                            '<option @if($household_root != null && $household_root->walls_made_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>' +
                                             '@endforeach'+
                                             '</select>' +
                                             '</div>' +
@@ -1318,7 +671,7 @@
                                             '<div class="add_huild_year">' +
                                             '<select name="h_build_year" id="year_select" style="width: 100%;" name="build_in">'+
                                             '<option></option>' +
-                                            '@php $currentYear = date('Y'); @endphp  @foreach (range(1950, $currentYear) as $value) <option @if($household_root->h_build_year ?? '' == $value) selected @endif value="{{$value}}">{{$value}}</option> @endforeach' +
+                                            '@php $currentYear = date('Y'); @endphp  @foreach (range(1950, $currentYear) as $value) <option @if($household_root_rend->h_build_year ?? '' == $value) selected @endif value="{{$value}}">{{$value}}</option> @endforeach' +
                                             '</select>' +
                                             '</div>' +
                                             '</td>' +
@@ -1327,8 +680,19 @@
                                             '<ul class="li-none">' +
                                             '@foreach($homePrepar as $key =>$p)' +
                                             '<li>' +
-                                            '<label><input @if($household_root->home_prepare_id ?? '' == $p->id) checked @endif style="margin-right: 10px;" class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
-                                            '@if($p->id == 2)<label id="homeyear"></label>@endif' +
+                                            '<label><input @if($household_root_rend->home_prepare_id ?? '' == $p->id) checked @endif style="margin-right: 10px;" class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
+                                            '@if($p->id == 2)<label id="homeyear">'+
+                                            ' <label id="homeyear">' +
+                                            '@if($household_root_rend->home_prepare_id ?? '' ==2)' +
+                                            '<select name="home_year" style="width: 180px;" id="years"><option></option>' +
+                                            '<?php $currentYear = date('Y'); ?>'+
+                                            '@foreach (range(1950, $currentYear) as $value)' +
+                                            '<option @if($homePreparLink->home_year == $value) selected @endif value="{{$value}}">{{$value}}</option>' +
+                                            '@endforeach' +
+                                            '</select>' +
+                                            '@endif'+
+                                            '</label>'+
+                                            '</label>@endif' +
                                             '</li>' +
                                             '@endforeach'+
                                             '</ul>' +
@@ -1337,20 +701,10 @@
                                             '</tr>' +
                                             '</table>'+
                                             '</div>';
-                                        var home_preparing = '<h5>- តើធ្លាប់ជួសជុលឬទេ?</h5>' +
-                                            '<div class="add_home_prepare"><ul class="li-none">' +
-                                            '@foreach($homePrepar as $key =>$p)'+
-                                            '<li>' +
-                                            '<label><input class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
-                                            '@if($p->id == 2)<label id="homeyear"></label>@endif' +
-                                            '</li>' +
-                                            '@endforeach'+
-                                            '</ul></div>';
 
-                                        // $('#home-preparing').append(home_preparing);
                                         $('#building-year').append(building_year);
                                         $('#home-yourself').append(homeyourselt);
-
+                                        $("#years").select2({allowClear:true, placeholder: "ឆ្នាំ"});
 
                                         $('.cal_roof').change(function(){
                                             var chose = $('#roof_relationship').val();
@@ -1503,7 +857,7 @@
                         <div class="col-sm-12"><hr> </div>
 
                         <div id="household_area">
-                            @if($gFamily->household_family_id == 1 || $gFamily->household_family_id == 3)
+                            @if($gFamily->household_family_id == 1)
                                 <div class="col-sm-12">
                                     <h4> គ.៣ តើ​ផ្ទៃ​ក្រឡា​ទីលំនៅរបស់ក្រុម​គ្រួសារ ​មាន​ចំនួន​ប៉ុន្មាន​ម៉ែត្រ​ក្រឡា​?​</h4>
                                     <table class="tb_grid table table-bordered table-striped tbl-floor" style="width:100%;">
@@ -1594,6 +948,99 @@
                                     </div>
                                 <div class="col-sm-12"><hr></div>
                             @endif
+
+
+                                @if($gFamily->household_family_id == 3)
+                                    <div class="col-sm-12">
+                                        <h4> គ.៣ តើ​ផ្ទៃ​ក្រឡា​ទីលំនៅរបស់ក្រុម​គ្រួសារ ​មាន​ចំនួន​ប៉ុន្មាន​ម៉ែត្រ​ក្រឡា​?​</h4>
+                                        <table class="tb_grid table table-bordered table-striped tbl-floor" style="width:100%;">
+                                            <tbody>
+                                            <tr>
+                                                <td><b>ផ្ទះជាន់ក្រោម៖</b></td>
+                                                <td>
+                                                    <div class="form-group input-group">
+                                                        <input value="{{$household_root_rend->ground_floor_length}}" autocomplete="off" id="ground_floor_length" class="calculate form-control allowFlot ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">
+                                                        <span class="input-group-addon">ម៉ែត្រ</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group input-group">
+                                                        <input value="{{$household_root_rend->ground_floor_width}}" autocomplete="off" id="ground_floor_width" class="calculate form-control allowFlot ground_floor"  placeholder="ទទឹង" type="text" name="ground_floor_width">
+                                                        <span class="input-group-addon">ម៉ែត្រ</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group input-group">
+                                                        <input value="{{$household_root_rend->ground_floor_area}}" autocomplete="off" id="ground_floor_area" class="calculate form-control allowFlot"  placeholder="ផ្ទៃ" type="text" name="ground_floor_area" readonly="readonly">
+                                                        <span class="input-group-addon">ម៉ែត្រក្រឡា</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>ផ្ទះជាន់លើ(បើមាន)៖</b></td>
+                                                <td>
+                                                    <div class="form-group input-group">
+                                                        <input value="{{$household_root_rend->upper_floor_length}}" autocomplete="off" id="upper_floor_length" class="calculate form-control allowFlot" placeholder="បណ្តោយ" type="text" name="upper_floor_length">
+                                                        <span class="input-group-addon">ម៉ែត្រ</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group input-group">
+                                                        <input value="{{$household_root_rend->upper_floor_width}}" autocomplete="off" id="upper_floor_width" class="calculate form-control allowFlot"  placeholder="ទទឹង" type="text" name="upper_floor_width">
+                                                        <span class="input-group-addon">ម៉ែត្រ</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group input-group">
+                                                        <input value="{{$household_root_rend->upper_floor_area}}" autocomplete="off" id="upper_floor_area" class="calculate form-control allowFlot"  placeholder="ផ្ទៃ" type="text" name="upper_floor_area" readonly="readonly">
+                                                        <span class="input-group-addon">ម៉ែត្រក្រឡា</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>សំណង់បន្ថែម ឧ. ផ្ទះបាយ... (បើមាន)៖ </b></td>
+                                                <td>
+                                                    <div class="form-group input-group">
+                                                        <input value="{{$household_root_rend->further_floor_length}}" autocomplete="off" id="further_floor_length" class="calculate form-control allowFlot" placeholder="បណ្តោយ" type="text"  name="further_floor_length">
+                                                        <span class="input-group-addon">ម៉ែត្រ</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group input-group">
+                                                        <input value="{{$household_root_rend->further_floor_width}}" autocomplete="off" id="further_floor_width" class="calculate form-control allowFlot"  placeholder="ទទឹង" type="text" name="further_floor_width">
+                                                        <span class="input-group-addon">ម៉ែត្រ</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group input-group">
+                                                        <input value="{{$household_root_rend->further_floor_area}}" autocomplete="off" id="further_floor_area" class="calculate form-control allowFlot" required="required" placeholder="ផ្ទៃ" type="text" name="further_floor_area" readonly="readonly">
+                                                        <span class="input-group-addon">ម៉ែត្រក្រឡា</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3"><b style="float:right;">ផ្ទៃកម្រាលសរុប :</b></td>
+                                                <td>
+                                                    <div class="form-group input-group">
+                                                        <input value="{{$household_root_rend->total_area}}" readonly="readonly" autocomplete="off" id="total_area" name="total_area" class="calculate form-control allowFlot"  placeholder="ផ្ម៉ែត្រក្រឡា..." type="text">
+                                                        <span class="input-group-addon">ម៉ែត្រ​ក្រឡា</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="my_hide">
+                                                <td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>
+                                                <td>
+                                                    <div class="form-group input-group">
+                                                        <input autocomplete="off" type="hidden" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly">
+                                                        <span class="input-group-addon">ពិន្ទុ</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-sm-12"><hr></div>
+                                @endif
                         </div>
 
                         <div class="col-sm-12">
@@ -1656,7 +1103,7 @@
 
 
                             <div class="row" id="building-year">
-                                @if($gFamily->household_family_id == 1 || $gFamily->household_family_id == 3)
+                                @if($gFamily->household_family_id == 1)
                                 <div class="col-sm-6">
                                     <table class="table-home table table-bordered table-striped">
                                         <thead>
@@ -1680,7 +1127,19 @@
                                                         @foreach($homePrepar as $key =>$p)
                                                         <li>
                                                             <label><input @if($household_root->home_prepare_id == $p->id) checked @endif style="margin-right: 10px;" class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>
-                                                            @if($p->id == 2)<label id="homeyear"></label>@endif
+                                                                @if($p->id == 2)
+                                                                    <label id="homeyear">
+                                                                        @if($household_root->home_prepare_id==2)
+                                                                            <select name="home_year" style="width: 180px;" id="years"><option></option>
+                                                                                <?php $currentYear = date('Y'); ?>
+                                                                                @foreach (range(1950, $currentYear) as $value)
+                                                                                    <option @if($homePreparLink->home_year == $value) selected @endif value="{{$value}}">{{$value}}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                            <script type="text/javascript">$("#years").select2({allowClear:true, placeholder: 'ឆ្នាំ...'});</script>
+                                                                        @endif
+                                                                    </label>
+                                                                @endif
                                                             </li>
                                                         @endforeach
                                                         </ul>
@@ -1701,11 +1160,112 @@
 
                         <div class="col-sm-12">
                             <div class="row">
-                                <div class="col-sm-6" id="home-yourself"></div>
-                                <div class="col-sm-6" id="home-ke"></div>
+                                <div class="col-sm-6" id="home-yourself">
+                                    @if($gFamily->household_family_id == 1 || $gFamily->household_family_id == 3)
+                                        <h4>គ.៥ ដំបូល</h4>
+                                        <table width="100%" class="table table-bordered table-striped">
+                                            <thead><tr>
+                                                <th>ដំបូលធ្វើអំពី <spand class="text-danger">*</spand></th>
+                                                <th>និង​ស្ថានភាព <spand class="text-danger">*</spand></th>
+                                                </tr></thead>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-group add_roof_relationship">
+                                                        <select class="form-control roof_relationship cal_roof" id="roof_relationship" name="roof_made">
+                                                            <option></option>
+                                                            @foreach($roof_made as $keh => $value)
+                                                            <option @if($household_root->roof_made_id ?? '' == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                            @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                <td>
+                                                    <div class="form-group add_r_status">
+                                                        <select class="cal_roof form-control r_status" id="r_status" name="roof_status">
+                                                            <option></option>
+                                                            @foreach($house_status as $keh => $value)
+                                                                <option @if($household_root->roof_status_id  == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                            @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <div class="my_hide form-group input-group" style="width: 300px;">
+                                                    <input id="roof_score" type="text" name="roof_score" class="cal_roof form-control allowNumber"​ readonly>
+                                                    <span class="input-group-addon">ពិន្ទុ</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <script>
+                                            $(".roof_relationship").select2({allowClear:true, placeholder: "ដំបូល"});
+                                            $(".r_status").select2({allowClear:true, placeholder: "ស្ថានភាព"});
+                                        </script>
+                                    @endif
+                                </div>
+                                <div class="col-sm-6" id="home-ke">
+                                    @if($gFamily->household_family_id == 1 || $gFamily->household_family_id == 3)
+                                        <h4>គ.៦ ​ជញ្ជាំង</h4>
+                                        <table width="100%" class="table table-bordered table-striped">
+                                            <thead><tr>
+                                                <th>​ជញ្ជាំងធ្វើអំពី <spand class="text-danger">*</spand></th>
+                                                <th>និង​ស្ថានភាព <spand class="text-danger">*</spand></th>
+                                                </tr></thead>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-group add_wall_relationship">
+                                                        <select class="cal_wall form-control wall_relationship" id="wall_relationship" name="walls_made">
+                                                            <option></option>
+                                                            @foreach($wall_made as $keh => $value)<option @if($household_root->walls_made_id  == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                <td>
+                                                    <div class="form-group add_h_status">
+                                                        <select class="cal_wall form-control h_status" id="h_status" name="walls_status">
+                                                            <option></option>
+                                                            @foreach($house_status as $keh => $value)<option @if($household_root->walls_status_id  == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <tr class="my_hide">
+                                                <td>3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ</td>
+                                                <td>
+                                                    <div class="form-group input-group" style="width: 300px;">
+                                                        <input id="wall_score" type="text" name="wall_score" class="cal_wall form-control allowNumber"​ readonly>
+                                                        <span class="input-group-addon">ពិន្ទុ</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        <script>
+                                            $(".wall_relationship").select2({ allowClear:true, placeholder: "ជញ្ជាំង"});
+                                            $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
+                                        </script>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-12" id="general-status"></div>
+                        <div class="col-sm-12" id="general-status">
+                            @if($gFamily->household_family_id == 1 || $gFamily->household_family_id == 3)
+                            <h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>
+                                <div class="add_condition_house"><ul class="li-none">
+                                        @foreach($condition_house as $key => $c)
+                                        <li>
+                                            <label><input @if($household_root->condition_house_id  == $c->id) checked @endif style="margin-right:10px;" class="condition_house" type="radio" name="condition_house" ​ value="{{$c->id}}" > {{$c->name_kh}}</label>
+                                            </li>
+                                        @endforeach
+                                        </ul>
+                                </div>
+                                <div class="my_hide form-group input-group" style="width: 300px;">
+                                    <input id="house_score" type="text" name="house_score" class="house_score form-control allowNumber"​ readonly>
+                                    <span class="input-group-addon">ពិន្ទុ</span>
+                                </div>
+                            @endif
+
+                        </div>
 
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12" id="home-rent">
