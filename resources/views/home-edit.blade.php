@@ -216,6 +216,7 @@
                                             '</div>' +
                                             '<div class="col-sm-12"><hr></div>';
                                         $('#household_area').append(household_area);
+                                        AllowNumber();
                                         AllowFlot();
                                         //family
                                         $('.ground_floor').change(function(){
@@ -271,7 +272,7 @@
 
 
 
-                                        var homeyourselt = '<h4>គ.៥ ដំបូល</h4>' +
+                                        var homeyourselt = '<h4>គ.៥ ដំបូល</h4>1' +
                                             '<table width="100%" class="table table-bordered table-striped">' +
                                             '<thead><tr>' +
                                             '<th>ដំបូលធ្វើអំពី <spand class="text-danger">*</spand></th>' +
@@ -283,7 +284,7 @@
                                             '<select class="form-control roof_relationship cal_roof" id="roof_relationship" name="roof_made">' +
                                             '<option></option>' +
                                             '@foreach($roof_made as $keh => $value)' +
-                                            '<option @if($household_root != null && $household_root->roof_made_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>' +
+                                            '<option @if($household_root_yourself != null && $household_root_yourself->roof_made_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>' +
                                             '@endforeach'+
                                             '</select>' +
                                             '</div>' +
@@ -291,7 +292,7 @@
                                             '<td>' +
                                             '<div class="form-group add_r_status">' +
                                             '<select class="cal_roof form-control r_status" id="r_status" name="roof_status">' +
-                                            '<option></option>@foreach($house_status as $keh => $value)<option @if($household_root != null && $household_root->roof_status_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                                            '<option></option>@foreach($house_status as $keh => $value)<option @if($household_root_yourself != null && $household_root_yourself->roof_status_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
                                             '</select>' +
                                             '</div>' +
                                             '</td>'+
@@ -307,7 +308,7 @@
                                             // '</tr>'
                                             '</table>';
 
-                                        var building_year = '<div class="col-sm-6">' +
+                                        var building_year = '<div class="col-sm-6">1' +
                                             '<table class="table-home table table-bordered table-striped">' +
                                             '<thead>' +
                                             '<tr>' +
@@ -320,7 +321,7 @@
                                             '<div class="add_huild_year">' +
                                             '<select name="h_build_year" id="year_select" style="width: 100%;" name="build_in">'+
                                             '<option></option>' +
-                                            '@php $currentYear = date('Y'); @endphp  @foreach (range(1950, $currentYear) as $value) <option @if($household_root->h_build_year ?? '' == $value) selected @endif value="{{$value}}">{{$value}}</option> @endforeach' +
+                                            '@php $currentYear = date('Y'); @endphp  @foreach (range(1950, $currentYear) as $value) <option @if($household_root_yourself != null && $household_root_yourself->h_build_year  == $value) selected @endif value="{{$value}}">{{$value}}</option> @endforeach' +
                                             '</select>' +
                                             '</div>' +
                                             '</td>' +
@@ -329,10 +330,10 @@
                                             '<ul class="li-none">' +
                                             '@foreach($homePrepar as $key =>$p)' +
                                             '<li>' +
-                                            '<label><input @if($household_root->home_prepare_id ?? '' == $p->id) checked @endif style="margin-right: 10px;" class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
+                                            '<label><input @if($household_root_yourself != null && $household_root_yourself->home_prepare_id == $p->id) checked @endif style="margin-right: 10px;" class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
                                             '@if($p->id == 2)<label id="homeyear">'+
                                                 ' <label id="homeyear">' +
-                                                '@if($household_root->home_prepare_id ?? '' ==2)' +
+                                                '@if($household_root_yourself !=null && $household_root_yourself->home_prepare_id == 2)' +
                                                     '<select name="home_year" style="width: 180px;" id="years"><option></option>' +
                                                         '<?php $currentYear = date('Y'); ?>'+
                                                         '@foreach (range(1950, $currentYear) as $value)' +
@@ -409,7 +410,7 @@
                                         });
 
 
-                                        var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>' +
+                                        var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>1' +
                                             '<table width="100%" class="table table-bordered table-striped">' +
                                             '<thead><tr>' +
                                             '<th>​ជញ្ជាំងធ្វើអំពី <spand class="text-danger">*</spand></th>' +
@@ -420,7 +421,7 @@
                                             '<div class="form-group add_wall_relationship">' +
                                             '<select class="cal_wall form-control wall_relationship" id="wall_relationship" name="walls_made">' +
                                             '<option></option>' +
-                                            '@foreach($wall_made as $keh => $value)<option @if($household_root != null && $household_root->walls_made_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                                            '@foreach($wall_made as $keh => $value)<option @if($household_root_yourself != null && $household_root_yourself->walls_made_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
                                             '</select>' +
                                             '</div>' +
                                             '</td>' +
@@ -428,7 +429,7 @@
                                             '<div class="form-group add_h_status">'+
                                             '<select class="cal_wall form-control h_status" id="h_status" name="walls_status">'+
                                             '<option></option>'+
-                                            '@foreach($house_status as $keh => $value)<option @if($household_root != null && $household_root->walls_status_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
+                                            '@foreach($house_status as $keh => $value)<option @if($household_root_yourself != null && $household_root_yourself->walls_status_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
                                             '</select>'+
                                             '</div>'+
                                             '</td>'+
@@ -456,11 +457,11 @@
                                         });
                                         $(".wall_relationship").select2({ allowClear:true, placeholder: "ជញ្ជាំង"});
                                         $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
-                                        var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>' +
+                                        var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>1' +
                                             '<div class="add_condition_house"><ul class="li-none">'+
                                             '@foreach($condition_house as $key => $c)' +
                                             '<li>' +
-                                            '<label><input @if($household_root != null && $household_root->condition_house_id  == $c->id) checked @endif style="margin-right:10px;" class="condition_house" type="radio" name="condition_house" ​ value="{{$c->id}}" > {{$c->name_kh}}</label>' +
+                                            '<label><input @if($household_root_yourself != null && $household_root_yourself->condition_house_id  == $c->id) checked @endif style="margin-right:10px;" class="condition_house" type="radio" name="condition_house" ​ value="{{$c->id}}" > {{$c->name_kh}}</label>' +
                                             '</li>' +
                                             '@endforeach'+
                                             '</ul></div>'+
@@ -622,7 +623,7 @@
                                             }
                                         });
 
-                                        var homeyourselt = '<h4>គ.៥ ដំបូល</h4>' +
+                                        var homeyourselt = '<h4>គ.៥ ដំបូល</h4>3' +
                                             '<table width="100%" class="table table-bordered table-striped">' +
                                             '<thead><tr>' +
                                             '<th>ដំបូលធ្វើអំពី <spand class="text-danger">*</spand></th>' +
@@ -634,7 +635,7 @@
                                             '<select class="form-control roof_relationship cal_roof" id="roof_relationship" name="roof_made">' +
                                             '<option></option>' +
                                             '@foreach($roof_made as $keh => $value)' +
-                                            '<option @if($household_root != null && $household_root->walls_made_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>' +
+                                            '<option @if($household_root_rend != null && $household_root_rend->walls_made_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>' +
                                             '@endforeach'+
                                             '</select>' +
                                             '</div>' +
@@ -642,7 +643,7 @@
                                             '<td>' +
                                             '<div class="form-group add_r_status">' +
                                             '<select class="cal_roof form-control r_status" id="r_status" name="roof_status">' +
-                                            '<option></option>@foreach($house_status as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                                            '<option></option>@foreach($house_status as $keh => $value)<option @if($household_root_rend != null && $household_root_rend->roof_status_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
                                             '</select>' +
                                             '</div>' +
                                             '</td>'+
@@ -658,7 +659,7 @@
                                             // '</tr>'
                                             '</table>';
 
-                                        var building_year = '<div class="col-sm-6">' +
+                                        var building_year = '<div class="col-sm-6">3' +
                                             '<table class="table-home table table-bordered table-striped">' +
                                             '<thead>' +
                                             '<tr>' +
@@ -671,7 +672,7 @@
                                             '<div class="add_huild_year">' +
                                             '<select name="h_build_year" id="year_select" style="width: 100%;" name="build_in">'+
                                             '<option></option>' +
-                                            '@php $currentYear = date('Y'); @endphp  @foreach (range(1950, $currentYear) as $value) <option @if($household_root_rend->h_build_year ?? '' == $value) selected @endif value="{{$value}}">{{$value}}</option> @endforeach' +
+                                            '@php $currentYear = date('Y'); @endphp  @foreach (range(1950, $currentYear) as $value) <option @if($household_root_rend != null && $household_root_rend->h_build_year == $value) selected @endif value="{{$value}}">{{$value}}</option> @endforeach' +
                                             '</select>' +
                                             '</div>' +
                                             '</td>' +
@@ -680,10 +681,10 @@
                                             '<ul class="li-none">' +
                                             '@foreach($homePrepar as $key =>$p)' +
                                             '<li>' +
-                                            '<label><input @if($household_root_rend->home_prepare_id ?? '' == $p->id) checked @endif style="margin-right: 10px;" class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
+                                            '<label><input @if($household_root_rend != null && $household_root_rend->home_prepare_id  == $p->id) checked @endif style="margin-right: 10px;" class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>' +
                                             '@if($p->id == 2)<label id="homeyear">'+
                                             ' <label id="homeyear">' +
-                                            '@if($household_root_rend->home_prepare_id ?? '' ==2)' +
+                                            '@if($household_root_rend != null && $household_root_rend->home_prepare_id ==2)' +
                                             '<select name="home_year" style="width: 180px;" id="years"><option></option>' +
                                             '<?php $currentYear = date('Y'); ?>'+
                                             '@foreach (range(1950, $currentYear) as $value)' +
@@ -760,7 +761,7 @@
                                         });
 
 
-                                        var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>' +
+                                        var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>3' +
                                             '<table width="100%" class="table table-bordered table-striped">' +
                                             '<thead><tr>' +
                                             '<th>​ជញ្ជាំងធ្វើអំពី <spand class="text-danger">*</spand></th>' +
@@ -771,7 +772,7 @@
                                             '<div class="form-group add_wall_relationship">' +
                                             '<select class="cal_wall form-control wall_relationship" id="wall_relationship" name="walls_made">' +
                                             '<option></option>' +
-                                            '@foreach($wall_made as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
+                                            '@foreach($wall_made as $keh => $value)<option @if($household_root_rend != null && $household_root_rend->walls_made_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach' +
                                             '</select>' +
                                             '</div>' +
                                             '</td>' +
@@ -779,7 +780,7 @@
                                             '<div class="form-group add_h_status">'+
                                             '<select class="cal_wall form-control h_status" id="h_status" name="walls_status">'+
                                             '<option></option>'+
-                                            '@foreach($house_status as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
+                                            '@foreach($house_status as $keh => $value)<option @if($household_root_rend != null && $household_root_rend->walls_status_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach'+
                                             '</select>'+
                                             '</div>'+
                                             '</td>'+
@@ -807,11 +808,11 @@
                                         });
                                         $(".wall_relationship").select2({ allowClear:true, placeholder: "ជញ្ជាំង"});
                                         $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
-                                        var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>' +
+                                        var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>3' +
                                             '<div class="add_condition_house"><ul class="li-none">'+
                                             '@foreach($condition_house as $key => $c)' +
                                             '<li>' +
-                                            '<label><input style="margin-right:10px;" class="condition_house" type="radio" name="condition_house" ​ value="{{$c->id}}" > {{$c->name_kh}}</label>' +
+                                            '<label><input @if($household_root_rend != null && $household_root_rend->condition_house_id == $c->id) checked @endif style="margin-right:10px;" class="condition_house" type="radio" name="condition_house" ​ value="{{$c->id}}" > {{$c->name_kh}}</label>' +
                                             '</li>' +
                                             '@endforeach'+
                                             '</ul></div>'+
@@ -1150,8 +1151,131 @@
                                     </div>
                                     <script>
                                         $("#year_select").select2({allowClear:true, placeholder: "ឆ្នាំ"});
+                                        $('.homeyear').click(function () {
+                                            var homeyear = $('input[name=home_prepare]:checked').val();
+                                            var year_build = $('#year_select').val();
+
+                                            if(year_build != ''){
+                                                year_build = $('#year_select').val();
+                                            }else{
+                                                year_build = '{{date("Y")+1}}';
+                                            }
+                                            var cur_year = '{{date("Y")}}';
+
+
+                                            if(homeyear == 2){
+                                                var opt = '';
+                                                for(var y=year_build; y<=cur_year;y++){
+                                                    opt += '<option value="'+y+'" >'+y+'</option>';
+                                                }
+                                                $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years">'+opt+'</select>');
+                                                $("#years").select2({allowClear:true, placeholder: 'ឆ្នាំ...'});
+                                                $("#homeyear").css("display", "block");
+                                            }else{
+                                                $('#homeyear').html('');
+                                            }
+                                        });
+
+                                        $('#year_select').change(function () {
+                                            var year_build = $(this).val();
+                                            var cur_year = '{{date("Y")}}';
+                                            var opt = '';
+                                            for (var y = year_build; y <= cur_year; y++) {
+                                                opt += '<option value="' + y + '" >' + y + '</option>';
+                                            }
+                                            $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years">' + opt + '</select>');
+                                            $("#homeyear").css("display", "none");
+                                            $('input[name=home_prepare]').removeAttr('checked');
+                                            $("#years").select2({allowClear: true, placeholder: 'ឆ្នាំ...'});
+                                        });
                                     </script>
                                 @endif
+                                    @if($gFamily->household_family_id == 3)
+                                        <div class="col-sm-6">3
+                                            <table class="table-home table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>ផ្ទះសាងសង់នៅឆ្នាំណា? <spand class="text-danger">*</spand></th>
+                                                    <th>តើធ្លាប់ជួសជុលឬទេ? <spand class="text-danger">*</spand></th>
+                                                </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="add_huild_year">
+                                                            <select name="h_build_year" id="year_select" style="width: 100%;" name="build_in">
+                                                                <option></option>
+                                                                @php $currentYear = date('Y'); @endphp  @foreach (range(1950, $currentYear) as $value) <option @if($household_root_rend->h_build_year == $value) selected @endif value="{{$value}}">{{$value}}</option> @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="add_home_prepare">
+                                                            <ul class="li-none">
+                                                                @foreach($homePrepar as $key =>$p)
+                                                                    <li>
+                                                                        <label><input @if($household_root_rend->home_prepare_id == $p->id) checked @endif style="margin-right: 10px;" class="homeyear" type="radio" name="home_prepare" value="{{$p->id}}"> {{$p->name_kh}}</label>
+                                                                        @if($p->id == 2)
+                                                                            <label id="homeyear">
+                                                                                @if($household_root_rend->home_prepare_id==2)
+                                                                                    <select name="home_year" style="width: 180px;" id="years"><option></option>
+                                                                                        <?php $currentYear = date('Y'); ?>
+                                                                                        @foreach (range(1950, $currentYear) as $value)
+                                                                                            <option @if($homePreparLink->home_year == $value) selected @endif value="{{$value}}">{{$value}}</option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                    <script type="text/javascript">$("#years").select2({allowClear:true, placeholder: 'ឆ្នាំ...'});</script>
+                                                                                @endif
+                                                                            </label>
+                                                                        @endif
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <script>
+                                            $("#year_select").select2({allowClear:true, placeholder: "ឆ្នាំ"});
+                                            $('.homeyear').click(function () {
+                                                var homeyear = $('input[name=home_prepare]:checked').val();
+                                                var year_build = $('#year_select').val();
+
+                                                if(year_build != ''){
+                                                    year_build = $('#year_select').val();
+                                                }else{
+                                                    year_build = '{{date("Y")+1}}';
+                                                }
+                                                var cur_year = '{{date("Y")}}';
+
+
+                                                if(homeyear == 2){
+                                                    var opt = '';
+                                                    for(var y=year_build; y<=cur_year;y++){
+                                                        opt += '<option value="'+y+'" >'+y+'</option>';
+                                                    }
+                                                    $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years">'+opt+'</select>');
+                                                    $("#years").select2({allowClear:true, placeholder: 'ឆ្នាំ...'});
+                                                    $("#homeyear").css("display", "block");
+                                                }else{
+                                                    $('#homeyear').html('');
+                                                }
+                                            });
+
+                                            $('#year_select').change(function () {
+                                                var year_build = $(this).val();
+                                                var cur_year = '{{date("Y")}}';
+                                                var opt = '';
+                                                for (var y = year_build; y <= cur_year; y++) {
+                                                    opt += '<option value="' + y + '" >' + y + '</option>';
+                                                }
+                                                $('#homeyear').html('<select name="home_year" style="width: 180px;" id="years">' + opt + '</select>');
+                                                $("#homeyear").css("display", "none");
+                                                $('input[name=home_prepare]').removeAttr('checked');
+                                                $("#years").select2({allowClear: true, placeholder: 'ឆ្នាំ...'});
+                                            });
+                                        </script>
+                                    @endif
                             </div>
 
                         </div>
@@ -1161,7 +1285,7 @@
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-sm-6" id="home-yourself">
-                                    @if($gFamily->household_family_id == 1 || $gFamily->household_family_id == 3)
+                                    @if($gFamily->household_family_id == 1)
                                         <h4>គ.៥ ដំបូល</h4>
                                         <table width="100%" class="table table-bordered table-striped">
                                             <thead><tr>
@@ -1174,7 +1298,7 @@
                                                         <select class="form-control roof_relationship cal_roof" id="roof_relationship" name="roof_made">
                                                             <option></option>
                                                             @foreach($roof_made as $keh => $value)
-                                                            <option @if($household_root->roof_made_id ?? '' == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                            <option @if($household_root_yourself->roof_made_id  == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
                                                             @endforeach
                                                             </select>
                                                         </div>
@@ -1184,7 +1308,7 @@
                                                         <select class="cal_roof form-control r_status" id="r_status" name="roof_status">
                                                             <option></option>
                                                             @foreach($house_status as $keh => $value)
-                                                                <option @if($household_root->roof_status_id  == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                                <option @if($household_root_yourself->roof_status_id  == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
                                                             @endforeach
                                                             </select>
                                                         </div>
@@ -1203,9 +1327,51 @@
                                             $(".r_status").select2({allowClear:true, placeholder: "ស្ថានភាព"});
                                         </script>
                                     @endif
+                                        @if($gFamily->household_family_id == 3)
+                                            <h4>គ.៥ ដំបូល</h4>3
+                                            <table width="100%" class="table table-bordered table-striped">
+                                                <thead><tr>
+                                                    <th>ដំបូលធ្វើអំពី <spand class="text-danger">*</spand></th>
+                                                    <th>និង​ស្ថានភាព <spand class="text-danger">*</spand></th>
+                                                </tr></thead>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-group add_roof_relationship">
+                                                            <select class="form-control roof_relationship cal_roof" id="roof_relationship" name="roof_made">
+                                                                <option></option>
+                                                                @foreach($roof_made as $keh => $value)
+                                                                    <option @if($household_root_rend->roof_made_id  == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group add_r_status">
+                                                            <select class="cal_roof form-control r_status" id="r_status" name="roof_status">
+                                                                <option></option>
+                                                                @foreach($house_status as $keh => $value)
+                                                                    <option @if($household_root_rend->roof_status_id  == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <div class="my_hide form-group input-group" style="width: 300px;">
+                                                    <input id="roof_score" type="text" name="roof_score" class="cal_roof form-control allowNumber"​ readonly>
+                                                    <span class="input-group-addon">ពិន្ទុ</span>
+                                                </div>
+                                                </td>
+                                                </tr>
+                                            </table>
+                                            <script>
+                                                $(".roof_relationship").select2({allowClear:true, placeholder: "ដំបូល"});
+                                                $(".r_status").select2({allowClear:true, placeholder: "ស្ថានភាព"});
+                                            </script>
+                                        @endif
                                 </div>
                                 <div class="col-sm-6" id="home-ke">
-                                    @if($gFamily->household_family_id == 1 || $gFamily->household_family_id == 3)
+                                    @if($gFamily->household_family_id == 1)
                                         <h4>គ.៦ ​ជញ្ជាំង</h4>
                                         <table width="100%" class="table table-bordered table-striped">
                                             <thead><tr>
@@ -1217,7 +1383,7 @@
                                                     <div class="form-group add_wall_relationship">
                                                         <select class="cal_wall form-control wall_relationship" id="wall_relationship" name="walls_made">
                                                             <option></option>
-                                                            @foreach($wall_made as $keh => $value)<option @if($household_root->walls_made_id  == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach
+                                                            @foreach($wall_made as $keh => $value)<option @if($household_root_yourself->walls_made_id  == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach
                                                             </select>
                                                         </div>
                                                     </td>
@@ -1225,7 +1391,7 @@
                                                     <div class="form-group add_h_status">
                                                         <select class="cal_wall form-control h_status" id="h_status" name="walls_status">
                                                             <option></option>
-                                                            @foreach($house_status as $keh => $value)<option @if($household_root->walls_status_id  == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach
+                                                            @foreach($house_status as $keh => $value)<option @if($household_root_yourself->walls_status_id  == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach
                                                             </select>
                                                         </div>
                                                     </td>
@@ -1245,16 +1411,56 @@
                                             $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
                                         </script>
                                     @endif
+                                        @if($gFamily->household_family_id == 3)
+                                            <h4>គ.៦ ​ជញ្ជាំង</h4>3
+                                            <table width="100%" class="table table-bordered table-striped">
+                                                <thead><tr>
+                                                    <th>​ជញ្ជាំងធ្វើអំពី <spand class="text-danger">*</spand></th>
+                                                    <th>និង​ស្ថានភាព <spand class="text-danger">*</spand></th>
+                                                </tr></thead>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-group add_wall_relationship">
+                                                            <select class="cal_wall form-control wall_relationship" id="wall_relationship" name="walls_made">
+                                                                <option></option>
+                                                                @foreach($wall_made as $keh => $value)<option @if($household_root_rend->walls_made_id  == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group add_h_status">
+                                                            <select class="cal_wall form-control h_status" id="h_status" name="walls_status">
+                                                                <option></option>
+                                                                @foreach($house_status as $keh => $value)<option @if($household_root_rend->walls_status_id  == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr class="my_hide">
+                                                    <td>3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ</td>
+                                                    <td>
+                                                        <div class="form-group input-group" style="width: 300px;">
+                                                            <input id="wall_score" type="text" name="wall_score" class="cal_wall form-control allowNumber"​ readonly>
+                                                            <span class="input-group-addon">ពិន្ទុ</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <script>
+                                                $(".wall_relationship").select2({ allowClear:true, placeholder: "ជញ្ជាំង"});
+                                                $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
+                                            </script>
+                                        @endif
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-12" id="general-status">
-                            @if($gFamily->household_family_id == 1 || $gFamily->household_family_id == 3)
+                            @if($gFamily->household_family_id == 1)
                             <h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>
                                 <div class="add_condition_house"><ul class="li-none">
                                         @foreach($condition_house as $key => $c)
                                         <li>
-                                            <label><input @if($household_root->condition_house_id  == $c->id) checked @endif style="margin-right:10px;" class="condition_house" type="radio" name="condition_house" ​ value="{{$c->id}}" > {{$c->name_kh}}</label>
+                                            <label><input @if($household_root_yourself->condition_house_id  == $c->id) checked @endif style="margin-right:10px;" class="condition_house" type="radio" name="condition_house" ​ value="{{$c->id}}" > {{$c->name_kh}}</label>
                                             </li>
                                         @endforeach
                                         </ul>
@@ -1264,6 +1470,22 @@
                                     <span class="input-group-addon">ពិន្ទុ</span>
                                 </div>
                             @endif
+
+                                @if($gFamily->household_family_id == 3) 3
+                                    <h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>
+                                    <div class="add_condition_house"><ul class="li-none">
+                                            @foreach($condition_house as $key => $c)
+                                                <li>
+                                                    <label><input @if($household_root_rend->condition_house_id  == $c->id) checked @endif style="margin-right:10px;" class="condition_house" type="radio" name="condition_house" ​ value="{{$c->id}}" > {{$c->name_kh}}</label>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    <div class="my_hide form-group input-group" style="width: 300px;">
+                                        <input id="house_score" type="text" name="house_score" class="house_score form-control allowNumber"​ readonly>
+                                        <span class="input-group-addon">ពិន្ទុ</span>
+                                    </div>
+                                @endif
 
                         </div>
 

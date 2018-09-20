@@ -646,7 +646,7 @@
                                                var totalPople = $('.new_rows tr.myrow').length+1;
                                                $('#total_people').val(totalPople);
 
-                                               if(row >= 10){
+                                               if(row >= 20){
                                                    // $('#add_rows').hide();
                                                    alert('ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់មិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
                                                    return false;
@@ -1117,6 +1117,7 @@
                                                         $('#r_score').val(0);
                                                     }
                                                 });
+                                         AllowNumber();
                                      }else if(houshold == 1 || houshold == 3){
 
                                          var household_area = '<div class="col-sm-12">' +
@@ -1209,6 +1210,7 @@
                                              '</div>' +
                                              '<div class="col-sm-12"><hr></div>';
                                         $('#household_area').append(household_area);
+
                                         AllowFlot();
                                          //family
                                          $('.ground_floor').change(function(){
@@ -2339,7 +2341,7 @@
                                 </ul>
                                 <P class="my_hide" >8. ជំងឺ,របួសនិងពិការភាព</P>
                                 <div class="my_hide form-group input-group" style="width: 300px;">
-                                    <input id="score_health" name="disease_score" type="text" required="required" class="cal_health form-control" readonly="readonly"/>
+                                    <input id="score_health" name="disease_score" type="text" class="cal_health form-control" readonly="readonly"/>
                                     <span class="input-group-addon">ពិន្ទុ</span>
                                 </div>
                             <script>

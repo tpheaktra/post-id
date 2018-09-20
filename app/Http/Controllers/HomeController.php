@@ -689,7 +689,7 @@ class HomeController extends Controller
                 ->first();
 
 
-        // echo json_encode($household_root);exit();
+        //echo json_encode($household_root_rend);exit();
         if($household_root == null){
             $homePreparLink = '';
         }else{
