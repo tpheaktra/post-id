@@ -674,12 +674,30 @@ class HomeController extends Controller
         $ginfo             = GeneralInformationModel::with('district','commune','village')->findOrFail($id);
         $memberFamily      = MemberFamilyModel::with('generalInfo')->where('g_information_id',$id)->get();
         $gFamily           = GeneralSituationFamilyModel::where('g_information_id',$id)->first();
-        $household_root    = HouseHoldRootLinkModel::where('household_family_id',$gFamily->household_family_id)->where('g_information_id',$id)->first();
+
+        $household_root    = HouseHoldRootLinkModel::where('household_family_id',$gFamily->household_family_id)
+                            ->where('g_information_id',$id)
+                            ->first();
+
+        $household_root_yourself = HouseHoldRootLinkModel::where('household_family_id', 1)
+            ->where('g_information_id', $id)
+            ->first();
+
+
+            $household_root_rend = HouseHoldRootLinkModel::where('household_family_id', 3)
+                ->where('g_information_id', $id)
+                ->first();
+
+
+        // echo json_encode($household_root);exit();
         if($household_root == null){
             $homePreparLink = '';
         }else{
             $homePreparLink = HomePreparLinkModel::where('home_prepar_id',$household_root->home_prepare_id)->where('g_information_id',$id)->first();
         }
+
+        //$homePreparLink = HomePreparLinkModel::where('home_prepar_id',$household_root->home_prepare_id)->where('g_information_id',$id)->first();
+       // echo json_encode($household_root); exit();
         $rendPrice = HouseholdRentPriceModel::where('g_information_id',$id)->where('household_family_id',$gFamily->household_family_id)->first();
         $institutions = HouseHoldFamilyLinkModel::where('g_information_id',$id)->where('household_family_id',$gFamily->household_family_id)->first();
         $toilet    = TypeToiletLinkModel::where('toilet_id',$gFamily->toilet_id)->where('g_information_id',$id)->first();
@@ -710,7 +728,7 @@ class HomeController extends Controller
             'landAgricultural','loan','family','roof_made','wall_made','house_status',
             'question_electric','typemeterial','typeanimals',
             'typetransport','question_totel','health','ginfo','memberFamily',
-            'gFamily','household_root','homePreparLink','rendPrice','institutions','toilet',
+            'gFamily','household_root','household_root_rend','household_root_yourself','homePreparLink','rendPrice','institutions','toilet',
             'material','yesElectrict','noElectrict','vehicle','income','landAg',
             'otherIncome','healthLink','debt_link'));
     }
