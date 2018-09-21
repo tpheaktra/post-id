@@ -1115,8 +1115,14 @@
 	                  	<p style="padding: 5px;">
 			                  	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
-	                    				<th style="text-align: center;"><span class="score-num">ពិន្ទុសរុប</span></th>
-	                    				<th style="text-align: center;"><span class="score-num">({{$value->total}})​ ពិន្ទុ</span></th>
+									    @php $total = $value->total @endphp
+							  			@if($total > 85)
+											<th style="text-align: center;"><span class="score-num">ពិន្ទុសរុប</span></th>
+											<th style="text-align: center;"><span class="score-num">(85)​ ពិន្ទុ</span></th>
+										@else
+											<th style="text-align: center;"><span class="score-num">ពិន្ទុសរុប</span></th>
+											<th style="text-align: center;"><span class="score-num">({{$total}})​ ពិន្ទុ</span></th>
+										@endif
 			                  		</tr>
 			                  		<tr style="background: #f9f3f3;">
 	                    				<th style="text-align: center;"><span class="score-num">លទ្ធផល</span></th>
