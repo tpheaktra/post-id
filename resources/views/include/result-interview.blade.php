@@ -28,7 +28,7 @@
                         <a data-hint="មើលពិន្ទុនៃការសំភាស" class="btn btn-xs btn-success hint--left hint--success" target="blank" href="{{route('view.data', Crypt::encrypt($re->id))}}">
                             <i class="fa fa-eye"></i></a>
                     @endpermission
-                    @if(auth::user()->id == $re->user_id)
+                    @if(auth::user()->id == $re->user_id || auth::user()->username == 'supperadmin')
                         @permission('post-id-edit')
                         <a data-hint="ការធ្វើបច្ចប្បន្នភាព"​​ class="btn btn-xs btn-primary hint--left hint--primary" target="blank" href="{{route('editpatient.edit', Crypt::encrypt($re->id))}}">
                             <i class="fa fa-edit"></i></a>
@@ -38,7 +38,7 @@
                     <a data-hint="បោះពុម្ព" class="btn btn-xs btn-info hint--left hint--info" href="{{route('print.data', Crypt::encrypt($re->id))}}"  target="blank">
                         <i class="fa fa-print"></i></a>
                     @endpermission
-                    @if(auth::user()->id == $re->user_id)
+                    @if(auth::user()->id == $re->user_id || auth::user()->username == 'supperadmin')
                     @permission('post-id-delete')
                     <a data-hint="លុបការសំភាស" class="btn btn-xs btn-danger hint--left hint--error" href="{{route('deletepatient.delete', Crypt::encrypt($re->id))}}">
                         <i class="fa fa-trash-o"></i></a>

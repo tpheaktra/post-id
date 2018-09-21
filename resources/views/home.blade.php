@@ -1702,7 +1702,8 @@
                                                 '<td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber" id="cost_score" required="required" type="text" name="use_energy_elect_score" readonly="readonly"><span class="input-group-addon">ពិន្ទុ</span></div></td>'+
                                             '</tr>'+
                                             '</table>');
-                                        $('.cal_t').keyup(function(){
+                                        AllowNumber();
+                                        $('.cal_t').change(function(){
                                             var cost    = $('#costs_per_month').val();
                                             var number  = $('#number_in_month').val();
                                             if( (cost < 15000) || (number < 20) ){
@@ -1713,18 +1714,16 @@
                                                 $('#cost_score').val(0);
                                             }
                                         });
-                                        $('.myelectric').keyup(function(){
-                                            if ($(this).val() > 90000000){
-                                                alert("No numbers above 90000000");
-                                                $(this).val('90000000');
-                                            }
+
+                                        $('.myelectric').change(function(){
                                             var costs_in_hour = 0;
                                             var number_in_month = 0;
                                             costs_in_hour = parseInt($('#costs_in_hour').val());
-                                            number_in_month = parseFloat($('#number_in_month').val());
-                                            $('#costs_per_month').val((costs_in_hour * number_in_month ? costs_in_hour * number_in_month : 0).toFixed(0));
-                                            });
-                                        AllowNumber();
+                                            number_in_month = parseInt($('#number_in_month').val());
+                                            var re = costs_in_hour * number_in_month ? costs_in_hour * number_in_month : 0;
+                                            $('#costs_per_month').val(re);
+                                        });
+
                                     }else if(electric == 2){
                                         $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>'+'<div class="my_hide form-group input-group" style="width: 300px;">'+
                                                '<input id="score_power" type="text" name="no_energy_elect_score" class="score_power form-control allowNumber"​ readonly>'+

@@ -670,26 +670,28 @@ class HomeController extends Controller
         $question_electric = Helpers::getQuestionElectric();
         $question_totel    = Helpers::getQuestionTolet();
         $health            = Helpers::getHealth();
-
+        //step 1 general information
         $ginfo             = GeneralInformationModel::with('district','commune','village')->findOrFail($id);
+        //step 2 member family
         $memberFamily      = MemberFamilyModel::with('generalInfo')->where('g_information_id',$id)->get();
+        //step 3 general situation of the family
         $gFamily           = GeneralSituationFamilyModel::where('g_information_id',$id)->first();
-
+        //household of the family
         $household_root    = HouseHoldRootLinkModel::where('household_family_id',$gFamily->household_family_id)
                             ->where('g_information_id',$id)
                             ->first();
-
+        //personal home
         $household_root_yourself = HouseHoldRootLinkModel::where('household_family_id', 1)
             ->where('g_information_id', $id)
             ->first();
 
-
-            $household_root_rend = HouseHoldRootLinkModel::where('household_family_id', 3)
-                ->where('g_information_id', $id)
-                ->first();
-
+        //Stay with them for free
+        $household_root_rend = HouseHoldRootLinkModel::where('household_family_id', 3)
+            ->where('g_information_id', $id)
+            ->first();
 
         //echo json_encode($household_root_rend);exit();
+        //check house building year
         if($household_root == null){
             $homePreparLink = '';
         }else{
@@ -779,7 +781,7 @@ class HomeController extends Controller
                 'education_level.*.required'     => 'The education is required.'
             ]);
 
-        try {
+       // try {
 
             //check od
             $od_code = $request->hospital;
@@ -788,8 +790,7 @@ class HomeController extends Controller
             $check_code= $check[0]->id + 1;
             $interview_code= $query[0]->shortcut.'/'.date('ymd').'/0'.$check_code;
 
-            //step 1
-            // table general_information
+            //step 1 general information
             $data = array(
                 'user_id'            => auth::user()->id,
                 //'od_code'            =>$od_code,
@@ -823,8 +824,7 @@ class HomeController extends Controller
                 'fa_relationship_id'  => $request->fa_relationship,
             );
             $gn_info = GeneralInformationModel::where('id',$id)->update($data);
-            //step2
-            //table member_family
+            //step2 member family
             $member_family=[];
             foreach ($request->nick_name as $key => $val){
                 $member_family[] = [
@@ -842,13 +842,172 @@ class HomeController extends Controller
             }
             MemberFamilyModel::where('g_information_id',$id)->delete();
             MemberFamilyModel::insert($member_family);
+            //step 3 general situation of the family
+            $general_situation_family = array(
+                'g_information_id'     => $id,
+                'household_family_id'  => $request->household_family_id,
+                'total_people'         => $request->total_people,
+                'toilet_id'            => $request->tolet,
+                'q_electric_id'        => $request->q_electric,
+                'transport_id'         => $request->go_hospital,
+                'land_agricultural_id' => $request->land,
+                'debt_family_id'       => $request->family_debt_id,
+                'command'              => $request->command
+            );
+            GeneralSituationFamilyModel::where('g_information_id',$id)->update($general_situation_family);
+            //step 3
+            if($request->household_family_id == 1 || $request->household_family_id == 3){
+                $getHomePre = DB::table('home_prepar_link')
+                    ->where('g_information_id',$id)
+                    ->where('home_prepar_id',$request->home_prepare)
+                    ->get();
+                if(count($getHomePre) > 0){
+                    if($request->home_prepare == 2){
+                        $homePrepare = array(
+                            'g_information_id'  => $id,
+                            'home_prepar_id'    => $request->home_prepare,
+                            'home_year'         => $request->home_year
+                        );
+                        DB::table('home_prepar_link')
+                            ->where('g_information_id',$id)
+                            ->where('home_prepar_id',$request->home_prepare)
+                            ->update($homePrepare);
+                    }
+                }else{
+                    if($request->home_prepare == 2){
+                        $homePrepare = array(
+                            'g_information_id'  => $id,
+                            'home_prepar_id'    => $request->home_prepare,
+                            'home_year'         => $request->home_year
+                        );
+                        DB::table('home_prepar_link')->insert($homePrepare);
+                    }
+                }
+
+
+                $getHouse = HouseHoldRootLinkModel::where('g_information_id',$id)
+                    ->where('household_family_id',$request->household_family_id)
+                    ->first();
+                if(count($getHouse) > 0){
+                    $personal_home = array(
+                        'household_family_id'  => $request->household_family_id,
+                        'g_information_id'     => $id,
+                        'ground_floor_length'  => $request->ground_floor_length,
+                        'ground_floor_width'   => $request->ground_floor_width,
+                        'ground_floor_area'    => $request->ground_floor_area,
+                        'upper_floor_length'   => $request->upper_floor_length,
+                        'upper_floor_width'    => $request->upper_floor_width,
+                        'upper_floor_area'     => $request->upper_floor_area,
+                        'further_floor_length' => $request->further_floor_length,
+                        'further_floor_width'  => $request->further_floor_width,
+                        'further_floor_area'   => $request->further_floor_area,
+                        'total_area'           => $request->total_area,
+                        'h_build_year'         => $request->h_build_year,
+                        'home_prepare_id'      => $request->home_prepare,
+                        'roof_made_id'         => $request->roof_made,
+                        'roof_status_id'       => $request->roof_status,
+                        'walls_made_id'        => $request->walls_made,
+                        'walls_status_id'      => $request->walls_status,
+                        'condition_house_id'   => $request->condition_house
+                    );
+                    HouseHoldRootLinkModel::where('g_information_id',$id)
+                        ->where('household_family_id',$request->household_family_id)
+                        ->update($personal_home);
+                }else{
+                    $personal_home = array(
+                        'household_family_id'  => $request->household_family_id,
+                        'g_information_id'     => $id,
+                        'ground_floor_length'  => $request->ground_floor_length,
+                        'ground_floor_width'   => $request->ground_floor_width,
+                        'ground_floor_area'    => $request->ground_floor_area,
+                        'upper_floor_length'   => $request->upper_floor_length,
+                        'upper_floor_width'    => $request->upper_floor_width,
+                        'upper_floor_area'     => $request->upper_floor_area,
+                        'further_floor_length' => $request->further_floor_length,
+                        'further_floor_width'  => $request->further_floor_width,
+                        'further_floor_area'   => $request->further_floor_area,
+                        'total_area'           => $request->total_area,
+                        'h_build_year'         => $request->h_build_year,
+                        'home_prepare_id'      => $request->home_prepare,
+                        'roof_made_id'         => $request->roof_made,
+                        'roof_status_id'       => $request->roof_status,
+                        'walls_made_id'        => $request->walls_made,
+                        'walls_status_id'      => $request->walls_status,
+                        'condition_house_id'   => $request->condition_house
+                    );
+                    HouseHoldRootLinkModel::create($personal_home);
+                }
+
+
+            }elseif($request->household_family_id == 2){
+                $getHouseRend = HouseholdRentPriceModel::where('g_information_id',$id)
+                    ->where('household_family_id',$request->household_family_id)
+                    ->first();
+                if(count($getHouseRend) > 0) {
+                    $houseForRend = array(
+                        'household_family_id' => $request->household_family_id,
+                        'g_information_id' => $id,
+                        'house_rent_price' => $request->rent_fee
+                    );
+                    HouseholdRentPriceModel::where('g_information_id', $id)
+                        ->where('household_family_id', $request->household_family_id)
+                        ->update($houseForRend);
+                }else{
+                    $houseForRend = array(
+                        'household_family_id' => $request->household_family_id,
+                        'g_information_id' => $id,
+                        'house_rent_price' => $request->rent_fee
+                    );
+                    HouseholdRentPriceModel::create($houseForRend);
+                }
+
+            }elseif($request->household_family_id == 5){
+                $stay_instatution = array(
+                    'household_family_id' => $request->household_family_id,
+                    'g_information_id'    => $id,
+                    'institutions_name'   => $request->institutions_name,
+                    'instatutions_phone'  => $request->instatutions_phone
+                );
+                HouseHoldFamilyLinkModel::where('g_information_id',$id)
+                    ->where('household_family_id',$request->household_family_id)
+                    ->update($stay_instatution);
+            }
+
+            //step3 toilet
+            $getToilet = TypeToiletLinkModel::where('g_information_id',$id)
+                ->where('toilet_id',$request->tolet)
+                ->first();
+            if(count($getToilet) > 0){
+                if($request->tolet == 1){
+                    //table type_toilet_link
+                    $qt = array(
+                        'toilet_id'        =>$request->tolet,
+                        'g_information_id' =>$id,
+                        'toilet_1'         =>$request->tolet_1,
+                        'toilet_2'         =>$request->tolet_2
+                    );
+                    TypeToiletLinkModel::where('g_information_id',$id)
+                        ->where('toilet_id',$request->tolet)
+                        ->update($qt);
+                }
+            }else{
+                $qt = array(
+                    'toilet_id'        =>$request->tolet,
+                    'g_information_id' =>$id,
+                    'toilet_1'         =>$request->tolet_1,
+                    'toilet_2'         =>$request->tolet_2
+                );
+                TypeToiletLinkModel::create($qt);
+            }
+
+
             //echo json_encode($member_family);
-            DB::commit();
-            return Redirect::back()->with('success','ការសម្ភាសទិន្នន័យត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
-        }
+//            DB::commit();
+//            return Redirect::back()->with('success','ការសម្ភាសទិន្នន័យត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ');
+//        } catch (\Exception $e) {
+//            DB::rollBack();
+//            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
+//        }
     }
 
 

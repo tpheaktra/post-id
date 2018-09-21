@@ -272,7 +272,7 @@
 
 
 
-                                        var homeyourselt = '<h4>គ.៥ ដំបូល</h4>1' +
+                                        var homeyourselt = '<h4>គ.៥ ដំបូល</h4>' +
                                             '<table width="100%" class="table table-bordered table-striped">' +
                                             '<thead><tr>' +
                                             '<th>ដំបូលធ្វើអំពី <spand class="text-danger">*</spand></th>' +
@@ -308,7 +308,7 @@
                                             // '</tr>'
                                             '</table>';
 
-                                        var building_year = '<div class="col-sm-6">1' +
+                                        var building_year = '<div class="col-sm-6">' +
                                             '<table class="table-home table table-bordered table-striped">' +
                                             '<thead>' +
                                             '<tr>' +
@@ -335,9 +335,9 @@
                                                 ' <label id="homeyear">' +
                                                 '@if($household_root_yourself !=null && $household_root_yourself->home_prepare_id == 2)' +
                                                     '<select name="home_year" style="width: 180px;" id="years"><option></option>' +
-                                                        '<?php $currentYear = date('Y'); ?>'+
-                                                        '@foreach (range(1950, $currentYear) as $value)' +
-                                                            '<option @if($homePreparLink->home_year == $value) selected @endif value="{{$value}}">{{$value}}</option>' +
+                                                        '<?php $currentYear = date('Y'); $editYear = $household_root->h_build_year;?>'+
+                                                        '@foreach (range($editYear, $currentYear) as $value)' +
+                                                            '<option @if($homePreparLink->home_year ?? '' == $value) selected @endif value="{{$value}}">{{$value}}</option>' +
                                                         '@endforeach' +
                                                     '</select>' +
                                                 '@endif'+
@@ -410,7 +410,7 @@
                                         });
 
 
-                                        var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>1' +
+                                        var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>' +
                                             '<table width="100%" class="table table-bordered table-striped">' +
                                             '<thead><tr>' +
                                             '<th>​ជញ្ជាំងធ្វើអំពី <spand class="text-danger">*</spand></th>' +
@@ -457,7 +457,7 @@
                                         });
                                         $(".wall_relationship").select2({ allowClear:true, placeholder: "ជញ្ជាំង"});
                                         $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
-                                        var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>1' +
+                                        var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>' +
                                             '<div class="add_condition_house"><ul class="li-none">'+
                                             '@foreach($condition_house as $key => $c)' +
                                             '<li>' +
@@ -623,7 +623,7 @@
                                             }
                                         });
 
-                                        var homeyourselt = '<h4>គ.៥ ដំបូល</h4>3' +
+                                        var homeyourselt = '<h4>គ.៥ ដំបូល</h4>' +
                                             '<table width="100%" class="table table-bordered table-striped">' +
                                             '<thead><tr>' +
                                             '<th>ដំបូលធ្វើអំពី <spand class="text-danger">*</spand></th>' +
@@ -659,7 +659,7 @@
                                             // '</tr>'
                                             '</table>';
 
-                                        var building_year = '<div class="col-sm-6">3' +
+                                        var building_year = '<div class="col-sm-6">' +
                                             '<table class="table-home table table-bordered table-striped">' +
                                             '<thead>' +
                                             '<tr>' +
@@ -688,7 +688,7 @@
                                             '<select name="home_year" style="width: 180px;" id="years"><option></option>' +
                                             '<?php $currentYear = date('Y'); ?>'+
                                             '@foreach (range(1950, $currentYear) as $value)' +
-                                            '<option @if($homePreparLink->home_year == $value) selected @endif value="{{$value}}">{{$value}}</option>' +
+                                            '<option @if($homePreparLink->home_year ?? '' == $value) selected @endif value="{{$value}}">{{$value}}</option>' +
                                             '@endforeach' +
                                             '</select>' +
                                             '@endif'+
@@ -761,7 +761,7 @@
                                         });
 
 
-                                        var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>3' +
+                                        var homeke = '<h4>គ.៦ ​ជញ្ជាំង</h4>' +
                                             '<table width="100%" class="table table-bordered table-striped">' +
                                             '<thead><tr>' +
                                             '<th>​ជញ្ជាំងធ្វើអំពី <spand class="text-danger">*</spand></th>' +
@@ -808,7 +808,7 @@
                                         });
                                         $(".wall_relationship").select2({ allowClear:true, placeholder: "ជញ្ជាំង"});
                                         $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
-                                        var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>3' +
+                                        var generalStatus = '<h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>' +
                                             '<div class="add_condition_house"><ul class="li-none">'+
                                             '@foreach($condition_house as $key => $c)' +
                                             '<li>' +
@@ -834,9 +834,7 @@
                                 });
                             </script>
                         </div>
-                        <script type="text/javascript">
 
-                        </script>
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
                             <h4>  គ.២ តើ​មាន​មនុស្សសរុប​ចំនួន​ប៉ុន្មាន​នាក់ រស់​នៅក្នុងផ្ទះដែលអ្នកស្នាក់នៅ
@@ -1052,12 +1050,37 @@
                                 <ul class="li-none">
                                     @foreach($question_totel as $key =>$val)
                                         <li>
-                                            <label><input style="margin-right:10px;" class="tolet" type="radio" name="tolet"  value="{{$val->id}}"> {{$val->name_kh}} </label>
+                                            <label><input @if($gFamily->toilet_id == $val->id) checked @endif style="margin-right:10px;" class="tolet" type="radio" name="tolet"  value="{{$val->id}}"> {{$val->name_kh}} </label>
                                         </li>
                                     @endforeach
                                 </ul>
                             </div>
-                            <div id="tolet"></div>
+                            <div id="tolet">
+                                @if($gFamily->toilet_id==1)
+                                    <h5>- បើមាន តើជាបង្គន់ចាក់ទឹក ឬ បង្គន់ស្ងួត?</h5>
+                                    <div class="add_toilet_1">
+                                        <ul class="li-none">
+                                            <li>
+                                                <label><input @if($toilet->toilet_1 == 'បង្គន់ចាក់ទឹក') checked @endif style="margin-right:10px;" type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>
+                                            </li>
+                                            <li>
+                                                <label><input @if($toilet->toilet_1 == 'បង្គន់ស្ងួត') checked @endif style="margin-right:10px;" type="radio" name="tolet_1" value="បង្គន់ស្ងួត">  បង្គន់ស្ងួត</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h5>- ជាបង្គន់​របស់នរណា?</h5>
+                                    <div class="add_toilet_2">
+                                        <ul class="li-none">
+                                            <li>
+                                                <label><input @if($toilet->toilet_2  == 'ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់') checked @endif style="margin-right:10px;" type="radio" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>
+                                            </li>
+                                            <li>
+                                                <label><input @if($toilet->toilet_2 == 'ជាបង្គន់រួមជាមួយគ្រួសារដទៃ') checked @endif style="margin-right:10px;" type="radio" name="tolet_2" value="ជាបង្គន់រួមជាមួយគ្រួសារដទៃ"> ជាបង្គន់រួមជាមួយគ្រួសារដទៃ</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endif
+                            </div>
                             <label class="my_hide">បង្គន់អនាម័យ </label>
                             <div class="my_hide form-group input-group add_total_people" style="width: 300px;">
                                 <input readonly="readonly" id="toilet_score" type="text" name="toilet_score" class="form-control allowNumber"​>
@@ -1132,8 +1155,8 @@
                                                                     <label id="homeyear">
                                                                         @if($household_root->home_prepare_id==2)
                                                                             <select name="home_year" style="width: 180px;" id="years"><option></option>
-                                                                                <?php $currentYear = date('Y'); ?>
-                                                                                @foreach (range(1950, $currentYear) as $value)
+                                                                                <?php $currentYear = date('Y'); $editYear = $household_root->h_build_year;?>
+                                                                                @foreach (range($editYear, $currentYear) as $value)
                                                                                     <option @if($homePreparLink->home_year == $value) selected @endif value="{{$value}}">{{$value}}</option>
                                                                                 @endforeach
                                                                             </select>
@@ -1191,7 +1214,7 @@
                                     </script>
                                 @endif
                                     @if($gFamily->household_family_id == 3)
-                                        <div class="col-sm-6">3
+                                        <div class="col-sm-6">
                                             <table class="table-home table table-bordered table-striped">
                                                 <thead>
                                                 <tr>
@@ -1218,8 +1241,8 @@
                                                                             <label id="homeyear">
                                                                                 @if($household_root_rend->home_prepare_id==2)
                                                                                     <select name="home_year" style="width: 180px;" id="years"><option></option>
-                                                                                        <?php $currentYear = date('Y'); ?>
-                                                                                        @foreach (range(1950, $currentYear) as $value)
+                                                                                        <?php $currentYear = date('Y'); $editYear = $household_root->h_build_year;?>
+                                                                                        @foreach (range($editYear, $currentYear) as $value)
                                                                                             <option @if($homePreparLink->home_year == $value) selected @endif value="{{$value}}">{{$value}}</option>
                                                                                         @endforeach
                                                                                     </select>
@@ -1328,7 +1351,7 @@
                                         </script>
                                     @endif
                                         @if($gFamily->household_family_id == 3)
-                                            <h4>គ.៥ ដំបូល</h4>3
+                                            <h4>គ.៥ ដំបូល</h4>
                                             <table width="100%" class="table table-bordered table-striped">
                                                 <thead><tr>
                                                     <th>ដំបូលធ្វើអំពី <spand class="text-danger">*</spand></th>
@@ -1370,6 +1393,7 @@
                                             </script>
                                         @endif
                                 </div>
+
                                 <div class="col-sm-6" id="home-ke">
                                     @if($gFamily->household_family_id == 1)
                                         <h4>គ.៦ ​ជញ្ជាំង</h4>
@@ -1412,7 +1436,7 @@
                                         </script>
                                     @endif
                                         @if($gFamily->household_family_id == 3)
-                                            <h4>គ.៦ ​ជញ្ជាំង</h4>3
+                                            <h4>គ.៦ ​ជញ្ជាំង</h4>
                                             <table width="100%" class="table table-bordered table-striped">
                                                 <thead><tr>
                                                     <th>​ជញ្ជាំងធ្វើអំពី <spand class="text-danger">*</spand></th>
@@ -1471,7 +1495,7 @@
                                 </div>
                             @endif
 
-                                @if($gFamily->household_family_id == 3) 3
+                                @if($gFamily->household_family_id == 3)
                                     <h4>គ.៧) ស្ថានភាពទូទៅផ្ទះសម្បែង</h4>
                                     <div class="add_condition_house"><ul class="li-none">
                                             @foreach($condition_house as $key => $c)
@@ -1501,7 +1525,7 @@
                                             </td>
                                         <td width="50%">
                                             <div class="form-group input-group">
-                                                <input value="{{$rendPrice->house_rent_price}}" autocomplete="off" id="price" type="text" required="required" class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">រៀល</span>
+                                                <input value="{{$rendPrice->house_rent_price ?? ''}}" autocomplete="off" id="price" type="text" required="required" class="cal form-control allowNumber" name="rent_fee"/><span class="input-group-addon">រៀល</span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -1521,86 +1545,7 @@
                         </div>
 
                         <div>
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <h4>គ.៩) ទ្រព្យ​សម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិច​របស់​គ្រួសារ</h4>
-                                </div>
-                                <table class="tb_grid table table-bordered table-striped" width="100%">
-                                    <thead>
-                                    <tr>
-                                        <th rowspan="2">ល.រ</th>
-                                        <th rowspan="2">ប្រភេទសម្ភារប្រើបា្រស់ <spand class="text-danger">*</spand></th>
-                                        <th colspan="2">តម្លៃទីផ្សារ ប្រសិន​លក់ ​</th>
-                                        <th rowspan="2">តម្លៃ​សរុប (រៀល)</th>
-                                        <th rowspan="2">សកម្មភាព</th>
-                                    </tr>
-                                    <tr>
-                                        <th>បរិមាណ <spand class="text-danger">*</spand></th>
-                                        <th>តម្លៃ <spand class="text-danger">*</spand></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="new_rows_1">
-                                    <tr class="myrow_1">
-                                        <td>1</td>
-                                        <td>
-                                            <div class="form-group add_type_meterial">
-                                                <select class="form-control type_meterial" id="type_meterial" name="type_meterial[0]">
-                                                    <option></option>
-                                                    @foreach($typemeterial as $keh => $value)
-                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input id="number_meterial" name="number_meterial[0]" type="text" class="cal_el form-control allowNumber meterial" required="required" />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input id="market_value_meterial" name="market_value_meterial[0]" type="text"  class="cal_el form-control allowNumber meterial" required="required" />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group input-group">
-                                                <input id="total_rail_meterial" name="total_rail_meterial[0]" type="text" required="required" class="cal_el form-control totalallowNumber_meterial"  readonly="readonly"/>
-                                                <span class="input-group-addon">រៀល</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a  class="btn btn-primary btn-sm" id="add_rows_1">
-                                                <span class="glyphicon glyphicon-plus"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-
-                                    <tfoot>
-                                    <tr>
-                                        <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
-                                        <td>
-                                            <div class="form-group input-group">
-                                                <input id="total_meterial_costs" name="total_meterial_costs" type="text" required="required" class="cal_el form-control" readonly="readonly"/>
-                                                <span class="input-group-addon">រៀល</span>
-                                            </div>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                    <tr class="my_hide">
-                                        <td colspan="4"><b style="float:right">4. ទ្រព្យសម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិចរបស់គ្រួសារ</b>
-                                        </td>
-                                        <td>
-                                            <div class="form-group input-group">
-                                                <input id="el_score" name="price_electronic_score" type="text" required="required" class="cal_el form-control" readonly="readonly"/>
-                                                <span class="input-group-addon">ពិន្ទុ</span>
-                                            </div>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
+                            @include('include.material-household-electronics')
                         </div>
 
 
@@ -1614,10 +1559,53 @@
                                 <ul class="li-none">
                                     @foreach($question_electric as $key => $qe)
                                         <li class="add_q_electric">
-                                            <label><input style="margin-right:10px;"  class="electric" value="{{$qe->id}}" type="radio" name="q_electric" ??> {{$qe->name_kh}}</label>
+                                            <label><input @if($gFamily->q_electric_id == $qe->id) checked @endif style="margin-right:10px;"  class="electric" value="{{$qe->id}}" type="radio" name="q_electric"> {{$qe->name_kh}}</label>
                                         </li>
-                                        @if($qe->id == 1) <li id="electric_yes"></li> @endif
-                                        @if($qe->id == 2) <li id="electric_no"></li> @endif
+                                        @if($qe->id == 1)
+
+                                            <li id="electric_yes"> @if($gFamily->q_electric_id ==1)
+                                                <p>ប្រសិនបានតបណ្តាញអគ្គិសនី </p>
+                                                <table class="tb_grid table table-bordered table-striped ">
+                                                    <tr>
+                                                        <th>តម្លៃក្នុងមួយគីឡូវ៉ាត់/ម៉ោង <spand class="text-danger">*</spand></th>
+                                                        <th>ចំនួនគីឡូវ៉ាត់ដែលប្រើជាមធ្យមក្នុងមួយខែ <spand class="text-danger">*</spand></th>
+                                                        <th>ចំណាយ​ជា​មធ្យមក្នុងមួយខែ</th>
+                                                        </tr>
+                                                    <tr>
+                                                        <td><div class="input-group form-group"><input value="{{$yesElectrict->costs_in_hour ?? ''}}" autocomplete="off" class="cal_t form-control allowNumber myelectric" id="costs_in_hour" required="required" type="text" name="costs_in_hour" required="required"><span class="input-group-addon">រៀល</span></div></td>
+                                                        <td><div class="input-group form-group"><input value="{{$yesElectrict->number_in_month ?? ''}}" autocomplete="off" class="cal_t form-control allowNumber myelectric" id="number_in_month" required="required" type="text" name="number_in_month" required="required"><span class="input-group-addon">គីឡូវ៉ាត់</span></div></td>
+                                                        <td><div class="input-group form-group"><input value="{{$yesElectrict->costs_per_month ?? ''}}" autocomplete="off" class="cal_t form-control allowNumber" id="costs_per_month" required="required" type="text" name="costs_per_month" readonly="readonly"><span class="input-group-addon">រៀល</span></div></td>
+                                                        </tr>
+                                                    <tr class="my_hide">
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber" id="cost_score" required="required" type="text" name="use_energy_elect_score" readonly="readonly"><span class="input-group-addon">ពិន្ទុ</span></div></td>
+                                                    </tr>
+                                                </table>@endif
+                                            </li>
+
+                                        @endif
+                                        @if($qe->id == 2)
+                                            <li id="electric_no">
+                                                @if($gFamily->q_electric_id ==2)
+                                                    <p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p>
+                                                    <div class="add_electric_grid">
+                                                        <ul class="li-none">
+                                                            @foreach($electricgrid as $key=>$e)<li>
+                                                                <label>
+                                                                    <input @if($noElectrict->electric_grid_id ?? '' == $e->id) checked @endif style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}
+                                                                </label>
+                                                            </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                    <div class="my_hide form-group input-group" style="width: 300px;">
+                                                        <input id="score_power" type="text" name="no_energy_elect_score" class="score_power form-control allowNumber"​ readonly>
+                                                        <span class="input-group-addon">ពិន្ទុ</span>
+                                                    </div>
+                                                @endif
+                                            </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </div>
@@ -1647,6 +1635,7 @@
                                             '<td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber" id="cost_score" required="required" type="text" name="use_energy_elect_score" readonly="readonly"><span class="input-group-addon">ពិន្ទុ</span></div></td>'+
                                             '</tr>'+
                                             '</table>');
+                                        AllowNumber();
                                         $('.cal_t').keyup(function(){
                                             var cost    = $('#costs_per_month').val();
                                             var number  = $('#number_in_month').val();
@@ -1658,18 +1647,15 @@
                                                 $('#cost_score').val(0);
                                             }
                                         });
-                                        $('.myelectric').keyup(function(){
-                                            if ($(this).val() > 90000000){
-                                                alert("No numbers above 90000000");
-                                                $(this).val('90000000');
-                                            }
+                                        $('.myelectric').change(function(){
                                             var costs_in_hour = 0;
                                             var number_in_month = 0;
                                             costs_in_hour = parseInt($('#costs_in_hour').val());
-                                            number_in_month = parseFloat($('#number_in_month').val());
-                                            $('#costs_per_month').val((costs_in_hour * number_in_month ? costs_in_hour * number_in_month : 0).toFixed(0));
+                                            number_in_month = parseInt($('#number_in_month').val());
+                                            var re = costs_in_hour * number_in_month ? costs_in_hour * number_in_month : 0;
+                                            $('#costs_per_month').val(re);
                                         });
-                                        AllowNumber();
+
                                     }else if(electric == 2){
                                         $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>'+'<div class="my_hide form-group input-group" style="width: 300px;">'+
                                             '<input id="score_power" type="text" name="no_energy_elect_score" class="score_power form-control allowNumber"​ readonly>'+
