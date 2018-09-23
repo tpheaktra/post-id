@@ -2036,7 +2036,7 @@
                                             <label class="testing"><input style="margin-right:10px;" @if($land_2 != null && $land_2->land_agricultural_id == 2) checked @else no @endif @if($land_3 != null && $land_3->land_agricultural_id == 3) checked @else no @endif id="land_{{$land->id}}"  class="land_{{$land->id}}" type="checkbox" name="land_{{$land->id}}" value="{{$land->id}}" multiple>  {{$land->name_kh}} <spand class="text-danger">*</spand></label>
                                             @if($land->id == 2)
                                                 <div class="col-sm-12" id="show-land-other">
-                                                    @if($land_2->land_agricultural_id == 2)
+                                                    @if($land_2 != null && $land_2->land_agricultural_id == 2)
                                                     <div class="col-sm-12">
                                                         <table width="100%" class="table table-bordered table-striped tbl-land">
                                                             <tr>
@@ -2095,7 +2095,7 @@
                                                 </div>
                                             @else
                                                 <div class="col-sm-12" id="show-land-personal">
-                                                    @if($land_3->land_agricultural_id == 3)
+                                                    @if($land_3 != null && $land_3->land_agricultural_id == 3)
                                                         <div class="col-sm-12">
                                                             <table width="100%" class="table table-bordered table-striped tbl-land">
                                                                 <tr>
@@ -2367,7 +2367,7 @@
                         </div>
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
-                            @include('include.other-income-agriculture');
+                            @include('include.edit-other-income-agriculture');
                         </div>
 
 
@@ -3059,35 +3059,35 @@
                     isValid = false;
                 }else{$('.add_income_agricalture_type').removeClass("error");}
 
-                if ($("input[name='income_agricalture_type']:checked").val()==1) {
-                    if($('.unit_in_month').val() == '' ||
-                        $('.average_amount').val() == '' ||
-                        $('#income_occupation').val() == ''){
-                        $('.alert').show();
-                        $('.add_unit_in_month').addClass("has-error");
-                        $('.add_average_amount').addClass("has-error");
-                        $('.add_income_occupation').addClass("has-error");
-                        isValid = false;
-                    }else{
-                        $('.add_unit_in_month').removeClass("has-error");
-                        $('.add_average_amount').removeClass("has-error");
-                        $('.add_income_occupation').removeClass("has-error");
-                    }
-                }else{
-                    if($('.unit_in_month_not').val() == '' ||
-                        $('.average_amount_not').val() == '' ||
-                        $('#income_occupation_not').val() == ''){
-                        $('.alert').show();
-                        $('.add_unit_in_month_not').addClass("has-error");
-                        $('.add_average_amount_not').addClass("has-error");
-                        $('.add_income_occupation_not').addClass("has-error");
-                        isValid = false;
-                    }else{
-                        $('.add_unit_in_month_not').removeClass("has-error");
-                        $('.add_average_amount_not').removeClass("has-error");
-                        $('.add_income_occupation_not').removeClass("has-error");
-                    }
-                }
+//                if ($("input[name='income_agricalture_type']:checked").val()==1) {
+//                    if($('.unit_in_month').val() == '' ||
+//                        $('.average_amount').val() == '' ||
+//                        $('#income_occupation').val() == ''){
+//                        $('.alert').show();
+//                        $('.add_unit_in_month').addClass("has-error");
+//                        $('.add_average_amount').addClass("has-error");
+//                        $('.add_income_occupation').addClass("has-error");
+//                        isValid = false;
+//                    }else{
+//                        $('.add_unit_in_month').removeClass("has-error");
+//                        $('.add_average_amount').removeClass("has-error");
+//                        $('.add_income_occupation').removeClass("has-error");
+//                    }
+//                }else{
+//                    if($('.unit_in_month_not').val() == '' ||
+//                        $('.average_amount_not').val() == '' ||
+//                        $('#income_occupation_not').val() == ''){
+//                        $('.alert').show();
+//                        $('.add_unit_in_month_not').addClass("has-error");
+//                        $('.add_average_amount_not').addClass("has-error");
+//                        $('.add_income_occupation_not').addClass("has-error");
+//                        isValid = false;
+//                    }else{
+//                        $('.add_unit_in_month_not').removeClass("has-error");
+//                        $('.add_average_amount_not').removeClass("has-error");
+//                        $('.add_income_occupation_not').removeClass("has-error");
+//                    }
+//                }
 
 
 

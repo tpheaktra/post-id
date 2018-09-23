@@ -14,6 +14,7 @@ class GeneralSituationFamilyModel extends Model
         'toilet_id',
         'q_electric_id',
         'transport_id',
+        'other_income',
         'land_agricultural_id',
         'debt_family_id',
         'command'

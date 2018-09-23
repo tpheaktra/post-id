@@ -337,6 +337,7 @@ class HomeController extends Controller
                 'q_electric_id'        =>$request->q_electric,
                 'transport_id'         =>$request->go_hospital,
                 'land_agricultural_id' =>$request->land,
+                'other_income'         => $request->income_agricalture_type,
                 'debt_family_id'       =>$request->family_debt_id,
                 'command'              =>$request->command
             );
@@ -785,7 +786,7 @@ class HomeController extends Controller
                 'education_level.*.required'     => 'The education is required.'
             ]);
 
-       // try {
+        try {
 
             //check od
             $od_code = $request->hospital;
@@ -1005,13 +1006,13 @@ class HomeController extends Controller
             }
 
 
-            //echo json_encode($member_family);
-//            DB::commit();
-//            return Redirect::back()->with('success','ការសម្ភាសទិន្នន័យត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ');
-//        } catch (\Exception $e) {
-//            DB::rollBack();
-//            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
-//        }
+          //  echo json_encode($member_family);
+            DB::commit();
+            return Redirect::back()->with('success','ការសម្ភាសទិន្នន័យត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
+        }
     }
 
 
