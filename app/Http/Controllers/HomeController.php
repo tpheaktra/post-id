@@ -138,7 +138,7 @@ class HomeController extends Controller
          sc.age_action,
          sc.total,
          sc.record_status
-         from general_information gi inner join store_score sc on gi.id = sc.patient where gi.id = '$id' ");
+         from general_information gi inner join store_score sc on gi.id = sc.patient where gi.id = '$id'");
         $gender = Helpers::getGender();
         return view('view',compact('gender','patient','score_list'));
     }
