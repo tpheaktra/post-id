@@ -1690,7 +1690,7 @@
                                                 <select class="form-control" id="go_hospital" name="go_hospital">
                                                     <option></option>
                                                     @foreach($typetransport as $keh => $value)
-                                                        <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                        <option @if($gFamily != null && $gFamily->transport_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -1713,39 +1713,49 @@
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_2">
-                                <tr class="myrow_2">
-                                    <td>1</td>
-                                    <td>
-                                        <div class="form-group add_type_vehicle">
-                                            <select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle[0]">
-                                                <option></option>
-                                                @foreach($typetransport as $keh => $value)
-                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input id="number_vehicle" name="number_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group input-group">
-                                            <input id="market_value_vehicle" name="market_value_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
-                                            <span class="input-group-addon">រៀល</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group input-group">
-                                            <input id="total_rail_vehicle" name="total_rail_vehicle[0]" type="text" required="required" class="form-control totalallowNumber_vehicle" readonly="readonly"/>
-                                            <span class="input-group-addon">រៀល</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a  class="btn btn-sm btn-primary" id="add_rows_2"><span class="glyphicon glyphicon-plus"></span></a>
-                                    </td>
-                                </tr>
+                                @foreach($vehicle as $key => $gg)
+                                    <tr class="myrow_2">
+                                        <td>1</td>
+                                        <td>
+                                            <div class="form-group add_type_vehicle">
+                                                <select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle[0]">
+                                                    <option></option>
+                                                    @foreach($typetransport as $keh => $value)
+                                                        <option @if($gg->type_vehicle_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input value="{{$gg->number_vehicle}}" id="number_vehicle" name="number_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group input-group">
+                                                <input value="{{$gg->market_value_vehicle}}" id="market_value_vehicle" name="market_value_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group input-group">
+                                                <input value="{{$gg->total_rail_vehicle}}" id="total_rail_vehicle" name="total_rail_vehicle[0]" type="text" required="required" class="form-control totalallowNumber_vehicle" readonly="readonly"/>
+                                                <span class="input-group-addon">រៀល</span>
+                                            </div>
+                                        </td>
+                                        <td style="text-align:center;">
+                                            @if($key==0)
+                                                <a  class="btn btn-primary btn-sm" id="add_rows_2">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </a>
+                                            @else
+                                                <a id="vehicle_{{$key}}" class="btn remove_rows_2 btn-danger btn-sm">
+                                                    <span class="glyphicon glyphicon-minus"></span>
+                                                </a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
 
                                 <tfoot>
@@ -1753,7 +1763,7 @@
                                     <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
                                     <td>
                                         <div class="form-group input-group">
-                                            <input id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
+                                            <input value="{{$vehicle[0]->total_vehicle_costs}}" id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
                                             <span class="input-group-addon">រៀល</span>
                                         </div>
                                     </td>
@@ -1790,14 +1800,15 @@
                                 </tr>
                                 </thead>
                                 <tbody class="new_rows_3">
-                                <tr class="myrow_3" index="0">
-                                    <td class="auto_id">1</td>
+                                @foreach($income as $key3 =>$v)
+                                <tr class="myrow_3" index="{{$key3}}">
+                                    <td class="auto_id">{{$key3+1}}</td>
                                     <td>
                                         <div class="form-group add_type_animals">
                                             <select style="width: 100%;" class="0 form-control type_animals1" id="type_animals" name="type_animals[0]" required="required" index="0">
                                                 <option></option>
                                                 @foreach($typeanimals as $key => $value)
-                                                    <option value="{{$value->id}}">{{$value->name_kh}}</option>
+                                                    <option @if($v->type_animals_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -1812,13 +1823,13 @@
                                             <tr>
                                                 <td>
                                                     <div class="form-group">
-                                                        <input name="num_animals[0]" id="num_animals" type="hidden" class="cal_animal form-control allowNumber num_animals"  />
-                                                        <input name="num_animals_big[0]" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />
+                                                        <input value="{{$v->num_animals}}" name="num_animals[0]" id="num_animals" type="hidden" class="cal_animal form-control allowNumber num_animals"  />
+                                                        <input value="{{$v->num_animals_big}}" name="num_animals_big[0]" id="num_animals_big" type="text" class="cal_animal form-control allowNumber" required="required" />
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-group">
-                                                        <input name="num_animals_small[0]" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />
+                                                        <input value="{{$v->num_animals_small}}" name="num_animals_small[0]" id="num_animals_small" type="text" class="cal_animal form-control allowNumber"  />
                                                     </div>
                                                 </td>
                                             </tr>
@@ -1829,8 +1840,8 @@
                                         <div class="form-group ng" id="noted_0">
                                             <select style="width: 100%;" class="cal_animal form-control note_animals" id="note_animals" name="note_animals[0]" required="required" index="0">
                                                 <option></option>
-                                                <option value="ប្រវាស់">ប្រវាស់</option>
-                                                <option value="មិនប្រវាស់">មិនប្រវាស់</option>
+                                                <option @if($v->note_animals == 'ប្រវាស់') selected @endif value="ប្រវាស់">ប្រវាស់</option>
+                                                <option @if($v->note_animals == 'មិនប្រវាស់') selected @endif value="មិនប្រវាស់">មិនប្រវាស់</option>
                                             </select>
                                         </div>
                                     </td>
@@ -1840,10 +1851,19 @@
                                             <span class="input-group-addon">ពិន្ទុ</span>
                                         </div>
                                     </td>
-                                    <td>
-                                        <a class="btn btn-sm btn-primary" id="add_rows_3"><span class="glyphicon glyphicon-plus"></span></a>
+                                    <td style="text-align:center;">
+                                        @if($key3==0)
+                                            <a  class="btn btn-primary btn-sm" id="add_rows_3">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </a>
+                                        @else
+                                            <a status="0" class="btn remove_rows_3 btn-sm btn-danger">
+                                                <span class="glyphicon glyphicon-minus"></span>
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
+                                @endforeach
                                 <script type="text/javascript">
                                     var numRow = 0;
                                     $('#type_animals').on("change", function(e){
@@ -2361,9 +2381,41 @@
                                 <ul class="debt_question_group">
                                     @foreach($loan as $key => $ge)
                                         <li>
-                                            <label class="add_family_debt_id"><input style="margin-right: 10px" class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id"??>{{ $ge->name_kh }}</label>
+                                            <label class="add_family_debt_id"><input @if($gFamily->debt_family_id == $ge->id) checked @endif style="margin-right: 10px" class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id"??>{{ $ge->name_kh }}</label>
                                             @if($ge->id == 1)<label id="family_debt"></label>@endif
-                                            @if($ge->id == 2)<label id="family_debt1"></label>@endif
+                                            @if($ge->id == 2)
+                                                <label id="family_debt1">
+                                                    @if($gFamily->debt_family_id == 2)
+                                                        <div class="col-sm-12">
+                                                            <div class="col-sm-6">
+                                                                <table class="table table-bordered table-striped">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td> ចំនួនបំណុលដែលមិនទាន់សងគិតមកដល់បច្ចុប្បន្ន</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div class="input-group add_total_debt">
+                                                                                    <input value="{{$debt_link->total_debt ?? ''}}" autocomplete="off" class="dept_money form-control allowNumber" type="text" name="total_debt" id="total_debt">
+                                                                                    <span class="input-group-addon">រៀល</span>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="my_hide">
+                                                                            <td>
+                                                                                <div class="input-group add_debt_duration">
+                                                                                    <input autocomplete="off"  class="dept_money form-control allowNumber" type="text" name="debt_score" id="score_money" readonly>
+                                                                                    <span class="input-group-addon">ពិន្ទុ</span>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                </label>
+                                            @endif
                                         </li>
                                     @endforeach
                                 </ul>
@@ -2437,7 +2489,7 @@
                         <div class="col-sm-12">
                             <h4>គ.១៥) ព័ត៍មានផ្សេងៗបន្ថែម ឬមតិយោបល់របស់អ្នកសម្ភាសន៍ (បើមាន)</h4>
                             <div class="col-sm-12">
-                                <textarea class="form-control" name="command"></textarea>
+                                <textarea class="form-control" name="command">{{$gFamily->command}}</textarea>
                             </div>
                         </div>
 

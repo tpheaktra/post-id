@@ -80,7 +80,7 @@ class HomeController extends Controller
         $view = DB::select("select 
             gi.id,gi.interview_code,gi.g_patient,
             gi.g_age,gg.name_kh as g_sex,gi.g_phone,
-            us.name as interview_by,gi.user_id
+            us.name as interview_by,gi.user_id,gi.interview_date
             from general_information gi
             inner join gender gg on gi.g_sex = gg.id
             inner join users us on gi.user_id = us.id

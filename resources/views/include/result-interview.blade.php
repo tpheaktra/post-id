@@ -7,6 +7,7 @@
     <th>លេខទូរស័ព្ធ</th>
     <th>លេខកូដសម្ភាសន៍</th>
     <th>អ្នកសំភាស៍</th>
+    <th>ថ្ងៃសម្ភាសន៍</th>
     <th>សកម្មភាព</th>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
                 <td>{{$re->g_phone}}</td>
                 <td>{{$re->interview_code}}</td>
                 <td>{{$re->interview_by}}</td>
+                <td>{{date('d/m/Y', strtotime( $re->interview_date))}}</td>
                 <td align="center">
                     @permission('post-id-export')
                         <a data-hint="លទ្ធផលវាយតម្លៃសំរាប់អ្នកជំងឺ" class="btn btn-xs btn-default hint--left hint--default" href="{{route('printInterviewResult.print', Crypt::encrypt($re->id))}}">
