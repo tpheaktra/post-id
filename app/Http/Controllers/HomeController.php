@@ -265,7 +265,7 @@ class HomeController extends Controller
             'education_level.*.required'     => 'The education is required.'
         ]);
 
-        try {
+       // try {
 
             //check od
             $od_code = $request->hospital;
@@ -466,7 +466,7 @@ class HomeController extends Controller
                 $animals = array(
                     'g_information_id'      => $gn_info->id,
                     'type_animals_id'       => $anim,
-                    'num_animals'           => $request->num_animals[$key],
+                    'num_animals'           => isset($request->num_animals[$key]) ? $request->num_animals[$key] : 0,
                     'num_animals_big'       => isset($request->num_animals_big[$key]) ? $request->num_animals_big[$key] : 0,
                     'num_animals_small'     => isset($request->num_animals_small[$key]) ? $request->num_animals_small[$key] : 0,
                     'note_animals'          => $request->note_animals[$key],
@@ -480,13 +480,13 @@ class HomeController extends Controller
             //table land_agricultural_link
             if(!empty($request->land_2)) {
                 $land_agricultural_other = array(
-                    'g_information_id' => $gn_info->id,
-                    'land_agricultural_id' => $request->land,
-                    'land_name' => $request->land_name_other,
-                    'total_land' => $request->total_land_other,
-                    'land_farm' => $request->land_farm_other,
-                    'total_land_farm' => $request->total_land_farm_other,
-                    'sum_land_farm' => $request->sum_land_farm_other
+                    'g_information_id'     => $gn_info->id,
+                    'land_agricultural_id' => $request->land_2,
+                    'land_name'            => $request->land_name_other_2,
+                    'total_land'           => $request->total_land_other_2,
+                    'land_farm'            => $request->land_farm_other_2,
+                    'total_land_farm'      => $request->total_land_farm_other_2,
+                    'sum_land_farm'        => $request->sum_land_farm_other_2
                 );
                 LandOtherAgriculturalLinkModel::create($land_agricultural_other);
             }
@@ -496,13 +496,13 @@ class HomeController extends Controller
             //table land_agricultural_link
             if(!empty($request->land_3)) {
                 $land_agricultural = array(
-                    'g_information_id' => $gn_info->id,
-                    'land_agricultural_id' => $request->land,
-                    'p_land_name' => $request->p_land_name,
-                    'p_total_land' => $request->p_total_land,
-                    'p_land_farm' => $request->p_land_farm,
-                    'p_total_land_farm' => $request->p_total_land_farm,
-                    'p_sum_land_farm' => $request->p_sum_land_farm,
+                    'g_information_id'     => $gn_info->id,
+                    'land_agricultural_id' => $request->land_3,
+                    'p_land_name'          => $request->p_land_name,
+                    'p_total_land'         => $request->p_total_land,
+                    'p_land_farm'          => $request->p_land_farm,
+                    'p_total_land_farm'    => $request->p_total_land_farm,
+                    'p_sum_land_farm'      => $request->p_sum_land_farm,
                 );
                 LandAgriculturalLinkModel::create($land_agricultural);
             }
@@ -513,16 +513,16 @@ class HomeController extends Controller
             if($request->income_agricalture_type == 1) {
                 foreach ($request->income_name as $key => $in) {
                     $other_income = array(
-                        'g_information_id' => $gn_info->id,
-                        'income_name' => $in,
-                        'income_age' => $request->income_age[$key],
+                        'g_information_id'  => $gn_info->id,
+                        'income_name'       => $in,
+                        'income_age'        => $request->income_age[$key],
                         'income_occupation' => $request->income_occupation[$key],
-                        'income_unit' => $request->income_unit[$key],
-                        'unit_in_month' => $request->unit_in_month[$key],
-                        'average_amount' => $request->average_amount[$key],
-                        'monthly_income' => $request->monthly_income[$key],
-                        'total_mon_income' => $request->total_mon_income,
-                        'total_inc_person' => $request->total_inc_person,
+                        'income_unit'       => $request->income_unit[$key],
+                        'unit_in_month'     => $request->unit_in_month[$key],
+                        'average_amount'    => $request->average_amount[$key],
+                        'monthly_income'    => $request->monthly_income[$key],
+                        'total_mon_income'  => $request->total_mon_income,
+                        'total_inc_person'  => $request->total_inc_person,
                     );
                     OtherIncomeModel::create($other_income);
                 }
@@ -600,7 +600,7 @@ class HomeController extends Controller
 
             $score = StoreScoreModel::create($score);
             $total_score = $score->total;
-            echo $total_score;
+            //echo $total_score;
 
             $poor = 0;
             if($total_score <= 42){
@@ -630,13 +630,13 @@ class HomeController extends Controller
             );
            $shp= ShpHouseholdsModel::create($shp_household_pmrs);
 
-            DB::commit();
-            return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
-        } catch (\Exception $e) {
-            DB::rollBack();
-           // return $this->errorResponse($e->getMessage(), 203);
-            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
-        }
+//            DB::commit();
+//            return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
+//        } catch (\Exception $e) {
+//            DB::rollBack();
+//           // return $this->errorResponse($e->getMessage(), 203);
+//            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
+//        }
 
     }
 
@@ -711,7 +711,11 @@ class HomeController extends Controller
         $vehicle           = HouseholdVehicleModel::where('g_information_id',$id)->get();
         $income            = TypeIncomeModel::where('g_information_id',$id)->get();
         $landAg            = LandAgriculturalLinkModel::where('g_information_id',$id)->where('land_agricultural_id',$gFamily->land_agricultural_id)->first();
+        $land_2 = LandOtherAgriculturalLinkModel::where('g_information_id',$id)->where('land_agricultural_id',2)->first();
+        $land_3 = LandAgriculturalLinkModel::where('g_information_id',$id)->where('land_agricultural_id',3)->first();
+        //echo json_encode($lang_3);exit();
         $otherIncome       = OtherIncomeModel::where('g_information_id',$id)->get();
+       // echo json_encode($otherIncome);exit();
         $healthLink        = DB::select("select * from health ht
                             left join (
                                 select hl.g_information_id, hl.health_id, hl.kids_then65, hl.old_bigger65, hl.kids_50_then65, hl.old_50_bigger65
@@ -727,11 +731,11 @@ class HomeController extends Controller
             'provinces','gender','household',
             'homePrepar','condition_house','question','electricgrid',
             'landAgricultural','loan','family','occupation','education_level',
-            'landAgricultural','loan','family','roof_made','wall_made','house_status',
+            'roof_made','wall_made','house_status',
             'question_electric','typemeterial','typeanimals',
             'typetransport','question_totel','health','ginfo','memberFamily',
             'gFamily','household_root','household_root_rend','household_root_yourself','homePreparLink','rendPrice','institutions','toilet',
-            'material','yesElectrict','noElectrict','vehicle','income','landAg',
+            'material','yesElectrict','noElectrict','vehicle','income','landAg','land_2','land_3',
             'otherIncome','healthLink','debt_link'));
     }
 

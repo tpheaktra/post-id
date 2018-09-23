@@ -2029,15 +2029,129 @@
                                 @foreach($landAgricultural as $key => $land)
                                     @if($land->id == 1)
                                         <li>
-                                            <label><input class="land" style="margin-right:10px;" type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
+                                            <label><input @if($gFamily->land_agricultural_id == 1) checked @endif class="land" style="margin-right:10px;" type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
                                         </li>
                                     @else
                                         <li>
-                                            <label class="testing"><input style="margin-right:10px;"  id="land_{{$land->id}}"  class="land_{{$land->id}}" type="checkbox" name="land_{{$land->id}}" value="{{$land->id}}" multiple>  {{$land->name_kh}}</label>
+                                            <label class="testing"><input style="margin-right:10px;" @if($land_2 != null && $land_2->land_agricultural_id == 2) checked @else no @endif @if($land_3 != null && $land_3->land_agricultural_id == 3) checked @else no @endif id="land_{{$land->id}}"  class="land_{{$land->id}}" type="checkbox" name="land_{{$land->id}}" value="{{$land->id}}" multiple>  {{$land->name_kh}} <spand class="text-danger">*</spand></label>
                                             @if($land->id == 2)
-                                                <div class="col-sm-12" id="show-land-other"></div>
+                                                <div class="col-sm-12" id="show-land-other">
+                                                    @if($land_2->land_agricultural_id == 2)
+                                                    <div class="col-sm-12">
+                                                        <table width="100%" class="table table-bordered table-striped tbl-land">
+                                                            <tr>
+                                                                <td><label class="control-label"> ដីស្រែមាន </label></td>
+                                                                <td>
+                                                                    <div class="form-group input-group">
+                                                                        <input value="{{$land_2->land_name ?? ''}}" autocomplete="off" name="land_name_other_2" type="text" class="allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>
+                                                                        </div>
+                                                                    </td>
+                                                                <td><label class="control-label"> ទំហំសរុប : </label></td>
+                                                                <td>
+                                                                    <div class="form-group ​​input-group input-group">
+                                                                        <input value="{{$land_2->total_land ?? ''}}" autocomplete="off" id="total_land_2" name="total_land_other_2" type="text" class="t_land_2 form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            <tr>
+                                                                <td><label class="control-label">​ ដីចំការមាន </label></td>
+                                                                <td>
+                                                                    <div class="form-group input-group">
+                                                                        <input value="{{$land_2->land_farm ?? ''}}" id="land_farm_2" autocomplete="off" name="land_farm_other_2" type="text"  class="allowFlot form-control" /><span class="input-group-addon">កន្លែង</span>
+                                                                        </div>
+                                                                    </td>
+                                                                <td><label class="control-label"> ទំហំសរុប : </label></td>
+                                                                <td>
+                                                                    <div class="form-group input-group">
+                                                                        <input value="{{$land_2->total_land_farm ?? ''}}" autocomplete="off" id="total_land_farm_2" name="total_land_farm_other_2" type="text"  class="t_land_2 form-control allowFlot" /><span class="input-group-addon">ហិចតា</span>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td>
+                                                                    </td>
+                                                                <td><label class="control-label">ដីសរុប:</label></td>
+                                                                <td>
+                                                                    <div class="form-group input-group">
+                                                                        <input value="{{$land_2->sum_land_farm ?? ''}}" autocomplete="off" id="total_land_and_land_farm_2" name="sum_land_farm_other_2" type="text" required="required" class="t_land_2 form-control allowFlot" readonly="readonly" /><span class="input-group-addon">ហិចតា</span>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            <tr class="my_hide">
+                                                                <td></td>
+                                                                <td>
+                                                                    </td>
+                                                                <td><label class="control-label">7.A.2 B  ផ្ទៃដីកសិកម្ម មិនមែនជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>
+                                                                <td>
+                                                                    <div class="form-group input-group">
+                                                                        <input autocomplete="off" id="l_score_2" name="other_farm_score" type="text" required="required" class="t_land_2 form-control allowFlot"  readonly/><span class="input-group-addon">ពិន្ទុ</span>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    @endif
+                                                </div>
                                             @else
-                                                <div class="col-sm-12" id="show-land-personal"></div>
+                                                <div class="col-sm-12" id="show-land-personal">
+                                                    @if($land_3->land_agricultural_id == 3)
+                                                        <div class="col-sm-12">
+                                                            <table width="100%" class="table table-bordered table-striped tbl-land">
+                                                                <tr>
+                                                                    <td><label class="control-label"> ដីស្រែមាន </label></td>
+                                                                    <td>
+                                                                        <div class="form-group input-group">
+                                                                            <input value="{{$land_3->p_land_name ?? ''}}" autocomplete="off" name="p_land_name" type="text" class="allowFlot form-control"/><span class="input-group-addon">កន្លែង</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    <td><label class="control-label"> ទំហំសរុប : </label></td>
+                                                                    <td>
+                                                                        <div class="form-group ​​input-group input-group">
+                                                                            <input value="{{$land_3->p_total_land ?? ''}}" autocomplete="off" id="total_land" name="p_total_land" type="text" class="t_land form-control allowFlot"/><span class="input-group-addon">ហិចតា</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                <tr>
+                                                                    <td><label class="control-label">​ ដីចំការមាន </label></td>
+                                                                    <td>
+                                                                        <div class="form-group input-group">
+                                                                            <input value="{{$land_3->p_land_farm ?? ''}}" id="land_farm" autocomplete="off" name="p_land_farm" type="text" required="required" class="allowFlot form-control" /><span class="input-group-addon">កន្លែង</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    <td><label class="control-label"> ទំហំសរុប : </label></td>
+                                                                    <td>
+                                                                        <div class="form-group input-group">
+                                                                            <input value="{{$land_3->p_total_land_farm ?? ''}}" autocomplete="off" id="total_land_farm" name="p_total_land_farm" type="text" required="required" class="t_land form-control allowFlot" /><span class="input-group-addon">ហិចតា</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>
+                                                                        </td>
+                                                                    <td><label class="control-label">ដីសរុប:</label></td>
+                                                                    <td>
+                                                                        <div class="form-group input-group">
+                                                                            <input value="{{$land_3->p_sum_land_farm ?? ''}}" autocomplete="off" id="total_land_and_land_farm" name="p_sum_land_farm" type="text" required="required" class="t_land form-control allowFlot" readonly="readonly" /><span class="input-group-addon">ហិចតា</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                <tr class="my_hide">
+                                                                    <td></td>
+                                                                    <td>
+                                                                        </td>
+                                                                    <td><label class="control-label">7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>
+                                                                    <td>
+                                                                        <div class="form-group input-group">
+                                                                            <input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowFlot" readonly/><span class="input-group-addon">ពិន្ទុ</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                    @endif
+                                                </div>
                                             @endif
                                         </li>
                                     @endif
@@ -2255,236 +2369,11 @@
                         <div class="col-sm-12">
                             @include('include.other-income-agriculture');
                         </div>
-                        <div class="col-sm-12"><hr> </div>
-                        <div class="col-sm-12">
-                            <h4>គ.១៣) សុខភាព និងពិការភាព</h4>
-                            <ul class="li-none">
-                                @foreach($health as $key =>$vv)
-                                    <li>
-                                        <label>
-                                            <input class="health_id_{{$key}} cal_health" style="margin-right: 10px;" type="checkbox" value="{{$vv->id}}" name="health_id[{{$key}}]" multiple/>
-                                            {{$vv->name_kh}}
-                                        </label>
-                                        @if($vv->id == 1)<label id="health_1"></label>@endif
-                                        @if($vv->id == 2)<label id="health_2"></label>@endif
-                                    </li>
-                                @endforeach
-                            </ul>
-                            <P class="my_hide" >8. ជំងឺ,របួសនិងពិការភាព</P>
-                            <div class="my_hide form-group input-group" style="width: 300px;">
-                                <input id="score_health" name="disease_score" type="text" required="required" class="cal_health form-control" readonly="readonly"/>
-                                <span class="input-group-addon">ពិន្ទុ</span>
-                            </div>
-                            <script>
 
-                                $('.health_id_0').click(function () {
-                                    var health_check = $('input[type=checkbox]:checked.health_id_0').val();//$("input[name=health_id]:checked").val();
-                                    // alert(health_check);
-                                    $('#health_1').empty();
-                                    if(health_check == 1){
-                                        var health1 = '<div class="col-sm-12">' +
-                                            '<table class="table table-bordered table-striped">' +
-                                            '<tbody>' +
-                                            '<tr>' +
-                                            '<td>ក្មេង + អ្នក  អាយុ &lt; 65ឆ្នាំ </td>' +
-                                            '<td> ចាស អាយុ≥65 ឆ្នាំ</td>' +
-                                            '</tr>'+
-                                            '<tr>'+
-                                            '<td>'+
-                                            '<div class="form-group">' +
-                                            '<input autocomplete="off" name="kids_then65" id="kids_then65" type="text" class="cal_health form-control allowNumber"/>' +
-                                            '</div>'+
-                                            '</td>'+
-                                            '<td>'+
-                                            '<div class="form-group">' +
-                                            '<input autocomplete="off" name="old_bigger65" id="old_bigger65" type="text" class="cal_health form-control allowNumber"/>' +
-                                            '</div>'+
-                                            '</td>'+
-                                            '</tr>'+
-                                            '</tbody>'+
-                                            '</table>'+
-                                            '</div>';
-                                        $('#health_1').append(health1);
-                                        AllowNumber();
 
-                                        $('.cal_health').keyup(function(){
-                                            var kids_then65 = $('#kids_then65').val();
-                                            var old_bigger65 = $('#old_bigger65').val();
-                                            if(kids_then65>=2){
-                                                $('#score_health').val(10);
-                                            }else if(kids_then65==1){
-                                                $('#score_health').val(7);
-                                            }else if(old_bigger65>=1){
-                                                $('#score_health').val(4);
-                                            }else{
-                                                $('#score_health').val(0);
-                                            }
-                                        });
+                        @include('include.health-and-sability')
 
-                                    }else{
-                                        $('#health_1').empty();
-                                    }
-
-                                });
-
-                                $('.health_id_1').click(function () {
-                                    var health_check = $('input[type=checkbox]:checked.health_id_1').val();
-                                    // alert(health_check);
-                                    $('#health_2').empty();
-                                    if (health_check == 2) {
-                                        $('#health_2').empty();
-                                        var health2 = '<div class="col-sm-12">' +
-                                            '<table class="table table-bordered table-striped">' +
-                                            '<tbody>' +
-                                            '<tr>' +
-                                            '<td>ក្មេង + អ្នក  អាយុ &lt; 65ឆ្នាំ </td>' +
-                                            '<td> ចាស អាយុ≥65 ឆ្នាំ</td>' +
-                                            '</tr>' +
-                                            '<tr>' +
-                                            '<td>' +
-                                            '<div class="form-group">' +
-                                            '<input autocomplete="off" name="kids_50_then65" id="kids_50_then65" type="text" class="cal_health form-control allowNumber"/>' +
-                                            '</div>' +
-                                            '</td>' +
-                                            '<td>' +
-                                            '<div class="form-group">' +
-                                            '<input autocomplete="off" name="old_50_bigger65" id="old_50_bigger65" type="text" class="cal_health form-control allowNumber"/>' +
-                                            '</div>' +
-                                            '</td>' +
-                                            '</tr>' +
-                                            '</tbody>' +
-                                            '</table>' +
-                                            '</div>';
-                                        $('#health_2').append(health2);
-                                        AllowNumber();
-                                        $('.cal_health').keyup(function(){
-                                            var kids_50_then65 = $('#kids_50_then65').val();
-                                            var old_50_bigger65 = $('#old_50_bigger65').val();
-                                            if(kids_50_then65>=2){
-                                                $('#score_health').val(7);
-                                            }else if(kids_50_then65>0 && kids_50_then65<=1){
-                                                $('#score_health').val(4);
-                                            }else{
-                                                $('#score_health').val(0);
-                                            }
-                                        });
-                                    }else {
-                                        $('#health_2').empty();
-                                        $('#score_health').val(0);
-                                    }
-                                });
-                            </script>
-
-                            <h4>គ.១៤) បំណុលគ្រួសារ</h4>
-                            <div class="col-sm-12">
-                                <p>តើ​គ្រួសារ​របស់​អ្នក​នៅមាន​បំណុល/​កម្ចី​មិនទាន់​បាន​សង​ដែរ​ឬ​ទេ? <spand class="text-danger">*</spand></p>
-                                <ul class="debt_question_group">
-                                    @foreach($loan as $key => $ge)
-                                        <li>
-                                            <label class="add_family_debt_id"><input @if($gFamily->debt_family_id == $ge->id) checked @endif style="margin-right: 10px" class="family_debt" value="{{$ge->id}}" type="radio" name="family_debt_id"??>{{ $ge->name_kh }}</label>
-                                            @if($ge->id == 1)<label id="family_debt"></label>@endif
-                                            @if($ge->id == 2)
-                                                <label id="family_debt1">
-                                                    @if($gFamily->debt_family_id == 2)
-                                                        <div class="col-sm-12">
-                                                            <div class="col-sm-6">
-                                                                <table class="table table-bordered table-striped">
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td> ចំនួនបំណុលដែលមិនទាន់សងគិតមកដល់បច្ចុប្បន្ន</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>
-                                                                                <div class="input-group add_total_debt">
-                                                                                    <input value="{{$debt_link->total_debt ?? ''}}" autocomplete="off" class="dept_money form-control allowNumber" type="text" name="total_debt" id="total_debt">
-                                                                                    <span class="input-group-addon">រៀល</span>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr class="my_hide">
-                                                                            <td>
-                                                                                <div class="input-group add_debt_duration">
-                                                                                    <input autocomplete="off"  class="dept_money form-control allowNumber" type="text" name="debt_score" id="score_money" readonly>
-                                                                                    <span class="input-group-addon">ពិន្ទុ</span>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    @endif
-                                                </label>
-                                            @endif
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-
-                        <script>
-                            $('.family_debt').click(function () {
-                                var family_debt = $('input[name=family_debt_id]:checked').val();
-                                $('#family_debt').empty();
-                                $('#family_debt1').empty();
-                                if(family_debt == 1){
-                                    $('#family_debt').append('<ol class="debt_question">@foreach($question as $key=>$gg)<li><label><input style="margin-right: 10px" value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}</label></li>@endforeach</ol>');
-                                }else if(family_debt == 2){
-                                    $('#family_debt1').append('<div class="col-sm-12">' +
-                                        '<div class="col-sm-6">' +
-                                        '<table class="table table-bordered table-striped">' +
-                                        '<tbody>' +
-                                        '<tr>' +
-                                        '<td> ចំនួនបំណុលដែលមិនទាន់សងគិតមកដល់បច្ចុប្បន្ន</td>' +
-                                        //                                                        '<td>រយៈពេលនៃការសងបំណុល</td>' +
-                                        '</tr>' +
-                                        '<tr>' +
-                                        '<td>' +
-                                        '<div class="input-group add_total_debt">' +
-                                        '<input autocomplete="off" class="dept_money form-control allowNumber" type="text" name="total_debt" id="total_debt">' +
-                                        '<span class="input-group-addon">រៀល</span>' +
-                                        '</div>' +
-                                        '</td>' +
-                                        '</tr>' +
-
-                                        '<tr class="my_hide">' +
-                                        //                                                        '<td>' +
-                                        //                                                        '</td>' +
-                                        '<td>' +
-                                        '<div class="input-group add_debt_duration">' +
-                                        '<input autocomplete="off" onkeyup class="dept_money form-control allowNumber" type="text" name="debt_score" id="score_money" readonly>' +
-                                        '<span class="input-group-addon">ពិន្ទុ</span>' +
-                                        '</div>'+
-                                        '</td>'+
-                                        '</tr>'+
-
-                                        '</tbody>'+
-                                        '</table>'+
-                                        '</div>' +
-                                        '</div>');
-                                    AllowNumber();
-                                    $('.dept_money').keyup(function(){
-                                        var total_debt = $('#total_debt').val();
-                                        if( total_debt>1200100){
-                                            $('#score_money').val(3);
-                                        }else if(total_debt>= 600000 && total_debt<=1200000){
-                                            $('#score_money').val(2);
-                                        }else{
-                                            $('#score_money').val(0);
-                                        }
-                                    });
-                                }
-                            });
-
-                        </script>
-
-                        <!-- <div class="col-sm-12">
-                            <p>9. បំណុលរបស់គ្រួសារ</p>
-                            <div class="input-group add_debt_duration" style="width: 300px;">
-                                <input autocomplete="off" class="dept_money form-control allowNumber" type="text" name="debt_score" id="score_money" readonly="">
-                                <span class="input-group-addon">ពិន្ទុ</span>
-                            </div>
-                        </div><hr> -->
+                        @include('include.edit-family-debt')
 
                         <div class="col-sm-12">
                             <h4>គ.១៥) ព័ត៍មានផ្សេងៗបន្ថែម ឬមតិយោបល់របស់អ្នកសម្ភាសន៍ (បើមាន)</h4>
