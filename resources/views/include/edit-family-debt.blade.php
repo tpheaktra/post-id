@@ -12,7 +12,7 @@
                                 @foreach($question as $key=>$gg)
                                     <li>
                                         <label>
-                                            <input @if($debt_link->question_id == $gg->id) checked @endif style="margin-right: 10px;" value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}
+                                            <input @if($debt_link != null && $debt_link->question_id == $gg->id) checked @endif style="margin-right: 10px;" value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}
                                         </label>
                                     </li>
                                 @endforeach
@@ -65,7 +65,7 @@
         $('#family_debt').empty();
         $('#family_debt1').empty();
         if(family_debt == 1){
-            $('#family_debt').append('<ol class="debt_question">@foreach($question as $key=>$gg)<li><label><input @if($debt_link->question_id == $gg->id) checked @endif style="margin-right: 10px" value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}</label></li>@endforeach</ol>');
+            $('#family_debt').append('<ol class="debt_question">@foreach($question as $key=>$gg)<li><label><input @if($debt_link != null && $debt_link->question_id == $gg->id) checked @endif style="margin-right: 10px" value="{{$gg->id}}" type="radio" name="q_debt">{{$gg->name_kh}}</label></li>@endforeach</ol>');
         }else if(family_debt == 2){
             $('#family_debt1').append('<div class="col-sm-12">' +
                 '<div class="col-sm-6">' +
