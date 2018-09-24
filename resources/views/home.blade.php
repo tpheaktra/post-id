@@ -5,9 +5,9 @@
 
 <style type="text/css">
 /*use for hide score*/
-    .my_hide{
-        display: none;
-    }
+    /*.my_hide{*/
+        /*display: none;*/
+    /*}*/
 </style>
 <!------ Include the above in your HEAD tag ---------->
 <div class="container content">
