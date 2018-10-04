@@ -21,6 +21,22 @@ class Helpers{
                     inner join health_facilities hf on os.od_code = hf.od_code where hf.`type` in(4,5,6) and hf.`status` = 1 group by hf.name_kh');
         return $hospital;
     }
+    /*
+    * function getProvince
+    */
+    public static function getBase($uid){
+        $bs = DB::select('select * from `post-id`.users us 
+inner join dev_pmrs_share.health_facilities hf 
+on us.hos_base = hf.code where us.id = '.$uid);
+        return $bs;
+    }
+
+    public static function getAllBase($uid){
+        $allBase = DB::select('select uh.hospital_id,f.name_kh from `post-id`.user_hospital uh
+inner join dev_pmrs_share.health_facilities f on f.code=uh.hospital_id
+where uh.user_id='.$uid);
+        return $allBase;
+    }
 
     /*
     * function getInterviewCode

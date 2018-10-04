@@ -22,6 +22,7 @@ use App\model\TypeIncomeModel;
 use App\model\TypeToiletLinkModel;
 use App\model\YesElectricLinkModel;
 use App\model\StoreScoreModel;
+use App\User;
 use Illuminate\Http\Request;
 use App\model\RelationshipModel;
 use App\Helpers\Helpers;
@@ -31,7 +32,7 @@ use DB;
 use auth;
 use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
-
+use Symfony\Component\Console\Input\Input;
 class HomeController extends Controller
 {
     /**
@@ -46,6 +47,13 @@ class HomeController extends Controller
     }
 
 
+    public function base($hospID){
+        $id = auth::user()->id;
+        User::where('id',$id)->update(array('hos_base'=>$hospID));
+        return back();
+    }
+
+
     /**
      * Show the application dashboard.
      *
@@ -53,6 +61,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         $hospital          = Helpers::getHospital();
         $provinces         = Helpers::getProvince();
         $relationship      = RelationshipModel::all();

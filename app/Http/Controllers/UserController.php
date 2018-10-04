@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\model\RoleUserModel;
 use App\PermissionGroup;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Hash;
 use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Redirect;
+
 class UserController extends Controller
 {
     /**
@@ -20,6 +22,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+
         $dataUser = User::with('roles','user_group')->where('record_status',1)->get();
      //   echo json_encode($dataUser);exit();
         return view('admin.user-index',compact('dataUser'));
@@ -48,7 +51,9 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $groups = PermissionGroup::all();
-        return view('admin.user-create',compact('roles','groups'));
+        $hospital = Helpers::getHospital();
+
+        return view('admin.user-create',compact('roles','groups','hospital'));
     }
 
     /**

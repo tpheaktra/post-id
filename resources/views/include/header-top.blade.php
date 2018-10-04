@@ -3,12 +3,36 @@
     <ul class="navbar-nav ml-auto pull-right">
         <?php $profile = auth::user()->profile; ?>
         <li><a class="nav-link">Hi, {{ Auth::user()->name ? Auth::user()->name : 'Your Name' }}  </a> </li>
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="user-avatar">
-                                    <img src="{{ asset ('upload/'.$profile) }}" class="img-profile-header img-circle">
-                                </span>
-                <span class="user-name">Profile</span>
-                <b class="caret"></b></a>
+            <li class="dropdown notifications-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <b>មន្ទីពេទ្យ</b>  - <span>{{$show_base}}</span>
+                </a>
+                <ul class="dropdown-menu arror-profile">
+                    <div class="arrow-border"></div>
+                    <li>
+                        <ul class="menu">
+                           @foreach ($getAllBase as $key => $hosp)
+                                <li style="cursor: pointer"><span data-name="{{$hosp->hospital_id}}" class="submit_value">មន្ទីពេទ្យ - {{ $hosp->name_kh  }}</span> </li>
+                           @endforeach
+                        </ul>
+                    </li>
+                    <script>
+                        $('.menu li span').on('click', function(){
+                            var hospId = $(this).attr('data-name');
+                            var url = "{{url('/patient/interview/change/base/')}}/"+hospId;
+                            window.location = url;
+                        })
+                    </script>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="user-avatar">
+                        <img src="{{ asset ('upload/'.$profile) }}" class="img-profile-header img-circle">
+                    </span>
+                    <span class="user-name">Profile</span>
+                    <b class="caret"></b>
+                </a>
 
             <ul class="dropdown-menu arror-profile">
                 <div class="arrow-border"></div>

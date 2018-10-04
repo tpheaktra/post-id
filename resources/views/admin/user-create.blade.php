@@ -2,7 +2,11 @@
 @extends('layouts.app')
 
 @section('content')
-
+<style>
+    .select2-container--default.select2-container--focus .select2-selection--multiple{
+        border: 1px solid #dadada !important;
+    }
+</style>
     <!-- Main content -->
     <section class="container content">
         <div class="row">
@@ -45,13 +49,14 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <table class="user-table">
                                                 <tr>
-                                                    <td width="50%">ថ្ងៃ ខែ ​ឆ្នាំ​កំណើត <span class="text-danger">*</span></td>
+                                                    <td width="50%">មន្ទីពេទ្យ <span class="text-danger">*</span></td>
                                                     <td width="50%">
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control"  id="dob" name="dob"/>
-                                                            <span class="input-group-addon">
-                                                                <span class="glyphicon glyphicon-calendar"></span>
-                                                            </span>
+                                                        <div class="input-group" style="width: 100%">
+                                                            <select multiple class="form-control" id="hospital" data-placeholder="Please select hospital"  width="100%">
+                                                                @foreach($hospital as $key =>$hop)
+                                                                <option value="{{$hop->od_code}}">មន្ទីពេទ្យ - {{$hop->name_kh}}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -174,9 +179,8 @@
             todayHighlight: true
         });
         $("#date_join").datepicker().datepicker("setDate", new Date());
-        $('#dob').datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd',
+        $('#hospital').select2({
+           val:''
         });
     </script>
 @endsection
