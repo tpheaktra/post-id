@@ -1,6 +1,8 @@
 <?php
 	
 namespace App\Helpers;
+use App\model\UserHospital;
+use App\User;
 use DB;
 class Helpers{
 	/*
@@ -26,16 +28,20 @@ class Helpers{
     * function getProvince
     */
     public static function getBase($uid){
-        $bs = DB::select('select * from `post-id`.users us 
-inner join dev_pmrs_share.health_facilities hf 
-on us.hos_base = hf.code where us.id = '.$uid);
+//        $bs = DB::select('select * from `post-id`.users us
+//inner join dev_pmrs_share.health_facilities hf
+//on us.hos_base = hf.code where us.id = '.$uid);
+        $bs = User::with('health_facilities')
+            ->where('id',$uid);
         return $bs;
     }
 
     public static function getAllBase($uid){
-        $allBase = DB::select('select uh.hospital_id,f.name_kh from `post-id`.user_hospital uh
-inner join dev_pmrs_share.health_facilities f on f.code=uh.hospital_id
-where uh.user_id='.$uid);
+        $allBase = UserHospital::with('user_hospital')
+            ->where('user_id',$uid);
+//        $allBase = DB::select('select uh.hospital_id,f.name_kh from `post-id`.user_hospital uh
+//inner join dev_pmrs_share.health_facilities f on f.code=uh.hospital_id
+//where uh.user_id='.$uid);
         return $allBase;
     }
 

@@ -97,7 +97,7 @@
                     <div class="modal-body">
                         <ul class="base-hospital">
                             @foreach ($getAllBase as $key => $hosp)
-                                <li style="cursor: pointer"><span data-name="{{$hosp->hospital_id}}" class="submit_value">មន្ទីពេទ្យ - {{ $hosp->name_kh  }}</span> </li>
+                                <li style="cursor: pointer"><span data-name="{{$hosp->hospital_id}}" class="submit_value">មន្ទីពេទ្យ - {{ $hosp['user_hospital'][0]->name_kh  }}</span> </li>
                             @endforeach
                         </ul>
                     </div>
