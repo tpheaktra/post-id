@@ -271,7 +271,9 @@ input[type=radio]{
     left: 238px;
     margin-top: -18px;
 }
-
+#navbarSupportedContent .menu li:hover{
+    text-decoration: underline;
+}
 .arrow-border {
     border-bottom: 12px solid #dadada;
     border-left: 12px solid rgba(0,0,0,0);
@@ -326,7 +328,7 @@ input[type=radio]{
 .new_rows_3 tr td,
 .new_rows_4 tr td,
 .new_rows_5 tr td,
-.new_rows tr td{text-align: center;}
+.new_rows tr td{text-align: center; padding: 5px 1px !important;}
 .table tr td{  vertical-align: middle !important;  }
 .table .form-group{
     margin: 5px 4px !important;}

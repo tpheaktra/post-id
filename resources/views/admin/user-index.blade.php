@@ -54,7 +54,7 @@
                                             @permission('user-delete')
                                             @if(auth::user()->id != $u->id)
                                                 @if($u->username != 'supperadmin')
-                                                    <a data-hint="លុបការសំភាស" class="btn btn-xs btn-danger hint--left hint--error" href="{{route('user.delete', Crypt::encrypt($u->id))}}"><i class="fa fa-trash-o"></i></a>
+                                                    <a data-hint="លុបអ្នកប្រើប្រាស់​" class="btn btn-xs btn-danger hint--left hint--error" href="{{route('user.delete', Crypt::encrypt($u->id))}}"><i class="fa fa-trash-o"></i></a>
                                                 @endif
                                             @endif
                                             @endpermission

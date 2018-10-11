@@ -83,6 +83,9 @@
             .base-hospital li{
                 padding: 10px;
             }
+            .base-hospital li:hover{
+                text-decoration: underline;
+            }
         </style>
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">

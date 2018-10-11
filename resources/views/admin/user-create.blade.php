@@ -23,12 +23,13 @@
                             <fieldset class="scheduler-border">
                                 <legend class="scheduler-border"><h4 class="box-title">ព័តមានអ្នកប្រើប្រាស់ថ្មី </h4></legend>
                                 <div class="box-body">
+
                                     <div class="row">
                                         <div class="form-group col-sm-6 col-xs-12">
                                            <table class="user-table">
                                                <tr>
-                                                   <td width="50%">ឈ្មោះ<span class="text-danger">*</span></td>
-                                                   <td width="50%">
+                                                   <td width="35%">ឈ្មោះ<span class="text-danger">*</span></td>
+                                                   <td width="65%">
                                                        {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'ឈ្មោះ']) }}
                                                    </td>
                                                </tr>
@@ -38,8 +39,8 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <table class="user-table">
                                                 <tr>
-                                                    <td width="50%">ឈ្មោះប្រើប្រាស់ <span class="text-danger">*</span></td>
-                                                    <td width="50%">
+                                                    <td width="35%">ឈ្មោះប្រើប្រាស់ <span class="text-danger">*</span></td>
+                                                    <td width="65%">
                                                         {{ Form::text('username',null,['class'=>'form-control','placeholder'=>'ឈ្មោះប្រើប្រាស់']) }}
                                                     </td>
                                                 </tr>
@@ -49,10 +50,10 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <table class="user-table">
                                                 <tr>
-                                                    <td width="50%">មន្ទីពេទ្យ <span class="text-danger">*</span></td>
-                                                    <td width="50%">
+                                                    <td width="35%">មន្ទីពេទ្យ <span class="text-danger">*</span></td>
+                                                    <td width="65%">
                                                         <div class="input-group" style="width: 100%">
-                                                            <select multiple class="form-control" id="hospital" data-placeholder="Please select hospital"  width="100%">
+                                                            <select multiple class="form-control" id="hospital" data-placeholder="ជ្រើសរើសមន្ទីពេទ្យ"  width="100%" name="hospital[]">
                                                                 @foreach($hospital as $key =>$hop)
                                                                 <option value="{{$hop->od_code}}">មន្ទីពេទ្យ - {{$hop->name_kh}}</option>
                                                                 @endforeach
@@ -66,8 +67,8 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <table class="user-table">
                                                 <tr>
-                                                    <td width="50%">កាលបរិច្ឆេទបង្កើត <span class="text-danger">*</span></td>
-                                                    <td width="50%">
+                                                    <td width="35%">កាលបរិច្ឆេទបង្កើត <span class="text-danger">*</span></td>
+                                                    <td width="65%">
                                                         <div class="input-group">
                                                             <input type="text" class="form-control"  id="date_join" name="date_join"/>
                                                                     <span class="input-group-addon">

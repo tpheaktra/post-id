@@ -30,7 +30,7 @@
                     <span class="user-avatar">
                         <img src="{{ asset ('upload/'.$profile) }}" class="img-profile-header img-circle">
                     </span>
-                    <span class="user-name">Profile</span>
+                    <span class="user-name">ព័ត៌មានគណនី</span>
                     <b class="caret"></b>
                 </a>
 

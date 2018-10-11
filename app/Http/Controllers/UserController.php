@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function index(){
 
-        $dataUser = User::with('roles','user_group')->where('record_status',1)->get();
+        $dataUser = User::orderBy('id','DESC')->with('roles','user_group')->where('record_status',1)->get();
      //   echo json_encode($dataUser);exit();
         return view('admin.user-index',compact('dataUser'));
     }
@@ -69,7 +69,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name'       => 'required',
             'username'   => 'required|unique:users,username',
-            'dob'        => 'required',
+            'hospital'   => 'required',
             'date_join'  => 'required',
             'password'   => 'required|same:confirm',
             'roles'      => 'required',
@@ -80,6 +80,10 @@ class UserController extends Controller
             $input['password'] = Hash::make($input['password']);
             $input['profile']  = 'avatar5.png';
             $user = User::create($input);
+            //user_hospital
+            foreach ($request->input('hospital') as $key => $uhospital) {
+                DB::table('user_hospital')->insert(array('hospital_id'=>$uhospital,'user_id'=>$user->id));
+            }
             //user role
             foreach ($request->input('roles') as $key => $value) {
                 $user->attachRole($value);
@@ -89,10 +93,10 @@ class UserController extends Controller
                 DB::table('user_group')->insert(array('user_id'=>$user->id,'group_id'=>$value));
             }
             DB::commit();
-            return redirect()->route('user.index')->with('success','Data Inset successfuly.');
+            return redirect()->route('user.index')->with('success','អ្នក​ប្រើប្រាស់​បង្កើតបានជោគជ័យ');
         } catch (\Exception $e) {
             DB::rollBack();
-            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
+            return Redirect::back()->with('danger',' អ្នក​ប្រើប្រាស់​បង្កើតមិនបានជោគជ័យទេ');
         }
 
     }
@@ -127,7 +131,23 @@ class UserController extends Controller
         foreach($userGroup->user_group as $user_group){
             $arr[] = $user_group->pivot->group_id;
         }
-        return view('admin.user-edit',compact('user','roles','groups','userRole','arr'));
+       // $hospital = User::pluck('name','id');
+       // dd($hospital);
+        $hospital = Helpers::getHospital();
+//        foreach ($getHop as $h){
+//            $hospital[$h->od_code]=$h->name_kh;
+//        }
+        //$hospital = json_encode($hospital1);
+      //  echo json_encode($hospital);
+      //  $selectedRoles = $hospital->pluck('od_code','name_kh');
+       // $hospital = $hospital::lists('id', 'name');
+        $hop =[];
+        $checkHospital = DB::select('select * from user_hospital where user_id ='.$id);
+        foreach($checkHospital as $hh){
+            $hop[] = $hh->hospital_id;
+        }
+//var_dump($hospital);exit();
+        return view('admin.user-edit',compact('user','roles','groups','userRole','arr','hospital','hop'));
 
     }
 
@@ -146,9 +166,12 @@ class UserController extends Controller
         $this->validate($request, [
             'name'     => 'required',
             'username' => 'required|unique:users,username,'.$id,
+            'hospital'   => 'required',
+            'date_join'  => 'required',
            // 'password' => 'required|same:confirm',
             'roles'    => 'required',
             'groups'   => 'required'
+
         ]);
         try {
             $input = $request->all();
@@ -160,21 +183,28 @@ class UserController extends Controller
 
             $user = User::find($id);
             $user->update($input);
-            RoleUserModel::where('user_id', $id)->delete();
+            //user_hospital
+            DB::table('user_hospital')->where('user_id', $id)->delete();
+            foreach ($request->input('hospital') as $key => $uhospital) {
+                DB::table('user_hospital')->insert(array('hospital_id'=>$uhospital,'user_id'=>$user->id));
+            }
 
+            //role
+            RoleUserModel::where('user_id', $id)->delete();
             foreach ($request->input('roles') as $key => $value) {
                 $user->attachRole($value);
             }
-            DB::table('user_group')->where('user_id', $id)->delete();
+
             //user group
+            DB::table('user_group')->where('user_id', $id)->delete();
             foreach ($request->input('groups') as $key => $value) {
                 DB::table('user_group')->insert(array('user_id' => $user->id, 'group_id' => $value));
             }
             DB::commit();
-            return redirect()->route('user.index')->with('success','Data upload successfuly.');
+            return redirect()->route('user.index')->with('success','ការធ្វើបច្ចប្បន្នភាពបានជោគជ័យ');
         } catch (\Exception $e) {
             DB::rollBack();
-            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
+            return Redirect::back()->with('danger','ការធ្វើបច្ចប្បន្នភាពមិនបានជោគជ័យទេ');
         }
 
 
@@ -190,6 +220,6 @@ class UserController extends Controller
     {
         $id = Crypt::decrypt($id);
         DB::table("users")->where('id',$id)->update(array('record_status'=>0));
-        return back()->with('success','User delete successsfuly');
+        return back()->with('success','លុបអ្នកប្រើប្រាស់​បានជោគជ័យ');
     }
 }

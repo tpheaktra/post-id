@@ -23,8 +23,8 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <table class="user-table">
                                                 <tr>
-                                                    <td width="50%">ឈ្មោះ<span class="text-danger">*</span></td>
-                                                    <td width="50%">
+                                                    <td width="35%">ឈ្មោះ<span class="text-danger">*</span></td>
+                                                    <td width="65%">
                                                         {{ Form::text('name',$user->name,['class'=>'form-control','placeholder'=>'ឈ្មោះ']) }}
                                                     </td>
                                                 </tr>
@@ -34,8 +34,8 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <table class="user-table">
                                                 <tr>
-                                                    <td width="50%">ឈ្មោះប្រើប្រាស់ <span class="text-danger">*</span></td>
-                                                    <td width="50%">
+                                                    <td width="35%">ឈ្មោះប្រើប្រាស់ <span class="text-danger">*</span></td>
+                                                    <td width="65%">
                                                         {{ Form::text('username',$user->username,['class'=>'form-control','placeholder'=>'ឈ្មោះប្រើប្រាស់','readonly'=>'readonly']) }}
                                                     </td>
                                                 </tr>
@@ -45,13 +45,16 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <table class="user-table">
                                                 <tr>
-                                                    <td width="50%">ថ្ងៃ ខែ ​ឆ្នាំ​កំណើត <span class="text-danger">*</span></td>
-                                                    <td width="50%">
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control"  id="dob" name="dob" value="{{$user->dob}}"/>
-                                                            <span class="input-group-addon">
-                                                                <span class="glyphicon glyphicon-calendar"></span>
-                                                            </span>
+                                                    <td width="35%">មន្ទីពេទ្យ <span class="text-danger">*</span></td>
+                                                    <td width="65%">
+                                                        <div class="input-group" style="width: 100%">
+                                                            <select name="hospital[]" multiple id="hospital">
+                                                                @foreach($hospital as $key => $value)
+                                                                    <option value="{{$value->od_code}}" {{in_array($value->od_code,$hop)?"selected":""}}>
+                                                                        {{$value->name_kh}}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -61,8 +64,8 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <table class="user-table">
                                                 <tr>
-                                                    <td width="50%">កាលបរិច្ឆេទបង្កើត <span class="text-danger">*</span></td>
-                                                    <td width="50%">
+                                                    <td width="35%">កាលបរិច្ឆេទបង្កើត <span class="text-danger">*</span></td>
+                                                    <td width="65%">
                                                         <div class="input-group">
                                                             <input type="text" class="form-control"  id="date_join" name="date_join" value="{{$user->date_join}}"/>
                                                             <span class="input-group-addon">
@@ -170,9 +173,8 @@
             todayHighlight: true
         });
         $("#date_join").datepicker().datepicker("setDate", new Date());
-        $('#dob').datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd',
+        $('#hospital').select2({
+            val:''
         });
     </script>
 @endsection

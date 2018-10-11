@@ -16,6 +16,7 @@
             @permission('role-list','role-create','role-edit','role-delete')
             <li class="@if(Route::currentRouteName() == 'role.index' || Route::currentRouteName() == 'role.create' || Route::currentRouteName() == 'role.edit') active @endif"><a href="{{route('role.index')}}">គ្រប់គ្រងតួនាទី</a></li>
             @endpermission
+            <li><a href="">ទំនាក់ទំនង</a></li>
         </ul>
     </div>
 </div>

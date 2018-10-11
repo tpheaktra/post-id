@@ -16,11 +16,12 @@ class Helpers{
     */
     public static function getHospital(){
         $hospital = DB::connection("mysql2")
-            ->select('select os.od_code,os.shortcut,hf.name_kh from operational_districts od 
+            ->select('select hf.code as od_code,os.shortcut,hf.name_kh from operational_districts od 
                     inner join od_shortcuts os on od.code = os.od_code
                     inner join health_facilities hf on os.od_code = hf.od_code where hf.`type` in(4,5,6) and hf.`status` = 1 group by hf.name_kh');
         return $hospital;
     }
+
     /*
     * function getProvince
     */
@@ -42,8 +43,9 @@ where uh.user_id='.$uid);
     * function getInterviewCode
     */
     public static function getHealthFacilitiesCode($od_code,$hf_code){
+        echo $hf_code;
         $interview = DB::connection("mysql2")
-            ->select("select hf.code as hf_code from health_facilities hf inner join od_shortcuts os on hf.od_code = os.od_code where hf.od_code = '$od_code' and hf.name_kh = '$hf_code'");
+            ->select("select hf.code as hf_code from health_facilities hf inner join od_shortcuts os on hf.od_code = os.od_code where hf.code = '$od_code' and hf.name_kh = '$hf_code'");
         return $interview;
     }
 
@@ -52,7 +54,7 @@ where uh.user_id='.$uid);
     */
     public static function getInterviewCode($od_code){
         $interview = DB::connection("mysql2")
-            ->select("select os.shortcut,hf.code as hf_code from health_facilities hf inner join od_shortcuts os on hf.od_code = os.od_code where hf.od_code = '$od_code' limit 1");
+            ->select("select os.shortcut,hf.code as hf_code from health_facilities hf inner join od_shortcuts os on hf.od_code = os.od_code where hf.code = '$od_code' limit 1");
         return $interview;
     }
 
