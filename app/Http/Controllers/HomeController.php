@@ -274,7 +274,7 @@ class HomeController extends Controller
             'education_level.*.required'     => 'The education is required.'
         ]);
 
-       // try {
+        try {
 
             //check od
             $od_code = $request->hospital;
@@ -640,13 +640,13 @@ class HomeController extends Controller
             );
            $shp= ShpHouseholdsModel::create($shp_household_pmrs);
 
-//            DB::commit();
-//            return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
-//        } catch (\Exception $e) {
-//            DB::rollBack();
-//           // return $this->errorResponse($e->getMessage(), 203);
-//            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
-//        }
+            DB::commit();
+            return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
+        } catch (\Exception $e) {
+            DB::rollBack();
+           // return $this->errorResponse($e->getMessage(), 203);
+            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
+        }
 
     }
 

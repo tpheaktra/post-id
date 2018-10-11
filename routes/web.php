@@ -88,3 +88,12 @@ Route::group(['prefix' => 'profile','middleware' => ['auth']], function() {
     Route::get('/', ['as' => 'profile.index', 'uses' => 'ProfileController@profile']);
     Route::POST('/updated', ['as' => 'profile.update', 'uses' => 'ProfileController@UpdatedProfile']);
 });
+
+
+/*
+ *
+ * contact us
+ */
+Route::group(['contact' => 'list','middleware' => ['auth']], function() {
+    Route::get('/contact-us.html', ['as' => 'contact.index', 'uses' => 'ContactController@contact']);
+});
