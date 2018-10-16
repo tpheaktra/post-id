@@ -127,6 +127,7 @@
 </div>
 <script type="text/javascript">
     var edu_row = $('.new_rows tr.myrow').length-1;
+
     var dataRow = $('.new_rows tr.myrow').length+1;
     var num_row = $('.new_rows tr.myrow').length;
 
@@ -250,12 +251,13 @@
 
 
     $('#add_rows').click(function(){ //alert($m_id);
-        edu_row++;
+
+        edu_row++;alert(edu_row);
         var row = $('.new_rows tr.myrow').length;
         var totalPople = $('.new_rows tr.myrow').length+1;
         $('#total_people').val(totalPople);
 
-        if(row >= 10){
+        if(row >= 20){
             // $('#add_rows').hide();
             alert('ព័ត៌មានសំខាន់ៗអំពីសមាជិក​គ្រួសារ​ទាំងអស់មិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
             return false;
@@ -508,6 +510,7 @@
     });
     $('#dob').change(function(e) {
         var num = this.value;
+
         var result = '';
         // console.log(num.length);
         for (n = 0; n < num.length; n++) {
@@ -537,6 +540,7 @@
 
         var age = '';
         var dob = result;
+
         var currentyear = (new Date()).getFullYear();
         age = currentyear-dob;
         if(dob >= currentyear || age >= 160 || age < 1){

@@ -24,7 +24,8 @@ class AjaxController extends Controller
         $query = Helpers::getInterviewCode($od_code);
         $check = DB::select("SELECT count(*) as id FROM general_information gi where gi.od_code=".$od_code);
         $interview_code= $check[0]->id + 1;
-        echo  json_encode($query[0]->shortcut.'/'.date('y m d').'/0'.$interview_code);
+        $inter = $query[0]->shortcut.'/'.date('y m d').'/0'.$interview_code;
+        echo  json_encode($inter);
 
     }
 
@@ -34,7 +35,8 @@ class AjaxController extends Controller
     public function getHealthFacilitiesCode(request $request){
         $od_code = $request->od_code;
         $hf_code  = substr($request->hospital,36);
-        $query   = Helpers::getHealthFacilitiesCode($od_code,$hf_code);
+
+        $query   = Helpers::getHealthFacilitiesCode($od_code);
         echo  json_encode($query[0]->hf_code);
     }
 

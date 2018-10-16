@@ -795,7 +795,7 @@ class HomeController extends Controller
                 'education_level.*.required'     => 'The education is required.'
             ]);
 
-        try {
+        //try {
 
             //check od
             $od_code = $request->hospital;
@@ -1014,14 +1014,60 @@ class HomeController extends Controller
                 TypeToiletLinkModel::create($qt);
             }
 
-
-          //  echo json_encode($member_family);
-            DB::commit();
-            return Redirect::back()->with('success','ការសម្ភាសទិន្នន័យត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
+        //table household_consumer
+        $meterial=[];
+        foreach ($request->type_meterial as $key => $val) {
+            $meterial[] = array(
+                'g_information_id'      => $id,
+                'type_meterial_id'      => $val,
+                'number_meterial'       => $request->number_meterial[$key],
+                'market_value_meterial' => $request->market_value_meterial[$key],
+                'total_rail'            => $request->total_rail_meterial[$key],
+                'total_meterial_costs'  => $request->total_meterial_costs,
+                'created_at'            => Carbon::now(),
+                'updated_at'            => Carbon::now()
+            );
         }
+     //   echo $id;exit();
+        HouseoldConsumerModel::where('g_information_id',$id)->delete();
+        HouseoldConsumerModel::insert($meterial);
+
+
+        //electric
+        $q_electric = $request->q_electric;
+        if($q_electric == 1){
+            //table yes_electric_link
+            $e = array(
+                'q_electric_id'        =>$q_electric,
+                'g_information_id'     =>$id,
+                'costs_in_hour'        =>$request->costs_in_hour,
+                'number_in_month'      =>$request->number_in_month,
+                'costs_per_month'      =>$request->costs_per_month,
+                'created_at'            => Carbon::now(),
+                'updated_at'            => Carbon::now()
+            );
+            YesElectricLinkModel::where('g_information_id',$id)->delete();
+            YesElectricLinkModel::insert($e);
+        }elseif($q_electric == 2){
+            //table no_electric_link
+            $e1 = array(
+                'q_electric_id'       =>$q_electric,
+                'g_information_id'    =>$id,
+                'electric_grid_id'    =>$request->electric_grid_id,
+                'created_at'            => Carbon::now(),
+                'updated_at'            => Carbon::now()
+            );
+            NoElectricLinkModel::where('g_information_id',$id)->delete();
+            NoElectricLinkModel::insert($e1);
+        }
+
+        //  echo json_encode($member_family);
+           // DB::commit();
+            return Redirect::back()->with('success','ការសម្ភាសទិន្នន័យត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ');
+//        } catch (\Exception $e) {
+//            DB::rollBack();
+//            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
+//        }
     }
 
 

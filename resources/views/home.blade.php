@@ -1658,7 +1658,136 @@
                                 </div>
                             </div>
 
+<script>
+    /*==================================================================
+ ===============================new_rows_1===========================
+ ================================================================== */
+    var dataRow_meterial = 2;
+    $('#add_rows_1').click(function(){ //alert($m_id);
+        var row_1 = $('.new_rows_1 tr.myrow_1').length;
+//        if(row_1 >= 6){
+//            // $('#add_rows_1').hide();
+//            alert('ប្រភេទសម្ភារប្រើបា្រស់​របស់​គ្រួសារមិនអនុញ្ញាតអោយបញ្ចូលលើសពីរការកំណត់ទេ');
+//            return false;
+//        }
+        reOrder_meterial();
+        // var rowindex_1 = row_1+1;
+        var tab_rows_1 ='<tr class="myrow_1">'+
+            '<td>'+dataRow_meterial+'</td>'+
+            '<td>' +
+            '<div class="form-group add_type_meterial_'+row_1+'">'+
+            '<select id="type_meterial_'+row_1+'" class="form-control type_meterial" id="type_meterial" name="type_meterial['+row_1+']"> <option></option>@foreach($typemeterial as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
+            '</div>'+
+            '</td>'+
+            '<td><div class="form-group"><input autocomplete="off" id="number_meterial_'+row_1+'" type="text" class="cal_el number_meterial form-control allowNumber meterial" name="number_meterial['+row_1+']" required="required"/></div></td>'+
+            '<td><div class="form-group"><input autocomplete="off" id="market_value_meterial_'+row_1+'" type="text" class="cal_el market_value_meterial form-control allowNumber meterial" name="market_value_meterial['+row_1+']" required="required"/></div></td>'+
+            '<td><div class="form-group input-group"><input id="total_rail_meterial_'+row_1+'" type="text" required="required" class="cal_el total_rail_meterial form-control totalallowNumber_meterial" name="total_rail_meterial['+row_1+']" readonly="readonly"/><span class="input-group-addon">រៀល</span></div></div></td>'+
+            '<td><a id="meterial_'+row_1+'" class="btn btn-danger btn-sm remove_rows_1"><span class="glyphicon glyphicon-minus"></span></a></td>'+
+            '</tr>';
+        $(".new_rows_1").append(tab_rows_1);
+        dataRow_meterial++;
+        $(".type_meterial").select2({ allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
+        AllowNumber();
+        var row_num = $('.new_rows_1 tr').length;
 
+
+
+        $('.cal_el').change(function(){
+            var total = $('#total_meterial_costs').val();
+            //  alert(total);
+        });
+        $('.meterial').change(function () {
+            for(var i=1; i<row_num; i++) {
+                var sum = 0;
+                var number_meterial = $('#number_meterial_'+i).val();
+                var market_value_meterial = $('#market_value_meterial_'+i).val();
+                sum = Number(number_meterial * market_value_meterial);
+                $("#meterial_"+i).attr({"onclick": "remove_1("+sum+")"});
+                $('#total_rail_meterial_'+i).val(sum);
+                $('.cal_el').change(function(){
+                    var total = $('#total_meterial_costs').val();
+                    if( total>=0 && total <=400000) { $('#el_score').val(6); }
+                    else if( total>=404000 && total<=800000 ){ $('#el_score').val(4);}
+                    else if( total>=804000 && total<= 1200000){ $('#el_score').val(2);}
+                    else{ $('#el_score').val(0); }
+                });
+            }
+        });
+
+        $('.meterial').change(function () {
+            var arr = document.getElementsByClassName('totalallowNumber_meterial');
+            var tot=0;
+            for(var i=0;i<arr.length;i++){
+                if(parseInt(arr[i].value))
+                    tot += parseInt(arr[i].value);
+            }
+            document.getElementById('total_meterial_costs').value = tot;
+        });
+    });
+
+    function reOrder_meterial(){
+        for(var n=2;n<(dataRow_meterial-1);n++){
+            $('.new_rows_1  tr:eq(' + (n-1) +') td:first-child').html(n);
+            $('.new_rows_1  tr:eq(' + (n-1) +') td .type_meterial').attr('name', 'type_meterial['+(n-1)+']');
+            $('.new_rows_1  tr:eq(' + (n-1) +') td .number_meterial').attr('name', 'number_meterial['+(n-1)+']');
+            $('.new_rows_1  tr:eq(' + (n-1) +') td .number_meterial').attr('id', 'number_meterial_'+(n-1));
+            $('.new_rows_1  tr:eq(' + (n-1) +') td .market_value_meterial').attr('name', 'market_value_meterial['+(n-1)+']');
+            $('.new_rows_1  tr:eq(' + (n-1) +') td .market_value_meterial').attr('id', 'market_value_meterial_'+(n-1));
+            $('.new_rows_1  tr:eq(' + (n-1) +') td .total_rail_meterial').attr('name', 'total_rail_meterial['+(n-1)+']');
+            $('.new_rows_1  tr:eq(' + (n-1) +') td .total_rail_meterial').attr('id', 'total_rail_meterial_'+(n-1));
+            $('.new_rows_1  tr:eq(' + (n-1) +') td .remove_rows_1').attr('id', 'meterial_'+(n-1));
+
+        }
+    }
+    //remove add
+    function remove_1(val) {
+        var total_costs = parseInt($('#total_meterial_costs').val()) - val;
+        $('#total_meterial_costs').val(total_costs);
+    }
+    $(".new_rows_1").on('click','.remove_rows_1',function(e){
+        var result = window.confirm('Are you sure?');
+        if (result == false) {
+            e.preventDefault();
+            return false;
+        }
+
+        $('#add_rows_1').show();
+        $(this).parent().parent().remove();
+        reOrder_meterial();
+        dataRow_meterial--;
+    });
+    $('.meterial').change(function () {
+        var sum = 0;
+        var number_meterial = $('#number_meterial').val();
+        var market_value_meterial = $('#market_value_meterial').val();
+        $('.meterial').each(function() {sum = Number(number_meterial * market_value_meterial);});
+        $('#total_rail_meterial').val(sum);
+
+        $('.cal_el').change(function(){
+            var total = $('#total_meterial_costs').val();
+            if( total>=0 && total <=400000) { $('#el_score').val(6); }
+            else if( total>=404000 && total<=800000 ){ $('#el_score').val(4);}
+            else if( total>=804000 && total<= 1200000){ $('#el_score').val(2);}
+            else{ $('#el_score').val(0); }
+        });
+    });
+
+    $('.meterial').change(function () {
+        var arr = document.getElementsByClassName('totalallowNumber_meterial');
+        var tot=0;
+        for(var i=0;i<arr.length;i++){
+            if(parseInt(arr[i].value))
+                tot += parseInt(arr[i].value);
+        }
+        $('#total_meterial_costs').val(tot);
+    });
+
+    //type_vehicle
+    $(".type_meterial").select2({allowClear:true, placeholder: 'សម្ភារប្រើបា្រស់'});
+    $("#go_hospital").select2({allowClear:true, placeholder: 'មធ្យោបាយធ្វើដំណើរ'});
+    //type_vehicle
+    $(".type_vehicle").select2({allowClear:true, placeholder: 'សម្ភារប្រើបា្រស់'});
+</script>
 
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
@@ -3336,6 +3465,7 @@
                // console.log(obj);
                 //$("#interview_code").val('');
                 $("#interview_code").val(obj);
+                $("#health_facilities_code").val(od_code);
             },
             complete: function(){
                 $("#loading").fadeOut(100);
@@ -3346,26 +3476,26 @@
         });
     });
 
-    $("#hospital").change(function () {
-        var od_code  = $('#hospital').val();
-        var hospital = $('#hospital option:selected').text();
+    {{--$("#hospital").change(function () {--}}
+        {{--var od_code  = $('#hospital').val();--}}
+        {{--var hospital = $('#hospital option:selected').text();--}}
 
-        $.ajax({
-            type: 'GET',
-            url: "{{ route('getHealthFacilitiesCode') }}",
-            data: {'od_code': od_code,'hospital': hospital},
-            beforeSend: function(){
-                $("#loading").fadeIn();
-            },
-            success: function (data) {
-                var obj = JSON.parse(data);
-                $("#health_facilities_code").val(obj);
-            },
-            complete: function(){
-                $("#loading").fadeOut(100);
-            }
-        });
-    });
+        {{--$.ajax({--}}
+            {{--type: 'GET',--}}
+            {{--url: "{{ route('getHealthFacilitiesCode') }}",--}}
+            {{--data: {'od_code': od_code,'hospital': hospital},--}}
+            {{--beforeSend: function(){--}}
+                {{--$("#loading").fadeIn();--}}
+            {{--},--}}
+            {{--success: function (data) {--}}
+                {{--var obj = JSON.parse(data);--}}
+                {{--$("#health_facilities_code").val(obj);--}}
+            {{--},--}}
+            {{--complete: function(){--}}
+                {{--$("#loading").fadeOut(100);--}}
+            {{--}--}}
+        {{--});--}}
+    {{--});--}}
     /*========================================================================
      ===============// select province code append district //=================
      ==========================================================================*/

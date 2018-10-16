@@ -51,7 +51,7 @@ class Helpers{
     public static function getHealthFacilitiesCode($od_code,$hf_code){
         echo $hf_code;
         $interview = DB::connection("mysql2")
-            ->select("select hf.code as hf_code from health_facilities hf inner join od_shortcuts os on hf.od_code = os.od_code where hf.code = '$od_code' and hf.name_kh = '$hf_code'");
+            ->select("select hf.code as hf_code from health_facilities hf inner join od_shortcuts os on hf.od_code = os.od_code where hf.code = '$od_code'");
         return $interview;
     }
 
