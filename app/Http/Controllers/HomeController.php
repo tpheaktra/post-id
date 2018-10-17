@@ -1083,6 +1083,24 @@ class HomeController extends Controller
         HouseholdVehicleModel::insert($vehicle);
 
 
+
+        //table type_income
+        $animals =[];
+        foreach ($request->type_animals as $key => $anim) {
+            $animals[] = array(
+                'g_information_id'      => $id,
+                'type_animals_id'       => $anim,
+                'num_animals'           => isset($request->num_animals[$key]) ? $request->num_animals[$key] : 0,
+                'num_animals_big'       => isset($request->num_animals_big[$key]) ? $request->num_animals_big[$key] : 0,
+                'num_animals_small'     => isset($request->num_animals_small[$key]) ? $request->num_animals_small[$key] : 0,
+                'note_animals'          => $request->note_animals[$key],
+                'total_animals_costs'   => $request->total_animals_costs
+            );
+        }
+        TypeIncomeModel::where('g_information_id',$id)->delete();
+        TypeIncomeModel::insert($animals);
+
+
         //  echo json_encode($member_family);
            // DB::commit();
             return Redirect::back()->with('success','ការសម្ភាសទិន្នន័យត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ');
