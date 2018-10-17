@@ -946,6 +946,59 @@
                                         </table>
                                     </div>
                                 <div class="col-sm-12"><hr></div>
+                                <script type="text/javascript">
+                                    //family
+                                    $('.ground_floor').change(function(){
+                                        var g_length = 0;
+                                        var g_width = 0;
+                                        g_length = parseInt($('#ground_floor_length').val() ? $('#ground_floor_length').val() : 0);
+                                        g_width  = parseFloat($('#ground_floor_width').val() ? $('#ground_floor_width').val() : 0);
+                                        $('#ground_floor_area').val((g_length * g_width ? g_length * g_width : 0).toFixed(0));
+                                    });
+
+                                    $('#upper_floor_length, #upper_floor_width').change(function() {
+                                        var u_length = parseInt($('#upper_floor_length').val());
+                                        var u_width = parseFloat($('#upper_floor_width').val());
+                                        $('#upper_floor_area').val((u_length * u_width ? u_length * u_width : 0).toFixed(0));
+                                    });
+                                    $('#further_floor_length, #further_floor_width').change(function() {
+                                        var f_length = parseInt($('#further_floor_length').val());
+                                        var f_width = parseFloat($('#further_floor_width').val());
+                                        $('#further_floor_area').val((f_length * f_width ? f_length * f_width : 0).toFixed(0));
+                                    });
+                                    $('#ground_floor_length, #ground_floor_width, #upper_floor_length, #upper_floor_width,#further_floor_length, #further_floor_width').on('change' ,function() {
+                                        var total_g = 0;
+                                        var total_u = 0;
+                                        var total_f = 0;
+                                        var sum = 0;
+
+                                        total_g = Number($('#ground_floor_area').val());
+                                        total_u = Number($('#upper_floor_area').val());
+                                        total_f = Number($('#further_floor_area').val());
+                                        sum = Number(total_g + total_u + total_f);
+                                        $('#total_area').val(sum);
+                                    });
+                                    //family
+                                    $('.calculate').change(function(){
+                                        var member = parseInt($('#total_people').val());
+                                        var land = parseInt($('#total_area').val());
+                                        var score = $('#a_score1').val();
+                                        // 1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ
+                                        if(((member >=1 && member <= 3) && (land>=1 && land <=20)) || ((member >=4 && member <=6) && (land>=1 && land <=30)) || ((member >=7 && member <= 10) && (land>=1 && land <=40)) || ((member>10)&&(land>=1 && land<=50))){
+                                            $('#a_score1').val(8);
+                                        }
+                                        else if(((member >= 1 && member <=3) && (land>20 && land<=30)) || ((member>=4 && member<=6)&&(land>30 && land<=40)) || ((member>=7 && member<=10)&&(land>40 && land<=55)) || ((member>10)&&(land>50 && land<=65)) )
+                                        {
+                                            $('#a_score1').val(6);
+                                        }
+                                        else if( ((member >= 1 && member <=3) && (land>30 && land<=40)) || ((member>=4 && member<=6)&&(land>40 && land<=50)) || ((member>=7 && member<=10)&&(land>55 && land<=65)) || ((member>10)&&(land>65 && land<=75)) ){
+                                            $('#a_score1').val(3);
+                                        }
+                                        else{
+                                            $('#a_score1').val(0);
+                                        }
+                                    });
+                                </script>
                             @endif
 
 
@@ -1039,6 +1092,59 @@
                                         </table>
                                     </div>
                                     <div class="col-sm-12"><hr></div>
+                                    <script type="text/javascript">
+                                        //family
+                                        $('.ground_floor').change(function(){
+                                            var g_length = 0;
+                                            var g_width = 0;
+                                            g_length = parseInt($('#ground_floor_length').val() ? $('#ground_floor_length').val() : 0);
+                                            g_width  = parseFloat($('#ground_floor_width').val() ? $('#ground_floor_width').val() : 0);
+                                            $('#ground_floor_area').val((g_length * g_width ? g_length * g_width : 0).toFixed(0));
+                                        });
+
+                                        $('#upper_floor_length, #upper_floor_width').change(function() {
+                                            var u_length = parseInt($('#upper_floor_length').val());
+                                            var u_width = parseFloat($('#upper_floor_width').val());
+                                            $('#upper_floor_area').val((u_length * u_width ? u_length * u_width : 0).toFixed(0));
+                                        });
+                                        $('#further_floor_length, #further_floor_width').change(function() {
+                                            var f_length = parseInt($('#further_floor_length').val());
+                                            var f_width = parseFloat($('#further_floor_width').val());
+                                            $('#further_floor_area').val((f_length * f_width ? f_length * f_width : 0).toFixed(0));
+                                        });
+                                        $('#ground_floor_length, #ground_floor_width, #upper_floor_length, #upper_floor_width,#further_floor_length, #further_floor_width').on('change' ,function() {
+                                            var total_g = 0;
+                                            var total_u = 0;
+                                            var total_f = 0;
+                                            var sum = 0;
+
+                                            total_g = Number($('#ground_floor_area').val());
+                                            total_u = Number($('#upper_floor_area').val());
+                                            total_f = Number($('#further_floor_area').val());
+                                            sum = Number(total_g + total_u + total_f);
+                                            $('#total_area').val(sum);
+                                        });
+                                        //family
+                                        $('.calculate').change(function(){
+                                            var member = parseInt($('#total_people').val());
+                                            var land = parseInt($('#total_area').val());
+                                            var score = $('#a_score1').val();
+                                            // 1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ
+                                            if(((member >=1 && member <= 3) && (land>=1 && land <=20)) || ((member >=4 && member <=6) && (land>=1 && land <=30)) || ((member >=7 && member <= 10) && (land>=1 && land <=40)) || ((member>10)&&(land>=1 && land<=50))){
+                                                $('#a_score1').val(8);
+                                            }
+                                            else if(((member >= 1 && member <=3) && (land>20 && land<=30)) || ((member>=4 && member<=6)&&(land>30 && land<=40)) || ((member>=7 && member<=10)&&(land>40 && land<=55)) || ((member>10)&&(land>50 && land<=65)) )
+                                            {
+                                                $('#a_score1').val(6);
+                                            }
+                                            else if( ((member >= 1 && member <=3) && (land>30 && land<=40)) || ((member>=4 && member<=6)&&(land>40 && land<=50)) || ((member>=7 && member<=10)&&(land>55 && land<=65)) || ((member>10)&&(land>65 && land<=75)) ){
+                                                $('#a_score1').val(3);
+                                            }
+                                            else{
+                                                $('#a_score1').val(0);
+                                            }
+                                        });
+                                    </script>
                                 @endif
                         </div>
 
@@ -1128,7 +1234,7 @@
 
                             <div class="row" id="building-year">
                                 @if($gFamily->household_family_id == 1)
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <table class="table-home table table-bordered table-striped">
                                         <thead>
                                         <tr>
@@ -1137,7 +1243,7 @@
                                             </tr>
                                         </thead>
                                         <tr>
-                                            <td width="50%">
+                                            <td width="30%">
                                                 <div class="add_huild_year">
                                                     <select name="h_build_year" id="year_select" style="width: 100%;" name="build_in">
                                                         <option></option>
@@ -1145,7 +1251,7 @@
                                                         </select>
                                                     </div>
                                                 </td>
-                                            <td width="50%">
+                                            <td width="70%">
                                                 <div class="add_home_prepare">
                                                     <ul class="li-none">
                                                         @foreach($homePrepar as $key =>$p)
@@ -1214,7 +1320,7 @@
                                     </script>
                                 @endif
                                     @if($gFamily->household_family_id == 3)
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-12">
                                             <table class="table-home table table-bordered table-striped">
                                                 <thead>
                                                 <tr>
@@ -1223,7 +1329,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tr>
-                                                    <td width="50%">
+                                                    <td width="30%">
                                                         <div class="add_huild_year">
                                                             <select name="h_build_year" id="year_select" style="width: 100%;" name="build_in">
                                                                 <option></option>
@@ -1231,7 +1337,7 @@
                                                             </select>
                                                         </div>
                                                     </td>
-                                                    <td width="50%">
+                                                    <td width="70%">
                                                         <div class="add_home_prepare">
                                                             <ul class="li-none">
                                                                 @foreach($homePrepar as $key =>$p)
@@ -1555,114 +1661,14 @@
                             @include('include.edit-electronic')
                         </div>
 
-
-
-
-                        <div class="col-sm-12"><hr> </div>
-                        <div class="col-sm-12">
-
-                            <h4>គ.១១) យានជំនិះជាទ្រព្យសម្បត្តិផ្ទាល់របស់​គ្រួសារ</h4>
-                            <div class="col-sm-6">
-                                <table class="table-home">
-                                    <tr>
-                                        <td width="50%"><h5>តើអ្នកប្រើមធ្យោបាយអ្វីមកមន្ទីរពេទ្យ?</h5></td>
-                                        <td width="50%">
-                                            <div class="form-group go_hospital">
-                                                <select class="form-control" id="go_hospital" name="go_hospital">
-                                                    <option></option>
-                                                    @foreach($typetransport as $keh => $value)
-                                                        <option @if($gFamily != null && $gFamily->transport_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <table class="tb_grid table table-bordered table-striped" width="100%">
-                                <thead>
-                                <tr>
-                                    <th rowspan="2">ល.រ</th>
-                                    <th rowspan="2">ប្រភេទសម្ភារប្រើបា្រស់ <spand class="text-danger">*</spand></th>
-                                    <th colspan="2">តម្លៃទីផ្សារ ប្រសិន​លក់​វា​ចេញ</th>
-                                    <th rowspan="2">តម្លៃ​សរុប (រៀល)</th>
-                                    <th rowspan="2">សកម្មភាព</th>
-                                </tr>
-                                <tr>
-                                    <th>បរិមាណ <spand class="text-danger">*</spand></th>
-                                    <th>តម្លៃ <spand class="text-danger">*</spand></th>
-                                </tr>
-                                </thead>
-                                <tbody class="new_rows_2">
-                                @foreach($vehicle as $key => $gg)
-                                    <tr class="myrow_2">
-                                        <td>1</td>
-                                        <td>
-                                            <div class="form-group add_type_vehicle">
-                                                <select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle[0]">
-                                                    <option></option>
-                                                    @foreach($typetransport as $keh => $value)
-                                                        <option @if($gg->type_vehicle_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input value="{{$gg->number_vehicle}}" id="number_vehicle" name="number_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group input-group">
-                                                <input value="{{$gg->market_value_vehicle}}" id="market_value_vehicle" name="market_value_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
-                                                <span class="input-group-addon">រៀល</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group input-group">
-                                                <input value="{{$gg->total_rail_vehicle}}" id="total_rail_vehicle" name="total_rail_vehicle[0]" type="text" required="required" class="form-control totalallowNumber_vehicle" readonly="readonly"/>
-                                                <span class="input-group-addon">រៀល</span>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:center;">
-                                            @if($key==0)
-                                                <a  class="btn btn-primary btn-sm" id="add_rows_2">
-                                                    <span class="glyphicon glyphicon-plus"></span>
-                                                </a>
-                                            @else
-                                                <a id="vehicle_{{$key}}" class="btn remove_rows_2 btn-danger btn-sm">
-                                                    <span class="glyphicon glyphicon-minus"></span>
-                                                </a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-
-                                <tfoot>
-                                <tr>
-                                    <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
-                                    <td>
-                                        <div class="form-group input-group">
-                                            <input value="{{$vehicle[0]->total_vehicle_costs}}" id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
-                                            <span class="input-group-addon">រៀល</span>
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr class="my_hide">
-                                    <td colspan="4"><b style="float:right">6. អំពីយានជំនិះរបស់គ្រួសារ</b></td>
-                                    <td>
-                                        <div class="form-group input-group">
-                                            <input id="score_v" name="vehicle_score" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
-                                            <span class="input-group-addon">ពិន្ទុ</span>
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                </tfoot>
-                            </table>
+                        <div>
+                            @include('include.edit-vehicle')
                         </div>
+
+
+
+
+
 
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
@@ -3252,5 +3258,6 @@
         });
 
     </script>
-    @include('include.function')
+    @include('include.function-nummber-flot')
+    @include('include.edit-function')
 @endsection

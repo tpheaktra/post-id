@@ -10,6 +10,7 @@
     }
 </style>
 <!------ Include the above in your HEAD tag ---------->
+
 <div class="container content">
     <div class="col-sm-12">
         <h3 class="hospital_title" align="center">ការធ្វើអត្តសញ្ញាណកម្មគ្រួសារក្រីក្រនៅមន្ទីពេទ្យ</h3>
@@ -1300,7 +1301,7 @@
                                                     // '</tr>'
                                                  '</table>';
 
-                                            var building_year = '<div class="col-sm-6">' +
+                                            var building_year = '<div class="col-sm-12">' +
                                                     '<table class="table-home table table-bordered table-striped">' +
                                                     '<thead>' +
                                                         '<tr>' +
@@ -1309,7 +1310,7 @@
                                                         '</tr>' +
                                                     '</thead>'+
                                                         '<tr>' +
-                                                            '<td width="50%">' +
+                                                            '<td width="30%">' +
                                                                 '<div class="add_huild_year">' +
                                                                     '<select name="h_build_year" id="year_select" style="width: 100%;" name="build_in">\n'+
                                                                         '<option></option>' +
@@ -1317,7 +1318,7 @@
                                                                     '</select>' +
                                                                 '</div>' +
                                                             '</td>' +
-                                                            '<td width="50%">' +
+                                                            '<td width="70%">' +
                                                                 '<div class="add_home_prepare">' +
                                                                     '<ul class="li-none">' +
                                                                         '@foreach($homePrepar as $key =>$p)' +
@@ -1662,6 +1663,40 @@
     /*==================================================================
  ===============================new_rows_1===========================
  ================================================================== */
+    $(".allowNumber").change(function (event) {
+        // $(this).val($(this).val().replace(/[^\d].+/, ""));
+        var num = this.value;
+        var result = '';
+        // console.log(num.length);
+        for (n = 0; n < num.length; n++) {
+            if (num[n] == '០') result += 0;
+            if (num[n] == '១') result += 1;
+            if (num[n] == '២') result += 2;
+            if (num[n] == '៣') result += 3;
+            if (num[n] == '៤') result += 4;
+            if (num[n] == '៥') result += 5;
+            if (num[n] == '៦') result += 6;
+            if (num[n] == '៧') result += 7;
+            if (num[n] == '៨') result += 8;
+            if (num[n] == '៩') result += 9;
+
+            // if (num[n] == '.') result += '.';
+            if (num[n] == 0) result += 0;
+            if (num[n] == 1) result += 1;
+            if (num[n] == 2) result += 2;
+            if (num[n] == 3) result += 3;
+            if (num[n] == 4) result += 4;
+            if (num[n] == 5) result += 5;
+            if (num[n] == 6) result += 6;
+            if (num[n] == 7) result += 7;
+            if (num[n] == 8) result += 8;
+            if (num[n] == 9) result += 9;
+        }
+        $(this).val(result);
+//        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which > 57)) {
+//            event.preventDefault();
+//        }
+    });
     var dataRow_meterial = 2;
     $('#add_rows_1').click(function(){ //alert($m_id);
         var row_1 = $('.new_rows_1 tr.myrow_1').length;
@@ -1784,9 +1819,8 @@
 
     //type_vehicle
     $(".type_meterial").select2({allowClear:true, placeholder: 'សម្ភារប្រើបា្រស់'});
-    $("#go_hospital").select2({allowClear:true, placeholder: 'មធ្យោបាយធ្វើដំណើរ'});
-    //type_vehicle
-    $(".type_vehicle").select2({allowClear:true, placeholder: 'សម្ភារប្រើបា្រស់'});
+
+
 </script>
 
                         <div class="col-sm-12"><hr> </div>
@@ -3653,5 +3687,6 @@
     });
 
 </script>
+@include('include.function-nummber-flot')
     @include('include.function')
 @endsection

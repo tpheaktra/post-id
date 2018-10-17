@@ -92,6 +92,38 @@
     /*==================================================================
  ===============================new_rows_1===========================
  ================================================================== */
+    $(".allowNumber").change(function (event) {
+        // $(this).val($(this).val().replace(/[^\d].+/, ""));
+        var num = this.value;
+        var result = '';
+        // console.log(num.length);
+        for (n = 0; n < num.length; n++) {
+            if (num[n] == '០') result += 0;
+            if (num[n] == '១') result += 1;
+            if (num[n] == '២') result += 2;
+            if (num[n] == '៣') result += 3;
+            if (num[n] == '៤') result += 4;
+            if (num[n] == '៥') result += 5;
+            if (num[n] == '៦') result += 6;
+            if (num[n] == '៧') result += 7;
+            if (num[n] == '៨') result += 8;
+            if (num[n] == '៩') result += 9;
+
+            // if (num[n] == '.') result += '.';
+            if (num[n] == 0) result += 0;
+            if (num[n] == 1) result += 1;
+            if (num[n] == 2) result += 2;
+            if (num[n] == 3) result += 3;
+            if (num[n] == 4) result += 4;
+            if (num[n] == 5) result += 5;
+            if (num[n] == 6) result += 6;
+            if (num[n] == 7) result += 7;
+            if (num[n] == 8) result += 8;
+            if (num[n] == 9) result += 9;
+        }
+        $(this).val(result);
+    });
+
     var dataRow_meterial = $('.new_rows_1 tr.myrow').length-1;
     var dataRow_meterial_add = $('.new_rows_1 tr.myrow').length+1;
     var dataRowMeterial = $('.new_rows_1 tr.myrow').length;
@@ -134,10 +166,12 @@
             //  alert(total);
         });
         $('.meterial').change(function () {
-            for(var i=1; i<row_num; i++) {
+            for(var i=0; i<row_num; i++) {
                 var sum = 0;
-                var number_meterial = $('#number_meterial_'+i).val();
-                var market_value_meterial = $('#market_value_meterial_'+i).val();
+                var number_meterial = 0;
+                var market_value_meterial = 0;
+                 number_meterial = $('#number_meterial_'+i).val();
+                 market_value_meterial = $('#market_value_meterial_'+i).val();
                 sum = Number(number_meterial * market_value_meterial);
                 $("#meterial_"+i).attr({"onclick": "remove_1("+sum+")"});
                 $('#total_rail_meterial_'+i).val(sum);
@@ -202,9 +236,11 @@
 
         for(var i=0; i<dataRowMeterial; i++) {
             var sum = 0;
-            var number_meterial = parseInt($('#number_meterial_'+i).val());
-            var market_value_meterial = parseInt($('#market_value_meterial_'+i).val());
-            alert(number_meterial);
+            var number_meterial = 0;
+            var market_value_meterial = 0;
+             number_meterial = parseInt($('#number_meterial_'+i).val());
+             market_value_meterial = parseInt($('#market_value_meterial_'+i).val());
+
             $('.meterial').each(function () {
                 sum = Number(number_meterial * market_value_meterial);
             });
@@ -227,7 +263,7 @@
                 }
             });
         }
-        AllowNumber();
+
     });
 
     $('.meterial').change(function () {

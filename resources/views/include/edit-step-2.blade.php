@@ -252,7 +252,7 @@
 
     $('#add_rows').click(function(){ //alert($m_id);
 
-        edu_row++;alert(edu_row);
+        edu_row++;
         var row = $('.new_rows tr.myrow').length;
         var totalPople = $('.new_rows tr.myrow').length+1;
         $('#total_people').val(totalPople);

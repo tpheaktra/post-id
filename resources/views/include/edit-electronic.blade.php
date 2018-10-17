@@ -31,7 +31,58 @@
                                 </tr>
                             </table>@endif
                     </li>
+                    <script>
+                        $(".allowNumber").change(function (event) {
+                            // $(this).val($(this).val().replace(/[^\d].+/, ""));
+                            var num = this.value;
+                            var result = '';
+                            // console.log(num.length);
+                            for (n = 0; n < num.length; n++) {
+                                if (num[n] == '០') result += 0;
+                                if (num[n] == '១') result += 1;
+                                if (num[n] == '២') result += 2;
+                                if (num[n] == '៣') result += 3;
+                                if (num[n] == '៤') result += 4;
+                                if (num[n] == '៥') result += 5;
+                                if (num[n] == '៦') result += 6;
+                                if (num[n] == '៧') result += 7;
+                                if (num[n] == '៨') result += 8;
+                                if (num[n] == '៩') result += 9;
 
+                                // if (num[n] == '.') result += '.';
+                                if (num[n] == 0) result += 0;
+                                if (num[n] == 1) result += 1;
+                                if (num[n] == 2) result += 2;
+                                if (num[n] == 3) result += 3;
+                                if (num[n] == 4) result += 4;
+                                if (num[n] == 5) result += 5;
+                                if (num[n] == 6) result += 6;
+                                if (num[n] == 7) result += 7;
+                                if (num[n] == 8) result += 8;
+                                if (num[n] == 9) result += 9;
+                            }
+                            $(this).val(result);
+                        });
+                        $('.cal_t').keyup(function(){
+                            var cost    = $('#costs_per_month').val();
+                            var number  = $('#number_in_month').val();
+                            if( (cost < 15000) || (number < 20) ){
+                                $('#cost_score').val(8);
+                            }else if( (cost>=15100 && cost<=30000) || (number>=21 && number<=49) ){
+                                $('#cost_score').val(5);
+                            }else{
+                                $('#cost_score').val(0);
+                            }
+                        });
+                        $('.myelectric').change(function(){
+                            var costs_in_hour = 0;
+                            var number_in_month = 0;
+                            costs_in_hour = parseInt($('#costs_in_hour').val());
+                            number_in_month = parseInt($('#number_in_month').val());
+                            var re = costs_in_hour * number_in_month ? costs_in_hour * number_in_month : 0;
+                            $('#costs_per_month').val(re);
+                        });
+                    </script>
                 @endif
                 @if($qe->id == 2)
                     <li id="electric_no">
@@ -41,7 +92,7 @@
                                 <ul class="li-none">
                                     @foreach($electricgrid as $key=>$e)<li>
                                         <label>
-                                            <input @if($noElectrict->electric_grid_id == $e->id) checked @endif style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}
+                                            <input @if($noElectrict != null && $noElectrict->electric_grid_id == $e->id) checked @endif style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}
                                         </label>
                                     </li>
                                     @endforeach
@@ -105,7 +156,7 @@
                 });
 
             }else if(electric == 2){
-                $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input @if($noElectrict->electric_grid_id == $e->id) checked @endif style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>'+'<div class="my_hide form-group input-group" style="width: 300px;">'+
+                $('#electric_no').append('<p>ប្រសិនមិនបានតបណ្តាញអគ្គិសនី</p><div class="add_electric_grid"><ul class="li-none">@foreach($electricgrid as $key=>$e)<li><label><input @if($noElectrict != null && $noElectrict->electric_grid_id == $e->id) checked @endif style="margin-right:10px;" class="electric_grid_id" value="{{$e->id}}" type="radio" name="electric_grid_id" ​​> {{$e->name_kh}}</label></li>@endforeach</ul></div>'+'<div class="my_hide form-group input-group" style="width: 300px;">'+
                     '<input id="score_power" type="text" name="no_energy_elect_score" class="score_power form-control allowNumber"​ readonly>'+
                     '<span class="input-group-addon">ពិន្ទុ</span>'+
                     '</div>');
@@ -121,14 +172,7 @@
             }
         });
 
-        $('.myelectric').change(function(){
-            var costs_in_hour = 0;
-            var number_in_month = 0;
-            costs_in_hour = parseInt($('#costs_in_hour').val());
-            number_in_month = parseInt($('#number_in_month').val());
-            var re = costs_in_hour * number_in_month ? costs_in_hour * number_in_month : 0;
-            $('#costs_per_month').val(re);
-        });
+
     </script>
 
 </div>
