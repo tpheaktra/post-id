@@ -244,7 +244,7 @@
             $('.meterial').each(function () {
                 sum = Number(number_meterial * market_value_meterial);
             });
-
+            $("#meterial_"+i).attr({"onclick": "remove_1("+sum+")"});
             $('#total_rail_meterial_'+i).val(sum);
 
             $('.cal_el').change(function () {

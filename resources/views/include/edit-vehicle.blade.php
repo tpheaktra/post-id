@@ -36,10 +36,10 @@
         <tbody class="new_rows_2">
         @foreach($vehicle as $key => $gg)
             <tr class="myrow_2">
-                <td>1</td>
+                <td>{{$key+1}}</td>
                 <td>
-                    <div class="form-group add_type_vehicle">
-                        <select class="form-control type_vehicle" id="type_vehicle" name="type_vehicle[0]">
+                    <div class="form-group add_type_vehicle_{{$key}}" id="typeVehicle">
+                        <select class="form-control type_vehicle" id="type_vehicle_{{$key}}" name="type_vehicle[{{$key}}]">
                             <option></option>
                             @foreach($typetransport as $keh => $value)
                                 <option @if($gg->type_vehicle_id == $value->id) selected @endif value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -49,18 +49,18 @@
                 </td>
                 <td>
                     <div class="form-group">
-                        <input value="{{$gg->number_vehicle}}" id="number_vehicle" name="number_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
+                        <input value="{{$gg->number_vehicle}}" id="number_vehicle_{{$key}}" name="number_vehicle[{{$key}}]" type="text" class="number_vehicle form-control allowNumber vehicle cal_v" required="required" />
                     </div>
                 </td>
                 <td>
                     <div class="form-group input-group">
-                        <input value="{{$gg->market_value_vehicle}}" id="market_value_vehicle" name="market_value_vehicle[0]" type="text" class="form-control allowNumber vehicle cal_v" required="required" />
+                        <input value="{{$gg->market_value_vehicle}}" id="market_value_vehicle_{{$key}}" name="market_value_vehicle[{{$key}}]" type="text" class="market_value_vehicle form-control allowNumber vehicle cal_v" required="required" />
                         <span class="input-group-addon">រៀល</span>
                     </div>
                 </td>
                 <td>
                     <div class="form-group input-group">
-                        <input value="{{$gg->total_rail_vehicle}}" id="total_rail_vehicle" name="total_rail_vehicle[0]" type="text" required="required" class="form-control totalallowNumber_vehicle" readonly="readonly"/>
+                        <input value="{{$gg->total_rail_vehicle}}" id="total_rail_vehicle_{{$key}}" name="total_rail_vehicle[{{$key}}]" type="text" required="required" class="total_rail_vehicle form-control totalallowNumber_vehicle" readonly="readonly"/>
                         <span class="input-group-addon">រៀល</span>
                     </div>
                 </td>
@@ -70,7 +70,7 @@
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
                     @else
-                        <a id="vehicle_{{$key}}" class="btn remove_rows_2 btn-danger btn-sm">
+                        <a id="vehicle_{{$key}}" class="btn remove_rows_2 btn-danger btn-sm" onclick="remove_2({{$gg->total_rail_vehicle}})">
                             <span class="glyphicon glyphicon-minus"></span>
                         </a>
                     @endif
@@ -143,6 +143,9 @@
     //type_vehicle
     $(".type_vehicle").select2({allowClear:true, placeholder: 'សម្ភារប្រើបា្រស់'});
     dataRow_vehicle=2;
+    var dataRow_vehicle = $('.new_rows_2 tr.myrow_2').length-1;
+    var dataRow_vehicle_add = $('.new_rows_2 tr.myrow_2').length+1;
+    var dataRowVehicle = $('.new_rows_2 tr.myrow_2').length;
     $('#add_rows_2').click(function(){ //alert($m_id);
         var row_2 = $('.new_rows_2 tr.myrow_2').length;
 //        if(row_2 >= 7){
@@ -152,9 +155,9 @@
         reOrder_vehicle();
         //   var rowindex_2 = row_2+1;
         var html = '<tr class="myrow_2">'+
-            '<td>'+dataRow_vehicle+'</td>'+
+            '<td>'+dataRow_vehicle_add+'</td>'+
             '<td>' +
-            '<div class="form-group add_type_vehicle_'+row_2+'">'+
+            '<div class="form-group add_type_vehicle_'+row_2+'" id="typeVehicle">'+
             '<select class="form-control type_vehicle" id="type_vehicle_'+row_2+'" name="type_vehicle['+row_2+']"> <option></option>@foreach($typetransport as $keh => $value)<option value="{{$value->id}}">{{$value->name_kh}}</option>@endforeach</select>'+
             '</div>'+
             '</td>'+
@@ -165,6 +168,7 @@
             '</tr>';
         $(".new_rows_2").append(html);
         dataRow_vehicle++;
+        dataRow_vehicle_add++;
         $(".type_vehicle").select2({allowClear:true, placeholder: "សម្ភារប្រើបា្រស់"});
         AllowNumber();
         var row_num = $('.new_rows_2 tr').length;
@@ -172,8 +176,10 @@
         $('.vehicle').change(function () {
             for(var i=1; i<row_num; i++) {
                 var sum = 0;
-                var number_vehicle_1 = $('#number_vehicle_'+i).val();
-                var market_value_vehicle_1 = $('#market_value_vehicle_'+i).val();
+                var number_vehicle_1 = 0;
+                var market_value_vehicle_1 = 0;
+                number_vehicle_1 = $('#number_vehicle_'+i).val();
+                market_value_vehicle_1 = $('#market_value_vehicle_'+i).val();
                 sum = Number(number_vehicle_1 * market_value_vehicle_1);
                 $("#vehicle_"+i).attr({"onclick": "remove_2("+sum+")"});
                 $('#total_rail_vehicle_'+i).val(sum);
@@ -203,9 +209,11 @@
         });
     });
     function reOrder_vehicle(){
-        for(var n=2;n<(dataRow_vehicle-1);n++){
+        for(var n=2;n<(dataRow_vehicle_add-1);n++){
             $('.new_rows_2  tr:eq(' + (n-1) +') td:first-child').html(n);
             $('.new_rows_2  tr:eq(' + (n-1) +') td .type_vehicle').attr('name', 'type_vehicle['+(n-1)+']');
+            $('.new_rows_2  tr:eq(' + (n-1) +') td #typeVehicle').attr('class', 'form-group add_type_vehicle_'+(n-1));
+            $('.new_rows_2  tr:eq(' + (n-1) +') td .type_vehicle').attr('id', 'type_vehicle_'+(n-1));
             $('.new_rows_2  tr:eq(' + (n-1) +') td .number_vehicle').attr('name', 'number_vehicle['+(n-1)+']');
             $('.new_rows_2  tr:eq(' + (n-1) +') td .number_vehicle').attr('id', 'number_vehicle_'+(n-1));
             $('.new_rows_2  tr:eq(' + (n-1) +') td .market_value_vehicle').attr('name', 'market_value_vehicle['+(n-1)+']');
@@ -232,28 +240,35 @@
         $(this).parent().parent().remove();
         reOrder_vehicle();
         dataRow_vehicle--;
+        dataRow_vehicle_add--;
     });
-    $('.vehicle').change(function () {
-        var sum = 0;
-        var number_vehicle = $('#number_vehicle').val();
-        var market_value_vehicle = $('#market_value_vehicle').val();
-        $('.vehicle').each(function() {
-            sum = Number(number_vehicle * market_value_vehicle);
-        });
-        $('#total_rail_vehicle').val(sum);
 
-        $('.cal_v').change(function(){
-            var tot = $('#total_vehicle_costs').val();
-            if(tot>=0 && tot<=600000) {
-                $('#score_v').val(6);
-            }else if(tot>=604000 && tot <= 1200000){
-                $('#score_v').val(4);
-            }else if(tot>=1204000 && tot <= 2000000){
-                $('#score_v').val(2);
-            }else{
-                $('#score_v').val(0);
-            }
-        });
+    $('.vehicle').change(function () {
+        for(var i=0; i<dataRowVehicle; i++) {
+            var sum = 0;
+            var number_vehicle = 0;
+            var market_value_vehicle = 0;
+            number_vehicle = $('#number_vehicle_'+i).val();
+            market_value_vehicle = $('#market_value_vehicle_'+i).val();
+            $('.vehicle').each(function () {
+                sum = Number(number_vehicle * market_value_vehicle);
+            });
+            $("#vehicle_"+i).attr({"onclick": "remove_2("+sum+")"});
+            $('#total_rail_vehicle_'+i).val(sum);
+
+            $('.cal_v').change(function () {
+                var tot = $('#total_vehicle_costs').val();
+                if (tot >= 0 && tot <= 600000) {
+                    $('#score_v').val(6);
+                } else if (tot >= 604000 && tot <= 1200000) {
+                    $('#score_v').val(4);
+                } else if (tot >= 1204000 && tot <= 2000000) {
+                    $('#score_v').val(2);
+                } else {
+                    $('#score_v').val(0);
+                }
+            });
+        }
     });
 
     $('.vehicle').change(function () {

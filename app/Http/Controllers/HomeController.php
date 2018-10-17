@@ -1061,6 +1061,28 @@ class HomeController extends Controller
             NoElectricLinkModel::insert($e1);
         }
 
+
+
+        //table household_vehicle
+        $vehicle=[];
+        foreach ($request->type_vehicle as $key => $vi) {
+            $vehicle[] = array(
+                'g_information_id'     => $id,
+                'type_vehicle_id'      => $vi,
+                'number_vehicle'       => $request->number_vehicle[$key],
+                'market_value_vehicle' => $request->market_value_vehicle[$key],
+                'total_rail_vehicle'   => $request->total_rail_vehicle[$key],
+                'total_vehicle_costs'  => $request->total_vehicle_costs,
+                'created_at'            => Carbon::now(),
+                'updated_at'            => Carbon::now()
+            );
+            HouseholdVehicleModel::create($vehicle);
+        }
+
+        HouseholdVehicleModel::where('g_information_id',$id)->delete();
+        HouseholdVehicleModel::insert($vehicle);
+
+
         //  echo json_encode($member_family);
            // DB::commit();
             return Redirect::back()->with('success','ការសម្ភាសទិន្នន័យត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ');
