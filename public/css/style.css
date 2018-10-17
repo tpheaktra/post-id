@@ -10,9 +10,19 @@ body{
     display: none !important;
 }
 .wrap-home{
-    border-left: 1px solid #dadada;
-    border-bottom: 1px solid #dadada;
-    border-right: 1px solid #dadada;
+    /*border-left: 1px solid #dadada;*/
+    /*border-bottom: 1px solid #dadada;*/
+    /*border-right: 1px solid #dadada;*/
+    float: left;
+    width: 100%;
+}
+.wrap-home img{
+    border: 1px solid #dadada;
+    width: 100%;
+    border-top: 0px;
+    border-bottom: 0px;
+    margin-bottom: 0px;
+    height: 126px;
 }
 .logo-home{
     text-align: center;
@@ -20,6 +30,7 @@ body{
     padding-bottom: 10px;
 }
 .home-menu{
+    border: 1px solid #dadada;
     float: left;
     margin-bottom: 0px;
     width: 100%;
@@ -30,14 +41,22 @@ body{
     padding: 10px;
     float: left;
     list-style-type: none;
-    border-right: 1px solid #eee;
+    border-right: 1px solid #dadada;
 }
-.home-menu li.active{
+.home-menu li.active,
+.home-menu li:hover{
     background: #428bca;
 }
 .home-menu li a{ color: #333333;}
-.home-menu li.active a{ color: #ffffff;}
+.home-menu li:hover a,
+.home-menu li.active a{ text-decoration: none; color: #ffffff;}
 
+.home-menu li,
+.home-menu li:hover{
+    transition: 0.4s;
+    -moz-transition: 0.4s;
+    -webkit-transition: 0.4s;
+}
 .home-group{
     border-bottom: 1px solid #DDDDDD;
 }
@@ -258,7 +277,7 @@ input[type=radio]{
 .navbar-nav > li > .dropdown-menu{
     width: 300px;
     margin-top: 10px !important;
-    border-radius: 0px !important;
+    border-radius: 5px !important;
     left: inherit;
 }
 .navbar-content{
