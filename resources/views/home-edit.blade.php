@@ -2026,7 +2026,7 @@
                         </div>
 
 
-                        @include('include.health-and-sability')
+                        @include('include.edit-health-and-sability')
 
                         @include('include.edit-family-debt')
 

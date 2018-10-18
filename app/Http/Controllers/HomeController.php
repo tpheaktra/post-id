@@ -1094,11 +1094,47 @@ class HomeController extends Controller
                 'num_animals_big'       => isset($request->num_animals_big[$key]) ? $request->num_animals_big[$key] : 0,
                 'num_animals_small'     => isset($request->num_animals_small[$key]) ? $request->num_animals_small[$key] : 0,
                 'note_animals'          => $request->note_animals[$key],
-                'total_animals_costs'   => $request->total_animals_costs
+                'total_animals_costs'   => $request->total_animals_costs,
+                'created_at'            => Carbon::now(),
+                'updated_at'            => Carbon::now()
             );
         }
         TypeIncomeModel::where('g_information_id',$id)->delete();
         TypeIncomeModel::insert($animals);
+
+
+        //table health_and_disability
+        $health =[];
+        HealthDisabilityModle::where('g_information_id',$id)->delete();
+        if(!empty($request->health_id)) {
+            foreach ($request->health_id as $key1 => $he1) {
+                $health[] = array(
+                    'g_information_id' => $id,
+                    'health_id'        => $he1,
+                    'kids_then65'      => $request->kids_then65,
+                    'old_bigger65'     => $request->old_bigger65,
+                    'kids_50_then65'   => $request->kids_50_then65,
+                    'old_50_bigger65'  => $request->old_50_bigger65,
+                    'created_at'            => Carbon::now(),
+                    'updated_at'            => Carbon::now()
+                );
+            }
+            HealthDisabilityModle::insert($health);
+        }
+
+
+
+        //table debt_loan_link
+        $debt = array(
+            'g_information_id'      => $id,
+            'loan_id'               => $request->family_debt_id,
+            'question_id'           => $request->q_debt,
+            'total_debt'            => $request->total_debt,
+            'debt_duration'         => $request->debt_duration,
+            'created_at'            => Carbon::now(),
+            'updated_at'            => Carbon::now()
+        );
+        DebtLoanLinkModel::where('g_information_id',$id)->update($debt);
 
 
         //  echo json_encode($member_family);

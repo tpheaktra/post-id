@@ -2523,12 +2523,12 @@
                                             '<tr>'+
                                             '<td>'+
                                             '<div class="form-group">' +
-                                            '<input autocomplete="off" name="kids_then65" id="kids_then65" type="text" class="cal_health form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="kids_then65" id="kids_then65" type="text" class="cal_health form-control allowNumber checkNumberPeople"/>' +
                                             '</div>'+
                                             '</td>'+
                                             '<td>'+
                                             '<div class="form-group">' +
-                                            '<input autocomplete="off" name="old_bigger65" id="old_bigger65" type="text" class="cal_health form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="old_bigger65" id="old_bigger65" type="text" class="cal_health form-control allowNumber checkNumberPeople"/>' +
                                             '</div>'+
                                             '</td>'+
                                             '</tr>'+
@@ -2537,6 +2537,23 @@
                                             '</div>';
                                         $('#health_1').append(health1);
                                         AllowNumber();
+
+                                        $('.checkNumberPeople').change(function (e) {
+                                            var totalPople = $('.new_rows tr.myrow').length;
+                                            //alert(totalPople);
+                                            //var nn = $(this).val();
+                                            var sum = 0;
+                                            var a = $('#kids_then65').val() ? $('#kids_then65').val() : 0;
+                                            var b = $('#old_bigger65').val() ? $('#old_bigger65').val() : 0;
+                                            var c = $('#kids_50_then65').val() ? $('#kids_50_then65').val() : 0;
+                                            var d = $('#old_50_bigger65').val() ? $('#old_50_bigger65').val() : 0;
+                                            sum = Number(parseInt(a) + parseInt(b) + parseInt(c) + parseInt(d));
+                                            if(sum > totalPople) {
+                                                $('#kids_then65').val('');
+                                                $('#old_bigger65').val('');
+                                            }
+
+                                        });
 
                                         $('.cal_health').keyup(function(){
                                             var kids_then65 = $('#kids_then65').val();
@@ -2574,12 +2591,12 @@
                                             '<tr>' +
                                             '<td>' +
                                             '<div class="form-group">' +
-                                            '<input autocomplete="off" name="kids_50_then65" id="kids_50_then65" type="text" class="cal_health form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="kids_50_then65" id="kids_50_then65" type="text" class="cal_health form-control allowNumber checkNumberPeople"/>' +
                                             '</div>' +
                                             '</td>' +
                                             '<td>' +
                                             '<div class="form-group">' +
-                                            '<input autocomplete="off" name="old_50_bigger65" id="old_50_bigger65" type="text" class="cal_health form-control allowNumber"/>' +
+                                            '<input autocomplete="off" name="old_50_bigger65" id="old_50_bigger65" type="text" class="cal_health form-control allowNumber checkNumberPeople"/>' +
                                             '</div>' +
                                             '</td>' +
                                             '</tr>' +
@@ -2588,6 +2605,23 @@
                                             '</div>';
                                         $('#health_2').append(health2);
                                         AllowNumber();
+                                        $('.checkNumberPeople').change(function (e) {
+                                            var totalPople = $('.new_rows tr.myrow').length;
+                                            //alert(totalPople);
+                                            //var nn = $(this).val();
+                                            var sum = 0;
+                                            var a = $('#kids_then65').val() ? $('#kids_then65').val() : 0;
+                                            var b = $('#old_bigger65').val() ? $('#old_bigger65').val() : 0;
+                                            var c = $('#kids_50_then65').val() ? $('#kids_50_then65').val() : 0;
+                                            var d = $('#old_50_bigger65').val() ? $('#old_50_bigger65').val() : 0;
+                                            sum = Number(parseInt(a) + parseInt(b) + parseInt(c) + parseInt(d));
+                                            if(sum > totalPople) {
+                                                $('#kids_50_then65').val('');
+                                                $('#old_50_bigger65').val('');
+                                            }
+
+                                        });
+
                                         $('.cal_health').keyup(function(){
                                             var kids_50_then65 = $('#kids_50_then65').val();
                                             var old_50_bigger65 = $('#old_50_bigger65').val();
