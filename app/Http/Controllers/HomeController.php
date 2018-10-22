@@ -723,6 +723,7 @@ class HomeController extends Controller
         $landAg            = LandAgriculturalLinkModel::where('g_information_id',$id)->where('land_agricultural_id',$gFamily->land_agricultural_id)->first();
         $land_2 = LandOtherAgriculturalLinkModel::where('g_information_id',$id)->where('land_agricultural_id',2)->first();
         $land_3 = LandAgriculturalLinkModel::where('g_information_id',$id)->where('land_agricultural_id',3)->first();
+        echo json_encode($land_2.'='.$land_3);
         //echo json_encode($lang_3);exit();
         $otherIncome       = OtherIncomeModel::where('g_information_id',$id)->get();
        // echo json_encode($otherIncome);exit();
@@ -864,7 +865,7 @@ class HomeController extends Controller
                 'toilet_id'            => $request->tolet,
                 'q_electric_id'        => $request->q_electric,
                 'transport_id'         => $request->go_hospital,
-                'land_agricultural_id' => $request->land,
+                'land_agricultural_id' => $request->land ? $request->land : 0,
                 'debt_family_id'       => $request->family_debt_id,
                 'command'              => $request->command
             );
@@ -1101,6 +1102,53 @@ class HomeController extends Controller
         }
         TypeIncomeModel::where('g_information_id',$id)->delete();
         TypeIncomeModel::insert($animals);
+
+        if(!empty($request->land)) {
+            LandOtherAgriculturalLinkModel::where('g_information_id',$id)->delete();
+            LandAgriculturalLinkModel::where('g_information_id',$id)->delete();
+        }
+
+        //table land_agricultural_link
+        if(!empty($request->land_2)) {
+            $land_agricultural_other = array(
+                'g_information_id'     => $id,
+                'land_agricultural_id' => $request->land_2,
+                'land_name'            => $request->land_name_other_2,
+                'total_land'           => $request->total_land_other_2,
+                'land_farm'            => $request->land_farm_other_2,
+                'total_land_farm'      => $request->total_land_farm_other_2,
+                'sum_land_farm'        => $request->sum_land_farm_other_2,
+                'created_at'            => Carbon::now(),
+                'updated_at'            => Carbon::now()
+
+            );
+            LandOtherAgriculturalLinkModel::where('g_information_id',$id)->delete();
+            LandOtherAgriculturalLinkModel::insert($land_agricultural_other);
+        }else{
+            LandOtherAgriculturalLinkModel::where('g_information_id',$id)->delete();
+        }
+
+
+
+        //table land_agricultural_link
+        if(!empty($request->land_3)) {
+            $land_agricultural = array(
+                'g_information_id'     => $id,
+                'land_agricultural_id' => $request->land_3,
+                'p_land_name'          => $request->p_land_name,
+                'p_total_land'         => $request->p_total_land,
+                'p_land_farm'          => $request->p_land_farm,
+                'p_total_land_farm'    => $request->p_total_land_farm,
+                'p_sum_land_farm'      => $request->p_sum_land_farm,
+                'created_at'            => Carbon::now(),
+                'updated_at'            => Carbon::now()
+            );
+            LandAgriculturalLinkModel::where('g_information_id',$id)->delete();
+            LandAgriculturalLinkModel::insert($land_agricultural);
+        }else{
+            LandAgriculturalLinkModel::where('g_information_id',$id)->delete();
+        }
+
 
 
         //table health_and_disability
