@@ -47,7 +47,7 @@
                             </td>
                             <td>
                                 <div class="form-group">
-                                    {{ Form::text('dob['.$key.']',$m->age,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'4','id'=>'dob']) }}
+                                    {{ Form::text('dob['.$key.']',$m->dob,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'4','id'=>'dob']) }}
                                 </div>
                             </td>
                             <td>
