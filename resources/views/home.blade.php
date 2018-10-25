@@ -2262,6 +2262,8 @@
                                         <li>
                                             <label><input class="land" style="margin-right:10px;" type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
                                         </li>
+                                        <li><input type="text" class="land form-control f_score" name="a"></li>
+                                        <li><input type="text" class="land form-control s_score" name="b"></li>
                                     @else
                                         <li>
                                             <label class="testing"><input style="margin-right:10px;"  id="land_{{$land->id}}"  class="land_{{$land->id}}" type="checkbox" name="land_{{$land->id}}" value="{{$land->id}}" multiple>  {{$land->name_kh}}</label>
@@ -2275,12 +2277,14 @@
                                 @endforeach
                             </ul>
                             <script>
-
-                            $(".land").click( function(e){
-
+                            $(".land").click(function(e){
+                                $('.f_score').hide();
+                                $('.s_score').hide();
                                 if($(this).hasClass("on")){
                                     $(this).removeAttr('checked');
                                     $('.testing').attr('disable');
+                                    // $('.f_score').show();
+                                    // $('.s_score').show();
                                 }
                                 $(this).toggleClass("on");
                                 $('#land_2').removeAttr('checked');
@@ -2348,7 +2352,7 @@
                                             '</table>'+
                                         '</div>';
 
-                                    if (land == 2) {
+                                    if(land == 2) {
                                         $('#show-land-other').html(otherland);
                                     }else{$('#show-land-other').html('');}
 

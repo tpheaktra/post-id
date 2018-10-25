@@ -145,7 +145,7 @@
                var age = $(this).val();
                if(i > 0 && (parseFloat(age) == 10)) small_age = age;
            });
-            $('#income_child_score').val(small_age);
+        $('#income_child_score').val(small_age);
     });
     $('.income_agriculture').click(function () {
         var index = $(this).attr('index');
