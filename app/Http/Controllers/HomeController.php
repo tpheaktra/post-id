@@ -553,6 +553,40 @@ class HomeController extends Controller
                     );
                     OtherIncomeNotAgricultureModel::create($other_income);
                 }
+            } //table other_income
+            if($request->income_agricalture_type == 1) {
+                foreach ($request->income_name as $key => $in) {
+                    $other_income = array(
+                        'g_information_id'  => $gn_info->id,
+                        'income_name'       => $in,
+                        'income_age'        => $request->income_age[$key],
+                        'income_occupation' => $request->income_occupation[$key],
+                        'income_unit'       => $request->income_unit[$key],
+                        'unit_in_month'     => $request->unit_in_month[$key],
+                        'average_amount'    => $request->average_amount[$key],
+                        'monthly_income'    => $request->monthly_income[$key],
+                        'total_mon_income'  => $request->total_mon_income,
+                        'total_inc_person'  => $request->total_inc_person,
+                    );
+                    OtherIncomeModel::create($other_income);
+                }
+            }
+            if($request->income_agricalture_type == 2) {
+                foreach ($request->income_name_not as $key => $in) {
+                    $other_income = array(
+                        'g_information_id' => $gn_info->id,
+                        'income_name_not' => $in,
+                        'income_age_not' => $request->income_age_not[$key],
+                        'income_occupation_not' => $request->income_occupation_not[$key],
+                        'income_unit_not' => $request->income_unit_not[$key],
+                        'unit_in_month_not' => $request->unit_in_month_not[$key],
+                        'average_amount_not' => $request->average_amount_not[$key],
+                        'monthly_income_not' => $request->monthly_income_not[$key],
+                        'total_mon_income_not' => $request->total_mon_income_not,
+                        'total_inc_person_not' => $request->total_inc_person_not,
+                    );
+                    OtherIncomeNotAgricultureModel::create($other_income);
+                }
             }
 
             //table health_and_disability
@@ -683,7 +717,11 @@ class HomeController extends Controller
         //step 1 general information
         $ginfo             = GeneralInformationModel::with('district','commune','village')->findOrFail($id);
         //step 2 member family
-        $memberFamily      = MemberFamilyModel::with('generalInfo')->where('g_information_id',$id)->get();
+        $memberFamily      = MemberFamilyModel::with('generalInfo')
+            ->where('g_information_id',$id)
+            ->orderBy('age','ASC')
+            ->orderBy('dob','ASC')->get();
+
         //step 3 general situation of the family
         $gFamily           = GeneralSituationFamilyModel::where('g_information_id',$id)->first();
         //household of the family
@@ -723,10 +761,12 @@ class HomeController extends Controller
         $landAg            = LandAgriculturalLinkModel::where('g_information_id',$id)->where('land_agricultural_id',$gFamily->land_agricultural_id)->first();
         $land_2 = LandOtherAgriculturalLinkModel::where('g_information_id',$id)->where('land_agricultural_id',2)->first();
         $land_3 = LandAgriculturalLinkModel::where('g_information_id',$id)->where('land_agricultural_id',3)->first();
-        echo json_encode($land_2.'='.$land_3);
+
         //echo json_encode($lang_3);exit();
         $otherIncome       = OtherIncomeModel::where('g_information_id',$id)->get();
-       // echo json_encode($otherIncome);exit();
+        $otherIncomeNot       = OtherIncomeNotAgricultureModel::where('g_information_id',$id)->get();
+
+        //echo json_encode($otherIncomeNot);exit();
         $healthLink        = DB::select("select * from health ht
                             left join (
                                 select hl.g_information_id, hl.health_id, hl.kids_then65, hl.old_bigger65, hl.kids_50_then65, hl.old_50_bigger65
@@ -747,7 +787,7 @@ class HomeController extends Controller
             'typetransport','question_totel','health','ginfo','memberFamily',
             'gFamily','household_root','household_root_rend','household_root_yourself','homePreparLink','rendPrice','institutions','toilet',
             'material','yesElectrict','noElectrict','vehicle','income','landAg','land_2','land_3',
-            'otherIncome','healthLink','debt_link'));
+            'otherIncome','otherIncomeNot','healthLink','debt_link'));
     }
 
     /*
@@ -1147,6 +1187,57 @@ class HomeController extends Controller
             LandAgriculturalLinkModel::insert($land_agricultural);
         }else{
             LandAgriculturalLinkModel::where('g_information_id',$id)->delete();
+        }
+
+
+
+        //table other_income
+
+        if($request->income_agricalture_type == 1) {
+            $other_income=[];
+            foreach ($request->income_name as $key => $in) {
+                $other_income[] = array(
+                    'g_information_id'  => $id,
+                    'income_name'       => $in,
+                    'income_age'        => $request->income_age[$key],
+                    'income_occupation' => $request->income_occupation[$key],
+                    'income_unit'       => $request->income_unit[$key],
+                    'unit_in_month'     => $request->unit_in_month[$key],
+                    'average_amount'    => $request->average_amount[$key],
+                    'monthly_income'    => $request->monthly_income[$key],
+                    'total_mon_income'  => $request->total_mon_income,
+                    'total_inc_person'  => $request->total_inc_person,
+                    'created_at'            => Carbon::now(),
+                    'updated_at'            => Carbon::now()
+                );
+            }
+            OtherIncomeModel::where('g_information_id',$id)->delete();
+            OtherIncomeNotAgricultureModel::where('g_information_id',$id)->delete();
+            OtherIncomeModel::insert($other_income);
+        }
+
+        if($request->income_agricalture_type == 2) {
+            $other_income=[];
+            foreach ($request->income_name_not as $key => $in) {
+                $other_income[] = array(
+                    'g_information_id'      => $id,
+                    'income_name_not'       => $in,
+                    'income_age_not'        => $request->income_age_not[$key],
+                    'income_occupation_not' => $request->income_occupation_not[$key],
+                    'income_unit_not'       => $request->income_unit_not[$key],
+                    'unit_in_month_not'     => $request->unit_in_month_not[$key],
+                    'average_amount_not'    => $request->average_amount_not[$key],
+                    'monthly_income_not'    => $request->monthly_income_not[$key],
+                    'total_mon_income_not'  => $request->total_mon_income_not,
+                    'total_inc_person_not'  => $request->total_inc_person_not,
+                    'created_at'            => Carbon::now(),
+                    'updated_at'            => Carbon::now()
+                );
+            }
+
+            OtherIncomeModel::where('g_information_id',$id)->delete();
+            OtherIncomeNotAgricultureModel::where('g_information_id',$id)->delete();
+            OtherIncomeNotAgricultureModel::insert($other_income);
         }
 
 
