@@ -2279,15 +2279,15 @@
                                 if($(this).hasClass("on")){
                                     $(this).removeAttr('checked');
                                     $('.testing').attr('disable');
+                                    //alert(1);
                                 }
-                                $('.f_score').show();
-                                $('.s_score').show();
                                 $(this).toggleClass("on");
                                 $('#land_2').removeAttr('checked');
                                 $('#show-land-other').html('');
                                 $('#land_3').removeAttr('checked');
                                 $('#show-land-personal').html('');
                                 $('.testing').toggleClass("disable");
+                                //alert(2);
 
                             }).find(":checked").addClass("on");
 
