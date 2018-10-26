@@ -492,7 +492,7 @@
                                     </td>
                                     <td>
                                        <div class="form-group add_education_level">
-                                          <select style="width: 100%" id="education_level_0"  class="cal_edu form-control education_level aa"  name="education_level[0]" required="required">
+                                          <select style="width: 100%" id="education_level_0"  class="cal_edu form-control education_level aa age_g"  name="education_level[0]" required="required">
                                                 <option></option>
                                                 @foreach($education_level as $keh => $value)
                                                     <option value="{{$value->id}}">{{$value->name_kh}}</option>
@@ -572,7 +572,7 @@
                                                    var relation = $(this).val();
                                                    // var rel = $(this).val();
                                                    var row_score = 0;
-                                                    if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                    if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) || (age>16 && edu==14)  ){
                                                       row_score = 4;
                                                     }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
                                                       row_score = 2.5;
@@ -595,7 +595,7 @@
                                                    var relation = $(this).val();
                                                    // var rel = $(this).val();
                                                    var row_score = 0;
-                                                   if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                   if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) || (age>16 && edu==14) ){
                                                       row_score = 4;
                                                     }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
                                                       row_score = 2.5;
@@ -618,7 +618,7 @@
                                                    var relation = $(this).val();
                                                    // var rel = $(this).val();
                                                    var row_score = 0;
-                                                   if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                   if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) || (age>16 && edu==14) ){
                                                       row_score = 4;
                                                     }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
                                                       row_score = 2.5;
@@ -708,9 +708,9 @@
                                                        var edu = $('#education_level_'+ind).val();
                                                        var relation = $(this).val();
                                                        var row_score = 0;
-                                                       if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                       if( ((relation == 1 || relation == 2) && ((edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) || (age>16 && edu==14) ){
                                                            row_score = 4;
-                                                       }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
+                                                       }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu ==14) ) {
                                                            row_score = 2.5;
                                                        }else{
                                                            row_score = 0;
@@ -729,7 +729,7 @@
                                                        var edu = $('#education_level_'+ind).val();
                                                        var relation = $(this).val();
                                                        var row_score = 0;
-                                                       if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                       if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) || (age>16 && edu==14) ){
                                                            row_score = 4;
                                                        }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
                                                            row_score = 2.5;
@@ -749,7 +749,7 @@
                                                        var edu = $('#education_level_'+ind).val();
                                                        var relation = $(this).val();
                                                        var row_score = 0;
-                                                       if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                                                       if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) || (age>16 && edu==14) ){
                                                            row_score = 4;
                                                        }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
                                                            row_score = 2.5;
@@ -2262,8 +2262,6 @@
                                         <li>
                                             <label><input class="land" style="margin-right:10px;" type="radio" name="land" value="{{$land->id}}">  {{$land->name_kh}}</label>
                                         </li>
-                                        <li><input type="text" class="land form-control f_score" name="a"></li>
-                                        <li><input type="text" class="land form-control s_score" name="b"></li>
                                     @else
                                         <li>
                                             <label class="testing"><input style="margin-right:10px;"  id="land_{{$land->id}}"  class="land_{{$land->id}}" type="checkbox" name="land_{{$land->id}}" value="{{$land->id}}" multiple>  {{$land->name_kh}}</label>
@@ -2278,14 +2276,12 @@
                             </ul>
                             <script>
                             $(".land").click(function(e){
-                                $('.f_score').hide();
-                                $('.s_score').hide();
                                 if($(this).hasClass("on")){
                                     $(this).removeAttr('checked');
                                     $('.testing').attr('disable');
-                                    // $('.f_score').show();
-                                    // $('.s_score').show();
                                 }
+                                $('.f_score').show();
+                                $('.s_score').show();
                                 $(this).toggleClass("on");
                                 $('#land_2').removeAttr('checked');
                                 $('#show-land-other').html('');
