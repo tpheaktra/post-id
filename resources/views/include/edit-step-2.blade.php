@@ -135,7 +135,7 @@
     var row_num1 = $('.new_rows tr').length;
 
     $('.age').change(function () {
-        for(var ii=0; ii<row_num1; ii++) { 
+        for(var ii=0; ii<row_num1; ii++) {
             var age = Number($('#age_'+ii).val());
             var currentyear = (new Date()).getFullYear();
             var dob = currentyear-age;
