@@ -1949,13 +1949,7 @@
                     } else{
                         plus = '<a id="other_income_'+i+'" class="btn btn-sm btn-danger remove_rows_4"><span class="glyphicon glyphicon-minus"></span></a>';
                     }
-                    @foreach($otherIncome as $kk =>$incom)
 
-                        if(nick == '<?php echo $incom->income_name; ?>') {
-                           var incomeUnit = '<input value="{{$incom->income_unit}}" name="income_unit[' + i + ']" type="text" class="cal_incom form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" readonly="readonly">' ;
-                        }else{
-                            '<input name="income_unit[' + i + ']" type="text" class="cal_incom form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" readonly="readonly">' ;
-                        }
                         var otherIncome = '<tr class="myrow_4">' +
                             '<td>'+(i+1)+'</td>'+
                             '<td>' +
@@ -1975,26 +1969,26 @@
                             '</div>' +
                             '</td>' +
                             '<td class="hidden">' +
-                            '<div class="form-group add_income_unit">' +incomeUnit+ '</div>' +
+                            '<div class="form-group add_income_unit"><input name="income_unit[' + i + ']" type="text" class="cal_incom form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" readonly="readonly"></div>' +
                             '</td>'+
 
                             '<td>'+
                             '<div class="cal_incom form-group input-group add_average_amount">'+
-                            '<input value="{{$incom->average_amount}}" id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="cal_incom average_amount form-control allowNumber otherincome" autocomplete="off">'+
+                            '<input  id="average_amount_'+i+'" name="average_amount['+i+']" type="text" class="cal_incom average_amount form-control allowNumber otherincome" autocomplete="off">'+
                             '<span class="input-group-addon">រៀល</span>'+
                             '</div>'+
                             '</td>'+
 
                             '<td>' +
                             '<div class="form-group input-group add_unit_in_month">' +
-                            '<input value="{{$incom->unit_in_month}}" id="unit_in_month_'+i+'" name="unit_in_month['+i+']" type="text" class="cal_incom unit_in_month form-control allowNumber otherincome"  autocomplete="off">'+
+                            '<input  id="unit_in_month_'+i+'" name="unit_in_month['+i+']" type="text" class="cal_incom unit_in_month form-control allowNumber otherincome"  autocomplete="off">'+
                             '<span class="input-group-addon">ថ្ងៃ</span>' +
                             '</div>' +
                             '</td>'+
 
                             '<td>' +
                             '<div class="form-group input-group">' +
-                            '<input value="{{$incom->monthly_income}}" id="monthly_income_'+i+'" name="monthly_income['+i+']" type="text" class="cal_incom monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
+                            '<input  id="monthly_income_'+i+'" name="monthly_income['+i+']" type="text" class="cal_incom monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">'+
                             '<span class="input-group-addon">រៀល</span>' +
                             '</div>' +
                             '</td>'+
@@ -2003,11 +1997,6 @@
 
 
 
-//                        else{
-//                        var otherIncome =1;
-//                        $('.new_rows_4').append(otherIncome);
-//                        }
-                    @endforeach
 
                   //  $('.new_rows_4').append(otherIncome);
 

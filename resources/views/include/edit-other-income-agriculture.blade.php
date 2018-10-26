@@ -5,9 +5,12 @@
 <ul class="li-none add_land">
     <li>
         <label class="add_income_agricalture_type">
-            <input @if($gFamily->other_income == 1) checked @endif index="1" class="income_agriculture" style="margin-right: 10px;" type="radio" value="1" name="income_agricalture_type"/>
+            <input id="income_agriculture" @if($gFamily->other_income == 1) checked @endif index="1" class="income_agriculture" style="margin-right: 10px;" type="radio" value="1" name="income_agricalture_type"/>
             ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមានចំណូលពីសកម្មភាពកសិកម្ម <spand class="text-danger">*</spand>
         </label>
+        <div class="col-sm-12" id="new_rows_4">
+
+        </div>
         @if($gFamily->other_income == 1)
         <div class="col-sm-12">
             <table class="tb_grid table table-bordered table-striped" width="100%" id="income_agriculture_table">
@@ -35,7 +38,7 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <input value="{{$incom->income_age}}" id="income_age_{{$kk}}" name="income_age[{{$kk}}]" autocomplete="off" class="form-control income_age" type="text" required="required">
+                                <input value="{{$incom->income_age}}" id="income_age_{{$kk}}" name="income_age[{{$kk}}]" autocomplete="off" class="form-control income_age allowNumber" type="text" required="required">
                             </div>
                         </td>
                         <td>
@@ -97,7 +100,7 @@
                             <span class="input-group-addon">រៀល</span>
                         </div>
                     </td>
-                    <td></td>
+
                 </tr>
                 <tr>
                     <td colspan="6"><span style="float: right;">ចំណូលក្រៅពីកសិកម្មជាមធ្យមប្រចាំខែសម្រាប់មនុស្សម្នាក់​​ (១) :</span></td>
@@ -107,7 +110,7 @@
                             <span class="input-group-addon">រៀល</span>
                         </div>
                     </td>
-                    <td></td>
+
                 </tr>
                 <tr class="my_hide">
                     <td colspan="6"><span style="float: right;"> 7.B.1  ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមានចំណូលពីសកម្មភាពកសិកម្ម</span></td>
@@ -144,7 +147,7 @@
                                 '<div class="form-group"><input id="income_name_'+num_4+'" name="income_name['+num_4+']" autocomplete="off" class="form-control income_name" type="text"  required="required"></div>' +
                                 '</td>' +
                                 '<td>' +
-                                '<div class="form-group"><input id="income_age_'+num_4+'" name="income_age['+num_4+']" autocomplete="off" class="form-control income_age" type="text" required="required"></div>' +
+                                '<div class="form-group"><input id="income_age_'+num_4+'" name="income_age['+num_4+']" autocomplete="off" class="form-control income_age allowNumber" type="text" required="required"></div>' +
                                 '</td>' +
                                 '<td>' +
                                 '<div class="form-group add_income_occupation">' +
@@ -283,6 +286,8 @@
                             reOrder_other_income();
                             dataRowOtherIncome--;
                         });
+
+
             </script>
             @endif
     </li>
@@ -376,21 +381,21 @@
                     <td colspan="6"><span style="float: right;">សរុបចំណូល ប្រចាំខែ សម្រាប់គ្រួសារទាំងមូល (គិតជារៀល):</span></td>
                     <td colspan="2">
                         <div class="input-group">
-                            <input value="{{$otherIncomeNot[0]->total_mon_income_not}}" id="total_monthly_income_not" class="cal_incom_2 form-control"  type="text" name="total_mon_income_not" readonly="readonly">
+                            <input value="{{$otherIncomeNot[0]->total_mon_income_not ?? ''}}" id="total_monthly_income_not" class="cal_incom_2 form-control"  type="text" name="total_mon_income_not" readonly="readonly">
                             <span class="input-group-addon">រៀល</span>
                         </div>
                     </td>
-                    <td></td>
+
                 </tr>
                 <tr>
                     <td colspan="6"><span style="float: right;">ចំណូលក្រៅពីកសិកម្មជាមធ្យមប្រចាំខែសម្រាប់មនុស្សម្នាក់​​ (១) :</span></td>
                     <td colspan="2">
                         <div class="input-group">
-                            <input value="{{$otherIncomeNot[0]->total_inc_person_not}}" class="cal_incom_2 form-control" id="total_inc_person_not"  type="text" name="total_inc_person_not" readonly="readonly">
+                            <input value="{{$otherIncomeNot[0]->total_inc_person_not ?? ''}}" class="cal_incom_2 form-control" id="total_inc_person_not"  type="text" name="total_inc_person_not" readonly="readonly">
                             <span class="input-group-addon">រៀល</span>
                         </div>
                     </td>
-                    <td></td>
+
                 </tr>
                 <tr class="my_hide">
                     <td colspan="6"><span style="float: right;">7.B.2 ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្ម</span></td>
@@ -428,6 +433,315 @@
         </div>
 
             <script>
+                $('#income_agriculture').click(function (e) {
+                    var val = $(this).val();
+                    var row_num = $('.new_rows tr').length;
+                    $('#new_rows_4').empty();
+                    var header = '<table class="tb_grid table table-bordered table-striped" width="100%" id="income_agriculture_table">' +
+                        '<thead>' +
+                        '<tr>' +
+                        '<th>ល.រ</th>' +
+                        '<th width="12%">ឈ្មោះសមាជិក</th>' +
+                        '<th width="9%">អាយុ​</th>' +
+                        '<th width="15%">មុខរបររកចំណូល <spand class="text-danger">*</spand></th>' +
+                        '<th width="9%" class="hidden">ឯកត្តា</th>' +
+                        '<th width="18%"​​>ចំណូលជាមធ្យមប្រចាំថ្ងៃ <spand class="text-danger">*</spand></th>' +
+                        '<th width="18%"​​>ចំនួនថ្ងៃជាមធ្យមប្រចាំខែ <spand class="text-danger">*</spand></th>' +
+                        '<th>ចំណូលមធ្យមប្រចាំខែ</th>' +
+                        '<th>សកម្មភាព</th>' +
+                        '</tr>' +
+                        '</thead>' +
+                        '<tbody class="newRows4"></tbody>' +
+                        '<tfoot>' +
+                        '<tr>' +
+                        '<td colspan="6"><span style="float: right;">សរុបចំណូល ប្រចាំខែ សម្រាប់គ្រួសារទាំងមូល (គិតជារៀល):</span></td>' +
+                        '<td colspan="2">' +
+                        '<div class="input-group">' +
+                        '<input id="total_monthly_income" class="cal_incom form-control"  type="text" name="total_mon_income" readonly="readonly">' +
+                        '<span class="input-group-addon">រៀល</span>' +
+                        '</div>' +
+                        '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td colspan="6"><span style="float: right;">ចំណូលក្រៅពីកសិកម្មជាមធ្យមប្រចាំខែសម្រាប់មនុស្សម្នាក់​​ (១) :</span></td>' +
+                        '<td colspan="2">' +
+                        '<div class="input-group">' +
+                        '<input  class="cal_incom form-control" id="total_inc_person"  type="text" name="total_inc_person" readonly="readonly">' +
+                        '<span class="input-group-addon">រៀល</span>' +
+                        '</div>' +
+                        '</td>' +
+                        '</tr>' +
+                        '<tr class="my_hide">' +
+                        '<td colspan="6"><span style="float: right;"> 7.B.1  ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមានចំណូលពីសកម្មភាពកសិកម្ម</span></td>' +
+                        '<td colspan="2">' +
+                        '<div class="input-group">' +
+                        '<input class="cal_incom otherincome form-control" id="income_out_farmer_score"  type="text" name="income_out_farmer_score" readonly>' +
+                        '<span class="input-group-addon">ពិន្ទុ</span>' +
+                        '</div>' +
+                        '</td>' +
+                        '</tr>' +
+                        '</tfoot>' +
+                        '</table>';
+                    $('#new_rows_4').append(header);
+
+                    for(var i=0; i<row_num; i++) {
+                        if(i==0) {
+                            plus = '<a class="btn btn-sm btn-primary" id="add_rows_4"><span class="glyphicon glyphicon-plus"></span></a>';
+                        } else{
+                            plus = '<a id="other_income_'+i+'" class="btn btn-sm btn-danger remove_rows_4"><span class="glyphicon glyphicon-minus"></span></a>';
+                        }
+                        var nick = $('.nick_name_'+i).val();
+                        var m_age = $('.age_'+i).val();
+                        if (val == 1) {
+                            var incomeAgriculture1 = '<tr class="myrow_4">' +
+                                '<td>' + (i + 1) + '</td>' +
+                                '<td>' +
+                                '<div class="form-group"><input id="income_name_' + i + '" name="income_name[' + i + ']" autocomplete="off" class="form-control income_name" type="text" value="' + nick + '" readonly="readonly" required="required"></div>' +
+                                '</td>' +
+                                '<td>' +
+                                '<div class="form-group"><input id="income_age_' + i + '" name="income_age[' + i + ']" autocomplete="off" class="form-control income_age allowNumber " type="text" value="' + m_age + '" readonly="readonly" required="required"></div>' +
+                                '</td>' +
+                                '<td>' +
+                                '<div class="form-group add_income_occupation">' +
+                                '<select style="width: 100%" autocomplete="off" class="form-control income_occupation" id="income_occupation" name="income_occupation[' + i + ']" required="required">' +
+                                '<option></option>' +
+                                '@foreach($occupation as $keh => $value)' +
+                                '<option value="{{$value->id}}">{{$value->name_kh}}</option>' +
+                                '@endforeach' +
+                                '</select>' +
+                                '</div>' +
+                                '</td>' +
+                                '<td class="hidden">' +
+                                '<div class="form-group add_income_unit"><input name="income_unit[' + i + ']" type="text" class="cal_incom form-control income_unit" placeholder="ថ្ងៃ" value="day" autocomplete="off" readonly="readonly"></div>' +
+                                '</td>' +
+
+                                '<td>' +
+                                '<div class="cal_incom form-group input-group add_average_amount">' +
+                                '<input  id="average_amount_' + i + '" name="average_amount[' + i + ']" type="text" class="cal_incom average_amount form-control allowNumber otherincome" autocomplete="off">' +
+                                '<span class="input-group-addon">រៀល</span>' +
+                                '</div>' +
+                                '</td>' +
+
+                                '<td>' +
+                                '<div class="form-group input-group add_unit_in_month">' +
+                                '<input id="unit_in_month_' + i + '" name="unit_in_month[' + i + ']" type="text" class="cal_incom unit_in_month form-control allowNumber otherincome"  autocomplete="off">' +
+                                '<span class="input-group-addon">ថ្ងៃ</span>' +
+                                '</div>' +
+                                '</td>' +
+
+                                '<td>' +
+                                '<div class="form-group input-group">' +
+                                '<input id="monthly_income_' + i + '" name="monthly_income[' + i + ']" type="text" class="cal_incom monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">' +
+                                '<span class="input-group-addon">រៀល</span>' +
+                                '</div>' +
+                                '</td>' +
+                                '<td style="text-align:center;">'+plus+'</td>' +
+                                '</tr>';
+                        }
+                        $('.newRows4').append(incomeAgriculture1);
+
+                    }
+
+                    //=========================================================
+                    // when add more
+                    var dataRowOtherIncome = $('.newRows4 tr.myrow_4').length+1;
+                    $(".newRows4").on('click','#add_rows_4',function() { alert(dataRowOtherIncome);
+                        var num_4 = $('.newRows4 tr.myrow_4').length;
+                        var otherIncome1 = '<tr class="myrow_4">' +
+                            '<td>' + dataRowOtherIncome + '</td>' +
+                            '<td>' +
+                            '<div class="form-group"><input id="income_name_' + num_4 + '" name="income_name[' + num_4 + ']" autocomplete="off" class="form-control income_name" type="text"  required="required"></div>' +
+                            '</td>' +
+                            '<td>' +
+                            '<div class="form-group"><input id="income_age_' + num_4 + '" name="income_age[' + num_4 + ']" autocomplete="off" class="form-control income_age allowNumber" type="text" required="required"></div>' +
+                            '</td>' +
+                            '<td>' +
+                            '<div class="form-group add_income_occupation">' +
+                            '<select style="width: 100%" autocomplete="off" class="form-control income_occupation" id="income_occupation" name="income_occupation[' + num_4 + ']" required="required">' +
+                            '<option></option>' +
+                            '@foreach($occupation as $keh => $value)' +
+                            '<option value="{{$value->id}}">{{$value->name_kh}}</option>' +
+                            '@endforeach' +
+                            '</select>' +
+                            '</div>' +
+                            '</td>' +
+                            '<td class="hidden">' +
+                            '<div class="form-group">' +
+                            '<input name="income_unit[' + num_4 + ']" type="text" class="income_unit form-control" placeholder="ថ្ងៃ" value="day" autocomplete="off" required="required" readonly="readonly">' +
+                            '</div>' +
+                            '</td>' +
+
+                            '<td>' +
+                            '<div class="form-group input-group">' +
+                            '<input id="average_amount_' + num_4 + '" name="average_amount[' + num_4 + ']" type="text" class="cal_incom average_amount form-control allowNumber otherincome" required="required" autocomplete="off">' +
+                            '<span class="input-group-addon">រៀល</span>' +
+                            '</div>' +
+                            '</td>' +
+
+                            '<td>' +
+                            '<div class="form-group input-group">' +
+                            '<input id="unit_in_month_' + num_4 + '" name="unit_in_month[' + num_4 + ']" type="text" class="form-control allowNumber otherincome unit_in_month" required="required" autocomplete="off">' +
+                            '<span class="input-group-addon">ថ្ងៃ</span>' +
+                            '</div>' +
+                            '</td>' +
+
+                            '<td>' +
+                            '<div class="form-group input-group">' +
+                            '<input id="monthly_income_' + num_4 + '" name="monthly_income[' + num_4 + ']" type="text" class="cal_incom monthly_income form-control allowNumber monthly_income_total" readonly="readonly" autocomplete="off">' +
+                            '<span class="input-group-addon">រៀល</span>' +
+                            '</div>' +
+                            '</td>' +
+                            '<td style="text-align:center;"><a id="other_income_' + num_4 + '" class="btn btn-sm btn-danger remove_rows_4"><span class="glyphicon glyphicon-minus"></span></a></td>' +
+                            '</tr>';
+                        $('.newRows4').append(otherIncome1);
+
+                        AllowNumber();
+                        dataRowOtherIncome++;
+
+                        var num_4_1 = $('.newRows4 tr').length+1;
+                        $('.otherincome').change(function () { alert(num_4_1);
+                            for(var ii=0; ii<num_4_1; ii++) {
+                                var sum = 0;
+                                var unit_in_month = $('#unit_in_month_'+ii).val();
+                                var average_amount = $('#average_amount_'+ii).val();
+                                if(unit_in_month > 31){$('#unit_in_month_'+ii).val('');}
+                                sum = Number(unit_in_month * average_amount);
+                                $("#other_income_"+ii).attr({"onclick": "remove_4("+sum+")"});
+                                $('#monthly_income_'+ii).val(sum);
+                            }
+                        });
+
+                        $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
+
+                        $('.otherincome').change(function () {
+                            var arr = document.getElementsByClassName('monthly_income_total'); alert(arr);
+                            var tot = 0;
+                            for (var i = 0; i < arr.length; i++) {
+                                if (parseInt(arr[i].value))
+                                    tot += parseInt(arr[i].value);
+                            }
+                            $('#total_monthly_income').val(tot);
+                            var totalperson = $('#total_people').val();
+                            if (totalperson == null || totalperson == '') {
+                                $('#total_inc_person').val((tot / 1).toFixed(2));
+                            } else {
+                                $('#total_inc_person').val((tot / totalperson).toFixed(2));
+                            }
+                        });
+
+                        $('.cal_incom').change(function(){
+                            var total_per = $('#total_inc_person').val();
+                            var money_score = 0;
+                            if(total_per < 40000 ){
+                                money_score = 4;
+                            }else if(total_per>=40000 && total_per < 70000){
+                                money_score = 2;
+                            }else if(total_per>=70000 && total_per< 100000){
+                                money_score = 0;
+                            }else if(total_per>=100000 && total_per< 125000){
+                                money_score = -3;
+                            }else if(total_per>=125000 && total_per < 1500000){
+                                money_score = -9;
+                            }else if(total_per >200000){
+                                money_score = -12;
+                            }else{
+                                money_score = 0;
+                            }$('#income_out_farmer_score').val(money_score);
+                        });
+
+                    });
+
+                    //remove add
+                    function remove_4(val) { alert(val);
+                            var total_costs = parseInt($('#total_monthly_income').val()) - val;
+                            $('#total_monthly_income').val(total_costs);
+                            var totalperson = $('#total_people').val();
+                            if(totalperson == null || totalperson == ''){
+                                $('#total_inc_person').val((total_costs/1).toFixed(2));
+                            }else{
+                                $('#total_inc_person').val((total_costs/totalperson).toFixed(2));
+                            }
+                    }
+                    function reOrder_other_income(){
+                        for(var n=0;n<(dataRowOtherIncome-1);n++){
+                            $('.newRows4  tr:eq(' + (n-1) +') td:first-child').html(n);
+                            $('.newRows4  tr:eq(' + (n-1) +') td .income_name').attr('name', 'income_name['+(n-1)+']');
+                            $('.newRows4  tr:eq(' + (n-1) +') td .income_name').attr('id', 'income_name_'+(n-1));
+                            $('.newRows4  tr:eq(' + (n-1) +') td .income_age').attr('name', 'income_age['+(n-1)+']');
+                            $('.newRows4  tr:eq(' + (n-1) +') td .income_age').attr('id', 'income_age_'+(n-1));
+                            $('.newRows4  tr:eq(' + (n-1) +') td .income_occupation').attr('name', 'income_occupation['+(n-1)+']');
+                            //$('.new_rows_4  tr:eq(' + (n-1) +') td .income_occupation ').attr('id', 'income_age_'+(n-1));
+                            $('.newRows4  tr:eq(' + (n-1) +') td .income_unit').attr('name', 'income_unit['+(n-1)+']');
+                            // $('.new_rows_4  tr:eq(' + (n-1) +') td .income_age').attr('id', 'income_age_'+(n-1));
+                            $('.newRows4  tr:eq(' + (n-1) +') td .unit_in_month').attr('name', 'unit_in_month['+(n-1)+']');
+                            $('.newRows4  tr:eq(' + (n-1) +') td .unit_in_month').attr('id', 'unit_in_month_'+(n-1));
+                            $('.newRows4  tr:eq(' + (n-1) +') td .average_amount').attr('name', 'average_amount['+(n-1)+']');
+                            $('.newRows4  tr:eq(' + (n-1) +') td .average_amount').attr('id', 'average_amount_'+(n-1));
+                            $('.newRows4  tr:eq(' + (n-1) +') td .monthly_income').attr('name', 'monthly_income['+(n-1)+']');
+                            $('.newRows4  tr:eq(' + (n-1) +') td .monthly_income').attr('id', 'monthly_income_'+(n-1));
+                            $('.newRows4  tr:eq(' + (n-1) +') td .remove_rows_4').attr('id', 'other_income_'+(n-1));
+
+                        }
+                    }
+
+
+
+                    $("#new_rows_4").on('click','.remove_rows_4',function(e){
+                        var result = window.confirm('Are you sure?');
+                        if (result == false) {
+                            e.preventDefault();
+                            return false;
+                        }
+                        $('#add_rows_4').show();
+                        $(this).parent().parent().remove();
+                        reOrder_other_income();
+                        dataRowOtherIncome--;
+                    });
+                    //=========================================================
+
+
+
+                    AllowNumber();
+                    var num_4_1 = $('.newRows4 tr').length+1;
+                    $('.otherincome').change(function () {
+                        for(var ii=0; ii<num_4_1; ii++) {
+                            var sum = 0;
+                            var unit_in_month = $('#unit_in_month_'+ii).val();
+
+                            var average_amount = $('#average_amount_'+ii).val();
+                            if(unit_in_month > 31){$('#unit_in_month_'+ii).val('');}
+                            sum = Number(unit_in_month * average_amount);
+                            $("#other_income_"+ii).attr({"onclick": "remove_4("+sum+")"});
+                            $('#monthly_income_'+ii).val(sum);
+                        }
+                    });
+                    $(".income_occupation").select2({ allowClear:true, placeholder: "មុខរបររកចំណូល"});
+
+                    $('.otherincome').change(function () {
+                        var arr = document.getElementsByClassName('monthly_income_total');
+                        var tot=0;
+                        for(var i=0;i<arr.length;i++){
+                            if(parseInt(arr[i].value))
+                                tot += parseInt(arr[i].value);
+                        }
+                        $('#total_monthly_income').val(tot);
+                        var totalperson = $('#total_people').val();
+                        if(totalperson == null || totalperson == ''){
+                            $('#total_inc_person').val((tot/1).toFixed(2));
+                        }else{
+                            $('#total_inc_person').val((tot/totalperson).toFixed(2));
+                        }
+                    });
+
+                });
+
+
+
+
+
+
+
+
                 /*==================================================================
                 ===============================new_rows_5===========================
                 ================================================================== */

@@ -47,12 +47,12 @@
                             </td>
                             <td>
                                 <div class="form-group">
-                                    {{ Form::text('dob['.$key.']',$m->dob,['class'=>'form-control allowNumber','required'=>'required','maxlength'=>'4','id'=>'dob']) }}
+                                    {{ Form::text('dob['.$key.']',$m->dob,['class'=>'form-control allowNumber dob','required'=>'required','maxlength'=>'4','id'=>'dob']) }}
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
-                                    {{ Form::text('age['.$key.']',$m->age,['class'=>'form-control allowNumber age_g cal_edu​​​ cal_child txt_age age_'.$key,'id'=>'age_'.$key,'required'=>'required','maxlength'=>'3','id'=>'age']) }}
+                                    {{ Form::text('age['.$key.']',$m->age,['class'=>'form-control allowNumber age_g age cal_edu​​​ cal_child txt_age age_'.$key, 'id'=>'age_'.$key,'required'=>'required','maxlength'=>'3','id'=>'age']) }}
                                 </div>
                             </td>
                             <td>
@@ -130,6 +130,36 @@
 
     var dataRow = $('.new_rows tr.myrow').length+1;
     var num_row = $('.new_rows tr.myrow').length;
+
+
+    var row_num1 = $('.new_rows tr').length;
+
+    $('.age').change(function () {
+        for(var ii=0; ii<row_num1; ii++) { 
+            var age = Number($('#age_'+ii).val());
+            var currentyear = (new Date()).getFullYear();
+            var dob = currentyear-age;
+            if(age >= 150){
+                $('#dob_'+ii).val('');
+            }else{
+                $('#dob_'+ii).val(dob);
+            }
+        }
+    });
+    $('.dob').change(function () {
+        for(var ii=0; ii<row_num1; ii++) {
+            var dob = Number($('#dob_' + ii).val());
+            var currentyear = (new Date()).getFullYear();
+            var age = currentyear - dob;
+            if (dob >= currentyear || age >= 150) {
+                $('#age_' + ii).val('');
+            }
+            else {
+                $('#age_' + ii).val(age);
+            }
+        }
+    });
+
 
     $('.m_sex').change(function(){
         var index= $(this).attr('index');
@@ -383,6 +413,7 @@
         $(".occupation").select2({allowClear:true, placeholder: "មុខរបរ"});
         $(".education_level").select2({ allowClear:true, placeholder: "កម្រិតវប្បធម៌"});
         AllowNumber();
+
         var row_num = $('.new_rows tr').length;
 
         $('.age').change(function () {
