@@ -40,10 +40,12 @@
                                         </tr>
                                         <tr class="my_hide">
                                             <td>
+                                                @foreach($store_score as $key=>$value)
                                                 <div class="input-group add_debt_duration">
-                                                    <input autocomplete="off"  class="dept_money form-control allowNumber" type="text" name="debt_score" id="score_money" readonly>
+                                                    <input autocomplete="off"  class="dept_money form-control allowNumber" type="text" name="debt_score" id="score_money" readonly value="{{$value->dept}}">
                                                     <span class="input-group-addon">ពិន្ទុ</span>
                                                 </div>
+                                                @endforeach
                                             </td>
                                         </tr>
                                         </tbody>
@@ -85,7 +87,7 @@
                 '<tr class="my_hide">' +
                 '<td>' +
                 '<div class="input-group add_debt_duration">' +
-                '<input autocomplete="off" class="dept_money form-control allowNumber" type="text" name="debt_score" id="score_money" readonly>' +
+                '@foreach($store_score as $key=>$value)<input autocomplete="off" class="dept_money form-control allowNumber" type="text" name="debt_score" value="{{$value->dept}}" id="score_money" readonly>@endforeach' +
                 '<span class="input-group-addon">ពិន្ទុ</span>' +
                 '</div>'+
                 '</td>'+

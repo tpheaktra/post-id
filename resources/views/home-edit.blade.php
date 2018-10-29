@@ -16,7 +16,6 @@
         </div>
 
         @include('include.step-patient')
-
         <form role="form" method="post" class="form-group-post" action="{{ route('updatepatient.update',Crypt::encrypt($ginfo->id)) }}" id="check_validate">
             {{ csrf_field() }}
             @include('include.edit-step-1')
@@ -100,7 +99,7 @@
                                             '</td>' +
                                             '<td width="50%">' +
                                             '<div class="form-group input-group">' +
-                                            '<input autocomplete="off" id="r_score"  type="text" required="required" class="cal form-control allowNumber" name="price_rent_house_score"​​ readonly/><span class="input-group-addon">ពិន្ទុ</span>' +
+                                            '@foreach($store_score as $key=>$value)<input autocomplete="off" id="r_score"  type="text" required="required" class="cal form-control allowNumber" name="price_rent_house_score"​​ value={{$value->price_rent_house}} readonly/><span class="input-group-addon">ពិន្ទុ</span>@endforeach' +
                                             '</div>' +
                                             '</td>' +
                                             '</tr>' +
@@ -206,7 +205,7 @@
                                             '<td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input autocomplete="off" type="hidden" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly">' +
+                                            '@foreach($store_score as $key=> $value)<input autocomplete="off" type="hidden" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required"  value="{{$value->size_member}}"readonly="readonly">@endforeach' +
                                             '<span class="input-group-addon">ពិន្ទុ</span>' +
                                             '</div>' +
                                             '</td>' +
@@ -560,7 +559,7 @@
                                             '<td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>' +
                                             '<td>' +
                                             '<div class="form-group input-group">' +
-                                            '<input autocomplete="off" type="hidden" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly">' +
+                                            '@foreach($store_score as $key=>$value)<input autocomplete="off" type="hidden" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly" value="{{$value->size_member}}"> @endforeach' +
                                             '<span class="input-group-addon">ពិន្ទុ</span>' +
                                             '</div>' +
                                             '</td>' +
@@ -937,9 +936,11 @@
                                             <td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input autocomplete="off" type="hidden" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly">
+                                                    @foreach($store_score as $key=>$value)
+                                                    <input autocomplete="off" type="hidden" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly" value="{{$value->size_member}}">
                                                     <span class="input-group-addon">ពិន្ទុ</span>
-                                                    </div>
+                                                    @endforeach
+                                                </div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -1083,8 +1084,10 @@
                                                 <td colspan="3"><b style="float:right;">1. អំពីទំហំផ្ទះ ធៀបសមាជិកគ្រួសារ :</b></td>
                                                 <td>
                                                     <div class="form-group input-group">
-                                                        <input autocomplete="off" type="hidden" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly">
+                                                        @foreach($store_score as $key=>$value)
+                                                        <input autocomplete="off" type="hidden" id="a_score1" name="size_member_score" class="calculate form-control  allowFlot"​ required="required" readonly="readonly" value="{{$value->size_member}}">
                                                         <span class="input-group-addon">ពិន្ទុ</span>
+                                                        @endforeach
                                                     </div>
                                                 </td>
                                             </tr>
@@ -1189,8 +1192,10 @@
                             </div>
                             <label class="my_hide">បង្គន់អនាម័យ </label>
                             <div class="my_hide form-group input-group add_total_people" style="width: 300px;">
-                                <input readonly="readonly" id="toilet_score" type="text" name="toilet_score" class="form-control allowNumber"​>
+                                @foreach($store_score as $key => $value)
+                                <input readonly="readonly" id="toilet_score" type="text" name="toilet_score" class="form-control allowNumber"​ value="{{$value->toilet}}">
                                 <span class="input-group-addon">ពិន្ទុ</span>
+                                @endforeach
                             </div>
                             <script>
 

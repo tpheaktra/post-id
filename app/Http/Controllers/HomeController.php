@@ -681,6 +681,7 @@ class HomeController extends Controller
         $question_electric = Helpers::getQuestionElectric();
         $question_totel    = Helpers::getQuestionTolet();
         $health            = Helpers::getHealth();
+
         //step 1 general information
         $ginfo             = GeneralInformationModel::with('district','commune','village')->findOrFail($id);
         //step 2 member family
@@ -739,12 +740,14 @@ class HomeController extends Controller
                                 select hl.g_information_id, hl.health_id, hl.kids_then65, hl.old_bigger65, hl.kids_50_then65, hl.old_50_bigger65
                                 from health_link hl 
                                 where hl.g_information_id='$id'
-                            ) t on t.health_id = ht.id order by ht.id asc");//HealthDisabilityModle::leftJoin('health','id','health_id')->where('g_information_id',$id)->get();
+                            ) t on t.health_id = ht.id order by ht.id asc");
+                            //HealthDisabilityModle::leftJoin('health','id','health_id')->where('g_information_id',$id)->get();
 
        // dd($healthLink);
         $debt_link = DebtLoanLinkModel::where('g_information_id',$id)->first();
        // echo json_encode($ginfo);exit();
-
+        $store_score =  StoreScoreModel::where('patient',$id)->get();
+        
         return view('home-edit',compact('hospital','relationship',
             'provinces','gender','household',
             'homePrepar','condition_house','question','electricgrid',
@@ -754,7 +757,7 @@ class HomeController extends Controller
             'typetransport','question_totel','health','ginfo','memberFamily',
             'gFamily','household_root','household_root_rend','household_root_yourself','homePreparLink','rendPrice','institutions','toilet',
             'material','yesElectrict','noElectrict','vehicle','income','landAg','land_2','land_3',
-            'otherIncome','otherIncomeNot','healthLink','debt_link'));
+            'otherIncome','otherIncomeNot','healthLink','debt_link' ,'store_score'));
     }
 
     /*
