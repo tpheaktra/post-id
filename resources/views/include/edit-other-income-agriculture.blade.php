@@ -415,7 +415,7 @@
                              @foreach($store_score as $key => $value)
                             <input class="cal_incom form-control" id="income_out_farmer_score_2" value="{{$value->income_out_not_farmer}}"  type="text" name="income_out_not_farmer_score" readonly>
                             <span class="input-group-addon">ពិន្ទុ</span>
-                            @endforeach
+                            
                         </div>
                     </td>
                 </tr>
@@ -427,7 +427,7 @@
                     <td><b style="float: right;"> 7. C កុមារ(អាយុក្រោម ១៨ឆ្នាំ )រកចំណូល</b> </td>
                     <td>
                         <div class="input-group">
-                            <input class="cal_child cal_age form-control" id="income_child_score"  type="text" name="income_child_score">
+                            <input class="cal_child cal_age form-control" id="income_child_score"  type="text" name="income_child_score" value="{{$value->income_child}}">
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </td>
@@ -437,10 +437,11 @@
                     </td>
                     <td>
                         <div class="input-group add_debt_duration" style="width: 300px;">
-                            <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly value="2.5">
+                            <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly value="{{$value->age_action}}">
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </td>
+                    @endforeach
                 </tr>
             </table>
         </div>
@@ -489,7 +490,7 @@
                         '<td colspan="6"><span style="float: right;"> 7.B.1  ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមានចំណូលពីសកម្មភាពកសិកម្ម</span></td>' +
                         '<td colspan="2">' +
                         '<div class="input-group">' +
-                        '<input class="cal_incom otherincome form-control" id="income_out_farmer_score"  type="text" name="income_out_farmer_score" readonly>' +
+                        '@foreach($store_score as $key => $value)<input class="cal_incom otherincome form-control" id="income_out_farmer_score"  type="text" value="{{$value->income_out_farmer}}" name="income_out_farmer_score" readonly>@endforeach' +
                         '<span class="input-group-addon">ពិន្ទុ</span>' +
                         '</div>' +
                         '</td>' +
@@ -976,7 +977,7 @@
             '<td><b style="float: right;"> 7. C កុមារ(អាយុក្រោម ១៨ឆ្នាំ )រកចំណូល</b> </td>' +
             '<td>' +
             '<div class="input-group">' +
-            '<input class="cal_child cal_age form-control" id="income_child_score"  type="text" name="income_child_score">' +
+            '@foreach($store_score as $key => $value)<input class="cal_child cal_age form-control" id="income_child_score" value="{{$value->income_child}}"  type="text" name="income_child_score" readonly> ' +
             '<span class="input-group-addon">ពិន្ទុ</span>' +
             '</div>' +
             '</td>' +
@@ -986,7 +987,7 @@
             '</td>' +
             '<td>' +
             '<div class="input-group add_debt_duration" style="width: 300px;">' +
-            '<input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly value="2.5">' +
+            '<input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly value="{{$value->age_action}}">@endforeach' +
             '<span class="input-group-addon">ពិន្ទុ</span>' +
             '</div>' +
             '</td>' +
