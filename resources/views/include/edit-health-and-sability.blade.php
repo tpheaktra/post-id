@@ -106,8 +106,10 @@
     </ul>
     <P class="my_hide" >8. ជំងឺ,របួសនិងពិការភាព</P>
     <div class="my_hide form-group input-group" style="width: 300px;">
-        <input id="score_health" name="disease_score" type="text" required="required" class="cal_health form-control" readonly="readonly"/>
+        @foreach($store_score as $key => $value)
+        <input id="score_health" name="disease_score" value="{{$value->disease}}" type="text" required="required" class="cal_health form-control" readonly="readonly"/>
         <span class="input-group-addon">ពិន្ទុ</span>
+        @endforeach
     </div>
     <script type="text/javascript">
 

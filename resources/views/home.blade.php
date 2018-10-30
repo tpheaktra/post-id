@@ -28,7 +28,6 @@
                         <div class="col-sm-12" style="padding: 0;"><hr> </div>
                         <h4>ក.១ ព័ត៌មានទូទៅ</h4>
                     </div>
-
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-6">

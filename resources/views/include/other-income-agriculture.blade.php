@@ -138,15 +138,15 @@
     </li>
 </ul>
 <script>
-    $('.cal_age').change(function(){
-        var my_id = $('.myrow').attr('index');
-        var small_age = $('.cal_child_'+my_id).val();
-           // $('.txt_age').each(function(i){
-           //     var age = $(this).val();
-           //     if(i > 0 && (parseFloat(age) == 10)) small_age = age;
-           // });
-        $('#income_child_score').val(small_age);
-    });
+    // $('.cal_age').change(function(){
+    //     var my_id = $('.myrow').attr('index');
+    //     var small_age = $('.cal_child_'+my_id).val();
+    //        // $('.txt_age').each(function(i){
+    //        //     var age = $(this).val();
+    //        //     if(i > 0 && (parseFloat(age) == 10)) small_age = age;
+    //        // });
+    //     $('#income_child_score').val(small_age);
+    // });
     $('.income_agriculture').click(function () {
         var index = $(this).attr('index');
         // console.log(index);

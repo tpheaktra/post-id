@@ -42,7 +42,7 @@
                                             <td>
                                                 @foreach($store_score as $key=>$value)
                                                 <div class="input-group add_debt_duration">
-                                                    <input autocomplete="off"  class="dept_money form-control allowNumber" type="text" name="debt_score" id="score_money" readonly value="{{$value->dept}}">
+                                                    <input autocomplete="off"  class="dept_money form-control allowNumber" type="text" name="debt_score" id="score_money" readonly value="{{$value->debt}}">
                                                     <span class="input-group-addon">ពិន្ទុ</span>
                                                 </div>
                                                 @endforeach
@@ -87,7 +87,7 @@
                 '<tr class="my_hide">' +
                 '<td>' +
                 '<div class="input-group add_debt_duration">' +
-                '@foreach($store_score as $key=>$value)<input autocomplete="off" class="dept_money form-control allowNumber" type="text" name="debt_score" value="{{$value->dept}}" id="score_money" readonly>@endforeach' +
+                '@foreach($store_score as $key=>$value)<input autocomplete="off" class="dept_money form-control allowNumber" type="text" name="debt_score" value="{{$value->debt}}" id="score_money" readonly>@endforeach' +
                 '<span class="input-group-addon">ពិន្ទុ</span>' +
                 '</div>'+
                 '</td>'+
@@ -98,17 +98,17 @@
                 '</div>' +
                 '</div>');
             AllowNumber();
-            $('.dept_money').keyup(function(){
-                var total_debt = $('#total_debt').val();
-                if( total_debt>1200100){
-                    $('#score_money').val(3);
-                }else if(total_debt>= 600000 && total_debt<=1200000){
-                    $('#score_money').val(2);
-                }else{
-                    $('#score_money').val(0);
-                }
-            });
+            
         }
     });
-
+    $('.dept_money').change(function(){
+        var total_debt = $('#total_debt').val();
+        if( total_debt>1200100){
+            $('#score_money').val(3);
+        }else if(total_debt>= 600000 && total_debt<=1200000){
+            $('#score_money').val(2);
+        }else{
+            $('#score_money').val(0);
+        }
+    });
 </script>

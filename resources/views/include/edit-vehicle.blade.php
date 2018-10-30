@@ -93,10 +93,12 @@
         <tr class="my_hide">
             <td colspan="4"><b style="float:right">6. អំពីយានជំនិះរបស់គ្រួសារ</b></td>
             <td>
+                @foreach($store_score as $key=>$value)
                 <div class="form-group input-group">
-                    <input id="score_v" name="vehicle_score" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
+                    <input id="score_v" name="vehicle_score" type="text" value="{{$value->vehicle}}" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
                     <span class="input-group-addon">ពិន្ទុ</span>
                 </div>
+                @endforeach
             </td>
             <td></td>
         </tr>
@@ -104,9 +106,10 @@
     </table>
 </div>
 <script>
-    /*==================================================================
-     ===============================new_rows_2===========================
-     ================================================================== */
+/*==================================================================
+ ===============================new_rows_2===========================
+ ================================================================== */
+
     $(".allowNumber").change(function (event) {
         // $(this).val($(this).val().replace(/[^\d].+/, ""));
         var num = this.value;

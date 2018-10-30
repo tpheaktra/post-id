@@ -122,8 +122,6 @@
                                                 $('#r_score').val(0);
                                             }
                                         });
-
-
                                     }else if(houshold == 1){
                                         var household_area = '<div class="col-sm-12">' +
                                             '<h4> គ.៣ តើ​ផ្ទៃ​ក្រឡា​ទីលំនៅរបស់ក្រុម​គ្រួសារ ​មាន​ចំនួន​ប៉ុន្មាន​ម៉ែត្រ​ក្រឡា​?​</h4>' +
@@ -1450,8 +1448,10 @@
                                                 </tr>
 
                                                 <div class="my_hide form-group input-group" style="width: 300px;">
-                                                    <input id="roof_score" type="text" name="roof_score" class="cal_roof form-control allowNumber"​ readonly>
+                                                    @foreach($store_score as $keh => $value)
+                                                    <input id="roof_score" type="text" name="roof_score" value="{{$value->roof}}" class="cal_roof form-control allowNumber"​ readonly>
                                                     <span class="input-group-addon">ពិន្ទុ</span>
+                                                    @endforeach
                                                     </div>
                                                 </td>
                                             </tr>
@@ -1459,6 +1459,18 @@
                                         <script>
                                             $(".roof_relationship").select2({allowClear:true, placeholder: "ដំបូល"});
                                             $(".r_status").select2({allowClear:true, placeholder: "ស្ថានភាព"});
+
+                                              $('.cal_roof').change(function(){
+                                                    var chose = $('#roof_relationship').val();
+                                                    var status = $('#r_status').val();
+                                                    if(chose == 3 || chose ==2 || chose == 6 || (chose == 4 && status == 1) || (chose ==1 && status == 1) || chose== 9){
+                                                        $('#roof_score').val(6);
+                                                    }else if( (chose == 4 && status == 2)){
+                                                        $('#roof_score').val(4);
+                                                    }else{
+                                                        $('#roof_score').val(0);
+                                                    }
+                                                });
                                         </script>
                                     @endif
                                         @if($gFamily->household_family_id == 3)
@@ -1490,22 +1502,36 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-
+                                                @foreach($store_score as $keh => $value)
                                                 <div class="my_hide form-group input-group" style="width: 300px;">
-                                                    <input id="roof_score" type="text" name="roof_score" class="cal_roof form-control allowNumber"​ readonly>
+                                                    <input id="roof_score" type="text" value="{{$value->roof}}" name="roof_score" class="cal_roof form-control allowNumber"​ readonly>
                                                     <span class="input-group-addon">ពិន្ទុ</span>
                                                 </div>
+                                                @endforeach
                                                 </td>
                                                 </tr>
                                             </table>
                                             <script>
                                                 $(".roof_relationship").select2({allowClear:true, placeholder: "ដំបូល"});
                                                 $(".r_status").select2({allowClear:true, placeholder: "ស្ថានភាព"});
+
+                                                $('.cal_roof').change(function(){
+                                                    var chose = $('#roof_relationship').val();
+                                                    var status = $('#r_status').val();
+                                                    if(chose == 3 || chose ==2 || chose == 6 || (chose == 4 && status == 1) || (chose ==1 && status == 1) || chose== 9){
+                                                        $('#roof_score').val(6);
+                                                    }else if( (chose == 4 && status == 2)){
+                                                        $('#roof_score').val(4);
+                                                    }else{
+                                                        $('#roof_score').val(0);
+                                                    }
+                                                });
                                             </script>
                                         @endif
                                 </div>
 
                                 <div class="col-sm-6" id="home-ke">
+                                    @foreach($store_score as $key=>$value)
                                     @if($gFamily->household_family_id == 1)
                                         <h4>គ.៦ ​ជញ្ជាំង</h4>
                                         <table width="100%" class="table table-bordered table-striped">
@@ -1534,18 +1560,30 @@
                                             <tr class="my_hide">
                                                 <td>3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ</td>
                                                 <td>
+                                                  @foreach($store_score as $keh => $value)
                                                     <div class="form-group input-group" style="width: 300px;">
-                                                        <input id="wall_score" type="text" name="wall_score" class="cal_wall form-control allowNumber"​ readonly>
+                                                        <input id="wall_score" type="text" name="wall_score" value="{{$value->wall}}" class="cal_wall form-control allowNumber"​ readonly>
                                                         <span class="input-group-addon">ពិន្ទុ</span>
                                                         </div>
                                                     </td>
+                                                   @endforeach
                                                 </tr>
                                             </table>
                                         <script>
                                             $(".wall_relationship").select2({ allowClear:true, placeholder: "ជញ្ជាំង"});
                                             $(".h_status").select2({ allowClear:true, placeholder: "ស្ថានភាព"});
+                                             $('.cal_wall').change(function(){
+                                                    var chose = $('#wall_relationship').val();
+                                                    var status = $('#h_status').val();
+                                                    if( (chose >=1 && chose<=3) || chose ==7 ){
+                                                        $('#wall_score').val(6);
+                                                    }else if(chose == 5){
+                                                        $('#wall_score').val(4);
+                                                    }else{ $('#wall_score').val(0);}
+                                                });
                                         </script>
                                     @endif
+                                    @endforeach
                                         @if($gFamily->household_family_id == 3)
                                             <h4>គ.៦ ​ជញ្ជាំង</h4>
                                             <table width="100%" class="table table-bordered table-striped">
@@ -1574,10 +1612,12 @@
                                                 <tr class="my_hide">
                                                     <td>3A 2:   ស្ថានភាពជញ្ជាំងផ្ទះ</td>
                                                     <td>
+                                                        @foreach($store_score as $key=>$value)
                                                         <div class="form-group input-group" style="width: 300px;">
-                                                            <input id="wall_score" type="text" name="wall_score" class="cal_wall form-control allowNumber"​ readonly>
+                                                            <input id="wall_score" type="text" value="{{$value->wall}}" name="wall_score" class="cal_wall form-control allowNumber"​ readonly>
                                                             <span class="input-group-addon">ពិន្ទុ</span>
                                                         </div>
+                                                        @endforeach
                                                     </td>
                                                 </tr>
                                             </table>
@@ -1600,10 +1640,12 @@
                                         @endforeach
                                         </ul>
                                 </div>
+                                @foreach($store_score as $key=>$value)
                                 <div class="my_hide form-group input-group" style="width: 300px;">
-                                    <input id="house_score" type="text" name="house_score" class="house_score form-control allowNumber"​ readonly>
+                                    <input id="house_score" type="text" value="{{$value->house_status}}" name="house_score" class="house_score form-control allowNumber"​ readonly>
                                     <span class="input-group-addon">ពិន្ទុ</span>
                                 </div>
+                                @endforeach
                             @endif
 
                                 @if($gFamily->household_family_id == 3)
@@ -1621,6 +1663,16 @@
                                         <span class="input-group-addon">ពិន្ទុ</span>
                                     </div>
                                 @endif
+                                <script type="text/javascript">
+                                    $('.condition_house').change(function(){
+                                            var house = $('input[name=condition_house]:checked').val();
+                                            if(house ==1){
+                                                $('#house_score').val(4);
+                                            }else if(house == 2){
+                                                $('#house_score').val(2.5);
+                                            }else{ $('#house_score').val(0);}
+                                        });
+                                </script>
 
                         </div>
 
