@@ -28,7 +28,6 @@
                         <div class="col-sm-12" style="padding: 0;"><hr> </div>
                         <h4>ក.១ ព័ត៌មានទូទៅ</h4>
                     </div>
-
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-6">
@@ -2279,15 +2278,15 @@
                                 if($(this).hasClass("on")){
                                     $(this).removeAttr('checked');
                                     $('.testing').attr('disable');
+                                    //alert(1);
                                 }
-                                $('.f_score').show();
-                                $('.s_score').show();
                                 $(this).toggleClass("on");
                                 $('#land_2').removeAttr('checked');
                                 $('#show-land-other').html('');
                                 $('#land_3').removeAttr('checked');
                                 $('#show-land-personal').html('');
                                 $('.testing').toggleClass("disable");
+                                //alert(2);
 
                             }).find(":checked").addClass("on");
 

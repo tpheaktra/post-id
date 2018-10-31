@@ -65,8 +65,10 @@
                                             </td>
                                             <td><label class="control-label">7.A.2 B  ផ្ទៃដីកសិកម្ម មិនមែនជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>
                                             <td>
+                                                @foreach($store_score as $key => $value)
                                                 <div class="form-group input-group">
-                                                    <input autocomplete="off" id="l_score_2" name="other_farm_score" type="text" required="required" class="t_land_2 form-control allowFlot"  readonly/><span class="input-group-addon">ពិន្ទុ</span>
+                                                    <input autocomplete="off" id="l_score_2" value="{{$value->other_farm}}" name="other_farm_score" type="text" required="required" class="t_land_2 form-control allowFlot"  readonly/><span class="input-group-addon">ពិន្ទុ</span>
+                                                @endforeach
                                                 </div>
                                             </td>
                                         </tr>
@@ -133,7 +135,9 @@
                                             <td><label class="control-label">7.A. 2A ផ្ទៃដីកសិកម្ម ជាទ្រព្យសម្បត្តិផ្ទាល់ខ្លួន</label></td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input autocomplete="off" id="l_score" name="personal_farm_score" type="text" required="required" class="t_land form-control allowFlot" readonly/><span class="input-group-addon">ពិន្ទុ</span>
+                                                    @foreach($store_score as $key => $value)
+                                                    <input autocomplete="off" id="l_score" value="{{$value->personal_farm}}" name="personal_farm_score" type="text" required="required" class="t_land form-control allowFlot" readonly/><span class="input-group-addon">ពិន្ទុ</span>
+                                                    @endforeach
                                                 </div>
                                             </td>
                                         </tr>

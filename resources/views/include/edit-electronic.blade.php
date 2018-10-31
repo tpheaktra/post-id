@@ -27,7 +27,10 @@
                                 <tr class="my_hide">
                                     <td></td>
                                     <td></td>
-                                    <td><div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber" id="cost_score" required="required" type="text" name="use_energy_elect_score" readonly="readonly"><span class="input-group-addon">ពិន្ទុ</span></div></td>
+                                    <td>
+                                        @foreach($store_score as $key=>$value)
+                                        <div class="input-group form-group"><input autocomplete="off" class="cal_t form-control allowNumber" id="cost_score" required="required" type="text" value="{{$value->use_energy_elect}}" name="use_energy_elect_score" readonly="readonly"><span class="input-group-addon">ពិន្ទុ</span></div></td>
+                                        @endforeach
                                 </tr>
                             </table>@endif
                     </li>

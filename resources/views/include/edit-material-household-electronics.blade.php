@@ -76,10 +76,12 @@
             <td colspan="4"><b style="float:right">4. ទ្រព្យសម្បត្តិសំភារៈប្រើប្រាស់អេឡិចត្រូនិចរបស់គ្រួសារ</b>
             </td>
             <td>
+                @foreach($store_score as $key=>$value)
                 <div class="form-group input-group">
-                    <input id="el_score" name="price_electronic_score" type="text" required="required" class="cal_el form-control" readonly="readonly"/>
+                    <input id="el_score" name="price_electronic_score" type="text" value="{{$value->price_electronic}}" required="required" class="cal_el form-control" readonly="readonly"/>
                     <span class="input-group-addon">ពិន្ទុ</span>
                 </div>
+                @endforeach
             </td>
             <td></td>
         </tr>

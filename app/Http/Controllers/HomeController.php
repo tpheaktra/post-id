@@ -120,9 +120,9 @@ class HomeController extends Controller
                 inner join dev_pmrs_share.villages v on gi.g_village_id = v.code
                where gi.id ='$id' group by gi.id order by gi.id desc 
             ");
-//          $score= DB::select('select *from general_information gi left join store_score sc on sc.patient = gi.id
+        //  $score= DB::select('select *from general_information gi left join store_score sc on sc.patient = gi.id
 
-// where gi.id = $id');
+        // where gi.id = $id');
         $score_list = DB::select("
          select sc.patient,
          sc.size_member,
@@ -681,6 +681,7 @@ class HomeController extends Controller
         $question_electric = Helpers::getQuestionElectric();
         $question_totel    = Helpers::getQuestionTolet();
         $health            = Helpers::getHealth();
+
         //step 1 general information
         $ginfo             = GeneralInformationModel::with('district','commune','village')->findOrFail($id);
         //step 2 member family
@@ -739,12 +740,14 @@ class HomeController extends Controller
                                 select hl.g_information_id, hl.health_id, hl.kids_then65, hl.old_bigger65, hl.kids_50_then65, hl.old_50_bigger65
                                 from health_link hl 
                                 where hl.g_information_id='$id'
-                            ) t on t.health_id = ht.id order by ht.id asc");//HealthDisabilityModle::leftJoin('health','id','health_id')->where('g_information_id',$id)->get();
+                            ) t on t.health_id = ht.id order by ht.id asc");
+                            //HealthDisabilityModle::leftJoin('health','id','health_id')->where('g_information_id',$id)->get();
 
        // dd($healthLink);
         $debt_link = DebtLoanLinkModel::where('g_information_id',$id)->first();
        // echo json_encode($ginfo);exit();
-
+        $store_score =  StoreScoreModel::where('patient',$id)->get();
+        
         return view('home-edit',compact('hospital','relationship',
             'provinces','gender','household',
             'homePrepar','condition_house','question','electricgrid',
@@ -754,7 +757,7 @@ class HomeController extends Controller
             'typetransport','question_totel','health','ginfo','memberFamily',
             'gFamily','household_root','household_root_rend','household_root_yourself','homePreparLink','rendPrice','institutions','toilet',
             'material','yesElectrict','noElectrict','vehicle','income','landAg','land_2','land_3',
-            'otherIncome','otherIncomeNot','healthLink','debt_link'));
+            'otherIncome','otherIncomeNot','healthLink','debt_link' ,'store_score'));
     }
 
     /*
@@ -1189,22 +1192,22 @@ class HomeController extends Controller
 
         if(!empty($request->income_agricalture_type == 2)) {
             $other_income=[];
-            foreach ($request->income_name_not as $key => $in) {
+            // foreach ($request->income_name_not as $key => $in) {
                 $other_income[] = array(
                     'g_information_id'      => $id,
-                    'income_name_not'       => $in,
-                    'income_age_not'        => $request->income_age_not[$key],
-                    'income_occupation_not' => $request->income_occupation_not[$key],
-                    'income_unit_not'       => $request->income_unit_not[$key],
-                    'unit_in_month_not'     => $request->unit_in_month_not[$key],
-                    'average_amount_not'    => $request->average_amount_not[$key],
-                    'monthly_income_not'    => $request->monthly_income_not[$key],
-                    'total_mon_income_not'  => $request->total_mon_income_not,
-                    'total_inc_person_not'  => $request->total_inc_person_not,
-                    'created_at'            => Carbon::now(),
-                    'updated_at'            => Carbon::now()
+                    //'income_name_not'       => $in,
+                    // 'income_age_not'        => $request->income_age_not[$key],
+                    // 'income_occupation_not' => $request->income_occupation_not[$key],
+                    // 'income_unit_not'       => $request->income_unit_not[$key],
+                    // 'unit_in_month_not'     => $request->unit_in_month_not[$key],
+                    // 'average_amount_not'    => $request->average_amount_not[$key],
+                    // 'monthly_income_not'    => $request->monthly_income_not[$key],
+                    // 'total_mon_income_not'  => $request->total_mon_income_not,
+                    // 'total_inc_person_not'  => $request->total_inc_person_not,
+                    // 'created_at'            => Carbon::now(),
+                    // 'updated_at'            => Carbon::now()
                 );
-            }
+            //}
 
             OtherIncomeModel::where('g_information_id',$id)->delete();
             OtherIncomeNotAgricultureModel::where('g_information_id',$id)->delete();
@@ -1245,7 +1248,30 @@ class HomeController extends Controller
             'updated_at'            => Carbon::now()
         );
         DebtLoanLinkModel::where('g_information_id',$id)->update($debt);
-
+        //table store score
+        $score = array(
+                'size_member'   =>$request->size_member_score,
+                'toilet'        => $request->toilet_score,
+                'roof'          => $request->roof_score,
+                'wall'          => $request->wall_score,
+                'house_status'  => $request->house_score,
+                'price_rent_house' => $request->price_rent_house_score,
+                'price_electronic' => $request->price_electronic_score,
+                'use_energy_elect' => $request->use_energy_elect_score,
+                'no_energy_elect'  => $request->no_energy_elect_score,
+                'vehicle'          => $request->vehicle_score,
+                'animal'                => $request->animal_score,
+                'personal_farm'         => $request->personal_farm_score,
+                'other_farm'            => $request->other_farm_score,
+                'income_out_farmer'     => $request->income_out_farmer_score,
+                'income_out_not_farmer' => $request->income_out_not_farmer_score,
+                'income_child'          => $request->income_child_score,
+                'disease'               => $request->disease_score,
+                'debt'                  => $request->debt_score,
+                'edu'                   => $request->edu_score,
+                'age_action'            => $request->age_action_score
+            );
+            StoreScoreModel::where('patient',$id)->update($score);
 
         //  echo json_encode($member_family);
            // DB::commit();

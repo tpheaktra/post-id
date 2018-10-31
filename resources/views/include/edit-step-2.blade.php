@@ -107,9 +107,11 @@
                     <tr class="my_hide">
                         <td colspan="7"><b style="float: right;">10.  ការអប់រំ (មើលចម្លើយនៅក្នុងតារាងផ្នែក ខ)</b></td>
                         <td>
+                            @foreach($store_score as $key=>$value)
                             <div class="form-group input-group">
-                                <input autocomplete="off" id="edu_score"  type="text" required="required" class="cal_edu form-control allowNumber" name="edu_score"​​ readonly="readonly" /><span class="input-group-addon">ពិន្ទុ</span>
+                                <input autocomplete="off" id="edu_score"  type="text" required="required" class="cal_edu form-control allowNumber" name="edu_score"​​ readonly="readonly"​ value="{{$value->edu}}" /><span class="input-group-addon">ពិន្ទុ</span>
                             </div>
+                            @endforeach
                         </td>
                         <td></td>
                     </tr>
@@ -209,7 +211,7 @@
             var relation = $(this).val();
             // var rel = $(this).val();
             var row_score = 0;
-            if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+            if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) || (age>16 && edu==14) ) {
                 row_score = 4;
             }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
                 row_score = 2.5;
@@ -232,7 +234,7 @@
             var relation = $(this).val();
             // var rel = $(this).val();
             var row_score = 0;
-            if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+            if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) || (age>16 && edu==14) ){
                 row_score = 4;
             }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
                 row_score = 2.5;
@@ -255,7 +257,7 @@
             var relation = $(this).val();
             // var rel = $(this).val();
             var row_score = 0;
-            if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+            if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) || (age>16 && edu==14) ){
                 row_score = 4;
             }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
                 row_score = 2.5;
@@ -348,7 +350,7 @@
                 var edu = $('#education_level_'+ind).val();
                 var relation = $(this).val();
                 var row_score = 0;
-                if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) || (age>16 && edu==14) ){
                     row_score = 4;
                 }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
                     row_score = 2.5;
@@ -369,7 +371,7 @@
                 var edu = $('#education_level_'+ind).val();
                 var relation = $(this).val();
                 var row_score = 0;
-                if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) || (age>16 && edu==14) ){
                     row_score = 4;
                 }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
                     row_score = 2.5;
@@ -389,7 +391,7 @@
                 var edu = $('#education_level_'+ind).val();
                 var relation = $(this).val();
                 var row_score = 0;
-                if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) ){
+                if( ((relation == 1 || relation == 2) && ( (edu == 14) || (edu >=1 && edu <=3) )) || ( (age>=16) && (edu >=1 && edu <=3)) || (age>16 && edu==14) ){
                     row_score = 4;
                 }else if( ((relation == 1 || relation == 2) && (edu >=4 && edu <=6)) || ( (age>=16) && (edu >=4 && edu <=6)) || (age<16 && edu==14) ) {
                     row_score = 2.5;

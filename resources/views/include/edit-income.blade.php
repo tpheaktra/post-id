@@ -119,8 +119,10 @@
             <td colspan="3"><b style="float:right">7.A.1 ការចិញ្ចឹមសត្វ</b></td>
             <td>
                 <div class="form-group input-group">
-                    <input id="score_animal_total" name="animal_score" type="text" required="required" class="form-control cal_animal" readonly="readonly"/>
+                    @foreach($store_score as $key => $value)
+                    <input id="score_animal_total" name="animal_score" type="text" value="{{$value->animal}}" required="required" class="form-control cal_animal" readonly="readonly"/>
                     <span class="input-group-addon">ពិន្ទុ</span>
+                    @endforeach
                 </div>
             </td>
 
