@@ -18,6 +18,8 @@ use App\model\NoElectricLinkModel;
 use App\model\OtherIncomeModel;
 use App\model\OtherIncomeNotAgricultureModel;
 use App\model\ShpHouseholdsModel;
+use App\model\ShpMembersModel;
+use App\model\ShpPostIdSourceModel;
 use App\model\TypeIncomeModel;
 use App\model\TypeToiletLinkModel;
 use App\model\YesElectricLinkModel;
@@ -638,10 +640,41 @@ class HomeController extends Controller
                 'expirydate'    =>$request->expire_date,
                 'entryby'       =>auth::user()->id,
                 'entrydate'     =>Carbon::now(),
-                'poorcategory'  =>$poor
+                'poorcategory'  =>$poor,
+				'isactive'=>1
             );
            $shp= ShpHouseholdsModel::create($shp_household_pmrs);
 
+            $shp_postid_source = array(
+                'printedcardno' =>$request->printcardno,
+                'interviewdate' =>$request->interview_date,
+                'interviewer'   =>auth::user()->id,
+            );
+            ShpPostIdSourceModel::create($shp_postid_source);
+
+		   //shp members
+		   foreach ($request->nick_name as $key => $val){
+		       $relat= RelationshipModel::findOrFail($request->family_relationship[$key]);
+                 $member = array(
+                    'printedcardno'  => $request->printcardno,
+                    'memberno'       => ($key+1),
+                    'name'           => $val,
+                    'sex'            => $request->m_sex[$key] == 1 ? 'M' : 'F',
+                    'dob'            => $request->dob[$key].'-01-01',
+                    'attendsschool'  => $request->education_level[$key] == 14 ? 0 : 1,
+                    'membertype'     => $relat->pmrs_relation_id,
+                    'isactive'       => 1,
+                    'entrydate'      => Carbon::now(),
+                    'entryby'        => auth::user()->id,
+                   );
+               ShpMembersModel::create($member);
+           }
+
+
+
+		   
+		   
+//
             DB::commit();
             return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
         } catch (\Exception $e) {

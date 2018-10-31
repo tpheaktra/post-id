@@ -10,19 +10,22 @@ class ShpHouseholdsModel extends Model
     protected  $table = 'shp_households';
     public  $timestamps = false;
     protected $fillable = [
-        'hhid',
         'province',
         'district',
         'commune',
         'village',
         'location',
+        'hhid',
         'printedcardno',
-        'roundnum' ,
+        'roundnum',
+        'ispreid',
         'interviewscore',
+        'poorcategory',
+        'isactive',
+        'interviewer',
         'interviewdate',
         'expirydate',
-        'entryby',
         'entrydate',
-        'poorcategory'
+        'entryby'
     ];
 }
