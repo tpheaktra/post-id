@@ -1192,22 +1192,22 @@ class HomeController extends Controller
 
         if(!empty($request->income_agricalture_type == 2)) {
             $other_income=[];
-            // foreach ($request->income_name_not as $key => $in) {
+             foreach ($request->income_name_not as $key => $in) {
                 $other_income[] = array(
                     'g_information_id'      => $id,
-                    //'income_name_not'       => $in,
-                    // 'income_age_not'        => $request->income_age_not[$key],
-                    // 'income_occupation_not' => $request->income_occupation_not[$key],
-                    // 'income_unit_not'       => $request->income_unit_not[$key],
-                    // 'unit_in_month_not'     => $request->unit_in_month_not[$key],
-                    // 'average_amount_not'    => $request->average_amount_not[$key],
-                    // 'monthly_income_not'    => $request->monthly_income_not[$key],
-                    // 'total_mon_income_not'  => $request->total_mon_income_not,
-                    // 'total_inc_person_not'  => $request->total_inc_person_not,
-                    // 'created_at'            => Carbon::now(),
-                    // 'updated_at'            => Carbon::now()
+                    'income_name_not'       => $in,
+                     'income_age_not'        => $request->income_age_not[$key],
+                     'income_occupation_not' => $request->income_occupation_not[$key],
+                     'income_unit_not'       => $request->income_unit_not[$key],
+                     'unit_in_month_not'     => $request->unit_in_month_not[$key],
+                     'average_amount_not'    => $request->average_amount_not[$key],
+                     'monthly_income_not'    => $request->monthly_income_not[$key],
+                     'total_mon_income_not'  => $request->total_mon_income_not,
+                     'total_inc_person_not'  => $request->total_inc_person_not,
+                     'created_at'            => Carbon::now(),
+                     'updated_at'            => Carbon::now()
                 );
-            //}
+            }
 
             OtherIncomeModel::where('g_information_id',$id)->delete();
             OtherIncomeNotAgricultureModel::where('g_information_id',$id)->delete();
