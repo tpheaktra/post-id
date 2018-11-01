@@ -147,8 +147,6 @@
     //        // });
     //     $('#income_child_score').val(small_age);
     // });
-
-    
     $('.income_agriculture').click(function () {
         var index = $(this).attr('index');
         // console.log(index);
