@@ -1280,6 +1280,7 @@ class HomeController extends Controller
         );
         DebtLoanLinkModel::where('g_information_id',$id)->update($debt);
         //table store score
+        $total = $request->size_member_score + $request->toilet_score + $request->roof_score + $request->wall_score + $request->house_score + $request->price_rent_house_score + $request->price_electronic_score + $request->use_energy_elect_score + $request->no_energy_elect_score + $request->vehicle_score + $request->animal_score + $request->personal_farm_score + $request->other_farm_score + $request->income_out_farmer_score + $request->income_out_not_farmer_score + $request->income_child_score + $request->disease_score + $request->debt_score + $request->edu_score + $request->age_action_score;
         $score = array(
                 'size_member'   =>$request->size_member_score,
                 'toilet'        => $request->toilet_score,
@@ -1300,7 +1301,8 @@ class HomeController extends Controller
                 'disease'               => $request->disease_score,
                 'debt'                  => $request->debt_score,
                 'edu'                   => $request->edu_score,
-                'age_action'            => $request->age_action_score
+                'age_action'            => $request->age_action_score,
+                'total'                 => $total
             );
             StoreScoreModel::where('patient',$id)->update($score);
 
