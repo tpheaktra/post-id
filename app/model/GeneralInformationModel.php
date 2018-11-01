@@ -9,6 +9,7 @@ class GeneralInformationModel extends Model
     protected $table='general_information';
     protected $fillable = [
         'user_id',
+        'hhid',
         'od_code',
         'hf_code',
         'interview_code',

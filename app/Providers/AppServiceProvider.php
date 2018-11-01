@@ -19,7 +19,15 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         view()->composer(['layouts.app'], function($view)
             {
-                $id = auth::user()->id;
+
+
+                if(isset(auth::user()->id) != null){
+                    $id = auth::user()->id;
+                }else{
+                    $id = 1;
+                }
+
+
                 $base = Helpers::getBase($id)->firstOrFail();
                // echo $base['health_facilities']->name_kh;exit();
                 if($base->hos_base <= 0){
