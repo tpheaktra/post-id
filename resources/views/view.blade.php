@@ -17,7 +17,7 @@
                     <div class="col-sm-12"><p>
                     	<div class="col-sm-12" style="padding: 0 !important;"><h4 style="text-decoration: none;">ព័ត៌មានទូទៅ</h4><hr></div>
                     </p>
-                    	@foreach($patient as $key=>$value) 
+
                     	<div class="col-sm-6"></div>
                     	<div class="col-sm-6">
                     		<table class="pull-right">
@@ -25,7 +25,7 @@
 	                                <td width="35%"><label class="control-label">លេខកូដសម្ភាសន៍:</label></td>
 	                                <td width="65%">
 	                                    <div class="form-group">
-	                                        <input maxlength="100" name="interview_code" type="text" required="required" class="form-control" value="{{$value->interview_code}}" disabled/>
+	                                        <input maxlength="100" name="interview_code" type="text" required="required" class="form-control" value="{{$patient->interview_code}}" disabled/>
 	                                    </div>  
 	                                </td>
 	                            </tr>
@@ -38,7 +38,7 @@
 	                                <td width="35%"><label class="control-label">ឈ្មោះអ្នកជំងឺ :</label></td>
 	                                <td width="65%">
 	                                   <div class="form-group">
-	                                        <input  maxlength="100" name="g_patient" type="text" required="required" class="form-control"​​ value="{{$value->g_patient}}" disabled />
+	                                        <input  maxlength="100" name="g_patient" type="text" required="required" class="form-control"​​ value="{{$patient->g_patient}}" disabled />
 	                                    </div>     
 	                                </td>
 	                            </tr>
@@ -46,8 +46,8 @@
 	                                <td width="35%"><label class="control-label"> ភេទ : </label></td>
 	                                <td width="65%">
 	                                   <div class="form-group"  id="g_sex">
-	                                        <input name="g_sex" value="{{$value->name_kh}}" style="margin-right:10px;" type="text" class="form-control" disabled></
-	                                    </div>     
+	                                        <input name="g_sex" value="{{$patient->sex->name_kh}}" style="margin-right:10px;" type="text" class="form-control" disabled>
+	                                    </div>
 	                                </td>
 	                            </tr>
 	                        </table>
@@ -59,7 +59,7 @@
 	                                <td width="35%"><label class="control-label"> អាយុ : </label></td>
 	                                <td width="65%">
 	                                   <div class="form-group">
-	                                        <input  maxlength="100" name="g_age" type="text" value="{{$value->g_age}}" required="required" class="form-control" disabled/>
+	                                        <input  maxlength="100" name="g_age" type="text" value="{{$patient->g_age}}" required="required" class="form-control" disabled/>
 	                                    </div>     
 	                                </td>
 	                            </tr>
@@ -67,7 +67,7 @@
 	                                <td width="35%"><label class="control-label">លេខទូរស័ព្ធ :</label></td>
 	                                <td width="65%">
 	                                   <div class="form-group">
-	                                        <input  maxlength="100" name="g_phone" type="text" value="{{$value->g_phone}}" required="required" class="form-control" disabled/>
+	                                        <input  maxlength="100" name="g_phone" type="text" value="{{$patient->g_phone}}" required="required" class="form-control" disabled/>
 	                                    </div>     
 	                                </td>
 	                            </tr>
@@ -80,7 +80,7 @@
 	                                <td width="35%"><label class="control-label">ខេត្ត : </label></td>
 	                                <td width="65%">
 	                                   <div class="form-group g_province">
-	                                       <input  maxlength="100" name="pro" value="{{$value->province}}" type="text" required="required" class="form-control" disabled/>
+	                                       <input  maxlength="100" name="pro" value="{{$patient->provinces->name_kh}}" type="text" required="required" class="form-control" disabled/>
 	                                    </div>     
 	                                </td>
 	                            </tr>
@@ -88,7 +88,7 @@
 	                                <td width="35%"><label class="control-label">   ស្រុក : </label></td>
 	                                <td width="65%">
 	                                   <div class="form-group g_district">
-	                                      <input  maxlength="100" value="{{$value->district}}" name="pro" type="text" required="required" class="form-control" disabled/>
+	                                      <input  maxlength="100" value="{{$patient->district->name_kh}}" name="pro" type="text" required="required" class="form-control" disabled/>
 	                                    </div>
 	                                </td>
 	                            </tr>
@@ -102,7 +102,7 @@
 	                                <td width="35%"><label class="control-label">ឃំុ :</label></td>
 	                                <td width="65%">
 	                                    <div class="form-group g_commune">
-	                                        <input  maxlength="100" value="{{$value->commune}}" name="pro" type="text" required="required" class="form-control" disabled/>
+	                                        <input  maxlength="100" value="{{$patient->commune->name_kh}}" name="pro" type="text" required="required" class="form-control" disabled/>
 	                                    </div>
 	                                </td>
 	                            </tr>
@@ -110,7 +110,7 @@
 	                                <td width="35%"><label class="control-label">ភូមិ :</label></td>
 	                                <td width="65%">
 	                                    <div class="form-group g_village">
-	                                        <input  maxlength="100" value="{{$value->village}}"name="pro" type="text" required="required" class="form-control" disabled/>
+	                                        <input  maxlength="100" value="{{$patient->village->name_kh}}"name="pro" type="text" required="required" class="form-control" disabled/>
 	                                    </div>
 	                                </td>
 	                            </tr>
@@ -123,14 +123,14 @@
 	                                <td width="35%"><label class="control-label"> ទីតាំងនៅក្នុងភូមិ : </label></td>
 	                                <td width="65%">
 	                                   <div class="form-group">
-	                                       <input type="text" class="form-control" id="location" value="{{$value->g_local_village}}" name="g_local_village" required="required" disabled>
+	                                       <input type="text" class="form-control" id="location" value="{{$patient->g_local_village}}" name="g_local_village" required="required" disabled>
 	                                    </div>
 	                                </td>
 	                            </tr>
 	                        </table>
 	                    </div>
 	                  </div>
-	                  @endforeach
+
 	                  @foreach($score_list as $key=>$value)
 	                  	
 	            <!--       

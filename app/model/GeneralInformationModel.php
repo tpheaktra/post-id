@@ -36,32 +36,48 @@ class GeneralInformationModel extends Model
         'fa_relationship_id',
         'record_status',
         'interview_date',
-        'expire_date'
+        'expire_date',
     ];
+    public function getYear(){
+        return !empty($this->interview_date) ? date("Y", strtotime($this->interview_date)) : null;
+    }
+    public function getMonth(){
+        return !empty($this->interview_date) ? date("m", strtotime($this->interview_date)) : null;
+    }
     public function hospital(){
-        return $this->hasMany(HospitalModel::class, 'code', 'hf_code');
+        return $this->hasOne(HospitalModel::class, 'code', 'hf_code');
     }
     public function provinces(){
-        return $this->hasMany(ProvinceModel::class, 'code', 'g_province_id');
+        return $this->hasOne(ProvinceModel::class, 'code', 'g_province_id');
     }
     public function district(){
-        return $this->hasMany(DistrictModel::class, 'code', 'g_district_id');
+        return $this->hasOne(DistrictModel::class, 'code', 'g_district_id');
     }
     public function commune(){
-        return $this->hasMany(CommuneModel::class, 'code', 'g_commune_id');
+        return $this->hasOne(CommuneModel::class, 'code', 'g_commune_id');
     }
     public function village(){
-        return $this->hasMany(VillageModel::class, 'code', 'g_village_id');
+        return $this->hasOne(VillageModel::class, 'code', 'g_village_id');
+    }
+    public function sex(){
+        return $this->hasOne(GenderModel::class,'id','g_sex');
     }
     public function score(){
-        return $this->hasMany(StoreScoreModel::class, 'patient', 'id');
+        return $this->hasOne(StoreScoreModel::class, 'patient', 'id');
     }
     public function shpHouseholds(){
-        return $this->hasMany(ShpHouseholdsModel::class, 'printedcardno', 'printcardno');
+        return $this->hasOne(ShpHouseholdsModel::class, 'printedcardno', 'printcardno');
     }
 
     public function memberFamily(){
         return $this->hasMany(MemberFamilyModel::class, 'g_information_id', 'id');
+    }
+
+    public function generate_report_by_month(){
+        return $this->hasOne(ProvinceModel::class, 'code','g_province_id');
+    }
+    public function health_facilities(){
+        return $this->hasOne(HealthFacilities::class, 'code','hf_code');
     }
 
 }

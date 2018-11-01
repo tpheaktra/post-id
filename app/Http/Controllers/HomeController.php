@@ -111,18 +111,20 @@ class HomeController extends Controller
 
     public function view($id){
         $id = Crypt::decrypt($id);
-         $patient = DB::connection('mysql2')
-             ->select("select gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,gi.g_local_village as g_local_village, 
-                p.name_kh as province, d.name_kh as district,c.name_kh as commune, v.name_kh as village from `post-id`.general_information gi
-                inner join `post-id`.member_family mf on gi.id = mf.g_information_id
-                inner join `post-id`.general_situation_family gsf on gi.id = gsf.g_information_id 
-                inner join `post-id`.gender gg on gi.g_sex = gg.id
-                inner join provinces p on gi.g_province_id = p.code
-                inner join districts d on gi.g_district_id = d.code
-                inner join communes c on gi.g_commune_id = c.code
-                inner join villages v on gi.g_village_id = v.code
-               where gi.id ='$id' group by gi.id order by gi.id desc 
-            ");
+//         $patient = DB::connection('mysql2')
+//             ->select("select gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,gi.g_local_village as g_local_village,
+//                p.name_kh as province, d.name_kh as district,c.name_kh as commune, v.name_kh as village from `post-id`.general_information gi
+//                inner join `post-id`.member_family mf on gi.id = mf.g_information_id
+//                inner join `post-id`.general_situation_family gsf on gi.id = gsf.g_information_id
+//                inner join `post-id`.gender gg on gi.g_sex = gg.id
+//                inner join provinces p on gi.g_province_id = p.code
+//                inner join districts d on gi.g_district_id = d.code
+//                inner join communes c on gi.g_commune_id = c.code
+//                inner join villages v on gi.g_village_id = v.code
+//               where gi.id ='$id' group by gi.id order by gi.id desc
+//            ");
+        $patient = GeneralInformationModel::with('sex','provinces','district','commune','village')->where('id',$id)->firstOrFail();
+
         //  $score= DB::select('select *from general_information gi left join store_score sc on sc.patient = gi.id
 
         // where gi.id = $id');

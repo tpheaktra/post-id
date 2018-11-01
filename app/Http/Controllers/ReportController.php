@@ -48,17 +48,17 @@ class ReportController extends Controller
                                     inner join gender g on mf.gender_id = g.id
                                     inner join relationship fr on mf.family_relationship_id = fr.id
                                     where mf.g_information_id = '$id'");
-        $address = 'ភូមិ '.$gInfo['village'][0]->name_kh.' ឃុំ/សង្កាត់ '.$gInfo['commune'][0]->name_kh.' ស្រុក/ខណ្ឌ '.$gInfo['district'][0]->name_kh.' ខេត្ត/ក្រុង '.$gInfo['provinces'][0]->name_kh;
+        $address = 'ភូមិ '.$gInfo['village']->name_kh.' ឃុំ/សង្កាត់ '.$gInfo['commune']->name_kh.' ស្រុក/ខណ្ឌ '.$gInfo['district']->name_kh.' ខេត្ត/ក្រុង '.$gInfo['provinces']->name_kh;
 
         $template->setValue('interview_date',$gInfo->interview_date);
         $template->setValue('expire_date',$gInfo->expire_date);
-        $template->setValue('hospital',$gInfo['hospital'][0]->name_kh);
+        $template->setValue('hospital',$gInfo['hospital']->name_kh);
         $template->setValue('interview_code',$gInfo->interview_code);
         $template->setValue('address',$address);
         $template->setValue('location',$gInfo->g_local_village);
         $template->setValue('hhid',$gInfo->printcardno);
-        $template->setValue('score',$gInfo['score'][0]->total);
-        $template->setValue('p',$gInfo['shpHouseholds'][0]->poorcategory);
+        $template->setValue('score',$gInfo['score']->total);
+        $template->setValue('p',$gInfo['shpHouseholds']->poorcategory);
 
         for($i=0;$i<=8;$i++) {
             foreach ($memberFamily as $key => $v) {
@@ -99,28 +99,35 @@ class ReportController extends Controller
      */
     function reportBymonth($year){
 
-        $memberFamily = DB::select("
-              SELECT 
-                p.name_kh AS province,
-                hf.name_kh AS hospital,
-                COUNT(*) AS num,
-                gi.hf_code, 
-                year(gi.interview_date) as  `year`,
-                month(gi.interview_date) as `month`
-            FROM `post-id`.general_information gi
-            INNER JOIN dev_pmrs_share.provinces p ON gi.g_province_id = p.code
-            INNER JOIN dev_pmrs_share.health_facilities hf ON gi.hf_code = hf.code
-            WHERE YEAR(gi.interview_date) = '$year'
-            GROUP BY gi.hf_code ,month(gi.interview_date) , year(gi.interview_date) ");
+//        $memberFamily = DB::select("
+//              SELECT
+//                gi.id,
+//                COUNT(*) AS num,
+//                gi.hf_code,
+//                year(gi.interview_date) as  `year`,
+//                month(gi.interview_date) as `month`
+//            FROM `post-id`.general_information gi
+//            WHERE YEAR(gi.interview_date) = '$year' AND record_status=1
+//            GROUP BY gi.hf_code ,month(gi.interview_date) , year(gi.interview_date)
+//            ORDER BY gi.hf_code ,`year` , `month` ");
+        $memberFamily = GeneralInformationModel::with('generate_report_by_month','health_facilities')
+            ->select('id',DB::raw("COUNT(*) AS num"),'hf_code','g_province_id',DB::raw("year(interview_date) as  `year`"),DB::raw("month(interview_date) as `month`"))
+            ->where(DB::raw("YEAR(interview_date)"),$year)
+            ->where('record_status',1)
+            ->groupBy('hf_code',DB::raw("MONTH(interview_date)"),DB::raw("YEAR(interview_date)"))
+            ->orderBy('hf_code',DB::raw("year"),DB::raw("month"))
+            ->get();
 
         $tmp_data = [];
-        if(!empty($memberFamily) && is_array($memberFamily)){
+        if(!empty($memberFamily)){
             foreach ($memberFamily as $i => $v){
-                $tmp_data[$v->hf_code]['province'] = $v->province;
-                $tmp_data[$v->hf_code]['hf_name'] = $v->hospital;
+                if(empty($v->hf_code)){continue;}
+                $tmp_data[$v->hf_code]['province'] = $v->generate_report_by_month->name_kh;
+                $tmp_data[$v->hf_code]['hf_name']  = $v->health_facilities->name_kh ;
                 $tmp_data[$v->hf_code]['datas'][$v->year][$v->month] = $v->num;
             }
         }
+       // echo json_encode($tmp_data);exit();
         return $tmp_data;
     }
 
