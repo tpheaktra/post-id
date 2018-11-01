@@ -837,7 +837,7 @@ class HomeController extends Controller
                 'education_level.*.required'     => 'The education is required.'
             ]);
 
-        //try {
+        try {
 
             //check od
             $od_code = $request->hospital;
@@ -1305,12 +1305,12 @@ class HomeController extends Controller
             StoreScoreModel::where('patient',$id)->update($score);
 
         //  echo json_encode($member_family);
-           // DB::commit();
+            DB::commit();
             return Redirect::back()->with('success','ការសម្ភាសទិន្នន័យត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ');
-//        } catch (\Exception $e) {
-//            DB::rollBack();
-//            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
-//        }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
+        }
     }
 
 
@@ -1327,6 +1327,7 @@ class HomeController extends Controller
             $ginfo = GeneralInformationModel::findOrFail($id);
             $shp_household_pmrs = array('isactive'=>0);
             ShpHouseholdsModel::where('printedcardno',$ginfo->printcardno)->update($shp_household_pmrs);
+            ShpMembersModel::where('printedcardno',$ginfo->printcardno)->update($shp_household_pmrs);
             $ginfo->record_status = 0;
             $ginfo->save();
             DB::commit();
