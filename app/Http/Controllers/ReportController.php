@@ -48,17 +48,17 @@ class ReportController extends Controller
                                     inner join gender g on mf.gender_id = g.id
                                     inner join relationship fr on mf.family_relationship_id = fr.id
                                     where mf.g_information_id = '$id'");
-        $address = 'ភូមិ '.$gInfo['village'][0]->name_kh.' ឃុំ/សង្កាត់ '.$gInfo['commune'][0]->name_kh.' ស្រុក/ខណ្ឌ '.$gInfo['district'][0]->name_kh.' ខេត្ត/ក្រុង '.$gInfo['provinces'][0]->name_kh;
+        $address = 'ភូមិ '.$gInfo['village']->name_kh.' ឃុំ/សង្កាត់ '.$gInfo['commune']->name_kh.' ស្រុក/ខណ្ឌ '.$gInfo['district']->name_kh.' ខេត្ត/ក្រុង '.$gInfo['provinces']->name_kh;
 
         $template->setValue('interview_date',$gInfo->interview_date);
         $template->setValue('expire_date',$gInfo->expire_date);
-        $template->setValue('hospital',$gInfo['hospital'][0]->name_kh);
+        $template->setValue('hospital',$gInfo['hospital']->name_kh);
         $template->setValue('interview_code',$gInfo->interview_code);
         $template->setValue('address',$address);
         $template->setValue('location',$gInfo->g_local_village);
         $template->setValue('hhid',$gInfo->printcardno);
-        $template->setValue('score',$gInfo['score'][0]->total);
-        $template->setValue('p',$gInfo['shpHouseholds'][0]->poorcategory);
+        $template->setValue('score',$gInfo['score']->total);
+        $template->setValue('p',$gInfo['shpHouseholds']->poorcategory);
 
         for($i=0;$i<=8;$i++) {
             foreach ($memberFamily as $key => $v) {
