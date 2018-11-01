@@ -672,11 +672,6 @@ class HomeController extends Controller
                ShpMembersModel::create($member);
            }
 
-
-
-		   
-		   
-//
             DB::commit();
             return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
         } catch (\Exception $e) {
@@ -1330,6 +1325,8 @@ class HomeController extends Controller
         $id = Crypt::decrypt($id);
         try {
             $ginfo = GeneralInformationModel::findOrFail($id);
+            $shp_household_pmrs = array('isactive'=>0);
+            ShpHouseholdsModel::where('printedcardno',$ginfo->printcardno)->update($shp_household_pmrs);
             $ginfo->record_status = 0;
             $ginfo->save();
             DB::commit();
