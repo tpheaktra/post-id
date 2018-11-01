@@ -36,8 +36,14 @@ class GeneralInformationModel extends Model
         'fa_relationship_id',
         'record_status',
         'interview_date',
-        'expire_date'
+        'expire_date',
     ];
+    public function getYear(){
+        return !empty($this->interview_date) ? date("Y", strtotime($this->interview_date)) : null;
+    }
+    public function getMonth(){
+        return !empty($this->interview_date) ? date("m", strtotime($this->interview_date)) : null;
+    }
     public function hospital(){
         return $this->hasMany(HospitalModel::class, 'code', 'hf_code');
     }
@@ -62,6 +68,13 @@ class GeneralInformationModel extends Model
 
     public function memberFamily(){
         return $this->hasMany(MemberFamilyModel::class, 'g_information_id', 'id');
+    }
+
+    public function generate_report_by_month(){
+        return $this->hasOne(ProvinceModel::class, 'code','g_province_id');
+    }
+    public function health_facilities(){
+        return $this->hasOne(HealthFacilities::class, 'code','hf_code');
     }
 
 }

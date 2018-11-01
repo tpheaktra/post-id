@@ -99,28 +99,35 @@ class ReportController extends Controller
      */
     function reportBymonth($year){
 
-        $memberFamily = DB::select("
-              SELECT 
-                p.name_kh AS province,
-                hf.name_kh AS hospital,
-                COUNT(*) AS num,
-                gi.hf_code, 
-                year(gi.interview_date) as  `year`,
-                month(gi.interview_date) as `month`
-            FROM `post-id`.general_information gi
-            INNER JOIN dev_pmrs_share.provinces p ON gi.g_province_id = p.code
-            INNER JOIN dev_pmrs_share.health_facilities hf ON gi.hf_code = hf.code
-            WHERE YEAR(gi.interview_date) = '$year'
-            GROUP BY gi.hf_code ,month(gi.interview_date) , year(gi.interview_date) ");
+//        $memberFamily = DB::select("
+//              SELECT
+//                gi.id,
+//                COUNT(*) AS num,
+//                gi.hf_code,
+//                year(gi.interview_date) as  `year`,
+//                month(gi.interview_date) as `month`
+//            FROM `post-id`.general_information gi
+//            WHERE YEAR(gi.interview_date) = '$year' AND record_status=1
+//            GROUP BY gi.hf_code ,month(gi.interview_date) , year(gi.interview_date)
+//            ORDER BY gi.hf_code ,`year` , `month` ");
+        $memberFamily = GeneralInformationModel::with('generate_report_by_month','health_facilities')
+            ->select('id',DB::raw("COUNT(*) AS num"),'hf_code','g_province_id',DB::raw("year(interview_date) as  `year`"),DB::raw("month(interview_date) as `month`"))
+            ->where(DB::raw("YEAR(interview_date)"),$year)
+            ->where('record_status',1)
+            ->groupBy('hf_code',DB::raw("MONTH(interview_date)"),DB::raw("YEAR(interview_date)"))
+            ->orderBy('hf_code',DB::raw("year"),DB::raw("month"))
+            ->get();
 
         $tmp_data = [];
-        if(!empty($memberFamily) && is_array($memberFamily)){
+        if(!empty($memberFamily)){
             foreach ($memberFamily as $i => $v){
-                $tmp_data[$v->hf_code]['province'] = $v->province;
-                $tmp_data[$v->hf_code]['hf_name'] = $v->hospital;
+                if(empty($v->hf_code)){continue;}
+                $tmp_data[$v->hf_code]['province'] = $v->generate_report_by_month->name_kh;
+                $tmp_data[$v->hf_code]['hf_name']  = $v->health_facilities->name_kh ;
                 $tmp_data[$v->hf_code]['datas'][$v->year][$v->month] = $v->num;
             }
         }
+       // echo json_encode($tmp_data);exit();
         return $tmp_data;
     }
 
