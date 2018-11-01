@@ -18,6 +18,8 @@ use App\model\NoElectricLinkModel;
 use App\model\OtherIncomeModel;
 use App\model\OtherIncomeNotAgricultureModel;
 use App\model\ShpHouseholdsModel;
+use App\model\ShpMembersModel;
+use App\model\ShpPostIdSourceModel;
 use App\model\TypeIncomeModel;
 use App\model\TypeToiletLinkModel;
 use App\model\YesElectricLinkModel;
@@ -109,15 +111,16 @@ class HomeController extends Controller
 
     public function view($id){
         $id = Crypt::decrypt($id);
-         $patient = DB::select("select gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,gi.g_local_village as g_local_village, 
-                p.name_kh as province, d.name_kh as district,c.name_kh as commune, v.name_kh as village from general_information gi
-                inner join member_family mf on gi.id = mf.g_information_id
-                inner join general_situation_family gsf on gi.id = gsf.g_information_id 
-                inner join gender gg on gi.g_sex = gg.id
-                inner join dev_pmrs_share.provinces p on gi.g_province_id = p.code
-                inner join dev_pmrs_share.districts d on gi.g_district_id = d.code
-                inner join dev_pmrs_share.communes c on gi.g_commune_id = c.code
-                inner join dev_pmrs_share.villages v on gi.g_village_id = v.code
+         $patient = DB::connection('mysql2')
+             ->select("select gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh,gi.g_patient,gi.g_phone,gi.g_local_village as g_local_village, 
+                p.name_kh as province, d.name_kh as district,c.name_kh as commune, v.name_kh as village from `post-id`.general_information gi
+                inner join `post-id`.member_family mf on gi.id = mf.g_information_id
+                inner join `post-id`.general_situation_family gsf on gi.id = gsf.g_information_id 
+                inner join `post-id`.gender gg on gi.g_sex = gg.id
+                inner join provinces p on gi.g_province_id = p.code
+                inner join districts d on gi.g_district_id = d.code
+                inner join communes c on gi.g_commune_id = c.code
+                inner join villages v on gi.g_village_id = v.code
                where gi.id ='$id' group by gi.id order by gi.id desc 
             ");
         //  $score= DB::select('select *from general_information gi left join store_score sc on sc.patient = gi.id
@@ -637,10 +640,41 @@ class HomeController extends Controller
                 'expirydate'    =>$request->expire_date,
                 'entryby'       =>auth::user()->id,
                 'entrydate'     =>Carbon::now(),
-                'poorcategory'  =>$poor
+                'poorcategory'  =>$poor,
+				'isactive'=>1
             );
            $shp= ShpHouseholdsModel::create($shp_household_pmrs);
 
+            $shp_postid_source = array(
+                'printedcardno' =>$request->printcardno,
+                'interviewdate' =>$request->interview_date,
+                'interviewer'   =>auth::user()->id,
+            );
+            ShpPostIdSourceModel::create($shp_postid_source);
+
+		   //shp members
+		   foreach ($request->nick_name as $key => $val){
+		       $relat= RelationshipModel::findOrFail($request->family_relationship[$key]);
+                 $member = array(
+                    'printedcardno'  => $request->printcardno,
+                    'memberno'       => ($key+1),
+                    'name'           => $val,
+                    'sex'            => $request->m_sex[$key] == 1 ? 'M' : 'F',
+                    'dob'            => $request->dob[$key].'-01-01',
+                    'attendsschool'  => $request->education_level[$key] == 14 ? 0 : 1,
+                    'membertype'     => $relat->pmrs_relation_id,
+                    'isactive'       => 1,
+                    'entrydate'      => Carbon::now(),
+                    'entryby'        => auth::user()->id,
+                   );
+               ShpMembersModel::create($member);
+           }
+
+
+
+		   
+		   
+//
             DB::commit();
             return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
         } catch (\Exception $e) {
@@ -1192,22 +1226,22 @@ class HomeController extends Controller
 
         if(!empty($request->income_agricalture_type == 2)) {
             $other_income=[];
-            // foreach ($request->income_name_not as $key => $in) {
+             foreach ($request->income_name_not as $key => $in) {
                 $other_income[] = array(
                     'g_information_id'      => $id,
-                    //'income_name_not'       => $in,
-                    // 'income_age_not'        => $request->income_age_not[$key],
-                    // 'income_occupation_not' => $request->income_occupation_not[$key],
-                    // 'income_unit_not'       => $request->income_unit_not[$key],
-                    // 'unit_in_month_not'     => $request->unit_in_month_not[$key],
-                    // 'average_amount_not'    => $request->average_amount_not[$key],
-                    // 'monthly_income_not'    => $request->monthly_income_not[$key],
-                    // 'total_mon_income_not'  => $request->total_mon_income_not,
-                    // 'total_inc_person_not'  => $request->total_inc_person_not,
-                    // 'created_at'            => Carbon::now(),
-                    // 'updated_at'            => Carbon::now()
+                    'income_name_not'       => $in,
+                     'income_age_not'        => $request->income_age_not[$key],
+                     'income_occupation_not' => $request->income_occupation_not[$key],
+                     'income_unit_not'       => $request->income_unit_not[$key],
+                     'unit_in_month_not'     => $request->unit_in_month_not[$key],
+                     'average_amount_not'    => $request->average_amount_not[$key],
+                     'monthly_income_not'    => $request->monthly_income_not[$key],
+                     'total_mon_income_not'  => $request->total_mon_income_not,
+                     'total_inc_person_not'  => $request->total_inc_person_not,
+                     'created_at'            => Carbon::now(),
+                     'updated_at'            => Carbon::now()
                 );
-            //}
+            }
 
             OtherIncomeModel::where('g_information_id',$id)->delete();
             OtherIncomeNotAgricultureModel::where('g_information_id',$id)->delete();
