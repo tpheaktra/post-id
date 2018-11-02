@@ -147,7 +147,7 @@
                                     <td width="65%">
                                         <div class="form-group g_district">
                                             <select disabled id="district" style="width: 100%" class="form-control" name="g_district">
-                                                <option value="{{$ginfo->g_district_id}}">{{$ginfo['district'][0]->name_kh}}</option>
+                                                <option value="{{$ginfo->g_district_id}}">{{$ginfo['district']->name_kh}}</option>
                                             </select>
                                         </div>
                                     </td>
@@ -163,7 +163,7 @@
                                     <td width="65%">
                                         <div class="form-group g_commune">
                                             <select disabled id="commune" style="width: 100%" class="form-control" name="g_commune">
-                                                <option value="{{$ginfo->g_commune_id}}">{{$ginfo['commune'][0]->name_kh}}</option>
+                                                <option value="{{$ginfo->g_commune_id}}">{{$ginfo['commune']->name_kh}}</option>
                                             </select>
                                         </div>
                                     </td>
@@ -173,7 +173,7 @@
                                     <td width="65%">
                                         <div class="form-group g_village">
                                             <select disabled id="village" style="width: 100%" class="form-control" name="g_village">
-                                                <option value="{{$ginfo->g_village_id}}">{{$ginfo['village'][0]->name_kh}}</option>
+                                                <option value="{{$ginfo->g_village_id}}">{{$ginfo['village']->name_kh}}</option>
                                             </select>
                                         </div>
                                     </td>

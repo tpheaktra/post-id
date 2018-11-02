@@ -420,7 +420,6 @@
                     <hr>
                     <p>មនុស្ស​ដែល​គេ​ចាត់ទុកថាជាសមាជិក​គ្រួសារលុះ​ត្រាតែ​រស់​នៅជាប្រចាំ​ក្នុង​គ្រួសារ ឬ​អវត្តមាន​តិច​ជាង​ ៦ខែ​​ (ត្រូវមានឯកសារយោងដូចជា សៀវភៅគ្រួសារ សៀវភៅស្នាក់នៅ សំបុត្រកំណើត លិខិតបញ្ជាក់ពីអាជ្ញាធរ)</p>
 
-
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -506,6 +505,17 @@
                                         </a>
                                     </td>
                                        <script type="text/javascript">
+                                            function count_small_age(){
+                                                var small_age = 0;
+                                                var my_id = $('.myrow').attr('index');
+                                                   $('.txt_age').each(function(i){
+                                                       var age = $(this).val();
+                                                       if(age > 0 && (parseFloat(age) < 18)) small_age++;
+                                                       // console.log(small_age);
+                                                   });
+                                                var ptsmall_age = small_age*2;
+                                                $('#income_child_score').val(ptsmall_age);
+                                            }
                                            $('.m_sex').change(function(){
                                                     var index= $(this).attr('index');
                                                     var val = $(this).val();
@@ -2370,8 +2380,6 @@
                                             $('#total_land_and_land_farm_2').val((field + farm).toFixed(2));
                                         }
 
-
-
                                         if( ((people>=1 && people <=3) && (sum>=0 && sum <=1)) || ((people >=4 && people <=6) && (sum>=0 && sum <=1.5)) || ((people >=7 && people <= 10) && (sum>=0 && sum <=2.2)) || ((people>10) && (sum>=0 && sum<=3)) ){
                                                 $('#l_score_2').val(6);
                                             }
@@ -2780,6 +2788,7 @@
         });
         //step1
         allNextBtn.click(function(){
+            // var small_age = 0;
             var curStep = $(this).closest(".setup-content"),
                 curStepBtn = curStep.attr("id"),
                 nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
@@ -2853,9 +2862,9 @@
             if (isValid)
                 nextStepWizard.removeAttr('disabled').trigger('click');
         });
-
         // step2
         step2Next.click(function(){
+            count_small_age();
             var curStep = $(this).closest(".setup-content"),
                 curStepBtn = curStep.attr("id"),
                 nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
