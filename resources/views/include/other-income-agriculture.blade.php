@@ -118,8 +118,8 @@
                     <td><b style="float: right;"> 7. C កុមារ(អាយុក្រោម ១៨ឆ្នាំ )រកចំណូល</b> </td>
                     <td>
                         <div class="input-group">
-                            <input class="cal_child cal_age form-control" id="income_child_score"  type="text" name="income_child_score" value="8">
-                            <span class="input-group-addon">ពិន្ទុ</span>
+                            <input class="cal_child cal_age form-control" id="income_child_score"  type="text" name="income_child_score" >
+                            <span class="input-group-addon" >ពិន្ទុ</span>
                         </div>
                     </td>
                 </tr>
@@ -128,7 +128,7 @@
                     </td>
                     <td>
                         <div class="input-group add_debt_duration" style="width: 300px;">
-                            <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly value="2.5">
+                            <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly>
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </td>
@@ -138,15 +138,17 @@
     </li>
 </ul>
 <script>
-    // $('.cal_age').change(function(){
-    //     var my_id = $('.myrow').attr('index');
-    //     var small_age = $('.cal_child_'+my_id).val();
-    //        // $('.txt_age').each(function(i){
-    //        //     var age = $(this).val();
-    //        //     if(i > 0 && (parseFloat(age) == 10)) small_age = age;
-    //        // });
-    //     $('#income_child_score').val(small_age);
-    // });
+    
+    $('.cal_age').change(function(){
+        // var my_id = $('.myrow').attr('index');
+        // // var small_age = $('.cal_child_'+my_id).val();
+        //    $('.txt_age').each(function(i){
+        //        var age = $(this).val();
+        //        if(i > 0 && (parseFloat(age) < 18)) small_age++;
+        //    });
+        // $('#income_child_score').val(small_age);
+        count_small_age();
+    });
     $('.income_agriculture').click(function () {
         var index = $(this).attr('index');
         // console.log(index);
