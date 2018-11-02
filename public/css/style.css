@@ -37,7 +37,7 @@ body{
 }
 .home-menu li{
     padding: 10px;
-    float: left;
+    float: right;
     list-style-type: none;
     border-right: 1px solid #dadada;
 }
@@ -381,6 +381,7 @@ input[type=radio]{
 .head-title-add{
     float: left;
     width: 100%;
+    text-align: right;
     margin-top: 20px;
 }
 .user-mangement .table{
