@@ -64,8 +64,8 @@
                                     <input id="name" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}"  autofocus>
 
                                     @if ($errors->has('username'))
-                                        <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('username') }}</strong>
+                                        <span class="text-danger">
+                                        {{ $errors->first('username') }}
                                     </span>
                                     @endif
                                 </div>
@@ -78,8 +78,8 @@
                                     <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" >
 
                                     @if ($errors->has('password'))
-                                        <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <span class="text-danger">
+                                        {{ $errors->first('password') }}
                                     </span>
                                     @endif
                                 </div>
@@ -112,5 +112,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>
