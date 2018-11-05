@@ -76,17 +76,21 @@
                                     <span class="input-group-addon">រៀល</span>
                                 </div>
                             </td>
-                            <td>
+
                                 @if($kk==0)
+                                <td id="plus-check">
                                     <a class="btn btn-sm btn-primary" id="add_rows_4">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </a>
+                                </td>
                                 @else
+                                <td>
                                     <a id="other_income_{{$kk}}" class="btn btn-sm btn-danger remove_rows_4" onclick="remove_4({{$incom->monthly_income}})">
                                         <span class="glyphicon glyphicon-minus"></span>
                                     </a>
+                                </td>
                                 @endif
-                            </td>
+
                         </tr>
                     @endforeach
                     </tbody>
@@ -135,11 +139,15 @@
                 //  var step2Row = 1;
                 //dataRow_other_income=step2Row;//dataRow;
 
-                var dataRow_other_income = $('.new_rows_4 tr.myrow_4').length-1;
                 var dataRowOtherIncome = $('.new_rows_4 tr.myrow_4').length+1;
                 //var dataRowOtherIncome = $('.new_rows_4 tr.myrow_4').length;
 
                 $(".new_rows_4").on('click','#add_rows_4',function(){
+                    var row_numc4 = $('.new_rows_4 tr.myrow_4').length+1;
+                    var row_numc = $('.new_rows tr').length;
+                    if(row_numc == row_numc4){
+                        $('#plus-check').empty();
+                    }
                     // dataRow_other_income=step2Row;
                     var num_4 = $('.new_rows_4 tr.myrow_4').length;//$('.new_rows_4 tr').length;
                     var otherIncome1 = '<tr class="myrow_4">' +
@@ -277,10 +285,17 @@
                     }
                 }
                 $(".new_rows_4").on('click','.remove_rows_4',function(e){
+                    var row_numc4 = $('.new_rows_4 tr.myrow_4').length;
+                    var row_numc = $('.new_rows tr').length;
+                    if(row_numc <= row_numc4){
+                        $('#plus-check').html('<a class="btn btn-sm btn-primary" id="add_rows_4"><span class="glyphicon glyphicon-plus"></span></a>');
+                    }
+
                     $('#add_rows_4').show();
                     $(this).parent().parent().remove();
                     reOrder_other_income();
                     dataRowOtherIncome--;
+
                 });
 
 
@@ -361,17 +376,21 @@
                                     <span class="input-group-addon">រៀល</span>
                                 </div>
                             </td>
-                            <td style="text-align:center;">
+
                                 @if($not==0)
+                                <td style="text-align:center;" id="plus-check5">
                                     <a class="btn btn-sm btn-primary" id="add_rows_5">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </a>
+                                </td>
                                 @else
+                                <td style="text-align:center;">
                                     <a id="other_income_{{$not}}" class="btn btn-sm btn-danger remove_rows_5" onclick="remove_5({{$vl->monthly_income_not}})">
                                         <span class="glyphicon glyphicon-minus"></span>
                                     </a>
+                                </td>
                                 @endif
-                            </td>
+
                         </tr>
                     @endforeach
                     </tbody>
@@ -440,6 +459,11 @@
                 var dataRowOtherIncomeNot = $('.new_rows_5 tr.myrow_5').length+1;
 
                 $(".new_rows_5").on('click','#add_rows_5',function(){
+                    var row_numc5 = $('.new_rows_5 tr.myrow_5').length+1;
+                    var row_numc = $('.new_rows tr').length;
+                    if(row_numc == row_numc5){
+                        $('#plus-check5').empty();
+                    }
                     //dataRow_other_income_not=step2Row5;
                     var num_5 = $('.new_rows_5 tr.myrow_5').length;
                     //var num_5 = step2Row5-1;//$('.new_rows_4 tr').length;
@@ -577,6 +601,12 @@
                     }
                 }
                 $(".new_rows_5").on('click','.remove_rows_5',function(e){
+                    var row_numc5 = $('.new_rows_5 tr.myrow_5').length;
+                    var row_numc = $('.new_rows tr').length;
+                    if(row_numc <= row_numc5){
+                        $('#plus-check5').html('<a class="btn btn-sm btn-primary" id="add_rows_5"><span class="glyphicon glyphicon-plus"></span></a>');
+                    }
+
                     $('#add_rows_5').show();
                     $(this).parent().parent().remove();
                     reOrder_other_income_not();
@@ -782,12 +812,26 @@
     $('.income_agriculture').click(function () {
         var index = $(this).attr('index');
         // console.log(index);
-        if(index == 1){ alert(1);
+        if(index == 1){
             $("#income_agriculture_table").removeClass('hidden');
             $("#income_not_agriculture_table").addClass('hidden');
-        }else{ alert(2);
+
+            var row_numc4 = $('.new_rows_4 tr.myrow_4').length;
+            var row_numc = $('.new_rows tr').length;
+            if(row_numc == row_numc4){
+                $('#plus-check').empty();
+            }
+
+        }else{ //alert(2);
             $("#income_not_agriculture_table").removeClass('hidden');
             $("#income_agriculture_table").addClass('hidden');
+
+            var row_numc5 = $('.new_rows_5 tr.myrow_5').length;
+            var row_numc = $('.new_rows tr').length;
+
+            if(row_numc == row_numc5){
+                $('#plus-check5').empty();
+            }
 
             $(".getdata").change(function (){
                 var od_code = $('.getdata').val();

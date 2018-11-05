@@ -23,8 +23,12 @@ class UserController extends Controller
      */
     public function index(){
 
-        $dataUser = User::orderBy('id','DESC')->with('roles','user_group')->where('record_status',1)->get();
-     //   echo json_encode($dataUser);exit();
+        $dataUser = User::orderBy('id','DESC')
+            ->with('roles','user_group')
+            ->where('record_status',1)
+            ->get();
+        //$h=Helpers::getAllBaseHos()->get();
+       // echo json_encode($h);exit();
         return view('admin.user-index',compact('dataUser'));
     }
 

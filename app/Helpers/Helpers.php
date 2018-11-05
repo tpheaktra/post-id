@@ -45,6 +45,11 @@ class Helpers{
         return $allBase;
     }
 
+    public static function getAllBaseHos(){
+        $allBase = UserHospital::with('user_hospital');
+        return $allBase;
+    }
+
     /*
     * function getInterviewCode
     */

@@ -1,6 +1,7 @@
 <?php
 namespace App;
 use App\model\HealthFacilities;
+use App\model\UserHospital;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
@@ -39,4 +40,10 @@ class User extends Authenticatable
     public function health_facilities(){
         return $this->hasOne(HealthFacilities::class,'code','hos_base');
     }
+
+
+    public function user_hospital(){
+        return $this->hasMany(HealthFacilities::class,'code','hospital_id');
+    }
+
 }

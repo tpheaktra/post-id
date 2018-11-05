@@ -2491,7 +2491,7 @@
                         </div>
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
-                            @include('include.other-income-agriculture');
+                            @include('include.other-income-agriculture')
                         </div>
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
@@ -3039,7 +3039,7 @@
                                 '<span class="input-group-addon">រៀល</span>' +
                             '</div>' +
                         '</td>'+
-                        '<td style="text-align:center;">'+plus+'</td>' +
+                        '<td style="text-align:center;" id="plus-check">'+plus+'</td>' +
                     '</tr>';
                 $('.new_rows_4').append(otherIncome);
 
@@ -3101,7 +3101,7 @@
                 //other income not agriculture
                 if(i==0) {
                     plus_not = '<a class="btn btn-sm btn-primary" id="add_rows_5"><span class="glyphicon glyphicon-plus"></span></a>';
-                } else{
+                }else{
                     plus_not = '<a id="other_income_not_'+i+'" class="btn btn-sm btn-danger remove_rows_5"><span class="glyphicon glyphicon-minus"></span></a>';
                 }
                 var otherIncome_not = '<tr class="myrow_5">' +
@@ -3148,7 +3148,7 @@
                     '<span class="input-group-addon">រៀល</span>' +
                     '</div>' +
                     '</td>'+
-                    '<td style="text-align:center;">'+plus_not+'</td>' +
+                    '<td style="text-align:center;" id="plus-check5">'+plus_not+'</td>' +
                     '</tr>';
                 $('.new_rows_5').append(otherIncome_not);
 

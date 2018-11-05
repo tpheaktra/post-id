@@ -454,6 +454,12 @@
     dataRow_other_income=step2Row;//dataRow;
 
     $(".new_rows_4").on('click','#add_rows_4',function(){
+        var row_numc4 = $('.new_rows_4 tr.myrow_4').length+1;
+        var row_numc = $('.new_rows tr').length;
+        if(row_numc <= row_numc4){
+            $('#plus-check').empty();
+        }
+
         dataRow_other_income=step2Row;
         var num_4 = step2Row-1;//$('.new_rows_4 tr').length;
         var otherIncome1 = '<tr class="myrow_4">' +
@@ -595,6 +601,12 @@
             e.preventDefault();
             return false;
         }
+        var row_numc4 = $('.new_rows_4 tr.myrow_4').length;
+        var row_numc = $('.new_rows tr').length;
+        if(row_numc <= row_numc4){
+            $('#plus-check').html('<a class="btn btn-sm btn-primary" id="add_rows_4"><span class="glyphicon glyphicon-plus"></span></a>');
+        }
+
         $('#add_rows_4').show();
         $(this).parent().parent().remove();
         reOrder_other_income();
@@ -608,6 +620,12 @@
     dataRow_other_income_not=step2Row5;//dataRow;
 
     $(".new_rows_5").on('click','#add_rows_5',function(){
+        var row_numc5 = $('.new_rows_5 tr.myrow_5').length+1;
+        var row_numc = $('.new_rows tr').length;
+        if(row_numc <= row_numc5){
+            $('#plus-check5').empty();
+        }
+
         dataRow_other_income_not=step2Row5;
         var num_5 = step2Row5-1;//$('.new_rows_4 tr').length;
         var otherIncome1 = '<tr class="myrow_5">' +
@@ -749,6 +767,12 @@
             e.preventDefault();
             return false;
         }
+        var row_numc5 = $('.new_rows_5 tr.myrow_5').length;
+        var row_numc = $('.new_rows tr').length;
+        if(row_numc <= row_numc5){
+            $('#plus-check5').html('<a class="btn btn-sm btn-primary" id="add_rows_5"><span class="glyphicon glyphicon-plus"></span></a>');
+        }
+
         $('#add_rows_5').show();
         $(this).parent().parent().remove();
         reOrder_other_income_not();

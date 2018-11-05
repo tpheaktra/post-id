@@ -155,10 +155,21 @@
         if(index == 1){
             $("#income_agriculture_table").removeClass('hidden');
             $("#income_not_agriculture_table").addClass('hidden');
+            var row_numc4 = $('.new_rows_4 tr.myrow_4').length;
+            var row_numc = $('.new_rows tr').length;
+            if(row_numc == row_numc4){
+                $('#plus-check').empty();
+            }
+
         }else{
             $("#income_not_agriculture_table").removeClass('hidden');
             $("#income_agriculture_table").addClass('hidden');
+            var row_numc5 = $('.new_rows_5 tr.myrow_5').length;
+            var row_numc = $('.new_rows tr').length;
 
+            if(row_numc == row_numc5){
+                $('#plus-check5').empty();
+            }
             $(".getdata").change(function (){
                 var od_code = $('.getdata').val();
                 $.ajax({
