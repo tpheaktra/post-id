@@ -516,6 +516,20 @@
                                                 var ptsmall_age = small_age*2;
                                                 $('#income_child_score').val(ptsmall_age);
                                             }
+                                            function count_activity(){
+                                                var act_people = 0;
+                                                var my_id = $('.myrow').attr('index');
+                                                   $('.txt_age').each(function(i){
+                                                       var age = $(this).val();
+                                                       if(age > 0 && (parseFloat(age) >= 18 && parseFloat(age) <= 65)) act_people++;
+                                                       // console.log(small_age);
+                                                   });
+                                                var total = $('#total_people').val(); 
+                                                var ptact_people = act_people/total;
+                                                $('#age_action_score').val(ptact_people);
+                                                //console.log(ptact_people);
+                                                
+                                            }
                                            $('.m_sex').change(function(){
                                                     var index= $(this).attr('index');
                                                     var val = $(this).val();
@@ -2865,6 +2879,7 @@
         // step2
         step2Next.click(function(){
             count_small_age();
+            count_activity();
             var curStep = $(this).closest(".setup-content"),
                 curStepBtn = curStep.attr("id"),
                 nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
