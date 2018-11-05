@@ -367,6 +367,11 @@ input[type=radio]{
     -webkit-border-radius: 0px !important;
     -moz-border-radius: 0px !important;
     border-radius: 0px !important;}
+#health_2,
+#health_1{
+    float: left;
+    width: 100%;
+}
 /*====================
    - user-mangement
  */
