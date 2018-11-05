@@ -132,7 +132,6 @@
 
             <script type="text/javascript">
 
-
                 /*==================================================================
              ===============================new_rows_4===========================
              ================================================================== */
@@ -426,30 +425,8 @@
                     </tr>
                     </tfoot>
                 </table>
-
-                <table class="my_hide">
-                    <tr style="line-height: 50px;" class="my_hide">
-                        <td><b style="float: right;"> 7. C កុមារ(អាយុក្រោម ១៨ឆ្នាំ )រកចំណូល</b> </td>
-                        <td>
-                            <div class="input-group">
-                                <input class="cal_child cal_age form-control" id="income_child_score"  type="text" name="income_child_score">
-                                <span class="input-group-addon">ពិន្ទុ</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="my_hide">
-                        <td><b style="float: right;">11. វ័យពលកម្ម (ចន្លោះពី១៨ឆ្នាំដល់៦៥ឆ្នាំ) </b>
-                        </td>
-                        <td>
-                            <div class="input-group add_debt_duration" style="width: 300px;">
-                                <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly value="2.5">
-                                <span class="input-group-addon">ពិន្ទុ</span>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+               
             </div>
-
             <script type="text/javascript">
 
                 /*==================================================================
@@ -616,9 +593,31 @@
 
     </li>@endif
 </ul>
-
-
-
+<table class="">
+    <tr style="line-height: 50px;" class="my_hide">
+        <td><b style="float: right;"> 7. C កុមារ(អាយុក្រោម ១៨ឆ្នាំ )រកចំណូល</b> </td>
+        <td>
+            <div class="input-group">
+                @foreach($store_score as $key => $value)
+                <input class="cal_child cal_age form-control" id="income_child_score"  type="text" value="{{$value->income_child}}" name="income_child_score" readonly="readonly">
+                <span class="input-group-addon">ពិន្ទុ</span>
+                @endforeach
+            </div>
+        </td>
+    </tr>
+    <tr class="">
+        <td><b style="float: right;">11. វ័យពលកម្ម (ចន្លោះពី១៨ឆ្នាំដល់៦៥ឆ្នាំ) </b>
+        </td>
+        <td>
+            <div class="input-group add_debt_duration" style="width: 300px;">
+                @foreach($store_score as $key => $value)
+                <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly value="{{$value->age_action}}">
+                <span class="input-group-addon">ពិន្ទុ</span>
+                @endforeach
+            </div>
+        </td>
+    </tr>
+</table>
 
 
 <script>

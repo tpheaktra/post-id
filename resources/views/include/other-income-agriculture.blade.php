@@ -128,7 +128,7 @@
                     </td>
                     <td>
                         <div class="input-group add_debt_duration" style="width: 300px;">
-                            <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly>
+                            <input autocomplete="off" class="cal_age form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly>
                             <span class="input-group-addon">ពិន្ទុ</span>
                         </div>
                     </td>
@@ -148,6 +148,7 @@
         //    });
         // $('#income_child_score').val(small_age);
         count_small_age();
+        count_activity();
     });
     $('.income_agriculture').click(function () {
         var index = $(this).attr('index');
