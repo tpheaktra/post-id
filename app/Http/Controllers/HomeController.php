@@ -640,7 +640,7 @@ class HomeController extends Controller
                 'interviewscore'=>$total_score,
                 'interviewdate' =>$request->interview_date,
                 'expirydate'    =>$request->expire_date,
-                'entryby'       =>auth::user()->id,
+                'entryby'       =>7777,
                 'entrydate'     =>Carbon::now(),
                 'poorcategory'  =>$poor,
 				'isactive'=>1
