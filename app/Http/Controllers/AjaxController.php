@@ -97,18 +97,19 @@ class AjaxController extends Controller
 
             if($numlength == 3){
                 $nd = 0;
-                $num = $nd.$n;
+                $num = '0'.$n;
             }elseif($numlength == 2){
                 $nd = 00;
-                $num = $nd.$n;
+                $num = '00'.$n;
             }elseif ($numlength == 1){
                 $nd = 000;
-                $num = $nd.$n;
+                $num = '000'.$n;
             }else{
                 $num = $n;
             }
             $card = $label.'-'.($num);
         }
+        echo $num;exit();
         $result= array('hhid'=> ($num), 'result_card'=>$card);
         return $result;
     }
