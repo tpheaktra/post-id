@@ -3702,7 +3702,8 @@
     ===============// select2 in village //=================
     ========================================================*/
     $("#village").change(function () {
-        var village_id = $('#village').val();
+        var village_id  = $('#village').val();
+        //var province_id = $('#province').val();
         var index=$('#village option:selected').attr('index');
 
         $.ajax({
@@ -3713,7 +3714,8 @@
                 //$("#loading").fadeIn();
             },
             success: function (data) {
-               // var obj = JSON.parse(data);
+             //   console.log(data);
+              //  var obj = JSON.parse(data);
                 $("#printcard").empty();
                 $("#hhid").empty();
                 $("#printcard").val(data.result_card);

@@ -82,35 +82,50 @@ class AjaxController extends Controller
         echo json_encode($query);
     }
 
+    public  static  function fix_length($s, $l, $c, $r = false) {
+        if(strlen($s) > $l) return substr($s, 0, $l);
+
+        $n = $l - strlen($s);
+        for($i = 0; $i < $n; $i++) {
+            if($r)   $s = $s.$c;
+            else  $s = $c.$s;
+        }
+        return $s;
+    }
     public function getPrintCardNo(request $request){
         $printCard = $request->village_id;
         $label = $request->label;
-        $query = Helpers::getPrintNoCard($printCard);
-
-        if($query[0]->card == null || $query[0]->card == ''){
-            $card = $label.'-'."0001";
-            $num = "0001";
-        }else{
-            $print_card = substr($query[0]->card,-4);
-            $n = ($print_card+1);
-            $numlength = strlen((string)$n);
-
-            if($numlength == 3){
-                $nd = 0;
-                $num = '0'.$n;
-            }elseif($numlength == 2){
-                $nd = 00;
-                $num = '00'.$n;
-            }elseif ($numlength == 1){
-                $nd = 000;
-                $num = '000'.$n;
-            }else{
-                $num = $n;
-            }
-            $card = $label.'-'.($num);
+        $code = isset($label) ? $label : 0;
+        if(!is_numeric($code)) $code = 0;
+        $val =DB::connection("mysql3")
+            ->select('SELECT h.printedcardno AS card FROM shp_households h 
+                      WHERE LENGTH(h.printedcardno) IN(14) AND
+                        h.printedcardno LIKE "'.(self::fix_length($code, 8, '0').'-%').'"
+                      ORDER BY h.printedcardno DESC LIMIT 1
+                     ');
+        if(!$val) {
+            $val =DB::connection("mysql3")
+                ->select('SELECT h.printedcardno AS card FROM shp_households h 
+                          WHERE LENGTH(h.printedcardno) IN(13) AND
+                            h.printedcardno LIKE "'.(self::fix_length($code, 8, '0').'-%').'"
+                          ORDER BY h.printedcardno DESC LIMIT 1
+                         ');
         }
-        echo $num;exit();
-        $result= array('hhid'=> ($num), 'result_card'=>$card);
+
+        if($val) {
+            //var_dump($val[0]->card);
+            $val = $val[0]->card;
+            $val = explode('-', $val);
+            $val = (int)end($val) + 1;
+            $len = strlen($val);
+            if($len==1)$val = "000".$val;
+            else if($len==2)$val = "00".$val;
+            else if($len==3)$val = "0".$val;
+        } else $val = 9001;
+
+        $label = strlen((string)$label)<8 ? '0'.$label:$label;
+        $card = $label.'-'.($val);
+        $result= array('hhid'=> ($val), 'result_card'=>$card);
         return $result;
     }
 

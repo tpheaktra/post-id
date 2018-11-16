@@ -110,6 +110,7 @@ class Helpers{
 	 * function print_nocard
 	 */
 	public static function getPrintNoCard($vil){
+
         $printcard =DB::connection("mysql3")->select('select max(h.printedcardno) as card from shp_households h where h.village ='.$vil);
         return $printcard;
     }

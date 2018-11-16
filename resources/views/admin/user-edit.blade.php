@@ -99,27 +99,29 @@
                                             </table>
                                         </div>
 
+@if(auth::user()->username == 'supperadmin')
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <table class="user-table">
+                                                <tr>
+                                                    <td>ពាក្យសំងាត់ <span class="text-danger">*</span></td>
+                                                    <td>
+                                                        {{ Form::password('password',['class'=>'form-control','placeholder'=>'ពាក្យសំងាត់']) }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <table class="user-table">
+                                                <tr>
+                                                    <td>បញ្ជាក់ <span class="text-danger">*</span></td>
+                                                    <td>
+                                                        {{ Form::password('confirm',['class'=>'form-control','placeholder'=>'បញ្ជាក់']) }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+@endif
 
-                                        {{--<div class="form-group col-sm-6 col-xs-12">--}}
-                                            {{--<table class="user-table">--}}
-                                                {{--<tr>--}}
-                                                    {{--<td>ពាក្យសំងាត់ <span class="text-danger">*</span></td>--}}
-                                                    {{--<td>--}}
-                                                        {{--{{ Form::password('password',['class'=>'form-control','placeholder'=>'ពាក្យសំងាត់']) }}--}}
-                                                    {{--</td>--}}
-                                                {{--</tr>--}}
-                                            {{--</table>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="form-group col-sm-6 col-xs-12">--}}
-                                            {{--<table class="user-table">--}}
-                                                {{--<tr>--}}
-                                                    {{--<td>បញ្ជាក់ <span class="text-danger">*</span></td>--}}
-                                                    {{--<td>--}}
-                                                        {{--{{ Form::password('confirm',['class'=>'form-control','placeholder'=>'បញ្ជាក់']) }}--}}
-                                                    {{--</td>--}}
-                                                {{--</tr>--}}
-                                            {{--</table>--}}
-                                        {{--</div>--}}
                                     </div>
                                 </div>
                             </fieldset>
