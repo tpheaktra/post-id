@@ -1973,16 +1973,6 @@
 //                $('.add_relationship_6').removeClass("has-error");
 //            }
 
-                var row_numc4 = $('.new_rows_4 tr.myrow_4').length;
-                var row_numc5 = $('.new_rows_5 tr.myrow_5').length;
-                var row_numc = $('.new_rows tr').length; //alert(row_numc4);
-                if(row_numc == row_numc4){
-                    $('#plus-check').empty();
-                }
-                if(row_numc == row_numc5){
-                    $('#plus-check5').empty();
-                }
-
                 for(var i=0; i<row_num; i++) {
 
                     var re = $('#family_relationship_'+i).val();
@@ -2022,7 +2012,6 @@
                     var m_age = $('.age_'+i).val();
                     // alert(nick);
                     //other income agriculture
-
                     if(i==0) {
                         plus = '<a class="btn btn-sm btn-primary" id="add_rows_4"><span class="glyphicon glyphicon-plus"></span></a>';
                     } else{
