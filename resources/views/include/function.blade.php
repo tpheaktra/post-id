@@ -2,7 +2,7 @@
 
     $('.g_age').on('change', function (e) {
         var InterAge = $('.g_age').val();
-        if(InterAge <= 1){$('.g_age').val('');}
+        if(InterAge < 16){$('.g_age').val('');}
         if(InterAge >= 150){$('.g_age').val('');}
     });
 
@@ -11,7 +11,6 @@
         if(InterAge < 16){$('.inter_age').val('');}
         if(InterAge >= 150){$('.inter_age').val('');}
     });
-
     $('.fa_age').on('change', function (e) {
         var InterAge = $('.fa_age').val();
         if(InterAge < 16){$('.fa_age').val('');}
