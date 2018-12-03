@@ -161,6 +161,13 @@
                                 <td width="65%">
                                    <div class="form-group">
                                        {{ Form::text('g_age',null,['class'=>'form-control allowNumber onlyNumber g_age','required'=>'required','maxlength'=>'3']) }}
+                                        <input type="text" name="" class="form-control">
+                                        <!-- <select class="form-control ">
+                                            <option>ខែ</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select> -->
                                     </div>
                                 </td>
                             </tr>
