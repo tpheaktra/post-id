@@ -279,7 +279,7 @@ class HomeController extends Controller
             'education_level.*.required'     => 'The education is required.'
         ]);
 
-        //try {
+        try {
 
             //check od
             $od_code = $request->hospital;
@@ -674,11 +674,11 @@ class HomeController extends Controller
 
             DB::commit();
             return Redirect::back()->with('success','បញ្ចូលទិន្នន័យជោគជ័យ');
-        // } catch (\Exception $e) {
-        //     DB::rollBack();
-        //    // return $this->errorResponse($e->getMessage(), 203);
-        //     return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
-        // }
+         } catch (\Exception $e) {
+             DB::rollBack();
+            // return $this->errorResponse($e->getMessage(), 203);
+             return Redirect::back()->with('danger','មិនអាចរក្សាទុកទិន្នន័យនៃការសម្ភាសន៍បានទេ');
+        }
 
     }
 
@@ -718,8 +718,10 @@ class HomeController extends Controller
         //step 2 member family
         $memberFamily      = MemberFamilyModel::with('generalInfo')
             ->where('g_information_id',$id)
-            ->orderBy('age','ASC')
-            ->orderBy('dob','ASC')->get();
+            ->orderBy('age','DESC')
+           // ->orderBy('dob','DESC')
+            ->get();
+       //echo json_encode($memberFamily);exit();
 
         //step 3 general situation of the family
         $gFamily           = GeneralSituationFamilyModel::where('g_information_id',$id)->first();

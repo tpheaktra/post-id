@@ -66,7 +66,7 @@
             <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
             <td>
                 <div class="form-group input-group">
-                    <input value="{{$material[0]->total_meterial_costs}}" id="total_meterial_costs" name="total_meterial_costs" type="text" required="required" class="cal_el form-control" readonly="readonly"/>
+                    <input value="{{$material[0]->total_meterial_costs ?? ''}}" id="total_meterial_costs" name="total_meterial_costs" type="text" required="required" class="cal_el form-control" readonly="readonly"/>
                     <span class="input-group-addon">រៀល</span>
                 </div>
             </td>
