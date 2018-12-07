@@ -827,7 +827,7 @@
 	                  	<P style="font-weight: bold;">- 7.B.2  ប្រាក់ចំណូលក្រៅពីកសិកម្ម សំរាប់គ្រួសារមិនមានចំណូលពីសកម្មភាពកសិកម្ម</P>
 	                  	<p style="font-weight: bold;">(ប្រាក់ចំណូលប្រចាំខែ  ចំណូលមធ្យមប្រចាំខែរបស់សមាជិកគ្រួសារម្នាក់ៗ)</p>
 	                  		<p style="padding: 5px;">
-	                  				<input type="hidden" value="{{$value->income_out_not_farmer}}" id="income_out_not_farmer" name="">
+	                  				<input type="text" value="11" id="income_out_not_farmer" name="">
 			                  	   	<table id="datatable1" class="table table-bordered">
 			                  		<tr style="background: #f9f3f3;">
 	                    				<th>ចំណាត់ថ្នាក់</th>

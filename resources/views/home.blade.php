@@ -161,16 +161,125 @@
                                 <td width="65%">
                                    <div class="form-group">
                                        {{ Form::text('g_age',null,['class'=>'form-control allowNumber onlyNumber g_age','required'=>'required','maxlength'=>'3']) }}
-                                        <input type="text" name="" class="form-control">
-                                        <!-- <select class="form-control ">
-                                            <option>ខែ</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                        </select> -->
                                     </div>
                                 </td>
                             </tr>
+                            <tr>
+                                <td width="35%"><label class="control-label"> អាយុ <spand class="text-danger">*</spand> </label></td>
+                                <td>
+                                     <input value="" type="text" id="patientDob" name="patientDob" class="tf form-control" placeholder="ថ្ងៃ-ខែ-ឆ្នាំ" title="ថ្ងៃ-ខែ-ឆ្នាំ" style="width: 130px; float: left;">
+                                    <div class="input-group" style="width: 80px; float: left;">
+                                        <input value="" type="text" id="patientAge" name="patientAge" maxlength="3" class="tf form-control" placeholder="អាយុ" title="អាយុ">
+                                        <div class="input-group-addon" style="padding: 5px !important;">
+                                            <small>ឆ្នាំ</small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group add_hospital">
+                                        <select id="patientMonth" name="patientMonth" class="dd dd_gray">
+                                            <option value="">ខែ</option>
+                                            <option value="1">1 ខែ</option>
+                                            <option value="2">2 ខែ</option>
+                                            <option value="3">3 ខែ</option>
+                                            <option value="4">4 ខែ</option>
+                                            <option value="5">5 ខែ</option>
+                                            <option value="6">6 ខែ</option>
+                                            <option value="7">7 ខែ</option>
+                                            <option value="8">8 ខែ</option>
+                                            <option value="9">9 ខែ</option>
+                                            <option value="10">10 ខែ</option>
+                                            <option value="11">11 ខែ</option>                         
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <script type="text/javascript">
+                               $('#patientMonth').change(function(){
+                                var age = $('#patientAge').val(), month = $('#patientMonth').val(), now = new Date(), dob = '';
+                                age = isNaN(parseInt(age)) ? 0 : parseInt(age);
+                                month = isNaN(parseInt(month)) ? 0 : parseInt(month);
+
+                                now = (now.getFullYear() * 365.25) + (now.getMonth() * 30) + now.getDate();
+                                age = (age * 365.25) + (month * 30);
+                                
+                                dob = now - age; 
+                                var year = Math.floor(dob / 365.25); 
+                                var month = Math.floor((dob % 365.25) / 30);
+                                var day = Math.floor((dob % 365.25) % 30);
+                                
+                                if(day == 0) {  
+                                    if(month == 0) { month = 12; year -= 1; }
+                                    else month -= 1;
+                                    day = 30;
+                                }
+                                
+                                if(month < 1) month = 1;
+                                else if(month < 12) month += 1;
+                                
+                                if(month == 2 && day > 28) day = 1;
+                                else if(day > 30) day = 30;
+                            
+                                if(month < 10) month = '0' + month;
+                                if(day < 10) day = '0' + day;
+                            
+                                dob = new Date(year + '-' + month + '-' + day);
+
+                                dob = dob.toDateString().split(' ');
+                                //$('#patientDob').val(dob[2] + ' ' + dob[1] + ' ' + dob[3]);
+                                $('#patientDob').val( day+ '/' + month + '/' + year);
+
+                            
+                            });
+                            $('#patientAge').on('input', function(e) {
+                                onlyNumber($(this));
+                                var age = parseInt($(this).val());
+                                if(age > 120) {
+                                    $(this).val('');
+                                    $('#patientMonth').val(0);
+                                    $('#patientDob').val('');
+                                }else{
+                                    ageToDob();
+                                }
+                            });
+                            
+                            function dobToAge(){
+                                var patientDob  = $('#patientDob').val();
+                                var dateParts   = patientDob.split("/");
+                                var dateObject  = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]); // month is 0-based
+                                var dob         = new Date(dateObject), now = new Date(), month = 0;
+                                    dob         = (parseInt(dob.getYear()) * 365.25) + (parseInt(dob.getMonth()) * 30) + parseInt(dob.getDate());
+                                    now         = (parseInt(now.getYear()) * 365.25) + (parseInt(now.getMonth()) * 30) + parseInt(now.getDate());
+                                
+                                var age = now - dob;
+                                if(age < 0) age = 0;
+                                else {
+                                    month = Math.floor((age % 365.25) / 30);
+                                    age = Math.floor(age / 365.25);
+                                }
+                                if(isNaN(age))age   = 0;
+                                
+                                $('#patientAge').val(age);
+                                $('#patientMonth').val(month);
+                            }
+                            function ageToDob(){
+                                var age         = parseInt($('#patientAge').val());
+                                var dob         = '', now = new Date(), month = 0;
+                                var d           = now.getDate();
+                                var m           = now.getMonth();
+                                var y           = (parseInt(now.getFullYear()) - age);
+
+                                if(age > 0) {
+                                    if(parseInt(d)<10)d = "0" + d;
+                                    if(parseInt(m)<10)m = "0" + m;
+                                    dob = d + '/' + m + '/' + y;
+                                }
+                                //dob = dob.toDateString().split(' ');
+                                //$('#patientDob').val(dob[2] + ' ' + dob[1] + ' ' + dob[3]);
+                                $('#patientDob').val( dob);
+                                //console.log(dob);
+                                //$('#patientDob').val(dob);
+                                $('#patientMonth').val(m);
+                            }
+                            </script>
                             <tr>
                                 <td width="35%"><label class="control-label">លេខទូរស័ព្ធ <spand class="text-danger">*</spand></label></td>
                                 <td width="65%">
@@ -3213,18 +3322,12 @@
                 $('.cal_incom_2').change(function(){
                  var total_per = $('#total_inc_person_not').val();
                       var money_score = 0;
-                      if(total_per < 40000 ){
-                        money_score = 4;
-                      }else if(total_per>=40000 && total_per < 70000){
-                        money_score = 2;
-                      }else if(total_per>=70000 && total_per< 100000){
-                        money_score = 0;
-                      }else if(total_per>=100000 && total_per< 125000){
-                        money_score = -3;
-                      }else if(total_per>=125000 && total_per < 1500000){
-                        money_score = -9;
-                      }else if(total_per >200000){
-                        money_score = -12;
+                      if(total_per < 110000){
+                        money_score = 16;
+                      }else if(total_per>=110100  && total_per < 180000){
+                        money_score = 11;
+                      }else if(total_per>=180100 && total_per< 230000){
+                        money_score = 5;
                       }else{
                         money_score = 0;
                       }$('#income_out_farmer_score_2').val(money_score);
