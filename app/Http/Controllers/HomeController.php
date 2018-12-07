@@ -619,15 +619,25 @@ class HomeController extends Controller
             //echo $total_score;
 
             $poor = 0;
-            if($total_score <= 42){
-                $poor = 3;
-            }elseif(($total_score > 42) && ($total_score < 85) ){
-                $poor = 2;
-            }elseif($total_score >= 85){
-                $poor = 1;
-            }
+            // if($total_score <= 42){
+            //     $poor = 3;
+            // }elseif(($total_score > 42) && ($total_score < 85) ){
+            //     $poor = 2;
+            // }elseif($total_score >= 85){
+            //     $poor = 1;
+            // }
             //echo $poor;
 
+            if($total_score < 42){
+                $poor = 3;
+            }elseif(($total_score >= 42) && ($total_score <= 58) ){
+                $poor = 2;
+            }elseif($total_score > 58){
+                $poor = 1;
+            }else{
+                $poor = 0;
+            }
+            
             $shp_household_pmrs = array(
                 'hhid'          =>$request->hhid,
                 'province'      =>$request->g_province,
