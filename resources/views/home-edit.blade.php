@@ -1156,7 +1156,7 @@
                                 <h5>តើគ្រួសាររបស់អ្នកមានបង្គន់ប្រើដែរឬទេ? <spand class="text-danger">*</spand></h5>
                                 <ul class="li-none">
                                     @foreach($question_totel as $key =>$val)
-                                        <li>{{$gFamily->toilet_id == $val->id}}
+                                        <li>
                                             <label><input @if($gFamily->toilet_id == $val->id) checked @endif style="margin-right:10px;" class="tolet" type="radio" name="tolet"  value="{{$val->id}}"> {{$val->name_kh}} </label>
                                         </li>
                                     @endforeach
