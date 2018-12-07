@@ -2607,7 +2607,7 @@
                         </div>
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
-                            @include('include.other-income-agriculture');
+                            @include('include.other-income-agriculture')
                         </div>
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">

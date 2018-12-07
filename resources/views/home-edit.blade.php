@@ -862,7 +862,7 @@
                                             <td><b>ផ្ទះជាន់ក្រោម៖</b></td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input value="{{$household_root->ground_floor_length}}" autocomplete="off" id="ground_floor_length" class="calculate form-control allowFlot ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">
+                                                    <input value="{{$household_root->ground_floor_length ?? ''}}" autocomplete="off" id="ground_floor_length" class="calculate form-control allowFlot ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">
                                                     <span class="input-group-addon">ម៉ែត្រ</span>
                                                     </div>
                                                 </td>
