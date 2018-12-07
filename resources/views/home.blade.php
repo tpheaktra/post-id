@@ -26,7 +26,7 @@
                     <div class="col-md-12">
                         <h3> ក) ព័ត៌មានទូទៅ</h3>
                         <div class="col-sm-12" style="padding: 0;"><hr> </div>
-                        <h4>ក.១ ព័ត៌មានទូទៅ</h4>
+                        <h4>ក.១ ព័ត៌មានទូទៅរបស់អ្នកជំងឺ</h4>
                     </div>
                     <div class="col-sm-12">
                         <div class="row">
@@ -631,20 +631,6 @@
                                                    });
                                                 var ptsmall_age = small_age*2;
                                                 $('#income_child_score').val(ptsmall_age);
-                                            }
-                                            function count_activity(){
-                                                var act_people = 0;
-                                                var my_id = $('.myrow').attr('index');
-                                                   $('.txt_age').each(function(i){
-                                                       var age = $(this).val();
-                                                       if(age > 0 && (parseFloat(age) >= 18 && parseFloat(age) <= 65)) act_people++;
-                                                       // console.log(small_age);
-                                                   });
-                                                var total = $('#total_people').val(); 
-                                                var ptact_people = act_people/total;
-                                                $('#age_action_score').val(ptact_people);
-                                                //console.log(ptact_people);
-                                                
                                             }
                                            $('.m_sex').change(function(){
                                                     var index= $(this).attr('index');
@@ -2621,7 +2607,7 @@
                         </div>
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
-                            @include('include.other-income-agriculture')
+                            @include('include.other-income-agriculture');
                         </div>
                         <div class="col-sm-12"><hr> </div>
                         <div class="col-sm-12">
@@ -2995,7 +2981,6 @@
         // step2
         step2Next.click(function(){
             count_small_age();
-            count_activity();
             var curStep = $(this).closest(".setup-content"),
                 curStepBtn = curStep.attr("id"),
                 nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
@@ -3170,7 +3155,7 @@
                                 '<span class="input-group-addon">រៀល</span>' +
                             '</div>' +
                         '</td>'+
-                        '<td style="text-align:center;" id="plus-check">'+plus+'</td>' +
+                        '<td style="text-align:center;">'+plus+'</td>' +
                     '</tr>';
                 $('.new_rows_4').append(otherIncome);
 
@@ -3232,7 +3217,7 @@
                 //other income not agriculture
                 if(i==0) {
                     plus_not = '<a class="btn btn-sm btn-primary" id="add_rows_5"><span class="glyphicon glyphicon-plus"></span></a>';
-                }else{
+                } else{
                     plus_not = '<a id="other_income_not_'+i+'" class="btn btn-sm btn-danger remove_rows_5"><span class="glyphicon glyphicon-minus"></span></a>';
                 }
                 var otherIncome_not = '<tr class="myrow_5">' +
@@ -3279,7 +3264,7 @@
                     '<span class="input-group-addon">រៀល</span>' +
                     '</div>' +
                     '</td>'+
-                    '<td style="text-align:center;" id="plus-check5">'+plus_not+'</td>' +
+                    '<td style="text-align:center;">'+plus_not+'</td>' +
                     '</tr>';
                 $('.new_rows_5').append(otherIncome_not);
 
@@ -3812,8 +3797,7 @@
     ===============// select2 in village //=================
     ========================================================*/
     $("#village").change(function () {
-        var village_id  = $('#village').val();
-        //var province_id = $('#province').val();
+        var village_id = $('#village').val();
         var index=$('#village option:selected').attr('index');
 
         $.ajax({
@@ -3824,8 +3808,7 @@
                 //$("#loading").fadeIn();
             },
             success: function (data) {
-             //   console.log(data);
-              //  var obj = JSON.parse(data);
+               // var obj = JSON.parse(data);
                 $("#printcard").empty();
                 $("#hhid").empty();
                 $("#printcard").val(data.result_card);

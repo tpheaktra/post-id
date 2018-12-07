@@ -37,7 +37,7 @@
                         @endpermission
                     @endif
                     @permission('post-id-print')
-                    <a data-hint="បោះពុម្ព" class="btn btn-xs btn-info hint--left hint--info" href="{{route('print.data', Crypt::encrypt($re->id))}}"  target="blank">
+                    <a data-hint="បោះពុម្ព" class="btn my_hide btn-xs btn-info hint--left hint--info" href="{{route('print.data', Crypt::encrypt($re->id))}}"  target="blank">
                         <i class="fa fa-print"></i></a>
                     @endpermission
                     @if(auth::user()->id == $re->user_id || auth::user()->username == 'supperadmin')

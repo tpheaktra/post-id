@@ -95,7 +95,7 @@
                         <td colspan="6"><span style="float: right;">សរុបចំណូល ប្រចាំខែ សម្រាប់គ្រួសារទាំងមូល (គិតជារៀល):</span></td>
                         <td colspan="2">
                             <div class="input-group">
-                                <input value="{{$otherIncome[0]->total_mon_income}}" id="total_monthly_income" class="cal_incom form-control"  type="text" name="total_mon_income" readonly="readonly">
+                                <input value="{{$otherIncome[0]->total_mon_income ?? ''}}" id="total_monthly_income" class="cal_incom form-control"  type="text" name="total_mon_income" readonly="readonly">
                                 <span class="input-group-addon">រៀល</span>
                             </div>
                         </td>
@@ -105,7 +105,7 @@
                         <td colspan="6"><span style="float: right;">ចំណូលក្រៅពីកសិកម្មជាមធ្យមប្រចាំខែសម្រាប់មនុស្សម្នាក់​​ (១) :</span></td>
                         <td colspan="2">
                             <div class="input-group">
-                                <input value="{{$otherIncome[0]->total_inc_person}}" class="cal_incom form-control" id="total_inc_person"  type="text" name="total_inc_person" readonly="readonly">
+                                <input value="{{$otherIncome[0]->total_inc_person ?? ''}}" class="cal_incom form-control" id="total_inc_person"  type="text" name="total_inc_person" readonly="readonly">
                                 <span class="input-group-addon">រៀល</span>
                             </div>
                         </td>
@@ -127,6 +127,7 @@
 
 
             <script type="text/javascript">
+
 
                 /*==================================================================
              ===============================new_rows_4===========================
@@ -406,8 +407,30 @@
                     </tr>
                     </tfoot>
                 </table>
-               
+
+                <table class="my_hide">
+                    <tr style="line-height: 50px;" class="my_hide">
+                        <td><b style="float: right;"> 7. C កុមារ(អាយុក្រោម ១៨ឆ្នាំ )រកចំណូល</b> </td>
+                        <td>
+                            <div class="input-group">
+                                <input class="cal_child cal_age form-control" id="income_child_score"  type="text" name="income_child_score">
+                                <span class="input-group-addon">ពិន្ទុ</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="my_hide">
+                        <td><b style="float: right;">11. វ័យពលកម្ម (ចន្លោះពី១៨ឆ្នាំដល់៦៥ឆ្នាំ) </b>
+                        </td>
+                        <td>
+                            <div class="input-group add_debt_duration" style="width: 300px;">
+                                <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly value="2.5">
+                                <span class="input-group-addon">ពិន្ទុ</span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
+
             <script type="text/javascript">
 
                 /*==================================================================
@@ -498,25 +521,38 @@
                             $('#total_inc_person_not').val((tot/totalperson).toFixed(2));
                         }
                     });
+                    // $('.cal_incom_2').change(function(){
+                    //     var total_per = $('#total_inc_person_not').val();
+                    //     var money_score = 0;
+                    //     if(total_per < 40000 ){
+                    //         money_score = 4;
+                    //     }else if(total_per>=40000 && total_per < 70000){
+                    //         money_score = 2;
+                    //     }else if(total_per>=70000 && total_per< 100000){
+                    //         money_score = 0;
+                    //     }else if(total_per>=100000 && total_per< 125000){
+                    //         money_score = -3;
+                    //     }else if(total_per>=125000 && total_per < 1500000){
+                    //         money_score = -9;
+                    //     }else if(total_per >200000){
+                    //         money_score = -12;
+                    //     }else{
+                    //         money_score = 0;
+                    //     }$('#income_out_farmer_score_2').val(money_score);
+                    // });
                     $('.cal_incom_2').change(function(){
-                        var total_per = $('#total_inc_person_not').val();
-                        var money_score = 0;
-                        if(total_per < 40000 ){
-                            money_score = 4;
-                        }else if(total_per>=40000 && total_per < 70000){
-                            money_score = 2;
-                        }else if(total_per>=70000 && total_per< 100000){
+                     var total_per = $('#total_inc_person_not').val();
+                          var money_score = 0;
+                          if(total_per < 110000){
+                            money_score = 16;
+                          }else if(total_per>=110100  && total_per < 180000){
+                            money_score = 11;
+                          }else if(total_per>=180100 && total_per< 230000){
+                            money_score = 5;
+                          }else{
                             money_score = 0;
-                        }else if(total_per>=100000 && total_per< 125000){
-                            money_score = -3;
-                        }else if(total_per>=125000 && total_per < 1500000){
-                            money_score = -9;
-                        }else if(total_per >200000){
-                            money_score = -12;
-                        }else{
-                            money_score = 0;
-                        }$('#income_out_farmer_score_2').val(money_score);
-                    });
+                          }$('#income_out_farmer_score_2').val(money_score);
+                  });
                 });
 
                 function reOrder_other_income_not(){
@@ -563,31 +599,9 @@
 
     </li>@endif
 </ul>
-<table class="my_hide">
-    <tr style="line-height: 50px;" class="my_hide">
-        <td><b style="float: right;"> 7. C កុមារ(អាយុក្រោម ១៨ឆ្នាំ )រកចំណូល</b> </td>
-        <td>
-            <div class="input-group">
-                @foreach($store_score as $key => $value)
-                <input class="cal_child cal_age form-control" id="income_child_score"  type="text" value="{{$value->income_child}}" name="income_child_score" readonly="readonly">
-                <span class="input-group-addon">ពិន្ទុ</span>
-                @endforeach
-            </div>
-        </td>
-    </tr>
-    <tr class="my_hide">
-        <td><b style="float: right;">11. វ័យពលកម្ម (ចន្លោះពី១៨ឆ្នាំដល់៦៥ឆ្នាំ) </b>
-        </td>
-        <td>
-            <div class="input-group add_debt_duration" style="width: 300px;">
-                @foreach($store_score as $key => $value)
-                <input autocomplete="off" class="form-control allowNumber" type="text" name="age_action_score" id="age_action_score" readonly value="{{$value->age_action}}">
-                <span class="input-group-addon">ពិន្ទុ</span>
-                @endforeach
-            </div>
-        </td>
-    </tr>
-</table>
+
+
+
 
 
 <script>

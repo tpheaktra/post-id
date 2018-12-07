@@ -84,7 +84,7 @@
             <td colspan="4"><b style="float:right">សរុប​តម្លៃ​សម្ភារ</b></td>
             <td>
                 <div class="form-group input-group">
-                    <input value="{{$vehicle[0]->total_vehicle_costs}}" id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
+                    <input value="{{$vehicle[0]->total_vehicle_costs ?? ''}}" id="total_vehicle_costs" name="total_vehicle_costs" type="text" required="required" class="form-control vehicle cal_v" readonly="readonly"/>
                     <span class="input-group-addon">រៀល</span>
                 </div>
             </td>
