@@ -164,7 +164,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td width="35%"><label class="control-label"> អាយុ <spand class="text-danger">*</spand> </label></td>
                                 <td>
                                      <input value="" type="text" id="patientDob" name="patientDob" class="tf form-control" placeholder="ថ្ងៃ-ខែ-ឆ្នាំ" title="ថ្ងៃ-ខែ-ឆ្នាំ" style="width: 130px; float: left;">
@@ -191,7 +191,7 @@
                                         </select>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> -->
                             <script type="text/javascript">
                                $('#patientMonth').change(function(){
                                 var age = $('#patientAge').val(), month = $('#patientMonth').val(), now = new Date(), dob = '';
