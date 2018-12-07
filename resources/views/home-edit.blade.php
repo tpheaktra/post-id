@@ -862,7 +862,7 @@
                                             <td><b>ផ្ទះជាន់ក្រោម៖</b></td>
                                             <td>
                                                 <div class="form-group input-group">
-                                                    <input value="{{$household_root->ground_floor_length ?? ''}}" autocomplete="off" id="ground_floor_length" class="calculate form-control allowFlot ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">
+                                                    <input value="{{$household_root->ground_floor_length}}" autocomplete="off" id="ground_floor_length" class="calculate form-control allowFlot ground_floor"  placeholder="បណ្តោយ" type="text" name="ground_floor_length">
                                                     <span class="input-group-addon">ម៉ែត្រ</span>
                                                     </div>
                                                 </td>
@@ -1156,7 +1156,7 @@
                                 <h5>តើគ្រួសាររបស់អ្នកមានបង្គន់ប្រើដែរឬទេ? <spand class="text-danger">*</spand></h5>
                                 <ul class="li-none">
                                     @foreach($question_totel as $key =>$val)
-                                        <li>
+                                        <li>{{$gFamily->toilet_id == $val->id}}
                                             <label><input @if($gFamily->toilet_id == $val->id) checked @endif style="margin-right:10px;" class="tolet" type="radio" name="tolet"  value="{{$val->id}}"> {{$val->name_kh}} </label>
                                         </li>
                                     @endforeach
@@ -1168,10 +1168,10 @@
                                     <div class="add_toilet_1">
                                         <ul class="li-none">
                                             <li>
-                                                <label><input @if($toilet->toilet_1 ?? '' == 'បង្គន់ចាក់ទឹក') checked @endif style="margin-right:10px;" type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>
+                                                <label><input @if($toilet != null && $toilet->toilet_1 == 'បង្គន់ចាក់ទឹក') checked @endif style="margin-right:10px;" type="radio" name="tolet_1" ​​ value="បង្គន់ចាក់ទឹក"> បង្គន់ចាក់ទឹក</label>
                                             </li>
                                             <li>
-                                                <label><input @if($toilet->toilet_1 ?? '' == 'បង្គន់ស្ងួត') checked @endif style="margin-right:10px;" type="radio" name="tolet_1" value="បង្គន់ស្ងួត">  បង្គន់ស្ងួត</label>
+                                                <label><input @if($toilet != null && $toilet->toilet_1 == 'បង្គន់ស្ងួត') checked @endif style="margin-right:10px;" type="radio" name="tolet_1" value="បង្គន់ស្ងួត">  បង្គន់ស្ងួត</label>
                                             </li>
                                         </ul>
                                     </div>
@@ -1179,10 +1179,10 @@
                                     <div class="add_toilet_2">
                                         <ul class="li-none">
                                             <li>
-                                                <label><input @if($toilet->toilet_2 ?? ''  == 'ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់') checked @endif style="margin-right:10px;" type="radio" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>
+                                                <label><input @if($toilet != null && $toilet->toilet_2  == 'ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់') checked @endif style="margin-right:10px;" type="radio" name="tolet_2" ​​ value="ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់"> ជាបង្គន់របស់គ្រួសារអ្នកផ្ទាល់ </label>
                                             </li>
                                             <li>
-                                                <label><input @if($toilet->toilet_2 ?? '' == 'ជាបង្គន់រួមជាមួយគ្រួសារដទៃ') checked @endif style="margin-right:10px;" type="radio" name="tolet_2" value="ជាបង្គន់រួមជាមួយគ្រួសារដទៃ"> ជាបង្គន់រួមជាមួយគ្រួសារដទៃ</label>
+                                                <label><input @if($toilet != null && $toilet->toilet_2  == 'ជាបង្គន់រួមជាមួយគ្រួសារដទៃ') checked @endif style="margin-right:10px;" type="radio" name="tolet_2" value="ជាបង្គន់រួមជាមួយគ្រួសារដទៃ"> ជាបង្គន់រួមជាមួយគ្រួសារដទៃ</label>
                                             </li>
                                         </ul>
                                     </div>

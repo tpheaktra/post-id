@@ -751,7 +751,9 @@ class HomeController extends Controller
        // echo json_encode($household_root); exit();
         $rendPrice = HouseholdRentPriceModel::where('g_information_id',$id)->where('household_family_id',$gFamily->household_family_id)->first();
         $institutions = HouseHoldFamilyLinkModel::where('g_information_id',$id)->where('household_family_id',$gFamily->household_family_id)->first();
-        $toilet    = TypeToiletLinkModel::where('toilet_id',$gFamily->toilet_id)->where('g_information_id',$id)->first();
+        $toilet    = TypeToiletLinkModel::where('toilet_id',$gFamily->toilet_id)
+            ->where('g_information_id',$id)->first();
+      //  echo json_encode($toilet);exit();
        // $material  = HouseoldConsumerModel::where('g_information_id',$id)->first();
 
         $material          = HouseoldConsumerModel::with('typemeterial')->where('g_information_id',$id)->get();
