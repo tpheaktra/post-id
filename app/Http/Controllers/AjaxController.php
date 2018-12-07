@@ -117,10 +117,7 @@ class AjaxController extends Controller
             $val = $val[0]->card;
             $val = explode('-', $val);
             $val = (int)end($val) + 1;
-            $len = strlen($val);
-            if($len==1)$val = "000".$val;
-            else if($len==2)$val = "00".$val;
-            else if($len==3)$val = "0".$val;
+            if($val < 9001) $val = 9001;
         } else $val = 9001;
 
         $label = strlen((string)$label)<8 ? '0'.$label:$label;
