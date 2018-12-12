@@ -629,13 +629,11 @@ class HomeController extends Controller
             //echo $poor;
 
             if($total_score < 42){
-                $poor = 3;
+                $poor = 0;
             }elseif(($total_score >= 42) && ($total_score <= 58) ){
                 $poor = 2;
             }elseif($total_score > 58){
                 $poor = 1;
-            }else{
-                $poor = 0;
             }
             
             $shp_household_pmrs = array(
