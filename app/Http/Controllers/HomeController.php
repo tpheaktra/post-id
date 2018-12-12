@@ -627,9 +627,10 @@ class HomeController extends Controller
             //     $poor = 1;
             // }
             //echo $poor;
-
+            $isactive = 1;
             if($total_score < 42){
                 $poor = 0;
+                $isactive = 0;
             }elseif(($total_score >= 42) && ($total_score <= 58) ){
                 $poor = 2;
             }elseif($total_score > 58){
@@ -651,7 +652,7 @@ class HomeController extends Controller
                 'entryby'       =>7777,
                 'entrydate'     =>Carbon::now(),
                 'poorcategory'  =>$poor,
-				'isactive'=>1
+				'isactive'=> $isactive
             );
            $shp= ShpHouseholdsModel::create($shp_household_pmrs);
 
