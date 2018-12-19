@@ -615,7 +615,7 @@ class HomeController extends Controller
             );
 
             $score = StoreScoreModel::create($score);
-            $total_score = round($score->total);
+            $total_score = round($total);//round($score->total);
             //echo $total_score;
 
             $poor = 0;
@@ -646,7 +646,7 @@ class HomeController extends Controller
                 'location'      =>$request->g_local_village,
                 'printedcardno' =>$request->printcardno,
                 'roundnum'      =>0,
-                'interviewscore'=>$total_score,
+                'interviewscore'=>round($total),
                 'interviewdate' =>$request->interview_date,
                 'expirydate'    =>$request->expire_date,
                 'entryby'       =>7777,
@@ -1335,27 +1335,43 @@ class HomeController extends Controller
                 $poor = 1;
             }
             
-           //  $shp_household_pmrs = array(
-           //      'hhid'          =>$request->hhid,
-           //      'province'      =>$request->g_province,
-           //      'district'      =>$request->g_district,
-           //      'commune'       =>$request->g_commune,
-           //      'village'       =>$request->g_village,
-           //      'location'      =>$request->g_local_village,
-           //      'printedcardno' =>$request->printcardno,
-           //      'roundnum'      =>0,
-           //      'interviewscore'=>$total_score,
-           //      'interviewdate' =>$request->interview_date,
-           //      'expirydate'    =>$request->expire_date,
-           //      'entryby'       =>7777,
-           //      'entrydate'     =>Carbon::now(),
-           //      'poorcategory'  =>$poor,
-           //      'isactive'      =>$isactive
-           //  );
+             $shp_household_pmrs = array(
+                 'hhid'          =>$request->hhid,
+                 'province'      =>$request->g_province,
+                 'district'      =>$request->g_district,
+                 'commune'       =>$request->g_commune,
+                 'village'       =>$request->g_village,
+                 'location'      =>$request->g_local_village,
+                 'printedcardno' =>$request->printcardno,
+                 'roundnum'      =>0,
+                 'interviewscore'=>$total_score,
+                 'interviewdate' =>$request->interview_date,
+                 'expirydate'    =>$request->expire_date,
+                 'entryby'       =>7777,
+                 'entrydate'     =>Carbon::now(),
+                 'poorcategory'  =>$poor,
+                 'isactive'      =>$isactive
+             );
              
-           // $shp= ShpHouseholdsModel::where('')->update(shp_household_pmrs);
+            $shp= ShpHouseholdsModel::where('printedcardno',$request->printcardno)->update($shp_household_pmrs);
 
-
+            //shp members
+            foreach ($request->nick_name as $key => $val){
+                $relat= RelationshipModel::findOrFail($request->family_relationship[$key]);
+                $member = array(
+                    'printedcardno'  => $request->printcardno,
+                    'memberno'       => ($key+1),
+                    'name'           => $val,
+                    'sex'            => $request->m_sex[$key] == 1 ? 'M' : 'F',
+                    'dob'            => $request->dob[$key].'-01-01',
+                    'attendsschool'  => $request->education_level[$key] == 14 ? 0 : 1,
+                    'membertype'     => $relat->pmrs_relation_id,
+                    'isactive'       => 1,
+                    'entrydate'      => Carbon::now(),
+                    'entryby'        => auth::user()->id,
+                );
+                ShpMembersModel::where('printedcardno',$request->printcardno)->update($member);
+            }
         //  echo json_encode($member_family);
             DB::commit();
             return Redirect::back()->with('success','ការសម្ភាសទិន្នន័យត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ');
