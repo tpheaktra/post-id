@@ -2,6 +2,7 @@
 
 namespace App\model;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class GeneralInformationModel extends Model
@@ -62,6 +63,9 @@ class GeneralInformationModel extends Model
     }
     public function sex(){
         return $this->hasOne(GenderModel::class,'id','g_sex');
+    }
+    public function userinterview(){
+        return $this->hasOne(User::class,'id','user_id');
     }
     public function score(){
         return $this->hasOne(StoreScoreModel::class, 'patient', 'id');

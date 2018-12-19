@@ -30,7 +30,7 @@ Route::group(['prefix' => 'ajax/','middleware' => ['auth']], function() {
     Route::GET('getCommune',['as'=>'getCommune','uses'=>'AjaxController@getCommune']);
     Route::GET('getVillage',['as'=>'getVillage','uses'=>'AjaxController@getVillage']);
     Route::GET('getPrintCardNo',['as'=>'getPrintCardNo','uses'=>'AjaxController@getPrintCardNo']);
-   // Route::GET('getPatientView',['as'=>'view.getPatientView','uses'=>'AjaxController@getPatientView']);
+    Route::GET('getPatientView',['as'=>'view.getPatientView','uses'=>'AjaxController@getPatientView']);
 });
 
 

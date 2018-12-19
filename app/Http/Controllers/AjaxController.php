@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\model\GeneralInformationModel;
 use Illuminate\Http\Request;
 use App\Helpers\Helpers;
 use DB;
@@ -9,6 +10,7 @@ use App\Helpers\PreIdRoundManager;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Crypt;
 use auth;
+use Carbon\Carbon;
 
 class AjaxController extends Controller
 {
@@ -131,29 +133,45 @@ class AjaxController extends Controller
      * function get view with datatable
      */
 
-//    public function getPatientView(){
+    public function getPatientView(){
+        $view = GeneralInformationModel::with('sex','userinterview')->get();
 //        $view = DB::select("select
-//            gi.id,gi.interview_code,gi.g_patient,gi.g_age,gg.name_kh as g_sex,gi.g_phone
+//            gi.id,gi.interview_code,
+//            gi.printcardno,
+//            gi.g_patient,gi.g_age,
+//            gg.name_kh as g_sex,gi.g_phone
 //            from general_information gi
 //            inner join gender gg on gi.g_sex = gg.id
 //            where gi.record_status = 1
 //            group by gi.interview_code order by gi.id desc");
-//        return view('include.result-interview',compact('view'));
-//
-//        foreach ($view as $i =>$v){
-//            $view[$i]->view = route('view.data', Crypt::encrypt($v->id));
-//            $view[$i]->edit = route('editpatient.edit', Crypt::encrypt($v->id));
-//            $view[$i]->print = route('print.data', Crypt::encrypt($v->id));
-//            $view[$i]->delete = route('deletepatient.delete', Crypt::encrypt($v->id));
-//            $view[$i]->printInterviewResult = route('printInterviewResult.print', Crypt::encrypt($v->id));
-//
-//            $view[$i]->txtprint_result='លទ្ធផលវាយតម្លៃសំរាប់អ្នកជំងឺ';
-//            $view[$i]->txtview = 'មើលពិន្ទុនៃការសំភាស';
-//            $view[$i]->txtedit = 'ការធ្វើបច្ចប្បន្នភាព';
-//            $view[$i]->txtprint = 'បោះពុម្ព';
-//            $view[$i]->txtdelete = 'លុបការសំភាស';
-//        }
-//        return Datatables::of($view)->addIndexColumn()->make(true);
-//    }
+        //echo json_encode($view);exit();
+        //return view('include.result-interview',compact('view'));
+        //$p=auth()->user()->hasAnyPermission();
+       // $p=$this->middleware(['auth', 'role-list']);
+ //dd(auth::user()->roles());
+
+//        $p=$this->middleware(['auth','permission:role-list']);
+//        echo json_encode($p);
+//        exit();
+        foreach ($view as $i =>$v){
+
+            $view[$i]->userid = $v->userinterview->id;
+            $view[$i]->interviewdate = Carbon::parse($v->interview_date)->format('d/m/Y');
+            $view[$i]->view = route('view.data', Crypt::encrypt($v->id));
+
+            $view[$i]->edit = route('editpatient.edit', Crypt::encrypt($v->id));
+            $view[$i]->print = route('print.data', Crypt::encrypt($v->id));
+            $view[$i]->delete = route('deletepatient.delete', Crypt::encrypt($v->id));
+            $view[$i]->printInterviewResult = route('printInterviewResult.print', Crypt::encrypt($v->id));
+
+            $view[$i]->txtprint_result='លទ្ធផលវាយតម្លៃសំរាប់អ្នកជំងឺ';
+            $view[$i]->txtview = 'មើលពិន្ទុនៃការសំភាស';
+            $view[$i]->txtedit = 'ការធ្វើបច្ចប្បន្នភាព';
+            $view[$i]->txtprint = 'បោះពុម្ព';
+            $view[$i]->txtdelete = 'លុបការសំភាស';
+        }
+       // echo json_encode($view);exit();
+        return Datatables::of($view)->addIndexColumn()->make(true);
+    }
 
 }

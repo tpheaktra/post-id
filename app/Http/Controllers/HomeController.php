@@ -91,7 +91,7 @@ class HomeController extends Controller
         $view = DB::select("select 
             gi.id,gi.interview_code,gi.g_patient,
             gi.g_age,gg.name_kh as g_sex,gi.g_phone,
-            us.name as interview_by,gi.user_id,gi.interview_date
+            us.name as interview_by,gi.user_id,gi.interview_date,gi.printcardno
             from general_information gi
             inner join gender gg on gi.g_sex = gg.id
             inner join users us on gi.user_id = us.id
@@ -611,11 +611,11 @@ class HomeController extends Controller
                 'debt'                  => $request->debt_score,
                 'edu'                   => $request->edu_score,
                 'age_action'            => $request->age_action_score,
-                'total'                 => $total
+                'total'                 => round($total)
             );
 
             $score = StoreScoreModel::create($score);
-            $total_score = $score->total;
+            $total_score = round($score->total);
             //echo $total_score;
 
             $poor = 0;
@@ -652,7 +652,7 @@ class HomeController extends Controller
                 'entryby'       =>7777,
                 'entrydate'     =>Carbon::now(),
                 'poorcategory'  =>$poor,
-				'isactive'=> $isactive
+				'isactive'      =>$isactive
             );
            $shp= ShpHouseholdsModel::create($shp_household_pmrs);
 
@@ -1315,9 +1315,46 @@ class HomeController extends Controller
                 'debt'                  => $request->debt_score,
                 'edu'                   => $request->edu_score,
                 'age_action'            => $request->age_action_score,
-                'total'                 => $total
+                'total'                 => round($total)
             );
             StoreScoreModel::where('patient',$id)->update($score);
+
+
+
+            $total_score = round($total);
+            //echo $total_score;
+            $poor = 0;
+            //echo $poor;
+            $isactive = 1;
+            if($total_score < 42){
+                $poor = 0;
+                $isactive = 0;
+            }elseif(($total_score >= 42) && ($total_score <= 58) ){
+                $poor = 2;
+            }elseif($total_score > 58){
+                $poor = 1;
+            }
+            
+           //  $shp_household_pmrs = array(
+           //      'hhid'          =>$request->hhid,
+           //      'province'      =>$request->g_province,
+           //      'district'      =>$request->g_district,
+           //      'commune'       =>$request->g_commune,
+           //      'village'       =>$request->g_village,
+           //      'location'      =>$request->g_local_village,
+           //      'printedcardno' =>$request->printcardno,
+           //      'roundnum'      =>0,
+           //      'interviewscore'=>$total_score,
+           //      'interviewdate' =>$request->interview_date,
+           //      'expirydate'    =>$request->expire_date,
+           //      'entryby'       =>7777,
+           //      'entrydate'     =>Carbon::now(),
+           //      'poorcategory'  =>$poor,
+           //      'isactive'      =>$isactive
+           //  );
+             
+           // $shp= ShpHouseholdsModel::where('')->update(shp_household_pmrs);
+
 
         //  echo json_encode($member_family);
             DB::commit();

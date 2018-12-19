@@ -50,7 +50,7 @@
                         </tr>
 
 
-                        <tr>
+                        <!-- <tr>
                             <td colspan="7" style="border-top: none;"><big class="text-primary">គម្រោងគាំពារសុខភាពសង្គម</big></td>
                         </tr>
                         <tr>
@@ -114,7 +114,7 @@
                             {{--<td style="border-top: none;">លោក ធី ប៊ុនរិទ្ធ</td>--}}
                             {{--<td colspan="4" style="border-top: none;">Tel : (855) 10 502 606</td>--}}
                             {{--<td style="border-top: none;">Email : tbunrith@pbhcam.org</td>--}}
-                        {{--</tr>--}}
+                        {{--</tr>--}} -->
                         </tbody>
                     </table>
                 </div>

@@ -2864,7 +2864,51 @@
 
     <div class="col-sm-12" style="padding: 0;"><h3>ទិន្នន័យ​អ្នកជំងឺ</h3></div>
     <div class="data-list">
-        @include('include.result-interview')
+        <table id="result-interview" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+            <th>ល.រ</th>
+            <th>ឈ្មោះអ្នកជំងឺ</th>
+            <th>អាយុ</th>
+            <th>ភេទ</th>
+            <th>លេខទូរស័ព្ធ</th>
+            <th>លេខកូដសម្ភាសន៍</th>
+            <th>អ្នកសំភាស៍</th>
+            <th>ថ្ងៃសម្ភាសន៍</th>
+            <th>សកម្មភាព</th>
+            </thead>
+            <tbody>
+
+                @permission('post-id-export')
+                    <script>var down = "post-id-export" ;</script>
+                @endpermission
+
+                @permission('post-id-view')
+                    <script>var view = "post-id-view" ;</script>
+                @endpermission
+
+
+                @permission('post-id-edit')
+                    <script>var edit = "post-id-edit" ;</script>
+                @endpermission
+
+
+                @permission('post-id-print')
+                    <script>var print = "post-id-print" ;</script>
+                @endpermission
+
+
+                @permission('post-id-delete')
+                <script>var deleted = "post-id-delete" ;</script>
+                @endpermission
+
+
+            <script>
+                var userid = "{{auth::user()->id}}";
+                var url = "{{route('view.getPatientView')}}";
+            </script>
+            </tbody>
+        </table>
+        <?php /* @include('include.result-interview') */?>
     </div>
 </div>
 

@@ -60,6 +60,14 @@ class ReportController extends Controller
         $template->setValue('score',$gInfo['score']->total);
         $template->setValue('p',$gInfo['shpHouseholds']->poorcategory);
 
+        if($gInfo['score']->total < 42){
+            $template->setValue('txt','មិនជាប់គ្រួសារក្រីក្រ');
+        }elseif(($gInfo['score']->total >= 42) && ($gInfo['score']->total <= 58)){
+            $template->setValue('txt','កំរិតក្រីក្រ២​ ឬ​ ងាយរងគ្រោះ');
+        }elseif($gInfo['score']->total > 58){
+            $template->setValue('txt','កំរិតក្រីក្រ១');
+        }
+
         for($i=0;$i<=8;$i++) {
             foreach ($memberFamily as $key => $v) {
                 if($i == $key) {
