@@ -38,6 +38,7 @@ class ReportController extends Controller
 
     public function pirntInterviewResult($id){
         $id = Crypt::decrypt($id);
+
         // Creating the new document...
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $template = new \PhpOffice\PhpWord\TemplateProcessor('template/Post_ID_result_printing_form.docx');
@@ -50,22 +51,24 @@ class ReportController extends Controller
                                     where mf.g_information_id = '$id'");
         $address = 'ភូមិ '.$gInfo['village']->name_kh.' ឃុំ/សង្កាត់ '.$gInfo['commune']->name_kh.' ស្រុក/ខណ្ឌ '.$gInfo['district']->name_kh.' ខេត្ត/ក្រុង '.$gInfo['provinces']->name_kh;
 
-        $template->setValue('interview_date',$gInfo->interview_date);
+        $template->setValue('interview_date',$gInfo->interview_date);     
         $template->setValue('expire_date',$gInfo->expire_date);
-        $template->setValue('hospital',$gInfo['hospital']->name_kh);
+        $template->setValue('hospital',$gInfo->hospital->name_kh);
         $template->setValue('interview_code',$gInfo->interview_code);
         $template->setValue('address',$address);
         $template->setValue('location',$gInfo->g_local_village);
         $template->setValue('hhid',$gInfo->printcardno);
-        $template->setValue('score',$gInfo['score']->total);
-        $template->setValue('p',$gInfo['shpHouseholds']->poorcategory);
+        $template->setValue('score',$gInfo->score->total);
+        $template->setValue('p',$gInfo->shpHouseholds->poorcategory);   
 
-        if($gInfo['score']->total < 42){
+      
+
+        if($gInfo->score->total < 42){
             $template->setValue('txt','មិនជាប់គ្រួសារក្រីក្រ');
-        }elseif(($gInfo['score']->total >= 42) && ($gInfo['score']->total <= 58)){
+        }elseif(($gInfo->score->total >= 42) && ($gInfo->score->total <= 58)){
             $template->setValue('txt','កំរិតក្រីក្រ២​ ឬ​ ងាយរងគ្រោះ');
-        }elseif($gInfo['score']->total > 58){
-            $template->setValue('txt','កំរិតក្រីក្រ១');
+        }elseif($gInfo->score->total > 58){
+            $template->setValue('txt','កំរិតក្រីក្រ១'); 
         }
 
         for($i=0;$i<=8;$i++) {

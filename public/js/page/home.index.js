@@ -20,24 +20,24 @@ $(document).ready(function() {
                 "render": function (data, type, full)
                 {
 
-                        if(down == 'post-id-export') {
-                            down = '<a data-hint="' + full.txtprint_result + '" class="btn btn-xs btn-default hint--left hint--default" href="' + full.printInterviewResult + '"><i class="fa fa-download"></i></a> ';
+                        if(down1 == 'post-id-export') {
+                             down = '<a data-hint="' + full.txtprint_result + '" class="btn btn-xs btn-default hint--left hint--default" href="' + full.printInterviewResult + '"><i class="fa fa-download"></i></a> ';
                         }
 
-                        if(view == 'post-id-view') {
+                        if(view1 == 'post-id-view') {
                             view    = '<a data-hint="'+full.txtview+'" class="btn btn-xs btn-success hint--left hint--success" href="'+full.view+'" target="blank"><i class="fa fa-eye"></i></a> ';
                         }
 
-                        if (full.userid == userid || edit == 'post-id-edit') {
+                        if (full.userid == userid || edit1 == 'post-id-edit') {
                             edit = '<a data-hint="' + full.txtedit + '"​​ class="btn btn-xs btn-primary hint--left hint--primary" href="' + full.edit + '" target="blank"><i class="fa fa-edit"></i></a> ';
                         }else{edit='';}
 
 
-                        if(print == 'post-id-print') {
+                        if(print1 == 'post-id-print') {
                             print   = '<a data-hint="'+full.txtprint+'" class="btn btn-xs btn-info hint--left hint--info" href="'+full.print+'"  target="blank"><i class="fa fa-print"></i></a> ';
                         }
 
-                        if (full.userid == userid || deleted == 'post-id-delete') {
+                        if (full.userid == userid || deleted1 == 'post-id-delete') {
                             deleted = '<a data-hint="'+full.txtdelete+'" class="btn btn-xs btn-danger hint--left hint--error" href="'+full.delete+'"><i class="fa fa-trash-o"></i></a>';
                         }else{deleted='';}
 

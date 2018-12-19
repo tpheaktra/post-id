@@ -2879,26 +2879,26 @@
             <tbody>
 
                 @permission('post-id-export')
-                    <script>var down = "post-id-export" ;</script>
+                    <script>var down1 = "post-id-export" ;</script>
                 @endpermission
 
                 @permission('post-id-view')
-                    <script>var view = "post-id-view" ;</script>
+                    <script>var view1 = "post-id-view" ;</script>
                 @endpermission
 
 
                 @permission('post-id-edit')
-                    <script>var edit = "post-id-edit" ;</script>
+                    <script>var edit1 = "post-id-edit" ;</script>
                 @endpermission
 
 
                 @permission('post-id-print')
-                    <script>var print = "post-id-print" ;</script>
+                    <script>var print1 = "post-id-print" ;</script>
                 @endpermission
 
 
                 @permission('post-id-delete')
-                <script>var deleted = "post-id-delete" ;</script>
+                <script>var deleted1 = "post-id-delete" ;</script>
                 @endpermission
 
 
