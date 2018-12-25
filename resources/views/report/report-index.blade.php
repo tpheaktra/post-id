@@ -26,10 +26,19 @@
                             </script>
                         </div>
 
+                        <div  style="margin: 10px auto 20px; width: 25%;">
+                            <select id="report" style="width: 100%;" name="report">
+                                <option value="1">ទាញយករបាយការណ៍ប្រចាំឆ្នាំ</option>
+                                <option value="2">ទាញយករបាយការណ៍បញ្ញីកត់ត្រា POST-ID</option>
+                            </select>
+                            <script>
+                                $("#report").select2({allowClear:true, placeholder: "ជ្រើសរើស"});
+                            </script>
+                        </div>
                         <div class="col-sm-12">
-                            <input type="submit" class="btn btn-primary" value="ទាញយករបាយការណ៍ប្រចាំឆ្នាំ">
-                            <br>
-                            <hr>
+                                <input type="submit" class="btn btn-primary" value="ទាញយករបាយការណ៍">
+                                <br>
+                                <hr>
                         </div>
 
                     {{ Form::close() }}

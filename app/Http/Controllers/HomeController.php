@@ -1406,4 +1406,13 @@ class HomeController extends Controller
         }
     }
 
+
+    /*
+     * result interview
+     */
+
+    public function resultInterview(){
+        return view('result-interview');
+    }
+
 }

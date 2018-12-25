@@ -46,6 +46,7 @@ Route::group(['prefix' => 'patient/interview','middleware' => ['auth']], functio
     Route::POST('/update/{id}',['as'=>'updatepatient.update','uses'=>'HomeController@update','middleware' => ['permission:post-id-edit']]);
     Route::get('/delete/{id}',['as'=>'deletepatient.delete','uses'=>'HomeController@delete','middleware' => ['permission:post-id-delete']]);
     Route::get('/change/base/{id}',['as'=>'change.base','uses'=>'HomeController@base' ]);
+    Route::get('/result',['as'=>'result.data','uses'=>'HomeController@resultInterview' ]);
 });
 
 

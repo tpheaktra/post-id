@@ -4,7 +4,7 @@ $(document).ready(function() {
         "processing": true,
         "serverSide": true,
         //"searching": false,
-        "retrieve": true,
+       // "retrieve": true,
         "ajax": url,
         "columns": [
            // {data: 'key'},
@@ -49,8 +49,8 @@ $(document).ready(function() {
             {targets: [0,2,3,8],"className": "text-center"},
            // { targets: '_all', "className": "small " },
         ],
-        "order": [[1, 'asc']],
-        deferRender: true,
+       // "order": [7, 'ASC'],
+        //deferRender: true,
     });
     //$.fn.dataTable.ext.errMode = 'throw';
 });

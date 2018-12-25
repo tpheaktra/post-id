@@ -110,17 +110,6 @@ class ReportController extends Controller
      */
     function reportBymonth($year){
 
-//        $memberFamily = DB::select("
-//              SELECT
-//                gi.id,
-//                COUNT(*) AS num,
-//                gi.hf_code,
-//                year(gi.interview_date) as  `year`,
-//                month(gi.interview_date) as `month`
-//            FROM `post-id`.general_information gi
-//            WHERE YEAR(gi.interview_date) = '$year' AND record_status=1
-//            GROUP BY gi.hf_code ,month(gi.interview_date) , year(gi.interview_date)
-//            ORDER BY gi.hf_code ,`year` , `month` ");
         $memberFamily = GeneralInformationModel::with('generate_report_by_month','health_facilities')
             ->select('id',DB::raw("COUNT(*) AS num"),'hf_code','g_province_id',DB::raw("year(interview_date) as  `year`"),DB::raw("month(interview_date) as `month`"))
             ->where(DB::raw("YEAR(interview_date)"),$year)
@@ -146,110 +135,81 @@ class ReportController extends Controller
         $this->validate($request, [
             'year' => 'required',
         ]);
-
         $year  = $request->year;
-        $memberFamily = $this->reportBymonth($year);
-        if(empty($memberFamily)) {
-            return Redirect::back()->with('danger','មិនមានទិន្ន័យសំភាសអ្នកជំងឺទេ');
-          //  die('No Data');
-        }
-        //dd($memberFamily);
-        $excel = Excel::load(public_path('template/Post_ID_Report_Format.xlsx'));
-        $sheet  = $excel->setActiveSheetIndex(0);
-        $sheet->setCellValue('B1', $year);
-        $r = 5;
-        foreach ($memberFamily as $i => $fac){
-            foreach ($fac['datas'] as $y => $months){
-                $c  = "A";
-                $tt = 0;
-                $sheet->setCellValue(($c++) . $r , $r - 4);
-                $sheet->setCellValue(($c++) . $r , $fac['province']);
-                $sheet->setCellValue(($c++) . $r , $fac['hf_name']);
-                $sheet->setCellValue(($c++) . $r , $y);
-                for($k =1; $k<=12 ; $k++){
-                    $mval = isset($months[$k])? $months[$k] :0;
-                    $sheet->setCellValue(($c++) . $r ,$mval);
-                    $tt += $mval;
-                }
-                $sheet->setCellValue(($c++) . $r , $tt);
-                $r++;
+        if($request->report == 1) {
+            $memberFamily = $this->reportBymonth($year);
+            if (empty($memberFamily)) {
+                return Redirect::back()->with('danger', 'មិនមានទិន្ន័យសំភាសអ្នកជំងឺទេ');
+                //  die('No Data');
             }
+            //dd($memberFamily);
+            $excel = Excel::load(public_path('template/Post_ID_Report_Format.xlsx'));
+            $sheet = $excel->setActiveSheetIndex(0);
+            $sheet->setCellValue('B1', $year);
+            $r = 5;
+            foreach ($memberFamily as $i => $fac) {
+                foreach ($fac['datas'] as $y => $months) {
+                    $c = "A";
+                    $tt = 0;
+                    $sheet->setCellValue(($c++) . $r, $r - 4);
+                    $sheet->setCellValue(($c++) . $r, $fac['province']);
+                    $sheet->setCellValue(($c++) . $r, $fac['hf_name']);
+                    $sheet->setCellValue(($c++) . $r, $y);
+                    for ($k = 1; $k <= 12; $k++) {
+                        $mval = isset($months[$k]) ? $months[$k] : 0;
+                        $sheet->setCellValue(($c++) . $r, $mval);
+                        $tt += $mval;
+                    }
+                    $sheet->setCellValue(($c++) . $r, $tt);
+                    $r++;
+                }
+            }
+            $sheet->getStyle('A5:Q' . ($r - 1))
+                ->getBorders()->getAllBorders()
+                ->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+            $excel->download('xlsx');
+            exit();
+        }else{
+            $memberFamily = DB::select('select gi.interview_date,
+                            gi.id,
+                            gi.printcardno,
+                            gi.g_patient,
+                            g.name_en,
+                            gi.g_age,
+                            sum(if(mf.gender_id=1,1,0)) as male,
+                            sum(if(mf.gender_id=2,1,0)) as female,
+                            (sum(if(mf.gender_id=1,1,0)) + sum(if(mf.gender_id=2,1,0))) as totalFM
+                         from general_information gi 
+                         inner join gender g on gi.g_sex = g.id
+                         inner join member_family mf on gi.id = mf.g_information_id
+                         group by mf.g_information_id');
+
+
+            //dd($memberFamily);
+            $excel = Excel::load(public_path('template/Register-Book.xlsx'));
+            $sheet = $excel->setActiveSheetIndex(0);
+           // $sheet->setCellValue('B1', $year);
+            $i = 5;
+            foreach ($memberFamily as $fac) {
+                $c = "A";
+                $sheet->setCellValue(($c++) . $i, $fac->interview_date);
+                $sheet->setCellValue(($c++) . $i, $fac->id);
+                $sheet->setCellValue(($c++) . $i, $fac->printcardno);
+                $sheet->setCellValue(($c++) . $i, $fac->g_patient);
+                $sheet->setCellValue(($c++) . $i, $fac->name_en);
+                $sheet->setCellValue(($c++) . $i, $fac->g_age);
+                $sheet->setCellValue(($c++) . $i, $fac->totalFM);
+                $sheet->setCellValue(($c++) . $i, $fac->female);
+                $i++;
+            }
+            $sheet->getStyle('A5:W' . ($i - 1))
+                ->getBorders()->getAllBorders()
+                ->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+            $excel->download('xlsx');
+            exit();
         }
-        $sheet->getStyle('A5:Q'.($r-1))
-            ->getBorders()->getAllBorders()
-            ->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-        $excel->download('xlsx');
-        exit();
-//        Excel::create($fileName, function($excel) {
-//            $data = ["No","Province","Hospital Name","Jan","Feb","Mar","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Total"];
-//            $excel->sheet('Sheet 1', function ($sheet) use ($data) {
-//                $sheet->setTitle('Report By Month Aug');
+
 //
-//                $sheet->setOrientation('landscape');
-//                $sheet->setBorder('A3:O3');
-//                $sheet->fromArray($data, null, 'A3');
-//                $sheet->cells('A3:O3', function($cells) {
-//                    $cells->setBackground('#AAAAFF');
-//                    $cells->setFont(array(
-//                        'name' => 'Arial',
-//                        'size' => 12,
-//                        'bold' => true
-//                    ));
-//                });
-//
-//                $now   = Carbon::now();
-//                $year  = $now->year;
-//                $month = $now->month;
-//
-//                $sheet->cells('A1', function($cells){
-//                    $cells->setValue('Year');
-//                    $cells->setFontWeight('bold');
-//                });
-//                $sheet->cells('B1', function($cells) use ($year) {
-//                    $cells->setValue($year);
-//                    $cells->setFontWeight('bold');
-//                });
-//                $sheet->cells('B2', function($cells){
-//                    $cells->setValue('Post ID Report');
-//                    $cells->setFontWeight('bold');
-//                    $cells->setFontSize(16);
-//
-//                });
-//
-//                $memberFamily = DB::select("SELECT p.name_kh AS province,hf.name_kh AS hospital,gi.hf_code,COUNT(*) AS num,
-//gi.hf_code, year(gi.created_at) year, month(gi.created_at) month
-//FROM `post-id`.general_information gi
-//INNER JOIN dev_pmrs_share.provinces p ON gi.g_province_id = p.code
-//INNER JOIN dev_pmrs_share.health_facilities hf ON gi.hf_code = hf.code
-//WHERE YEAR(gi.created_at) = '$year' and month(gi.created_at) = '$month'
-//GROUP BY gi.hf_code ,month(gi.created_at) , year(gi.created_at) ");
-//                $i = 4;
-//                $num = 1;
-//                foreach ($memberFamily as $record) {
-//                    $j = 'B';
-//                    foreach($record as $key => $value) {
-//
-//                        $sheet->cell($j.$i, function($cell) use ($value) {
-//                            $cell->setValue($value);
-//                            $cell->setFont(array(
-//                                'name' => 'Kh Battambang',
-//                                'size' => 11,
-//                            ));
-//                        });
-//
-//                        $sheet->cell('A'.$i, function($cell) use ($num) {
-//                            $cell->setValue($num);
-//                            $cell->setAlignment('center');
-//                        });
-//                        $sheet->setBorder('A'.$i.':O'.$i);
-//                        $j++;
-//                    }
-//                    $i++;
-//                    $num++;
-//                }
-//
-//            });
-//        })->download('xlsx');
     }
 
 

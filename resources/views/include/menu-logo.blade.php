@@ -9,6 +9,7 @@
     <div class="col-sm-12">
         <ul class="home-menu">
             <li class="@if(Route::currentRouteName() == 'home.index' || Route::currentRouteName() == 'homehome' || Route::currentRouteName() == 'editpatient.edit' || Route::currentRouteName() == 'view.data') active @endif"><a href="{{route('home.index')}}">ការធ្វើអត្តសញ្ញាណកម្ម</a></li>
+            <li class="@if(Route::currentRouteName() == 'result.data') active @endif"><a href="{{route('result.data')}}">ទិន្នន័យ​អ្នកជំងឺ</a></li>
             <li class="@if(Route::currentRouteName() == 'report.index') active @endif"><a href="{{route('report.index')}}">របាយការណ៍</a></li>
            @permission('user-list','user-create','user-edit','user-delete')
             <li class="@if(Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'user.create' || Route::currentRouteName() == 'user.edit') active @endif"><a href="{{route('user.index')}}">គ្រប់គ្រងអ្នកប្រើប្រាស់</a></li>

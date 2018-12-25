@@ -134,25 +134,10 @@ class AjaxController extends Controller
      */
 
     public function getPatientView(){
-        $view = GeneralInformationModel::with('sex','userinterview')->get();
-//        $view = DB::select("select
-//            gi.id,gi.interview_code,
-//            gi.printcardno,
-//            gi.g_patient,gi.g_age,
-//            gg.name_kh as g_sex,gi.g_phone
-//            from general_information gi
-//            inner join gender gg on gi.g_sex = gg.id
-//            where gi.record_status = 1
-//            group by gi.interview_code order by gi.id desc");
-        //echo json_encode($view);exit();
-        //return view('include.result-interview',compact('view'));
-        //$p=auth()->user()->hasAnyPermission();
-       // $p=$this->middleware(['auth', 'role-list']);
- //dd(auth::user()->roles());
-
-//        $p=$this->middleware(['auth','permission:role-list']);
-//        echo json_encode($p);
-//        exit();
+        $view = GeneralInformationModel::with('sex','userinterview')
+            ->where('record_status',1)
+            ->orderBy('interview_date', 'desc')
+            ->get();
         foreach ($view as $i =>$v){
 
             $view[$i]->userid = $v->userinterview->id;
@@ -170,7 +155,7 @@ class AjaxController extends Controller
             $view[$i]->txtprint = 'បោះពុម្ព';
             $view[$i]->txtdelete = 'លុបការសំភាស';
         }
-       // echo json_encode($view);exit();
+        // echo json_encode($view);exit();
         return Datatables::of($view)->addIndexColumn()->make(true);
     }
 
